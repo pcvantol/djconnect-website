@@ -226,12 +226,12 @@
     }
 
     .device-stack {
-      position: relative;
       min-height: 450px;
-    }
-
-    .macbook, .ipad, .iphone, .embedded {
-      position: absolute;
+      display: grid;
+      grid-template-columns: 1.16fr 0.82fr 0.48fr;
+      grid-template-rows: minmax(260px, auto) auto;
+      gap: 18px;
+      align-items: end;
     }
 
     .macbook-frame,
@@ -243,9 +243,10 @@
     }
 
     .macbook {
-      left: 3%;
-      top: 44px;
-      width: 72%;
+      grid-column: 1;
+      grid-row: 1;
+      align-self: end;
+      min-width: 0;
     }
 
     .macbook-frame {
@@ -293,13 +294,17 @@
     .bars span:nth-child(5) { height: 62%; }
 
     .ipad {
-      right: 4%;
-      top: 165px;
-      width: 42%;
+      grid-column: 2;
+      grid-row: 1;
+      align-self: end;
+      justify-self: end;
+      width: min(100%, 240px);
       aspect-ratio: 1.28;
       border-radius: 28px;
       padding: 12px;
-      transform: rotate(2deg);
+      transform: none;
+      position: relative;
+      z-index: 2;
     }
 
     .ipad::after {
@@ -315,22 +320,26 @@
     }
 
     .iphone {
-      right: 2%;
-      top: 78px;
-      width: 19%;
-      aspect-ratio: 0.49;
-      border-radius: 28px;
-      padding: 10px;
-      transform: rotate(-6deg);
+      grid-column: 3;
+      grid-row: 1;
+      align-self: center;
+      justify-self: end;
+      width: min(100%, 112px);
+      aspect-ratio: 0.48;
+      border-radius: 26px;
+      padding: 9px;
+      transform: none;
+      position: relative;
+      z-index: 3;
     }
 
     .iphone::before {
       content: "";
       position: absolute;
       left: 50%;
-      top: 10px;
-      width: 42%;
-      height: 14px;
+      top: 9px;
+      width: 44%;
+      height: 13px;
       border-radius: 0 0 999px 999px;
       background: #05070b;
       transform: translateX(-50%);
@@ -360,6 +369,11 @@
       align-content: space-between;
     }
 
+    .iphone .mini-ui {
+      border-radius: 20px;
+      padding: 28px 10px 18px;
+    }
+
     .cover {
       width: 56px;
       height: 56px;
@@ -372,9 +386,10 @@
     .line-set span:nth-child(2) { width: 68%; }
 
     .embedded {
-      left: 11%;
-      bottom: 10px;
-      width: 43%;
+      grid-column: 1 / 3;
+      grid-row: 2;
+      width: min(58%, 310px);
+      justify-self: center;
       border: 0;
       background: transparent;
       box-shadow: none;
@@ -555,11 +570,16 @@
       .hero { padding-top: 48px; }
       .platform-stage { min-height: 470px; padding: 18px; }
       .stage-top { align-items: start; flex-direction: column; }
-      .device-stack { min-height: 375px; }
-      .macbook { width: 86%; left: 0; top: 42px; }
-      .ipad { width: 54%; right: 0; top: 170px; }
-      .iphone { width: 25%; right: 0; top: 78px; }
-      .embedded { width: 56%; left: 2%; bottom: 0; }
+      .device-stack {
+        min-height: 390px;
+        grid-template-columns: 1fr 0.56fr;
+        grid-template-rows: auto auto;
+        gap: 14px;
+      }
+      .macbook { grid-column: 1 / -1; grid-row: 1; }
+      .ipad { grid-column: 1; grid-row: 2; width: min(100%, 220px); justify-self: start; }
+      .iphone { grid-column: 2; grid-row: 2; width: min(100%, 98px); align-self: center; }
+      .embedded { display: none; }
       .platform-card .topline { flex-direction: column; }
       .nav-controls .btn { display: none; }
     }
@@ -611,7 +631,7 @@
                   <div>
                     <div class="window-dots"><span></span><span></span><span></span></div>
                     <strong>DJConnect</strong>
-                    <p class="muted" data-i18n="stageScreenText">Queue, output en DJ-reactie.</p>
+                    <p class="muted" data-i18n="stageScreenText">Speel, Vraag aan, Ontvang Persoonlijke DJ aankondiging</p>
                   </div>
                   <div class="bars"><span></span><span></span><span></span><span></span><span></span></div>
                 </div>
@@ -744,7 +764,7 @@
         heroPrimary: "Aan de slag",
         stageLabel: "DJConnect platformoverzicht",
         stageText: "DJConnect. Jouw persoonlijke muziek DJ",
-        stageScreenText: "Queue, output en DJ-reactie.",
+        stageScreenText: "Speel, Vraag aan, Ontvang Persoonlijke DJ aankondiging",
         platformTitle: "De kern van DJConnect",
         platformLead: "DJConnect brengt je muziekwens, slimme context, outputkeuze en persoonlijke DJ-feedback samen in één vloeiende ervaring.",
         platformVoiceTitle: "Vraag muziek natuurlijk",
@@ -793,7 +813,7 @@
         heroPrimary: "How to start",
         stageLabel: "DJConnect platform overview",
         stageText: "DJConnect. Your personal music DJ",
-        stageScreenText: "Queue, output and DJ response.",
+        stageScreenText: "Play, ask, receive a personal DJ announcement",
         platformTitle: "The core of DJConnect",
         platformLead: "DJConnect brings your music request, smart context, output selection and personal DJ feedback together in one smooth experience.",
         platformVoiceTitle: "Ask for music naturally",

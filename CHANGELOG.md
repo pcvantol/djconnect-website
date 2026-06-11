@@ -4,6 +4,11 @@ All notable changes to this website are documented here.
 
 ## DJConnect website v3.1.0 - 2026-06-11
 
+- Improved homepage hero device rendering with clearer macOS, iPad and iPhone form factors.
+- Updated hero copy to "Speel, Vraag aan, Ontvang Persoonlijke DJ aankondiging".
+- Removed leftover "DJConnect Studio", queue and pre-flashed wording from current site copy.
+- Clarified the start page setup as automatic HACS installation or manual setup steps.
+- Added regression tests for hero copy, device visual hooks and pre-flashed wording removal.
 - Added macOS and iOS app subpages.
 - Added a macOS binary download page backed by `pcvantol/djconnect-app-releases`.
 - Added a Home Assistant "Aan de slag" setup page for HACS, Spotify, Assist and client pairing.

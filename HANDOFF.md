@@ -18,12 +18,16 @@
 
 - The site is static HTML/CSS/JavaScript with no build step.
 - The homepage is platform-independent and routes users to macOS, iOS and embedded options.
+- The homepage hero uses CSS-rendered macOS, iPad and iPhone form factors. Keep the elements side-by-side and avoid absolute overlap in future changes.
 - The homepage has prepared App Store CTA placeholders with `data-store-link="macos"` and `data-store-link="ios"`.
+- The embedded page should point users to `pcvantol/djconnect-firmware` for firmware downloads and flashing. Do not reintroduce pre-flashed copy.
+- The start page presents two setup paths: automatic HACS deeplink and manual Home Assistant/HACS steps.
 - App subpages use `assets/releases.js`, `assets/releases.css` and the Cloudflare Pages Function `functions/api/releases.js` to live-render GitHub releases.
 - macOS downloads use `assets/downloads.js` and the public repo `pcvantol/djconnect-app-releases`.
 - If the GitHub repository/releases are private, set `GITHUB_TOKEN` as a Cloudflare Pages secret for the `djconnect` project.
 - Version is tracked in `VERSION`, `package.json`, page footers and `CHANGELOG.md`.
 - Language switching on the embedded page is handled in `wwwroot/embedded.html` through the `translations` object.
+- Language switching on the homepage is handled in `wwwroot/index.html` through the `translations` object.
 - The embedded page keeps the detailed ESP32/Home Assistant setup, requirements and FAQ.
 - Do not commit `.wrangler/`; it is local Wrangler cache.
 
@@ -33,3 +37,8 @@
 2. Ensure `CLOUDFLARE_API_TOKEN` is set in the shell.
 3. Run `./release.sh`.
 4. Verify the GitHub Release and https://djconnect.pages.dev.
+
+## Current Verification
+
+- `npm test` covers version consistency, route presence, release embeds, download embeds, translation keys, footer copyright, firmware links and stale pre-flashed wording.
+- Manual visual checks are still needed for desktop, tablet and mobile layouts until browser regression tests are added.

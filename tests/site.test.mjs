@@ -76,6 +76,17 @@ test("homepage has platform routes and app store placeholders", async () => {
   assert.match(index, /Centrale HA hub/);
 });
 
+test("homepage hero uses the current device visual and copy", async () => {
+  const index = await read("wwwroot/index.html");
+  assert.match(index, /device-stack/);
+  assert.match(index, /class="macbook"/);
+  assert.match(index, /class="ipad"/);
+  assert.match(index, /class="iphone"/);
+  assert.match(index, /Speel, Vraag aan, Ontvang Persoonlijke DJ aankondiging/);
+  assert.doesNotMatch(index, /DJConnect Studio/);
+  assert.doesNotMatch(index, /Queue, output en DJ-reactie/);
+});
+
 test("how-to-start page covers setup flow", async () => {
   const start = await read("wwwroot/start.html");
   assert.match(start, /DJConnect\. Jouw persoonlijke muziek DJ\./);
@@ -134,6 +145,23 @@ test("embedded page lists supported hardware", async () => {
   assert.match(embedded, /https:\/\/github\.com\/espressif\/esp-box/);
   assert.match(embedded, /hardware_overview_for_box_3\.md/);
   assert.match(embedded, /https:\/\/github\.com\/pcvantol\/djconnect-firmware/);
+});
+
+test("site copy no longer claims devices are pre-flashed", async () => {
+  const pages = await Promise.all([
+    read("wwwroot/index.html"),
+    read("wwwroot/start.html"),
+    read("wwwroot/embedded.html"),
+    read("wwwroot/macos.html"),
+    read("wwwroot/ios.html"),
+    read("wwwroot/macos-download.html")
+  ]);
+
+  const combined = pages.join("\n");
+  assert.doesNotMatch(combined, /vooraf geflasht/i);
+  assert.doesNotMatch(combined, /pre-flashed/i);
+  assert.doesNotMatch(combined, /firmware staat al op het device/i);
+  assert.doesNotMatch(combined, /firmware is already on the device/i);
 });
 
 test("all translation keys are present in Dutch and English", async () => {

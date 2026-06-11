@@ -8,6 +8,7 @@
 - Publish directory: `wwwroot`
 - Current version: `3.1.0`
 - Main page: `wwwroot/index.html`
+- Start/setup page: `wwwroot/start.html`
 - macOS app page: `wwwroot/macos.html`
 - macOS binary download page: `wwwroot/macos-download.html`
 - iOS app page: `wwwroot/ios.html`

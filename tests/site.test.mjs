@@ -63,6 +63,7 @@ test("site version is consistent", async () => {
 
 test("homepage has platform routes and app store placeholders", async () => {
   const index = await read("wwwroot/index.html");
+  assert.match(index, /href="start\.html"/);
   assert.match(index, /href="embedded\.html"/);
   assert.match(index, /href="macos\.html"/);
   assert.match(index, /href="ios\.html"/);
@@ -70,6 +71,20 @@ test("homepage has platform routes and app store placeholders", async () => {
   assert.match(index, /data-store-link="ios"/);
   assert.match(index, /Mac App Store/);
   assert.match(index, /App Store/);
+});
+
+test("how-to-start page covers setup flow", async () => {
+  const start = await read("wwwroot/start.html");
+  assert.match(start, /DJConnect\. Jouw persoonlijke muziek DJ\./);
+  assert.match(start, /Vraag muziek\. Krijg persoonlijk aangekondigd\./);
+  assert.match(start, /Home Assistant installatie/);
+  assert.match(start, /Open DJConnect in HACS/);
+  assert.match(start, /https:\/\/my\.home-assistant\.io\/redirect\/hacs_repository/);
+  assert.match(start, /Koppel Spotify/);
+  assert.match(start, /Configureer Home Assistant Assist/);
+  assert.match(start, /Koppel je DJConnect device of app/);
+  assert.match(start, /Geen Spotify playback/);
+  assert.match(start, /Spotify is a trademark of Spotify AB/);
 });
 
 test("app subpages contain live GitHub release embeds", async () => {

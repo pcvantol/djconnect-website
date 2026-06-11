@@ -4,6 +4,7 @@
 
 - Open `wwwroot/index.html`.
 - Verify the homepage navigation scrolls to Platform, Essentials and Apps & devices.
+- Open `wwwroot/start.html` and verify HACS, Spotify, Assist, pairing and troubleshooting sections.
 - Verify the Embedded device navigation link opens `wwwroot/embedded.html`.
 - Open `wwwroot/macos.html` and `wwwroot/ios.html`.
 - Open `wwwroot/macos-download.html` and verify it shows binaries or the empty release-repo state.

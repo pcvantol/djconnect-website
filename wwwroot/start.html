@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DJConnect Aan de slag</title>
+  <meta name="description" content="Aan de slag met DJConnect: vereisten, HACS installatie, Spotify koppelen, Home Assistant Assist configureren en je device of app pairen." />
+  <link rel="icon" href="assets/djconnect/icon.svg" type="image/svg+xml" />
+  <style>
+    :root { --bg:#0b0d12; --panel:rgba(255,255,255,0.075); --panel-strong:rgba(255,255,255,0.12); --text:#f7f7fb; --muted:#b7bccb; --line:rgba(255,255,255,0.14); --cyan:#66e0ff; --green:#7ef7a7; --purple:#8b5cf6; --max:1120px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; background:var(--bg); }
+    body { margin:0; color:var(--text); font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height:1.55; background:radial-gradient(circle at 16% 10%, rgba(102,224,255,0.18), transparent 28rem), radial-gradient(circle at 80% 8%, rgba(126,247,167,0.12), transparent 28rem), linear-gradient(180deg,#0b0d12 0%,#111827 58%,#090b10 100%); }
+    a { color:inherit; text-decoration:none; }
+    code { border:1px solid var(--line); border-radius:8px; background:rgba(255,255,255,0.09); color:#d9fbe5; padding:2px 7px; overflow-wrap:anywhere; }
+    .wrap { width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
+    .nav { position:sticky; top:0; z-index:20; backdrop-filter:blur(18px); background:rgba(11,13,18,0.7); border-bottom:1px solid var(--line); }
+    .nav-inner { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:18px; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:850; }
+    .brand img { width:36px; height:36px; border-radius:50%; }
+    .nav-links { display:flex; gap:18px; color:var(--muted); font-size:0.94rem; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:0 18px; border-radius:999px; border:1px solid var(--line); background:rgba(255,255,255,0.08); color:var(--text); font-weight:820; }
+    .btn.primary { border:0; color:#06110c; background:linear-gradient(135deg,var(--cyan),var(--green)); }
+    .hero { padding:82px 0 46px; }
+    .hero-grid { display:grid; grid-template-columns:0.95fr 1.05fr; gap:38px; align-items:center; }
+    .eyebrow { display:inline-flex; align-items:center; gap:9px; padding:8px 12px; border:1px solid var(--line); border-radius:999px; color:var(--muted); background:rgba(255,255,255,0.06); font-size:0.9rem; margin-bottom:22px; }
+    .dot { width:9px; height:9px; border-radius:99px; background:var(--green); box-shadow:0 0 20px var(--green); }
+    h1,h2,h3 { margin:0; letter-spacing:-0.045em; line-height:1.05; }
+    h1 { font-size:clamp(3rem,7vw,5.8rem); max-width:11ch; }
+    h2 { font-size:clamp(2rem,4vw,3.5rem); margin-bottom:18px; }
+    h3 { font-size:1.22rem; margin-bottom:10px; }
+    .lead { color:var(--muted); font-size:clamp(1.08rem,2vw,1.28rem); margin:24px 0 30px; }
+    section { padding:62px 0; }
+    .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:start; }
+    .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .card { border:1px solid var(--line); border-radius:22px; background:var(--panel); padding:24px; }
+    .card p,.muted { color:var(--muted); margin:0; }
+    .checklist { display:grid; gap:12px; margin:0; padding:0; }
+    .checklist li { list-style:none; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,0.055); padding:14px 16px; color:var(--muted); }
+    .checklist li::before { content:"✓"; color:var(--green); font-weight:900; margin-right:10px; }
+    .steps { counter-reset:steps; display:grid; gap:14px; margin:0; padding:0; }
+    .steps li { list-style:none; counter-increment:steps; display:grid; grid-template-columns:48px 1fr; gap:14px; border:1px solid var(--line); border-radius:20px; background:rgba(255,255,255,0.055); padding:16px; color:var(--muted); }
+    .steps li::before { content:counter(steps); width:48px; height:48px; display:grid; place-items:center; border-radius:16px; background:var(--cyan); color:#07110b; font-weight:950; }
+    .note { border-left:3px solid var(--green); padding:14px 16px; background:rgba(126,247,167,0.09); border-radius:14px; color:var(--muted); }
+    .commands { display:flex; flex-wrap:wrap; gap:10px; }
+    .commands span { border:1px solid var(--line); border-radius:999px; padding:8px 12px; background:rgba(255,255,255,0.07); color:var(--muted); }
+    .legal { color:var(--muted); font-size:0.86rem; padding:34px 0 44px; border-top:1px solid var(--line); }
+    .site-version { margin-top:14px; font-size:0.76rem; color:rgba(183,188,203,0.72); }
+    @media (max-width:900px) { .hero-grid,.grid-2,.grid-3 { grid-template-columns:1fr; } .nav-links { display:none; } }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="index.html"><img src="assets/djconnect/icon.svg" alt="" /><span>DJConnect</span></a>
+      <div class="nav-links">
+        <a href="#requirements">Vereisten</a>
+        <a href="#hacs">HACS</a>
+        <a href="#spotify">Spotify</a>
+        <a href="#pairing">Pairing</a>
+        <a href="#troubleshooting">Hulp</a>
+      </div>
+      <a class="btn primary" href="#hacs">Start installatie</a>
+    </div>
+  </nav>
+
+  <main>
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow"><span class="dot"></span><span>Aan de slag met Home Assistant</span></div>
+          <h1>DJConnect. Jouw persoonlijke muziek DJ.</h1>
+          <p class="lead">Vraag muziek. Krijg persoonlijk aangekondigd.</p>
+          <a class="btn primary" href="https://my.home-assistant.io/redirect/hacs_repository/?owner=pcvantol&repository=djconnect&category=integration">Open DJConnect in HACS</a>
+        </div>
+        <div class="card">
+          <h2>Wat ga je doen?</h2>
+          <p class="muted">Je installeert de DJConnect integration in Home Assistant, koppelt Spotify, controleert je Assist pipeline en pairt daarna je ESP device of iOS/macOS app.</p>
+        </div>
+      </div>
+    </header>
+
+    <section id="requirements">
+      <div class="wrap grid-2">
+        <div>
+          <h2>Vereisten</h2>
+          <p class="lead">Deze checklist voorkomt de meeste installatieproblemen.</p>
+        </div>
+        <ul class="checklist">
+          <li>Home Assistant installatie.</li>
+          <li>HACS geïnstalleerd in Home Assistant.</li>
+          <li>Spotify Premium account.</li>
+          <li>Home Assistant Assist pipeline met werkende STT en TTS.</li>
+          <li>DJConnect device of DJConnect iOS/macOS app.</li>
+          <li>Home Assistant en DJConnect client op hetzelfde lokale netwerk tijdens pairing.</li>
+          <li>Voor ESP devices: 2.4 GHz WiFi.</li>
+          <li>Voor Spotify OAuth: een externe HTTPS Home Assistant URL, bij voorkeur Nabu Casa.</li>
+        </ul>
+      </div>
+      <div class="wrap grid-3">
+        <article class="card"><h3>Waarom Spotify Premium?</h3><p>DJConnect stuurt playback aan via de Spotify Web API en Spotify playback devices. Daarvoor is Spotify Premium nodig.</p></article>
+        <article class="card"><h3>Credentials blijven in Home Assistant</h3><p>DJConnect devices en apps krijgen geen Spotify refresh token of playback credentials.</p></article>
+        <article class="card"><h3>Assist voor voice</h3><p>Home Assistant Assist wordt gebruikt voor spraakherkenning en gesproken DJ aankondigingen.</p></article>
+      </div>
+    </section>
+
+    <section id="hacs">
+      <div class="wrap grid-2">
+        <div>
+          <h2>1. Installeer DJConnect in HACS</h2>
+          <p class="lead">Voeg de custom integration toe en start Home Assistant opnieuw.</p>
+          <a class="btn primary" href="https://my.home-assistant.io/redirect/hacs_repository/?owner=pcvantol&repository=djconnect&category=integration">Open DJConnect in HACS</a>
+        </div>
+        <ol class="steps">
+          <li>Open Home Assistant.</li>
+          <li>Open HACS.</li>
+          <li>Ga naar <strong>Integrations</strong>.</li>
+          <li>Voeg custom repository <code>https://github.com/pcvantol/djconnect</code> toe.</li>
+          <li>Kies category <strong>Integration</strong>.</li>
+          <li>Zoek en installeer <strong>DJConnect</strong>.</li>
+          <li>Herstart Home Assistant.</li>
+          <li>Ga naar <strong>Settings -> Devices & services -> Add integration -> DJConnect</strong>.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="spotify">
+      <div class="wrap grid-2">
+        <div>
+          <h2>2. Koppel Spotify</h2>
+          <p class="lead">DJConnect gebruikt Spotify via Home Assistant. Tijdens setup opent Home Assistant de Spotify autorisatiepagina.</p>
+          <div class="note">Gebruik bij voorkeur je Nabu Casa HTTPS URL als Home Assistant externe URL.</div>
+        </div>
+        <ol class="steps">
+          <li>Log in met je Spotify Premium account.</li>
+          <li>Geef toestemming.</li>
+          <li>Je komt terug bij Home Assistant.</li>
+          <li>Daarna beheert Home Assistant de Spotify koppeling.</li>
+          <li>Vraagt Spotify later opnieuw autorisatie, herstel dit via Home Assistant Repairs of de DJConnect options flow.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="assist">
+      <div class="wrap grid-2">
+        <div>
+          <h2>3. Configureer Home Assistant Assist</h2>
+          <p class="lead">DJConnect heeft een werkende Assist pipeline nodig voor voice.</p>
+          <p class="muted">STT zet je gesproken muziekvraag om naar tekst. TTS spreekt de DJ aankondiging uit op het DJConnect device of in de app. De DJ aankondiging is instelbaar in de DJConnect options flow.</p>
+        </div>
+        <ol class="steps">
+          <li>Open <strong>Settings -> Voice assistants</strong>.</li>
+          <li>Maak of controleer een Assist pipeline.</li>
+          <li>Kies een STT provider voor spraak naar tekst.</li>
+          <li>Kies een TTS provider voor gesproken DJ aankondigingen.</li>
+          <li>Test de pipeline in Home Assistant.</li>
+          <li>Kies deze pipeline eventueel in de DJConnect options flow.</li>
+        </ol>
+      </div>
+      <div class="wrap">
+        <div class="card">
+          <h3>Voorbeelden van opdrachten</h3>
+          <div class="commands">
+            <span>Speel Nirvana</span>
+            <span>Ik wil Pearl Jam horen</span>
+            <span>Zet London Grammar op</span>
+            <span>Speel maar af Above & Beyond</span>
+            <span>Ik heb wel zin in Metallica</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pairing">
+      <div class="wrap">
+        <h2>4. Koppel je DJConnect device of app</h2>
+        <p class="lead">Kies de route die past bij je client.</p>
+      </div>
+      <div class="wrap grid-2">
+        <article class="card">
+          <h3>ESP device</h3>
+          <ol class="steps">
+            <li>Zet het DJConnect device aan.</li>
+            <li>Verbind het device met WiFi via setup mode, BLE of captive portal.</li>
+            <li>Open de DJConnect integration setup in Home Assistant.</li>
+            <li>Voer de koppelcode in die op het device-scherm staat.</li>
+            <li>Home Assistant koppelt het device en stuurt een lokaal device token.</li>
+            <li>Wacht tot de statusindicator groen wordt.</li>
+          </ol>
+          <p class="muted">ESP devices gebruiken lokale communicatie met Home Assistant. De cloud URL wordt niet gebruikt voor device commands. Als mDNS niet werkt, kun je de Client API URL handmatig invullen.</p>
+        </article>
+        <article class="card">
+          <h3>iOS/macOS app</h3>
+          <ol class="steps">
+            <li>Open de DJConnect app.</li>
+            <li>Ga naar <strong>Settings</strong>.</li>
+            <li>Kopieer de <strong>Client API URL</strong>.</li>
+            <li>Open DJConnect setup in Home Assistant.</li>
+            <li>Kies client type <strong>iOS app</strong> of <strong>macOS app</strong>.</li>
+            <li>Vul de koppelcode en Client API URL in.</li>
+            <li>Rond pairing af.</li>
+          </ol>
+          <p class="muted">Voor iOS/macOS is de Client API URL verplicht. De app en Home Assistant moeten elkaar lokaal kunnen bereiken.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="check">
+      <div class="wrap grid-2">
+        <div>
+          <h2>5. Controleer of alles werkt</h2>
+          <p class="lead">Na pairing kun je deze punten nalopen.</p>
+        </div>
+        <ul class="checklist">
+          <li>DJConnect device/app staat als apparaat in Home Assistant.</li>
+          <li>Status is verbonden/gepaired.</li>
+          <li>Spotify is gekoppeld.</li>
+          <li>Playback proxy kan play/pause doen.</li>
+          <li>Voice/PTT start muziek.</li>
+          <li>DJ aankondiging verschijnt of wordt uitgesproken.</li>
+          <li>Last command, last track en debug attributen worden gevuld.</li>
+          <li>Firmware update entity verschijnt alleen voor ESP devices.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="troubleshooting">
+      <div class="wrap">
+        <h2>Problemen oplossen</h2>
+        <div class="grid-3">
+          <article class="card"><h3>Geen Spotify playback</h3><p>Controleer Spotify Premium en of er een actief Spotify afspeelapparaat beschikbaar is.</p></article>
+          <article class="card"><h3>Geen spraakherkenning</h3><p>Controleer de Assist pipeline en STT provider.</p></article>
+          <article class="card"><h3>Geen DJ aankondiging</h3><p>Controleer TTS provider en DJConnect options.</p></article>
+          <article class="card"><h3>Pairing lukt niet</h3><p>Controleer koppelcode, Client API URL en lokaal netwerk.</p></article>
+          <article class="card"><h3>HACS toont oude versie</h3><p>Refresh HACS update information en herstart Home Assistant.</p></article>
+          <article class="card"><h3>Device blijft rood/pending</h3><p>Controleer of Home Assistant lokaal bereikbaar is vanaf het device of de app.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap legal">
+    <p>Copyright Peter van Tol 2026. All rights reserved.</p>
+    <p>Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.</p>
+    <p class="site-version">DJConnect website v3.1.0</p>
+  </footer>
+</body>
+</html>

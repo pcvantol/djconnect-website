@@ -6,6 +6,7 @@ All notable changes to this website are documented here.
 
 - Added macOS and iOS app subpages.
 - Added a macOS binary download page backed by `pcvantol/djconnect-app-releases`.
+- Added a Home Assistant "Aan de slag" setup page for HACS, Spotify, Assist and client pairing.
 - Added live GitHub release embeds on app subpages.
 - Added a platform-independent homepage for DJConnect essentials.
 - Moved the ESP32 hardware content into a dedicated embedded-device one-pager.

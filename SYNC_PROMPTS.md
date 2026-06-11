@@ -75,6 +75,9 @@ Requirements:
 - Persist client_type as ios, macos, or esp32. Do not reintroduce device_type.
 - Authenticated status/command/voice routes must accept Authorization: Bearer
   plus X-DJConnect-Device-ID.
+- Support Apple app current-track seeking through
+  `command:"seek_relative"` with integer millisecond offsets. Positive values
+  seek forward, negative values seek backward. ESP clients may omit this UI.
 - Validate that client_type matches the device_id prefix/model family:
   ios -> djconnect-ios-*, macos -> djconnect-macos-*, esp32 -> ESP
   model-specific ids such as djconnect-lilygo-t-embed-s3-*.
@@ -124,6 +127,9 @@ Requirements:
 - Offer Demo Mode from the unpaired pairing sheet for App Store review and UI
   inspection without a Home Assistant backend. Demo Mode must use local sample
   data and must not store a bearer token.
+- Expose current-track seek controls on iOS/macOS by sending
+  `command:"seek_relative"` with integer millisecond offsets. Positive values
+  seek forward, negative values seek backward. This is optional for ESP.
 - Detect likely unclean exits and offer only user-mediated crash reporting:
   copy redacted diagnostics or open a prefilled `pcvantol/djconnect` issue.
 - Do not log bearer tokens, HA tokens, Spotify secrets, or audio URLs.
@@ -1147,6 +1153,8 @@ Examples:
 {"device_id":"djconnect-ios-8F3A2C91B45D","client_type":"ios","command":"play"}
 {"device_id":"djconnect-ios-8F3A2C91B45D","client_type":"ios","command":"next"}
 {"device_id":"djconnect-ios-8F3A2C91B45D","client_type":"ios","command":"previous"}
+{"device_id":"djconnect-ios-8F3A2C91B45D","client_type":"ios","command":"seek_relative","value":15000}
+{"device_id":"djconnect-ios-8F3A2C91B45D","client_type":"ios","command":"seek_relative","value":-15000}
 {"device_id":"djconnect-ios-8F3A2C91B45D","client_type":"ios","command":"set_volume","value":35}
 {"device_id":"djconnect-ios-8F3A2C91B45D","client_type":"ios","command":"set_shuffle","value":true}
 {"device_id":"djconnect-ios-8F3A2C91B45D","client_type":"ios","command":"set_repeat","value":"context"}
@@ -1154,6 +1162,12 @@ Examples:
 {"device_id":"djconnect-ios-8F3A2C91B45D","client_type":"ios","command":"start_playlist","value":"spotify:playlist:...","play":true}
 {"device_id":"djconnect-ios-8F3A2C91B45D","client_type":"ios","command":"set_output","value":"iPhone","play":true}
 ```
+
+Apple app clients may expose current-track seek controls. Use
+`command:"seek_relative"` with an integer `value` in milliseconds. Positive
+values seek forward and negative values seek backward. Home Assistant should
+clamp the resulting position to the current track and return the usual command
+response. ESP clients may skip this UI capability.
 
 Expected success shape:
 

@@ -123,6 +123,7 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /Gebruik onderstaande Home Assistant Community Store knop/);
   assert.match(start, /Hulp bij Home Assistant voice assist/);
   assert.match(start, /Maak of controleer je voice assist pipeline binnen Home Assistant/);
+  assert.match(start, /Voeg custom repository toe <code>https:\/\/github\.com\/pcvantol\/djconnect<\/code>/);
   assert.match(start, /https:\/\/www\.home-assistant\.io\/voice_control\/voice_remote_cloud_assistant\//);
   assert.match(start, /3\. Configureer/);
   assert.match(start, /Voeg DJConnect toe als Home Assistant integratie en koppel je Spotify account/);
@@ -197,11 +198,16 @@ test("raspberry pi page is prepared and translated", async () => {
 });
 
 test("app subpages contain live GitHub release embeds", async () => {
-  for (const page of ["ios", "embedded"]) {
-    const html = await read(`wwwroot/${page}.html`);
+  const pages = [
+    { path: "ios", repo: "djconnect-website" },
+    { path: "embedded", repo: "djconnect-firmware" }
+  ];
+
+  for (const page of pages) {
+    const html = await read(`wwwroot/${page.path}.html`);
     assert.match(html, /data-github-releases/, `${page} page needs release embed`);
     assert.match(html, /data-github-owner="pcvantol"/, `${page} page needs GitHub owner`);
-    assert.match(html, /data-github-repo="djconnect-website"/, `${page} page needs GitHub repo`);
+    assert.match(html, new RegExp(`data-github-repo="${page.repo}"`), `${page.path} page needs GitHub repo`);
     assert.match(html, /assets\/releases\.js/, `${page} page needs release script`);
   }
 });
@@ -240,6 +246,8 @@ test("embedded page links back to platform homepage", async () => {
   assert.match(embedded, /href="index\.html"/);
   assert.match(embedded, /href="index\.html" data-i18n="navPlatform">Home<\/a>/);
   assert.match(embedded, /DJConnect op ESP32|DJConnect on ESP32/);
+  assert.match(embedded, /DJConnect voor ESP32/);
+  assert.match(embedded, /Gebruik DJConnect als compacte afstandsbediening voor muziek en DJ aankondiging/);
   assert.doesNotMatch(embedded, /Firmware download • Wake word "Okay Nabu" • Home Assistant/);
   assert.doesNotMatch(embedded, /<h3 data-i18n="firmwareTitle">Firmware downloads<\/h3>/);
   assert.doesNotMatch(embedded, /href="start\.html" data-i18n="navStart">Aan de slag<\/a>/);

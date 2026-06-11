@@ -32,10 +32,10 @@
     .lead { color:var(--muted); font-size:1.2rem; margin:24px 0 30px; }
     section { padding:68px 0; }
     .card { border:1px solid var(--line); border-radius:22px; background:var(--panel); padding:24px; }
-    .mock { min-height:360px; border:1px solid var(--line); border-radius:28px; background:linear-gradient(145deg,rgba(255,255,255,0.12),rgba(255,255,255,0.04)); padding:24px; position:relative; }
+    .mock { min-height:360px; border:1px solid var(--line); border-radius:28px; background:linear-gradient(145deg,rgba(255,255,255,0.12),rgba(255,255,255,0.04)); padding:24px; position:relative; overflow:hidden; }
     .ipad,.iphone { position:absolute; border:1px solid rgba(255,255,255,0.22); background:linear-gradient(145deg,#273244,#050608 72%); box-shadow:0 32px 72px rgba(0,0,0,0.42); padding:14px; }
-    .ipad { left:8%; top:72px; width:66%; aspect-ratio:1.32; border-radius:28px; }
-    .iphone { right:8%; top:34px; width:27%; aspect-ratio:0.49; border-radius:30px; }
+    .ipad { left:7%; top:88px; width:56%; aspect-ratio:1.36; border-radius:30px; }
+    .iphone { right:9%; top:48px; width:23%; aspect-ratio:0.49; border-radius:32px; }
     .screen { height:100%; border-radius:18px; background:linear-gradient(180deg,#111827,#05070b); border:1px solid rgba(255,255,255,0.12); padding:14px; display:grid; align-content:space-between; }
     .cover { width:62px; height:62px; border-radius:16px; background:linear-gradient(135deg,var(--cyan),#8b5cf6); }
     .lines { display:grid; gap:8px; }
@@ -45,6 +45,7 @@
     .legal { color:var(--muted); font-size:0.86rem; padding:34px 0 44px; border-top:1px solid var(--line); }
     .site-version { margin-top:14px; font-size:0.76rem; color:rgba(183,188,203,0.72); }
     @media (max-width:860px) { .hero-grid,.grid-2 { grid-template-columns:1fr; } .nav-inner { flex-wrap:wrap; padding:12px 0; } .nav-links { order:3; width:100%; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; } .nav-links::-webkit-scrollbar { display:none; } }
+    @media (max-width:560px) { .mock { min-height:300px; } .ipad { left:6%; top:98px; width:58%; } .iphone { right:7%; top:54px; width:25%; } .cover { width:48px; height:48px; } }
   </style>
 </head>
 <body>

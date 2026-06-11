@@ -43,9 +43,9 @@
     .card p,.muted { color:var(--muted); margin:0; }
     .hero-steps { display:grid; gap:14px; margin:0; padding:0; counter-reset:heroSteps; }
     .hero-steps li { list-style:none; counter-increment:heroSteps; display:flex; align-items:center; gap:14px; color:var(--muted); font-size:1.08rem; font-weight:760; }
-    .hero-steps li::before { content:counter(heroSteps); flex:0 0 42px; width:42px; height:42px; display:grid; place-items:center; border-radius:999px; background:linear-gradient(135deg,var(--purple),#c084fc); color:var(--text); font-weight:950; box-shadow:0 14px 28px rgba(139,92,246,0.22); }
+    .hero-steps li::before { content:counter(heroSteps); flex:0 0 42px; width:42px; height:42px; display:grid; place-items:center; border-radius:999px; background:linear-gradient(135deg,var(--cyan),var(--green)); color:#06110c; font-weight:950; box-shadow:0 14px 28px rgba(102,224,255,0.18); }
     .hero-done { display:flex; align-items:center; gap:14px; margin-top:18px; color:var(--text); font-size:1.08rem; font-weight:820; }
-    .hero-done::before { content:"♪"; flex:0 0 42px; width:42px; height:42px; display:grid; place-items:center; border-radius:999px; background:linear-gradient(135deg,var(--cyan),var(--green)); color:#06110c; font-weight:950; }
+    .hero-done::before { content:"♪"; flex:0 0 42px; width:42px; height:42px; display:grid; place-items:center; border-radius:999px; background:linear-gradient(135deg,var(--purple),#c084fc); color:var(--text); font-weight:950; }
     .download-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
     .route-card { min-height:100%; }
     .route-label { display:inline-flex; margin-bottom:14px; padding:6px 10px; border-radius:999px; background:rgba(102,224,255,0.14); color:#9becff; font-size:0.78rem; font-weight:850; text-transform:uppercase; letter-spacing:0.06em; }
@@ -172,7 +172,7 @@
             <li>Open Home Assistant</li>
             <li>Open HACS</li>
             <li>Ga naar <strong>Integrations</strong></li>
-            <li>Voeg deze custom repository toe: <code>https://github.com/pcvantol/djconnect</code></li>
+            <li>Voeg custom repository toe <code>https://github.com/pcvantol/djconnect</code></li>
             <li>Kies category <strong>Integration</strong></li>
             <li>Zoek en installeer <strong>DJConnect</strong></li>
             <li>Herstart Home Assistant</li>

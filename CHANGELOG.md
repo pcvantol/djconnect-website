@@ -25,3 +25,4 @@ All notable changes to this website are documented here.
 - Simplified the Raspberry Pi page navigation to match the app pages.
 - Extended `cleanup_old_releases.sh` to remove older GitHub Actions workflow runs in addition to old releases and tags.
 - Removed the duplicate macOS download page and embedded app binary downloads directly on the macOS page.
+- Pointed the embedded page release embed to `pcvantol/djconnect-firmware` releases.

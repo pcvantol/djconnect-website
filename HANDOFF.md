@@ -30,7 +30,7 @@
 - The start page links to Home Assistant voice assistant documentation, `pcvantol/djconnect-firmware` and `pcvantol/djconnect-app-releases`.
 - The start page pairing switch has separate panels for ESP device, iOS app, macOS app and Raspberry Pi app.
 - macOS, iOS, Raspberry Pi and embedded pages label the homepage navigation route as `Home`; app pages should not show cross-links to other app/device pages in the top menu.
-- App subpages use `assets/releases.js`, `assets/releases.css` and the Cloudflare Pages Function `functions/api/releases.js` to live-render GitHub releases.
+- App subpages use `assets/releases.js`, `assets/releases.css` and the Cloudflare Pages Function `functions/api/releases.js` to live-render GitHub releases. The embedded page points to `pcvantol/djconnect-firmware` releases.
 - macOS downloads are embedded directly on `wwwroot/macos.html` using `assets/downloads.js` and the public repo `pcvantol/djconnect-app-releases`.
 - If the GitHub repository/releases are private, set `GITHUB_TOKEN` as a Cloudflare Pages secret for the `djconnect` project.
 - Version is tracked in `VERSION`, `package.json`, page footers and `CHANGELOG.md`.

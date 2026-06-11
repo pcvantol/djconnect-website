@@ -32,6 +32,7 @@
 - Verify Dutch and English language toggles update visible text on start, embedded, iOS, macOS, Features and Raspberry Pi pages.
 - Verify the embedded page lists LilyGO T-Embed CC1101 and ESP32-S3-BOX-3 under supported hardware.
 - Verify the embedded ESP32 visual card has clear spacing and includes the LilyGO product specifications link.
+- Verify the embedded release block points to `pcvantol/djconnect-firmware` releases.
 - Verify the embedded page does not mention pre-flashed devices.
 - Verify the embedded page does not show local quick start, requirements, FAQ, the experience section or the `Stem via HA / Veilig gekoppeld / DJ-karakter` row.
 - Verify embedded `Start installatie` buttons route to `wwwroot/start.html`.

@@ -33,6 +33,7 @@
     section { padding:62px 0; }
     .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:start; }
     .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .section-followup { margin-top:28px; }
     .card { border:1px solid var(--line); border-radius:22px; background:var(--panel); padding:24px; }
     .card p,.muted { color:var(--muted); margin:0; }
     .checklist { display:grid; gap:12px; margin:0; padding:0; }
@@ -96,7 +97,7 @@
           <li>Voor Spotify OAuth: een externe HTTPS Home Assistant URL, bij voorkeur Nabu Casa.</li>
         </ul>
       </div>
-      <div class="wrap grid-3">
+      <div class="wrap grid-3 section-followup">
         <article class="card"><h3>Waarom Spotify Premium?</h3><p>DJConnect stuurt playback aan via de Spotify Web API en Spotify playback devices. Daarvoor is Spotify Premium nodig.</p></article>
         <article class="card"><h3>Credentials blijven in Home Assistant</h3><p>DJConnect devices en apps krijgen geen Spotify refresh token of playback credentials.</p></article>
         <article class="card"><h3>Assist voor voice</h3><p>Home Assistant Assist wordt gebruikt voor spraakherkenning en gesproken DJ aankondigingen.</p></article>

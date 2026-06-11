@@ -232,6 +232,11 @@
 
     .macbook, .ipad, .iphone, .embedded {
       position: absolute;
+    }
+
+    .macbook-frame,
+    .ipad,
+    .iphone {
       border: 1px solid rgba(255,255,255,0.22);
       background: linear-gradient(145deg, #273244, #050608 72%);
       box-shadow: 0 32px 72px rgba(0,0,0,0.42), inset 0 1px 0 rgba(255,255,255,0.16);
@@ -241,8 +246,20 @@
       left: 3%;
       top: 44px;
       width: 72%;
+    }
+
+    .macbook-frame {
       border-radius: 18px;
       padding: 14px;
+    }
+
+    .macbook-base {
+      width: 108%;
+      height: 20px;
+      margin-left: -4%;
+      border-radius: 0 0 26px 26px;
+      background: linear-gradient(180deg, #cbd5e1, #64748b);
+      box-shadow: 0 22px 34px rgba(0,0,0,0.34);
     }
 
     .screen {
@@ -285,6 +302,18 @@
       transform: rotate(2deg);
     }
 
+    .ipad::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 13px;
+      width: 34%;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.24);
+      transform: translateX(-50%);
+    }
+
     .iphone {
       right: 2%;
       top: 78px;
@@ -293,6 +322,32 @@
       border-radius: 28px;
       padding: 10px;
       transform: rotate(-6deg);
+    }
+
+    .iphone::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 10px;
+      width: 42%;
+      height: 14px;
+      border-radius: 0 0 999px 999px;
+      background: #05070b;
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+
+    .iphone::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 13px;
+      width: 42%;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.28);
+      transform: translateX(-50%);
+      z-index: 2;
     }
 
     .mini-ui {
@@ -515,25 +570,26 @@
           <p class="lead" data-i18n="heroLead">DJConnect brengt spraak, muziekbediening en een persoonlijke DJ-reactie samen. De kern blijft hetzelfde op elk device: vraag muziek, kies waar het speelt en krijg directe feedback terug.</p>
           <div class="hero-actions">
             <a class="btn primary" href="start.html" data-i18n="heroPrimary">Aan de slag</a>
-            <a class="btn" href="embedded.html" data-i18n="heroSecondary">Naar embedded device</a>
           </div>
         </div>
 
         <div class="platform-stage" aria-label="DJConnect platformoverzicht" data-i18n-attr="aria-label:stageLabel">
           <div class="stage-top">
-            <span data-i18n="stageText">Een gedeelde DJConnect-laag voor apps en hardware.</span>
-            <span class="stage-pill" data-i18n="stagePill">Platform essentials</span>
+            <span data-i18n="stageText">DJConnect. Jouw persoonlijke muziek DJ</span>
           </div>
           <div class="device-stack" aria-hidden="true">
             <div class="macbook">
-              <div class="screen">
-                <div>
-                  <div class="window-dots"><span></span><span></span><span></span></div>
-                  <strong>DJConnect Studio</strong>
-                  <p class="muted" data-i18n="stageScreenText">Queue, output en DJ-reactie.</p>
+              <div class="macbook-frame">
+                <div class="screen">
+                  <div>
+                    <div class="window-dots"><span></span><span></span><span></span></div>
+                    <strong>DJConnect</strong>
+                    <p class="muted" data-i18n="stageScreenText">Queue, output en DJ-reactie.</p>
+                  </div>
+                  <div class="bars"><span></span><span></span><span></span><span></span><span></span></div>
                 </div>
-                <div class="bars"><span></span><span></span><span></span><span></span><span></span></div>
               </div>
+              <div class="macbook-base"></div>
             </div>
             <div class="ipad"><div class="mini-ui"><div class="cover"></div><div class="line-set"><span></span><span></span></div></div></div>
             <div class="iphone"><div class="mini-ui"><div class="cover"></div><div class="line-set"><span></span><span></span></div></div></div>
@@ -666,10 +722,8 @@
         heroTitle: "DJConnect. Een muziekplatform met karakter.",
         heroLead: "DJConnect brengt spraak, muziekbediening en een persoonlijke DJ-reactie samen. De kern blijft hetzelfde op elk device: vraag muziek, kies waar het speelt en krijg directe feedback terug.",
         heroPrimary: "Aan de slag",
-        heroSecondary: "Naar embedded device",
         stageLabel: "DJConnect platformoverzicht",
-        stageText: "Een gedeelde DJConnect-laag voor apps en hardware.",
-        stagePill: "Platform essentials",
+        stageText: "DJConnect. Jouw persoonlijke muziek DJ",
         stageScreenText: "Queue, output en DJ-reactie.",
         platformTitle: "De kern van DJConnect",
         platformLead: "DJConnect is geen losse afstandsbediening, maar een platformlaag voor muziekvragen, context, outputkeuze en feedback.",
@@ -721,10 +775,8 @@
         heroTitle: "DJConnect. A music platform with character.",
         heroLead: "DJConnect brings voice, music control and a personal DJ response together. The core stays the same on every device: ask for music, choose where it plays and get direct feedback.",
         heroPrimary: "How to start",
-        heroSecondary: "Go to embedded device",
         stageLabel: "DJConnect platform overview",
-        stageText: "One shared DJConnect layer for apps and hardware.",
-        stagePill: "Platform essentials",
+        stageText: "DJConnect. Your personal music DJ",
         stageScreenText: "Queue, output and DJ response.",
         platformTitle: "The core of DJConnect",
         platformLead: "DJConnect is not just another remote, but a platform layer for music requests, context, output selection and feedback.",

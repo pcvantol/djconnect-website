@@ -52,8 +52,8 @@ if ! command -v gh >/dev/null 2>&1; then
   exit 1
 fi
 
-if [[ -n "$(git status --porcelain)" ]]; then
-  echo "Working tree has uncommitted changes. Commit or stash them before cleanup."
+if [[ -n "$(git status --porcelain --untracked-files=no)" ]]; then
+  echo "Working tree has uncommitted tracked changes. Commit or stash them before cleanup."
   git status --short
   exit 1
 fi

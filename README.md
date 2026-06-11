@@ -24,3 +24,8 @@ The production site is deployed to Cloudflare Pages:
 Use `./release.sh` for the standard release flow.
 
 The release script runs tests, pushes `main`, creates a `vX.Y.Z` tag, creates a GitHub Release and deploys to Cloudflare Pages.
+
+## Live Releases
+
+App subpages render latest GitHub releases through `/api/releases`.
+For private GitHub repositories, set a Cloudflare Pages secret named `GITHUB_TOKEN` with read access to releases.

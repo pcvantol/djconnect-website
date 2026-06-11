@@ -4,6 +4,8 @@ All notable changes to this website are documented here.
 
 ## DJConnect website v3.1.0 - 2026-06-11
 
+- Added macOS and iOS app subpages.
+- Added live GitHub release embeds on app subpages.
 - Added a platform-independent homepage for DJConnect essentials.
 - Moved the ESP32 hardware content into a dedicated embedded-device one-pager.
 - Prepared macOS and iOS homepage cards for future Mac App Store and App Store links.

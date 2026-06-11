@@ -64,10 +64,28 @@ test("site version is consistent", async () => {
 test("homepage has platform routes and app store placeholders", async () => {
   const index = await read("wwwroot/index.html");
   assert.match(index, /href="embedded\.html"/);
+  assert.match(index, /href="macos\.html"/);
+  assert.match(index, /href="ios\.html"/);
   assert.match(index, /data-store-link="macos"/);
   assert.match(index, /data-store-link="ios"/);
   assert.match(index, /Mac App Store/);
   assert.match(index, /App Store/);
+});
+
+test("app subpages contain live GitHub release embeds", async () => {
+  for (const page of ["macos", "ios", "embedded"]) {
+    const html = await read(`wwwroot/${page}.html`);
+    assert.match(html, /data-github-releases/, `${page} page needs release embed`);
+    assert.match(html, /data-github-owner="pcvantol"/, `${page} page needs GitHub owner`);
+    assert.match(html, /data-github-repo="djconnect-website"/, `${page} page needs GitHub repo`);
+    assert.match(html, /assets\/releases\.js/, `${page} page needs release script`);
+  }
+});
+
+test("release proxy function is present", async () => {
+  const proxy = await read("functions/api/releases.js");
+  assert.match(proxy, /env\.GITHUB_TOKEN/);
+  assert.match(proxy, /api\.github\.com\/repos/);
 });
 
 test("embedded page links back to platform homepage", async () => {

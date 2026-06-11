@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DJConnect voor iPhone en iPad</title>
+  <meta name="description" content="DJConnect voor iOS: mobiele muziekbediening, voice prompts en DJ-feedback." />
+  <link rel="icon" href="assets/djconnect/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/releases.css" />
+  <style>
+    :root { --bg:#0b0d12; --panel:rgba(255,255,255,0.075); --text:#f7f7fb; --muted:#b7bccb; --line:rgba(255,255,255,0.14); --cyan:#66e0ff; --green:#7ef7a7; --max:1080px; }
+    * { box-sizing: border-box; }
+    body { margin:0; color:var(--text); font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height:1.55; background:radial-gradient(circle at 16% 10%, rgba(102,224,255,0.18), transparent 28rem), linear-gradient(180deg,#0b0d12 0%,#111827 58%,#090b10 100%); }
+    a { color:inherit; text-decoration:none; }
+    .wrap { width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
+    .nav { position:sticky; top:0; z-index:20; backdrop-filter:blur(18px); background:rgba(11,13,18,0.7); border-bottom:1px solid var(--line); }
+    .nav-inner { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:18px; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:850; }
+    .brand img { width:36px; height:36px; border-radius:50%; }
+    .nav-links { display:flex; gap:18px; color:var(--muted); font-size:0.94rem; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:0 18px; border-radius:999px; border:1px solid var(--line); background:rgba(255,255,255,0.08); font-weight:800; }
+    .btn.primary { border:0; color:#06110c; background:linear-gradient(135deg,var(--cyan),var(--green)); }
+    .hero { padding:82px 0 52px; }
+    .hero-grid, .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:34px; align-items:center; }
+    h1,h2,h3 { margin:0; letter-spacing:-0.045em; line-height:1.05; }
+    h1 { font-size:clamp(3rem,7vw,5.8rem); max-width:12ch; }
+    h2 { font-size:clamp(2rem,4vw,3.6rem); margin-bottom:18px; }
+    .lead { color:var(--muted); font-size:1.2rem; margin:24px 0 30px; }
+    section { padding:68px 0; }
+    .card { border:1px solid var(--line); border-radius:22px; background:var(--panel); padding:24px; }
+    .mock { min-height:360px; border:1px solid var(--line); border-radius:28px; background:linear-gradient(145deg,rgba(255,255,255,0.12),rgba(255,255,255,0.04)); padding:24px; position:relative; }
+    .ipad,.iphone { position:absolute; border:1px solid rgba(255,255,255,0.22); background:linear-gradient(145deg,#273244,#050608 72%); box-shadow:0 32px 72px rgba(0,0,0,0.42); padding:14px; }
+    .ipad { left:8%; top:72px; width:66%; aspect-ratio:1.32; border-radius:28px; }
+    .iphone { right:8%; top:34px; width:27%; aspect-ratio:0.49; border-radius:30px; }
+    .screen { height:100%; border-radius:18px; background:linear-gradient(180deg,#111827,#05070b); border:1px solid rgba(255,255,255,0.12); padding:14px; display:grid; align-content:space-between; }
+    .cover { width:62px; height:62px; border-radius:16px; background:linear-gradient(135deg,var(--cyan),#8b5cf6); }
+    .lines { display:grid; gap:8px; }
+    .lines span { height:8px; border-radius:999px; background:rgba(255,255,255,0.24); }
+    .lines span:nth-child(2) { width:68%; }
+    .muted,.card p { color:var(--muted); }
+    .legal { color:var(--muted); font-size:0.86rem; padding:34px 0 44px; border-top:1px solid var(--line); }
+    .site-version { margin-top:14px; font-size:0.76rem; color:rgba(183,188,203,0.72); }
+    @media (max-width:860px) { .hero-grid,.grid-2 { grid-template-columns:1fr; } .nav-links { display:none; } }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="index.html"><img src="assets/djconnect/icon.svg" alt="" /><span>DJConnect</span></a>
+      <div class="nav-links">
+        <a href="index.html">Platform</a>
+        <a href="macos.html">macOS</a>
+        <a href="embedded.html">Embedded device</a>
+      </div>
+      <a class="btn primary" href="#releases">Releases</a>
+    </div>
+  </nav>
+  <main>
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <h1>DJConnect voor iPhone en iPad</h1>
+          <p class="lead">Mobiele bediening voor bank, keuken of studio: muziek starten, voice prompts geven en feedback dichtbij houden.</p>
+          <a class="btn primary" href="#" aria-disabled="true" data-store-link="ios">App Store link volgt</a>
+        </div>
+        <div class="mock" aria-hidden="true">
+          <div class="ipad"><div class="screen"><div class="cover"></div><div class="lines"><span></span><span></span></div></div></div>
+          <div class="iphone"><div class="screen"><div class="cover"></div><div class="lines"><span></span><span></span></div></div></div>
+        </div>
+      </div>
+    </header>
+    <section>
+      <div class="wrap grid-2">
+        <article class="card"><h2>Voor bediening dichtbij</h2><p>Gebruik DJConnect vanaf het device dat meestal al naast je ligt.</p></article>
+        <article class="card"><h2>App Store voorbereid</h2><p>Deze pagina is klaar voor de definitieve iOS App Store downloadlink zodra de app gepubliceerd is.</p></article>
+      </div>
+    </section>
+    <section id="releases">
+      <div class="wrap grid-2">
+        <div><h2>Latest GitHub releases</h2><p class="lead">Live opgehaald uit GitHub en automatisch geformatteerd.</p></div>
+        <div class="release-list" data-github-releases data-github-owner="pcvantol" data-github-repo="djconnect-website" data-release-limit="3"></div>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap legal">
+    <p>Copyright Peter van Tol 2026. All rights reserved.</p>
+    <p class="site-version">DJConnect website v3.1.0</p>
+  </footer>
+  <script src="assets/releases.js"></script>
+</body>
+</html>

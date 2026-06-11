@@ -1,0 +1,51 @@
+.release-list {
+  display: grid;
+  gap: 14px;
+}
+
+.release-card {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: rgba(255,255,255,0.06);
+  padding: 18px;
+}
+
+.release-card header {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: start;
+  margin-bottom: 10px;
+}
+
+.release-card h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+}
+
+.release-card time,
+.release-card .release-tag {
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.release-card p {
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+
+.release-card a {
+  color: var(--cyan, var(--accent-cyan));
+  font-weight: 850;
+  text-decoration: underline;
+  text-decoration-color: rgba(102, 224, 255, 0.45);
+  text-underline-offset: 4px;
+}
+
+.release-status {
+  color: var(--muted);
+  border: 1px dashed var(--line);
+  border-radius: 20px;
+  padding: 18px;
+}

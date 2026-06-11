@@ -10,6 +10,7 @@
   <link rel="icon" href="assets/djconnect/favicon-16.png" sizes="16x16" type="image/png" />
   <link rel="apple-touch-icon" href="assets/djconnect/apple-touch-icon.png" />
   <link rel="manifest" href="assets/djconnect/site.webmanifest" />
+  <link rel="stylesheet" href="assets/releases.css" />
   <style>
     :root {
       --bg: #0b0d12;
@@ -1207,6 +1208,16 @@
       </div>
     </section>
 
+    <section id="releases">
+      <div class="wrap grid-2">
+        <div>
+          <h2>Latest GitHub releases</h2>
+          <p class="lead">Live opgehaald uit GitHub en automatisch geformatteerd voor de embedded-device pagina.</p>
+        </div>
+        <div class="release-list" data-github-releases data-github-owner="pcvantol" data-github-repo="djconnect-website" data-release-limit="3"></div>
+      </div>
+    </section>
+
     <section id="faq">
       <div class="wrap grid-2">
         <div>
@@ -1571,5 +1582,6 @@
 
     applyLanguage(getInitialLanguage());
   </script>
+  <script src="assets/releases.js"></script>
 </body>
 </html>

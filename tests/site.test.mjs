@@ -55,7 +55,7 @@ test("site version is consistent", async () => {
   ]);
 
   const cleanVersion = version.trim();
-  assert.equal(cleanVersion, "3.1.3");
+  assert.equal(cleanVersion, "3.1.4");
   assert.equal(JSON.parse(packageJson).version, cleanVersion);
   assert.match(index, new RegExp(`DJConnect website v${cleanVersion}`));
   assert.match(embedded, new RegExp(`DJConnect website v${cleanVersion}`));
@@ -121,11 +121,13 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /Voeg DJConnect toe als Home Assistant integratie en koppel je Spotify account/);
   assert.match(start, /Open Home Assistant <strong>Settings -> Devices & services -> Add integration -> DJConnect<\/strong>/);
   assert.match(start, /Koppel je Spotify Premium account/);
+  assert.match(start, /Configureer je assist pipeline voor stembesturing en pas de stijl van de DJ aankondigingen aan via eigen prompt/);
+  assert.match(start, /Zet het DJConnect device aan en verbind het device met WiFi via captive portal of Home Assistant BLE WiFi provisioning/);
   assert.match(start, /Open DJConnect app en kopieer de koppelgegevens/);
   assert.match(start, /Open DJConnect integratie setup in Home Assistant/);
   assert.match(start, /Kies client type <strong>iOS app<\/strong> of <strong>macOS app<\/strong> &amp; plak de koppelgegevens/);
   assert.match(start, /DJConnect app is klaar voor gebruik/);
-  assert.match(start, /Voer de koppelcode in die op het device-scherm staat &amp; Home Assistant configureert het device automatisch/);
+  assert.match(start, /Voer de koppelcode in van het device/);
   assert.doesNotMatch(start, /<li>Rond koppeling af<\/li>/);
   assert.match(start, /Koppel DJConnect aan Home Assistant/);
   assert.match(start, /https:\/\/github\.com\/pcvantol\/djconnect-firmware/);

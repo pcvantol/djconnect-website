@@ -2,6 +2,11 @@
 
 All notable changes to this website are documented here.
 
+## DJConnect website v3.1.4 - 2026-06-11
+
+- Clarified the DJConnect configuration step for assist pipeline setup and custom DJ announcement prompt styling.
+- Shortened the ESP pairing flow to four steps by combining power-on and WiFi provisioning and simplifying the pairing-code step.
+
 ## DJConnect website v3.1.3 - 2026-06-11
 
 - Consolidated the iOS/macOS app pairing steps into a shorter four-step Home Assistant flow.

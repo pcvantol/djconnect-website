@@ -2,15 +2,17 @@
 
 All notable changes to this website are documented here.
 
-## DJConnect website v3.1.8 - 2026-06-11
+## DJConnect website v3.1.9 - 2026-06-11
 
 - Added a platform-independent homepage for DJConnect essentials, with focused navigation for `Hoe werkt het`, `Features`, `Download` and the primary `Aan de slag` CTA.
 - Reworked the homepage hero into a swipeable carousel for macOS, iPad/iPhone and LilyGO/ESP32, with clearer device form factors, play/voice iconography and current Dutch/English copy.
+- Simplified the homepage iOS hero slide to a single landscape iPad so the device visual has more space.
 - Added a top-level Features page with the main DJConnect functions and bonus mini-games: Pong, Asteroids & Fly.
 - Added macOS, iOS and Raspberry Pi placeholder pages with language toggles, release/download routes and translation coverage.
 - Added a Home Assistant `Aan de slag` setup page for voice assist, HACS installation, DJConnect configuration, downloads, client pairing and first use.
 - Reworked the start-page pairing flow into a three-option switch for ESP device, iOS app and macOS app, with target-specific download links and simplified four-step flows.
 - Reworked the embedded ESP32 page into a compact product page focused on supported hardware, how it works and releases; removed local quick start, requirements, FAQ, experience and setup callout sections.
+- Aligned the embedded page color styling with the shared site palette, including the cyan/green CTA treatment and homepage background accents.
 - Added supported embedded hardware links for LilyGO T-Embed CC1101 and ESP32-S3-BOX-3, including the LilyGO product-specifications link.
 - Removed pre-flashed wording from current site copy and replaced it with firmware download and flash guidance.
 - Added live GitHub release embeds on app and device subpages, with safer fallback copy when releases cannot be loaded.

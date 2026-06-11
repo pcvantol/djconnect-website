@@ -83,7 +83,9 @@ curl -s https://djconnect.pages.dev | grep "DJConnect website v"
 
 ## Live Releases
 
-App subpages render latest GitHub releases through `/api/releases`.
+The embedded page renders latest firmware releases through `/api/releases`.
+The macOS page renders binary downloads from `pcvantol/djconnect-app-releases`.
+iOS and Raspberry Pi pages do not load `djconnect-website` releases; add release/download embeds only when a relevant app release source exists.
 For private GitHub repositories, set a Cloudflare Pages secret named `GITHUB_TOKEN` with read access to releases.
 
 ## Cleanup

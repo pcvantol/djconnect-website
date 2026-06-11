@@ -6,7 +6,8 @@
 - Verify the homepage navigation shows `Hoe werkt het`, `Features` and `Download`, with `Aan de slag` only as the primary CTA button.
 - Open `wwwroot/features.html` and verify the core features and bonus mini-games are visible.
 - Open `wwwroot/raspberry-pi.html` and verify it is clearly prepared for a future Raspberry Pi app without claiming a released binary.
-- Verify the homepage hero uses a swipeable carousel with separate macOS, iPad/iPhone and LilyGO/ESP32 slides.
+- Verify the homepage hero uses a swipeable carousel with separate macOS, landscape iPad and LilyGO/ESP32 slides.
+- Verify the iOS carousel slide uses one landscape iPad only, without a second iPhone visual.
 - Verify the homepage hero no longer shows the availability pill.
 - Verify the homepage hero text says `Speel muziek & bedien op afstand`.
 - Verify the macOS slide centers the play icon and does not show a microphone icon.
@@ -33,6 +34,7 @@
 - Verify the embedded page lists LilyGO T-Embed CC1101 and ESP32-S3-BOX-3 under supported hardware.
 - Verify the embedded ESP32 visual card has clear spacing and includes the LilyGO product specifications link.
 - Verify the embedded release block points to `pcvantol/djconnect-firmware` releases.
+- Verify the embedded page uses the shared site color styling: cyan/green CTA and the same subtle cyan/pink/green background family as the homepage.
 - Verify iOS and Raspberry Pi pages do not show website repository release embeds.
 - Verify the embedded page does not mention pre-flashed devices.
 - Verify the embedded page does not show local quick start, requirements, FAQ, the experience section or the `Stem via HA / Veilig gekoppeld / DJ-karakter` row.

@@ -6,7 +6,7 @@
 - Production URL: https://djconnect.pages.dev
 - Cloudflare Pages project: `djconnect`
 - Publish directory: `wwwroot`
-- Current version: `3.1.8`
+- Current version: `3.1.9`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Start/setup page: `wwwroot/start.html`
@@ -21,10 +21,12 @@
 - The homepage is platform-independent and routes users to setup and downloads.
 - The homepage navigation intentionally contains `Hoe werkt het`, `Features` and `Download`; the `Aan de slag` route is the primary CTA button.
 - The features page summarizes the main DJConnect functions and mentions the bonus mini-games: Pong, Asteroids & Fly.
-- The homepage hero uses a swipeable device carousel for macOS, iPad/iPhone and LilyGO/ESP32. Keep each device slide spacious and avoid compressing devices side-by-side.
+- The homepage hero uses a swipeable device carousel for macOS, a landscape iPad and LilyGO/ESP32. Keep each device slide spacious and avoid compressing devices side-by-side.
+- The iOS carousel slide intentionally shows one landscape iPad only; do not re-add a second iPhone visual unless the layout is redesigned.
 - The homepage has prepared App Store CTA placeholders with `data-store-link="macos"` and `data-store-link="ios"`, plus a prepared Raspberry Pi route.
 - The Raspberry Pi page is a placeholder for the future app and should not show a release embed until a relevant release repository exists.
 - The embedded page is now a compact product page: supported hardware, how it works and release embed. Keep experience, setup, requirements and FAQ content off this page.
+- The embedded page should use the same site color language as the homepage: cyan/green primary CTA, subtle pink/green/cyan background accents and no dominant purple-blue page background.
 - The embedded page should point users to LilyGO product specs where relevant. Firmware download and setup links belong on the start page. Do not reintroduce pre-flashed copy.
 - The start page presents the current setup order: configure the Home Assistant voice assist pipeline, add DJConnect to Home Assistant through HACS, configure DJConnect in Home Assistant, download and pair the app/device, then use DJConnect with Spotify Connect.
 - The start page links to Home Assistant voice assistant documentation, the embedded firmware page and `pcvantol/djconnect-app-releases`.
@@ -71,6 +73,7 @@ curl -s https://djconnect.pages.dev | grep "DJConnect website v"
 ## Current Verification
 
 - `npm test` covers version consistency, route presence, homepage navigation/copy, firmware release embeds, macOS download embeds, absence of website self-release embeds, translation keys, footer copyright, firmware links, compact embedded page structure, Raspberry Pi preparation, LilyGO visual hygiene and stale pre-flashed wording.
+- Current released version `3.1.9` includes the single-iPad homepage hero slide and embedded page color alignment.
 - The start page should be manually checked for the voice-assist documentation link, HACS deeplink, firmware/app release links, ESP pairing copy, app pairing copy, Raspberry Pi placeholder copy and troubleshooting text.
 - The embedded page should be manually checked to confirm it no longer shows local quick start, requirements, FAQ or the `Stem via HA / Veilig gekoppeld / DJ-karakter` card row.
 - Manual visual checks are still needed for desktop, tablet and mobile layouts until browser regression tests are formalized in CI.

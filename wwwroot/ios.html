@@ -6,7 +6,6 @@
   <title>DJConnect voor iPhone en iPad</title>
   <meta name="description" content="DJConnect voor iOS: mobiele muziekbediening, voice prompts en DJ-feedback." />
   <link rel="icon" href="assets/djconnect/icon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="assets/releases.css" />
   <style>
     :root { --bg:#0b0d12; --panel:rgba(255,255,255,0.075); --text:#f7f7fb; --muted:#b7bccb; --line:rgba(255,255,255,0.14); --cyan:#66e0ff; --green:#7ef7a7; --max:1080px; }
     * { box-sizing: border-box; }
@@ -84,18 +83,11 @@
         <article class="card"><h2 data-i18n="storeTitle">App Store voorbereid</h2><p data-i18n="storeText">Deze pagina is klaar voor de definitieve iOS App Store downloadlink zodra de app gepubliceerd is.</p></article>
       </div>
     </section>
-    <section id="releases">
-      <div class="wrap grid-2">
-        <div><h2 data-i18n="releaseTitle">Latest GitHub releases</h2></div>
-        <div class="release-list" data-github-releases data-github-owner="pcvantol" data-github-repo="djconnect-website" data-release-limit="3"></div>
-      </div>
-    </section>
   </main>
   <footer class="wrap legal">
     <p>Copyright Peter van Tol 2026. All rights reserved.</p>
     <p class="site-version">DJConnect website v3.1.8</p>
   </footer>
-  <script src="assets/releases.js"></script>
   <script>
     const translations = {
       nl: {
@@ -111,8 +103,7 @@
         closeTitle: "Voor bediening dichtbij",
         closeText: "Gebruik DJConnect vanaf het device dat meestal al naast je ligt.",
         storeTitle: "App Store voorbereid",
-        storeText: "Deze pagina is klaar voor de definitieve iOS App Store downloadlink zodra de app gepubliceerd is.",
-        releaseTitle: "Latest GitHub releases"
+        storeText: "Deze pagina is klaar voor de definitieve iOS App Store downloadlink zodra de app gepubliceerd is."
       },
       en: {
         title: "DJConnect for iPhone and iPad",
@@ -127,8 +118,7 @@
         closeTitle: "Control close by",
         closeText: "Use DJConnect from the device that is usually already next to you.",
         storeTitle: "App Store prepared",
-        storeText: "This page is ready for the final iOS App Store download link once the app is published.",
-        releaseTitle: "Latest GitHub releases"
+        storeText: "This page is ready for the final iOS App Store download link once the app is published."
       }
     };
     const applyLanguage = (language) => {

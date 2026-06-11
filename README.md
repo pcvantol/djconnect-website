@@ -9,8 +9,8 @@ Static landing page for DJConnect, published through Cloudflare Pages.
 - `wwwroot/start.html`: Home Assistant setup flow for HACS installation, voice pipeline setup, DJConnect configuration, client downloads and pairing.
 - `wwwroot/embedded.html`: ESP32 embedded-device one-pager.
 - `wwwroot/macos.html`: macOS app page with binaries from `pcvantol/djconnect-app-releases`.
-- `wwwroot/ios.html`: iOS app page with App Store placeholder and release embed.
-- `wwwroot/raspberry-pi.html`: prepared Raspberry Pi app placeholder page with release embed.
+- `wwwroot/ios.html`: iOS app page with App Store placeholder.
+- `wwwroot/raspberry-pi.html`: prepared Raspberry Pi app placeholder page.
 - `wwwroot/assets/`: logo, favicon and product visuals.
 - `functions/api/releases.js`: Cloudflare Pages Function proxy for GitHub release data.
 - `VERSION`: current site version.

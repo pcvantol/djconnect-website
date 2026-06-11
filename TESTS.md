@@ -26,13 +26,14 @@
 - Verify the homepage embedded card opens `wwwroot/embedded.html`.
 - Open `wwwroot/macos.html` and `wwwroot/ios.html`.
 - Verify macOS, iOS, Raspberry Pi and embedded pages label the homepage navigation route as `Home`; app pages should not show cross-links to other app or embedded pages.
-- Open `wwwroot/macos.html` and verify it shows binaries or the empty release-repo state.
-- Verify the release cards load from GitHub or show the release fallback message.
+- Open `wwwroot/macos.html` and verify it shows binaries or the empty app-release-repo state.
+- Verify the embedded release cards load from GitHub or show the release fallback message.
 - Open `wwwroot/embedded.html`.
 - Verify Dutch and English language toggles update visible text on start, embedded, iOS, macOS, Features and Raspberry Pi pages.
 - Verify the embedded page lists LilyGO T-Embed CC1101 and ESP32-S3-BOX-3 under supported hardware.
 - Verify the embedded ESP32 visual card has clear spacing and includes the LilyGO product specifications link.
 - Verify the embedded release block points to `pcvantol/djconnect-firmware` releases.
+- Verify iOS and Raspberry Pi pages do not show website repository release embeds.
 - Verify the embedded page does not mention pre-flashed devices.
 - Verify the embedded page does not show local quick start, requirements, FAQ, the experience section or the `Stem via HA / Veilig gekoppeld / DJ-karakter` row.
 - Verify embedded `Start installatie` buttons route to `wwwroot/start.html`.

@@ -189,8 +189,8 @@ test("raspberry pi page is prepared and translated", async () => {
   const raspberry = await read("wwwroot/raspberry-pi.html");
   assert.match(raspberry, /DJConnect voor Raspberry Pi/);
   assert.match(raspberry, /data-store-link="raspberry-pi"/);
-  assert.match(raspberry, /data-github-releases/);
-  assert.match(raspberry, /Raspberry Pi builds beschikbaar/);
+  assert.doesNotMatch(raspberry, /data-github-releases/);
+  assert.doesNotMatch(raspberry, /data-github-repo="djconnect-website"/);
   assert.match(raspberry, /href="index\.html" data-i18n="navHome">Home<\/a>/);
   assert.doesNotMatch(raspberry, /href="macos\.html">macOS<\/a>/);
   assert.doesNotMatch(raspberry, /href="ios\.html">iOS<\/a>/);
@@ -198,18 +198,21 @@ test("raspberry pi page is prepared and translated", async () => {
   assertTranslationsCoverPage(raspberry, "raspberry pi page");
 });
 
-test("app subpages contain live GitHub release embeds", async () => {
-  const pages = [
-    { path: "ios", repo: "djconnect-website" },
-    { path: "embedded", repo: "djconnect-firmware" }
-  ];
+test("embedded page contains firmware release embed", async () => {
+  const embedded = await read("wwwroot/embedded.html");
+
+  assert.match(embedded, /data-github-releases/);
+  assert.match(embedded, /data-github-owner="pcvantol"/);
+  assert.match(embedded, /data-github-repo="djconnect-firmware"/);
+  assert.match(embedded, /assets\/releases\.js/);
+});
+
+test("site does not embed website repository releases", async () => {
+  const pages = ["index", "start", "features", "ios", "macos", "raspberry-pi", "embedded"];
 
   for (const page of pages) {
-    const html = await read(`wwwroot/${page.path}.html`);
-    assert.match(html, /data-github-releases/, `${page} page needs release embed`);
-    assert.match(html, /data-github-owner="pcvantol"/, `${page} page needs GitHub owner`);
-    assert.match(html, new RegExp(`data-github-repo="${page.repo}"`), `${page.path} page needs GitHub repo`);
-    assert.match(html, /assets\/releases\.js/, `${page} page needs release script`);
+    const html = await read(`wwwroot/${page}.html`);
+    assert.doesNotMatch(html, /data-github-repo="djconnect-website"/, `${page} must not load website releases`);
   }
 });
 
@@ -233,6 +236,8 @@ test("iOS page labels the platform route as home", async () => {
   assert.doesNotMatch(ios, /href="index\.html">Platform<\/a>/);
   assert.doesNotMatch(ios, /href="macos\.html">macOS<\/a>/);
   assert.doesNotMatch(ios, /href="embedded\.html"/);
+  assert.doesNotMatch(ios, /data-github-releases/);
+  assert.doesNotMatch(ios, /data-github-repo="djconnect-website"/);
   assertTranslationsCoverPage(ios, "iOS page");
 });
 

@@ -54,7 +54,7 @@ const getJson = (url) => {
 
 const renderReleases = async (root) => {
   const owner = root.dataset.githubOwner || "pcvantol";
-  const repo = root.dataset.githubRepo || "djconnect-website";
+  const repo = root.dataset.githubRepo || "djconnect-firmware";
   const limit = Number(root.dataset.releaseLimit || 3);
   const language = document.documentElement.lang === "nl" ? "nl" : "en";
   const copy = releaseCopy[language];

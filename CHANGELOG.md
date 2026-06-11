@@ -30,3 +30,4 @@ All notable changes to this website are documented here.
 - Renamed embedded page release CTAs from setup wording to `Download`.
 - Added a `Download` menu item on the start page that jumps to the app/device pairing section.
 - Updated `release.sh` to remove older GitHub Actions workflow runs by default and keep only the latest run.
+- Removed self-referencing website release embeds from iOS and Raspberry Pi pages; only embedded firmware releases and macOS app downloads are loaded live.

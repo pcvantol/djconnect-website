@@ -6,7 +6,6 @@
   <title>DJConnect voor Raspberry Pi</title>
   <meta name="description" content="DJConnect voor Raspberry Pi: voorbereid voor een vaste DJConnect app op een klein scherm of dedicated muziekcontroller." />
   <link rel="icon" href="assets/djconnect/icon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="assets/releases.css" />
   <style>
     :root { --bg:#0b0d12; --panel:rgba(255,255,255,0.075); --text:#f7f7fb; --muted:#b7bccb; --line:rgba(255,255,255,0.14); --cyan:#66e0ff; --green:#7ef7a7; --max:1080px; }
     * { box-sizing:border-box; }
@@ -75,18 +74,11 @@
         <article class="card"><h2 data-i18n="pairingTitle">Zelfde koppeling</h2><p data-i18n="pairingText">De Raspberry Pi app wordt voorbereid op dezelfde Home Assistant integratie setup, koppelcode en lokale Client API route als de andere clients.</p></article>
       </div>
     </section>
-    <section id="releases">
-      <div class="wrap grid-2">
-        <div><h2 data-i18n="releaseTitle">Release voorbereiding</h2><p class="lead" data-i18n="releaseLead">Zodra Raspberry Pi builds beschikbaar komen, kan deze pagina worden gekoppeld aan de release-assets.</p></div>
-        <div class="release-list" data-github-releases data-github-owner="pcvantol" data-github-repo="djconnect-website" data-release-limit="3"></div>
-      </div>
-    </section>
   </main>
   <footer class="wrap legal">
     <p>Copyright Peter van Tol 2026. All rights reserved.</p>
     <p class="site-version">DJConnect website v3.1.8</p>
   </footer>
-  <script src="assets/releases.js"></script>
   <script>
     const translations = {
       nl: {
@@ -104,9 +96,7 @@
         fixedTitle: "Vaste client",
         fixedText: "Gebruik Raspberry Pi straks als always-on DJConnect client voor bediening op een vast punt in huis.",
         pairingTitle: "Zelfde koppeling",
-        pairingText: "De Raspberry Pi app wordt voorbereid op dezelfde Home Assistant integratie setup, koppelcode en lokale Client API route als de andere clients.",
-        releaseTitle: "Release voorbereiding",
-        releaseLead: "Zodra Raspberry Pi builds beschikbaar komen, kan deze pagina worden gekoppeld aan de release-assets."
+        pairingText: "De Raspberry Pi app wordt voorbereid op dezelfde Home Assistant integratie setup, koppelcode en lokale Client API route als de andere clients."
       },
       en: {
         title: "DJConnect for Raspberry Pi",
@@ -123,9 +113,7 @@
         fixedTitle: "Fixed client",
         fixedText: "Use Raspberry Pi as an always-on DJConnect client for control at a fixed spot in your home.",
         pairingTitle: "Same pairing",
-        pairingText: "The Raspberry Pi app is being prepared for the same Home Assistant integration setup, pairing code and local Client API route as the other clients.",
-        releaseTitle: "Release preparation",
-        releaseLead: "Once Raspberry Pi builds become available, this page can be connected to release assets."
+        pairingText: "The Raspberry Pi app is being prepared for the same Home Assistant integration setup, pairing code and local Client API route as the other clients."
       }
     };
     const applyLanguage = (language) => {

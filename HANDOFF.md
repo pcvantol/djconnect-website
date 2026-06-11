@@ -23,15 +23,16 @@
 - The features page summarizes the main DJConnect functions and mentions the bonus mini-games: Pong, Asteroids & Fly.
 - The homepage hero uses a swipeable device carousel for macOS, iPad/iPhone and LilyGO/ESP32. Keep each device slide spacious and avoid compressing devices side-by-side.
 - The homepage has prepared App Store CTA placeholders with `data-store-link="macos"` and `data-store-link="ios"`, plus a prepared Raspberry Pi route.
-- The Raspberry Pi page is a placeholder for the future app and should keep release/download UI ready without claiming binaries are available.
+- The Raspberry Pi page is a placeholder for the future app and should not show a release embed until a relevant release repository exists.
 - The embedded page is now a compact product page: supported hardware, how it works and release embed. Keep experience, setup, requirements and FAQ content off this page.
 - The embedded page should point users to LilyGO product specs where relevant. Firmware download and setup links belong on the start page. Do not reintroduce pre-flashed copy.
 - The start page presents the current setup order: configure the Home Assistant voice assist pipeline, add DJConnect to Home Assistant through HACS, configure DJConnect in Home Assistant, download and pair the app/device, then use DJConnect with Spotify Connect.
 - The start page links to Home Assistant voice assistant documentation, the embedded firmware page and `pcvantol/djconnect-app-releases`.
 - The start page pairing switch has separate panels for ESP device, iOS app, macOS app and Raspberry Pi app.
 - macOS, iOS, Raspberry Pi and embedded pages label the homepage navigation route as `Home`; app pages should not show cross-links to other app/device pages in the top menu.
-- App subpages use `assets/releases.js`, `assets/releases.css` and the Cloudflare Pages Function `functions/api/releases.js` to live-render GitHub releases. The embedded page points to `pcvantol/djconnect-firmware` releases.
+- The embedded page uses `assets/releases.js`, `assets/releases.css` and the Cloudflare Pages Function `functions/api/releases.js` to live-render `pcvantol/djconnect-firmware` releases.
 - macOS downloads are embedded directly on `wwwroot/macos.html` using `assets/downloads.js` and the public repo `pcvantol/djconnect-app-releases`.
+- iOS and Raspberry Pi pages do not embed website repository releases. Add release/download embeds only when they have their own relevant app release source.
 - If the GitHub repository/releases are private, set `GITHUB_TOKEN` as a Cloudflare Pages secret for the `djconnect` project.
 - Version is tracked in `VERSION`, `package.json`, page footers and `CHANGELOG.md`.
 - Language switching on the homepage, start page, embedded page, Features page, Raspberry Pi page, iOS page and macOS page is handled through per-page `translations` objects.
@@ -69,7 +70,7 @@ curl -s https://djconnect.pages.dev | grep "DJConnect website v"
 
 ## Current Verification
 
-- `npm test` covers version consistency, route presence, homepage navigation/copy, release embeds, download embeds, translation keys, footer copyright, firmware links, compact embedded page structure, Raspberry Pi preparation, LilyGO visual hygiene and stale pre-flashed wording.
+- `npm test` covers version consistency, route presence, homepage navigation/copy, firmware release embeds, macOS download embeds, absence of website self-release embeds, translation keys, footer copyright, firmware links, compact embedded page structure, Raspberry Pi preparation, LilyGO visual hygiene and stale pre-flashed wording.
 - The start page should be manually checked for the voice-assist documentation link, HACS deeplink, firmware/app release links, ESP pairing copy, app pairing copy, Raspberry Pi placeholder copy and troubleshooting text.
 - The embedded page should be manually checked to confirm it no longer shows local quick start, requirements, FAQ or the `Stem via HA / Veilig gekoppeld / DJ-karakter` card row.
 - Manual visual checks are still needed for desktop, tablet and mobile layouts until browser regression tests are formalized in CI.

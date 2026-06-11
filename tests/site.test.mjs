@@ -95,7 +95,7 @@ test("homepage hero uses the current device visual and copy", async () => {
   assert.match(index, /device-slide-embedded/);
   assert.match(index, /class="macbook"/);
   assert.match(index, /class="ipad"/);
-  assert.match(index, /class="iphone"/);
+  assert.doesNotMatch(index, /class="iphone"/);
   assert.match(index, /play-icon/);
   assert.match(index, /voice-cover/);
   assert.doesNotMatch(index, /radio-mic-icon/);

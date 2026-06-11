@@ -299,14 +299,14 @@
     }
 
     .device-slide-ios {
-      grid-template-columns: minmax(0, 1fr) minmax(92px, 0.42fr);
-      gap: 26px;
+      grid-template-columns: 1fr;
+      gap: 0;
       align-items: center;
+      justify-items: center;
     }
 
     .macbook-frame,
-    .ipad,
-    .iphone {
+    .ipad {
       border: 1px solid rgba(255,255,255,0.22);
       background: linear-gradient(145deg, #273244, #050608 72%);
       box-shadow: 0 32px 72px rgba(0,0,0,0.42), inset 0 1px 0 rgba(255,255,255,0.16);
@@ -387,11 +387,11 @@
     }
 
     .ipad {
-      justify-self: end;
-      width: min(100%, 340px);
-      aspect-ratio: 1.28;
-      border-radius: 28px;
-      padding: 12px;
+      justify-self: center;
+      width: min(88%, 520px);
+      aspect-ratio: 1.48;
+      border-radius: 32px;
+      padding: 16px;
       transform: none;
       position: relative;
       z-index: 2;
@@ -409,63 +409,20 @@
       transform: translateX(-50%);
     }
 
-    .iphone {
-      align-self: center;
-      justify-self: start;
-      width: min(100%, 126px);
-      aspect-ratio: 0.48;
-      border-radius: 26px;
-      padding: 9px;
-      transform: none;
-      position: relative;
-      z-index: 3;
-    }
-
-    .iphone::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 9px;
-      width: 44%;
-      height: 13px;
-      border-radius: 0 0 999px 999px;
-      background: #05070b;
-      transform: translateX(-50%);
-      z-index: 2;
-    }
-
-    .iphone::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      bottom: 13px;
-      width: 42%;
-      height: 5px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.28);
-      transform: translateX(-50%);
-      z-index: 2;
-    }
-
     .mini-ui {
       height: 100%;
       border-radius: 18px;
       background: linear-gradient(180deg, #111827, #05070b);
       border: 1px solid rgba(255,255,255,0.12);
-      padding: 12px;
+      padding: 18px;
       display: grid;
       align-content: space-between;
     }
 
-    .iphone .mini-ui {
-      border-radius: 20px;
-      padding: 28px 10px 18px;
-    }
-
     .cover {
-      width: 56px;
-      height: 56px;
-      border-radius: 16px;
+      width: 88px;
+      height: 88px;
+      border-radius: 24px;
       background: linear-gradient(135deg, var(--cyan), var(--purple));
     }
 
@@ -477,19 +434,19 @@
 
     .voice-cover::before {
       content: "";
-      width: 18px;
-      height: 30px;
+      width: 28px;
+      height: 46px;
       border-radius: 999px;
       background: #06110c;
-      box-shadow: 0 0 0 6px rgba(6,17,12,0.14);
+      box-shadow: 0 0 0 9px rgba(6,17,12,0.14);
     }
 
     .voice-cover::after {
       content: "";
       position: absolute;
-      width: 38px;
-      height: 38px;
-      border: 3px solid rgba(6,17,12,0.82);
+      width: 58px;
+      height: 58px;
+      border: 5px solid rgba(6,17,12,0.82);
       border-top-color: transparent;
       border-left-color: transparent;
       border-radius: 50%;
@@ -687,10 +644,11 @@
       .device-stack { min-height: 390px; gap: 12px; }
       .device-slide { min-height: 370px; padding: 16px; }
       .device-slide-label { top: 14px; left: 14px; }
-      .device-slide-ios { grid-template-columns: 1fr 0.5fr; gap: 14px; }
       .macbook { width: min(100%, 360px); }
-      .ipad { width: min(100%, 220px); }
-      .iphone { width: min(100%, 96px); }
+      .ipad { width: min(100%, 320px); }
+      .cover { width: 68px; height: 68px; border-radius: 20px; }
+      .voice-cover::before { width: 22px; height: 36px; }
+      .voice-cover::after { width: 46px; height: 46px; border-width: 4px; }
       .embedded { width: min(100%, 310px); }
       .platform-card .topline { flex-direction: column; }
       .nav-controls .btn { display: none; }
@@ -754,7 +712,6 @@
             <article class="device-slide device-slide-ios">
               <span class="device-slide-label" data-i18n="iosSlideLabel">Vraag je volgende hit aan</span>
               <div class="ipad" aria-hidden="true"><div class="mini-ui"><div class="cover voice-cover"></div><div class="line-set"><span></span><span></span></div></div></div>
-              <div class="iphone" aria-hidden="true"><div class="mini-ui"><div class="cover voice-cover"></div><div class="line-set"><span></span><span></span></div></div></div>
             </article>
             <article class="device-slide device-slide-embedded">
               <span class="device-slide-label" data-i18n="embeddedSlideLabel">Luister naar persoonlijke DJ aankondiging</span>

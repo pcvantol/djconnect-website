@@ -78,7 +78,7 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /DJConnect\. Jouw persoonlijke muziek DJ\./);
   assert.match(start, /Vraag muziek\. Krijg persoonlijk aangekondigd\./);
   assert.match(start, /Home Assistant installatie/);
-  assert.match(start, /Open DJConnect in HACS/);
+  assert.match(start, /Home Assistant Community Store/);
   assert.match(start, /https:\/\/my\.home-assistant\.io\/redirect\/hacs_repository/);
   assert.match(start, /Koppel Spotify/);
   assert.match(start, /Configureer Home Assistant Assist/);

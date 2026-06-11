@@ -55,7 +55,7 @@ test("site version is consistent", async () => {
   ]);
 
   const cleanVersion = version.trim();
-  assert.equal(cleanVersion, "3.1.1");
+  assert.equal(cleanVersion, "3.1.2");
   assert.equal(JSON.parse(packageJson).version, cleanVersion);
   assert.match(index, new RegExp(`DJConnect website v${cleanVersion}`));
   assert.match(embedded, new RegExp(`DJConnect website v${cleanVersion}`));
@@ -64,6 +64,10 @@ test("site version is consistent", async () => {
 test("homepage has platform routes and app store placeholders", async () => {
   const index = await read("wwwroot/index.html");
   assert.match(index, /href="start\.html"/);
+  assert.match(index, /data-i18n="navPlatform">Wat is DJConnect/);
+  assert.match(index, /data-i18n="navApps">Download/);
+  assert.doesNotMatch(index, /data-i18n="navEssentials"/);
+  assert.doesNotMatch(index, /data-i18n="navStart">Aan de slag/);
   assert.match(index, /href="embedded\.html"/);
   assert.match(index, /href="macos\.html"/);
   assert.match(index, /href="ios\.html"/);
@@ -73,7 +77,12 @@ test("homepage has platform routes and app store placeholders", async () => {
   assert.match(index, /App Store/);
   assert.match(index, /brands\.home-assistant\.io\/_\/homeassistant\/icon\.png/);
   assert.match(index, /Account token & koppelgegevens worden veilig bewaard in versleutelde opslag/);
-  assert.match(index, /1 hub, meerdere schermen/);
+  assert.match(index, /Powered by Home Assistant, meerdere apparaten/);
+  assert.match(index, /Spotify integratie, voice assist en app koppeling lopen centraal via je smart-home/);
+  assert.match(index, /Meerdere interfaces/);
+  assert.match(index, /Gebruik DJConnect op je favoriete scherm/);
+  assert.match(index, /DJConnect brengt je muziekwens, speaker keuze en persoonlijke DJ-feedback samen/);
+  assert.match(index, /Zeg welke artiest je wilt horen/);
 });
 
 test("homepage hero uses the current device visual and copy", async () => {
@@ -86,9 +95,10 @@ test("homepage hero uses the current device visual and copy", async () => {
   assert.match(index, /class="ipad"/);
   assert.match(index, /class="iphone"/);
   assert.match(index, /play-icon/);
-  assert.match(index, /radio-mic-icon/);
+  assert.match(index, /voice-cover/);
+  assert.doesNotMatch(index, /radio-mic-icon/);
   assert.match(index, /Met stemactivatie/);
-  assert.match(index, /Embedded, voor de die-hards/);
+  assert.match(index, /Draai embedded, voor de echte die-hards/);
   assert.match(index, /Speel, Vraag aan, Ontvang Persoonlijke DJ aankondiging/);
   assert.doesNotMatch(index, /DJConnect Studio/);
   assert.doesNotMatch(index, /Queue, output en DJ-reactie/);
@@ -96,21 +106,30 @@ test("homepage hero uses the current device visual and copy", async () => {
 
 test("how-to-start page covers setup flow", async () => {
   const start = await read("wwwroot/start.html");
-  assert.match(start, /DJConnect\. Jouw persoonlijke muziek DJ\./);
-  assert.match(start, /Vraag muziek\. Krijg persoonlijk aangekondigd\./);
+  assert.match(start, /DJConnect\. Muziekbediening met karakter\./);
+  assert.match(start, /DJConnect brengt spraak, muziekbediening en een persoonlijke DJ-reactie samen/);
   assert.match(start, /Home Assistant installatie/);
-  assert.match(start, /Home Assistant Community Store/);
+  assert.match(start, /Open DJConnect in HACS/);
   assert.match(start, /https:\/\/my\.home-assistant\.io\/redirect\/hacs_repository/);
-  assert.match(start, /Installeer DJConnect via HACS in Home Assistant/);
+  assert.match(start, /Voeg DJConnect toe aan je Home Assistant/);
+  assert.match(start, /Gebruik onderstaande Home Assistant Community Store knop/);
   assert.match(start, /Configureer je voice assist pipeline in Home Assistant/);
+  assert.match(start, /Hulp bij Home Assistant voice assist/);
+  assert.match(start, /Maak of controleer je voice assist pipeline binnen Home Assistant/);
   assert.match(start, /https:\/\/www\.home-assistant\.io\/voice_control\/voice_remote_cloud_assistant\//);
   assert.match(start, /Configureer DJConnect in Home Assistant/);
+  assert.match(start, /Voeg DJConnect toe als Home Assistant integratie en koppel je Spotify account/);
+  assert.match(start, /Open Home Assistant <strong>Settings -> Devices & services -> Add integration -> DJConnect<\/strong>/);
   assert.match(start, /Koppel je Spotify Premium account/);
+  assert.match(start, /Vul de koppelcode en Client API URL in en rond koppeling af/);
+  assert.doesNotMatch(start, /<li>Rond koppeling af<\/li>/);
   assert.match(start, /Koppel DJConnect aan Home Assistant/);
   assert.match(start, /https:\/\/github\.com\/pcvantol\/djconnect-firmware/);
   assert.match(start, /https:\/\/github\.com\/pcvantol\/djconnect-app-releases/);
-  assert.match(start, /Ontvang je persoonlijke DJ aankondiging/);
+  assert.match(start, /Ontvang persoonlijke DJ aankondigingen in de app of op je device/);
   assert.match(start, /Geen Spotify playback/);
+  assert.match(start, /Controleer of de Spotify autorisatie in Home Assistant actief is, of herstel deze/);
+  assert.match(start, /Ververs HACS update informatie en download de actuele versie van DJConnect/);
   assert.match(start, /Spotify is a trademark of Spotify AB/);
 });
 
@@ -158,6 +177,15 @@ test("embedded page lists supported hardware", async () => {
   assert.match(embedded, /https:\/\/github\.com\/espressif\/esp-box/);
   assert.match(embedded, /hardware_overview_for_box_3\.md/);
   assert.match(embedded, /https:\/\/github\.com\/pcvantol\/djconnect-firmware/);
+});
+
+test("homepage LilyGO visual keeps the device screen empty", async () => {
+  const lilygo = await read("wwwroot/assets/lilygo-t-embed-djconnect.svg");
+  assert.doesNotMatch(lilygo, />DJ</);
+  assert.doesNotMatch(lilygo, />DJConnect</);
+  assert.doesNotMatch(lilygo, />PUSH TO TALK</);
+  assert.doesNotMatch(lilygo, />Vraag muziek/);
+  assert.doesNotMatch(lilygo, />Krijg persoonlijk/);
 });
 
 test("site copy no longer claims devices are pre-flashed", async () => {

@@ -2,6 +2,16 @@
 
 All notable changes to this website are documented here.
 
+## DJConnect website v3.1.2 - 2026-06-11
+
+- Simplified the homepage navigation to `Wat is DJConnect`, `Download` and the primary `Aan de slag` CTA.
+- Removed the homepage availability pill and aligned the start-page hero copy with the homepage proposition.
+- Refined the swipeable hero device carousel with a bolder title, centered macOS play icon, iPad voice icon and an empty LilyGO display.
+- Updated homepage examples with quoted voice commands, music-note markers and current Dutch/English translation keys.
+- Rewrote the start-page pairing, ESP provisioning and troubleshooting copy for clearer Home Assistant setup guidance.
+- Updated tests for the new homepage navigation, hero copy, LilyGO visual, pairing steps and troubleshooting text.
+- Updated release documentation, handoff notes and manual test guidance for the current site structure.
+
 ## DJConnect website v3.1.1 - 2026-06-11
 
 - Moved "Aan de slag" to the first homepage navigation position.

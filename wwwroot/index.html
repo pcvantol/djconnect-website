@@ -156,20 +156,6 @@
       align-items: center;
     }
 
-    .eyebrow {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 9px;
-      padding: 10px 14px;
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      color: var(--muted);
-      background: rgba(255,255,255,0.06);
-      font-size: 0.9rem;
-      margin-bottom: 22px;
-    }
-
     .dot {
       width: 9px;
       height: 9px;
@@ -209,12 +195,21 @@
     }
 
     .commands span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       border: 1px solid var(--line);
       border-radius: 999px;
       padding: 8px 12px;
       background: rgba(255,255,255,0.07);
       color: var(--muted);
       white-space: nowrap;
+    }
+
+    .commands span::before {
+      content: "♪";
+      color: var(--cyan);
+      font-weight: 900;
     }
 
     .platform-stage {
@@ -238,7 +233,9 @@
       gap: 18px;
       align-items: center;
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: clamp(1.45rem, 2.8vw, 2.25rem);
+      font-weight: 900;
+      line-height: 1.08;
     }
 
     .stage-pill {
@@ -357,14 +354,12 @@
     .bars span:nth-child(5) { height: 62%; }
 
     .music-symbols {
-      display: flex;
-      align-items: center;
-      gap: 14px;
+      display: grid;
+      place-items: center;
       margin-top: 18px;
     }
 
-    .play-icon,
-    .radio-mic-icon {
+    .play-icon {
       width: 72px;
       height: 72px;
       border-radius: 22px;
@@ -382,33 +377,6 @@
       border-bottom: 16px solid transparent;
       border-left: 24px solid #06110c;
       margin-left: 5px;
-    }
-
-    .radio-mic-icon {
-      position: relative;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.16);
-    }
-
-    .radio-mic-icon::before {
-      content: "";
-      width: 18px;
-      height: 32px;
-      border-radius: 999px;
-      background: linear-gradient(180deg, var(--cyan), var(--green));
-      box-shadow: 0 0 0 6px rgba(102,224,255,0.14);
-    }
-
-    .radio-mic-icon::after {
-      content: "";
-      position: absolute;
-      width: 38px;
-      height: 38px;
-      border: 2px solid rgba(126,247,167,0.48);
-      border-left-color: transparent;
-      border-bottom-color: transparent;
-      border-radius: 50%;
-      transform: rotate(45deg);
     }
 
     .ipad {
@@ -492,6 +460,33 @@
       height: 56px;
       border-radius: 16px;
       background: linear-gradient(135deg, var(--cyan), var(--purple));
+    }
+
+    .voice-cover {
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+
+    .voice-cover::before {
+      content: "";
+      width: 18px;
+      height: 30px;
+      border-radius: 999px;
+      background: #06110c;
+      box-shadow: 0 0 0 6px rgba(6,17,12,0.14);
+    }
+
+    .voice-cover::after {
+      content: "";
+      position: absolute;
+      width: 38px;
+      height: 38px;
+      border: 3px solid rgba(6,17,12,0.82);
+      border-top-color: transparent;
+      border-left-color: transparent;
+      border-radius: 50%;
+      transform: rotate(45deg);
     }
 
     .line-set { display: grid; gap: 7px; }
@@ -703,10 +698,8 @@
         <span>DJConnect</span>
       </a>
       <div class="nav-links" aria-label="Navigatie" data-i18n-attr="aria-label:navLabel">
-        <a href="start.html" data-i18n="navStart">Aan de slag</a>
-        <a href="#platform" data-i18n="navPlatform">Platform</a>
-        <a href="#essentials" data-i18n="navEssentials">Essentials</a>
-        <a href="#apps" data-i18n="navApps">Apps & devices</a>
+        <a href="#platform" data-i18n="navPlatform">Wat is DJConnect</a>
+        <a href="#apps" data-i18n="navApps">Download</a>
       </div>
       <div class="nav-controls">
         <div class="lang-toggle" aria-label="Taalkeuze" data-i18n-attr="aria-label:languageToggle">
@@ -722,10 +715,6 @@
     <header class="hero">
       <div class="wrap hero-grid">
         <div>
-          <div class="eyebrow">
-            <span data-i18n="heroEyebrowLine1">Beschikbaar voor macOS, iOS en ESP32.</span>
-            <span data-i18n="heroEyebrowLine2">Geintegreerd met Home Assistant</span>
-          </div>
           <h1 data-i18n="heroTitle">DJConnect. Muziekbediening met karakter.</h1>
           <p class="lead" data-i18n="heroLead">DJConnect brengt spraak, muziekbediening en een persoonlijke DJ-reactie samen. De kern blijft hetzelfde op elk device: vraag muziek, kies waar het speelt en krijg directe feedback terug.</p>
           <div class="hero-actions">
@@ -739,16 +728,15 @@
           </div>
           <div class="device-stack" aria-label="Platform opties" data-i18n-attr="aria-label:stageCarouselLabel">
             <article class="device-slide device-slide-mac">
+              <span class="device-slide-label" data-i18n="stageScreenText">Speel, Vraag aan, Ontvang Persoonlijke DJ aankondiging</span>
               <div class="macbook" aria-hidden="true">
                 <div class="macbook-frame">
                   <div class="screen">
                     <div>
                       <div class="window-dots"><span></span><span></span><span></span></div>
-                      <p class="muted" data-i18n="stageScreenText">Speel, Vraag aan, Ontvang Persoonlijke DJ aankondiging</p>
                     </div>
                     <div class="music-symbols">
                       <span class="play-icon" aria-hidden="true"></span>
-                      <span class="radio-mic-icon" aria-hidden="true"></span>
                     </div>
                   </div>
                 </div>
@@ -757,11 +745,11 @@
             </article>
             <article class="device-slide device-slide-ios">
               <span class="device-slide-label" data-i18n="iosSlideLabel">Met stemactivatie</span>
-              <div class="ipad" aria-hidden="true"><div class="mini-ui"><div class="cover"></div><div class="line-set"><span></span><span></span></div></div></div>
+              <div class="ipad" aria-hidden="true"><div class="mini-ui"><div class="cover voice-cover"></div><div class="line-set"><span></span><span></span></div></div></div>
               <div class="iphone" aria-hidden="true"><div class="mini-ui"><div class="cover"></div><div class="line-set"><span></span><span></span></div></div></div>
             </article>
             <article class="device-slide device-slide-embedded">
-              <span class="device-slide-label" data-i18n="embeddedSlideLabel">Embedded, voor de die-hards</span>
+              <span class="device-slide-label" data-i18n="embeddedSlideLabel">Draai embedded, voor de echte die-hards</span>
               <div class="embedded" aria-hidden="true"><img src="assets/lilygo-t-embed-djconnect.svg" alt="" /></div>
             </article>
           </div>
@@ -769,16 +757,15 @@
       </div>
     </header>
 
-    <section class="examples-band" aria-label="Voorbeelden van opdrachten" data-i18n-attr="aria-label:examplesLabel">
+    <section class="examples-band" aria-label="Vraag je muziek aan met je stem, zeg bijvoorbeeld simpel" data-i18n-attr="aria-label:examplesLabel">
       <div class="wrap">
         <div class="card example-card">
-          <h2 data-i18n="examplesTitle">Voorbeelden van opdrachten</h2>
+          <h2 data-i18n="examplesTitle">Vraag je muziek aan met je stem, zeg bijvoorbeeld simpel</h2>
           <div class="commands">
-            <span data-i18n="exampleCommand1">Speel Nirvana</span>
-            <span data-i18n="exampleCommand2">Ik wil Pearl Jam horen</span>
-            <span data-i18n="exampleCommand3">Zet London Grammar op</span>
-            <span data-i18n="exampleCommand4">Speel maar af Above & Beyond</span>
-            <span data-i18n="exampleCommand5">Ik heb wel zin in Metallica</span>
+            <span data-i18n="exampleCommand1">"Ik wil Pearl Jam horen"</span>
+            <span data-i18n="exampleCommand2">"Zet London Grammar op"</span>
+            <span data-i18n="exampleCommand3">"Speel maar af Above & Beyond"</span>
+            <span data-i18n="exampleCommand4">"Ik heb wel zin in Metallica"</span>
           </div>
         </div>
       </div>
@@ -788,13 +775,13 @@
       <div class="wrap">
         <div class="section-head">
           <div><h2 data-i18n="platformTitle">De kern van DJConnect</h2></div>
-          <p data-i18n="platformLead">DJConnect brengt je muziekwens, slimme context, outputkeuze en persoonlijke DJ-feedback samen in één vloeiende ervaring.</p>
+          <p data-i18n="platformLead">DJConnect brengt je muziekwens, speaker keuze en persoonlijke DJ-feedback samen in één vloeiende ervaring.</p>
         </div>
         <div class="grid-3">
           <article class="card">
             <div class="icon">🎙️</div>
             <h3 data-i18n="platformVoiceTitle">Vraag muziek natuurlijk</h3>
-            <p data-i18n="platformVoiceText">Zeg wat je wilt horen: artiest, album, playlist, sfeer of moment. DJConnect vertaalt dat naar een concrete muziekactie.</p>
+            <p data-i18n="platformVoiceText">Zeg welke artiest je wilt horen. DJConnect start concreet de muziek op je favoriete speakers.</p>
           </article>
           <article class="card">
             <div class="icon">🎚️</div>
@@ -813,8 +800,8 @@
     <section id="essentials">
       <div class="wrap">
         <div class="section-head">
-          <div><h2 data-i18n="essentialsTitle">Powered by Home Assistant, multi client support</h2></div>
-          <p data-i18n="essentialsLead">De essentials zijn hetzelfde, of je nu een Mac, iPhone, iPad of ESP32-device gebruikt.</p>
+          <div><h2 data-i18n="essentialsTitle">Powered by Home Assistant, meerdere apparaten</h2></div>
+          <p data-i18n="essentialsLead">Gemaakt met liefde, voor je Mac, iPhone, iPad en ESP32 device.</p>
         </div>
         <div class="grid-3">
           <article class="card">
@@ -823,7 +810,7 @@
               <span>Works with Home Assistant</span>
             </div>
             <h3 data-i18n="essentialsHaTitle">Home Assistant als basis</h3>
-            <p data-i18n="essentialsHaText">Integratie, voice setup, autorisatie en device pairing lopen via de centrale smart-home laag.</p>
+            <p data-i18n="essentialsHaText">Spotify integratie, voice assist en app koppeling lopen centraal via je smart-home.</p>
           </article>
           <article class="card">
             <div class="icon">🔐</div>
@@ -832,8 +819,8 @@
           </article>
           <article class="card">
             <div class="icon">🔄</div>
-            <h3 data-i18n="essentialsWorkflowTitle">1 hub, meerdere schermen</h3>
-            <p data-i18n="essentialsWorkflowText">Gebruik dezelfde DJConnect workflow op meerdere interfaces: app en device.</p>
+            <h3 data-i18n="essentialsWorkflowTitle">Meerdere interfaces</h3>
+            <p data-i18n="essentialsWorkflowText">Gebruik DJConnect op je favoriete scherm.</p>
           </article>
         </div>
       </div>
@@ -882,7 +869,7 @@
   <footer class="wrap legal">
     <p data-i18n="legalCopyright">Copyright Peter van Tol 2026. All rights reserved. DJConnect firmware is proprietary software. The Home Assistant integration may be distributed separately for use with DJConnect devices.</p>
     <p data-i18n="legalSpotify">Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility.</p>
-    <p class="site-version">DJConnect website v3.1.1</p>
+    <p class="site-version">DJConnect website v3.1.2</p>
   </footer>
   <script>
     const translations = {
@@ -891,45 +878,40 @@
         metaDescription: "DJConnect verbindt voice, Home Assistant en muziekbediening op macOS, iOS en embedded ESP32-devices.",
         navLabel: "Navigatie",
         languageToggle: "Taalkeuze",
-        navPlatform: "Platform",
-        navStart: "Aan de slag",
-        navEssentials: "Essentials",
-        navApps: "Apps & devices",
+        navPlatform: "Wat is DJConnect",
+        navApps: "Download",
         navChoose: "Aan de slag",
-        heroEyebrowLine1: "Beschikbaar voor macOS, iOS en ESP32.",
-        heroEyebrowLine2: "Geintegreerd met Home Assistant",
         heroTitle: "DJConnect. Muziekbediening met karakter.",
         heroLead: "DJConnect brengt spraak, muziekbediening en een persoonlijke DJ-reactie samen. De kern blijft hetzelfde op elk device: vraag muziek, kies waar het speelt en krijg directe feedback terug.",
         heroPrimary: "Aan de slag",
-        examplesLabel: "Voorbeelden van opdrachten",
-        examplesTitle: "Voorbeelden van opdrachten",
-        exampleCommand1: "Speel Nirvana",
-        exampleCommand2: "Ik wil Pearl Jam horen",
-        exampleCommand3: "Zet London Grammar op",
-        exampleCommand4: "Speel maar af Above & Beyond",
-        exampleCommand5: "Ik heb wel zin in Metallica",
+        examplesLabel: "Vraag je muziek aan met je stem, zeg bijvoorbeeld simpel",
+        examplesTitle: "Vraag je muziek aan met je stem, zeg bijvoorbeeld simpel",
+        exampleCommand1: "\"Ik wil Pearl Jam horen\"",
+        exampleCommand2: "\"Zet London Grammar op\"",
+        exampleCommand3: "\"Speel maar af Above & Beyond\"",
+        exampleCommand4: "\"Ik heb wel zin in Metallica\"",
         stageLabel: "DJConnect platformoverzicht",
         stageCarouselLabel: "Platform opties",
         iosSlideLabel: "Met stemactivatie",
-        embeddedSlideLabel: "Embedded, voor de die-hards",
+        embeddedSlideLabel: "Draai embedded, voor de echte die-hards",
         stageText: "DJConnect. Jouw persoonlijke muziek DJ",
         stageScreenText: "Speel, Vraag aan, Ontvang Persoonlijke DJ aankondiging",
         platformTitle: "De kern van DJConnect",
-        platformLead: "DJConnect brengt je muziekwens, slimme context, outputkeuze en persoonlijke DJ-feedback samen in één vloeiende ervaring.",
+        platformLead: "DJConnect brengt je muziekwens, speaker keuze en persoonlijke DJ-feedback samen in één vloeiende ervaring.",
         platformVoiceTitle: "Vraag muziek natuurlijk",
-        platformVoiceText: "Zeg wat je wilt horen: artiest, album, playlist, sfeer of moment. DJConnect vertaalt dat naar een concrete muziekactie.",
+        platformVoiceText: "Zeg welke artiest je wilt horen. DJConnect start concreet de muziek op je favoriete speakers.",
         platformPlaybackTitle: "Bedien je playback",
         platformPlaybackText: "Kies je uitvoerapparaat, start of pauzeer muziek en houd grip op wat er nu speelt of hierna komt.",
         platformFeedbackTitle: "Krijg DJ-feedback",
         platformFeedbackText: "DJConnect reageert kort en persoonlijk, zodat de ervaring meer voelt als een DJ dan als een afstandsbediening.",
-        essentialsTitle: "Powered by Home Assistant, multi client support",
-        essentialsLead: "De essentials zijn hetzelfde, of je nu een Mac, iPhone, iPad of ESP32-device gebruikt.",
+        essentialsTitle: "Powered by Home Assistant, meerdere apparaten",
+        essentialsLead: "Gemaakt met liefde, voor je Mac, iPhone, iPad en ESP32 device.",
         essentialsHaTitle: "Home Assistant als basis",
-        essentialsHaText: "Integratie, voice setup, autorisatie en device pairing lopen via de centrale smart-home laag.",
+        essentialsHaText: "Spotify integratie, voice assist en app koppeling lopen centraal via je smart-home.",
         essentialsSecureTitle: "Veilige koppeling",
         essentialsSecureText: "Account token & koppelgegevens worden veilig bewaard in versleutelde opslag.",
-        essentialsWorkflowTitle: "1 hub, meerdere schermen",
-        essentialsWorkflowText: "Gebruik dezelfde DJConnect workflow op meerdere interfaces: app en device.",
+        essentialsWorkflowTitle: "Meerdere interfaces",
+        essentialsWorkflowText: "Gebruik DJConnect op je favoriete scherm.",
         appsTitle: "Kies je interface",
         appsLead: "Begin bij het platform dat past bij hoe je muziek bedient.",
         macText: "Voor vaste bediening op je Mac: zoeken, output kiezen en de DJConnect-status in beeld houden.",
@@ -951,45 +933,40 @@
         metaDescription: "DJConnect connects voice, Home Assistant and music control across macOS, iOS and embedded ESP32 devices.",
         navLabel: "Navigation",
         languageToggle: "Language",
-        navPlatform: "Platform",
-        navStart: "How to start",
-        navEssentials: "Essentials",
-        navApps: "Apps & devices",
+        navPlatform: "What is DJConnect",
+        navApps: "Download",
         navChoose: "How to start",
-        heroEyebrowLine1: "Available for macOS, iOS and ESP32.",
-        heroEyebrowLine2: "Integrated with Home Assistant",
         heroTitle: "DJConnect. Music control with character.",
         heroLead: "DJConnect brings voice, music control and a personal DJ response together. The core stays the same on every device: ask for music, choose where it plays and get direct feedback.",
         heroPrimary: "How to start",
-        examplesLabel: "Example commands",
-        examplesTitle: "Example commands",
-        exampleCommand1: "Play Nirvana",
-        exampleCommand2: "I want to hear Pearl Jam",
-        exampleCommand3: "Put on London Grammar",
-        exampleCommand4: "Play Above & Beyond",
-        exampleCommand5: "I feel like Metallica",
+        examplesLabel: "Request music with your voice, for example simply say",
+        examplesTitle: "Request music with your voice, for example simply say",
+        exampleCommand1: "\"I want to hear Pearl Jam\"",
+        exampleCommand2: "\"Put on London Grammar\"",
+        exampleCommand3: "\"Play Above & Beyond\"",
+        exampleCommand4: "\"I feel like Metallica\"",
         stageLabel: "DJConnect platform overview",
         stageCarouselLabel: "Platform options",
         iosSlideLabel: "With voice activation",
-        embeddedSlideLabel: "Embedded, for the die-hards",
+        embeddedSlideLabel: "Run embedded, for the real die-hards",
         stageText: "DJConnect. Your personal music DJ",
         stageScreenText: "Play, ask, receive a personal DJ announcement",
         platformTitle: "The core of DJConnect",
-        platformLead: "DJConnect brings your music request, smart context, output selection and personal DJ feedback together in one smooth experience.",
+        platformLead: "DJConnect brings your music request, speaker choice and personal DJ feedback together in one smooth experience.",
         platformVoiceTitle: "Ask for music naturally",
-        platformVoiceText: "Say what you want to hear: artist, album, playlist, mood or moment. DJConnect translates that into a concrete music action.",
+        platformVoiceText: "Say which artist you want to hear. DJConnect starts the music on your favorite speakers.",
         platformPlaybackTitle: "Control playback",
         platformPlaybackText: "Choose your output device, start or pause music and keep control of what is playing now or coming next.",
         platformFeedbackTitle: "Get DJ feedback",
         platformFeedbackText: "DJConnect responds briefly and personally, so the experience feels more like a DJ than a remote control.",
-        essentialsTitle: "Powered by Home Assistant, multi client support",
-        essentialsLead: "The essentials are the same whether you use a Mac, iPhone, iPad or ESP32 device.",
+        essentialsTitle: "Powered by Home Assistant, multiple devices",
+        essentialsLead: "Made with care for your Mac, iPhone, iPad and ESP32 device.",
         essentialsHaTitle: "Home Assistant as the base",
-        essentialsHaText: "Integration, voice setup, authorization and device pairing run through the central smart-home layer.",
+        essentialsHaText: "Spotify integration, voice assist and app pairing run centrally through your smart home.",
         essentialsSecureTitle: "Secure pairing",
         essentialsSecureText: "Account token and pairing details are kept safely in encrypted storage.",
-        essentialsWorkflowTitle: "1 hub, multiple screens",
-        essentialsWorkflowText: "Use the same DJConnect workflow across multiple interfaces: app and device.",
+        essentialsWorkflowTitle: "Multiple interfaces",
+        essentialsWorkflowText: "Use DJConnect on your favorite screen.",
         appsTitle: "Choose your interface",
         appsLead: "Start with the platform that fits how you control music.",
         macText: "For fixed control on your Mac: search, choose output and keep DJConnect status in view.",

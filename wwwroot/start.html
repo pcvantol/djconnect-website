@@ -79,8 +79,8 @@
     <header class="hero">
       <div class="wrap hero-grid">
         <div>
-          <h1>DJConnect. Jouw persoonlijke muziek DJ.</h1>
-          <p class="lead">Vraag muziek. Krijg persoonlijk aangekondigd.</p>
+          <h1>DJConnect. Muziekbediening met karakter.</h1>
+          <p class="lead">DJConnect brengt spraak, muziekbediening en een persoonlijke DJ-reactie samen. De kern blijft hetzelfde op elk device: vraag muziek, kies waar het speelt en krijg directe feedback terug.</p>
         </div>
         <div class="card">
           <h2>Wat ga je doen?</h2>
@@ -121,9 +121,9 @@
       <div class="wrap grid-2">
         <div class="card route-card">
           <span class="route-label">Automatisch</span>
-          <h2>1. Installeer DJConnect via HACS in Home Assistant</h2>
-          <p class="lead">Gebruik de Home Assistant Community Store deeplink om direct naar de DJConnect repository in HACS te gaan.</p>
-          <a class="btn primary" href="https://my.home-assistant.io/redirect/hacs_repository/?owner=pcvantol&repository=djconnect&category=integration" target="_blank" rel="noopener">Home Assistant Community Store</a>
+          <h2>1. Voeg DJConnect toe aan je Home Assistant</h2>
+          <p class="lead">Gebruik onderstaande Home Assistant Community Store knop om direct naar de DJConnect repository in HACS te gaan.</p>
+          <a class="btn primary" href="https://my.home-assistant.io/redirect/hacs_repository/?owner=pcvantol&repository=djconnect&category=integration" target="_blank" rel="noopener">Open DJConnect in HACS</a>
         </div>
         <div class="card route-card">
           <span class="route-label">Handmatig</span>
@@ -132,11 +132,10 @@
             <li>Open Home Assistant</li>
             <li>Open HACS</li>
             <li>Ga naar <strong>Integrations</strong></li>
-            <li>Voeg custom repository <code>https://github.com/pcvantol/djconnect</code> toe</li>
+            <li>Voeg deze custom repository toe: <code>https://github.com/pcvantol/djconnect</code></li>
             <li>Kies category <strong>Integration</strong></li>
             <li>Zoek en installeer <strong>DJConnect</strong></li>
             <li>Herstart Home Assistant</li>
-            <li>Ga naar <strong>Settings -> Devices & services -> Add integration -> DJConnect</strong></li>
           </ol>
         </div>
       </div>
@@ -147,11 +146,10 @@
         <div>
           <h2>2. Configureer je voice assist pipeline in Home Assistant</h2>
           <p class="lead">DJConnect gebruikt je Home Assistant voice pipeline voor stembesturing en gesproken DJ aankondigingen.</p>
-          <a class="btn" href="https://www.home-assistant.io/voice_control/voice_remote_cloud_assistant/" target="_blank" rel="noopener">Home Assistant voice assistant installatie</a>
+          <a class="btn" href="https://www.home-assistant.io/voice_control/voice_remote_cloud_assistant/" target="_blank" rel="noopener">Hulp bij Home Assistant voice assist</a>
         </div>
         <ol class="steps">
-          <li>Open de Home Assistant voice assistant documentatie</li>
-          <li>Maak of controleer je voice assist pipeline</li>
+          <li>Maak of controleer je voice assist pipeline binnen Home Assistant</li>
           <li>Controleer spraakherkenning en gesproken output</li>
           <li>Gebruik deze pipeline straks in DJConnect</li>
         </ol>
@@ -162,10 +160,10 @@
       <div class="wrap grid-2">
         <div>
           <h2>3. Configureer DJConnect in Home Assistant</h2>
-          <p class="lead">Voeg DJConnect toe als integration en koppel daarna Spotify en je voice assist pipeline.</p>
+          <p class="lead">Voeg DJConnect toe als Home Assistant integratie en koppel je Spotify account.</p>
         </div>
         <ol class="steps">
-          <li><strong>Settings -> Devices & services -> Add integration -> DJConnect</strong></li>
+          <li>Open Home Assistant <strong>Settings -> Devices & services -> Add integration -> DJConnect</strong></li>
           <li>Koppel je Spotify Premium account</li>
           <li>Configureer je assist pipeline voor stembesturing en DJ aankondigingen</li>
         </ol>
@@ -182,7 +180,7 @@
           <h3>Download de app of firmware</h3>
           <div class="download-actions">
             <a class="btn primary" href="https://github.com/pcvantol/djconnect-firmware" target="_blank" rel="noopener">ESP firmware releases</a>
-            <a class="btn" href="https://github.com/pcvantol/djconnect-app-releases" target="_blank" rel="noopener">App releases</a>
+            <a class="btn primary" href="https://github.com/pcvantol/djconnect-app-releases" target="_blank" rel="noopener">App releases</a>
           </div>
         </div>
       </div>
@@ -191,13 +189,13 @@
           <h3>ESP device</h3>
           <ol class="steps">
             <li>Zet het DJConnect device aan</li>
-            <li>Verbind het device met WiFi via setup mode, BLE of captive portal</li>
-            <li>Open de DJConnect integration setup in Home Assistant</li>
+            <li>Verbind het device met WiFi via captive portal of Home Assistant BLE WiFi provisioning</li>
+            <li>Open de DJConnect integratie setup in Home Assistant</li>
             <li>Voer de koppelcode in die op het device-scherm staat</li>
-            <li>Home Assistant koppelt het device en stuurt een lokaal device token</li>
-            <li>Wacht tot de statusindicator groen wordt</li>
+            <li>Home Assistant configureert het device automatisch</li>
+            <li>Het DJConnect apparaat is klaar voor gebruik</li>
           </ol>
-          <p class="muted">ESP devices gebruiken lokale communicatie met Home Assistant. De cloud URL wordt niet gebruikt voor device commands. Als mDNS niet werkt, kun je de Client API URL handmatig invullen.</p>
+          <p class="muted">ESP devices gebruiken lokale communicatie met Home Assistant. Als mDNS niet werkt, kun je de Client API URL handmatig invullen.</p>
         </article>
         <article class="card">
           <h3>iOS/macOS app</h3>
@@ -207,8 +205,7 @@
             <li>Kopieer de <strong>Client API URL</strong></li>
             <li>Open DJConnect setup in Home Assistant</li>
             <li>Kies client type <strong>iOS app</strong> of <strong>macOS app</strong></li>
-            <li>Vul de koppelcode en Client API URL in</li>
-            <li>Rond pairing af</li>
+            <li>Vul de koppelcode en Client API URL in en rond koppeling af</li>
           </ol>
           <p class="muted">Voor iOS/macOS is de Client API URL verplicht. De app en Home Assistant moeten elkaar lokaal kunnen bereiken.</p>
         </article>
@@ -225,7 +222,7 @@
           <li>Start Spotify Connect op je favoriete speaker</li>
           <li>Bedien je muziek via DJConnect</li>
           <li>Vraag de volgende artiest aan met je stem</li>
-          <li>Ontvang je persoonlijke DJ aankondiging in de app of op je DJConnect device</li>
+          <li>Ontvang persoonlijke DJ aankondigingen in de app of op je device</li>
         </ol>
       </div>
     </section>
@@ -234,12 +231,12 @@
       <div class="wrap">
         <h2>Problemen oplossen</h2>
         <div class="grid-3">
-          <article class="card"><h3>Geen Spotify playback</h3><p>Controleer Spotify Premium en of er een actief Spotify afspeelapparaat beschikbaar is.</p></article>
+          <article class="card"><h3>Geen Spotify playback</h3><p>Controleer Spotify Premium en of er een actief Spotify afspeelapparaat beschikbaar is. Controleer of de Spotify autorisatie in Home Assistant actief is, of herstel deze.</p></article>
           <article class="card"><h3>Geen spraakherkenning</h3><p>Controleer de Assist pipeline en STT provider.</p></article>
           <article class="card"><h3>Geen DJ aankondiging</h3><p>Controleer TTS provider en DJConnect options.</p></article>
           <article class="card"><h3>Pairing lukt niet</h3><p>Controleer koppelcode, Client API URL en lokaal netwerk.</p></article>
-          <article class="card"><h3>HACS toont oude versie</h3><p>Refresh HACS update information en herstart Home Assistant.</p></article>
-          <article class="card"><h3>Device blijft rood/pending</h3><p>Controleer of Home Assistant lokaal bereikbaar is vanaf het device of de app.</p></article>
+          <article class="card"><h3>HACS toont oude versie</h3><p>Ververs HACS update informatie en download de actuele versie van DJConnect. Herstart Home Assistant.</p></article>
+          <article class="card"><h3>Device blijft rood/pending</h3><p>Controleer of Home Assistant lokaal bereikbaar is vanaf de app of device.</p></article>
         </div>
       </div>
     </section>
@@ -248,7 +245,7 @@
   <footer class="wrap legal">
     <p>Copyright Peter van Tol 2026. All rights reserved.</p>
     <p>Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.</p>
-    <p class="site-version">DJConnect website v3.1.1</p>
+    <p class="site-version">DJConnect website v3.1.2</p>
   </footer>
 </body>
 </html>

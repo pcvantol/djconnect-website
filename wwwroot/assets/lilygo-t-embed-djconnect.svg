@@ -58,29 +58,6 @@
     <rect x="40" y="92" width="900" height="376" rx="132" fill="url(#body)" stroke="rgba(255,255,255,0.22)" stroke-width="3"/>
     <rect x="96" y="154" width="484" height="252" rx="34" fill="url(#screen)" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
 
-    <g clip-path="url(#screenClip)">
-      <g clip-path="url(#djIconClip)" filter="url(#iconGlow)">
-        <rect x="130" y="196" width="124" height="124" rx="24" fill="#0b0815"/>
-        <circle cx="154" cy="214" r="34" fill="#7d5cff" opacity="0.15"/>
-        <circle cx="238" cy="303" r="38" fill="#3ce1ff" opacity="0.08"/>
-        <path d="M143 288c-10-26-5-62 17-82 24-22 60-24 86-5 23 17 31 50 20 78" fill="none" stroke="url(#djAccent)" stroke-width="6" stroke-linecap="round"/>
-        <circle cx="188" cy="258" r="43" fill="url(#djVinyl)"/>
-        <circle cx="188" cy="258" r="31" fill="none" stroke="#fff" stroke-opacity="0.07" stroke-width="1.5"/>
-        <circle cx="188" cy="258" r="21" fill="none" stroke="#8fa0ff" stroke-opacity="0.13" stroke-width="1.6"/>
-        <circle cx="188" cy="258" r="13" fill="#151023" stroke="url(#djAccent)" stroke-width="5"/>
-        <path d="M237 207c10-6 23 2 23 14 0 10-10 18-20 15-8 31-18 56-38 77-9 9-18 15-27 18" fill="none" stroke="url(#djMetal)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="246" cy="221" r="14" fill="#131522" stroke="url(#djAccent)" stroke-width="4"/>
-        <path d="M240 216h12M238 221h16M241 226h10" stroke="#dbe6ff" stroke-opacity="0.78" stroke-width="2" stroke-linecap="round"/>
-        <text x="148" y="302" fill="#080711" stroke="#080711" stroke-width="11" stroke-linejoin="round" font-family="Avenir Next, Arial Black, Impact, sans-serif" font-style="italic" font-weight="900" font-size="62" letter-spacing="-7">DJ</text>
-        <text x="148" y="302" fill="#f7f9ff" stroke="url(#djAccent)" stroke-width="3.5" stroke-linejoin="round" font-family="Avenir Next, Arial Black, Impact, sans-serif" font-style="italic" font-weight="900" font-size="62" letter-spacing="-7">DJ</text>
-      </g>
-
-      <text x="430" y="230" text-anchor="middle" fill="#f7f7fb" font-family="Inter, Arial, sans-serif" font-size="36" font-weight="900">DJConnect</text>
-      <text x="430" y="276" text-anchor="middle" fill="#9de8ff" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800" letter-spacing="2">PUSH TO TALK</text>
-      <text x="430" y="316" text-anchor="middle" fill="#b7bccb" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700">Vraag muziek.</text>
-      <text x="430" y="346" text-anchor="middle" fill="#b7bccb" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700">Krijg persoonlijk aangekondigd.</text>
-    </g>
-
     <circle cx="748" cy="280" r="106" fill="#0a0d13" stroke="rgba(255,255,255,0.16)" stroke-width="4"/>
     <g fill="#c084fc" stroke="#f0abfc" stroke-width="2" filter="url(#purpleGlow)">
       <circle cx="748" cy="146" r="9"/>

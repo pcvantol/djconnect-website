@@ -20,6 +20,10 @@
     .brand img { width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.18); box-shadow:0 0 34px rgba(102,224,255,0.25); }
     .nav-links { display:flex; align-items:center; gap:18px; color:var(--muted); font-size:0.94rem; }
     .nav-links a:hover { color:var(--text); }
+    .nav-controls { display:flex; align-items:center; gap:12px; }
+    .lang-toggle { display:inline-grid; grid-template-columns:repeat(2,1fr); min-width:86px; padding:3px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.06); }
+    .lang-toggle button { min-height:34px; border:0; border-radius:999px; background:transparent; color:var(--muted); font:inherit; font-size:0.82rem; font-weight:850; cursor:pointer; }
+    .lang-toggle button[aria-pressed="true"] { background:rgba(102,224,255,0.18); color:var(--text); }
     .btn { display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:46px; padding:0 18px; border-radius:999px; border:1px solid var(--line); background:var(--panel); color:var(--text); font-weight:780; box-shadow:0 10px 30px rgba(0,0,0,0.15); transition:transform 160ms ease, background 160ms ease, border-color 160ms ease; }
     .btn:hover { transform:translateY(-2px); background:var(--panel-strong); border-color:rgba(255,255,255,0.28); }
     .btn.primary { border:0; color:#06110c; background:linear-gradient(135deg,var(--cyan),var(--green)); }
@@ -81,12 +85,18 @@
   <nav class="nav">
     <div class="wrap nav-inner">
       <a class="brand" href="index.html"><img src="assets/djconnect/icon.svg" alt="" /><span>DJConnect</span></a>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="#spotify">Installeren</a>
-        <a href="#troubleshooting">Hulp</a>
+      <div class="nav-links" aria-label="Navigatie" data-i18n-attr="aria-label:navLabel">
+        <a href="index.html" data-i18n="navHome">Home</a>
+        <a href="#spotify" data-i18n="navInstall">Installeren</a>
+        <a href="#troubleshooting" data-i18n="navHelp">Hulp</a>
       </div>
-      <a class="btn primary" href="#spotify">Start installatie</a>
+      <div class="nav-controls">
+        <div class="lang-toggle" aria-label="Taalkeuze" data-i18n-attr="aria-label:languageToggle">
+          <button type="button" data-lang="nl" aria-pressed="true">NL</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="btn primary" href="#spotify" data-i18n="navStart">Start installatie</a>
+      </div>
     </div>
   </nav>
 
@@ -94,17 +104,17 @@
     <header class="hero">
       <div class="wrap hero-grid">
         <div>
-          <h1>DJConnect. Muziekbediening met karakter.</h1>
-          <p class="lead">DJConnect brengt spraak, muziekbediening en een persoonlijke DJ-reactie samen. De kern blijft hetzelfde op elk device: vraag muziek, kies waar het speelt en krijg directe feedback terug.</p>
+          <h1 data-i18n="heroTitle">DJConnect. Muziekbediening met karakter.</h1>
+          <p class="lead" data-i18n="heroLead">DJConnect brengt spraak, muziekbediening en een persoonlijke DJ-reactie samen. De kern blijft hetzelfde op elk device: vraag muziek, kies waar het speelt en krijg directe feedback terug.</p>
         </div>
         <div class="card">
-          <h2>Wat ga je doen?</h2>
+          <h2 data-i18n="overviewTitle">Wat ga je doen?</h2>
           <ol class="hero-steps">
-            <li>Integreer DJConnect in Home Assistant</li>
-            <li>Configureer je Spotify Premium account</li>
-            <li>Koppel de app of device</li>
+            <li data-i18n="overviewStep1">Integreer DJConnect in Home Assistant</li>
+            <li data-i18n="overviewStep2">Configureer je Spotify Premium account</li>
+            <li data-i18n="overviewStep3">Koppel de app of device</li>
           </ol>
-          <div class="hero-done">Geniet van je eigen muziek, met je persoonlijke DJ</div>
+          <div class="hero-done" data-i18n="overviewDone">Geniet van je eigen muziek, met je persoonlijke DJ</div>
         </div>
       </div>
     </header>
@@ -112,8 +122,8 @@
     <section id="requirements">
       <div class="wrap grid-2">
         <div>
-          <h2>Vereisten</h2>
-          <p class="lead">Deze checklist voorkomt de meeste installatieproblemen.</p>
+          <h2 data-i18n="requirementsTitle">Vereisten</h2>
+          <p class="lead" data-i18n="requirementsLead">Deze checklist voorkomt de meeste installatieproblemen.</p>
         </div>
         <ul class="checklist">
           <li>Home Assistant installatie</li>
@@ -135,9 +145,9 @@
     <section id="spotify">
       <div class="wrap grid-2">
         <div>
-          <h2>1. Configureer assist pipeline in Home Assistant</h2>
-          <p class="lead">DJConnect gebruikt je Home Assistant voice pipeline voor stembesturing en gesproken DJ aankondigingen.</p>
-          <a class="btn" href="https://www.home-assistant.io/voice_control/voice_remote_cloud_assistant/" target="_blank" rel="noopener">Hulp bij Home Assistant voice assist</a>
+          <h2 data-i18n="voiceTitle">1. Configureer assist pipeline in Home Assistant</h2>
+          <p class="lead" data-i18n="voiceLead">DJConnect gebruikt je Home Assistant voice pipeline voor stembesturing en gesproken DJ aankondigingen.</p>
+          <a class="btn" href="https://www.home-assistant.io/voice_control/voice_remote_cloud_assistant/" target="_blank" rel="noopener" data-i18n="voiceHelp">Hulp bij Home Assistant voice assist</a>
         </div>
         <ol class="steps">
           <li>Maak of controleer je voice assist pipeline binnen Home Assistant</li>
@@ -151,9 +161,9 @@
       <div class="wrap grid-2">
         <div class="card route-card">
           <span class="route-label">Automatisch</span>
-          <h2>2. Voeg toe aan Home Assistant</h2>
-          <p class="lead">Gebruik onderstaande Home Assistant Community Store knop om direct naar de DJConnect repository in HACS te gaan.</p>
-          <a class="btn primary" href="https://my.home-assistant.io/redirect/hacs_repository/?owner=pcvantol&repository=djconnect&category=integration" target="_blank" rel="noopener">Open DJConnect in HACS</a>
+          <h2 data-i18n="hacsTitle">2. Voeg toe aan Home Assistant</h2>
+          <p class="lead" data-i18n="hacsLead">Gebruik onderstaande Home Assistant Community Store knop om direct naar de DJConnect repository in HACS te gaan.</p>
+          <a class="btn primary" href="https://my.home-assistant.io/redirect/hacs_repository/?owner=pcvantol&repository=djconnect&category=integration" target="_blank" rel="noopener" data-i18n="hacsButton">Open DJConnect in HACS</a>
         </div>
         <div class="card route-card">
           <span class="route-label">Handmatig</span>
@@ -174,8 +184,8 @@
     <section id="assist">
       <div class="wrap grid-2">
         <div>
-          <h2>3. Configureer</h2>
-          <p class="lead">Voeg DJConnect toe als Home Assistant integratie en koppel je Spotify account.</p>
+          <h2 data-i18n="configureTitle">3. Configureer</h2>
+          <p class="lead" data-i18n="configureLead">Voeg DJConnect toe als Home Assistant integratie en koppel je Spotify account.</p>
         </div>
         <ol class="steps">
           <li>Open Home Assistant <strong>Settings -> Devices & services -> Add integration -> DJConnect</strong></li>
@@ -187,8 +197,8 @@
 
     <section id="pairing">
       <div class="wrap">
-        <h2>4. Koppel app of device</h2>
-        <p class="lead">Kies de route die past bij je client.</p>
+        <h2 data-i18n="pairingTitle">4. Koppel app of device</h2>
+        <p class="lead" data-i18n="pairingLead">Kies de route die past bij je client.</p>
       </div>
       <div class="wrap">
         <div class="client-switch">
@@ -196,7 +206,7 @@
           <input type="radio" name="client-route" id="client-ios" />
           <input type="radio" name="client-route" id="client-macos" />
           <input type="radio" name="client-route" id="client-raspberry" />
-          <div class="switch-tabs" role="tablist" aria-label="Kies client type">
+          <div class="switch-tabs" role="tablist" aria-label="Kies client type" data-i18n-attr="aria-label:clientTypeLabel">
             <label for="client-esp" role="tab">ESP device</label>
             <label for="client-ios" role="tab">iOS app</label>
             <label for="client-macos" role="tab">macOS app</label>
@@ -204,7 +214,7 @@
           </div>
           <div class="client-panels">
             <article class="card client-panel" data-client-panel="esp">
-              <h3>ESP device</h3>
+              <h3 data-i18n="espTitle">ESP device</h3>
               <ol class="steps">
                 <li><a class="btn primary" href="https://github.com/pcvantol/djconnect-firmware" target="_blank" rel="noopener">Download ESP firmware</a></li>
                 <li>Zet het DJConnect device aan en verbind het device met WiFi via captive portal of Home Assistant BLE WiFi provisioning</li>
@@ -212,10 +222,10 @@
                 <li>Voer de koppelcode in van het device</li>
                 <li>Het DJConnect apparaat is klaar voor gebruik</li>
               </ol>
-              <p class="muted">ESP devices gebruiken lokale communicatie met Home Assistant. Als automatische discovery (mDNS) niet werkt, kun je de Client API URL handmatig invullen in de integratie.</p>
+              <p class="muted" data-i18n="espNote">ESP devices gebruiken lokale communicatie met Home Assistant. Als automatische discovery (mDNS) niet werkt, kun je de Client API URL handmatig invullen in de integratie.</p>
             </article>
             <article class="card client-panel" data-client-panel="ios">
-              <h3>iOS app</h3>
+              <h3 data-i18n="iosTitle">iOS app</h3>
               <ol class="steps">
                 <li><a class="btn primary" href="ios.html">Download iOS app</a></li>
                 <li>Open DJConnect app en kopieer de koppelgegevens</li>
@@ -223,10 +233,10 @@
                 <li>Kies client type <strong>iOS app</strong> &amp; plak de koppelgegevens in de Home Assistant integratie</li>
                 <li>DJConnect app is klaar voor gebruik</li>
               </ol>
-              <p class="muted">Voor iOS is de Client API URL verplicht. De app en Home Assistant moeten elkaar lokaal kunnen bereiken.</p>
+              <p class="muted" data-i18n="iosNote">Voor iOS is de Client API URL verplicht. De app en Home Assistant moeten elkaar lokaal kunnen bereiken.</p>
             </article>
             <article class="card client-panel" data-client-panel="macos">
-              <h3>macOS app</h3>
+              <h3 data-i18n="macosTitle">macOS app</h3>
               <ol class="steps">
                 <li><a class="btn primary" href="macos-download.html">Download macOS app</a></li>
                 <li>Open DJConnect app en kopieer de koppelgegevens</li>
@@ -234,10 +244,10 @@
                 <li>Kies client type <strong>macOS app</strong> &amp; plak de koppelgegevens in de Home Assistant integratie</li>
                 <li>DJConnect app is klaar voor gebruik</li>
               </ol>
-              <p class="muted">Voor macOS is de Client API URL verplicht. De app en Home Assistant moeten elkaar lokaal kunnen bereiken.</p>
+              <p class="muted" data-i18n="macosNote">Voor macOS is de Client API URL verplicht. De app en Home Assistant moeten elkaar lokaal kunnen bereiken.</p>
             </article>
             <article class="card client-panel" data-client-panel="raspberry">
-              <h3>Raspberry Pi app</h3>
+              <h3 data-i18n="raspberryTitle">Raspberry Pi app</h3>
               <ol class="steps">
                 <li><a class="btn primary" href="raspberry-pi.html">Bekijk Raspberry Pi voorbereiding</a></li>
                 <li>Installeer de DJConnect Raspberry Pi app zodra de release beschikbaar is</li>
@@ -245,7 +255,7 @@
                 <li>Kies client type <strong>Raspberry Pi app</strong> &amp; plak de koppelgegevens</li>
                 <li>DJConnect Raspberry Pi app is klaar voor gebruik</li>
               </ol>
-              <p class="muted">Voor Raspberry Pi wordt een dedicated app-route voorbereid. De app gebruikt straks dezelfde lokale Home Assistant koppeling als de andere clients.</p>
+              <p class="muted" data-i18n="raspberryNote">Voor Raspberry Pi wordt een dedicated app-route voorbereid. De app gebruikt straks dezelfde lokale Home Assistant koppeling als de andere clients.</p>
             </article>
           </div>
         </div>
@@ -255,8 +265,8 @@
     <section id="check">
       <div class="wrap grid-2">
         <div>
-          <h2>5. Klaar voor gebruik</h2>
-          <p class="lead">Start met een Spotify Connect speaker en bedien daarna je muziek via DJConnect.</p>
+          <h2 data-i18n="readyTitle">5. Klaar voor gebruik</h2>
+          <p class="lead" data-i18n="readyLead">Start met een Spotify Connect speaker en bedien daarna je muziek via DJConnect.</p>
         </div>
         <ol class="steps">
           <li>Start Spotify Connect op je favoriete speaker</li>
@@ -269,7 +279,7 @@
 
     <section id="troubleshooting">
       <div class="wrap">
-        <h2>Problemen oplossen</h2>
+        <h2 data-i18n="troubleshootingTitle">Problemen oplossen</h2>
         <div class="grid-3">
           <article class="card"><h3>Geen Spotify playback</h3><p>Controleer Spotify Premium en of er een actief Spotify afspeelapparaat beschikbaar is. Controleer of de Spotify autorisatie in Home Assistant actief is, of herstel deze.</p></article>
           <article class="card"><h3>Geen spraakherkenning</h3><p>Controleer de Assist pipeline en STT provider.</p></article>
@@ -283,9 +293,122 @@
   </main>
 
   <footer class="wrap legal">
-    <p>Copyright Peter van Tol 2026. All rights reserved.</p>
-    <p>Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.</p>
-    <p class="site-version">DJConnect website v3.1.7</p>
+    <p data-i18n="legalCopyright">Copyright Peter van Tol 2026. All rights reserved.</p>
+    <p data-i18n="legalSpotify">Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.</p>
+    <p class="site-version">DJConnect website v3.1.8</p>
   </footer>
+  <script>
+    const translations = {
+      nl: {
+        title: "DJConnect Aan de slag",
+        metaDescription: "Aan de slag met DJConnect: vereisten, HACS installatie, Spotify koppelen, Home Assistant Assist configureren en je device of app pairen.",
+        navLabel: "Navigatie",
+        languageToggle: "Taalkeuze",
+        navHome: "Home",
+        navInstall: "Installeren",
+        navHelp: "Hulp",
+        navStart: "Start installatie",
+        heroTitle: "DJConnect. Muziekbediening met karakter.",
+        heroLead: "DJConnect brengt spraak, muziekbediening en een persoonlijke DJ-reactie samen. De kern blijft hetzelfde op elk device: vraag muziek, kies waar het speelt en krijg directe feedback terug.",
+        overviewTitle: "Wat ga je doen?",
+        overviewStep1: "Integreer DJConnect in Home Assistant",
+        overviewStep2: "Configureer je Spotify Premium account",
+        overviewStep3: "Koppel de app of device",
+        overviewDone: "Geniet van je eigen muziek, met je persoonlijke DJ",
+        requirementsTitle: "Vereisten",
+        requirementsLead: "Deze checklist voorkomt de meeste installatieproblemen.",
+        voiceTitle: "1. Configureer assist pipeline in Home Assistant",
+        voiceLead: "DJConnect gebruikt je Home Assistant voice pipeline voor stembesturing en gesproken DJ aankondigingen.",
+        voiceHelp: "Hulp bij Home Assistant voice assist",
+        hacsTitle: "2. Voeg toe aan Home Assistant",
+        hacsLead: "Gebruik onderstaande Home Assistant Community Store knop om direct naar de DJConnect repository in HACS te gaan.",
+        hacsButton: "Open DJConnect in HACS",
+        configureTitle: "3. Configureer",
+        configureLead: "Voeg DJConnect toe als Home Assistant integratie en koppel je Spotify account.",
+        pairingTitle: "4. Koppel app of device",
+        pairingLead: "Kies de route die past bij je client.",
+        clientTypeLabel: "Kies client type",
+        espTitle: "ESP device",
+        espNote: "ESP devices gebruiken lokale communicatie met Home Assistant. Als automatische discovery (mDNS) niet werkt, kun je de Client API URL handmatig invullen in de integratie.",
+        iosTitle: "iOS app",
+        iosNote: "Voor iOS is de Client API URL verplicht. De app en Home Assistant moeten elkaar lokaal kunnen bereiken.",
+        macosTitle: "macOS app",
+        macosNote: "Voor macOS is de Client API URL verplicht. De app en Home Assistant moeten elkaar lokaal kunnen bereiken.",
+        raspberryTitle: "Raspberry Pi app",
+        raspberryNote: "Voor Raspberry Pi wordt een dedicated app-route voorbereid. De app gebruikt straks dezelfde lokale Home Assistant koppeling als de andere clients.",
+        readyTitle: "5. Klaar voor gebruik",
+        readyLead: "Start met een Spotify Connect speaker en bedien daarna je muziek via DJConnect.",
+        troubleshootingTitle: "Problemen oplossen",
+        legalCopyright: "Copyright Peter van Tol 2026. All rights reserved.",
+        legalSpotify: "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB."
+      },
+      en: {
+        title: "DJConnect Get started",
+        metaDescription: "Get started with DJConnect: requirements, HACS installation, Spotify linking, Home Assistant Assist setup and app or device pairing.",
+        navLabel: "Navigation",
+        languageToggle: "Language",
+        navHome: "Home",
+        navInstall: "Install",
+        navHelp: "Help",
+        navStart: "Start setup",
+        heroTitle: "DJConnect. Music control with character.",
+        heroLead: "DJConnect brings voice, music control and a personal DJ response together. The core stays the same on every device: request music, choose where it plays and get direct feedback.",
+        overviewTitle: "What will you do?",
+        overviewStep1: "Integrate DJConnect in Home Assistant",
+        overviewStep2: "Configure your Spotify Premium account",
+        overviewStep3: "Pair the app or device",
+        overviewDone: "Enjoy your own music, with your personal DJ",
+        requirementsTitle: "Requirements",
+        requirementsLead: "This checklist prevents most setup issues.",
+        voiceTitle: "1. Configure assist pipeline in Home Assistant",
+        voiceLead: "DJConnect uses your Home Assistant voice pipeline for voice control and spoken DJ announcements.",
+        voiceHelp: "Help with Home Assistant voice assist",
+        hacsTitle: "2. Add to Home Assistant",
+        hacsLead: "Use the Home Assistant Community Store button below to open the DJConnect repository in HACS directly.",
+        hacsButton: "Open DJConnect in HACS",
+        configureTitle: "3. Configure",
+        configureLead: "Add DJConnect as a Home Assistant integration and connect your Spotify account.",
+        pairingTitle: "4. Pair app or device",
+        pairingLead: "Choose the route that matches your client.",
+        clientTypeLabel: "Choose client type",
+        espTitle: "ESP device",
+        espNote: "ESP devices use local communication with Home Assistant. If automatic discovery (mDNS) does not work, you can enter the Client API URL manually in the integration.",
+        iosTitle: "iOS app",
+        iosNote: "For iOS, the Client API URL is required. The app and Home Assistant must be able to reach each other locally.",
+        macosTitle: "macOS app",
+        macosNote: "For macOS, the Client API URL is required. The app and Home Assistant must be able to reach each other locally.",
+        raspberryTitle: "Raspberry Pi app",
+        raspberryNote: "A dedicated app route is being prepared for Raspberry Pi. The app will use the same local Home Assistant pairing as the other clients.",
+        readyTitle: "5. Ready to use",
+        readyLead: "Start with a Spotify Connect speaker, then control your music through DJConnect.",
+        troubleshootingTitle: "Troubleshooting",
+        legalCopyright: "Copyright Peter van Tol 2026. All rights reserved.",
+        legalSpotify: "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB."
+      }
+    };
+    const applyLanguage = (language) => {
+      const copy = translations[language] || translations.nl;
+      document.documentElement.lang = language;
+      document.title = copy.title;
+      const meta = document.querySelector('meta[name="description"]');
+      if (meta) meta.setAttribute("content", copy.metaDescription);
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.getAttribute("data-i18n");
+        if (copy[key]) element.textContent = copy[key];
+      });
+      document.querySelectorAll("[data-i18n-attr]").forEach((element) => {
+        element.getAttribute("data-i18n-attr").split(",").forEach((mapping) => {
+          const [attribute, key] = mapping.split(":").map((part) => part.trim());
+          if (attribute && key && copy[key]) element.setAttribute(attribute, copy[key]);
+        });
+      });
+      document.querySelectorAll("[data-lang]").forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.lang === language));
+      });
+    };
+    document.querySelectorAll("[data-lang]").forEach((button) => {
+      button.addEventListener("click", () => applyLanguage(button.dataset.lang));
+    });
+  </script>
 </body>
 </html>

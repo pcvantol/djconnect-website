@@ -64,7 +64,7 @@ test("site version is consistent", async () => {
 test("homepage has platform routes and app store placeholders", async () => {
   const index = await read("wwwroot/index.html");
   assert.match(index, /href="start\.html"/);
-  assert.match(index, /data-i18n="navPlatform">Wat is DJConnect/);
+  assert.match(index, /data-i18n="navPlatform">Hoe werkt het/);
   assert.match(index, /href="features\.html" data-i18n="navFeatures">Features/);
   assert.match(index, /data-i18n="navApps">Download/);
   assert.doesNotMatch(index, /data-i18n="navEssentials"/);
@@ -113,7 +113,8 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /Home Assistant installatie/);
   assert.match(start, /Open DJConnect in HACS/);
   assert.match(start, /https:\/\/my\.home-assistant\.io\/redirect\/hacs_repository/);
-  assert.match(start, /href="#spotify">Installeren<\/a>/);
+  assert.match(start, /href="#spotify" data-i18n="navInstall">Installeren<\/a>/);
+  assert.match(start, /class="lang-toggle"/);
   assert.doesNotMatch(start, /href="#hacs">HACS<\/a>/);
   assert.doesNotMatch(start, /href="#spotify">Voice<\/a>/);
   assert.doesNotMatch(start, /href="#pairing">Koppelen<\/a>/);
@@ -157,6 +158,7 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /Controleer of de Spotify autorisatie in Home Assistant actief is, of herstel deze/);
   assert.match(start, /Ververs HACS update informatie en download de actuele versie van DJConnect/);
   assert.match(start, /Spotify is a trademark of Spotify AB/);
+  assertTranslationsCoverPage(start, "start page");
 });
 
 test("features page describes core functions and bonus games", async () => {
@@ -183,6 +185,10 @@ test("raspberry pi page is prepared and translated", async () => {
   assert.match(raspberry, /data-store-link="raspberry-pi"/);
   assert.match(raspberry, /data-github-releases/);
   assert.match(raspberry, /Raspberry Pi builds beschikbaar/);
+  assert.match(raspberry, /href="index\.html" data-i18n="navHome">Home<\/a>/);
+  assert.doesNotMatch(raspberry, /href="macos\.html">macOS<\/a>/);
+  assert.doesNotMatch(raspberry, /href="ios\.html">iOS<\/a>/);
+  assert.doesNotMatch(raspberry, /href="embedded\.html">ESP32<\/a>/);
   assertTranslationsCoverPage(raspberry, "raspberry pi page");
 });
 

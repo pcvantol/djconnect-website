@@ -6,7 +6,7 @@
 - Production URL: https://djconnect.pages.dev
 - Cloudflare Pages project: `djconnect`
 - Publish directory: `wwwroot`
-- Current version: `3.1.7`
+- Current version: `3.1.8`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Start/setup page: `wwwroot/start.html`
@@ -20,7 +20,7 @@
 
 - The site is static HTML/CSS/JavaScript with no build step.
 - The homepage is platform-independent and routes users to setup and downloads.
-- The homepage navigation intentionally contains `Wat is DJConnect`, `Features` and `Download`; the `Aan de slag` route is the primary CTA button.
+- The homepage navigation intentionally contains `Hoe werkt het`, `Features` and `Download`; the `Aan de slag` route is the primary CTA button.
 - The features page summarizes the main DJConnect functions and mentions the bonus mini-games: Pong, Asteroids & Fly.
 - The homepage hero uses a swipeable device carousel for macOS, iPad/iPhone and LilyGO/ESP32. Keep each device slide spacious and avoid compressing devices side-by-side.
 - The homepage has prepared App Store CTA placeholders with `data-store-link="macos"` and `data-store-link="ios"`, plus a prepared Raspberry Pi route.
@@ -30,12 +30,13 @@
 - The start page presents the current setup order: configure the Home Assistant voice assist pipeline, add DJConnect to Home Assistant through HACS, configure DJConnect in Home Assistant, download and pair the app/device, then use DJConnect with Spotify Connect.
 - The start page links to Home Assistant voice assistant documentation, `pcvantol/djconnect-firmware` and `pcvantol/djconnect-app-releases`.
 - The start page pairing switch has separate panels for ESP device, iOS app, macOS app and Raspberry Pi app.
-- macOS, iOS and embedded pages label the homepage navigation route as `Home`.
+- macOS, iOS, Raspberry Pi and embedded pages label the homepage navigation route as `Home`; app pages should not show cross-links to other app/device pages in the top menu.
 - App subpages use `assets/releases.js`, `assets/releases.css` and the Cloudflare Pages Function `functions/api/releases.js` to live-render GitHub releases.
 - macOS downloads use `assets/downloads.js` and the public repo `pcvantol/djconnect-app-releases`.
 - If the GitHub repository/releases are private, set `GITHUB_TOKEN` as a Cloudflare Pages secret for the `djconnect` project.
 - Version is tracked in `VERSION`, `package.json`, page footers and `CHANGELOG.md`.
-- Language switching on the homepage, embedded page, Features page, Raspberry Pi page, iOS page, macOS page and macOS download page is handled through per-page `translations` objects.
+- Language switching on the homepage, start page, embedded page, Features page, Raspberry Pi page, iOS page, macOS page and macOS download page is handled through per-page `translations` objects.
+- `cleanup_old_releases.sh` removes old GitHub Releases, matching local/remote tags and older workflow runs. It keeps the current `VERSION` tag and the newest 10 workflow runs by default.
 - Do not commit `.wrangler/`; it is local Wrangler cache.
 
 ## Release Steps

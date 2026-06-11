@@ -3,7 +3,7 @@
 ## Manual Checks
 
 - Open `wwwroot/index.html`.
-- Verify the homepage navigation shows `Wat is DJConnect`, `Features` and `Download`, with `Aan de slag` only as the primary CTA button.
+- Verify the homepage navigation shows `Hoe werkt het`, `Features` and `Download`, with `Aan de slag` only as the primary CTA button.
 - Open `wwwroot/features.html` and verify the core features and bonus mini-games are visible.
 - Open `wwwroot/raspberry-pi.html` and verify it is clearly prepared for a future Raspberry Pi app without claiming a released binary.
 - Verify the homepage hero uses a swipeable carousel with separate macOS, iPad/iPhone and LilyGO/ESP32 slides.
@@ -25,11 +25,11 @@
 - Verify the Spotify Premium account is configured inside the DJConnect configuration section, not as a separate top-level setup block.
 - Verify the homepage embedded card opens `wwwroot/embedded.html`.
 - Open `wwwroot/macos.html` and `wwwroot/ios.html`.
-- Verify macOS, iOS and embedded pages label the homepage navigation route as `Home`; iOS and macOS should not show cross-links to the other app or embedded page.
+- Verify macOS, iOS, Raspberry Pi and embedded pages label the homepage navigation route as `Home`; app pages should not show cross-links to other app or embedded pages.
 - Open `wwwroot/macos-download.html` and verify it shows binaries or the empty release-repo state.
 - Verify the release cards load from GitHub or show the release fallback message.
 - Open `wwwroot/embedded.html`.
-- Verify Dutch and English language toggles update visible text on embedded, iOS, macOS, macOS downloads, Features and Raspberry Pi pages.
+- Verify Dutch and English language toggles update visible text on start, embedded, iOS, macOS, macOS downloads, Features and Raspberry Pi pages.
 - Verify the embedded page lists LilyGO T-Embed CC1101 and ESP32-S3-BOX-3 under supported hardware.
 - Verify the embedded ESP32 visual card has clear spacing and includes the LilyGO product specifications link.
 - Verify the embedded page does not mention pre-flashed devices.

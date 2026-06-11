@@ -11,6 +11,7 @@ Static landing page for DJConnect, published through Cloudflare Pages.
 - `wwwroot/macos.html`: macOS app page with release embed and download route.
 - `wwwroot/macos-download.html`: macOS binary download page for `pcvantol/djconnect-app-releases`.
 - `wwwroot/ios.html`: iOS app page with App Store placeholder and release embed.
+- `wwwroot/raspberry-pi.html`: prepared Raspberry Pi app placeholder page with release embed.
 - `wwwroot/assets/`: logo, favicon and product visuals.
 - `functions/api/releases.js`: Cloudflare Pages Function proxy for GitHub release data.
 - `VERSION`: current site version.
@@ -43,10 +44,11 @@ For private GitHub repositories, set a Cloudflare Pages secret named `GITHUB_TOK
 
 ## Content Hygiene
 
-- Keep Dutch and English translation keys in sync on the homepage and embedded page.
+- Keep Dutch and English translation keys in sync on the homepage, embedded page, Features page and Raspberry Pi page.
 - Keep App Store links as placeholders until the macOS and iOS apps are published.
 - Do not describe embedded devices as pre-flashed; link users to the firmware repository and flashing flow instead.
 - Keep homepage navigation focused on `Wat is DJConnect`, `Features`, `Download` and the primary `Aan de slag` CTA.
 - Keep homepage hero device slides spacious: macOS, iPad/iPhone and LilyGO/ESP32 each get their own carousel slide.
-- Keep the start page aligned with the current setup order: HACS, Home Assistant voice pipeline, DJConnect configuration, client pairing and first use.
+- Keep the start page aligned with the current setup order: Home Assistant voice pipeline, HACS, DJConnect configuration, client pairing and first use.
+- Keep the embedded page compact: experience, supported hardware, how it works, release embed and CTA. Detailed setup content belongs on `wwwroot/start.html`.
 - Keep the footer version aligned with `VERSION`, `package.json` and `CHANGELOG.md`.

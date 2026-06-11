@@ -2,6 +2,17 @@
 
 All notable changes to this website are documented here.
 
+## DJConnect website v3.1.6 - 2026-06-11
+
+- Prepared the site for a future Raspberry Pi app with a dedicated placeholder page, homepage route and start-page pairing panel.
+- Added Dutch and English language toggles and translation coverage to the Features and Raspberry Pi pages.
+- Reworked the embedded ESP32 page into a compact product page by removing the local quick start, requirements, FAQ and extra proposition cards.
+- Updated embedded page CTAs so `Start installatie` routes to the general `Aan de slag` page.
+- Improved the embedded ESP32 visual card spacing and added a direct LilyGO T-Embed CC1101 product-specifications link.
+- Renamed the platform navigation item to `Home` on macOS, iOS and embedded pages.
+- Updated automated tests for the Raspberry Pi route, translation coverage, compact embedded page, Home navigation labels and removed embedded setup sections.
+- Updated documentation, handoff notes and manual test guidance for the current site structure.
+
 ## DJConnect website v3.1.5 - 2026-06-11
 
 - Added a top-level Features page with the main DJConnect functions and bonus mini-games: Pong, Asteroids & Fly.

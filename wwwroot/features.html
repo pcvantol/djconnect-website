@@ -19,6 +19,10 @@
     .brand img { width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.18); box-shadow:0 0 34px rgba(102,224,255,0.25); }
     .nav-links { display:flex; align-items:center; gap:18px; color:var(--muted); font-size:0.94rem; }
     .nav-links a:hover { color:var(--text); }
+    .nav-controls { display:flex; align-items:center; gap:12px; }
+    .lang-toggle { display:inline-grid; grid-template-columns:repeat(2,1fr); min-width:86px; padding:3px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.06); }
+    .lang-toggle button { min-height:34px; border:0; border-radius:999px; background:transparent; color:var(--muted); font:inherit; font-size:0.82rem; font-weight:850; cursor:pointer; }
+    .lang-toggle button[aria-pressed="true"] { background:rgba(102,224,255,0.18); color:var(--text); }
     .btn { display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:46px; padding:0 18px; border-radius:999px; border:1px solid var(--line); background:var(--panel); color:var(--text); font-weight:780; box-shadow:0 10px 30px rgba(0,0,0,0.15); }
     .btn.primary { border:0; color:#06110c; background:linear-gradient(135deg,var(--cyan),var(--green)); }
     .hero { padding:82px 0 52px; }
@@ -50,12 +54,18 @@
   <nav class="nav">
     <div class="wrap nav-inner">
       <a class="brand" href="index.html"><img src="assets/djconnect/icon.svg" alt="" /><span>DJConnect</span></a>
-      <div class="nav-links" aria-label="Navigatie">
-        <a href="index.html">Wat is DJConnect</a>
-        <a href="features.html">Features</a>
-        <a href="index.html#apps">Download</a>
+      <div class="nav-links" aria-label="Navigatie" data-i18n-attr="aria-label:navLabel">
+        <a href="index.html" data-i18n="navPlatform">Wat is DJConnect</a>
+        <a href="features.html" data-i18n="navFeatures">Features</a>
+        <a href="index.html#apps" data-i18n="navDownload">Download</a>
       </div>
-      <a class="btn primary" href="start.html">Aan de slag</a>
+      <div class="nav-controls">
+        <div class="lang-toggle" aria-label="Taalkeuze" data-i18n-attr="aria-label:languageToggle">
+          <button type="button" data-lang="nl" aria-pressed="true">NL</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="btn primary" href="start.html" data-i18n="navStart">Aan de slag</a>
+      </div>
     </div>
   </nav>
 
@@ -63,15 +73,15 @@
     <header class="hero">
       <div class="wrap hero-grid">
         <div>
-          <h1>Features</h1>
-          <p class="lead">DJConnect combineert muziek aanvragen, Spotify playback, Home Assistant automation en persoonlijke DJ-feedback in een workflow voor app en device.</p>
-          <a class="btn primary" href="start.html">Start installatie</a>
+          <h1 data-i18n="heroTitle">Features</h1>
+          <p class="lead" data-i18n="heroLead">DJConnect combineert muziek aanvragen, Spotify playback, Home Assistant automation en persoonlijke DJ-feedback in een workflow voor app en device.</p>
+          <a class="btn primary" href="start.html" data-i18n="heroCta">Start installatie</a>
         </div>
-        <div class="card feature-map" aria-label="DJConnect feature overzicht">
-          <span>Vraag muziek aan met stem of interface</span>
-          <span>Kies waar je muziek speelt</span>
-          <span>Krijg persoonlijke DJ aankondigingen</span>
-          <span>Gebruik dezelfde flow op Mac, iOS en ESP32</span>
+        <div class="card feature-map" aria-label="DJConnect feature overzicht" data-i18n-attr="aria-label:featureMapLabel">
+          <span data-i18n="mapVoice">Vraag muziek aan met stem of interface</span>
+          <span data-i18n="mapOutput">Kies waar je muziek speelt</span>
+          <span data-i18n="mapFeedback">Krijg persoonlijke DJ aankondigingen</span>
+          <span data-i18n="mapClients">Gebruik dezelfde flow op Mac, iOS, Raspberry Pi en ESP32</span>
         </div>
       </div>
     </header>
@@ -79,16 +89,16 @@
     <section>
       <div class="wrap">
         <div class="section-head">
-          <h2>Hoofdfuncties</h2>
-          <p>De kern van DJConnect is bewust compact: muziek starten, context gebruiken, feedback geven en alle clients centraal koppelen via Home Assistant.</p>
+          <h2 data-i18n="coreTitle">Hoofdfuncties</h2>
+          <p data-i18n="coreLead">De kern van DJConnect is bewust compact: muziek starten, context gebruiken, feedback geven en alle clients centraal koppelen via Home Assistant.</p>
         </div>
         <div class="grid-3">
-          <article class="card"><div class="icon">🎙️</div><h3>Muziek aanvragen</h3><p>Vraag een artiest aan met je stem of via de app. DJConnect vertaalt je verzoek naar een concrete muziekactie.</p></article>
-          <article class="card"><div class="icon">▶</div><h3>Spotify playback</h3><p>Start, pauzeer en stuur Spotify playback naar je favoriete Spotify Connect speaker.</p></article>
-          <article class="card"><div class="icon">🔊</div><h3>Speaker keuze</h3><p>Kies bewust waar muziek wordt afgespeeld, zodat dezelfde aanvraag past bij je kamer, moment of device.</p></article>
-          <article class="card"><div class="icon">🏠</div><h3>Home Assistant hub</h3><p>Spotify autorisatie, voice assist, device-koppeling en clientconfiguratie lopen centraal via Home Assistant.</p></article>
-          <article class="card"><div class="icon">✨</div><h3>DJ aankondigingen</h3><p>Ontvang persoonlijke gesproken of zichtbare DJ-feedback. De stijl van de aankondiging kan via een eigen prompt worden aangepast.</p></article>
-          <article class="card"><div class="icon">🔐</div><h3>Veilige koppeling</h3><p>Account token en koppelgegevens blijven veilig bewaard in versleutelde opslag binnen de juiste omgeving.</p></article>
+          <article class="card"><div class="icon">🎙️</div><h3 data-i18n="musicTitle">Muziek aanvragen</h3><p data-i18n="musicText">Vraag een artiest aan met je stem of via de app. DJConnect vertaalt je verzoek naar een concrete muziekactie.</p></article>
+          <article class="card"><div class="icon">▶</div><h3 data-i18n="playbackTitle">Spotify playback</h3><p data-i18n="playbackText">Start, pauzeer en stuur Spotify playback naar je favoriete Spotify Connect speaker.</p></article>
+          <article class="card"><div class="icon">🔊</div><h3 data-i18n="speakerTitle">Speaker keuze</h3><p data-i18n="speakerText">Kies bewust waar muziek wordt afgespeeld, zodat dezelfde aanvraag past bij je kamer, moment of device.</p></article>
+          <article class="card"><div class="icon">🏠</div><h3 data-i18n="haTitle">Home Assistant hub</h3><p data-i18n="haText">Spotify autorisatie, voice assist, device-koppeling en clientconfiguratie lopen centraal via Home Assistant.</p></article>
+          <article class="card"><div class="icon">✨</div><h3 data-i18n="announceTitle">DJ aankondigingen</h3><p data-i18n="announceText">Ontvang persoonlijke gesproken of zichtbare DJ-feedback. De stijl van de aankondiging kan via een eigen prompt worden aangepast.</p></article>
+          <article class="card"><div class="icon">🔐</div><h3 data-i18n="secureTitle">Veilige koppeling</h3><p data-i18n="secureText">Account token en koppelgegevens blijven veilig bewaard in versleutelde opslag binnen de juiste omgeving.</p></article>
         </div>
       </div>
     </section>
@@ -96,13 +106,14 @@
     <section>
       <div class="wrap">
         <div class="section-head">
-          <h2>Interfaces</h2>
-          <p>DJConnect is gemaakt voor meerdere schermen en gebruikssituaties, met dezelfde logica onder water.</p>
+          <h2 data-i18n="interfacesTitle">Interfaces</h2>
+          <p data-i18n="interfacesLead">DJConnect is gemaakt voor meerdere schermen en gebruikssituaties, met dezelfde logica onder water.</p>
         </div>
         <div class="grid-3">
-          <article class="card"><div class="icon">💻</div><h3>macOS</h3><p>Desktopbediening voor vaste controle over zoeken, output, playback en status.</p></article>
-          <article class="card"><div class="icon">📱</div><h3>iOS</h3><p>Mobiele bediening dichtbij: snel muziek aanvragen en je Home Assistant koppeling gebruiken.</p></article>
-          <article class="card"><div class="icon">🕹️</div><h3>ESP32 device</h3><p>Embedded bediening met fysieke interactie, lokaal netwerkgebruik en pairing via Home Assistant.</p></article>
+          <article class="card"><div class="icon">💻</div><h3>macOS</h3><p data-i18n="macosText">Desktopbediening voor vaste controle over zoeken, output, playback en status.</p></article>
+          <article class="card"><div class="icon">📱</div><h3>iOS</h3><p data-i18n="iosText">Mobiele bediening dichtbij: snel muziek aanvragen en je Home Assistant koppeling gebruiken.</p></article>
+          <article class="card"><div class="icon">🖥️</div><h3>Raspberry Pi</h3><p data-i18n="raspberryText">Voorbereid als vaste app op een klein scherm of dedicated muziekcontroller.</p></article>
+          <article class="card"><div class="icon">🕹️</div><h3>ESP32 device</h3><p data-i18n="espText">Embedded bediening met fysieke interactie, lokaal netwerkgebruik en pairing via Home Assistant.</p></article>
         </div>
       </div>
     </section>
@@ -111,13 +122,13 @@
       <div class="wrap grid-2">
         <article class="card bonus">
           <div class="icon">🎮</div>
-          <h2>Bonus: mini-games</h2>
-          <p>Voor de speelse momenten bevat DJConnect drie mini-games: Pong, Asteroids & Fly.</p>
+          <h2 data-i18n="bonusTitle">Bonus: mini-games</h2>
+          <p data-i18n="bonusText">Voor de speelse momenten bevat DJConnect drie mini-games: Pong, Asteroids & Fly.</p>
         </article>
         <article class="card">
-          <h2>Voor gebruikers</h2>
-          <p>Begin bij de setup-flow, koppel DJConnect aan Home Assistant, download je app of firmware en gebruik daarna dezelfde muziekworkflow op je favoriete client.</p>
-          <p style="margin-top:18px"><a class="btn primary" href="start.html">Aan de slag</a></p>
+          <h2 data-i18n="usersTitle">Voor gebruikers</h2>
+          <p data-i18n="usersText">Begin bij de setup-flow, koppel DJConnect aan Home Assistant, download je app of firmware en gebruik daarna dezelfde muziekworkflow op je favoriete client.</p>
+          <p style="margin-top:18px"><a class="btn primary" href="start.html" data-i18n="usersCta">Aan de slag</a></p>
         </article>
       </div>
     </section>
@@ -125,7 +136,120 @@
 
   <footer class="wrap legal">
     <p>Copyright Peter van Tol 2026. All rights reserved.</p>
-    <p class="site-version">DJConnect website v3.1.5</p>
+    <p class="site-version">DJConnect website v3.1.6</p>
   </footer>
 </body>
+<script>
+  const translations = {
+    nl: {
+      title: "DJConnect Features",
+      metaDescription: "Overzicht van de belangrijkste DJConnect functies: muziek aanvragen, Spotify playback, Home Assistant, apps, Raspberry Pi, ESP32 devices en mini-games.",
+      navLabel: "Navigatie",
+      languageToggle: "Taalkeuze",
+      navPlatform: "Wat is DJConnect",
+      navFeatures: "Features",
+      navDownload: "Download",
+      navStart: "Aan de slag",
+      heroTitle: "Features",
+      heroLead: "DJConnect combineert muziek aanvragen, Spotify playback, Home Assistant automation en persoonlijke DJ-feedback in een workflow voor app en device.",
+      heroCta: "Start installatie",
+      featureMapLabel: "DJConnect feature overzicht",
+      mapVoice: "Vraag muziek aan met stem of interface",
+      mapOutput: "Kies waar je muziek speelt",
+      mapFeedback: "Krijg persoonlijke DJ aankondigingen",
+      mapClients: "Gebruik dezelfde flow op Mac, iOS, Raspberry Pi en ESP32",
+      coreTitle: "Hoofdfuncties",
+      coreLead: "De kern van DJConnect is bewust compact: muziek starten, context gebruiken, feedback geven en alle clients centraal koppelen via Home Assistant.",
+      musicTitle: "Muziek aanvragen",
+      musicText: "Vraag een artiest aan met je stem of via de app. DJConnect vertaalt je verzoek naar een concrete muziekactie.",
+      playbackTitle: "Spotify playback",
+      playbackText: "Start, pauzeer en stuur Spotify playback naar je favoriete Spotify Connect speaker.",
+      speakerTitle: "Speaker keuze",
+      speakerText: "Kies bewust waar muziek wordt afgespeeld, zodat dezelfde aanvraag past bij je kamer, moment of device.",
+      haTitle: "Home Assistant hub",
+      haText: "Spotify autorisatie, voice assist, device-koppeling en clientconfiguratie lopen centraal via Home Assistant.",
+      announceTitle: "DJ aankondigingen",
+      announceText: "Ontvang persoonlijke gesproken of zichtbare DJ-feedback. De stijl van de aankondiging kan via een eigen prompt worden aangepast.",
+      secureTitle: "Veilige koppeling",
+      secureText: "Account token en koppelgegevens blijven veilig bewaard in versleutelde opslag binnen de juiste omgeving.",
+      interfacesTitle: "Interfaces",
+      interfacesLead: "DJConnect is gemaakt voor meerdere schermen en gebruikssituaties, met dezelfde logica onder water.",
+      macosText: "Desktopbediening voor vaste controle over zoeken, output, playback en status.",
+      iosText: "Mobiele bediening dichtbij: snel muziek aanvragen en je Home Assistant koppeling gebruiken.",
+      raspberryText: "Voorbereid als vaste app op een klein scherm of dedicated muziekcontroller.",
+      espText: "Embedded bediening met fysieke interactie, lokaal netwerkgebruik en pairing via Home Assistant.",
+      bonusTitle: "Bonus: mini-games",
+      bonusText: "Voor de speelse momenten bevat DJConnect drie mini-games: Pong, Asteroids & Fly.",
+      usersTitle: "Voor gebruikers",
+      usersText: "Begin bij de setup-flow, koppel DJConnect aan Home Assistant, download je app of firmware en gebruik daarna dezelfde muziekworkflow op je favoriete client.",
+      usersCta: "Aan de slag"
+    },
+    en: {
+      title: "DJConnect Features",
+      metaDescription: "Overview of the main DJConnect features: music requests, Spotify playback, Home Assistant, apps, Raspberry Pi, ESP32 devices and mini-games.",
+      navLabel: "Navigation",
+      languageToggle: "Language",
+      navPlatform: "What is DJConnect",
+      navFeatures: "Features",
+      navDownload: "Download",
+      navStart: "Get started",
+      heroTitle: "Features",
+      heroLead: "DJConnect combines music requests, Spotify playback, Home Assistant automation and personal DJ feedback in one workflow for apps and devices.",
+      heroCta: "Start setup",
+      featureMapLabel: "DJConnect feature overview",
+      mapVoice: "Request music by voice or interface",
+      mapOutput: "Choose where your music plays",
+      mapFeedback: "Receive personal DJ announcements",
+      mapClients: "Use the same flow on Mac, iOS, Raspberry Pi and ESP32",
+      coreTitle: "Core Features",
+      coreLead: "The core of DJConnect is intentionally compact: start music, use context, give feedback and centrally pair all clients through Home Assistant.",
+      musicTitle: "Music requests",
+      musicText: "Ask for an artist by voice or through the app. DJConnect turns your request into a concrete music action.",
+      playbackTitle: "Spotify playback",
+      playbackText: "Start, pause and send Spotify playback to your favorite Spotify Connect speaker.",
+      speakerTitle: "Speaker choice",
+      speakerText: "Choose where music plays, so the same request fits your room, moment or device.",
+      haTitle: "Home Assistant hub",
+      haText: "Spotify authorization, voice assist, device pairing and client configuration run centrally through Home Assistant.",
+      announceTitle: "DJ announcements",
+      announceText: "Receive personal spoken or visible DJ feedback. The announcement style can be adjusted with your own prompt.",
+      secureTitle: "Secure pairing",
+      secureText: "Account tokens and pairing details are kept safely in encrypted storage inside the right environment.",
+      interfacesTitle: "Interfaces",
+      interfacesLead: "DJConnect is made for multiple screens and usage contexts, with the same logic underneath.",
+      macosText: "Desktop control for fixed control over search, output, playback and status.",
+      iosText: "Mobile control nearby: quickly request music and use your Home Assistant pairing.",
+      raspberryText: "Prepared as a fixed app on a small screen or dedicated music controller.",
+      espText: "Embedded control with physical interaction, local networking and pairing through Home Assistant.",
+      bonusTitle: "Bonus: mini-games",
+      bonusText: "For playful moments, DJConnect includes three mini-games: Pong, Asteroids & Fly.",
+      usersTitle: "For users",
+      usersText: "Start with the setup flow, connect DJConnect to Home Assistant, download your app or firmware and then use the same music workflow on your favorite client.",
+      usersCta: "Get started"
+    }
+  };
+  const applyLanguage = (language) => {
+    const dictionary = translations[language] || translations.nl;
+    document.documentElement.lang = language;
+    document.title = dictionary.title;
+    document.querySelector('meta[name="description"]').setAttribute("content", dictionary.metaDescription);
+    document.querySelectorAll("[data-i18n]").forEach((element) => {
+      element.textContent = dictionary[element.getAttribute("data-i18n")] || element.textContent;
+    });
+    document.querySelectorAll("[data-i18n-attr]").forEach((element) => {
+      element.getAttribute("data-i18n-attr").split(",").forEach((mapping) => {
+        const [attribute, key] = mapping.split(":").map((part) => part.trim());
+        if (dictionary[key]) element.setAttribute(attribute, dictionary[key]);
+      });
+    });
+    document.querySelectorAll("[data-lang]").forEach((button) => {
+      button.setAttribute("aria-pressed", String(button.dataset.lang === language));
+    });
+    localStorage.setItem("djconnect-language", language);
+  };
+  document.querySelectorAll("[data-lang]").forEach((button) => {
+    button.addEventListener("click", () => applyLanguage(button.dataset.lang));
+  });
+  applyLanguage(localStorage.getItem("djconnect-language") || "nl");
+</script>
 </html>

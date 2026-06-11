@@ -5,32 +5,37 @@
 - Open `wwwroot/index.html`.
 - Verify the homepage navigation shows `Wat is DJConnect`, `Features` and `Download`, with `Aan de slag` only as the primary CTA button.
 - Open `wwwroot/features.html` and verify the core features and bonus mini-games are visible.
+- Open `wwwroot/raspberry-pi.html` and verify it is clearly prepared for a future Raspberry Pi app without claiming a released binary.
 - Verify the homepage hero uses a swipeable carousel with separate macOS, iPad/iPhone and LilyGO/ESP32 slides.
 - Verify the homepage hero no longer shows the availability pill.
-- Verify the homepage hero text says `Speel, Vraag aan, Ontvang Persoonlijke DJ aankondiging`.
+- Verify the homepage hero text says `Speel muziek & bedien op afstand`.
 - Verify the macOS slide centers the play icon and does not show a microphone icon.
 - Verify the iPad/iPhone slide shows the voice icon only in the iPad screen.
 - Verify the LilyGO visual keeps the device display empty.
 - Verify the command examples are quoted, use music-note markers and do not include `Speel Nirvana`.
-- Open `wwwroot/start.html` and verify the five setup sections: HACS installation, voice assist pipeline, DJConnect configuration, pairing/downloads and first use.
+- Open `wwwroot/start.html` and verify the five setup sections: voice assist pipeline, HACS installation, DJConnect configuration, pairing/downloads and first use.
 - Verify the start page has a clear Home button back to `wwwroot/index.html`.
 - Verify the start page clearly separates automatic HACS installation from manual setup steps.
 - Verify the start page links to Home Assistant voice assistant documentation, ESP firmware releases and app releases.
 - Verify the ESP pairing flow says Home Assistant configures the device automatically and the device is ready for use.
-- Verify the pairing switch has separate full-width panels for ESP device, iOS app and macOS app.
+- Verify the pairing switch has separate full-width panels for ESP device, iOS app, macOS app and Raspberry Pi app.
 - Verify each pairing panel has its own download as step 1.
 - Verify the app pairing flow uses the selected client type, not a combined iOS/macOS step.
 - Verify the troubleshooting cards use the current Spotify authorization, HACS refresh and local reachability wording.
 - Verify the Spotify Premium account is configured inside the DJConnect configuration section, not as a separate top-level setup block.
 - Verify the homepage embedded card opens `wwwroot/embedded.html`.
 - Open `wwwroot/macos.html` and `wwwroot/ios.html`.
+- Verify macOS, iOS and embedded pages label the homepage navigation route as `Home`.
 - Open `wwwroot/macos-download.html` and verify it shows binaries or the empty release-repo state.
 - Verify the release cards load from GitHub or show the release fallback message.
 - Open `wwwroot/embedded.html`.
 - Verify Dutch and English language toggles update all visible embedded-page text.
 - Verify the embedded page lists LilyGO T-Embed CC1101 and ESP32-S3-BOX-3 under supported hardware.
+- Verify the embedded ESP32 visual card has clear spacing and includes the LilyGO product specifications link.
 - Verify the embedded page links to `pcvantol/djconnect-firmware` for firmware downloads.
 - Verify the embedded page does not mention pre-flashed devices.
+- Verify the embedded page does not show local quick start, requirements, FAQ or the `Stem via HA / Veilig gekoppeld / DJ-karakter` row.
+- Verify embedded `Start installatie` buttons route to `wwwroot/start.html`.
 - Verify the embedded page navigation can return to `wwwroot/index.html`.
 - Verify the page renders at desktop width, tablet width and mobile width.
 

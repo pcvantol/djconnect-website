@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DJConnect voor Raspberry Pi</title>
+  <meta name="description" content="DJConnect voor Raspberry Pi: voorbereid voor een vaste DJConnect app op een klein scherm of dedicated muziekcontroller." />
+  <link rel="icon" href="assets/djconnect/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/releases.css" />
+  <style>
+    :root { --bg:#0b0d12; --panel:rgba(255,255,255,0.075); --text:#f7f7fb; --muted:#b7bccb; --line:rgba(255,255,255,0.14); --cyan:#66e0ff; --green:#7ef7a7; --max:1080px; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--text); font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height:1.55; background:radial-gradient(circle at 16% 10%, rgba(102,224,255,0.18), transparent 28rem), radial-gradient(circle at 82% 8%, rgba(126,247,167,0.12), transparent 26rem), linear-gradient(180deg,#0b0d12 0%,#111827 58%,#090b10 100%); }
+    a { color:inherit; text-decoration:none; }
+    .wrap { width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
+    .nav { position:sticky; top:0; z-index:20; backdrop-filter:blur(18px); background:rgba(11,13,18,0.7); border-bottom:1px solid var(--line); }
+    .nav-inner { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:18px; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:850; }
+    .brand img { width:36px; height:36px; border-radius:50%; }
+    .nav-links { display:flex; gap:18px; color:var(--muted); font-size:0.94rem; }
+    .nav-controls { display:flex; align-items:center; gap:12px; }
+    .lang-toggle { display:inline-grid; grid-template-columns:repeat(2,1fr); min-width:86px; padding:3px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.06); }
+    .lang-toggle button { min-height:34px; border:0; border-radius:999px; background:transparent; color:var(--muted); font:inherit; font-size:0.82rem; font-weight:850; cursor:pointer; }
+    .lang-toggle button[aria-pressed="true"] { background:rgba(102,224,255,0.18); color:var(--text); }
+    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:0 18px; border-radius:999px; border:1px solid var(--line); background:rgba(255,255,255,0.08); font-weight:800; }
+    .btn.primary { border:0; color:#06110c; background:linear-gradient(135deg,var(--cyan),var(--green)); }
+    .hero { padding:82px 0 52px; }
+    .hero-grid,.grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:34px; align-items:center; }
+    h1,h2,h3 { margin:0; letter-spacing:-0.045em; line-height:1.05; }
+    h1 { font-size:clamp(3rem,7vw,5.8rem); max-width:12ch; }
+    h2 { font-size:clamp(2rem,4vw,3.6rem); margin-bottom:18px; }
+    .lead { color:var(--muted); font-size:1.2rem; margin:24px 0 30px; }
+    section { padding:68px 0; }
+    .card { border:1px solid var(--line); border-radius:22px; background:var(--panel); padding:24px; }
+    .card p,.muted { color:var(--muted); }
+    .mock { min-height:360px; border:1px solid var(--line); border-radius:28px; background:linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04)); padding:24px; display:grid; place-items:center; }
+    .pi-board { width:min(100%,420px); aspect-ratio:1.45; border-radius:24px; border:1px solid rgba(255,255,255,0.18); background:linear-gradient(145deg,#103a2d,#07110d); display:grid; place-items:center; box-shadow:0 22px 60px rgba(0,0,0,0.28); }
+    .pi-screen { width:72%; aspect-ratio:1.6; border-radius:16px; border:1px solid rgba(255,255,255,0.18); background:#05070b; display:grid; place-items:center; color:var(--muted); font-weight:900; }
+    .legal { color:var(--muted); font-size:0.86rem; padding:34px 0 44px; border-top:1px solid var(--line); }
+    .site-version { margin-top:14px; font-size:0.76rem; color:rgba(183,188,203,0.72); }
+    @media (max-width:860px) { .hero-grid,.grid-2 { grid-template-columns:1fr; } .nav-inner { flex-wrap:wrap; padding:12px 0; } .nav-links { order:3; width:100%; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; } .nav-links::-webkit-scrollbar { display:none; } }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="index.html"><img src="assets/djconnect/icon.svg" alt="" /><span>DJConnect</span></a>
+      <div class="nav-links" aria-label="Navigatie" data-i18n-attr="aria-label:navLabel">
+        <a href="index.html" data-i18n="navPlatform">Platform</a>
+        <a href="features.html" data-i18n="navFeatures">Features</a>
+        <a href="macos.html">macOS</a>
+        <a href="ios.html">iOS</a>
+        <a href="embedded.html">ESP32</a>
+      </div>
+      <div class="nav-controls">
+        <div class="lang-toggle" aria-label="Taalkeuze" data-i18n-attr="aria-label:languageToggle">
+          <button type="button" data-lang="nl" aria-pressed="true">NL</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="btn primary" href="start.html#pairing" data-i18n="navPair">Koppelen</a>
+      </div>
+    </div>
+  </nav>
+  <main>
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <h1 data-i18n="heroTitle">DJConnect voor Raspberry Pi</h1>
+          <p class="lead" data-i18n="heroLead">Voorbereid voor een vaste DJConnect app op Raspberry Pi: een klein scherm of dedicated muziekcontroller die lokaal met Home Assistant koppelt.</p>
+          <a class="btn primary" href="start.html#pairing" data-i18n="heroPrimary">Bekijk pairing</a>
+          <a class="btn" href="#" aria-disabled="true" data-store-link="raspberry-pi" data-i18n="heroSecondary">Download volgt</a>
+        </div>
+        <div class="mock" aria-hidden="true"><div class="pi-board"><div class="pi-screen" data-i18n="mockLabel">Raspberry Pi app</div></div></div>
+      </div>
+    </header>
+    <section>
+      <div class="wrap grid-2">
+        <article class="card"><h2 data-i18n="fixedTitle">Vaste client</h2><p data-i18n="fixedText">Gebruik Raspberry Pi straks als always-on DJConnect client voor bediening op een vast punt in huis.</p></article>
+        <article class="card"><h2 data-i18n="pairingTitle">Zelfde koppeling</h2><p data-i18n="pairingText">De Raspberry Pi app wordt voorbereid op dezelfde Home Assistant integratie setup, koppelcode en lokale Client API route als de andere clients.</p></article>
+      </div>
+    </section>
+    <section id="releases">
+      <div class="wrap grid-2">
+        <div><h2 data-i18n="releaseTitle">Release voorbereiding</h2><p class="lead" data-i18n="releaseLead">Zodra Raspberry Pi builds beschikbaar komen, kan deze pagina worden gekoppeld aan de release-assets.</p></div>
+        <div class="release-list" data-github-releases data-github-owner="pcvantol" data-github-repo="djconnect-website" data-release-limit="3"></div>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap legal">
+    <p>Copyright Peter van Tol 2026. All rights reserved.</p>
+    <p class="site-version">DJConnect website v3.1.6</p>
+  </footer>
+  <script src="assets/releases.js"></script>
+  <script>
+    const translations = {
+      nl: {
+        title: "DJConnect voor Raspberry Pi",
+        metaDescription: "DJConnect voor Raspberry Pi: voorbereid voor een vaste DJConnect app op een klein scherm of dedicated muziekcontroller.",
+        navLabel: "Navigatie",
+        languageToggle: "Taalkeuze",
+        navPlatform: "Platform",
+        navFeatures: "Features",
+        navPair: "Koppelen",
+        heroTitle: "DJConnect voor Raspberry Pi",
+        heroLead: "Voorbereid voor een vaste DJConnect app op Raspberry Pi: een klein scherm of dedicated muziekcontroller die lokaal met Home Assistant koppelt.",
+        heroPrimary: "Bekijk pairing",
+        heroSecondary: "Download volgt",
+        mockLabel: "Raspberry Pi app",
+        fixedTitle: "Vaste client",
+        fixedText: "Gebruik Raspberry Pi straks als always-on DJConnect client voor bediening op een vast punt in huis.",
+        pairingTitle: "Zelfde koppeling",
+        pairingText: "De Raspberry Pi app wordt voorbereid op dezelfde Home Assistant integratie setup, koppelcode en lokale Client API route als de andere clients.",
+        releaseTitle: "Release voorbereiding",
+        releaseLead: "Zodra Raspberry Pi builds beschikbaar komen, kan deze pagina worden gekoppeld aan de release-assets."
+      },
+      en: {
+        title: "DJConnect for Raspberry Pi",
+        metaDescription: "DJConnect for Raspberry Pi: prepared for a fixed DJConnect app on a small screen or dedicated music controller.",
+        navLabel: "Navigation",
+        languageToggle: "Language",
+        navPlatform: "Platform",
+        navFeatures: "Features",
+        navPair: "Pair",
+        heroTitle: "DJConnect for Raspberry Pi",
+        heroLead: "Prepared for a fixed DJConnect app on Raspberry Pi: a small screen or dedicated music controller that pairs locally with Home Assistant.",
+        heroPrimary: "View pairing",
+        heroSecondary: "Download coming",
+        mockLabel: "Raspberry Pi app",
+        fixedTitle: "Fixed client",
+        fixedText: "Use Raspberry Pi as an always-on DJConnect client for control at a fixed spot in your home.",
+        pairingTitle: "Same pairing",
+        pairingText: "The Raspberry Pi app is being prepared for the same Home Assistant integration setup, pairing code and local Client API route as the other clients.",
+        releaseTitle: "Release preparation",
+        releaseLead: "Once Raspberry Pi builds become available, this page can be connected to release assets."
+      }
+    };
+    const applyLanguage = (language) => {
+      const dictionary = translations[language] || translations.nl;
+      document.documentElement.lang = language;
+      document.title = dictionary.title;
+      document.querySelector('meta[name="description"]').setAttribute("content", dictionary.metaDescription);
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        element.textContent = dictionary[element.getAttribute("data-i18n")] || element.textContent;
+      });
+      document.querySelectorAll("[data-i18n-attr]").forEach((element) => {
+        element.getAttribute("data-i18n-attr").split(",").forEach((mapping) => {
+          const [attribute, key] = mapping.split(":").map((part) => part.trim());
+          if (dictionary[key]) element.setAttribute(attribute, dictionary[key]);
+        });
+      });
+      document.querySelectorAll("[data-lang]").forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.lang === language));
+      });
+      localStorage.setItem("djconnect-language", language);
+    };
+    document.querySelectorAll("[data-lang]").forEach((button) => {
+      button.addEventListener("click", () => applyLanguage(button.dataset.lang));
+    });
+    applyLanguage(localStorage.getItem("djconnect-language") || "nl");
+  </script>
+</body>
+</html>

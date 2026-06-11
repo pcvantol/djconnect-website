@@ -282,13 +282,20 @@
       position: absolute;
       top: 22px;
       left: 22px;
+      right: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       border: 1px solid var(--line);
       border-radius: 999px;
-      padding: 7px 11px;
+      min-height: 46px;
+      padding: 8px 18px;
       background: rgba(255,255,255,0.08);
       color: var(--text);
       font-size: 0.88rem;
       font-weight: 850;
+      line-height: 1.18;
+      text-align: center;
     }
 
     .device-slide-ios {
@@ -729,7 +736,7 @@
           </div>
           <div class="device-stack" aria-label="Platform opties" data-i18n-attr="aria-label:stageCarouselLabel">
             <article class="device-slide device-slide-mac">
-              <span class="device-slide-label" data-i18n="stageScreenText">Speel, Vraag aan, Ontvang Persoonlijke DJ aankondiging</span>
+              <span class="device-slide-label" data-i18n="stageScreenText">Speel muziek & bedien op afstand</span>
               <div class="macbook" aria-hidden="true">
                 <div class="macbook-frame">
                   <div class="screen">
@@ -745,12 +752,12 @@
               </div>
             </article>
             <article class="device-slide device-slide-ios">
-              <span class="device-slide-label" data-i18n="iosSlideLabel">Met stemactivatie</span>
+              <span class="device-slide-label" data-i18n="iosSlideLabel">Vraag je volgende hit aan</span>
               <div class="ipad" aria-hidden="true"><div class="mini-ui"><div class="cover voice-cover"></div><div class="line-set"><span></span><span></span></div></div></div>
-              <div class="iphone" aria-hidden="true"><div class="mini-ui"><div class="cover"></div><div class="line-set"><span></span><span></span></div></div></div>
+              <div class="iphone" aria-hidden="true"><div class="mini-ui"><div class="cover voice-cover"></div><div class="line-set"><span></span><span></span></div></div></div>
             </article>
             <article class="device-slide device-slide-embedded">
-              <span class="device-slide-label" data-i18n="embeddedSlideLabel">Draai embedded, voor de echte die-hards</span>
+              <span class="device-slide-label" data-i18n="embeddedSlideLabel">Luister naar persoonlijke DJ aankondiging</span>
               <div class="embedded" aria-hidden="true"><img src="assets/lilygo-t-embed-djconnect.svg" alt="" /></div>
             </article>
           </div>
@@ -758,10 +765,10 @@
       </div>
     </header>
 
-    <section class="examples-band" aria-label="Vraag je muziek aan met je stem, zeg bijvoorbeeld simpel" data-i18n-attr="aria-label:examplesLabel">
+    <section class="examples-band" aria-label="Vraag muziek aan met je stem, zeg bijvoorbeeld:" data-i18n-attr="aria-label:examplesLabel">
       <div class="wrap">
         <div class="card example-card">
-          <h2 data-i18n="examplesTitle">Vraag je muziek aan met je stem, zeg bijvoorbeeld simpel</h2>
+          <h2 data-i18n="examplesTitle">Vraag muziek aan met je stem, zeg bijvoorbeeld:</h2>
           <div class="commands">
             <span data-i18n="exampleCommand1">"Ik wil Pearl Jam horen"</span>
             <span data-i18n="exampleCommand2">"Zet London Grammar op"</span>
@@ -802,7 +809,7 @@
       <div class="wrap">
         <div class="section-head">
           <div><h2 data-i18n="essentialsTitle">Powered by Home Assistant, meerdere apparaten</h2></div>
-          <p data-i18n="essentialsLead">Gemaakt met liefde, voor je Mac, iPhone, iPad en ESP32 device.</p>
+          <p data-i18n="essentialsLead">Gemaakt met liefde, voor je Mac, iPhone, iPad, Raspberry Pi en ESP32 device.</p>
         </div>
         <div class="grid-3">
           <article class="card">
@@ -821,7 +828,7 @@
           <article class="card">
             <div class="icon">🔄</div>
             <h3 data-i18n="essentialsWorkflowTitle">Meerdere interfaces</h3>
-            <p data-i18n="essentialsWorkflowText">Gebruik DJConnect op je favoriete scherm.</p>
+            <p data-i18n="essentialsWorkflowText">Gebruik DJConnect op je favoriete Apple scherm of embedded device.</p>
           </article>
         </div>
       </div>
@@ -861,6 +868,13 @@
             </div>
             <a class="btn primary" href="embedded.html" data-i18n="embeddedCta">Koop & flash</a>
           </article>
+          <article class="card platform-card">
+            <div>
+              <div class="topline"><h3 data-i18n="raspberryTitle">Raspberry Pi</h3><span class="tag" data-i18n="raspberryTag">Voorbereid</span></div>
+              <p data-i18n="raspberryText">Voor een vaste DJConnect app op Raspberry Pi: ideaal als klein scherm of dedicated muziekcontroller.</p>
+            </div>
+            <a class="btn" href="raspberry-pi.html" data-i18n="raspberryMore">Meer over Raspberry Pi</a>
+          </article>
         </div>
       </div>
     </section>
@@ -870,13 +884,13 @@
   <footer class="wrap legal">
     <p data-i18n="legalCopyright">Copyright Peter van Tol 2026. All rights reserved. DJConnect firmware is proprietary software. The Home Assistant integration may be distributed separately for use with DJConnect devices.</p>
     <p data-i18n="legalSpotify">Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility.</p>
-    <p class="site-version">DJConnect website v3.1.5</p>
+    <p class="site-version">DJConnect website v3.1.6</p>
   </footer>
   <script>
     const translations = {
       nl: {
         title: "DJConnect. Een persoonlijk muziekplatform voor elk device",
-        metaDescription: "DJConnect verbindt voice, Home Assistant en muziekbediening op macOS, iOS en embedded ESP32-devices.",
+        metaDescription: "DJConnect verbindt voice, Home Assistant en muziekbediening op macOS, iOS, Raspberry Pi en embedded ESP32-devices.",
         navLabel: "Navigatie",
         languageToggle: "Taalkeuze",
         navPlatform: "Wat is DJConnect",
@@ -886,18 +900,18 @@
         heroTitle: "DJConnect. Muziekbediening met karakter.",
         heroLead: "DJConnect brengt spraak, muziekbediening en een persoonlijke DJ-reactie samen. De kern blijft hetzelfde op elk device: vraag muziek, kies waar het speelt en krijg directe feedback terug.",
         heroPrimary: "Aan de slag",
-        examplesLabel: "Vraag je muziek aan met je stem, zeg bijvoorbeeld simpel",
-        examplesTitle: "Vraag je muziek aan met je stem, zeg bijvoorbeeld simpel",
+        examplesLabel: "Vraag muziek aan met je stem, zeg bijvoorbeeld:",
+        examplesTitle: "Vraag muziek aan met je stem, zeg bijvoorbeeld:",
         exampleCommand1: "\"Ik wil Pearl Jam horen\"",
         exampleCommand2: "\"Zet London Grammar op\"",
         exampleCommand3: "\"Speel maar af Above & Beyond\"",
         exampleCommand4: "\"Ik heb wel zin in Metallica\"",
         stageLabel: "DJConnect platformoverzicht",
         stageCarouselLabel: "Platform opties",
-        iosSlideLabel: "Met stemactivatie",
-        embeddedSlideLabel: "Draai embedded, voor de echte die-hards",
+        iosSlideLabel: "Vraag je volgende hit aan",
+        embeddedSlideLabel: "Luister naar persoonlijke DJ aankondiging",
         stageText: "DJConnect. Jouw persoonlijke muziek DJ",
-        stageScreenText: "Speel, Vraag aan, Ontvang Persoonlijke DJ aankondiging",
+        stageScreenText: "Speel muziek & bedien op afstand",
         platformTitle: "De kern van DJConnect",
         platformLead: "DJConnect brengt je muziekwens, speaker keuze en persoonlijke DJ-feedback samen in één vloeiende ervaring.",
         platformVoiceTitle: "Vraag muziek natuurlijk",
@@ -907,13 +921,13 @@
         platformFeedbackTitle: "Krijg DJ-feedback",
         platformFeedbackText: "DJConnect reageert kort en persoonlijk, zodat de ervaring meer voelt als een DJ dan als een afstandsbediening.",
         essentialsTitle: "Powered by Home Assistant, meerdere apparaten",
-        essentialsLead: "Gemaakt met liefde, voor je Mac, iPhone, iPad en ESP32 device.",
+        essentialsLead: "Gemaakt met liefde, voor je Mac, iPhone, iPad, Raspberry Pi en ESP32 device.",
         essentialsHaTitle: "Home Assistant als basis",
         essentialsHaText: "Spotify integratie, voice assist en app koppeling lopen centraal via je smart-home.",
         essentialsSecureTitle: "Veilige koppeling",
         essentialsSecureText: "Account token & koppelgegevens worden veilig bewaard in versleutelde opslag.",
         essentialsWorkflowTitle: "Meerdere interfaces",
-        essentialsWorkflowText: "Gebruik DJConnect op je favoriete scherm.",
+        essentialsWorkflowText: "Gebruik DJConnect op je favoriete Apple scherm of embedded device.",
         appsTitle: "Kies je interface",
         appsLead: "Begin bij het platform dat past bij hoe je muziek bedient.",
         macText: "Voor vaste bediening op je Mac: zoeken, output kiezen en de DJConnect-status in beeld houden.",
@@ -927,12 +941,16 @@
         embeddedTitle: "Embedded device",
         embeddedText: "De fysieke DJConnect-ervaring met LilyGO T-Embed, push-to-talk, displayfeedback en OTA-updates.",
         embeddedCta: "Koop & flash",
+        raspberryTitle: "Raspberry Pi",
+        raspberryTag: "Voorbereid",
+        raspberryText: "Voor een vaste DJConnect app op Raspberry Pi: ideaal als klein scherm of dedicated muziekcontroller.",
+        raspberryMore: "Meer over Raspberry Pi",
         legalCopyright: "Copyright Peter van Tol 2026. All rights reserved. DJConnect firmware is proprietary software. The Home Assistant integration may be distributed separately for use with DJConnect devices.",
         legalSpotify: "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility."
       },
       en: {
         title: "DJConnect. A personal music platform for every device",
-        metaDescription: "DJConnect connects voice, Home Assistant and music control across macOS, iOS and embedded ESP32 devices.",
+        metaDescription: "DJConnect connects voice, Home Assistant and music control across macOS, iOS, Raspberry Pi and embedded ESP32 devices.",
         navLabel: "Navigation",
         languageToggle: "Language",
         navPlatform: "What is DJConnect",
@@ -942,8 +960,8 @@
         heroTitle: "DJConnect. Music control with character.",
         heroLead: "DJConnect brings voice, music control and a personal DJ response together. The core stays the same on every device: ask for music, choose where it plays and get direct feedback.",
         heroPrimary: "How to start",
-        examplesLabel: "Request music with your voice, for example simply say",
-        examplesTitle: "Request music with your voice, for example simply say",
+        examplesLabel: "Request music with your voice, for example:",
+        examplesTitle: "Request music with your voice, for example:",
         exampleCommand1: "\"I want to hear Pearl Jam\"",
         exampleCommand2: "\"Put on London Grammar\"",
         exampleCommand3: "\"Play Above & Beyond\"",
@@ -963,13 +981,13 @@
         platformFeedbackTitle: "Get DJ feedback",
         platformFeedbackText: "DJConnect responds briefly and personally, so the experience feels more like a DJ than a remote control.",
         essentialsTitle: "Powered by Home Assistant, multiple devices",
-        essentialsLead: "Made with care for your Mac, iPhone, iPad and ESP32 device.",
+        essentialsLead: "Made with care for your Mac, iPhone, iPad, Raspberry Pi and ESP32 device.",
         essentialsHaTitle: "Home Assistant as the base",
         essentialsHaText: "Spotify integration, voice assist and app pairing run centrally through your smart home.",
         essentialsSecureTitle: "Secure pairing",
         essentialsSecureText: "Account token and pairing details are kept safely in encrypted storage.",
         essentialsWorkflowTitle: "Multiple interfaces",
-        essentialsWorkflowText: "Use DJConnect on your favorite screen.",
+        essentialsWorkflowText: "Use DJConnect on your favorite Apple screen or embedded device.",
         appsTitle: "Choose your interface",
         appsLead: "Start with the platform that fits how you control music.",
         macText: "For fixed control on your Mac: search, choose output and keep DJConnect status in view.",
@@ -983,6 +1001,10 @@
         embeddedTitle: "Embedded device",
         embeddedText: "The physical DJConnect experience with LilyGO T-Embed, push-to-talk, display feedback and OTA updates.",
         embeddedCta: "Buy & flash",
+        raspberryTitle: "Raspberry Pi",
+        raspberryTag: "Prepared",
+        raspberryText: "For a fixed DJConnect app on Raspberry Pi: ideal as a small screen or dedicated music controller.",
+        raspberryMore: "More about Raspberry Pi",
         legalCopyright: "Copyright Peter van Tol 2026. All rights reserved. DJConnect firmware is proprietary software. The Home Assistant integration may be distributed separately for use with DJConnect devices.",
         legalSpotify: "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility."
       }

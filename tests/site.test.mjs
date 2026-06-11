@@ -55,7 +55,7 @@ test("site version is consistent", async () => {
   ]);
 
   const cleanVersion = version.trim();
-  assert.equal(cleanVersion, "3.1.5");
+  assert.equal(cleanVersion, "3.1.6");
   assert.equal(JSON.parse(packageJson).version, cleanVersion);
   assert.match(index, new RegExp(`DJConnect website v${cleanVersion}`));
   assert.match(embedded, new RegExp(`DJConnect website v${cleanVersion}`));
@@ -72,6 +72,7 @@ test("homepage has platform routes and app store placeholders", async () => {
   assert.match(index, /href="embedded\.html"/);
   assert.match(index, /href="macos\.html"/);
   assert.match(index, /href="ios\.html"/);
+  assert.match(index, /href="raspberry-pi\.html"/);
   assert.match(index, /data-store-link="macos"/);
   assert.match(index, /data-store-link="ios"/);
   assert.match(index, /Mac App Store/);
@@ -81,7 +82,7 @@ test("homepage has platform routes and app store placeholders", async () => {
   assert.match(index, /Powered by Home Assistant, meerdere apparaten/);
   assert.match(index, /Spotify integratie, voice assist en app koppeling lopen centraal via je smart-home/);
   assert.match(index, /Meerdere interfaces/);
-  assert.match(index, /Gebruik DJConnect op je favoriete scherm/);
+  assert.match(index, /Gebruik DJConnect op je favoriete Apple scherm of embedded device/);
   assert.match(index, /DJConnect brengt je muziekwens, speaker keuze en persoonlijke DJ-feedback samen/);
   assert.match(index, /Zeg welke artiest je wilt horen/);
 });
@@ -98,9 +99,9 @@ test("homepage hero uses the current device visual and copy", async () => {
   assert.match(index, /play-icon/);
   assert.match(index, /voice-cover/);
   assert.doesNotMatch(index, /radio-mic-icon/);
-  assert.match(index, /Met stemactivatie/);
-  assert.match(index, /Draai embedded, voor de echte die-hards/);
-  assert.match(index, /Speel, Vraag aan, Ontvang Persoonlijke DJ aankondiging/);
+  assert.match(index, /Vraag je volgende hit aan/);
+  assert.match(index, /Luister naar persoonlijke DJ aankondiging/);
+  assert.match(index, /Speel muziek & bedien op afstand/);
   assert.doesNotMatch(index, /DJConnect Studio/);
   assert.doesNotMatch(index, /Queue, output en DJ-reactie/);
 });
@@ -112,13 +113,14 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /Home Assistant installatie/);
   assert.match(start, /Open DJConnect in HACS/);
   assert.match(start, /https:\/\/my\.home-assistant\.io\/redirect\/hacs_repository/);
-  assert.match(start, /Voeg DJConnect toe aan je Home Assistant/);
+  assert.match(start, /1\. Configureer je voice assist pipeline in Home Assistant/);
+  assert.match(start, /2\. Voeg DJConnect toe aan je Home Assistant/);
   assert.match(start, /Gebruik onderstaande Home Assistant Community Store knop/);
   assert.match(start, /Configureer je voice assist pipeline in Home Assistant/);
   assert.match(start, /Hulp bij Home Assistant voice assist/);
   assert.match(start, /Maak of controleer je voice assist pipeline binnen Home Assistant/);
   assert.match(start, /https:\/\/www\.home-assistant\.io\/voice_control\/voice_remote_cloud_assistant\//);
-  assert.match(start, /Configureer DJConnect in Home Assistant/);
+  assert.match(start, /3\. Configureer DJConnect/);
   assert.match(start, /Voeg DJConnect toe als Home Assistant integratie en koppel je Spotify account/);
   assert.match(start, /Open Home Assistant <strong>Settings -> Devices & services -> Add integration -> DJConnect<\/strong>/);
   assert.match(start, /Koppel je Spotify Premium account/);
@@ -126,19 +128,23 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /id="client-esp" checked/);
   assert.match(start, /id="client-ios"/);
   assert.match(start, /id="client-macos"/);
+  assert.match(start, /id="client-raspberry"/);
   assert.match(start, /Download ESP firmware/);
   assert.match(start, /Download iOS app/);
   assert.match(start, /Download macOS app/);
+  assert.match(start, /Bekijk Raspberry Pi voorbereiding/);
   assert.match(start, /Zet het DJConnect device aan en verbind het device met WiFi via captive portal of Home Assistant BLE WiFi provisioning/);
   assert.match(start, /Open DJConnect app en kopieer de koppelgegevens/);
   assert.match(start, /Open DJConnect integratie setup in Home Assistant/);
-  assert.match(start, /Kies client type <strong>iOS app<\/strong> &amp; plak de koppelgegevens/);
-  assert.match(start, /Kies client type <strong>macOS app<\/strong> &amp; plak de koppelgegevens/);
+  assert.match(start, /Kies client type <strong>iOS app<\/strong> &amp; plak de koppelgegevens in de Home Assistant integratie/);
+  assert.match(start, /Kies client type <strong>macOS app<\/strong> &amp; plak de koppelgegevens in de Home Assistant integratie/);
   assert.doesNotMatch(start, /Kies client type <strong>iOS app<\/strong> of <strong>macOS app<\/strong>/);
+  assert.match(start, /Kies client type <strong>Raspberry Pi app<\/strong> &amp; plak de koppelgegevens/);
   assert.match(start, /DJConnect app is klaar voor gebruik/);
   assert.match(start, /Voer de koppelcode in van het device/);
+  assert.match(start, /Als automatische discovery \(mDNS\) niet werkt, kun je de Client API URL handmatig invullen in de integratie/);
   assert.doesNotMatch(start, /<li>Rond koppeling af<\/li>/);
-  assert.match(start, /Koppel DJConnect aan Home Assistant/);
+  assert.match(start, /4\. Koppel de app of device/);
   assert.match(start, /https:\/\/github\.com\/pcvantol\/djconnect-firmware/);
   assert.match(start, /href="ios\.html"/);
   assert.match(start, /href="macos-download\.html"/);
@@ -151,7 +157,7 @@ test("how-to-start page covers setup flow", async () => {
 
 test("features page describes core functions and bonus games", async () => {
   const features = await read("wwwroot/features.html");
-  assert.match(features, /<h1>Features<\/h1>/);
+  assert.match(features, /data-i18n="heroTitle">Features<\/h1>/);
   assert.match(features, /Muziek aanvragen/);
   assert.match(features, /Spotify playback/);
   assert.match(features, /Speaker keuze/);
@@ -160,9 +166,20 @@ test("features page describes core functions and bonus games", async () => {
   assert.match(features, /Veilige koppeling/);
   assert.match(features, /macOS/);
   assert.match(features, /iOS/);
+  assert.match(features, /Raspberry Pi/);
   assert.match(features, /ESP32 device/);
   assert.match(features, /Bonus: mini-games/);
   assert.match(features, /Pong, Asteroids & Fly/);
+  assertTranslationsCoverPage(features, "features page");
+});
+
+test("raspberry pi page is prepared and translated", async () => {
+  const raspberry = await read("wwwroot/raspberry-pi.html");
+  assert.match(raspberry, /DJConnect voor Raspberry Pi/);
+  assert.match(raspberry, /data-store-link="raspberry-pi"/);
+  assert.match(raspberry, /data-github-releases/);
+  assert.match(raspberry, /Raspberry Pi builds beschikbaar/);
+  assertTranslationsCoverPage(raspberry, "raspberry pi page");
 });
 
 test("app subpages contain live GitHub release embeds", async () => {
@@ -182,10 +199,17 @@ test("macOS download page shows public binary release repo", async () => {
   ]);
 
   assert.match(macos, /href="macos-download\.html"/);
+  assert.match(macos, /href="index\.html">Home<\/a>/);
   assert.match(downloads, /data-github-downloads/);
   assert.match(downloads, /data-github-owner="pcvantol"/);
   assert.match(downloads, /data-github-repo="djconnect-app-releases"/);
   assert.match(downloads, /assets\/downloads\.js/);
+});
+
+test("iOS page labels the platform route as home", async () => {
+  const ios = await read("wwwroot/ios.html");
+  assert.match(ios, /href="index\.html">Home<\/a>/);
+  assert.doesNotMatch(ios, /href="index\.html">Platform<\/a>/);
 });
 
 test("release proxy function is present", async () => {
@@ -197,7 +221,22 @@ test("release proxy function is present", async () => {
 test("embedded page links back to platform homepage", async () => {
   const embedded = await read("wwwroot/embedded.html");
   assert.match(embedded, /href="index\.html"/);
+  assert.match(embedded, /href="index\.html" data-i18n="navPlatform">Home<\/a>/);
   assert.match(embedded, /DJConnect op ESP32|DJConnect on ESP32/);
+  assert.doesNotMatch(embedded, /Firmware download • Wake word "Okay Nabu" • Home Assistant/);
+  assert.doesNotMatch(embedded, /<h3 data-i18n="firmwareTitle">Firmware downloads<\/h3>/);
+  assert.doesNotMatch(embedded, /href="start\.html" data-i18n="navStart">Aan de slag<\/a>/);
+  assert.doesNotMatch(embedded, /href="#quickstart"/);
+  assert.doesNotMatch(embedded, /href="#requirements"/);
+  assert.doesNotMatch(embedded, /href="#faq"/);
+  assert.match(embedded, /href="start\.html" data-i18n="navStartSetup">Start installatie<\/a>/);
+  assert.match(embedded, /href="start\.html" data-i18n="heroPrimary">Start installatie<\/a>/);
+  assert.doesNotMatch(embedded, /id="quickstart"/);
+  assert.doesNotMatch(embedded, /id="requirements"/);
+  assert.doesNotMatch(embedded, /id="faq"/);
+  assert.doesNotMatch(embedded, /data-i18n="voiceTitle">Stem via HA/);
+  assert.doesNotMatch(embedded, /data-i18n="secureTitle">Veilig gekoppeld/);
+  assert.doesNotMatch(embedded, /data-i18n="personalityTitle">DJ-karakter/);
 });
 
 test("embedded page lists supported hardware", async () => {
@@ -205,6 +244,7 @@ test("embedded page lists supported hardware", async () => {
   assert.match(embedded, /Ondersteunde hardware/);
   assert.match(embedded, /LilyGO T-Embed CC1101/);
   assert.match(embedded, /https:\/\/lilygo\.cc\/en-us\/products\/t-embed-cc1101/);
+  assert.match(embedded, /LilyGO productspecificaties/);
   assert.match(embedded, /ESP32-S3-BOX-3/);
   assert.match(embedded, /https:\/\/github\.com\/espressif\/esp-box/);
   assert.match(embedded, /hardware_overview_for_box_3\.md/);

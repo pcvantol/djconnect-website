@@ -54,17 +54,19 @@
     .steps li::before { content:counter(steps); flex:0 0 48px; width:48px; height:48px; display:grid; place-items:center; border-radius:16px; background:var(--cyan); color:#07110b; font-weight:950; }
     .client-switch { display:grid; gap:18px; }
     .client-switch input { position:absolute; opacity:0; pointer-events:none; }
-    .switch-tabs { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; padding:6px; border:1px solid var(--line); border-radius:24px; background:rgba(255,255,255,0.055); }
+    .switch-tabs { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; padding:6px; border:1px solid var(--line); border-radius:24px; background:rgba(255,255,255,0.055); }
     .switch-tabs label { display:flex; align-items:center; justify-content:center; min-height:52px; border:1px solid transparent; border-radius:18px; color:var(--muted); font-weight:900; cursor:pointer; transition:background 160ms ease, color 160ms ease, border-color 160ms ease, transform 160ms ease; }
     .switch-tabs label:hover { color:var(--text); background:rgba(255,255,255,0.07); }
     #client-esp:checked ~ .switch-tabs label[for="client-esp"],
     #client-ios:checked ~ .switch-tabs label[for="client-ios"],
-    #client-macos:checked ~ .switch-tabs label[for="client-macos"] { color:#06110c; border-color:transparent; background:linear-gradient(135deg,var(--cyan),var(--green)); transform:translateY(-1px); }
+    #client-macos:checked ~ .switch-tabs label[for="client-macos"],
+    #client-raspberry:checked ~ .switch-tabs label[for="client-raspberry"] { color:#06110c; border-color:transparent; background:linear-gradient(135deg,var(--cyan),var(--green)); transform:translateY(-1px); }
     .client-panels { display:grid; }
     .client-panel { grid-area:1 / 1; visibility:hidden; opacity:0; transform:translateY(8px); pointer-events:none; transition:opacity 180ms ease, transform 180ms ease, visibility 180ms ease; }
     #client-esp:checked ~ .client-panels [data-client-panel="esp"],
     #client-ios:checked ~ .client-panels [data-client-panel="ios"],
-    #client-macos:checked ~ .client-panels [data-client-panel="macos"] { visibility:visible; opacity:1; transform:translateY(0); pointer-events:auto; }
+    #client-macos:checked ~ .client-panels [data-client-panel="macos"],
+    #client-raspberry:checked ~ .client-panels [data-client-panel="raspberry"] { visibility:visible; opacity:1; transform:translateY(0); pointer-events:auto; }
     .client-panel .steps { margin-top:18px; }
     .client-panel .steps .btn { margin-top:2px; }
     .client-panel .muted { margin-top:14px; font-size:1.02rem; }
@@ -121,7 +123,7 @@
           <li>HACS geïnstalleerd in Home Assistant</li>
           <li>Spotify Premium account</li>
           <li>Home Assistant Assist pipeline met werkende STT en TTS</li>
-          <li>DJConnect device of DJConnect iOS/macOS app</li>
+          <li>DJConnect device of DJConnect app voor iOS, macOS of Raspberry Pi</li>
           <li>Home Assistant en DJConnect client op hetzelfde lokale netwerk tijdens pairing</li>
           <li>Voor Spotify OAuth: een externe HTTPS Home Assistant URL, bij voorkeur Nabu Casa</li>
         </ul>
@@ -133,11 +135,26 @@
       </div>
     </section>
 
+    <section id="spotify">
+      <div class="wrap grid-2">
+        <div>
+          <h2>1. Configureer je voice assist pipeline in Home Assistant</h2>
+          <p class="lead">DJConnect gebruikt je Home Assistant voice pipeline voor stembesturing en gesproken DJ aankondigingen.</p>
+          <a class="btn" href="https://www.home-assistant.io/voice_control/voice_remote_cloud_assistant/" target="_blank" rel="noopener">Hulp bij Home Assistant voice assist</a>
+        </div>
+        <ol class="steps">
+          <li>Maak of controleer je voice assist pipeline binnen Home Assistant</li>
+          <li>Controleer spraakherkenning en gesproken output</li>
+          <li>Gebruik deze pipeline straks in DJConnect</li>
+        </ol>
+      </div>
+    </section>
+
     <section id="hacs">
       <div class="wrap grid-2">
         <div class="card route-card">
           <span class="route-label">Automatisch</span>
-          <h2>1. Voeg DJConnect toe aan je Home Assistant</h2>
+          <h2>2. Voeg DJConnect toe aan je Home Assistant</h2>
           <p class="lead">Gebruik onderstaande Home Assistant Community Store knop om direct naar de DJConnect repository in HACS te gaan.</p>
           <a class="btn primary" href="https://my.home-assistant.io/redirect/hacs_repository/?owner=pcvantol&repository=djconnect&category=integration" target="_blank" rel="noopener">Open DJConnect in HACS</a>
         </div>
@@ -157,25 +174,10 @@
       </div>
     </section>
 
-    <section id="spotify">
-      <div class="wrap grid-2">
-        <div>
-          <h2>2. Configureer je voice assist pipeline in Home Assistant</h2>
-          <p class="lead">DJConnect gebruikt je Home Assistant voice pipeline voor stembesturing en gesproken DJ aankondigingen.</p>
-          <a class="btn" href="https://www.home-assistant.io/voice_control/voice_remote_cloud_assistant/" target="_blank" rel="noopener">Hulp bij Home Assistant voice assist</a>
-        </div>
-        <ol class="steps">
-          <li>Maak of controleer je voice assist pipeline binnen Home Assistant</li>
-          <li>Controleer spraakherkenning en gesproken output</li>
-          <li>Gebruik deze pipeline straks in DJConnect</li>
-        </ol>
-      </div>
-    </section>
-
     <section id="assist">
       <div class="wrap grid-2">
         <div>
-          <h2>3. Configureer DJConnect in Home Assistant</h2>
+          <h2>3. Configureer DJConnect</h2>
           <p class="lead">Voeg DJConnect toe als Home Assistant integratie en koppel je Spotify account.</p>
         </div>
         <ol class="steps">
@@ -188,7 +190,7 @@
 
     <section id="pairing">
       <div class="wrap">
-        <h2>4. Koppel DJConnect aan Home Assistant</h2>
+        <h2>4. Koppel de app of device</h2>
         <p class="lead">Kies de route die past bij je client.</p>
       </div>
       <div class="wrap">
@@ -196,10 +198,12 @@
           <input type="radio" name="client-route" id="client-esp" checked />
           <input type="radio" name="client-route" id="client-ios" />
           <input type="radio" name="client-route" id="client-macos" />
+          <input type="radio" name="client-route" id="client-raspberry" />
           <div class="switch-tabs" role="tablist" aria-label="Kies client type">
             <label for="client-esp" role="tab">ESP device</label>
             <label for="client-ios" role="tab">iOS app</label>
             <label for="client-macos" role="tab">macOS app</label>
+            <label for="client-raspberry" role="tab">Raspberry Pi app</label>
           </div>
           <div class="client-panels">
             <article class="card client-panel" data-client-panel="esp">
@@ -211,7 +215,7 @@
                 <li>Voer de koppelcode in van het device</li>
                 <li>Het DJConnect apparaat is klaar voor gebruik</li>
               </ol>
-              <p class="muted">ESP devices gebruiken lokale communicatie met Home Assistant. Als mDNS niet werkt, kun je de Client API URL handmatig invullen.</p>
+              <p class="muted">ESP devices gebruiken lokale communicatie met Home Assistant. Als automatische discovery (mDNS) niet werkt, kun je de Client API URL handmatig invullen in de integratie.</p>
             </article>
             <article class="card client-panel" data-client-panel="ios">
               <h3>iOS app</h3>
@@ -219,7 +223,7 @@
                 <li><a class="btn primary" href="ios.html">Download iOS app</a></li>
                 <li>Open DJConnect app en kopieer de koppelgegevens</li>
                 <li>Open DJConnect integratie setup in Home Assistant</li>
-                <li>Kies client type <strong>iOS app</strong> &amp; plak de koppelgegevens</li>
+                <li>Kies client type <strong>iOS app</strong> &amp; plak de koppelgegevens in de Home Assistant integratie</li>
                 <li>DJConnect app is klaar voor gebruik</li>
               </ol>
               <p class="muted">Voor iOS is de Client API URL verplicht. De app en Home Assistant moeten elkaar lokaal kunnen bereiken.</p>
@@ -230,10 +234,21 @@
                 <li><a class="btn primary" href="macos-download.html">Download macOS app</a></li>
                 <li>Open DJConnect app en kopieer de koppelgegevens</li>
                 <li>Open DJConnect integratie setup in Home Assistant</li>
-                <li>Kies client type <strong>macOS app</strong> &amp; plak de koppelgegevens</li>
+                <li>Kies client type <strong>macOS app</strong> &amp; plak de koppelgegevens in de Home Assistant integratie</li>
                 <li>DJConnect app is klaar voor gebruik</li>
               </ol>
               <p class="muted">Voor macOS is de Client API URL verplicht. De app en Home Assistant moeten elkaar lokaal kunnen bereiken.</p>
+            </article>
+            <article class="card client-panel" data-client-panel="raspberry">
+              <h3>Raspberry Pi app</h3>
+              <ol class="steps">
+                <li><a class="btn primary" href="raspberry-pi.html">Bekijk Raspberry Pi voorbereiding</a></li>
+                <li>Installeer de DJConnect Raspberry Pi app zodra de release beschikbaar is</li>
+                <li>Open DJConnect integratie setup in Home Assistant</li>
+                <li>Kies client type <strong>Raspberry Pi app</strong> &amp; plak de koppelgegevens</li>
+                <li>DJConnect Raspberry Pi app is klaar voor gebruik</li>
+              </ol>
+              <p class="muted">Voor Raspberry Pi wordt een dedicated app-route voorbereid. De app gebruikt straks dezelfde lokale Home Assistant koppeling als de andere clients.</p>
             </article>
           </div>
         </div>
@@ -273,7 +288,7 @@
   <footer class="wrap legal">
     <p>Copyright Peter van Tol 2026. All rights reserved.</p>
     <p>Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.</p>
-    <p class="site-version">DJConnect website v3.1.5</p>
+    <p class="site-version">DJConnect website v3.1.6</p>
   </footer>
 </body>
 </html>

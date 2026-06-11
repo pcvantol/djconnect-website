@@ -202,28 +202,17 @@
       </div>
       <div class="wrap">
         <div class="client-switch">
-          <input type="radio" name="client-route" id="client-esp" checked />
-          <input type="radio" name="client-route" id="client-ios" />
+          <input type="radio" name="client-route" id="client-ios" checked />
           <input type="radio" name="client-route" id="client-macos" />
+          <input type="radio" name="client-route" id="client-esp" />
           <input type="radio" name="client-route" id="client-raspberry" />
           <div class="switch-tabs" role="tablist" aria-label="Kies client type" data-i18n-attr="aria-label:clientTypeLabel">
-            <label for="client-esp" role="tab">ESP device</label>
             <label for="client-ios" role="tab">iOS app</label>
             <label for="client-macos" role="tab">macOS app</label>
+            <label for="client-esp" role="tab">ESP32</label>
             <label for="client-raspberry" role="tab">Raspberry Pi app</label>
           </div>
           <div class="client-panels">
-            <article class="card client-panel" data-client-panel="esp">
-              <h3 data-i18n="espTitle">ESP device</h3>
-              <ol class="steps">
-                <li><a class="btn primary" href="https://github.com/pcvantol/djconnect-firmware" target="_blank" rel="noopener">Download ESP firmware</a></li>
-                <li>Zet het DJConnect device aan en verbind het device met WiFi via captive portal of Home Assistant BLE WiFi provisioning</li>
-                <li>Open de DJConnect integratie setup in Home Assistant</li>
-                <li>Voer de koppelcode in van het device</li>
-                <li>Het DJConnect apparaat is klaar voor gebruik</li>
-              </ol>
-              <p class="muted" data-i18n="espNote">ESP devices gebruiken lokale communicatie met Home Assistant. Als automatische discovery (mDNS) niet werkt, kun je de Client API URL handmatig invullen in de integratie.</p>
-            </article>
             <article class="card client-panel" data-client-panel="ios">
               <h3 data-i18n="iosTitle">iOS app</h3>
               <ol class="steps">
@@ -238,13 +227,24 @@
             <article class="card client-panel" data-client-panel="macos">
               <h3 data-i18n="macosTitle">macOS app</h3>
               <ol class="steps">
-                <li><a class="btn primary" href="macos-download.html">Download macOS app</a></li>
+                <li><a class="btn primary" href="macos.html">Download macOS app</a></li>
                 <li>Open DJConnect app en kopieer de koppelgegevens</li>
                 <li>Open DJConnect integratie setup in Home Assistant</li>
                 <li>Kies client type <strong>macOS app</strong> &amp; plak de koppelgegevens in de Home Assistant integratie</li>
                 <li>DJConnect app is klaar voor gebruik</li>
               </ol>
               <p class="muted" data-i18n="macosNote">Voor macOS is de Client API URL verplicht. De app en Home Assistant moeten elkaar lokaal kunnen bereiken.</p>
+            </article>
+            <article class="card client-panel" data-client-panel="esp">
+              <h3 data-i18n="espTitle">ESP device</h3>
+              <ol class="steps">
+                <li><a class="btn primary" href="https://github.com/pcvantol/djconnect-firmware" target="_blank" rel="noopener">Download ESP firmware</a></li>
+                <li>Zet het DJConnect device aan en verbind het device met WiFi via captive portal of Home Assistant BLE WiFi provisioning</li>
+                <li>Open de DJConnect integratie setup in Home Assistant</li>
+                <li>Voer de koppelcode in van het device</li>
+                <li>Het DJConnect apparaat is klaar voor gebruik</li>
+              </ol>
+              <p class="muted" data-i18n="espNote">ESP devices gebruiken lokale communicatie met Home Assistant. Als automatische discovery (mDNS) niet werkt, kun je de Client API URL handmatig invullen in de integratie.</p>
             </article>
             <article class="card client-panel" data-client-panel="raspberry">
               <h3 data-i18n="raspberryTitle">Raspberry Pi app</h3>

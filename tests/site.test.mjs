@@ -129,10 +129,14 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /Open Home Assistant <strong>Settings -> Devices & services -> Add integration -> DJConnect<\/strong>/);
   assert.match(start, /Koppel je Spotify Premium account/);
   assert.match(start, /Configureer je assist pipeline voor stembesturing en pas de stijl van de DJ aankondigingen aan via eigen prompt/);
-  assert.match(start, /id="client-esp" checked/);
-  assert.match(start, /id="client-ios"/);
+  assert.match(start, /id="client-ios" checked/);
   assert.match(start, /id="client-macos"/);
+  assert.match(start, /id="client-esp"/);
   assert.match(start, /id="client-raspberry"/);
+  assert.match(
+    start,
+    /<label for="client-ios" role="tab">iOS app<\/label>\s*<label for="client-macos" role="tab">macOS app<\/label>\s*<label for="client-esp" role="tab">ESP32<\/label>\s*<label for="client-raspberry" role="tab">Raspberry Pi app<\/label>/
+  );
   assert.match(start, /Download ESP firmware/);
   assert.match(start, /Download iOS app/);
   assert.match(start, /Download macOS app/);
@@ -152,7 +156,7 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /5\. Klaar voor gebruik/);
   assert.match(start, /https:\/\/github\.com\/pcvantol\/djconnect-firmware/);
   assert.match(start, /href="ios\.html"/);
-  assert.match(start, /href="macos-download\.html"/);
+  assert.match(start, /href="macos\.html"/);
   assert.match(start, /Ontvang persoonlijke DJ aankondigingen in de app of op je device/);
   assert.match(start, /Geen Spotify playback/);
   assert.match(start, /Controleer of de Spotify autorisatie in Home Assistant actief is, of herstel deze/);
@@ -193,7 +197,7 @@ test("raspberry pi page is prepared and translated", async () => {
 });
 
 test("app subpages contain live GitHub release embeds", async () => {
-  for (const page of ["macos", "ios", "embedded"]) {
+  for (const page of ["ios", "embedded"]) {
     const html = await read(`wwwroot/${page}.html`);
     assert.match(html, /data-github-releases/, `${page} page needs release embed`);
     assert.match(html, /data-github-owner="pcvantol"/, `${page} page needs GitHub owner`);
@@ -202,22 +206,18 @@ test("app subpages contain live GitHub release embeds", async () => {
   }
 });
 
-test("macOS download page shows public binary release repo", async () => {
-  const [macos, downloads] = await Promise.all([
-    read("wwwroot/macos.html"),
-    read("wwwroot/macos-download.html")
-  ]);
+test("macOS page shows public binary release repo", async () => {
+  const macos = await read("wwwroot/macos.html");
 
-  assert.match(macos, /href="macos-download\.html"/);
+  assert.doesNotMatch(macos, /href="macos-download\.html"/);
   assert.match(macos, /href="index\.html" data-i18n="navHome">Home<\/a>/);
   assert.doesNotMatch(macos, /href="ios\.html">iOS<\/a>/);
   assert.doesNotMatch(macos, /href="embedded\.html">Embedded device<\/a>/);
   assertTranslationsCoverPage(macos, "macOS page");
-  assert.match(downloads, /data-github-downloads/);
-  assert.match(downloads, /data-github-owner="pcvantol"/);
-  assert.match(downloads, /data-github-repo="djconnect-app-releases"/);
-  assert.match(downloads, /assets\/downloads\.js/);
-  assertTranslationsCoverPage(downloads, "macOS download page");
+  assert.match(macos, /data-github-downloads/);
+  assert.match(macos, /data-github-owner="pcvantol"/);
+  assert.match(macos, /data-github-repo="djconnect-app-releases"/);
+  assert.match(macos, /assets\/downloads\.js/);
 });
 
 test("iOS page labels the platform route as home", async () => {
@@ -287,7 +287,7 @@ test("site copy no longer claims devices are pre-flashed", async () => {
     read("wwwroot/embedded.html"),
     read("wwwroot/macos.html"),
     read("wwwroot/ios.html"),
-    read("wwwroot/macos-download.html")
+    read("wwwroot/raspberry-pi.html")
   ]);
 
   const combined = pages.join("\n");

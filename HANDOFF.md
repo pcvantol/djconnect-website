@@ -10,8 +10,7 @@
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Start/setup page: `wwwroot/start.html`
-- macOS app page: `wwwroot/macos.html`
-- macOS binary download page: `wwwroot/macos-download.html`
+- macOS app page with binary downloads: `wwwroot/macos.html`
 - iOS app page: `wwwroot/ios.html`
 - Raspberry Pi app placeholder page: `wwwroot/raspberry-pi.html`
 - Embedded ESP32 one-pager: `wwwroot/embedded.html`
@@ -32,10 +31,10 @@
 - The start page pairing switch has separate panels for ESP device, iOS app, macOS app and Raspberry Pi app.
 - macOS, iOS, Raspberry Pi and embedded pages label the homepage navigation route as `Home`; app pages should not show cross-links to other app/device pages in the top menu.
 - App subpages use `assets/releases.js`, `assets/releases.css` and the Cloudflare Pages Function `functions/api/releases.js` to live-render GitHub releases.
-- macOS downloads use `assets/downloads.js` and the public repo `pcvantol/djconnect-app-releases`.
+- macOS downloads are embedded directly on `wwwroot/macos.html` using `assets/downloads.js` and the public repo `pcvantol/djconnect-app-releases`.
 - If the GitHub repository/releases are private, set `GITHUB_TOKEN` as a Cloudflare Pages secret for the `djconnect` project.
 - Version is tracked in `VERSION`, `package.json`, page footers and `CHANGELOG.md`.
-- Language switching on the homepage, start page, embedded page, Features page, Raspberry Pi page, iOS page, macOS page and macOS download page is handled through per-page `translations` objects.
+- Language switching on the homepage, start page, embedded page, Features page, Raspberry Pi page, iOS page and macOS page is handled through per-page `translations` objects.
 - `cleanup_old_releases.sh` removes old GitHub Releases, matching local/remote tags and older workflow runs. It keeps the current `VERSION` tag and the newest 10 workflow runs by default.
 - Do not commit `.wrangler/`; it is local Wrangler cache.
 

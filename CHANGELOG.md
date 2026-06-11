@@ -7,7 +7,7 @@ All notable changes to this website are documented here.
 - Added a platform-independent homepage for DJConnect essentials, with focused navigation for `Hoe werkt het`, `Features`, `Download` and the primary `Aan de slag` CTA.
 - Reworked the homepage hero into a swipeable carousel for macOS, iPad/iPhone and LilyGO/ESP32, with clearer device form factors, play/voice iconography and current Dutch/English copy.
 - Added a top-level Features page with the main DJConnect functions and bonus mini-games: Pong, Asteroids & Fly.
-- Added macOS, iOS, macOS download and Raspberry Pi placeholder pages with language toggles, release/download routes and translation coverage.
+- Added macOS, iOS and Raspberry Pi placeholder pages with language toggles, release/download routes and translation coverage.
 - Added a Home Assistant `Aan de slag` setup page for voice assist, HACS installation, DJConnect configuration, downloads, client pairing and first use.
 - Reworked the start-page pairing flow into a three-option switch for ESP device, iOS app and macOS app, with target-specific download links and simplified four-step flows.
 - Reworked the embedded ESP32 page into a compact product page focused on supported hardware, how it works and releases; removed local quick start, requirements, FAQ, experience and setup callout sections.
@@ -24,3 +24,4 @@ All notable changes to this website are documented here.
 - Renamed the homepage `Wat is DJConnect` navigation label to `Hoe werkt het`.
 - Simplified the Raspberry Pi page navigation to match the app pages.
 - Extended `cleanup_old_releases.sh` to remove older GitHub Actions workflow runs in addition to old releases and tags.
+- Removed the duplicate macOS download page and embedded app binary downloads directly on the macOS page.

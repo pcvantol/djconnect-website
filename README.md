@@ -8,8 +8,7 @@ Static landing page for DJConnect, published through Cloudflare Pages.
 - `wwwroot/features.html`: feature overview page, including bonus mini-games.
 - `wwwroot/start.html`: Home Assistant setup flow for HACS installation, voice pipeline setup, DJConnect configuration, client downloads and pairing.
 - `wwwroot/embedded.html`: ESP32 embedded-device one-pager.
-- `wwwroot/macos.html`: macOS app page with release embed and download route.
-- `wwwroot/macos-download.html`: macOS binary download page for `pcvantol/djconnect-app-releases`.
+- `wwwroot/macos.html`: macOS app page with binaries from `pcvantol/djconnect-app-releases`.
 - `wwwroot/ios.html`: iOS app page with App Store placeholder and release embed.
 - `wwwroot/raspberry-pi.html`: prepared Raspberry Pi app placeholder page with release embed.
 - `wwwroot/assets/`: logo, favicon and product visuals.
@@ -92,7 +91,7 @@ Use `./cleanup_old_releases.sh` to remove old GitHub Releases, matching local/re
 
 ## Content Hygiene
 
-- Keep Dutch and English translation keys in sync on the homepage, start page, embedded page, Features page, Raspberry Pi page, iOS page, macOS page and macOS download page.
+- Keep Dutch and English translation keys in sync on the homepage, start page, embedded page, Features page, Raspberry Pi page, iOS page and macOS page.
 - Keep App Store links as placeholders until the macOS and iOS apps are published.
 - Do not describe embedded devices as pre-flashed; link users to the firmware repository and flashing flow instead.
 - Keep homepage navigation focused on `Hoe werkt het`, `Features`, `Download` and the primary `Aan de slag` CTA.

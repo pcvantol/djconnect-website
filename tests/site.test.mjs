@@ -87,6 +87,8 @@ test("homepage hero uses the current device visual and copy", async () => {
   assert.match(index, /class="iphone"/);
   assert.match(index, /play-icon/);
   assert.match(index, /radio-mic-icon/);
+  assert.match(index, /Met stemactivatie/);
+  assert.match(index, /Embedded, voor de die-hards/);
   assert.match(index, /Speel, Vraag aan, Ontvang Persoonlijke DJ aankondiging/);
   assert.doesNotMatch(index, /DJConnect Studio/);
   assert.doesNotMatch(index, /Queue, output en DJ-reactie/);

@@ -2,6 +2,12 @@
 
 All notable changes to this website are documented here.
 
+## DJConnect website v3.1.3 - 2026-06-11
+
+- Consolidated the iOS/macOS app pairing steps into a shorter four-step Home Assistant flow.
+- Combined ESP pairing and automatic Home Assistant configuration into one step.
+- Updated tests for the simplified start-page setup instructions.
+
 ## DJConnect website v3.1.2 - 2026-06-11
 
 - Simplified the homepage navigation to `Wat is DJConnect`, `Download` and the primary `Aan de slag` CTA.

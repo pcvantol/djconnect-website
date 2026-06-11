@@ -2,15 +2,18 @@
 
 All notable changes to this website are documented here.
 
-## Unreleased
+## DJConnect website v3.1.0 - 2026-06-11
 
-- Added a horizontally switchable hero platform carousel for macOS, iOS and ESP32 devices.
-- Split the site into a platform-independent homepage and a dedicated embedded ESP32 one-pager.
-- Prepared macOS and iOS homepage cards for future App Store download links.
+- Added a platform-independent homepage for DJConnect essentials.
+- Moved the ESP32 hardware content into a dedicated embedded-device one-pager.
+- Prepared macOS and iOS homepage cards for future Mac App Store and App Store links.
+- Added Dutch and English translation coverage for the homepage and reviewed embedded-page translation keys.
+- Added visible footer copyright and site version metadata.
 - Added repository documentation for releases, TODOs, known issues, handoff and testing.
-- Added a release script for Cloudflare Pages deployments.
+- Added automated Node tests for version consistency, routes, store placeholders, copyright and translation coverage.
+- Reworked `release.sh` to run tests, push `main`, create a version tag, create a GitHub Release and deploy to Cloudflare Pages.
 
-## 2026-06-11
+## Initial website - 2026-06-11
 
 - Created the initial static DJConnect website.
 - Connected the repository to GitHub.

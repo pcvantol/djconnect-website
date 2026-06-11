@@ -7,6 +7,7 @@
 - Replace CSS-drawn macOS and iOS mockups with real screenshots when apps exist.
 - Add a privacy page before collecting any analytics or app telemetry.
 - Add a support/contact route or mail link.
+- Replace footer version when preparing the next release.
 
 ## Platform
 

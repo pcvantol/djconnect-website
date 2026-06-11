@@ -15,6 +15,7 @@
 Run before deploying:
 
 ```bash
+node --test
 git status --short
 test -f wwwroot/index.html
 test -f wwwroot/assets/djconnect/site.webmanifest
@@ -30,6 +31,6 @@ Expected result: `HTTP/2 200`.
 
 ## Future Automation
 
-- Add Playwright smoke tests for language switching and carousel behavior.
+- Add Playwright smoke tests for language switching and navigation behavior.
 - Add a link checker for external URLs.
 - Add HTML validation in CI.

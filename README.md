@@ -7,6 +7,7 @@ Static landing page for DJConnect, published through Cloudflare Pages.
 - `wwwroot/index.html`: platform homepage with DJConnect essentials.
 - `wwwroot/embedded.html`: ESP32 embedded-device one-pager.
 - `wwwroot/assets/`: logo, favicon and product visuals.
+- `VERSION`: current site version.
 
 ## Local Preview
 
@@ -21,3 +22,5 @@ The production site is deployed to Cloudflare Pages:
 - Publish directory: `wwwroot`
 
 Use `./release.sh` for the standard release flow.
+
+The release script runs tests, pushes `main`, creates a `vX.Y.Z` tag, creates a GitHub Release and deploys to Cloudflare Pages.

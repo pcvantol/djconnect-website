@@ -3,7 +3,32 @@ set -euo pipefail
 
 PROJECT_NAME="djconnect"
 PUBLISH_DIR="wwwroot"
+VERSION="$(tr -d '[:space:]' < VERSION)"
+TAG="v${VERSION}"
 BRANCH="$(git branch --show-current)"
+
+usage() {
+  cat <<USAGE
+Usage: ./release.sh [--skip-deploy]
+
+Runs tests, verifies release metadata, creates and pushes tag ${TAG},
+creates a GitHub Release, and deploys ${PUBLISH_DIR} to Cloudflare Pages.
+
+Environment:
+  CLOUDFLARE_API_TOKEN  Required unless --skip-deploy is used.
+USAGE
+}
+
+SKIP_DEPLOY="false"
+if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
+  usage
+  exit 0
+elif [[ "${1:-}" == "--skip-deploy" ]]; then
+  SKIP_DEPLOY="true"
+elif [[ $# -gt 0 ]]; then
+  usage
+  exit 1
+fi
 
 if [[ "$BRANCH" != "main" ]]; then
   echo "Release must be run from main. Current branch: $BRANCH"
@@ -16,17 +41,50 @@ if [[ -n "$(git status --porcelain)" ]]; then
   exit 1
 fi
 
-if [[ -z "${CLOUDFLARE_API_TOKEN:-}" ]]; then
+if [[ "$(node -p "require('./package.json').version")" != "$VERSION" ]]; then
+  echo "VERSION and package.json version do not match."
+  exit 1
+fi
+
+if git rev-parse "$TAG" >/dev/null 2>&1; then
+  echo "Tag $TAG already exists."
+  exit 1
+fi
+
+if [[ "$SKIP_DEPLOY" != "true" && -z "${CLOUDFLARE_API_TOKEN:-}" ]]; then
   echo "CLOUDFLARE_API_TOKEN is required for deployment."
   exit 1
 fi
 
-echo "Running static checks..."
-test -f "$PUBLISH_DIR/index.html"
-test -f "$PUBLISH_DIR/assets/djconnect/site.webmanifest"
+echo "Running tests..."
+npm test
 
-echo "Deploying $PUBLISH_DIR to Cloudflare Pages project $PROJECT_NAME..."
-npx wrangler pages deploy "$PUBLISH_DIR" --project-name "$PROJECT_NAME" --branch main
+echo "Checking release files..."
+test -f "$PUBLISH_DIR/index.html"
+test -f "$PUBLISH_DIR/embedded.html"
+test -f "$PUBLISH_DIR/assets/djconnect/site.webmanifest"
+grep -q "DJConnect website ${TAG}" CHANGELOG.md
+grep -q "DJConnect website v${VERSION}" "$PUBLISH_DIR/index.html"
+grep -q "DJConnect website v${VERSION}" "$PUBLISH_DIR/embedded.html"
+
+echo "Pushing main..."
+git push origin main
+
+echo "Creating tag $TAG..."
+git tag -a "$TAG" -m "DJConnect website ${TAG}"
+git push origin "$TAG"
+
+echo "Creating GitHub Release..."
+gh release create "$TAG" \
+  --title "DJConnect website ${TAG}" \
+  --notes-file CHANGELOG.md \
+  --latest
+
+if [[ "$SKIP_DEPLOY" == "true" ]]; then
+  echo "Skipped Cloudflare Pages deploy."
+else
+  echo "Deploying $PUBLISH_DIR to Cloudflare Pages project $PROJECT_NAME..."
+  npx wrangler pages deploy "$PUBLISH_DIR" --project-name "$PROJECT_NAME" --branch main
+fi
 
 echo "Release complete: https://djconnect.pages.dev"
-

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DJConnect Features</title>
+  <meta name="description" content="Overzicht van de belangrijkste DJConnect functies: muziek aanvragen, Spotify playback, Home Assistant, apps, ESP32 devices en mini-games." />
+  <link rel="icon" href="assets/djconnect/icon.svg" type="image/svg+xml" />
+  <style>
+    :root { --bg:#0b0d12; --panel:rgba(255,255,255,0.075); --panel-strong:rgba(255,255,255,0.12); --text:#f7f7fb; --muted:#b7bccb; --line:rgba(255,255,255,0.14); --cyan:#66e0ff; --green:#7ef7a7; --purple:#8b5cf6; --max:1180px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; background:var(--bg); }
+    body { margin:0; color:var(--text); font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height:1.55; background:radial-gradient(circle at 16% 10%, rgba(102,224,255,0.18), transparent 28rem), radial-gradient(circle at 86% 6%, rgba(139,92,246,0.14), transparent 27rem), radial-gradient(circle at 58% 72%, rgba(126,247,167,0.1), transparent 31rem), linear-gradient(180deg,#0b0d12 0%,#111827 54%,#090b10 100%); }
+    a { color:inherit; text-decoration:none; }
+    .wrap { width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
+    .nav { position:sticky; top:0; z-index:20; backdrop-filter:blur(18px); background:rgba(11,13,18,0.7); border-bottom:1px solid var(--line); }
+    .nav-inner { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:22px; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:850; font-size:1.13rem; }
+    .brand img { width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.18); box-shadow:0 0 34px rgba(102,224,255,0.25); }
+    .nav-links { display:flex; align-items:center; gap:18px; color:var(--muted); font-size:0.94rem; }
+    .nav-links a:hover { color:var(--text); }
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:46px; padding:0 18px; border-radius:999px; border:1px solid var(--line); background:var(--panel); color:var(--text); font-weight:780; box-shadow:0 10px 30px rgba(0,0,0,0.15); }
+    .btn.primary { border:0; color:#06110c; background:linear-gradient(135deg,var(--cyan),var(--green)); }
+    .hero { padding:82px 0 52px; }
+    .hero-grid { display:grid; grid-template-columns:1fr 0.85fr; gap:48px; align-items:center; }
+    h1,h2,h3 { margin:0; letter-spacing:-0.045em; line-height:1.05; }
+    h1 { font-size:clamp(3.2rem,7vw,6.2rem); max-width:11ch; }
+    h2 { font-size:clamp(2rem,4.4vw,4rem); margin-bottom:18px; }
+    h3 { font-size:1.18rem; margin-bottom:10px; }
+    .lead { color:var(--muted); font-size:clamp(1.08rem,2.2vw,1.34rem); margin:24px 0 30px; max-width:760px; }
+    section { padding:70px 0; }
+    .section-head { display:grid; grid-template-columns:0.8fr 1.2fr; gap:28px; align-items:end; margin-bottom:24px; }
+    .section-head p { color:var(--muted); margin:0; font-size:1.12rem; }
+    .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .grid-2 { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+    .card { border:1px solid var(--line); border-radius:22px; background:var(--panel); padding:24px; box-shadow:0 12px 36px rgba(0,0,0,0.16); }
+    .card p { color:var(--muted); margin:0; }
+    .icon { width:52px; height:52px; display:grid; place-items:center; border-radius:16px; background:rgba(102,224,255,0.12); border:1px solid var(--line); font-size:1.45rem; margin-bottom:18px; }
+    .feature-map { min-height:360px; display:grid; gap:14px; align-content:center; }
+    .feature-map span { display:flex; align-items:center; gap:10px; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,0.06); padding:14px 16px; color:var(--muted); font-weight:760; }
+    .feature-map span::before { content:""; width:10px; height:10px; border-radius:999px; background:var(--green); box-shadow:0 0 20px var(--green); }
+    .bonus { background:linear-gradient(135deg, rgba(102,224,255,0.12), rgba(139,92,246,0.13)); }
+    .legal { color:var(--muted); font-size:0.86rem; padding:34px 0 44px; border-top:1px solid var(--line); }
+    .site-version { margin-top:14px; font-size:0.76rem; color:rgba(183,188,203,0.72); }
+    @media (max-width:900px) { .hero-grid,.section-head,.grid-3,.grid-2 { grid-template-columns:1fr; } .nav-inner { flex-wrap:wrap; padding:12px 0; } .nav-links { order:3; width:100%; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; } .nav-links::-webkit-scrollbar { display:none; } }
+    @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="index.html"><img src="assets/djconnect/icon.svg" alt="" /><span>DJConnect</span></a>
+      <div class="nav-links" aria-label="Navigatie">
+        <a href="index.html">Wat is DJConnect</a>
+        <a href="features.html">Features</a>
+        <a href="index.html#apps">Download</a>
+      </div>
+      <a class="btn primary" href="start.html">Aan de slag</a>
+    </div>
+  </nav>
+
+  <main>
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <h1>Features</h1>
+          <p class="lead">DJConnect combineert muziek aanvragen, Spotify playback, Home Assistant automation en persoonlijke DJ-feedback in een workflow voor app en device.</p>
+          <a class="btn primary" href="start.html">Start installatie</a>
+        </div>
+        <div class="card feature-map" aria-label="DJConnect feature overzicht">
+          <span>Vraag muziek aan met stem of interface</span>
+          <span>Kies waar je muziek speelt</span>
+          <span>Krijg persoonlijke DJ aankondigingen</span>
+          <span>Gebruik dezelfde flow op Mac, iOS en ESP32</span>
+        </div>
+      </div>
+    </header>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Hoofdfuncties</h2>
+          <p>De kern van DJConnect is bewust compact: muziek starten, context gebruiken, feedback geven en alle clients centraal koppelen via Home Assistant.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card"><div class="icon">🎙️</div><h3>Muziek aanvragen</h3><p>Vraag een artiest aan met je stem of via de app. DJConnect vertaalt je verzoek naar een concrete muziekactie.</p></article>
+          <article class="card"><div class="icon">▶</div><h3>Spotify playback</h3><p>Start, pauzeer en stuur Spotify playback naar je favoriete Spotify Connect speaker.</p></article>
+          <article class="card"><div class="icon">🔊</div><h3>Speaker keuze</h3><p>Kies bewust waar muziek wordt afgespeeld, zodat dezelfde aanvraag past bij je kamer, moment of device.</p></article>
+          <article class="card"><div class="icon">🏠</div><h3>Home Assistant hub</h3><p>Spotify autorisatie, voice assist, device-koppeling en clientconfiguratie lopen centraal via Home Assistant.</p></article>
+          <article class="card"><div class="icon">✨</div><h3>DJ aankondigingen</h3><p>Ontvang persoonlijke gesproken of zichtbare DJ-feedback. De stijl van de aankondiging kan via een eigen prompt worden aangepast.</p></article>
+          <article class="card"><div class="icon">🔐</div><h3>Veilige koppeling</h3><p>Account token en koppelgegevens blijven veilig bewaard in versleutelde opslag binnen de juiste omgeving.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Interfaces</h2>
+          <p>DJConnect is gemaakt voor meerdere schermen en gebruikssituaties, met dezelfde logica onder water.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card"><div class="icon">💻</div><h3>macOS</h3><p>Desktopbediening voor vaste controle over zoeken, output, playback en status.</p></article>
+          <article class="card"><div class="icon">📱</div><h3>iOS</h3><p>Mobiele bediening dichtbij: snel muziek aanvragen en je Home Assistant koppeling gebruiken.</p></article>
+          <article class="card"><div class="icon">🕹️</div><h3>ESP32 device</h3><p>Embedded bediening met fysieke interactie, lokaal netwerkgebruik en pairing via Home Assistant.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap grid-2">
+        <article class="card bonus">
+          <div class="icon">🎮</div>
+          <h2>Bonus: mini-games</h2>
+          <p>Voor de speelse momenten bevat DJConnect drie mini-games: Pong, Asteroids & Fly.</p>
+        </article>
+        <article class="card">
+          <h2>Voor gebruikers</h2>
+          <p>Begin bij de setup-flow, koppel DJConnect aan Home Assistant, download je app of firmware en gebruik daarna dezelfde muziekworkflow op je favoriete client.</p>
+          <p style="margin-top:18px"><a class="btn primary" href="start.html">Aan de slag</a></p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap legal">
+    <p>Copyright Peter van Tol 2026. All rights reserved.</p>
+    <p class="site-version">DJConnect website v3.1.5</p>
+  </footer>
+</body>
+</html>

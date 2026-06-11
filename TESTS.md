@@ -3,7 +3,8 @@
 ## Manual Checks
 
 - Open `wwwroot/index.html`.
-- Verify the homepage navigation shows `Wat is DJConnect` and `Download`, with `Aan de slag` only as the primary CTA button.
+- Verify the homepage navigation shows `Wat is DJConnect`, `Features` and `Download`, with `Aan de slag` only as the primary CTA button.
+- Open `wwwroot/features.html` and verify the core features and bonus mini-games are visible.
 - Verify the homepage hero uses a swipeable carousel with separate macOS, iPad/iPhone and LilyGO/ESP32 slides.
 - Verify the homepage hero no longer shows the availability pill.
 - Verify the homepage hero text says `Speel, Vraag aan, Ontvang Persoonlijke DJ aankondiging`.
@@ -16,7 +17,9 @@
 - Verify the start page clearly separates automatic HACS installation from manual setup steps.
 - Verify the start page links to Home Assistant voice assistant documentation, ESP firmware releases and app releases.
 - Verify the ESP pairing flow says Home Assistant configures the device automatically and the device is ready for use.
-- Verify the app pairing flow combines Client API URL entry and pairing completion into one step.
+- Verify the pairing switch has separate full-width panels for ESP device, iOS app and macOS app.
+- Verify each pairing panel has its own download as step 1.
+- Verify the app pairing flow uses the selected client type, not a combined iOS/macOS step.
 - Verify the troubleshooting cards use the current Spotify authorization, HACS refresh and local reachability wording.
 - Verify the Spotify Premium account is configured inside the DJConnect configuration section, not as a separate top-level setup block.
 - Verify the homepage embedded card opens `wwwroot/embedded.html`.

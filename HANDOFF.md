@@ -6,8 +6,9 @@
 - Production URL: https://djconnect.pages.dev
 - Cloudflare Pages project: `djconnect`
 - Publish directory: `wwwroot`
-- Current version: `3.1.4`
+- Current version: `3.1.5`
 - Main page: `wwwroot/index.html`
+- Features page: `wwwroot/features.html`
 - Start/setup page: `wwwroot/start.html`
 - macOS app page: `wwwroot/macos.html`
 - macOS binary download page: `wwwroot/macos-download.html`
@@ -18,7 +19,8 @@
 
 - The site is static HTML/CSS/JavaScript with no build step.
 - The homepage is platform-independent and routes users to setup and downloads.
-- The homepage navigation intentionally contains only `Wat is DJConnect` and `Download`; the `Aan de slag` route is the primary CTA button.
+- The homepage navigation intentionally contains `Wat is DJConnect`, `Features` and `Download`; the `Aan de slag` route is the primary CTA button.
+- The features page summarizes the main DJConnect functions and mentions the bonus mini-games: Pong, Asteroids & Fly.
 - The homepage hero uses a swipeable device carousel for macOS, iPad/iPhone and LilyGO/ESP32. Keep each device slide spacious and avoid compressing devices side-by-side.
 - The homepage has prepared App Store CTA placeholders with `data-store-link="macos"` and `data-store-link="ios"`.
 - The embedded page should point users to `pcvantol/djconnect-firmware` for firmware downloads and flashing. Do not reintroduce pre-flashed copy.

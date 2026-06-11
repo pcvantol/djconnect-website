@@ -55,7 +55,7 @@ test("site version is consistent", async () => {
   ]);
 
   const cleanVersion = version.trim();
-  assert.equal(cleanVersion, "3.1.4");
+  assert.equal(cleanVersion, "3.1.5");
   assert.equal(JSON.parse(packageJson).version, cleanVersion);
   assert.match(index, new RegExp(`DJConnect website v${cleanVersion}`));
   assert.match(embedded, new RegExp(`DJConnect website v${cleanVersion}`));
@@ -65,6 +65,7 @@ test("homepage has platform routes and app store placeholders", async () => {
   const index = await read("wwwroot/index.html");
   assert.match(index, /href="start\.html"/);
   assert.match(index, /data-i18n="navPlatform">Wat is DJConnect/);
+  assert.match(index, /href="features\.html" data-i18n="navFeatures">Features/);
   assert.match(index, /data-i18n="navApps">Download/);
   assert.doesNotMatch(index, /data-i18n="navEssentials"/);
   assert.doesNotMatch(index, /data-i18n="navStart">Aan de slag/);
@@ -122,21 +123,46 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /Open Home Assistant <strong>Settings -> Devices & services -> Add integration -> DJConnect<\/strong>/);
   assert.match(start, /Koppel je Spotify Premium account/);
   assert.match(start, /Configureer je assist pipeline voor stembesturing en pas de stijl van de DJ aankondigingen aan via eigen prompt/);
+  assert.match(start, /id="client-esp" checked/);
+  assert.match(start, /id="client-ios"/);
+  assert.match(start, /id="client-macos"/);
+  assert.match(start, /Download ESP firmware/);
+  assert.match(start, /Download iOS app/);
+  assert.match(start, /Download macOS app/);
   assert.match(start, /Zet het DJConnect device aan en verbind het device met WiFi via captive portal of Home Assistant BLE WiFi provisioning/);
   assert.match(start, /Open DJConnect app en kopieer de koppelgegevens/);
   assert.match(start, /Open DJConnect integratie setup in Home Assistant/);
-  assert.match(start, /Kies client type <strong>iOS app<\/strong> of <strong>macOS app<\/strong> &amp; plak de koppelgegevens/);
+  assert.match(start, /Kies client type <strong>iOS app<\/strong> &amp; plak de koppelgegevens/);
+  assert.match(start, /Kies client type <strong>macOS app<\/strong> &amp; plak de koppelgegevens/);
+  assert.doesNotMatch(start, /Kies client type <strong>iOS app<\/strong> of <strong>macOS app<\/strong>/);
   assert.match(start, /DJConnect app is klaar voor gebruik/);
   assert.match(start, /Voer de koppelcode in van het device/);
   assert.doesNotMatch(start, /<li>Rond koppeling af<\/li>/);
   assert.match(start, /Koppel DJConnect aan Home Assistant/);
   assert.match(start, /https:\/\/github\.com\/pcvantol\/djconnect-firmware/);
-  assert.match(start, /https:\/\/github\.com\/pcvantol\/djconnect-app-releases/);
+  assert.match(start, /href="ios\.html"/);
+  assert.match(start, /href="macos-download\.html"/);
   assert.match(start, /Ontvang persoonlijke DJ aankondigingen in de app of op je device/);
   assert.match(start, /Geen Spotify playback/);
   assert.match(start, /Controleer of de Spotify autorisatie in Home Assistant actief is, of herstel deze/);
   assert.match(start, /Ververs HACS update informatie en download de actuele versie van DJConnect/);
   assert.match(start, /Spotify is a trademark of Spotify AB/);
+});
+
+test("features page describes core functions and bonus games", async () => {
+  const features = await read("wwwroot/features.html");
+  assert.match(features, /<h1>Features<\/h1>/);
+  assert.match(features, /Muziek aanvragen/);
+  assert.match(features, /Spotify playback/);
+  assert.match(features, /Speaker keuze/);
+  assert.match(features, /Home Assistant hub/);
+  assert.match(features, /DJ aankondigingen/);
+  assert.match(features, /Veilige koppeling/);
+  assert.match(features, /macOS/);
+  assert.match(features, /iOS/);
+  assert.match(features, /ESP32 device/);
+  assert.match(features, /Bonus: mini-games/);
+  assert.match(features, /Pong, Asteroids & Fly/);
 });
 
 test("app subpages contain live GitHub release embeds", async () => {

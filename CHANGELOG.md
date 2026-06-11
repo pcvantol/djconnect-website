@@ -2,6 +2,14 @@
 
 All notable changes to this website are documented here.
 
+## DJConnect website v3.1.5 - 2026-06-11
+
+- Added a top-level Features page with the main DJConnect functions and bonus mini-games: Pong, Asteroids & Fly.
+- Added the Features route to the homepage navigation.
+- Reworked the start-page pairing section into a three-option switch for ESP device, iOS app and macOS app.
+- Moved downloads into the selected pairing panel as step 1, with separate targets for ESP firmware, iOS and macOS.
+- Updated tests and documentation for the Features route and pairing switch.
+
 ## DJConnect website v3.1.4 - 2026-06-11
 
 - Clarified the DJConnect configuration step for assist pipeline setup and custom DJ announcement prompt styling.

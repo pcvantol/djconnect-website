@@ -40,14 +40,14 @@
     .checklist li { list-style:none; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,0.055); padding:14px 16px; color:var(--muted); }
     .checklist li::before { content:"✓"; color:var(--green); font-weight:900; margin-right:10px; }
     .steps { counter-reset:steps; display:grid; gap:14px; margin:0; padding:0; }
-    .steps li { list-style:none; counter-increment:steps; display:grid; grid-template-columns:48px 1fr; gap:14px; border:1px solid var(--line); border-radius:20px; background:rgba(255,255,255,0.055); padding:16px; color:var(--muted); }
-    .steps li::before { content:counter(steps); width:48px; height:48px; display:grid; place-items:center; border-radius:16px; background:var(--cyan); color:#07110b; font-weight:950; }
+    .steps li { list-style:none; counter-increment:steps; display:flex; gap:14px; align-items:flex-start; border:1px solid var(--line); border-radius:20px; background:rgba(255,255,255,0.055); padding:16px; color:var(--muted); overflow-wrap:anywhere; }
+    .steps li::before { content:counter(steps); flex:0 0 48px; width:48px; height:48px; display:grid; place-items:center; border-radius:16px; background:var(--cyan); color:#07110b; font-weight:950; }
     .note { border-left:3px solid var(--green); padding:14px 16px; background:rgba(126,247,167,0.09); border-radius:14px; color:var(--muted); }
     .commands { display:flex; flex-wrap:wrap; gap:10px; }
     .commands span { border:1px solid var(--line); border-radius:999px; padding:8px 12px; background:rgba(255,255,255,0.07); color:var(--muted); }
     .legal { color:var(--muted); font-size:0.86rem; padding:34px 0 44px; border-top:1px solid var(--line); }
     .site-version { margin-top:14px; font-size:0.76rem; color:rgba(183,188,203,0.72); }
-    @media (max-width:900px) { .hero-grid,.grid-2,.grid-3 { grid-template-columns:1fr; } .nav-links { display:none; } }
+    @media (max-width:900px) { .hero-grid,.grid-2,.grid-3 { grid-template-columns:1fr; } .nav-inner { flex-wrap:wrap; padding:12px 0; } .nav-links { order:3; width:100%; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; } .nav-links::-webkit-scrollbar { display:none; } }
   </style>
 </head>
 <body>
@@ -55,6 +55,7 @@
     <div class="wrap nav-inner">
       <a class="brand" href="index.html"><img src="assets/djconnect/icon.svg" alt="" /><span>DJConnect</span></a>
       <div class="nav-links">
+        <a href="index.html">Home</a>
         <a href="#requirements">Vereisten</a>
         <a href="#hacs">HACS</a>
         <a href="#spotify">Spotify</a>

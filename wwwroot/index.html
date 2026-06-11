@@ -518,7 +518,15 @@
     @media (max-width: 980px) {
       .hero-grid, .section-head, .callout { grid-template-columns: 1fr; }
       .grid-3 { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
+      .nav-inner { flex-wrap: wrap; padding: 12px 0; }
+      .nav-links {
+        order: 3;
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 4px;
+        scrollbar-width: none;
+      }
+      .nav-links::-webkit-scrollbar { display: none; }
       .platform-stage { min-height: 520px; }
     }
 
@@ -549,7 +557,6 @@
         <a href="start.html" data-i18n="navStart">Aan de slag</a>
         <a href="#essentials" data-i18n="navEssentials">Essentials</a>
         <a href="#apps" data-i18n="navApps">Apps & devices</a>
-        <a href="embedded.html" data-i18n="navEmbedded">Embedded device</a>
       </div>
       <div class="nav-controls">
         <div class="lang-toggle" aria-label="Taalkeuze" data-i18n-attr="aria-label:languageToggle">
@@ -689,15 +696,6 @@
       </div>
     </section>
 
-    <section>
-      <div class="wrap callout">
-        <div>
-          <h2 data-i18n="calloutTitle">Start met de basis.</h2>
-          <p class="muted" data-i18n="calloutText">Wil je nu aan de slag met hardware? Ga naar de embedded-device pagina voor setup, benodigdheden en FAQ.</p>
-        </div>
-        <a class="btn primary" href="embedded.html" data-i18n="calloutButton">Naar embedded device</a>
-      </div>
-    </section>
   </main>
 
   <footer class="wrap legal">
@@ -716,7 +714,6 @@
         navStart: "Aan de slag",
         navEssentials: "Essentials",
         navApps: "Apps & devices",
-        navEmbedded: "Embedded device",
         navChoose: "Aan de slag",
         heroEyebrow: "macOS • iOS • Embedded ESP32 • Home Assistant",
         heroTitle: "DJConnect. Een muziekplatform met karakter.",
@@ -754,9 +751,6 @@
         embeddedTitle: "Embedded device",
         embeddedText: "De fysieke DJConnect-ervaring met LilyGO T-Embed, push-to-talk, displayfeedback en OTA-updates.",
         embeddedCta: "Koop & flash",
-        calloutTitle: "Start met de basis.",
-        calloutText: "Wil je nu aan de slag met hardware? Ga naar de embedded-device pagina voor setup, benodigdheden en FAQ.",
-        calloutButton: "Naar embedded device",
         legalCopyright: "Copyright Peter van Tol 2026. All rights reserved. DJConnect firmware is proprietary software. The Home Assistant integration may be distributed separately for use with DJConnect devices.",
         legalSpotify: "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility."
       },
@@ -769,7 +763,6 @@
         navStart: "How to start",
         navEssentials: "Essentials",
         navApps: "Apps & devices",
-        navEmbedded: "Embedded device",
         navChoose: "How to start",
         heroEyebrow: "macOS • iOS • Embedded ESP32 • Home Assistant",
         heroTitle: "DJConnect. A music platform with character.",
@@ -807,9 +800,6 @@
         embeddedTitle: "Embedded device",
         embeddedText: "The physical DJConnect experience with LilyGO T-Embed, push-to-talk, display feedback and OTA updates.",
         embeddedCta: "Buy & flash",
-        calloutTitle: "Start with the basics.",
-        calloutText: "Want to start with hardware now? Go to the embedded-device page for setup, requirements and FAQ.",
-        calloutButton: "Go to embedded device",
         legalCopyright: "Copyright Peter van Tol 2026. All rights reserved. DJConnect firmware is proprietary software. The Home Assistant integration may be distributed separately for use with DJConnect devices.",
         legalSpotify: "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility."
       }

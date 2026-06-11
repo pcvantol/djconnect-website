@@ -927,7 +927,15 @@
       .platform-header h2 { max-width: 16ch; }
       .platform-tabs { width: 100%; }
       .platform-panel { min-height: 368px; }
-      .nav-links { display: none; }
+      .nav-inner { flex-wrap: wrap; padding: 12px 0; }
+      .nav-links {
+        order: 3;
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 4px;
+        scrollbar-width: none;
+      }
+      .nav-links::-webkit-scrollbar { display: none; }
     }
 
     @media (max-width: 620px) {

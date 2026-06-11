@@ -80,40 +80,39 @@ mapfile -t RELEASE_TAGS < <(gh release list --limit 100 --json tagName --jq '.[]
 
 if [[ ${#RELEASE_TAGS[@]} -eq 0 ]]; then
   echo "No GitHub releases found."
-  exit 0
-fi
-
-DELETED="false"
-for TAG in "${RELEASE_TAGS[@]}"; do
-  if [[ "$TAG" == "$KEEP_TAG" ]]; then
-    echo "Keeping ${TAG}"
-    continue
-  fi
-
-  DELETED="true"
-  if [[ "$DRY_RUN" == "true" ]]; then
-    echo "Would delete release and tag ${TAG}"
-    continue
-  fi
-
-  echo "Deleting GitHub release ${TAG}"
-  gh release delete "$TAG" --yes
-
-  if git rev-parse "$TAG" >/dev/null 2>&1; then
-    echo "Deleting local tag ${TAG}"
-    git tag -d "$TAG"
-  fi
-
-  if git ls-remote --tags origin "$TAG" | grep -q "$TAG"; then
-    echo "Deleting remote tag ${TAG}"
-    git push origin ":refs/tags/${TAG}"
-  fi
-done
-
-if [[ "$DELETED" == "false" ]]; then
-  echo "No old releases to clean up."
 else
-  echo "Release/tag cleanup complete."
+  DELETED="false"
+  for TAG in "${RELEASE_TAGS[@]}"; do
+    if [[ "$TAG" == "$KEEP_TAG" ]]; then
+      echo "Keeping ${TAG}"
+      continue
+    fi
+
+    DELETED="true"
+    if [[ "$DRY_RUN" == "true" ]]; then
+      echo "Would delete release and tag ${TAG}"
+      continue
+    fi
+
+    echo "Deleting GitHub release ${TAG}"
+    gh release delete "$TAG" --yes
+
+    if git rev-parse "$TAG" >/dev/null 2>&1; then
+      echo "Deleting local tag ${TAG}"
+      git tag -d "$TAG"
+    fi
+
+    if git ls-remote --tags origin "$TAG" | grep -q "$TAG"; then
+      echo "Deleting remote tag ${TAG}"
+      git push origin ":refs/tags/${TAG}"
+    fi
+  done
+
+  if [[ "$DELETED" == "false" ]]; then
+    echo "No old releases to clean up."
+  else
+    echo "Release/tag cleanup complete."
+  fi
 fi
 
 if [[ "$SKIP_RUNS" == "true" ]]; then

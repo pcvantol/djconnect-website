@@ -26,3 +26,7 @@ All notable changes to this website are documented here.
 - Extended `cleanup_old_releases.sh` to remove older GitHub Actions workflow runs in addition to old releases and tags.
 - Removed the duplicate macOS download page and embedded app binary downloads directly on the macOS page.
 - Pointed the embedded page release embed to `pcvantol/djconnect-firmware` releases.
+- Routed the start-page ESP firmware button to the embedded page instead of directly to GitHub.
+- Renamed embedded page release CTAs from setup wording to `Download`.
+- Added a `Download` menu item on the start page that jumps to the app/device pairing section.
+- Updated `release.sh` to remove older GitHub Actions workflow runs by default and keep only the latest run.

@@ -46,7 +46,7 @@ Minimum Cloudflare token permissions:
 
 Use `./release.sh` for the standard release flow.
 
-The release script runs tests, pushes `main`, creates a `vX.Y.Z` tag, creates a GitHub Release and deploys to Cloudflare Pages.
+The release script runs tests, pushes `main`, creates a `vX.Y.Z` tag, creates a GitHub Release, deploys to Cloudflare Pages and removes older GitHub Actions workflow runs. By default, only the newest workflow run remains.
 
 ```bash
 npm test
@@ -58,6 +58,12 @@ If `CLOUDFLARE_API_TOKEN` is only configured as a GitHub Actions secret, run the
 
 ```bash
 ./release.sh --skip-deploy
+```
+
+To keep more workflow runs during a release:
+
+```bash
+KEEP_WORKFLOW_RUNS=3 ./release.sh --skip-deploy
 ```
 
 If the version tag and GitHub Release already exist and only the Pages deployment still needs to run, deploy the current `wwwroot` folder directly:

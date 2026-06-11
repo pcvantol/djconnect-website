@@ -114,6 +114,7 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /Open DJConnect in HACS/);
   assert.match(start, /https:\/\/my\.home-assistant\.io\/redirect\/hacs_repository/);
   assert.match(start, /href="#spotify" data-i18n="navInstall">Installeren<\/a>/);
+  assert.match(start, /href="#pairing" data-i18n="navDownload">Download<\/a>/);
   assert.match(start, /class="lang-toggle"/);
   assert.doesNotMatch(start, /href="#hacs">HACS<\/a>/);
   assert.doesNotMatch(start, /href="#spotify">Voice<\/a>/);
@@ -155,7 +156,7 @@ test("how-to-start page covers setup flow", async () => {
   assert.doesNotMatch(start, /<li>Rond koppeling af<\/li>/);
   assert.match(start, /4\. Koppel app of device/);
   assert.match(start, /5\. Klaar voor gebruik/);
-  assert.match(start, /https:\/\/github\.com\/pcvantol\/djconnect-firmware/);
+  assert.match(start, /href="embedded\.html">Download ESP firmware<\/a>/);
   assert.match(start, /href="ios\.html"/);
   assert.match(start, /href="macos\.html"/);
   assert.match(start, /Ontvang persoonlijke DJ aankondigingen in de app of op je device/);
@@ -254,8 +255,9 @@ test("embedded page links back to platform homepage", async () => {
   assert.doesNotMatch(embedded, /href="#quickstart"/);
   assert.doesNotMatch(embedded, /href="#requirements"/);
   assert.doesNotMatch(embedded, /href="#faq"/);
-  assert.match(embedded, /href="start\.html" data-i18n="navStartSetup">Start installatie<\/a>/);
-  assert.match(embedded, /href="start\.html" data-i18n="heroPrimary">Start installatie<\/a>/);
+  assert.match(embedded, /href="#releases" data-i18n="navReleases">Download<\/a>/);
+  assert.match(embedded, /href="#releases" data-i18n="navStartSetup">Download<\/a>/);
+  assert.match(embedded, /href="#releases" data-i18n="heroPrimary">Download<\/a>/);
   assert.doesNotMatch(embedded, /id="quickstart"/);
   assert.doesNotMatch(embedded, /id="requirements"/);
   assert.doesNotMatch(embedded, /id="faq"/);

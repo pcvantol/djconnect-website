@@ -16,7 +16,7 @@
 - Open `wwwroot/start.html` and verify the five setup sections: voice assist pipeline, HACS installation, DJConnect configuration, pairing/downloads and first use.
 - Verify the start page has a clear Home button back to `wwwroot/index.html`.
 - Verify the start page clearly separates automatic HACS installation from manual setup steps.
-- Verify the start page links to Home Assistant voice assistant documentation, ESP firmware releases and app releases.
+- Verify the start page links to Home Assistant voice assistant documentation, the embedded firmware page and app releases.
 - Verify the ESP pairing flow says Home Assistant configures the device automatically and the device is ready for use.
 - Verify the pairing switch has separate full-width panels for ESP device, iOS app, macOS app and Raspberry Pi app.
 - Verify each pairing panel has its own download as step 1.
@@ -58,6 +58,8 @@ For a full release with a new tag:
 export CLOUDFLARE_API_TOKEN='your-cloudflare-pages-token'
 ./release.sh
 ```
+
+`release.sh` keeps only the newest GitHub Actions workflow run by default. Use `KEEP_WORKFLOW_RUNS=N` to keep more.
 
 For a deploy-only pass after a tag/release already exists:
 

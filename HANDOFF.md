@@ -45,6 +45,24 @@
 3. Run `./release.sh`.
 4. Verify the GitHub Release and https://djconnect.pages.dev.
 
+Set the token only in the current shell when needed:
+
+```bash
+export CLOUDFLARE_API_TOKEN='your-cloudflare-pages-token'
+```
+
+If `./release.sh` was already used with `--skip-deploy` and the tag/release already exists, do not rerun the full release script. Deploy the already released version directly:
+
+```bash
+npx wrangler pages deploy wwwroot --project-name djconnect --branch main
+```
+
+After deploy, confirm the live footer version:
+
+```bash
+curl -s https://djconnect.pages.dev | grep "DJConnect website v"
+```
+
 ## Current Verification
 
 - `npm test` covers version consistency, route presence, homepage navigation/copy, release embeds, download embeds, translation keys, footer copyright, firmware links, compact embedded page structure, Raspberry Pi preparation, LilyGO visual hygiene and stale pre-flashed wording.

@@ -34,7 +34,22 @@ The release script runs tests, pushes `main`, creates a `vX.Y.Z` tag, creates a 
 
 ```bash
 npm test
+export CLOUDFLARE_API_TOKEN='your-cloudflare-pages-token'
 ./release.sh
+```
+
+If the version tag and GitHub Release already exist and only the Pages deployment still needs to run, deploy the current `wwwroot` folder directly:
+
+```bash
+export CLOUDFLARE_API_TOKEN='your-cloudflare-pages-token'
+npx wrangler pages deploy wwwroot --project-name djconnect --branch main
+```
+
+The live site should be checked for both HTTP availability and the footer version:
+
+```bash
+curl -I https://djconnect.pages.dev
+curl -s https://djconnect.pages.dev | grep "DJConnect website v"
 ```
 
 ## Live Releases

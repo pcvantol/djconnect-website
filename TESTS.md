@@ -45,19 +45,35 @@ Run before deploying:
 
 ```bash
 node --test
+git diff --check
 git status --short
 test -f wwwroot/index.html
 test -f wwwroot/start.html
 test -f wwwroot/assets/djconnect/site.webmanifest
 ```
 
+For a full release with a new tag:
+
+```bash
+export CLOUDFLARE_API_TOKEN='your-cloudflare-pages-token'
+./release.sh
+```
+
+For a deploy-only pass after a tag/release already exists:
+
+```bash
+export CLOUDFLARE_API_TOKEN='your-cloudflare-pages-token'
+npx wrangler pages deploy wwwroot --project-name djconnect --branch main
+```
+
 After deployment:
 
 ```bash
 curl -I https://djconnect.pages.dev
+curl -s https://djconnect.pages.dev | grep "DJConnect website v"
 ```
 
-Expected result: `HTTP/2 200`.
+Expected result: `HTTP/2 200` and a footer version matching `VERSION`.
 
 ## Future Automation
 

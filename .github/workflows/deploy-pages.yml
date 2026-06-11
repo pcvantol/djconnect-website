@@ -28,4 +28,5 @@ jobs:
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          command: pages deploy wwwroot --project-name djconnect --branch main
+          accountId: efe77cadf8317a53832fca0848e3ae51
+          command: pages deploy wwwroot --project-name djconnect --branch main --account-id efe77cadf8317a53832fca0848e3ae51

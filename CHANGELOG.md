@@ -7,6 +7,9 @@ All notable changes to this website are documented here.
 - Moved "Aan de slag" to the first homepage navigation position.
 - Fixed the Home Assistant badge icon rendering by using the icon asset without distortion.
 - Updated homepage essentials copy for encrypted token storage and multi-client Home Assistant positioning.
+- Reworked the homepage hero device visual into a swipeable carousel for macOS, iOS and ESP32.
+- Replaced abstract equalizer bars with play and radio-microphone iconography.
+- Removed trailing periods from start-page step lists and increased spacing between stacked instruction blocks.
 
 ## DJConnect website v3.1.0 - 2026-06-11
 

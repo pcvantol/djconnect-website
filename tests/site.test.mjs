@@ -79,9 +79,14 @@ test("homepage has platform routes and app store placeholders", async () => {
 test("homepage hero uses the current device visual and copy", async () => {
   const index = await read("wwwroot/index.html");
   assert.match(index, /device-stack/);
+  assert.match(index, /device-slide-mac/);
+  assert.match(index, /device-slide-ios/);
+  assert.match(index, /device-slide-embedded/);
   assert.match(index, /class="macbook"/);
   assert.match(index, /class="ipad"/);
   assert.match(index, /class="iphone"/);
+  assert.match(index, /play-icon/);
+  assert.match(index, /radio-mic-icon/);
   assert.match(index, /Speel, Vraag aan, Ontvang Persoonlijke DJ aankondiging/);
   assert.doesNotMatch(index, /DJConnect Studio/);
   assert.doesNotMatch(index, /Queue, output en DJ-reactie/);

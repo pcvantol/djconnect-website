@@ -33,7 +33,8 @@
     section { padding:62px 0; }
     .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:start; }
     .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
-    .section-followup { margin-top:28px; }
+    .section-followup { margin-top:40px; }
+    section .wrap + .wrap { margin-top:40px; }
     .card { border:1px solid var(--line); border-radius:22px; background:var(--panel); padding:24px; }
     .card p,.muted { color:var(--muted); margin:0; }
     .route-card { min-height:100%; }
@@ -76,7 +77,6 @@
           <div class="eyebrow"><span class="dot"></span><span>Aan de slag met Home Assistant</span></div>
           <h1>DJConnect. Jouw persoonlijke muziek DJ.</h1>
           <p class="lead">Vraag muziek. Krijg persoonlijk aangekondigd.</p>
-          <a class="btn primary" href="https://my.home-assistant.io/redirect/hacs_repository/?owner=pcvantol&repository=djconnect&category=integration" target="_blank" rel="noopener">Home Assistant Community Store</a>
         </div>
         <div class="card">
           <h2>Wat ga je doen?</h2>
@@ -92,13 +92,13 @@
           <p class="lead">Deze checklist voorkomt de meeste installatieproblemen.</p>
         </div>
         <ul class="checklist">
-          <li>Home Assistant installatie.</li>
-          <li>HACS geïnstalleerd in Home Assistant.</li>
-          <li>Spotify Premium account.</li>
-          <li>Home Assistant Assist pipeline met werkende STT en TTS.</li>
-          <li>DJConnect device of DJConnect iOS/macOS app.</li>
-          <li>Home Assistant en DJConnect client op hetzelfde lokale netwerk tijdens pairing.</li>
-          <li>Voor Spotify OAuth: een externe HTTPS Home Assistant URL, bij voorkeur Nabu Casa.</li>
+          <li>Home Assistant installatie</li>
+          <li>HACS geïnstalleerd in Home Assistant</li>
+          <li>Spotify Premium account</li>
+          <li>Home Assistant Assist pipeline met werkende STT en TTS</li>
+          <li>DJConnect device of DJConnect iOS/macOS app</li>
+          <li>Home Assistant en DJConnect client op hetzelfde lokale netwerk tijdens pairing</li>
+          <li>Voor Spotify OAuth: een externe HTTPS Home Assistant URL, bij voorkeur Nabu Casa</li>
         </ul>
       </div>
       <div class="wrap grid-3 section-followup">
@@ -120,14 +120,14 @@
           <span class="route-label">Handmatig</span>
           <h3>Voeg de repository zelf toe</h3>
           <ol class="steps">
-            <li>Open Home Assistant.</li>
-            <li>Open HACS.</li>
-            <li>Ga naar <strong>Integrations</strong>.</li>
-            <li>Voeg custom repository <code>https://github.com/pcvantol/djconnect</code> toe.</li>
-            <li>Kies category <strong>Integration</strong>.</li>
-            <li>Zoek en installeer <strong>DJConnect</strong>.</li>
-            <li>Herstart Home Assistant.</li>
-            <li>Ga naar <strong>Settings -> Devices & services -> Add integration -> DJConnect</strong>.</li>
+            <li>Open Home Assistant</li>
+            <li>Open HACS</li>
+            <li>Ga naar <strong>Integrations</strong></li>
+            <li>Voeg custom repository <code>https://github.com/pcvantol/djconnect</code> toe</li>
+            <li>Kies category <strong>Integration</strong></li>
+            <li>Zoek en installeer <strong>DJConnect</strong></li>
+            <li>Herstart Home Assistant</li>
+            <li>Ga naar <strong>Settings -> Devices & services -> Add integration -> DJConnect</strong></li>
           </ol>
         </div>
       </div>
@@ -141,11 +141,11 @@
           <div class="note">Gebruik bij voorkeur je Nabu Casa HTTPS URL als Home Assistant externe URL.</div>
         </div>
         <ol class="steps">
-          <li>Log in met je Spotify Premium account.</li>
-          <li>Geef toestemming.</li>
-          <li>Je komt terug bij Home Assistant.</li>
-          <li>Daarna beheert Home Assistant de Spotify koppeling.</li>
-          <li>Vraagt Spotify later opnieuw autorisatie, herstel dit via Home Assistant Repairs of de DJConnect options flow.</li>
+          <li>Log in met je Spotify Premium account</li>
+          <li>Geef toestemming</li>
+          <li>Je komt terug bij Home Assistant</li>
+          <li>Daarna beheert Home Assistant de Spotify koppeling</li>
+          <li>Vraagt Spotify later opnieuw autorisatie, herstel dit via Home Assistant Repairs of de DJConnect options flow</li>
         </ol>
       </div>
     </section>
@@ -158,25 +158,13 @@
           <p class="muted">STT zet je gesproken muziekvraag om naar tekst. TTS spreekt de DJ aankondiging uit op het DJConnect device of in de app. De DJ aankondiging is instelbaar in de DJConnect options flow.</p>
         </div>
         <ol class="steps">
-          <li>Open <strong>Settings -> Voice assistants</strong>.</li>
-          <li>Maak of controleer een Assist pipeline.</li>
-          <li>Kies een STT provider voor spraak naar tekst.</li>
-          <li>Kies een TTS provider voor gesproken DJ aankondigingen.</li>
-          <li>Test de pipeline in Home Assistant.</li>
-          <li>Kies deze pipeline eventueel in de DJConnect options flow.</li>
+          <li>Open <strong>Settings -> Voice assistants</strong></li>
+          <li>Maak of controleer een Assist pipeline</li>
+          <li>Kies een STT provider voor spraak naar tekst</li>
+          <li>Kies een TTS provider voor gesproken DJ aankondigingen</li>
+          <li>Test de pipeline in Home Assistant</li>
+          <li>Kies deze pipeline eventueel in de DJConnect options flow</li>
         </ol>
-      </div>
-      <div class="wrap">
-        <div class="card">
-          <h3>Voorbeelden van opdrachten</h3>
-          <div class="commands">
-            <span>Speel Nirvana</span>
-            <span>Ik wil Pearl Jam horen</span>
-            <span>Zet London Grammar op</span>
-            <span>Speel maar af Above & Beyond</span>
-            <span>Ik heb wel zin in Metallica</span>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -189,25 +177,25 @@
         <article class="card">
           <h3>ESP device</h3>
           <ol class="steps">
-            <li>Zet het DJConnect device aan.</li>
-            <li>Verbind het device met WiFi via setup mode, BLE of captive portal.</li>
-            <li>Open de DJConnect integration setup in Home Assistant.</li>
-            <li>Voer de koppelcode in die op het device-scherm staat.</li>
-            <li>Home Assistant koppelt het device en stuurt een lokaal device token.</li>
-            <li>Wacht tot de statusindicator groen wordt.</li>
+            <li>Zet het DJConnect device aan</li>
+            <li>Verbind het device met WiFi via setup mode, BLE of captive portal</li>
+            <li>Open de DJConnect integration setup in Home Assistant</li>
+            <li>Voer de koppelcode in die op het device-scherm staat</li>
+            <li>Home Assistant koppelt het device en stuurt een lokaal device token</li>
+            <li>Wacht tot de statusindicator groen wordt</li>
           </ol>
           <p class="muted">ESP devices gebruiken lokale communicatie met Home Assistant. De cloud URL wordt niet gebruikt voor device commands. Als mDNS niet werkt, kun je de Client API URL handmatig invullen.</p>
         </article>
         <article class="card">
           <h3>iOS/macOS app</h3>
           <ol class="steps">
-            <li>Open de DJConnect app.</li>
-            <li>Ga naar <strong>Settings</strong>.</li>
-            <li>Kopieer de <strong>Client API URL</strong>.</li>
-            <li>Open DJConnect setup in Home Assistant.</li>
-            <li>Kies client type <strong>iOS app</strong> of <strong>macOS app</strong>.</li>
-            <li>Vul de koppelcode en Client API URL in.</li>
-            <li>Rond pairing af.</li>
+            <li>Open de DJConnect app</li>
+            <li>Ga naar <strong>Settings</strong></li>
+            <li>Kopieer de <strong>Client API URL</strong></li>
+            <li>Open DJConnect setup in Home Assistant</li>
+            <li>Kies client type <strong>iOS app</strong> of <strong>macOS app</strong></li>
+            <li>Vul de koppelcode en Client API URL in</li>
+            <li>Rond pairing af</li>
           </ol>
           <p class="muted">Voor iOS/macOS is de Client API URL verplicht. De app en Home Assistant moeten elkaar lokaal kunnen bereiken.</p>
         </article>
@@ -221,14 +209,14 @@
           <p class="lead">Na pairing kun je deze punten nalopen.</p>
         </div>
         <ul class="checklist">
-          <li>DJConnect device/app staat als apparaat in Home Assistant.</li>
-          <li>Status is verbonden/gepaired.</li>
-          <li>Spotify is gekoppeld.</li>
-          <li>Playback proxy kan play/pause doen.</li>
-          <li>Voice/PTT start muziek.</li>
-          <li>DJ aankondiging verschijnt of wordt uitgesproken.</li>
-          <li>Last command, last track en debug attributen worden gevuld.</li>
-          <li>Firmware update entity verschijnt alleen voor ESP devices.</li>
+          <li>DJConnect device/app staat als apparaat in Home Assistant</li>
+          <li>Status is verbonden/gepaired</li>
+          <li>Spotify is gekoppeld</li>
+          <li>Playback proxy kan play/pause doen</li>
+          <li>Voice/PTT start muziek</li>
+          <li>DJ aankondiging verschijnt of wordt uitgesproken</li>
+          <li>Last command, last track en debug attributen worden gevuld</li>
+          <li>Firmware update entity verschijnt alleen voor ESP devices</li>
         </ul>
       </div>
     </section>

@@ -191,6 +191,31 @@
 
     .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
 
+    .examples-band {
+      padding: 0 0 58px;
+    }
+
+    .example-card h2 {
+      font-size: clamp(1.4rem, 2.2vw, 2rem);
+      margin-bottom: 18px;
+      max-width: none;
+    }
+
+    .commands {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .commands span {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: rgba(255,255,255,0.07);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
     .platform-stage {
       min-height: 560px;
       border: 1px solid var(--line);
@@ -227,11 +252,37 @@
 
     .device-stack {
       min-height: 450px;
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-padding: 0;
+      padding: 0 0 16px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(102, 224, 255, 0.55) rgba(255,255,255,0.08);
+    }
+
+    .device-stack::-webkit-scrollbar { height: 8px; }
+    .device-stack::-webkit-scrollbar-track { background: rgba(255,255,255,0.08); border-radius: 999px; }
+    .device-stack::-webkit-scrollbar-thumb { background: rgba(102, 224, 255, 0.55); border-radius: 999px; }
+
+    .device-slide {
+      flex: 0 0 100%;
+      min-height: 430px;
+      scroll-snap-align: start;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 24px;
+      background: rgba(5, 7, 11, 0.22);
       display: grid;
-      grid-template-columns: 1.16fr 0.82fr 0.48fr;
-      grid-template-rows: minmax(260px, auto) auto;
-      gap: 18px;
-      align-items: end;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .device-slide-ios {
+      grid-template-columns: minmax(0, 1fr) minmax(92px, 0.42fr);
+      gap: 26px;
+      align-items: center;
     }
 
     .macbook-frame,
@@ -243,10 +294,7 @@
     }
 
     .macbook {
-      grid-column: 1;
-      grid-row: 1;
-      align-self: end;
-      min-width: 0;
+      width: min(92%, 520px);
     }
 
     .macbook-frame {
@@ -293,12 +341,64 @@
     .bars span:nth-child(4) { height: 88%; }
     .bars span:nth-child(5) { height: 62%; }
 
+    .music-symbols {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .play-icon,
+    .radio-mic-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 22px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(102,224,255,0.96), rgba(139,92,246,0.9));
+      box-shadow: 0 18px 36px rgba(0,0,0,0.26);
+    }
+
+    .play-icon::before {
+      content: "";
+      width: 0;
+      height: 0;
+      border-top: 16px solid transparent;
+      border-bottom: 16px solid transparent;
+      border-left: 24px solid #06110c;
+      margin-left: 5px;
+    }
+
+    .radio-mic-icon {
+      position: relative;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.16);
+    }
+
+    .radio-mic-icon::before {
+      content: "";
+      width: 18px;
+      height: 32px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--cyan), var(--green));
+      box-shadow: 0 0 0 6px rgba(102,224,255,0.14);
+    }
+
+    .radio-mic-icon::after {
+      content: "";
+      position: absolute;
+      width: 38px;
+      height: 38px;
+      border: 2px solid rgba(126,247,167,0.48);
+      border-left-color: transparent;
+      border-bottom-color: transparent;
+      border-radius: 50%;
+      transform: rotate(45deg);
+    }
+
     .ipad {
-      grid-column: 2;
-      grid-row: 1;
-      align-self: end;
       justify-self: end;
-      width: min(100%, 240px);
+      width: min(100%, 340px);
       aspect-ratio: 1.28;
       border-radius: 28px;
       padding: 12px;
@@ -320,11 +420,9 @@
     }
 
     .iphone {
-      grid-column: 3;
-      grid-row: 1;
       align-self: center;
-      justify-self: end;
-      width: min(100%, 112px);
+      justify-self: start;
+      width: min(100%, 126px);
       aspect-ratio: 0.48;
       border-radius: 26px;
       padding: 9px;
@@ -386,10 +484,7 @@
     .line-set span:nth-child(2) { width: 68%; }
 
     .embedded {
-      grid-column: 1 / 3;
-      grid-row: 2;
-      width: min(58%, 310px);
-      justify-self: center;
+      width: min(84%, 430px);
       border: 0;
       background: transparent;
       box-shadow: none;
@@ -569,17 +664,16 @@
       .wrap { width: min(100% - 24px, var(--max)); }
       .hero { padding-top: 48px; }
       .platform-stage { min-height: 470px; padding: 18px; }
+      .examples-band { padding-bottom: 42px; }
+      .commands span { white-space: normal; }
       .stage-top { align-items: start; flex-direction: column; }
-      .device-stack {
-        min-height: 390px;
-        grid-template-columns: 1fr 0.56fr;
-        grid-template-rows: auto auto;
-        gap: 14px;
-      }
-      .macbook { grid-column: 1 / -1; grid-row: 1; }
-      .ipad { grid-column: 1; grid-row: 2; width: min(100%, 220px); justify-self: start; }
-      .iphone { grid-column: 2; grid-row: 2; width: min(100%, 98px); align-self: center; }
-      .embedded { display: none; }
+      .device-stack { min-height: 390px; gap: 12px; }
+      .device-slide { min-height: 370px; padding: 16px; }
+      .device-slide-ios { grid-template-columns: 1fr 0.5fr; gap: 14px; }
+      .macbook { width: min(100%, 360px); }
+      .ipad { width: min(100%, 220px); }
+      .iphone { width: min(100%, 96px); }
+      .embedded { width: min(100%, 310px); }
       .platform-card .topline { flex-direction: column; }
       .nav-controls .btn { display: none; }
     }
@@ -612,8 +706,8 @@
     <header class="hero">
       <div class="wrap hero-grid">
         <div>
-          <div class="eyebrow"><span data-i18n="heroEyebrow">macOS • iOS • Embedded ESP32 • Home Assistant</span></div>
-          <h1 data-i18n="heroTitle">DJConnect. Een muziekplatform met karakter.</h1>
+          <div class="eyebrow"><span data-i18n="heroEyebrow">Beschikbaar voor macOS, iOS en ESP32, integrated with Home Assistant</span></div>
+          <h1 data-i18n="heroTitle">DJConnect. Muziekbediening met karakter.</h1>
           <p class="lead" data-i18n="heroLead">DJConnect brengt spraak, muziekbediening en een persoonlijke DJ-reactie samen. De kern blijft hetzelfde op elk device: vraag muziek, kies waar het speelt en krijg directe feedback terug.</p>
           <div class="hero-actions">
             <a class="btn primary" href="start.html" data-i18n="heroPrimary">Aan de slag</a>
@@ -624,27 +718,51 @@
           <div class="stage-top">
             <span data-i18n="stageText">DJConnect. Jouw persoonlijke muziek DJ</span>
           </div>
-          <div class="device-stack" aria-hidden="true">
-            <div class="macbook">
-              <div class="macbook-frame">
-                <div class="screen">
-                  <div>
-                    <div class="window-dots"><span></span><span></span><span></span></div>
-                    <strong>DJConnect</strong>
-                    <p class="muted" data-i18n="stageScreenText">Speel, Vraag aan, Ontvang Persoonlijke DJ aankondiging</p>
+          <div class="device-stack" aria-label="Platform opties" data-i18n-attr="aria-label:stageCarouselLabel">
+            <article class="device-slide device-slide-mac">
+              <div class="macbook" aria-hidden="true">
+                <div class="macbook-frame">
+                  <div class="screen">
+                    <div>
+                      <div class="window-dots"><span></span><span></span><span></span></div>
+                      <strong>DJConnect</strong>
+                      <p class="muted" data-i18n="stageScreenText">Speel, Vraag aan, Ontvang Persoonlijke DJ aankondiging</p>
+                    </div>
+                    <div class="music-symbols">
+                      <span class="play-icon" aria-hidden="true"></span>
+                      <span class="radio-mic-icon" aria-hidden="true"></span>
+                    </div>
                   </div>
-                  <div class="bars"><span></span><span></span><span></span><span></span><span></span></div>
                 </div>
+                <div class="macbook-base"></div>
               </div>
-              <div class="macbook-base"></div>
-            </div>
-            <div class="ipad"><div class="mini-ui"><div class="cover"></div><div class="line-set"><span></span><span></span></div></div></div>
-            <div class="iphone"><div class="mini-ui"><div class="cover"></div><div class="line-set"><span></span><span></span></div></div></div>
-            <div class="embedded"><img src="assets/lilygo-t-embed-djconnect.svg" alt="" /></div>
+            </article>
+            <article class="device-slide device-slide-ios">
+              <div class="ipad" aria-hidden="true"><div class="mini-ui"><div class="cover"></div><div class="line-set"><span></span><span></span></div></div></div>
+              <div class="iphone" aria-hidden="true"><div class="mini-ui"><div class="cover"></div><div class="line-set"><span></span><span></span></div></div></div>
+            </article>
+            <article class="device-slide device-slide-embedded">
+              <div class="embedded" aria-hidden="true"><img src="assets/lilygo-t-embed-djconnect.svg" alt="" /></div>
+            </article>
           </div>
         </div>
       </div>
     </header>
+
+    <section class="examples-band" aria-label="Voorbeelden van opdrachten" data-i18n-attr="aria-label:examplesLabel">
+      <div class="wrap">
+        <div class="card example-card">
+          <h2 data-i18n="examplesTitle">Voorbeelden van opdrachten</h2>
+          <div class="commands">
+            <span data-i18n="exampleCommand1">Speel Nirvana</span>
+            <span data-i18n="exampleCommand2">Ik wil Pearl Jam horen</span>
+            <span data-i18n="exampleCommand3">Zet London Grammar op</span>
+            <span data-i18n="exampleCommand4">Speel maar af Above & Beyond</span>
+            <span data-i18n="exampleCommand5">Ik heb wel zin in Metallica</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section id="platform">
       <div class="wrap">
@@ -758,11 +876,19 @@
         navEssentials: "Essentials",
         navApps: "Apps & devices",
         navChoose: "Aan de slag",
-        heroEyebrow: "macOS • iOS • Embedded ESP32 • Home Assistant",
-        heroTitle: "DJConnect. Een muziekplatform met karakter.",
+        heroEyebrow: "Beschikbaar voor macOS, iOS en ESP32, integrated with Home Assistant",
+        heroTitle: "DJConnect. Muziekbediening met karakter.",
         heroLead: "DJConnect brengt spraak, muziekbediening en een persoonlijke DJ-reactie samen. De kern blijft hetzelfde op elk device: vraag muziek, kies waar het speelt en krijg directe feedback terug.",
         heroPrimary: "Aan de slag",
+        examplesLabel: "Voorbeelden van opdrachten",
+        examplesTitle: "Voorbeelden van opdrachten",
+        exampleCommand1: "Speel Nirvana",
+        exampleCommand2: "Ik wil Pearl Jam horen",
+        exampleCommand3: "Zet London Grammar op",
+        exampleCommand4: "Speel maar af Above & Beyond",
+        exampleCommand5: "Ik heb wel zin in Metallica",
         stageLabel: "DJConnect platformoverzicht",
+        stageCarouselLabel: "Platform opties",
         stageText: "DJConnect. Jouw persoonlijke muziek DJ",
         stageScreenText: "Speel, Vraag aan, Ontvang Persoonlijke DJ aankondiging",
         platformTitle: "De kern van DJConnect",
@@ -807,11 +933,19 @@
         navEssentials: "Essentials",
         navApps: "Apps & devices",
         navChoose: "How to start",
-        heroEyebrow: "macOS • iOS • Embedded ESP32 • Home Assistant",
-        heroTitle: "DJConnect. A music platform with character.",
+        heroEyebrow: "Available for macOS, iOS and ESP32, integrated with Home Assistant",
+        heroTitle: "DJConnect. Music control with character.",
         heroLead: "DJConnect brings voice, music control and a personal DJ response together. The core stays the same on every device: ask for music, choose where it plays and get direct feedback.",
         heroPrimary: "How to start",
+        examplesLabel: "Example commands",
+        examplesTitle: "Example commands",
+        exampleCommand1: "Play Nirvana",
+        exampleCommand2: "I want to hear Pearl Jam",
+        exampleCommand3: "Put on London Grammar",
+        exampleCommand4: "Play Above & Beyond",
+        exampleCommand5: "I feel like Metallica",
         stageLabel: "DJConnect platform overview",
+        stageCarouselLabel: "Platform options",
         stageText: "DJConnect. Your personal music DJ",
         stageScreenText: "Play, ask, receive a personal DJ announcement",
         platformTitle: "The core of DJConnect",

@@ -37,6 +37,11 @@
     section .wrap + .wrap { margin-top:40px; }
     .card { border:1px solid var(--line); border-radius:22px; background:var(--panel); padding:24px; box-shadow:0 12px 36px rgba(0,0,0,0.16); }
     .card p,.muted { color:var(--muted); margin:0; }
+    .hero-steps { display:grid; gap:14px; margin:0; padding:0; counter-reset:heroSteps; }
+    .hero-steps li { list-style:none; counter-increment:heroSteps; display:flex; align-items:center; gap:14px; color:var(--muted); font-size:1.08rem; font-weight:760; }
+    .hero-steps li::before { content:counter(heroSteps); flex:0 0 42px; width:42px; height:42px; display:grid; place-items:center; border-radius:999px; background:linear-gradient(135deg,var(--purple),#c084fc); color:var(--text); font-weight:950; box-shadow:0 14px 28px rgba(139,92,246,0.22); }
+    .hero-done { display:flex; align-items:center; gap:14px; margin-top:18px; color:var(--text); font-size:1.08rem; font-weight:820; }
+    .hero-done::before { content:"✓"; flex:0 0 42px; width:42px; height:42px; display:grid; place-items:center; border-radius:999px; background:linear-gradient(135deg,var(--cyan),var(--green)); color:#06110c; font-weight:950; }
     .route-card { min-height:100%; }
     .route-label { display:inline-flex; margin-bottom:14px; padding:6px 10px; border-radius:999px; background:rgba(102,224,255,0.14); color:#9becff; font-size:0.78rem; font-weight:850; text-transform:uppercase; letter-spacing:0.06em; }
     .route-card .btn { margin-top:22px; }
@@ -62,7 +67,7 @@
         <a href="#requirements">Vereisten</a>
         <a href="#hacs">HACS</a>
         <a href="#spotify">Spotify</a>
-        <a href="#pairing">Pairing</a>
+        <a href="#pairing">Koppelen</a>
         <a href="#troubleshooting">Hulp</a>
       </div>
       <a class="btn primary" href="#hacs">Start installatie</a>
@@ -78,7 +83,12 @@
         </div>
         <div class="card">
           <h2>Wat ga je doen?</h2>
-          <p class="muted">Je installeert de DJConnect integration in Home Assistant, koppelt Spotify, controleert je Assist pipeline en pairt daarna je ESP device of iOS/macOS app.</p>
+          <ol class="hero-steps">
+            <li>Integreer DJConnect in Home Assistant</li>
+            <li>Configureer je Spotify Premium account</li>
+            <li>Koppel de app of device</li>
+          </ol>
+          <div class="hero-done">Geniet van je eigen muziek, met je persoonlijke DJ</div>
         </div>
       </div>
     </header>
@@ -143,7 +153,6 @@
           <li>Geef toestemming</li>
           <li>Je komt terug bij Home Assistant</li>
           <li>Daarna beheert Home Assistant de Spotify koppeling</li>
-          <li>Vraagt Spotify later opnieuw autorisatie, herstel dit via Home Assistant Repairs of de DJConnect options flow</li>
         </ol>
       </div>
     </section>

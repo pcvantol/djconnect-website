@@ -59,11 +59,11 @@ For private GitHub repositories, set a Cloudflare Pages secret named `GITHUB_TOK
 
 ## Content Hygiene
 
-- Keep Dutch and English translation keys in sync on the homepage, embedded page, Features page and Raspberry Pi page.
+- Keep Dutch and English translation keys in sync on the homepage, embedded page, Features page, Raspberry Pi page, iOS page, macOS page and macOS download page.
 - Keep App Store links as placeholders until the macOS and iOS apps are published.
 - Do not describe embedded devices as pre-flashed; link users to the firmware repository and flashing flow instead.
 - Keep homepage navigation focused on `Wat is DJConnect`, `Features`, `Download` and the primary `Aan de slag` CTA.
 - Keep homepage hero device slides spacious: macOS, iPad/iPhone and LilyGO/ESP32 each get their own carousel slide.
 - Keep the start page aligned with the current setup order: Home Assistant voice pipeline, HACS, DJConnect configuration, client pairing and first use.
-- Keep the embedded page compact: experience, supported hardware, how it works, release embed and CTA. Detailed setup content belongs on `wwwroot/start.html`.
+- Keep the embedded page compact: supported hardware, how it works and release embed. Detailed setup, requirements, FAQ and experience content belong off this page.
 - Keep the footer version aligned with `VERSION`, `package.json` and `CHANGELOG.md`.

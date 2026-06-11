@@ -18,6 +18,10 @@
     .brand { display:flex; align-items:center; gap:12px; font-weight:850; }
     .brand img { width:36px; height:36px; border-radius:50%; }
     .nav-links { display:flex; gap:18px; color:var(--muted); font-size:0.94rem; }
+    .nav-controls { display:flex; align-items:center; gap:12px; }
+    .lang-toggle { display:inline-grid; grid-template-columns:repeat(2,1fr); min-width:86px; padding:3px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.06); }
+    .lang-toggle button { min-height:34px; border:0; border-radius:999px; background:transparent; color:var(--muted); font:inherit; font-size:0.82rem; font-weight:850; cursor:pointer; }
+    .lang-toggle button[aria-pressed="true"] { background:rgba(102,224,255,0.18); color:var(--text); }
     .btn { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:0 18px; border-radius:999px; border:1px solid var(--line); background:rgba(255,255,255,0.08); font-weight:800; }
     .btn.primary { border:0; color:#06110c; background:linear-gradient(135deg,var(--cyan),var(--green)); }
     .hero { padding:82px 0 52px; }
@@ -38,33 +42,39 @@
   <nav class="nav">
     <div class="wrap nav-inner">
       <a class="brand" href="index.html"><img src="assets/djconnect/icon.svg" alt="" /><span>DJConnect</span></a>
-      <div class="nav-links">
+      <div class="nav-links" aria-label="Navigatie" data-i18n-attr="aria-label:navLabel">
         <a href="macos.html">macOS</a>
         <a href="ios.html">iOS</a>
-        <a href="embedded.html">Embedded device</a>
+        <a href="embedded.html" data-i18n="navEmbedded">Embedded device</a>
       </div>
-      <a class="btn primary" href="https://github.com/pcvantol/djconnect-app-releases/releases" target="_blank" rel="noopener">GitHub releases</a>
+      <div class="nav-controls">
+        <div class="lang-toggle" aria-label="Taalkeuze" data-i18n-attr="aria-label:languageToggle">
+          <button type="button" data-lang="nl" aria-pressed="true">NL</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="btn primary" href="https://github.com/pcvantol/djconnect-app-releases/releases" target="_blank" rel="noopener">GitHub releases</a>
+      </div>
     </div>
   </nav>
   <main>
     <header class="hero">
       <div class="wrap grid-2">
         <div>
-          <h1>macOS downloads</h1>
-          <p class="lead">De nieuwste DJConnect macOS binaries, live opgehaald uit de publieke release-repo.</p>
-          <a class="btn" href="macos.html">Terug naar macOS</a>
+          <h1 data-i18n="heroTitle">macOS downloads</h1>
+          <p class="lead" data-i18n="heroLead">De nieuwste DJConnect macOS binaries uit de publieke release-repo.</p>
+          <a class="btn" href="macos.html" data-i18n="backCta">Terug naar macOS</a>
         </div>
         <div class="card">
-          <h2>Release source</h2>
-          <p>Downloads komen uit <code>pcvantol/djconnect-app-releases</code>. Publiceer daar een GitHub Release met `.dmg`, `.zip` of andere macOS assets; deze pagina toont ze automatisch.</p>
+          <h2 data-i18n="sourceTitle">Release source</h2>
+          <p><span data-i18n="sourceText">Downloads komen uit</span> <code>pcvantol/djconnect-app-releases</code>.</p>
         </div>
       </div>
     </header>
     <section>
       <div class="wrap grid-2">
         <div>
-          <h2>Beschikbare binaries</h2>
-          <p class="lead">Elke release toont de downloadbare assets, bestandsgrootte en downloadlink.</p>
+          <h2 data-i18n="downloadsTitle">Beschikbare binaries</h2>
+          <p class="lead" data-i18n="downloadsLead">Elke release toont de downloadbare assets, bestandsgrootte en downloadlink.</p>
         </div>
         <div class="download-list" data-github-downloads data-github-owner="pcvantol" data-github-repo="djconnect-app-releases" data-release-limit="5"></div>
       </div>
@@ -75,5 +85,60 @@
     <p class="site-version">DJConnect website v3.1.6</p>
   </footer>
   <script src="assets/downloads.js"></script>
+  <script>
+    const translations = {
+      nl: {
+        title: "DJConnect macOS downloads",
+        metaDescription: "Download de nieuwste DJConnect macOS binaries uit de publieke GitHub release-repo.",
+        navLabel: "Navigatie",
+        languageToggle: "Taalkeuze",
+        navEmbedded: "Embedded device",
+        heroTitle: "macOS downloads",
+        heroLead: "De nieuwste DJConnect macOS binaries uit de publieke release-repo.",
+        backCta: "Terug naar macOS",
+        sourceTitle: "Release source",
+        sourceText: "Downloads komen uit",
+        downloadsTitle: "Beschikbare binaries",
+        downloadsLead: "Elke release toont de downloadbare assets, bestandsgrootte en downloadlink."
+      },
+      en: {
+        title: "DJConnect macOS downloads",
+        metaDescription: "Download the newest DJConnect macOS binaries from the public GitHub release repo.",
+        navLabel: "Navigation",
+        languageToggle: "Language",
+        navEmbedded: "Embedded device",
+        heroTitle: "macOS downloads",
+        heroLead: "The newest DJConnect macOS binaries from the public release repo.",
+        backCta: "Back to macOS",
+        sourceTitle: "Release source",
+        sourceText: "Downloads come from",
+        downloadsTitle: "Available binaries",
+        downloadsLead: "Each release shows downloadable assets, file size and download link."
+      }
+    };
+    const applyLanguage = (language) => {
+      const dictionary = translations[language] || translations.nl;
+      document.documentElement.lang = language;
+      document.title = dictionary.title;
+      document.querySelector('meta[name="description"]').setAttribute("content", dictionary.metaDescription);
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        element.textContent = dictionary[element.getAttribute("data-i18n")] || element.textContent;
+      });
+      document.querySelectorAll("[data-i18n-attr]").forEach((element) => {
+        element.getAttribute("data-i18n-attr").split(",").forEach((mapping) => {
+          const [attribute, key] = mapping.split(":").map((part) => part.trim());
+          if (dictionary[key]) element.setAttribute(attribute, dictionary[key]);
+        });
+      });
+      document.querySelectorAll("[data-lang]").forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.lang === language));
+      });
+      localStorage.setItem("djconnect-language", language);
+    };
+    document.querySelectorAll("[data-lang]").forEach((button) => {
+      button.addEventListener("click", () => applyLanguage(button.dataset.lang));
+    });
+    applyLanguage(localStorage.getItem("djconnect-language") || "nl");
+  </script>
 </body>
 </html>

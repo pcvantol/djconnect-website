@@ -41,14 +41,14 @@
     .hero-steps li { list-style:none; counter-increment:heroSteps; display:flex; align-items:center; gap:14px; color:var(--muted); font-size:1.08rem; font-weight:760; }
     .hero-steps li::before { content:counter(heroSteps); flex:0 0 42px; width:42px; height:42px; display:grid; place-items:center; border-radius:999px; background:linear-gradient(135deg,var(--purple),#c084fc); color:var(--text); font-weight:950; box-shadow:0 14px 28px rgba(139,92,246,0.22); }
     .hero-done { display:flex; align-items:center; gap:14px; margin-top:18px; color:var(--text); font-size:1.08rem; font-weight:820; }
-    .hero-done::before { content:"✓"; flex:0 0 42px; width:42px; height:42px; display:grid; place-items:center; border-radius:999px; background:linear-gradient(135deg,var(--cyan),var(--green)); color:#06110c; font-weight:950; }
+    .hero-done::before { content:"♪"; flex:0 0 42px; width:42px; height:42px; display:grid; place-items:center; border-radius:999px; background:linear-gradient(135deg,var(--cyan),var(--green)); color:#06110c; font-weight:950; }
     .download-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
     .route-card { min-height:100%; }
     .route-label { display:inline-flex; margin-bottom:14px; padding:6px 10px; border-radius:999px; background:rgba(102,224,255,0.14); color:#9becff; font-size:0.78rem; font-weight:850; text-transform:uppercase; letter-spacing:0.06em; }
     .route-card .btn { margin-top:22px; }
     .checklist { display:grid; gap:12px; margin:0; padding:0; }
     .checklist li { list-style:none; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,0.055); padding:14px 16px; color:var(--muted); }
-    .checklist li::before { content:"✓"; color:var(--green); font-weight:900; margin-right:10px; }
+    .checklist li::before { content:"♪"; color:var(--green); font-weight:900; margin-right:10px; }
     .steps { counter-reset:steps; display:grid; gap:14px; margin:0; padding:0; }
     .steps li { list-style:none; counter-increment:steps; display:flex; gap:14px; align-items:flex-start; border:1px solid var(--line); border-radius:20px; background:rgba(255,255,255,0.055); padding:16px; color:var(--muted); overflow-wrap:anywhere; }
     .steps li::before { content:counter(steps); flex:0 0 48px; width:48px; height:48px; display:grid; place-items:center; border-radius:16px; background:var(--cyan); color:#07110b; font-weight:950; }
@@ -83,13 +83,10 @@
       <a class="brand" href="index.html"><img src="assets/djconnect/icon.svg" alt="" /><span>DJConnect</span></a>
       <div class="nav-links">
         <a href="index.html">Home</a>
-        <a href="#requirements">Vereisten</a>
-        <a href="#hacs">HACS</a>
-        <a href="#spotify">Voice</a>
-        <a href="#pairing">Koppelen</a>
+        <a href="#spotify">Installeren</a>
         <a href="#troubleshooting">Hulp</a>
       </div>
-      <a class="btn primary" href="#hacs">Start installatie</a>
+      <a class="btn primary" href="#spotify">Start installatie</a>
     </div>
   </nav>
 
@@ -138,7 +135,7 @@
     <section id="spotify">
       <div class="wrap grid-2">
         <div>
-          <h2>1. Configureer je voice assist pipeline in Home Assistant</h2>
+          <h2>1. Configureer assist pipeline in Home Assistant</h2>
           <p class="lead">DJConnect gebruikt je Home Assistant voice pipeline voor stembesturing en gesproken DJ aankondigingen.</p>
           <a class="btn" href="https://www.home-assistant.io/voice_control/voice_remote_cloud_assistant/" target="_blank" rel="noopener">Hulp bij Home Assistant voice assist</a>
         </div>
@@ -154,7 +151,7 @@
       <div class="wrap grid-2">
         <div class="card route-card">
           <span class="route-label">Automatisch</span>
-          <h2>2. Voeg DJConnect toe aan je Home Assistant</h2>
+          <h2>2. Voeg toe aan Home Assistant</h2>
           <p class="lead">Gebruik onderstaande Home Assistant Community Store knop om direct naar de DJConnect repository in HACS te gaan.</p>
           <a class="btn primary" href="https://my.home-assistant.io/redirect/hacs_repository/?owner=pcvantol&repository=djconnect&category=integration" target="_blank" rel="noopener">Open DJConnect in HACS</a>
         </div>
@@ -177,7 +174,7 @@
     <section id="assist">
       <div class="wrap grid-2">
         <div>
-          <h2>3. Configureer DJConnect</h2>
+          <h2>3. Configureer</h2>
           <p class="lead">Voeg DJConnect toe als Home Assistant integratie en koppel je Spotify account.</p>
         </div>
         <ol class="steps">
@@ -190,7 +187,7 @@
 
     <section id="pairing">
       <div class="wrap">
-        <h2>4. Koppel de app of device</h2>
+        <h2>4. Koppel app of device</h2>
         <p class="lead">Kies de route die past bij je client.</p>
       </div>
       <div class="wrap">
@@ -258,7 +255,7 @@
     <section id="check">
       <div class="wrap grid-2">
         <div>
-          <h2>5. Gebruik DJConnect</h2>
+          <h2>5. Klaar voor gebruik</h2>
           <p class="lead">Start met een Spotify Connect speaker en bedien daarna je muziek via DJConnect.</p>
         </div>
         <ol class="steps">

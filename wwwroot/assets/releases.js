@@ -2,14 +2,14 @@ const releaseCopy = {
   nl: {
     loading: "Releases laden...",
     empty: "Er zijn nog geen releases gevonden.",
-    failed: "Releases konden niet live worden geladen. Open GitHub voor de nieuwste versie.",
+    failed: "Releases konden niet live worden geladen.",
     open: "Open release op GitHub",
     prerelease: "Pre-release"
   },
   en: {
     loading: "Loading releases...",
     empty: "No releases found yet.",
-    failed: "Could not load releases live. Open GitHub for the newest version.",
+    failed: "Could not load releases live.",
     open: "Open release on GitHub",
     prerelease: "Pre-release"
   }
@@ -94,7 +94,12 @@ const renderReleases = async (root) => {
       `;
     }).join("");
   } catch (error) {
-    root.innerHTML = `<div class="release-status">${copy.failed}</div>`;
+    root.innerHTML = `
+      <div class="release-status">
+        <span>${copy.failed}</span>
+        <a href="https://github.com/${owner}/${repo}/releases" target="_blank" rel="noopener">${copy.open}</a>
+      </div>
+    `;
   }
 };
 

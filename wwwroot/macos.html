@@ -35,6 +35,10 @@
     .brand { display: flex; align-items: center; gap: 12px; font-weight: 850; }
     .brand img { width: 36px; height: 36px; border-radius: 50%; }
     .nav-links { display: flex; gap: 18px; color: var(--muted); font-size: 0.94rem; }
+    .nav-controls { display:flex; align-items:center; gap:12px; }
+    .lang-toggle { display:inline-grid; grid-template-columns:repeat(2,1fr); min-width:86px; padding:3px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.06); }
+    .lang-toggle button { min-height:34px; border:0; border-radius:999px; background:transparent; color:var(--muted); font:inherit; font-size:0.82rem; font-weight:850; cursor:pointer; }
+    .lang-toggle button[aria-pressed="true"] { background:rgba(102,224,255,0.18); color:var(--text); }
     .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 18px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255,255,255,0.08); font-weight: 800; }
     .btn.primary { border: 0; color: #06110c; background: linear-gradient(135deg, var(--cyan), var(--green)); }
     .hero { padding: 82px 0 52px; }
@@ -60,35 +64,39 @@
   <nav class="nav">
     <div class="wrap nav-inner">
       <a class="brand" href="index.html"><img src="assets/djconnect/icon.svg" alt="" /><span>DJConnect</span></a>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="ios.html">iOS</a>
-        <a href="embedded.html">Embedded device</a>
+      <div class="nav-links" aria-label="Navigatie" data-i18n-attr="aria-label:navLabel">
+        <a href="index.html" data-i18n="navHome">Home</a>
       </div>
-      <a class="btn primary" href="#releases">Releases</a>
+      <div class="nav-controls">
+        <div class="lang-toggle" aria-label="Taalkeuze" data-i18n-attr="aria-label:languageToggle">
+          <button type="button" data-lang="nl" aria-pressed="true">NL</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="btn primary" href="#releases">Releases</a>
+      </div>
     </div>
   </nav>
   <main>
     <header class="hero">
       <div class="wrap hero-grid">
         <div>
-          <h1>DJConnect voor macOS</h1>
-          <p class="lead">Desktopbediening voor zoeken, outputkeuze, playback en DJ-feedback zonder Home Assistant steeds te openen.</p>
-          <a class="btn primary" href="macos-download.html">Download binaries</a>
-          <a class="btn" href="#" aria-disabled="true" data-store-link="macos">Mac App Store link volgt</a>
+          <h1 data-i18n="heroTitle">DJConnect voor macOS</h1>
+          <p class="lead" data-i18n="heroLead">Desktopbediening voor zoeken, outputkeuze, playback en DJ-feedback zonder Home Assistant steeds te openen.</p>
+          <a class="btn primary" href="macos-download.html" data-i18n="downloadCta">Download binaries</a>
+          <a class="btn" href="#" aria-disabled="true" data-store-link="macos" data-i18n="storeCta">Mac App Store link volgt</a>
         </div>
         <div class="mock" aria-hidden="true"><div class="screen"><strong>DJConnect</strong><div class="bars"><span></span><span></span><span></span><span></span><span></span></div></div></div>
       </div>
     </header>
     <section>
       <div class="wrap grid-2">
-        <article class="card"><h2>Voor vaste bediening</h2><p>Gebruik je Mac als centrale cockpit voor muziekvragen, output en status.</p></article>
-        <article class="card"><h2>Downloads voorbereid</h2><p>Gebruik de downloadpagina voor binaries uit de publieke GitHub release-repo, en vervang later de App Store link zodra de app gepubliceerd is.</p></article>
+        <article class="card"><h2 data-i18n="fixedTitle">Voor vaste bediening</h2><p data-i18n="fixedText">Gebruik je Mac als centrale cockpit voor muziekvragen, output en status.</p></article>
+        <article class="card"><h2 data-i18n="downloadsTitle">Downloads voorbereid</h2><p data-i18n="downloadsText">Gebruik de downloadpagina voor binaries uit de publieke GitHub release-repo, en vervang later de App Store link zodra de app gepubliceerd is.</p></article>
       </div>
     </section>
     <section id="releases">
       <div class="wrap grid-2">
-        <div><h2>Latest GitHub releases</h2><p class="lead">Live opgehaald uit GitHub en automatisch geformatteerd.</p></div>
+        <div><h2 data-i18n="releaseTitle">Latest GitHub releases</h2></div>
         <div class="release-list" data-github-releases data-github-owner="pcvantol" data-github-repo="djconnect-website" data-release-limit="3"></div>
       </div>
     </section>
@@ -98,5 +106,64 @@
     <p class="site-version">DJConnect website v3.1.6</p>
   </footer>
   <script src="assets/releases.js"></script>
+  <script>
+    const translations = {
+      nl: {
+        title: "DJConnect voor macOS",
+        metaDescription: "DJConnect voor macOS: desktopbediening voor muziek, output en DJ-feedback.",
+        navLabel: "Navigatie",
+        languageToggle: "Taalkeuze",
+        navHome: "Home",
+        heroTitle: "DJConnect voor macOS",
+        heroLead: "Desktopbediening voor zoeken, outputkeuze, playback en DJ-feedback zonder Home Assistant steeds te openen.",
+        downloadCta: "Download binaries",
+        storeCta: "Mac App Store link volgt",
+        fixedTitle: "Voor vaste bediening",
+        fixedText: "Gebruik je Mac als centrale cockpit voor muziekvragen, output en status.",
+        downloadsTitle: "Downloads voorbereid",
+        downloadsText: "Gebruik de downloadpagina voor binaries uit de publieke GitHub release-repo, en vervang later de App Store link zodra de app gepubliceerd is.",
+        releaseTitle: "Latest GitHub releases"
+      },
+      en: {
+        title: "DJConnect for macOS",
+        metaDescription: "DJConnect for macOS: desktop control for music, output and DJ feedback.",
+        navLabel: "Navigation",
+        languageToggle: "Language",
+        navHome: "Home",
+        heroTitle: "DJConnect for macOS",
+        heroLead: "Desktop control for search, output choice, playback and DJ feedback without constantly opening Home Assistant.",
+        downloadCta: "Download binaries",
+        storeCta: "Mac App Store link coming",
+        fixedTitle: "Fixed control",
+        fixedText: "Use your Mac as the central cockpit for music requests, output and status.",
+        downloadsTitle: "Downloads prepared",
+        downloadsText: "Use the download page for binaries from the public GitHub release repo, and replace the App Store link once the app is published.",
+        releaseTitle: "Latest GitHub releases"
+      }
+    };
+    const applyLanguage = (language) => {
+      const dictionary = translations[language] || translations.nl;
+      document.documentElement.lang = language;
+      document.title = dictionary.title;
+      document.querySelector('meta[name="description"]').setAttribute("content", dictionary.metaDescription);
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        element.textContent = dictionary[element.getAttribute("data-i18n")] || element.textContent;
+      });
+      document.querySelectorAll("[data-i18n-attr]").forEach((element) => {
+        element.getAttribute("data-i18n-attr").split(",").forEach((mapping) => {
+          const [attribute, key] = mapping.split(":").map((part) => part.trim());
+          if (dictionary[key]) element.setAttribute(attribute, dictionary[key]);
+        });
+      });
+      document.querySelectorAll("[data-lang]").forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.lang === language));
+      });
+      localStorage.setItem("djconnect-language", language);
+    };
+    document.querySelectorAll("[data-lang]").forEach((button) => {
+      button.addEventListener("click", () => applyLanguage(button.dataset.lang));
+    });
+    applyLanguage(localStorage.getItem("djconnect-language") || "nl");
+  </script>
 </body>
 </html>

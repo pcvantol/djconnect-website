@@ -25,16 +25,15 @@
 - Verify the Spotify Premium account is configured inside the DJConnect configuration section, not as a separate top-level setup block.
 - Verify the homepage embedded card opens `wwwroot/embedded.html`.
 - Open `wwwroot/macos.html` and `wwwroot/ios.html`.
-- Verify macOS, iOS and embedded pages label the homepage navigation route as `Home`.
+- Verify macOS, iOS and embedded pages label the homepage navigation route as `Home`; iOS and macOS should not show cross-links to the other app or embedded page.
 - Open `wwwroot/macos-download.html` and verify it shows binaries or the empty release-repo state.
 - Verify the release cards load from GitHub or show the release fallback message.
 - Open `wwwroot/embedded.html`.
-- Verify Dutch and English language toggles update all visible embedded-page text.
+- Verify Dutch and English language toggles update visible text on embedded, iOS, macOS, macOS downloads, Features and Raspberry Pi pages.
 - Verify the embedded page lists LilyGO T-Embed CC1101 and ESP32-S3-BOX-3 under supported hardware.
 - Verify the embedded ESP32 visual card has clear spacing and includes the LilyGO product specifications link.
-- Verify the embedded page links to `pcvantol/djconnect-firmware` for firmware downloads.
 - Verify the embedded page does not mention pre-flashed devices.
-- Verify the embedded page does not show local quick start, requirements, FAQ or the `Stem via HA / Veilig gekoppeld / DJ-karakter` row.
+- Verify the embedded page does not show local quick start, requirements, FAQ, the experience section or the `Stem via HA / Veilig gekoppeld / DJ-karakter` row.
 - Verify embedded `Start installatie` buttons route to `wwwroot/start.html`.
 - Verify the embedded page navigation can return to `wwwroot/index.html`.
 - Verify the page renders at desktop width, tablet width and mobile width.

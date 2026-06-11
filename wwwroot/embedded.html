@@ -986,7 +986,6 @@
       </a>
       <div class="nav-links" aria-label="Navigatie" data-i18n-attr="aria-label:navLabel">
         <a href="index.html" data-i18n="navPlatform">Home</a>
-        <a href="#experience" data-i18n="navExperience">Ervaring</a>
         <a href="#hardware" data-i18n="navHardware">Hardware</a>
         <a href="#releases" data-i18n="navReleases">Releases</a>
       </div>
@@ -1103,55 +1102,6 @@
       </div>
     </header>
 
-    <section id="experience">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <h2 data-i18n="experienceTitle">De ervaring uit de doos</h2>
-          </div>
-          <p data-i18n="experienceLead">DJConnect is ontworpen als een productervaring voor Home Assistant. Download de firmware, flash je ondersteunde device en koppel daarna de Home Assistant integration.</p>
-        </div>
-        <div class="grid-3">
-          <article class="card">
-            <div class="icon">📦</div>
-            <h3 data-i18n="experiencePreTitle">Firmware downloaden</h3>
-            <p data-i18n="experiencePreText">Download de DJConnect firmware en flash je ondersteunde ESP32-device voordat je gaat pairen.</p>
-            <p><a class="text-link" href="https://github.com/pcvantol/djconnect-firmware" target="_blank" rel="noopener" data-i18n="firmwareLink">Download DJConnect firmware</a></p>
-          </article>
-          <article class="card">
-            <div class="icon">🏠</div>
-            <h3 data-i18n="experienceHaTitle">Home Assistant-native</h3>
-            <p data-i18n="experienceHaText">Home Assistant regelt pairing, updates, voice verwerking en muziekbediening.</p>
-          </article>
-          <article class="card">
-            <div class="icon">🎙️</div>
-            <h3 data-i18n="experiencePttTitle">Push-to-talk muziek</h3>
-            <p data-i18n="experiencePttText">Druk op de knop, spreek je verzoek in en DJConnect helpt je muziek starten.</p>
-          </article>
-          <article class="card">
-            <div class="icon">🗣️</div>
-            <h3 data-i18n="experienceWakeTitle">Wake-worddetectie</h3>
-            <p data-i18n="experienceWakeText">Start handsfree met "Okay Nabu" wanneer je Home Assistant voice setup dit ondersteunt.</p>
-          </article>
-          <article class="card">
-            <div class="icon">🎧</div>
-            <h3 data-i18n="experienceResponseTitle">Persoonlijke DJ-reactie</h3>
-            <p data-i18n="experienceResponseText">Je krijgt een korte gesproken DJ-reactie terug op het device, afgestemd op je verzoek en muziek.</p>
-          </article>
-          <article class="card">
-            <div class="icon">🎚️</div>
-            <h3 data-i18n="experienceHaControlTitle">Bediening in Home Assistant</h3>
-            <p data-i18n="experienceHaControlText">Kies je muziekuitvoer, bedien playback en ververs Up Next direct vanuit de DJConnect entities.</p>
-          </article>
-          <article class="card">
-            <div class="icon">🏓</div>
-            <h3 data-i18n="experienceGamesTitle">Bonus games</h3>
-            <p data-i18n="experienceGamesText">Even geen muziek kiezen? De firmware bevat ook kleine games zoals Pong, Asteroids en Fly op het device.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
     <section id="hardware">
       <div class="wrap">
         <div class="section-head">
@@ -1203,21 +1153,11 @@
       <div class="wrap grid-2">
         <div>
           <h2>Latest GitHub releases</h2>
-          <p class="lead">Live opgehaald uit GitHub en automatisch geformatteerd voor de embedded-device pagina.</p>
         </div>
         <div class="release-list" data-github-releases data-github-owner="pcvantol" data-github-repo="djconnect-website" data-release-limit="3"></div>
       </div>
     </section>
 
-    <section>
-      <div class="wrap callout">
-        <div>
-          <h2 data-i18n="calloutTitle">Klaar voor je volgende plaat?</h2>
-          <p class="muted" data-i18n="calloutText">Installeer de integration, flash je device, pair met Home Assistant en laat DJConnect de rest doen.</p>
-        </div>
-        <a class="btn primary" href="start.html" data-i18n="calloutButton">Start installatie</a>
-      </div>
-    </section>
   </main>
 
   <footer class="wrap legal">
@@ -1234,7 +1174,6 @@
         languageToggle: "Taalkeuze",
         navPlatform: "Home",
         navStart: "Aan de slag",
-        navExperience: "Ervaring",
         navHardware: "Hardware",
         navReleases: "Releases",
         navQuickstart: "Snel starten",
@@ -1277,23 +1216,7 @@
         float3Text: "Antwoord op het device",
         float4Title: "Afstandsbediening",
         float4Text: "Bedien je muziek op afstand",
-        experienceTitle: "De ervaring uit de doos",
-        experienceLead: "DJConnect is ontworpen als een productervaring voor Home Assistant. Download de firmware, flash je ondersteunde device en koppel daarna de Home Assistant integration.",
-        experiencePreTitle: "Firmware downloaden",
-        experiencePreText: "Download de DJConnect firmware en flash je ondersteunde ESP32-device voordat je gaat pairen.",
         firmwareLink: "Download DJConnect firmware",
-        experienceHaTitle: "Home Assistant-native",
-        experienceHaText: "Home Assistant regelt pairing, updates, voice verwerking en muziekbediening.",
-        experiencePttTitle: "Push-to-talk muziek",
-        experiencePttText: "Druk op de knop, spreek je verzoek in en DJConnect helpt je muziek starten.",
-        experienceWakeTitle: "Wake-worddetectie",
-        experienceWakeText: 'Start handsfree met "Okay Nabu" wanneer je Home Assistant-spraaksetup dit ondersteunt.',
-        experienceResponseTitle: "Persoonlijke DJ-reactie",
-        experienceResponseText: "Je krijgt een korte gesproken DJ-reactie terug op het device, afgestemd op je verzoek en muziek.",
-        experienceHaControlTitle: "Bediening in Home Assistant",
-        experienceHaControlText: "Kies je muziekuitvoer, bedien playback en ververs Up Next direct vanuit de DJConnect entities.",
-        experienceGamesTitle: "Bonus games",
-        experienceGamesText: "Even geen muziek kiezen? De firmware bevat ook kleine games zoals Pong, Asteroids en Fly op het device.",
         hardwareTitle: "Ondersteunde hardware",
         hardwareLead: "DJConnect richt zich op compacte ESP32-S3 devices met display, audio en lokale bediening.",
         hardwareLilygoText: "Compacte ESP32-S3 formfactor met display en fysieke bediening. Geschikt voor een dedicated DJConnect device.",
@@ -1363,9 +1286,6 @@
         faqAudioText: "Nee. DJ aankondigingen spelen op de speaker/display van het DJConnect device.",
         faqPlaylistTitle: "Kan ik private playlists gebruiken?",
         faqPlaylistText: "Ja, zolang Spotify in Home Assistant goed geautoriseerd is.",
-        calloutTitle: "Klaar voor je volgende plaat?",
-        calloutText: "Installeer de integration, flash je device, pair met Home Assistant en laat DJConnect de rest doen.",
-        calloutButton: "Start installatie",
         legalCopyright: "Copyright Peter van Tol 2026. All rights reserved. DJConnect firmware is proprietary software. The Home Assistant integration may be distributed separately for use with DJConnect devices.",
         legalSpotify: "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility."
       },
@@ -1376,7 +1296,6 @@
         languageToggle: "Language",
         navPlatform: "Home",
         navStart: "How to start",
-        navExperience: "Experience",
         navHardware: "Hardware",
         navReleases: "Releases",
         navQuickstart: "Quick start",
@@ -1419,23 +1338,7 @@
         float3Text: "Answer on the device",
         float4Title: "Remote control",
         float4Text: "Control your music remotely",
-        experienceTitle: "The out-of-box experience",
-        experienceLead: "DJConnect is designed as a product experience for Home Assistant. Download the firmware, flash your supported device and then pair the Home Assistant integration.",
-        experiencePreTitle: "Download firmware",
-        experiencePreText: "Download the DJConnect firmware and flash your supported ESP32 device before pairing.",
         firmwareLink: "Download DJConnect firmware",
-        experienceHaTitle: "Home Assistant native",
-        experienceHaText: "Home Assistant handles pairing, updates, voice processing and music control.",
-        experiencePttTitle: "Push-to-talk music",
-        experiencePttText: "Press the button, speak your request and DJConnect helps start your music.",
-        experienceWakeTitle: "Wake word detection",
-        experienceWakeText: 'Start hands-free with "Okay Nabu" when your Home Assistant voice setup supports it.',
-        experienceResponseTitle: "Personal DJ announcement",
-        experienceResponseText: "You get a short voice-based DJ announcement back on the device, tailored to your request and music.",
-        experienceHaControlTitle: "Home Assistant controls",
-        experienceHaControlText: "Choose your music output, control playback and refresh Up Next directly from the DJConnect entities.",
-        experienceGamesTitle: "Bonus games",
-        experienceGamesText: "Not choosing music for a moment? The firmware also includes small games like Pong, Asteroids and Fly on the device.",
         hardwareTitle: "Supported hardware",
         hardwareLead: "DJConnect targets compact ESP32-S3 devices with display, audio and local controls.",
         hardwareLilygoText: "Compact ESP32-S3 form factor with display and physical controls. Suitable for a dedicated DJConnect device.",
@@ -1505,9 +1408,6 @@
         faqAudioText: "No. DJ announcements play on the speaker/display of the DJConnect device.",
         faqPlaylistTitle: "Can I use private playlists?",
         faqPlaylistText: "Yes, as long as Spotify is properly authorized in Home Assistant.",
-        calloutTitle: "Ready for your next track?",
-        calloutText: "Install the integration, flash your device, pair with Home Assistant and let DJConnect handle the rest.",
-        calloutButton: "Start setup",
         legalCopyright: "Copyright Peter van Tol 2026. All rights reserved. DJConnect firmware is proprietary software. The Home Assistant integration may be distributed separately for use with DJConnect devices.",
         legalSpotify: "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility."
       }

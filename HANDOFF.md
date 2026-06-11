@@ -25,8 +25,8 @@
 - The homepage hero uses a swipeable device carousel for macOS, iPad/iPhone and LilyGO/ESP32. Keep each device slide spacious and avoid compressing devices side-by-side.
 - The homepage has prepared App Store CTA placeholders with `data-store-link="macos"` and `data-store-link="ios"`, plus a prepared Raspberry Pi route.
 - The Raspberry Pi page is a placeholder for the future app and should keep release/download UI ready without claiming binaries are available.
-- The embedded page is now a compact product page: experience, supported hardware, how it works, release embed and CTA. Keep detailed setup, requirements and FAQ on the start page.
-- The embedded page should point users to `pcvantol/djconnect-firmware` and the LilyGO product specs where relevant. Do not reintroduce pre-flashed copy.
+- The embedded page is now a compact product page: supported hardware, how it works and release embed. Keep experience, setup, requirements and FAQ content off this page.
+- The embedded page should point users to LilyGO product specs where relevant. Firmware download and setup links belong on the start page. Do not reintroduce pre-flashed copy.
 - The start page presents the current setup order: configure the Home Assistant voice assist pipeline, add DJConnect to Home Assistant through HACS, configure DJConnect in Home Assistant, download and pair the app/device, then use DJConnect with Spotify Connect.
 - The start page links to Home Assistant voice assistant documentation, `pcvantol/djconnect-firmware` and `pcvantol/djconnect-app-releases`.
 - The start page pairing switch has separate panels for ESP device, iOS app, macOS app and Raspberry Pi app.
@@ -35,7 +35,7 @@
 - macOS downloads use `assets/downloads.js` and the public repo `pcvantol/djconnect-app-releases`.
 - If the GitHub repository/releases are private, set `GITHUB_TOKEN` as a Cloudflare Pages secret for the `djconnect` project.
 - Version is tracked in `VERSION`, `package.json`, page footers and `CHANGELOG.md`.
-- Language switching on the homepage, embedded page, Features page and Raspberry Pi page is handled through per-page `translations` objects.
+- Language switching on the homepage, embedded page, Features page, Raspberry Pi page, iOS page, macOS page and macOS download page is handled through per-page `translations` objects.
 - Do not commit `.wrangler/`; it is local Wrangler cache.
 
 ## Release Steps

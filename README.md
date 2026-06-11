@@ -30,7 +30,7 @@ The production site is deployed to Cloudflare Pages:
 - Cloudflare account ID: `efe77cadf8317a53832fca0848e3ae51`
 
 Automatic deployment runs through GitHub Actions on every push to `main`.
-The repository must have an Actions secret named `CLOUDFLARE_API_TOKEN` with permission to deploy Cloudflare Pages. The workflow passes the Cloudflare account ID explicitly so Wrangler does not need to discover account memberships during CI.
+The repository must have an Actions secret named `CLOUDFLARE_API_TOKEN` with permission to deploy Cloudflare Pages. The workflow sets `CLOUDFLARE_ACCOUNT_ID` explicitly so Wrangler does not need to discover account memberships during CI.
 
 Configure it in GitHub:
 
@@ -65,7 +65,8 @@ If the version tag and GitHub Release already exist and only the Pages deploymen
 
 ```bash
 export CLOUDFLARE_API_TOKEN='your-cloudflare-pages-token'
-npx wrangler pages deploy wwwroot --project-name djconnect --branch main --account-id efe77cadf8317a53832fca0848e3ae51
+export CLOUDFLARE_ACCOUNT_ID='efe77cadf8317a53832fca0848e3ae51'
+npx wrangler@4 pages deploy wwwroot --project-name djconnect --branch main
 ```
 
 The live site should be checked for both HTTP availability and the footer version:

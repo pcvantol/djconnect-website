@@ -25,8 +25,7 @@ jobs:
         run: npm test
 
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: efe77cadf8317a53832fca0848e3ae51
-          command: pages deploy wwwroot --project-name djconnect --branch main --account-id efe77cadf8317a53832fca0848e3ae51
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: efe77cadf8317a53832fca0848e3ae51
+        run: npx wrangler@4 pages deploy wwwroot --project-name djconnect --branch main

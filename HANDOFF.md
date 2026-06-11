@@ -6,7 +6,7 @@
 - Production URL: https://djconnect.pages.dev
 - Cloudflare Pages project: `djconnect`
 - Publish directory: `wwwroot`
-- Current version: `3.1.6`
+- Current version: `3.1.7`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Start/setup page: `wwwroot/start.html`
@@ -41,20 +41,23 @@
 ## Release Steps
 
 1. Commit all changes to `main`.
-2. Ensure `CLOUDFLARE_API_TOKEN` is set in the shell.
-3. Run `./release.sh`.
-4. Verify the GitHub Release and https://djconnect.pages.dev.
+2. Ensure the GitHub Actions repository secret `CLOUDFLARE_API_TOKEN` exists.
+3. Run `./release.sh --skip-deploy` when the token is only available in GitHub Actions.
+4. Verify the GitHub Release, the `Deploy Cloudflare Pages` workflow run and https://djconnect.pages.dev.
+
+The workflow deploys `wwwroot` to Cloudflare Pages on every push to `main` and sets `CLOUDFLARE_ACCOUNT_ID` explicitly.
 
 Set the token only in the current shell when needed:
 
 ```bash
 export CLOUDFLARE_API_TOKEN='your-cloudflare-pages-token'
+export CLOUDFLARE_ACCOUNT_ID='efe77cadf8317a53832fca0848e3ae51'
 ```
 
 If `./release.sh` was already used with `--skip-deploy` and the tag/release already exists, do not rerun the full release script. Deploy the already released version directly:
 
 ```bash
-npx wrangler pages deploy wwwroot --project-name djconnect --branch main
+npx wrangler@4 pages deploy wwwroot --project-name djconnect --branch main
 ```
 
 After deploy, confirm the live footer version:

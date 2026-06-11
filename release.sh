@@ -3,6 +3,7 @@ set -euo pipefail
 
 PROJECT_NAME="djconnect"
 PUBLISH_DIR="wwwroot"
+ACCOUNT_ID="${CLOUDFLARE_ACCOUNT_ID:-efe77cadf8317a53832fca0848e3ae51}"
 VERSION="$(tr -d '[:space:]' < VERSION)"
 TAG="v${VERSION}"
 BRANCH="$(git branch --show-current)"
@@ -84,7 +85,7 @@ if [[ "$SKIP_DEPLOY" == "true" ]]; then
   echo "Skipped Cloudflare Pages deploy."
 else
   echo "Deploying $PUBLISH_DIR to Cloudflare Pages project $PROJECT_NAME..."
-  npx wrangler pages deploy "$PUBLISH_DIR" --project-name "$PROJECT_NAME" --branch main
+  CLOUDFLARE_ACCOUNT_ID="$ACCOUNT_ID" npx wrangler@4 pages deploy "$PUBLISH_DIR" --project-name "$PROJECT_NAME" --branch main
 fi
 
 echo "Release complete: https://djconnect.pages.dev"

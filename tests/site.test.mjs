@@ -207,6 +207,17 @@ test("embedded page contains firmware release embed", async () => {
   assert.match(embedded, /assets\/releases\.js/);
 });
 
+test("embedded page uses the shared site color styling", async () => {
+  const embedded = await read("wwwroot/embedded.html");
+
+  assert.match(embedded, /--cyan: #66e0ff/);
+  assert.match(embedded, /--green: #7ef7a7/);
+  assert.match(embedded, /radial-gradient\(circle at 86% 6%, rgba\(251, 113, 133, 0\.14\), transparent 27rem\)/);
+  assert.match(embedded, /radial-gradient\(circle at 58% 72%, rgba\(126, 247, 167, 0\.1\), transparent 31rem\)/);
+  assert.match(embedded, /linear-gradient\(135deg, var\(--cyan\), var\(--green\)\)/);
+  assert.doesNotMatch(embedded, /linear-gradient\(135deg, var\(--accent-cyan\), #8b5cf6\)/);
+});
+
 test("site does not embed website repository releases", async () => {
   const pages = ["index", "start", "features", "ios", "macos", "raspberry-pi", "embedded"];
 

@@ -28,6 +28,22 @@ The production site is deployed to Cloudflare Pages:
 - Project name: `djconnect`
 - Publish directory: `wwwroot`
 
+Automatic deployment runs through GitHub Actions on every push to `main`.
+The repository must have an Actions secret named `CLOUDFLARE_API_TOKEN` with permission to deploy Cloudflare Pages.
+
+Configure it in GitHub:
+
+```text
+Settings -> Secrets and variables -> Actions -> New repository secret
+Name: CLOUDFLARE_API_TOKEN
+Value: Cloudflare API token
+```
+
+Minimum Cloudflare token permissions:
+
+- `Cloudflare Pages:Edit`
+- `Account:Read`
+
 Use `./release.sh` for the standard release flow.
 
 The release script runs tests, pushes `main`, creates a `vX.Y.Z` tag, creates a GitHub Release and deploys to Cloudflare Pages.
@@ -36,6 +52,12 @@ The release script runs tests, pushes `main`, creates a `vX.Y.Z` tag, creates a 
 npm test
 export CLOUDFLARE_API_TOKEN='your-cloudflare-pages-token'
 ./release.sh
+```
+
+If `CLOUDFLARE_API_TOKEN` is only configured as a GitHub Actions secret, run the release without direct local deploy and let the push trigger the workflow:
+
+```bash
+./release.sh --skip-deploy
 ```
 
 If the version tag and GitHub Release already exist and only the Pages deployment still needs to run, deploy the current `wwwroot` folder directly:

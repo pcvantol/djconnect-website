@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DJConnect macOS downloads</title>
+  <meta name="description" content="Download de nieuwste DJConnect macOS binaries uit de publieke GitHub release-repo." />
+  <link rel="icon" href="assets/djconnect/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/downloads.css" />
+  <style>
+    :root { --bg:#0b0d12; --panel:rgba(255,255,255,0.075); --text:#f7f7fb; --muted:#b7bccb; --line:rgba(255,255,255,0.14); --cyan:#66e0ff; --green:#7ef7a7; --max:1080px; }
+    * { box-sizing: border-box; }
+    body { margin:0; color:var(--text); font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height:1.55; background:radial-gradient(circle at 16% 10%, rgba(102,224,255,0.18), transparent 28rem), linear-gradient(180deg,#0b0d12 0%,#111827 58%,#090b10 100%); }
+    a { color:inherit; text-decoration:none; }
+    .wrap { width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
+    .nav { position:sticky; top:0; z-index:20; backdrop-filter:blur(18px); background:rgba(11,13,18,0.7); border-bottom:1px solid var(--line); }
+    .nav-inner { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:18px; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:850; }
+    .brand img { width:36px; height:36px; border-radius:50%; }
+    .nav-links { display:flex; gap:18px; color:var(--muted); font-size:0.94rem; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:0 18px; border-radius:999px; border:1px solid var(--line); background:rgba(255,255,255,0.08); font-weight:800; }
+    .btn.primary { border:0; color:#06110c; background:linear-gradient(135deg,var(--cyan),var(--green)); }
+    .hero { padding:82px 0 52px; }
+    .grid-2 { display:grid; grid-template-columns:0.82fr 1.18fr; gap:34px; align-items:start; }
+    h1,h2,h3 { margin:0; letter-spacing:-0.045em; line-height:1.05; }
+    h1 { font-size:clamp(3rem,7vw,5.8rem); max-width:12ch; }
+    h2 { font-size:clamp(2rem,4vw,3.4rem); margin-bottom:18px; }
+    .lead { color:var(--muted); font-size:1.2rem; margin:24px 0 30px; }
+    section { padding:68px 0; }
+    .card { border:1px solid var(--line); border-radius:22px; background:var(--panel); padding:24px; }
+    .muted,.card p { color:var(--muted); }
+    .legal { color:var(--muted); font-size:0.86rem; padding:34px 0 44px; border-top:1px solid var(--line); }
+    .site-version { margin-top:14px; font-size:0.76rem; color:rgba(183,188,203,0.72); }
+    @media (max-width:860px) { .grid-2 { grid-template-columns:1fr; } .nav-links { display:none; } }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="index.html"><img src="assets/djconnect/icon.svg" alt="" /><span>DJConnect</span></a>
+      <div class="nav-links">
+        <a href="macos.html">macOS</a>
+        <a href="ios.html">iOS</a>
+        <a href="embedded.html">Embedded device</a>
+      </div>
+      <a class="btn primary" href="https://github.com/pcvantol/djconnect-app-releases/releases" target="_blank" rel="noopener">GitHub releases</a>
+    </div>
+  </nav>
+  <main>
+    <header class="hero">
+      <div class="wrap grid-2">
+        <div>
+          <h1>macOS downloads</h1>
+          <p class="lead">De nieuwste DJConnect macOS binaries, live opgehaald uit de publieke release-repo.</p>
+          <a class="btn" href="macos.html">Terug naar macOS</a>
+        </div>
+        <div class="card">
+          <h2>Release source</h2>
+          <p>Downloads komen uit <code>pcvantol/djconnect-app-releases</code>. Publiceer daar een GitHub Release met `.dmg`, `.zip` of andere macOS assets; deze pagina toont ze automatisch.</p>
+        </div>
+      </div>
+    </header>
+    <section>
+      <div class="wrap grid-2">
+        <div>
+          <h2>Beschikbare binaries</h2>
+          <p class="lead">Elke release toont de downloadbare assets, bestandsgrootte en downloadlink.</p>
+        </div>
+        <div class="download-list" data-github-downloads data-github-owner="pcvantol" data-github-repo="djconnect-app-releases" data-release-limit="5"></div>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap legal">
+    <p>Copyright Peter van Tol 2026. All rights reserved.</p>
+    <p class="site-version">DJConnect website v3.1.0</p>
+  </footer>
+  <script src="assets/downloads.js"></script>
+</body>
+</html>

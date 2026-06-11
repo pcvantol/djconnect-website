@@ -1,0 +1,77 @@
+.download-list {
+  display: grid;
+  gap: 14px;
+}
+
+.download-release {
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: rgba(255,255,255,0.06);
+  padding: 20px;
+}
+
+.download-release header {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: start;
+  margin-bottom: 14px;
+}
+
+.download-release h3 {
+  margin: 0;
+  font-size: 1.08rem;
+  letter-spacing: -0.02em;
+}
+
+.download-release time,
+.download-release .tag {
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.asset-list {
+  display: grid;
+  gap: 10px;
+}
+
+.asset-link {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 12px 14px;
+  background: rgba(0,0,0,0.18);
+}
+
+.asset-link strong {
+  display: block;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.asset-link span {
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.asset-link .download-cta {
+  color: var(--cyan, var(--accent-cyan));
+  font-weight: 850;
+}
+
+.download-status {
+  color: var(--muted);
+  border: 1px dashed var(--line);
+  border-radius: 20px;
+  padding: 18px;
+}
+
+@media (max-width: 620px) {
+  .download-release header,
+  .asset-link {
+    grid-template-columns: 1fr;
+  }
+}

@@ -9,6 +9,7 @@
 - Current version: `3.1.0`
 - Main page: `wwwroot/index.html`
 - macOS app page: `wwwroot/macos.html`
+- macOS binary download page: `wwwroot/macos-download.html`
 - iOS app page: `wwwroot/ios.html`
 - Embedded ESP32 one-pager: `wwwroot/embedded.html`
 
@@ -18,6 +19,7 @@
 - The homepage is platform-independent and routes users to macOS, iOS and embedded options.
 - The homepage has prepared App Store CTA placeholders with `data-store-link="macos"` and `data-store-link="ios"`.
 - App subpages use `assets/releases.js`, `assets/releases.css` and the Cloudflare Pages Function `functions/api/releases.js` to live-render GitHub releases.
+- macOS downloads use `assets/downloads.js` and the public repo `pcvantol/djconnect-app-releases`.
 - If the GitHub repository/releases are private, set `GITHUB_TOKEN` as a Cloudflare Pages secret for the `djconnect` project.
 - Version is tracked in `VERSION`, `package.json`, page footers and `CHANGELOG.md`.
 - Language switching on the embedded page is handled in `wwwroot/embedded.html` through the `translations` object.

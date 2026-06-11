@@ -82,6 +82,19 @@ test("app subpages contain live GitHub release embeds", async () => {
   }
 });
 
+test("macOS download page shows public binary release repo", async () => {
+  const [macos, downloads] = await Promise.all([
+    read("wwwroot/macos.html"),
+    read("wwwroot/macos-download.html")
+  ]);
+
+  assert.match(macos, /href="macos-download\.html"/);
+  assert.match(downloads, /data-github-downloads/);
+  assert.match(downloads, /data-github-owner="pcvantol"/);
+  assert.match(downloads, /data-github-repo="djconnect-app-releases"/);
+  assert.match(downloads, /assets\/downloads\.js/);
+});
+
 test("release proxy function is present", async () => {
   const proxy = await read("functions/api/releases.js");
   assert.match(proxy, /env\.GITHUB_TOKEN/);

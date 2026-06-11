@@ -6,6 +6,7 @@
 - Verify the homepage navigation scrolls to Platform, Essentials and Apps & devices.
 - Verify the Embedded device navigation link opens `wwwroot/embedded.html`.
 - Open `wwwroot/macos.html` and `wwwroot/ios.html`.
+- Open `wwwroot/macos-download.html` and verify it shows binaries or the empty release-repo state.
 - Verify the release cards load from GitHub or show the release fallback message.
 - Open `wwwroot/embedded.html`.
 - Verify Dutch and English language toggles update all visible embedded-page text.

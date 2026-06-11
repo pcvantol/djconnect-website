@@ -71,9 +71,9 @@ test("homepage has platform routes and app store placeholders", async () => {
   assert.match(index, /data-store-link="ios"/);
   assert.match(index, /Mac App Store/);
   assert.match(index, /App Store/);
-  assert.match(index, /brands\.home-assistant\.io\/_\/homeassistant\/logo\.png/);
-  assert.match(index, /Koppelgegevens worden veilig opgeslagen/);
-  assert.match(index, /Centrale HA hub/);
+  assert.match(index, /brands\.home-assistant\.io\/_\/homeassistant\/icon\.png/);
+  assert.match(index, /Account token & koppelgegevens worden veilig bewaard in versleutelde opslag/);
+  assert.match(index, /1 hub, meerdere schermen/);
 });
 
 test("homepage hero uses the current device visual and copy", async () => {

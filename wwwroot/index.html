@@ -462,7 +462,7 @@
     .ha-badge img {
       width: 32px;
       height: 32px;
-      border-radius: 8px;
+      object-fit: contain;
     }
 
     .platform-card {
@@ -593,8 +593,8 @@
         <span>DJConnect</span>
       </a>
       <div class="nav-links" aria-label="Navigatie" data-i18n-attr="aria-label:navLabel">
-        <a href="#platform" data-i18n="navPlatform">Platform</a>
         <a href="start.html" data-i18n="navStart">Aan de slag</a>
+        <a href="#platform" data-i18n="navPlatform">Platform</a>
         <a href="#essentials" data-i18n="navEssentials">Essentials</a>
         <a href="#apps" data-i18n="navApps">Apps & devices</a>
       </div>
@@ -681,7 +681,7 @@
         <div class="grid-3">
           <article class="card">
             <div class="ha-badge">
-              <img src="https://brands.home-assistant.io/_/homeassistant/logo.png" alt="" />
+              <img src="https://brands.home-assistant.io/_/homeassistant/icon.png" alt="" />
               <span>Works with Home Assistant</span>
             </div>
             <h3 data-i18n="essentialsHaTitle">Home Assistant als basis</h3>
@@ -690,11 +690,11 @@
           <article class="card">
             <div class="icon">🔐</div>
             <h3 data-i18n="essentialsSecureTitle">Veilige koppeling</h3>
-            <p data-i18n="essentialsSecureText">Koppelgegevens worden veilig opgeslagen.</p>
+            <p data-i18n="essentialsSecureText">Account token & koppelgegevens worden veilig bewaard in versleutelde opslag.</p>
           </article>
           <article class="card">
             <div class="icon">🔄</div>
-            <h3 data-i18n="essentialsWorkflowTitle">Centrale HA hub</h3>
+            <h3 data-i18n="essentialsWorkflowTitle">1 hub, meerdere schermen</h3>
             <p data-i18n="essentialsWorkflowText">Gebruik dezelfde DJConnect workflow op meerdere interfaces: app en device.</p>
           </article>
         </div>
@@ -778,8 +778,8 @@
         essentialsHaTitle: "Home Assistant als basis",
         essentialsHaText: "Integratie, voice setup, autorisatie en device pairing lopen via de centrale smart-home laag.",
         essentialsSecureTitle: "Veilige koppeling",
-        essentialsSecureText: "Koppelgegevens worden veilig opgeslagen.",
-        essentialsWorkflowTitle: "Centrale HA hub",
+        essentialsSecureText: "Account token & koppelgegevens worden veilig bewaard in versleutelde opslag.",
+        essentialsWorkflowTitle: "1 hub, meerdere schermen",
         essentialsWorkflowText: "Gebruik dezelfde DJConnect workflow op meerdere interfaces: app en device.",
         appsTitle: "Kies je interface",
         appsLead: "Begin bij het platform dat past bij hoe je muziek bedient.",
@@ -827,8 +827,8 @@
         essentialsHaTitle: "Home Assistant as the base",
         essentialsHaText: "Integration, voice setup, authorization and device pairing run through the central smart-home layer.",
         essentialsSecureTitle: "Secure pairing",
-        essentialsSecureText: "Pairing details are stored securely.",
-        essentialsWorkflowTitle: "Central HA hub",
+        essentialsSecureText: "Account token and pairing details are kept safely in encrypted storage.",
+        essentialsWorkflowTitle: "1 hub, multiple screens",
         essentialsWorkflowText: "Use the same DJConnect workflow across multiple interfaces: app and device.",
         appsTitle: "Choose your interface",
         appsLead: "Start with the platform that fits how you control music.",

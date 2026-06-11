@@ -430,6 +430,26 @@
       font-size: 1.45rem;
     }
 
+    .ha-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      min-height: 48px;
+      padding: 8px 12px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(3, 169, 244, 0.12);
+      color: var(--text);
+      font-weight: 850;
+    }
+
+    .ha-badge img {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+    }
+
     .platform-card {
       min-height: 310px;
       display: grid;
@@ -572,7 +592,7 @@
     <header class="hero">
       <div class="wrap hero-grid">
         <div>
-          <div class="eyebrow"><span class="dot"></span><span data-i18n="heroEyebrow">macOS • iOS • Embedded ESP32 • Home Assistant</span></div>
+          <div class="eyebrow"><span data-i18n="heroEyebrow">macOS • iOS • Embedded ESP32 • Home Assistant</span></div>
           <h1 data-i18n="heroTitle">DJConnect. Een muziekplatform met karakter.</h1>
           <p class="lead" data-i18n="heroLead">DJConnect brengt spraak, muziekbediening en een persoonlijke DJ-reactie samen. De kern blijft hetzelfde op elk device: vraag muziek, kies waar het speelt en krijg directe feedback terug.</p>
           <div class="hero-actions">
@@ -610,7 +630,7 @@
       <div class="wrap">
         <div class="section-head">
           <div><h2 data-i18n="platformTitle">De kern van DJConnect</h2></div>
-          <p data-i18n="platformLead">DJConnect is geen losse afstandsbediening, maar een platformlaag voor muziekvragen, context, outputkeuze en feedback.</p>
+          <p data-i18n="platformLead">DJConnect brengt je muziekwens, slimme context, outputkeuze en persoonlijke DJ-feedback samen in één vloeiende ervaring.</p>
         </div>
         <div class="grid-3">
           <article class="card">
@@ -640,19 +660,22 @@
         </div>
         <div class="grid-3">
           <article class="card">
-            <div class="icon">🏠</div>
+            <div class="ha-badge">
+              <img src="https://brands.home-assistant.io/_/homeassistant/logo.png" alt="" />
+              <span>Works with Home Assistant</span>
+            </div>
             <h3 data-i18n="essentialsHaTitle">Home Assistant als basis</h3>
             <p data-i18n="essentialsHaText">Integratie, voice setup, autorisatie en device pairing lopen via de centrale smart-home laag.</p>
           </article>
           <article class="card">
             <div class="icon">🔐</div>
             <h3 data-i18n="essentialsSecureTitle">Veilige koppeling</h3>
-            <p data-i18n="essentialsSecureText">Spotify- en accounttokens blijven in de juiste omgeving. Devices hoeven geen wachtwoorden te kennen.</p>
+            <p data-i18n="essentialsSecureText">Koppelgegevens worden veilig opgeslagen.</p>
           </article>
           <article class="card">
             <div class="icon">🔄</div>
-            <h3 data-i18n="essentialsWorkflowTitle">Een gedeelde workflow</h3>
-            <p data-i18n="essentialsWorkflowText">Dezelfde logica voor zoeken, starten, reageren en updaten kan op meerdere interfaces terugkomen.</p>
+            <h3 data-i18n="essentialsWorkflowTitle">Centrale HA hub</h3>
+            <p data-i18n="essentialsWorkflowText">Gebruik dezelfde DJConnect workflow op meerdere interfaces: app en device.</p>
           </article>
         </div>
       </div>
@@ -723,7 +746,7 @@
         stageText: "DJConnect. Jouw persoonlijke muziek DJ",
         stageScreenText: "Queue, output en DJ-reactie.",
         platformTitle: "De kern van DJConnect",
-        platformLead: "DJConnect is geen losse afstandsbediening, maar een platformlaag voor muziekvragen, context, outputkeuze en feedback.",
+        platformLead: "DJConnect brengt je muziekwens, slimme context, outputkeuze en persoonlijke DJ-feedback samen in één vloeiende ervaring.",
         platformVoiceTitle: "Vraag muziek natuurlijk",
         platformVoiceText: "Zeg wat je wilt horen: artiest, album, playlist, sfeer of moment. DJConnect vertaalt dat naar een concrete muziekactie.",
         platformPlaybackTitle: "Bedien je playback",
@@ -735,9 +758,9 @@
         essentialsHaTitle: "Home Assistant als basis",
         essentialsHaText: "Integratie, voice setup, autorisatie en device pairing lopen via de centrale smart-home laag.",
         essentialsSecureTitle: "Veilige koppeling",
-        essentialsSecureText: "Spotify- en accounttokens blijven in de juiste omgeving. Devices hoeven geen wachtwoorden te kennen.",
-        essentialsWorkflowTitle: "Een gedeelde workflow",
-        essentialsWorkflowText: "Dezelfde logica voor zoeken, starten, reageren en updaten kan op meerdere interfaces terugkomen.",
+        essentialsSecureText: "Koppelgegevens worden veilig opgeslagen.",
+        essentialsWorkflowTitle: "Centrale HA hub",
+        essentialsWorkflowText: "Gebruik dezelfde DJConnect workflow op meerdere interfaces: app en device.",
         appsTitle: "Kies je interface",
         appsLead: "Begin bij het platform dat past bij hoe je muziek bedient.",
         macText: "Voor vaste bediening op je Mac: zoeken, output kiezen en de DJConnect-status in beeld houden.",
@@ -772,7 +795,7 @@
         stageText: "DJConnect. Your personal music DJ",
         stageScreenText: "Queue, output and DJ response.",
         platformTitle: "The core of DJConnect",
-        platformLead: "DJConnect is not just another remote, but a platform layer for music requests, context, output selection and feedback.",
+        platformLead: "DJConnect brings your music request, smart context, output selection and personal DJ feedback together in one smooth experience.",
         platformVoiceTitle: "Ask for music naturally",
         platformVoiceText: "Say what you want to hear: artist, album, playlist, mood or moment. DJConnect translates that into a concrete music action.",
         platformPlaybackTitle: "Control playback",
@@ -784,9 +807,9 @@
         essentialsHaTitle: "Home Assistant as the base",
         essentialsHaText: "Integration, voice setup, authorization and device pairing run through the central smart-home layer.",
         essentialsSecureTitle: "Secure pairing",
-        essentialsSecureText: "Spotify and account tokens stay in the right environment. Devices do not need to know passwords.",
-        essentialsWorkflowTitle: "One shared workflow",
-        essentialsWorkflowText: "The same logic for searching, starting, responding and updating can return across multiple interfaces.",
+        essentialsSecureText: "Pairing details are stored securely.",
+        essentialsWorkflowTitle: "Central HA hub",
+        essentialsWorkflowText: "Use the same DJConnect workflow across multiple interfaces: app and device.",
         appsTitle: "Choose your interface",
         appsLead: "Start with the platform that fits how you control music.",
         macText: "For fixed control on your Mac: search, choose output and keep DJConnect status in view.",

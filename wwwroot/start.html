@@ -36,6 +36,9 @@
     .section-followup { margin-top:28px; }
     .card { border:1px solid var(--line); border-radius:22px; background:var(--panel); padding:24px; }
     .card p,.muted { color:var(--muted); margin:0; }
+    .route-card { min-height:100%; }
+    .route-label { display:inline-flex; margin-bottom:14px; padding:6px 10px; border-radius:999px; background:rgba(102,224,255,0.14); color:#9becff; font-size:0.78rem; font-weight:850; text-transform:uppercase; letter-spacing:0.06em; }
+    .route-card .btn { margin-top:22px; }
     .checklist { display:grid; gap:12px; margin:0; padding:0; }
     .checklist li { list-style:none; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,0.055); padding:14px 16px; color:var(--muted); }
     .checklist li::before { content:"✓"; color:var(--green); font-weight:900; margin-right:10px; }
@@ -107,21 +110,26 @@
 
     <section id="hacs">
       <div class="wrap grid-2">
-        <div>
+        <div class="card route-card">
+          <span class="route-label">Automatisch</span>
           <h2>1. Installeer DJConnect in HACS</h2>
-          <p class="lead">Voeg de custom integration toe en start Home Assistant opnieuw.</p>
+          <p class="lead">Gebruik de Home Assistant Community Store deeplink om direct naar de DJConnect repository in HACS te gaan.</p>
           <a class="btn primary" href="https://my.home-assistant.io/redirect/hacs_repository/?owner=pcvantol&repository=djconnect&category=integration" target="_blank" rel="noopener">Home Assistant Community Store</a>
         </div>
-        <ol class="steps">
-          <li>Open Home Assistant.</li>
-          <li>Open HACS.</li>
-          <li>Ga naar <strong>Integrations</strong>.</li>
-          <li>Voeg custom repository <code>https://github.com/pcvantol/djconnect</code> toe.</li>
-          <li>Kies category <strong>Integration</strong>.</li>
-          <li>Zoek en installeer <strong>DJConnect</strong>.</li>
-          <li>Herstart Home Assistant.</li>
-          <li>Ga naar <strong>Settings -> Devices & services -> Add integration -> DJConnect</strong>.</li>
-        </ol>
+        <div class="card route-card">
+          <span class="route-label">Handmatig</span>
+          <h3>Voeg de repository zelf toe</h3>
+          <ol class="steps">
+            <li>Open Home Assistant.</li>
+            <li>Open HACS.</li>
+            <li>Ga naar <strong>Integrations</strong>.</li>
+            <li>Voeg custom repository <code>https://github.com/pcvantol/djconnect</code> toe.</li>
+            <li>Kies category <strong>Integration</strong>.</li>
+            <li>Zoek en installeer <strong>DJConnect</strong>.</li>
+            <li>Herstart Home Assistant.</li>
+            <li>Ga naar <strong>Settings -> Devices & services -> Add integration -> DJConnect</strong>.</li>
+          </ol>
+        </div>
       </div>
     </section>
 

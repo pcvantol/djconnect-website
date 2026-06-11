@@ -71,6 +71,9 @@ test("homepage has platform routes and app store placeholders", async () => {
   assert.match(index, /data-store-link="ios"/);
   assert.match(index, /Mac App Store/);
   assert.match(index, /App Store/);
+  assert.match(index, /brands\.home-assistant\.io\/_\/homeassistant\/logo\.png/);
+  assert.match(index, /Koppelgegevens worden veilig opgeslagen/);
+  assert.match(index, /Centrale HA hub/);
 });
 
 test("how-to-start page covers setup flow", async () => {
@@ -130,6 +133,7 @@ test("embedded page lists supported hardware", async () => {
   assert.match(embedded, /ESP32-S3-BOX-3/);
   assert.match(embedded, /https:\/\/github\.com\/espressif\/esp-box/);
   assert.match(embedded, /hardware_overview_for_box_3\.md/);
+  assert.match(embedded, /https:\/\/github\.com\/pcvantol\/djconnect-firmware/);
 });
 
 test("all translation keys are present in Dutch and English", async () => {

@@ -12,6 +12,7 @@
 - Open `wwwroot/embedded.html`.
 - Verify Dutch and English language toggles update all visible embedded-page text.
 - Verify the embedded page lists LilyGO T-Embed CC1101 and ESP32-S3-BOX-3 under supported hardware.
+- Verify the embedded page links to `pcvantol/djconnect-firmware` for firmware downloads.
 - Verify the embedded page navigation can return to `wwwroot/index.html`.
 - Verify the page renders at desktop width, tablet width and mobile width.
 

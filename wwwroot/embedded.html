@@ -730,6 +730,8 @@
       gap: 18px;
     }
 
+    .section-followup { margin-top: 18px; }
+
     .grid-2 > *,
     .quick li > * {
       min-width: 0;
@@ -995,14 +997,14 @@
     <header class="hero">
       <div class="wrap hero-grid">
         <div>
-          <div class="eyebrow"><span class="dot"></span> <span data-i18n="heroEyebrow">Vooraf geflasht • Wake word "Okay Nabu" • Home Assistant</span></div>
+          <div class="eyebrow"><span class="dot"></span> <span data-i18n="heroEyebrow">Firmware download • Wake word "Okay Nabu" • Home Assistant</span></div>
           <h1 data-i18n="heroTitle">DJConnect. Jouw persoonlijke muziek DJ</h1>
           <p class="lead" data-i18n="heroLead">Pak het device uit, koppel het met Home Assistant en vraag met één druk op de knop om de muziek die je wilt horen. DJConnect start de muziek en geeft een korte DJ-reactie terug.</p>
           <div class="hero-actions">
             <a class="btn primary" href="#quickstart" data-i18n="heroPrimary">Bekijk quick start</a>
             <a class="btn" href="#requirements" data-i18n="heroSecondary">Check benodigdheden</a>
           </div>
-          <p class="note" data-i18n="heroNote">Direct uit de doos: geen firmware flashen, geen technisch geknutsel. Devices komen vooraf geflasht.</p>
+          <p class="note" data-i18n="heroNote">Download de firmware, flash je ondersteunde ESP32-device en koppel daarna met Home Assistant.</p>
         </div>
 
         <div class="device-card platform-card" aria-label="DJConnect platformen" data-platform-carousel data-i18n-attr="aria-label:platformVisualLabel">
@@ -1074,7 +1076,7 @@
                 />
               </div>
               <div class="platform-copy">
-                <div><strong data-i18n="espTitle">Embedded ESP32-device</strong><span data-i18n="espText">Een vooraf geflasht LilyGO T-Embed device voor push-to-talk, wake word, displayfeedback en OTA-updates.</span></div>
+                <div><strong data-i18n="espTitle">Embedded ESP32-device</strong><span data-i18n="espText">Een ondersteund ESP32-device voor push-to-talk, wake word, displayfeedback en OTA-updates.</span></div>
                 <div class="platform-badge" data-i18n="espBadge">Hardware</div>
               </div>
             </article>
@@ -1102,8 +1104,9 @@
         <div class="grid-3">
           <article class="card">
             <div class="icon">📦</div>
-            <h3 data-i18n="experiencePreTitle">Vooraf geflasht geleverd</h3>
-            <p data-i18n="experiencePreText">Geen USB flash, geen firmware build. Het device komt klaar voor setup in Home Assistant.</p>
+            <h3 data-i18n="experiencePreTitle">Firmware downloaden</h3>
+            <p data-i18n="experiencePreText">Download de DJConnect firmware en flash je ondersteunde ESP32-device voordat je gaat pairen.</p>
+            <p><a class="text-link" href="https://github.com/pcvantol/djconnect-firmware" target="_blank" rel="noopener" data-i18n="firmwareLink">Download DJConnect firmware</a></p>
           </article>
           <article class="card">
             <div class="icon">🏠</div>
@@ -1164,6 +1167,12 @@
               <a class="text-link" href="https://github.com/espressif/esp-box/blob/master/docs/hardware_overview/esp32_s3_box_3/hardware_overview_for_box_3.md" target="_blank" rel="noopener" data-i18n="hardwareDocsLink">ESP32-S3-BOX-3 hardware overview</a>
             </p>
           </article>
+        </div>
+        <div class="card section-followup">
+          <div class="icon">⬇️</div>
+          <h3 data-i18n="firmwareTitle">Firmware downloads</h3>
+          <p data-i18n="firmwareText">Gebruik de firmware-repo voor releases, broncode en flash-instructies voor ondersteunde embedded devices.</p>
+          <p><a class="text-link" href="https://github.com/pcvantol/djconnect-firmware" target="_blank" rel="noopener" data-i18n="firmwareLink">Download DJConnect firmware</a></p>
         </div>
       </div>
     </section>
@@ -1263,7 +1272,7 @@
           <p class="lead" data-i18n="faqLead">Korte antwoorden op de vragen die je waarschijnlijk als eerste hebt.</p>
         </div>
         <div class="quick">
-          <div class="card"><h3 data-i18n="faqFlashTitle">Moet ik firmware flashen?</h3><p class="muted" data-i18n="faqFlashText">Nee. Ga uit van pre-flashed devices. Firmware updates lopen later via Home Assistant OTA.</p></div>
+          <div class="card"><h3 data-i18n="faqFlashTitle">Moet ik firmware flashen?</h3><p class="muted" data-i18n="faqFlashText">Ja. Download de DJConnect firmware, flash je ondersteunde ESP32-device en gebruik daarna Home Assistant voor pairing en updates.</p></div>
           <div class="card"><h3 data-i18n="faqAudioTitle">Speelt DJ audio via Spotify Connect?</h3><p class="muted" data-i18n="faqAudioText">Nee. DJ aankondigingen spelen op de speaker/display van het DJConnect device.</p></div>
           <div class="card"><h3 data-i18n="faqPlaylistTitle">Kan ik private playlists gebruiken?</h3><p class="muted" data-i18n="faqPlaylistText">Ja, zolang Spotify in Home Assistant goed geautoriseerd is.</p></div>
         </div>
@@ -1274,7 +1283,7 @@
       <div class="wrap callout">
         <div>
           <h2 data-i18n="calloutTitle">Klaar voor je volgende plaat?</h2>
-          <p class="muted" data-i18n="calloutText">Installeer de integration, pair het pre-flashed device en laat Home Assistant de rest doen.</p>
+          <p class="muted" data-i18n="calloutText">Installeer de integration, flash je device, pair met Home Assistant en laat DJConnect de rest doen.</p>
         </div>
         <a class="btn primary" href="#quickstart" data-i18n="calloutButton">Start quick start</a>
       </div>
@@ -1300,19 +1309,19 @@
         navRequirements: "Benodigdheden",
         navFaq: "FAQ",
         navStartSetup: "Start installatie",
-        heroEyebrow: 'Vooraf geflasht • Wake word "Okay Nabu" • Home Assistant',
+        heroEyebrow: 'Firmware download • Wake word "Okay Nabu" • Home Assistant',
         heroTitle: "DJConnect. Jouw persoonlijke muziek DJ",
         heroLead: "Pak het device uit, koppel het met Home Assistant en vraag met één druk op de knop om de muziek die je wilt horen. DJConnect start de muziek en geeft een korte DJ-reactie terug.",
         heroPrimary: "Bekijk quick start",
         heroSecondary: "Check benodigdheden",
-        heroNote: "Direct uit de doos: geen firmware flashen, geen technisch geknutsel. Devices komen vooraf geflasht.",
+        heroNote: "Download de firmware, flash je ondersteunde ESP32-device en koppel daarna met Home Assistant.",
         deviceVisualLabel: "DJConnect device visualisatie",
         deviceImageAlt: "DJConnect device op basis van de LilyGO T-Embed vormfactor",
         deviceImageSrc: "assets/lilygo-t-embed-djconnect.svg",
         platformVisualLabel: "DJConnect platformen",
         platformKicker: "Embedded device",
         platformTitle: "DJConnect op ESP32",
-        platformLead: "Gebruik DJConnect als compact vooraf geflasht LilyGO T-Embed device voor muziek en voice.",
+        platformLead: "Gebruik DJConnect als compact ESP32-device voor muziek en voice.",
         platformTabsLabel: "Platformkeuze",
         platformTrackLabel: "Platform panels",
         platformPrevLabel: "Vorige platform",
@@ -1326,7 +1335,7 @@
         iosText: "Een snelle companion voor bank, keuken of studio: remote control, voice prompts en feedback dichtbij.",
         iosBadge: "Mobiel",
         espTitle: "Embedded ESP32-device",
-        espText: "Een vooraf geflasht LilyGO T-Embed device voor push-to-talk, wake word, displayfeedback en OTA-updates.",
+        espText: "Een ondersteund ESP32-device voor push-to-talk, wake word, displayfeedback en OTA-updates.",
         espBadge: "Hardware",
         float1Title: "Druk om te praten",
         float1Text: "Vraag muziek met één knop",
@@ -1338,8 +1347,11 @@
         float4Text: "Bedien je muziek op afstand",
         experienceTitle: "De ervaring uit de doos",
         experienceLead: "DJConnect is ontworpen als een product, niet als een bouwpakket. De firmware staat al op het device; jij installeert de Home Assistant integration en koppelt het device.",
-        experiencePreTitle: "Vooraf geflasht geleverd",
-        experiencePreText: "Geen USB flash, geen firmware build. Het device komt klaar voor setup in Home Assistant.",
+        experiencePreTitle: "Firmware downloaden",
+        experiencePreText: "Download de DJConnect firmware en flash je ondersteunde ESP32-device voordat je gaat pairen.",
+        firmwareTitle: "Firmware downloads",
+        firmwareText: "Gebruik de firmware-repo voor releases, broncode en flash-instructies voor ondersteunde embedded devices.",
+        firmwareLink: "Download DJConnect firmware",
         experienceHaTitle: "Home Assistant-native",
         experienceHaText: "Home Assistant regelt pairing, updates, voice verwerking en muziekbediening.",
         experiencePttTitle: "Push-to-talk muziek",
@@ -1416,13 +1428,13 @@
         faqTitle: "Veelgestelde vragen",
         faqLead: "Korte antwoorden op de vragen die je waarschijnlijk als eerste hebt.",
         faqFlashTitle: "Moet ik firmware flashen?",
-        faqFlashText: "Nee. Ga uit van pre-flashed devices. Firmware updates lopen later via Home Assistant OTA.",
+        faqFlashText: "Ja. Download de DJConnect firmware, flash je ondersteunde ESP32-device en gebruik daarna Home Assistant voor pairing en updates.",
         faqAudioTitle: "Speelt DJ audio via Spotify Connect?",
         faqAudioText: "Nee. DJ aankondigingen spelen op de speaker/display van het DJConnect device.",
         faqPlaylistTitle: "Kan ik private playlists gebruiken?",
         faqPlaylistText: "Ja, zolang Spotify in Home Assistant goed geautoriseerd is.",
         calloutTitle: "Klaar voor je volgende plaat?",
-        calloutText: "Installeer de integration, pair het pre-flashed device en laat Home Assistant de rest doen.",
+        calloutText: "Installeer de integration, flash je device, pair met Home Assistant en laat DJConnect de rest doen.",
         calloutButton: "Start quick start",
         legalCopyright: "Copyright Peter van Tol 2026. All rights reserved. DJConnect firmware is proprietary software. The Home Assistant integration may be distributed separately for use with DJConnect devices.",
         legalSpotify: "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility."
@@ -1439,19 +1451,19 @@
         navRequirements: "Requirements",
         navFaq: "FAQ",
         navStartSetup: "Start setup",
-        heroEyebrow: 'Pre-flashed • Wake word "Okay Nabu" • Home Assistant',
+        heroEyebrow: 'Firmware download • Wake word "Okay Nabu" • Home Assistant',
         heroTitle: "DJConnect. Your personal music DJ",
         heroLead: "Unbox the device, pair it with Home Assistant and ask for the music you want with one button. DJConnect starts the music and gives you a short DJ announcement.",
         heroPrimary: "View quick start",
         heroSecondary: "Check requirements",
-        heroNote: "Out of the box: no firmware flashing, no technical tinkering. Devices come pre-flashed.",
+        heroNote: "Download the firmware, flash your supported ESP32 device and then pair it with Home Assistant.",
         deviceVisualLabel: "DJConnect device visualization",
         deviceImageAlt: "DJConnect device based on the LilyGO T-Embed form factor",
         deviceImageSrc: "assets/lilygo-t-embed-djconnect-en.svg",
         platformVisualLabel: "DJConnect platforms",
         platformKicker: "Embedded device",
         platformTitle: "DJConnect on ESP32",
-        platformLead: "Use DJConnect as a compact pre-flashed LilyGO T-Embed device for music and voice.",
+        platformLead: "Use DJConnect as a compact ESP32 device for music and voice.",
         platformTabsLabel: "Platform picker",
         platformTrackLabel: "Platform panels",
         platformPrevLabel: "Previous platform",
@@ -1465,7 +1477,7 @@
         iosText: "A fast companion for couch, kitchen or studio: remote control, voice prompts and feedback close by.",
         iosBadge: "Mobile",
         espTitle: "Embedded ESP32 device",
-        espText: "A pre-flashed LilyGO T-Embed device for push-to-talk, wake word, display feedback and OTA updates.",
+        espText: "A supported ESP32 device for push-to-talk, wake word, display feedback and OTA updates.",
         espBadge: "Hardware",
         float1Title: "Push to talk",
         float1Text: "Ask for music with one button",
@@ -1477,8 +1489,11 @@
         float4Text: "Control your music remotely",
         experienceTitle: "The out-of-box experience",
         experienceLead: "DJConnect is designed as a product, not a kit. The firmware is already on the device; you install the Home Assistant integration and pair the device.",
-        experiencePreTitle: "Delivered pre-flashed",
-        experiencePreText: "No USB flash, no firmware build. The device arrives ready for setup in Home Assistant.",
+        experiencePreTitle: "Download firmware",
+        experiencePreText: "Download the DJConnect firmware and flash your supported ESP32 device before pairing.",
+        firmwareTitle: "Firmware downloads",
+        firmwareText: "Use the firmware repo for releases, source code and flashing instructions for supported embedded devices.",
+        firmwareLink: "Download DJConnect firmware",
         experienceHaTitle: "Home Assistant native",
         experienceHaText: "Home Assistant handles pairing, updates, voice processing and music control.",
         experiencePttTitle: "Push-to-talk music",
@@ -1555,13 +1570,13 @@
         faqTitle: "Frequently asked questions",
         faqLead: "Short answers to the questions you will probably have first.",
         faqFlashTitle: "Do I need to flash firmware?",
-        faqFlashText: "No. Assume pre-flashed devices. Firmware updates run later through Home Assistant OTA.",
+        faqFlashText: "Yes. Download the DJConnect firmware, flash your supported ESP32 device and then use Home Assistant for pairing and updates.",
         faqAudioTitle: "Does DJ audio play through Spotify Connect?",
         faqAudioText: "No. DJ announcements play on the speaker/display of the DJConnect device.",
         faqPlaylistTitle: "Can I use private playlists?",
         faqPlaylistText: "Yes, as long as Spotify is properly authorized in Home Assistant.",
         calloutTitle: "Ready for your next track?",
-        calloutText: "Install the integration, pair the pre-flashed device and let Home Assistant handle the rest.",
+        calloutText: "Install the integration, flash your device, pair with Home Assistant and let DJConnect handle the rest.",
         calloutButton: "Start quick start",
         legalCopyright: "Copyright Peter van Tol 2026. All rights reserved. DJConnect firmware is proprietary software. The Home Assistant integration may be distributed separately for use with DJConnect devices.",
         legalSpotify: "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility."

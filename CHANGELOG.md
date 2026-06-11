@@ -2,6 +2,12 @@
 
 All notable changes to this website are documented here.
 
+## DJConnect website v3.1.1 - 2026-06-11
+
+- Moved "Aan de slag" to the first homepage navigation position.
+- Fixed the Home Assistant badge icon rendering by using the icon asset without distortion.
+- Updated homepage essentials copy for encrypted token storage and multi-client Home Assistant positioning.
+
 ## DJConnect website v3.1.0 - 2026-06-11
 
 - Improved homepage hero device rendering with clearer macOS, iPad and iPhone form factors.

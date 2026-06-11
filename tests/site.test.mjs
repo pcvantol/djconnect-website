@@ -55,7 +55,7 @@ test("site version is consistent", async () => {
   ]);
 
   const cleanVersion = version.trim();
-  assert.equal(cleanVersion, "3.1.0");
+  assert.equal(cleanVersion, "3.1.1");
   assert.equal(JSON.parse(packageJson).version, cleanVersion);
   assert.match(index, new RegExp(`DJConnect website v${cleanVersion}`));
   assert.match(embedded, new RegExp(`DJConnect website v${cleanVersion}`));

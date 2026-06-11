@@ -6,7 +6,7 @@
 - Production URL: https://djconnect.pages.dev
 - Cloudflare Pages project: `djconnect`
 - Publish directory: `wwwroot`
-- Current version: `3.1.0`
+- Current version: `3.1.1`
 - Main page: `wwwroot/index.html`
 - Start/setup page: `wwwroot/start.html`
 - macOS app page: `wwwroot/macos.html`

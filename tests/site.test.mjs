@@ -101,9 +101,15 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /Home Assistant installatie/);
   assert.match(start, /Home Assistant Community Store/);
   assert.match(start, /https:\/\/my\.home-assistant\.io\/redirect\/hacs_repository/);
-  assert.match(start, /Koppel Spotify/);
-  assert.match(start, /Configureer Home Assistant Assist/);
-  assert.match(start, /Koppel je DJConnect device of app/);
+  assert.match(start, /Installeer DJConnect via HACS in Home Assistant/);
+  assert.match(start, /Configureer je voice assist pipeline in Home Assistant/);
+  assert.match(start, /https:\/\/www\.home-assistant\.io\/voice_control\/voice_remote_cloud_assistant\//);
+  assert.match(start, /Configureer DJConnect in Home Assistant/);
+  assert.match(start, /Koppel je Spotify Premium account/);
+  assert.match(start, /Koppel DJConnect aan Home Assistant/);
+  assert.match(start, /https:\/\/github\.com\/pcvantol\/djconnect-firmware/);
+  assert.match(start, /https:\/\/github\.com\/pcvantol\/djconnect-app-releases/);
+  assert.match(start, /Ontvang je persoonlijke DJ aankondiging/);
   assert.match(start, /Geen Spotify playback/);
   assert.match(start, /Spotify is a trademark of Spotify AB/);
 });

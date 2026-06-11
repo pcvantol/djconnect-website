@@ -6,9 +6,11 @@
 - Verify the homepage navigation scrolls to Platform, Essentials and Apps & devices.
 - Verify the homepage hero shows the macOS, iPad and iPhone form factors next to each other without overlap.
 - Verify the homepage hero text says `Speel, Vraag aan, Ontvang Persoonlijke DJ aankondiging`.
-- Open `wwwroot/start.html` and verify HACS, Spotify, Assist, pairing and troubleshooting sections.
+- Open `wwwroot/start.html` and verify the five setup sections: HACS installation, voice assist pipeline, DJConnect configuration, pairing/downloads and first use.
 - Verify the start page has a clear Home button back to `wwwroot/index.html`.
 - Verify the start page clearly separates automatic HACS installation from manual setup steps.
+- Verify the start page links to Home Assistant voice assistant documentation, ESP firmware releases and app releases.
+- Verify the Spotify Premium account is configured inside the DJConnect configuration section, not as a separate top-level setup block.
 - Verify the homepage embedded card opens `wwwroot/embedded.html`.
 - Open `wwwroot/macos.html` and `wwwroot/ios.html`.
 - Open `wwwroot/macos-download.html` and verify it shows binaries or the empty release-repo state.

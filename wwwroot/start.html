@@ -42,6 +42,7 @@
     .hero-steps li::before { content:counter(heroSteps); flex:0 0 42px; width:42px; height:42px; display:grid; place-items:center; border-radius:999px; background:linear-gradient(135deg,var(--purple),#c084fc); color:var(--text); font-weight:950; box-shadow:0 14px 28px rgba(139,92,246,0.22); }
     .hero-done { display:flex; align-items:center; gap:14px; margin-top:18px; color:var(--text); font-size:1.08rem; font-weight:820; }
     .hero-done::before { content:"✓"; flex:0 0 42px; width:42px; height:42px; display:grid; place-items:center; border-radius:999px; background:linear-gradient(135deg,var(--cyan),var(--green)); color:#06110c; font-weight:950; }
+    .download-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
     .route-card { min-height:100%; }
     .route-label { display:inline-flex; margin-bottom:14px; padding:6px 10px; border-radius:999px; background:rgba(102,224,255,0.14); color:#9becff; font-size:0.78rem; font-weight:850; text-transform:uppercase; letter-spacing:0.06em; }
     .route-card .btn { margin-top:22px; }
@@ -66,7 +67,7 @@
         <a href="index.html">Home</a>
         <a href="#requirements">Vereisten</a>
         <a href="#hacs">HACS</a>
-        <a href="#spotify">Spotify</a>
+        <a href="#spotify">Voice</a>
         <a href="#pairing">Koppelen</a>
         <a href="#troubleshooting">Hulp</a>
       </div>
@@ -120,7 +121,7 @@
       <div class="wrap grid-2">
         <div class="card route-card">
           <span class="route-label">Automatisch</span>
-          <h2>1. Installeer DJConnect in HACS</h2>
+          <h2>1. Installeer DJConnect via HACS in Home Assistant</h2>
           <p class="lead">Gebruik de Home Assistant Community Store deeplink om direct naar de DJConnect repository in HACS te gaan.</p>
           <a class="btn primary" href="https://my.home-assistant.io/redirect/hacs_repository/?owner=pcvantol&repository=djconnect&category=integration" target="_blank" rel="noopener">Home Assistant Community Store</a>
         </div>
@@ -144,15 +145,15 @@
     <section id="spotify">
       <div class="wrap grid-2">
         <div>
-          <h2>2. Koppel Spotify</h2>
-          <p class="lead">DJConnect gebruikt Spotify via Home Assistant. Tijdens setup opent Home Assistant de Spotify autorisatiepagina.</p>
-          <div class="note">Gebruik bij voorkeur je Nabu Casa HTTPS URL als Home Assistant externe URL.</div>
+          <h2>2. Configureer je voice assist pipeline in Home Assistant</h2>
+          <p class="lead">DJConnect gebruikt je Home Assistant voice pipeline voor stembesturing en gesproken DJ aankondigingen.</p>
+          <a class="btn" href="https://www.home-assistant.io/voice_control/voice_remote_cloud_assistant/" target="_blank" rel="noopener">Home Assistant voice assistant installatie</a>
         </div>
         <ol class="steps">
-          <li>Log in met je Spotify Premium account</li>
-          <li>Geef toestemming</li>
-          <li>Je komt terug bij Home Assistant</li>
-          <li>Daarna beheert Home Assistant de Spotify koppeling</li>
+          <li>Open de Home Assistant voice assistant documentatie</li>
+          <li>Maak of controleer je voice assist pipeline</li>
+          <li>Controleer spraakherkenning en gesproken output</li>
+          <li>Gebruik deze pipeline straks in DJConnect</li>
         </ol>
       </div>
     </section>
@@ -160,25 +161,30 @@
     <section id="assist">
       <div class="wrap grid-2">
         <div>
-          <h2>3. Configureer Home Assistant Assist</h2>
-          <p class="lead">DJConnect heeft een werkende Assist pipeline nodig voor voice.</p>
-          <p class="muted">STT zet je gesproken muziekvraag om naar tekst. TTS spreekt de DJ aankondiging uit op het DJConnect device of in de app. De DJ aankondiging is instelbaar in de DJConnect options flow.</p>
+          <h2>3. Configureer DJConnect in Home Assistant</h2>
+          <p class="lead">Voeg DJConnect toe als integration en koppel daarna Spotify en je voice assist pipeline.</p>
         </div>
         <ol class="steps">
-          <li>Open <strong>Settings -> Voice assistants</strong></li>
-          <li>Maak of controleer een Assist pipeline</li>
-          <li>Kies een STT provider voor spraak naar tekst</li>
-          <li>Kies een TTS provider voor gesproken DJ aankondigingen</li>
-          <li>Test de pipeline in Home Assistant</li>
-          <li>Kies deze pipeline eventueel in de DJConnect options flow</li>
+          <li><strong>Settings -> Devices & services -> Add integration -> DJConnect</strong></li>
+          <li>Koppel je Spotify Premium account</li>
+          <li>Configureer je assist pipeline voor stembesturing en DJ aankondigingen</li>
         </ol>
       </div>
     </section>
 
     <section id="pairing">
       <div class="wrap">
-        <h2>4. Koppel je DJConnect device of app</h2>
+        <h2>4. Koppel DJConnect aan Home Assistant</h2>
         <p class="lead">Kies de route die past bij je client.</p>
+      </div>
+      <div class="wrap">
+        <div class="card">
+          <h3>Download de app of firmware</h3>
+          <div class="download-actions">
+            <a class="btn primary" href="https://github.com/pcvantol/djconnect-firmware" target="_blank" rel="noopener">ESP firmware releases</a>
+            <a class="btn" href="https://github.com/pcvantol/djconnect-app-releases" target="_blank" rel="noopener">App releases</a>
+          </div>
+        </div>
       </div>
       <div class="wrap grid-2">
         <article class="card">
@@ -212,19 +218,15 @@
     <section id="check">
       <div class="wrap grid-2">
         <div>
-          <h2>5. Controleer of alles werkt</h2>
-          <p class="lead">Na pairing kun je deze punten nalopen.</p>
+          <h2>5. Gebruik DJConnect</h2>
+          <p class="lead">Start met een Spotify Connect speaker en bedien daarna je muziek via DJConnect.</p>
         </div>
-        <ul class="checklist">
-          <li>DJConnect device/app staat als apparaat in Home Assistant</li>
-          <li>Status is verbonden/gepaired</li>
-          <li>Spotify is gekoppeld</li>
-          <li>Playback proxy kan play/pause doen</li>
-          <li>Voice/PTT start muziek</li>
-          <li>DJ aankondiging verschijnt of wordt uitgesproken</li>
-          <li>Last command, last track en debug attributen worden gevuld</li>
-          <li>Firmware update entity verschijnt alleen voor ESP devices</li>
-        </ul>
+        <ol class="steps">
+          <li>Start Spotify Connect op je favoriete speaker</li>
+          <li>Bedien je muziek via DJConnect</li>
+          <li>Vraag de volgende artiest aan met je stem</li>
+          <li>Ontvang je persoonlijke DJ aankondiging in de app of op je DJConnect device</li>
+        </ol>
       </div>
     </section>
 

@@ -10,6 +10,7 @@ All notable changes to this website are documented here.
 - Reworked the homepage hero device visual into a swipeable carousel for macOS, iOS and ESP32.
 - Replaced abstract equalizer bars with play and radio-microphone iconography.
 - Removed trailing periods from start-page step lists and increased spacing between stacked instruction blocks.
+- Reworked the start-page setup flow around HACS installation, Home Assistant voice pipeline setup, DJConnect configuration, client pairing and first use.
 
 ## DJConnect website v3.1.0 - 2026-06-11
 

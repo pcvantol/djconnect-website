@@ -5,7 +5,7 @@ Static landing page for DJConnect, published through Cloudflare Pages.
 ## Structure
 
 - `wwwroot/index.html`: platform homepage with DJConnect essentials.
-- `wwwroot/start.html`: Home Assistant setup flow with automatic HACS route and manual steps.
+- `wwwroot/start.html`: Home Assistant setup flow for HACS installation, voice pipeline setup, DJConnect configuration, client downloads and pairing.
 - `wwwroot/embedded.html`: ESP32 embedded-device one-pager.
 - `wwwroot/macos.html`: macOS app page with release embed and download route.
 - `wwwroot/macos-download.html`: macOS binary download page for `pcvantol/djconnect-app-releases`.
@@ -45,4 +45,5 @@ For private GitHub repositories, set a Cloudflare Pages secret named `GITHUB_TOK
 - Keep Dutch and English translation keys in sync on the homepage and embedded page.
 - Keep App Store links as placeholders until the macOS and iOS apps are published.
 - Do not describe embedded devices as pre-flashed; link users to the firmware repository and flashing flow instead.
+- Keep the start page aligned with the current setup order: HACS, Home Assistant voice pipeline, DJConnect configuration, client pairing and first use.
 - Keep the footer version aligned with `VERSION`, `package.json` and `CHANGELOG.md`.

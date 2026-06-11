@@ -21,7 +21,8 @@
 - The homepage hero uses CSS-rendered macOS, iPad and iPhone form factors. Keep the elements side-by-side and avoid absolute overlap in future changes.
 - The homepage has prepared App Store CTA placeholders with `data-store-link="macos"` and `data-store-link="ios"`.
 - The embedded page should point users to `pcvantol/djconnect-firmware` for firmware downloads and flashing. Do not reintroduce pre-flashed copy.
-- The start page presents two setup paths: automatic HACS deeplink and manual Home Assistant/HACS steps.
+- The start page presents the current setup order: install DJConnect via HACS, configure the Home Assistant voice assist pipeline, configure DJConnect in Home Assistant, download and pair the app/device, then use DJConnect with Spotify Connect.
+- The start page links to Home Assistant voice assistant documentation, `pcvantol/djconnect-firmware` and `pcvantol/djconnect-app-releases`.
 - App subpages use `assets/releases.js`, `assets/releases.css` and the Cloudflare Pages Function `functions/api/releases.js` to live-render GitHub releases.
 - macOS downloads use `assets/downloads.js` and the public repo `pcvantol/djconnect-app-releases`.
 - If the GitHub repository/releases are private, set `GITHUB_TOKEN` as a Cloudflare Pages secret for the `djconnect` project.
@@ -41,4 +42,5 @@
 ## Current Verification
 
 - `npm test` covers version consistency, route presence, release embeds, download embeds, translation keys, footer copyright, firmware links and stale pre-flashed wording.
+- The start page should be manually checked for the HACS deeplink, Home Assistant voice documentation link, firmware/app release links, and the revised five-step flow.
 - Manual visual checks are still needed for desktop, tablet and mobile layouts until browser regression tests are added.

@@ -122,6 +122,16 @@ test("embedded page links back to platform homepage", async () => {
   assert.match(embedded, /DJConnect op ESP32|DJConnect on ESP32/);
 });
 
+test("embedded page lists supported hardware", async () => {
+  const embedded = await read("wwwroot/embedded.html");
+  assert.match(embedded, /Ondersteunde hardware/);
+  assert.match(embedded, /LilyGO T-Embed CC1101/);
+  assert.match(embedded, /https:\/\/lilygo\.cc\/en-us\/products\/t-embed-cc1101/);
+  assert.match(embedded, /ESP32-S3-BOX-3/);
+  assert.match(embedded, /https:\/\/github\.com\/espressif\/esp-box/);
+  assert.match(embedded, /hardware_overview_for_box_3\.md/);
+});
+
 test("all translation keys are present in Dutch and English", async () => {
   const [index, embedded] = await Promise.all([
     read("wwwroot/index.html"),

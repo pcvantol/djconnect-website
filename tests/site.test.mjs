@@ -153,7 +153,10 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /Kies client type <strong>Raspberry Pi app<\/strong> &amp; plak de koppelgegevens/);
   assert.match(start, /DJConnect app is klaar voor gebruik/);
   assert.match(start, /Voer de koppelcode in van het device/);
-  assert.match(start, /Als automatische discovery \(mDNS\) niet werkt, kun je de Client API URL handmatig invullen in de integratie/);
+  assert.doesNotMatch(start, /Voor iOS is de Client API URL verplicht/);
+  assert.doesNotMatch(start, /Voor macOS is de Client API URL verplicht/);
+  assert.doesNotMatch(start, /De Linux app gebruikt dezelfde lokale Home Assistant koppeling/);
+  assert.doesNotMatch(start, /Als automatische discovery \(mDNS\) niet werkt/);
   assert.doesNotMatch(start, /<li>Rond koppeling af<\/li>/);
   assert.match(start, /4\. Koppel app of device/);
   assert.match(start, /5\. Klaar voor gebruik/);

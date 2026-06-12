@@ -276,6 +276,9 @@ test("download script renders dynamic Raspberry Pi install command", async () =>
   assert.match(downloads, /releases\/latest\/download\/\$\{bundle\.name\}/);
   assert.match(downloads, /cd djconnect-pi-\$\{version\}/);
   assert.match(downloads, /sudo \.\/scripts\/install_raspberry_pi\.sh/);
+  assert.match(downloads, /new MutationObserver/);
+  assert.match(downloads, /attributeName === "lang"/);
+  assert.match(downloads, /renderDynamicDownloadBlocks/);
   assert.doesNotMatch(downloads, /djconnect-pi-3\.1\.16/);
 });
 

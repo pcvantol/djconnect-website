@@ -166,10 +166,20 @@ const renderInstallCommand = async (root) => {
   }
 };
 
-document.querySelectorAll("[data-github-downloads]").forEach((root) => {
-  renderDownloads(root);
-});
+const renderDynamicDownloadBlocks = () => {
+  document.querySelectorAll("[data-github-downloads]").forEach((root) => {
+    renderDownloads(root);
+  });
 
-document.querySelectorAll("[data-github-install]").forEach((root) => {
-  renderInstallCommand(root);
-});
+  document.querySelectorAll("[data-github-install]").forEach((root) => {
+    renderInstallCommand(root);
+  });
+};
+
+renderDynamicDownloadBlocks();
+
+new MutationObserver((mutations) => {
+  if (mutations.some((mutation) => mutation.attributeName === "lang")) {
+    renderDynamicDownloadBlocks();
+  }
+}).observe(document.documentElement, { attributes: true });

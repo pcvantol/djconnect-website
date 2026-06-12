@@ -150,7 +150,7 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /Kies client type <strong>iOS app<\/strong> &amp; plak de koppelgegevens in de Home Assistant integratie/);
   assert.match(start, /Kies client type <strong>macOS app<\/strong> &amp; plak de koppelgegevens in de Home Assistant integratie/);
   assert.doesNotMatch(start, /Kies client type <strong>iOS app<\/strong> of <strong>macOS app<\/strong>/);
-  assert.match(start, /Kies client type <strong>Raspberry Pi app<\/strong> &amp; plak de koppelgegevens/);
+  assert.match(start, /Kies client type <strong>Raspberry Pi app<\/strong> &amp; plak de koppelgegevens in de Home Assistant integratie/);
   assert.match(start, /DJConnect app is klaar voor gebruik/);
   assert.match(start, /Voer de koppelcode in van het device/);
   assert.doesNotMatch(start, /Voor iOS is de Client API URL verplicht/);
@@ -199,6 +199,7 @@ test("raspberry pi page is prepared and translated", async () => {
   assert.match(raspberry, /data-github-install/);
   assert.match(raspberry, /data-github-owner="pcvantol"/);
   assert.match(raspberry, /data-github-repo="djconnect-pi-releases"/);
+  assert.match(raspberry, /data-release-limit="1"/);
   assert.match(raspberry, /assets\/downloads\.js/);
   assert.doesNotMatch(raspberry, /data-github-releases/);
   assert.doesNotMatch(raspberry, /data-github-repo="djconnect-website"/);
@@ -217,6 +218,7 @@ test("embedded page contains firmware release embed", async () => {
   assert.match(embedded, /data-github-downloads/);
   assert.match(embedded, /data-github-owner="pcvantol"/);
   assert.match(embedded, /data-github-repo="djconnect-firmware"/);
+  assert.match(embedded, /data-release-limit="1"/);
   assert.match(embedded, /assets\/downloads\.js/);
   assert.doesNotMatch(embedded, /data-github-releases/);
 });
@@ -351,20 +353,20 @@ test("site copy no longer claims devices are pre-flashed", async () => {
 });
 
 test("all translation keys are present in Dutch and English", async () => {
-  const [index, embedded] = await Promise.all([
-    read("wwwroot/index.html"),
-    read("wwwroot/embedded.html")
-  ]);
+  const pages = ["index", "start", "features", "ios", "macos", "raspberry-pi", "embedded"];
+  const htmlPages = await Promise.all(pages.map((page) => read(`wwwroot/${page}.html`)));
 
-  assertTranslationsCoverPage(index, "homepage");
-  assertTranslationsCoverPage(embedded, "embedded");
+  htmlPages.forEach((html, index) => assertTranslationsCoverPage(html, `${pages[index]} page`));
 });
 
 test("copyright is shown in the requested form", async () => {
-  const [index, embedded] = await Promise.all([
-    read("wwwroot/index.html"),
-    read("wwwroot/embedded.html")
-  ]);
-  assert.match(index, /Copyright Peter van Tol 2026/);
-  assert.match(embedded, /Copyright Peter van Tol 2026/);
+  const pages = ["index", "start", "features", "ios", "macos", "raspberry-pi", "embedded"];
+  const htmlPages = await Promise.all(pages.map((page) => read(`wwwroot/${page}.html`)));
+
+  htmlPages.forEach((html) => {
+    assert.match(html, /Copyright Peter van Tol 2026/);
+    assert.match(html, /class="privacy-notice" data-i18n="legalPrivacy"/);
+    assert.match(html, /Deze website ontvangt of bewaart geen accountgegevens/);
+    assert.match(html, /This website does not receive or store account details/);
+  });
 });

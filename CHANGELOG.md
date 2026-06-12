@@ -2,7 +2,7 @@
 
 All notable changes to this website are consolidated under the current website version.
 
-## DJConnect website v3.1.16 - 2026-06-12
+## DJConnect website v3.1.17 - 2026-06-12
 
 - Added a platform-independent homepage for DJConnect essentials, with focused navigation for `Hoe werkt het`, `Features`, `Installeren` and the primary `Aan de slag` CTA.
 - Reworked the homepage hero into a swipeable carousel for macOS, iPad/iPhone and LilyGO/ESP32, with spacious device slides and current Dutch/English copy.
@@ -20,6 +20,9 @@ All notable changes to this website are consolidated under the current website v
 - Added a dynamic Raspberry Pi/Linux install command that uses the latest public GitHub release bundle and preserves pairing/configuration on rerun.
 - Fixed dynamic GitHub download/install blocks so generated copy updates when the language toggle changes.
 - Removed redundant local Client API / discovery notes from the start-page client pairing panels.
+- Added a small translated privacy notice to site footers and removed the app-only privacy copy placement.
+- Updated the Raspberry Pi pairing step to explicitly paste pairing details in the Home Assistant integration.
+- Limited Linux and ESP32 firmware download embeds to the latest GitHub release only.
 - Updated start-page installation navigation so `Installeren` jumps to `2. Voeg toe aan Home Assistant`.
 - Renamed start-page client switch labels to `iOS`, `macOS`, `Linux` and `ESP32`.
 - Updated Linux/Raspberry Pi setup copy to point users to the public GitHub release install path.

@@ -20,6 +20,7 @@
 - Verify the start page links to Home Assistant voice assistant documentation, the embedded firmware page and app releases.
 - Verify the ESP pairing flow says Home Assistant configures the device automatically and the device is ready for use.
 - Verify the pairing switch has separate full-width panels for ESP device, iOS app, macOS app and Raspberry Pi app.
+- Verify the footer privacy notice is present and translated on all public pages.
 - Verify each pairing panel has its own download as step 1.
 - Verify the app pairing flow uses the selected client type, not a combined iOS/macOS step.
 - Verify the troubleshooting cards use the current Spotify authorization, HACS refresh and local reachability wording.

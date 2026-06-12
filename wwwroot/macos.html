@@ -68,6 +68,7 @@
     .muted, .card p { color: var(--muted); }
     .legal { color: var(--muted); font-size: 0.86rem; padding: 34px 0 44px; border-top: 1px solid var(--line); }
     .site-version { margin-top: 14px; font-size: 0.76rem; color: rgba(183,188,203,0.72); }
+    .privacy-notice { font-size: 0.78rem; color: rgba(183,188,203,0.78); }
     @media (max-width: 860px) { .hero-grid, .grid-2 { grid-template-columns: 1fr; } .nav-inner { flex-wrap: wrap; padding: 12px 0; } .nav-links { order: 3; width: 100%; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; } .nav-links::-webkit-scrollbar { display: none; } }
   </style>
 </head>
@@ -128,7 +129,8 @@
   </main>
   <footer class="wrap legal">
     <p>Copyright Peter van Tol 2026. All rights reserved.</p>
-    <p class="site-version">DJConnect website v3.1.16</p>
+    <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
+    <p class="site-version">DJConnect website v3.1.17</p>
   </footer>
   <script src="assets/downloads.js"></script>
   <script>
@@ -148,7 +150,8 @@
         downloadsTitle: "Downloads voorbereid",
         downloadsText: "De nieuwste binaries komen uit de publieke GitHub release-repo. Vervang later de App Store link zodra de app gepubliceerd is.",
         releaseTitle: "Beschikbare binaries",
-        releaseLead: "Elke release toont de downloadbare assets, bestandsgrootte en downloadlink."
+        releaseLead: "Elke release toont de downloadbare assets, bestandsgrootte en downloadlink.",
+        legalPrivacy: "Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens."
       },
       en: {
         title: "DJConnect for macOS",
@@ -165,7 +168,8 @@
         downloadsTitle: "Downloads prepared",
         downloadsText: "The newest binaries come from the public GitHub release repo. Replace the App Store link once the app is published.",
         releaseTitle: "Available binaries",
-        releaseLead: "Each release shows downloadable assets, file size and download link."
+        releaseLead: "Each release shows downloadable assets, file size and download link.",
+        legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details."
       }
     };
     const applyLanguage = (language) => {

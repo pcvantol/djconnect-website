@@ -6,7 +6,7 @@
 - Production URL: https://djconnect.pages.dev
 - Cloudflare Pages project: `djconnect`
 - Publish directory: `wwwroot`
-- Current version: `3.1.16`
+- Current version: `3.1.17`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Start/setup page: `wwwroot/start.html`
@@ -74,9 +74,12 @@ curl -s https://djconnect.pages.dev | grep "DJConnect website v"
 ## Current Verification
 
 - `npm test` covers version consistency, route presence, homepage navigation/copy, firmware download embeds, macOS and Raspberry Pi download embeds, absence of website self-release embeds, translation keys, footer copyright, firmware links, compact embedded page structure, LilyGO visual hygiene and stale pre-flashed wording.
-- Current released version `3.1.16` includes the single-iPad homepage hero slide, embedded page color alignment, renamed mini-games copy/sync prompt, Raspberry Pi downloads from `pcvantol/djconnect-pi-releases` and a dynamic public-release Linux install command.
+- Current released version `3.1.17` includes the single-iPad homepage hero slide, embedded page color alignment, renamed mini-games copy/sync prompt, Raspberry Pi downloads from `pcvantol/djconnect-pi-releases` and a dynamic public-release Linux install command.
 - Dynamic GitHub download/install blocks now rerender when the language toggle changes, so generated install text follows NL/EN.
 - The start-page client pairing panels no longer show extra Client API/discovery notes under iOS, macOS, Linux or ESP32.
+- Site footers now include a small translated privacy notice. Keep it aligned across homepage, setup, features, iOS, macOS, Linux/Raspberry Pi and ESP32 pages.
+- Raspberry Pi setup copy now says to paste pairing details in the Home Assistant integration.
+- Linux/Raspberry Pi and ESP32 firmware download embeds intentionally use `data-release-limit="1"` so only the latest release is shown.
 - The start page `Installeren` navigation now jumps to `2. Voeg toe aan Home Assistant`; the separate `Start installatie` CTA still starts at the voice assist pipeline.
 - The start page should be manually checked for the voice-assist documentation link, HACS deeplink, firmware/app release links, ESP pairing copy, app pairing copy, Raspberry Pi placeholder copy and troubleshooting text.
 - The embedded page should be manually checked to confirm it no longer shows local quick start, requirements, FAQ or the `Stem via HA / Veilig gekoppeld / DJ-karakter` card row.

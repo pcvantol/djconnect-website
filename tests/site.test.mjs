@@ -142,7 +142,7 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /Download ESP firmware/);
   assert.match(start, /Download iOS app/);
   assert.match(start, /Download macOS app/);
-  assert.match(start, /Bekijk Raspberry Pi voorbereiding/);
+  assert.match(start, /Download Linux app/);
   assert.match(start, /Zet het DJConnect device aan en verbind het device met WiFi via captive portal of Home Assistant BLE WiFi provisioning/);
   assert.match(start, /Open DJConnect app en kopieer de koppelgegevens/);
   assert.match(start, /Open DJConnect integratie setup in Home Assistant/);
@@ -178,7 +178,7 @@ test("features page describes core functions and bonus games", async () => {
   assert.match(features, /Veilige koppeling/);
   assert.match(features, /macOS/);
   assert.match(features, /iOS/);
-  assert.match(features, /Raspberry Pi/);
+  assert.match(features, /Linux/);
   assert.match(features, /ESP32 device/);
   assert.match(features, /Bonus: mini-games/);
   assert.match(features, /Pong, Asteroids, Fly & Pacman/);
@@ -188,6 +188,8 @@ test("features page describes core functions and bonus games", async () => {
 test("raspberry pi page is prepared and translated", async () => {
   const raspberry = await read("wwwroot/raspberry-pi.html");
   assert.match(raspberry, /DJConnect voor Raspberry Pi/);
+  assert.match(raspberry, /class="hyperpixel"/);
+  assert.match(raspberry, /HyperPixel 4"/);
   assert.match(raspberry, /data-store-link="raspberry-pi"/);
   assert.match(raspberry, /data-github-downloads/);
   assert.match(raspberry, /data-github-owner="pcvantol"/);
@@ -196,6 +198,7 @@ test("raspberry pi page is prepared and translated", async () => {
   assert.doesNotMatch(raspberry, /data-github-releases/);
   assert.doesNotMatch(raspberry, /data-github-repo="djconnect-website"/);
   assert.doesNotMatch(raspberry, /Download volgt/);
+  assert.doesNotMatch(raspberry, /Bekijk pairing/);
   assert.match(raspberry, /href="index\.html" data-i18n="navHome">Home<\/a>/);
   assert.doesNotMatch(raspberry, /href="macos\.html">macOS<\/a>/);
   assert.doesNotMatch(raspberry, /href="ios\.html">iOS<\/a>/);

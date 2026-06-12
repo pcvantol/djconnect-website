@@ -1,7 +1,9 @@
 const downloadCopy = {
   nl: {
     loading: "Downloads laden...",
-    empty: "Er zijn nog geen macOS binaries gepubliceerd in deze release-repo.",
+    empty: "Er zijn nog geen binaries gepubliceerd in deze release-repo.",
+    emptyPi: "Er zijn nog geen Linux builds gepubliceerd in deze release-repo.",
+    emptyMac: "Er zijn nog geen macOS binaries gepubliceerd in deze release-repo.",
     failed: "Downloads konden niet live worden geladen. Open GitHub voor de nieuwste binaries.",
     download: "Download",
     noAssets: "Deze release heeft nog geen downloadbare assets.",
@@ -9,7 +11,9 @@ const downloadCopy = {
   },
   en: {
     loading: "Loading downloads...",
-    empty: "No macOS binaries have been published in this release repo yet.",
+    empty: "No binaries have been published in this release repo yet.",
+    emptyPi: "No Linux builds have been published in this release repo yet.",
+    emptyMac: "No macOS binaries have been published in this release repo yet.",
     failed: "Could not load downloads live. Open GitHub for the newest binaries.",
     download: "Download",
     noAssets: "This release does not have downloadable assets yet.",
@@ -65,6 +69,7 @@ const renderDownloads = async (root) => {
   const limit = Number(root.dataset.releaseLimit || 5);
   const language = document.documentElement.lang === "en" ? "en" : "nl";
   const copy = downloadCopy[language];
+  const emptyCopy = repo === "djconnect-pi-releases" ? copy.emptyPi : repo === "djconnect-app-releases" ? copy.emptyMac : copy.empty;
 
   root.innerHTML = `<div class="download-status">${copy.loading}</div>`;
 
@@ -78,7 +83,7 @@ const renderDownloads = async (root) => {
 
     releases = releases.slice(0, limit);
     if (!releases.length) {
-      root.innerHTML = `<div class="download-status">${copy.empty} <a href="https://github.com/${owner}/${repo}/releases" target="_blank" rel="noopener">${copy.github}</a></div>`;
+      root.innerHTML = `<div class="download-status">${emptyCopy} <a href="https://github.com/${owner}/${repo}/releases" target="_blank" rel="noopener">${copy.github}</a></div>`;
       return;
     }
 

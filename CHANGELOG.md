@@ -2,6 +2,15 @@
 
 All notable changes to this website are documented here.
 
+## DJConnect website v3.1.12 - 2026-06-12
+
+- Centered the iOS hero voice icon in the landscape iPad visual.
+- Reworked Raspberry Pi/Linux copy across the homepage, Features page and start-page pairing flow.
+- Replaced the Raspberry Pi hero mockup with a Pimoroni HyperPixel Square 4-inch inspired visual.
+- Removed the Raspberry Pi hero pairing CTA so the page focuses on downloads.
+- Fixed Raspberry Pi download fallback copy to reference Linux builds while continuing to load `pcvantol/djconnect-pi-releases`.
+- Synced the canonical cross-repo prompt bundle with Bonjour/mDNS client discovery guidance.
+
 ## DJConnect website v3.1.11 - 2026-06-12
 
 - Added a platform-independent homepage for DJConnect essentials, with focused navigation for `Hoe werkt het`, `Features`, `Download` and the primary `Aan de slag` CTA.

@@ -33,9 +33,99 @@
     section { padding:68px 0; }
     .card { border:1px solid var(--line); border-radius:22px; background:var(--panel); padding:24px; }
     .card p,.muted { color:var(--muted); }
-    .mock { min-height:360px; border:1px solid var(--line); border-radius:28px; background:linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04)); padding:24px; display:grid; place-items:center; }
-    .pi-board { width:min(100%,420px); aspect-ratio:1.45; border-radius:24px; border:1px solid rgba(255,255,255,0.18); background:linear-gradient(145deg,#103a2d,#07110d); display:grid; place-items:center; box-shadow:0 22px 60px rgba(0,0,0,0.28); }
-    .pi-screen { width:72%; aspect-ratio:1.6; border-radius:16px; border:1px solid rgba(255,255,255,0.18); background:#05070b; display:grid; place-items:center; color:var(--muted); font-weight:900; }
+    .mock { min-height:420px; border:1px solid var(--line); border-radius:28px; background:linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04)); padding:24px; display:grid; place-items:center; }
+    .hyperpixel {
+      position:relative;
+      width:min(100%,390px);
+      aspect-ratio:1;
+      border-radius:34px;
+      padding:18px;
+      border:1px solid rgba(255,255,255,0.2);
+      background:linear-gradient(145deg,#232b38,#05070b 74%);
+      box-shadow:0 26px 70px rgba(0,0,0,0.38), inset 0 1px 0 rgba(255,255,255,0.14);
+    }
+    .hyperpixel::before,
+    .hyperpixel::after {
+      content:"";
+      position:absolute;
+      width:9px;
+      height:9px;
+      border-radius:50%;
+      background:rgba(255,255,255,0.18);
+      box-shadow:0 0 0 1px rgba(0,0,0,0.35), 0 0 18px rgba(102,224,255,0.18);
+    }
+    .hyperpixel::before { left:18px; top:18px; }
+    .hyperpixel::after { right:18px; bottom:18px; }
+    .hyperpixel-screen {
+      height:100%;
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,0.16);
+      background:
+        radial-gradient(circle at 22% 18%, rgba(102,224,255,0.22), transparent 9rem),
+        radial-gradient(circle at 78% 72%, rgba(126,247,167,0.18), transparent 8rem),
+        linear-gradient(180deg,#111827,#05070b);
+      padding:24px;
+      display:grid;
+      grid-template-rows:auto 1fr auto;
+      gap:18px;
+      color:var(--text);
+    }
+    .hyperpixel-status {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      color:var(--muted);
+      font-size:0.74rem;
+      font-weight:850;
+      letter-spacing:0.06em;
+      text-transform:uppercase;
+    }
+    .hyperpixel-pill {
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 9px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.1);
+    }
+    .hyperpixel-pill::before {
+      content:"";
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:var(--green);
+      box-shadow:0 0 14px rgba(126,247,167,0.7);
+    }
+    .hyperpixel-main {
+      display:grid;
+      place-items:center;
+      text-align:center;
+      gap:16px;
+    }
+    .hyperpixel-play {
+      width:96px;
+      height:96px;
+      border-radius:28px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg,var(--cyan),#8b5cf6);
+      box-shadow:0 22px 44px rgba(0,0,0,0.34);
+    }
+    .hyperpixel-play::before {
+      content:"";
+      width:0;
+      height:0;
+      border-top:20px solid transparent;
+      border-bottom:20px solid transparent;
+      border-left:30px solid #06110c;
+      margin-left:6px;
+    }
+    .hyperpixel-title { font-size:1.28rem; font-weight:950; letter-spacing:-0.04em; }
+    .hyperpixel-subtitle { color:var(--muted); font-weight:760; }
+    .hyperpixel-lines { display:grid; gap:9px; }
+    .hyperpixel-lines span { height:9px; border-radius:999px; background:rgba(255,255,255,0.24); }
+    .hyperpixel-lines span:nth-child(2) { width:70%; justify-self:center; }
     .legal { color:var(--muted); font-size:0.86rem; padding:34px 0 44px; border-top:1px solid var(--line); }
     .site-version { margin-top:14px; font-size:0.76rem; color:rgba(183,188,203,0.72); }
     @media (max-width:860px) { .hero-grid,.grid-2 { grid-template-columns:1fr; } .nav-inner { flex-wrap:wrap; padding:12px 0; } .nav-links { order:3; width:100%; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; } .nav-links::-webkit-scrollbar { display:none; } }
@@ -63,10 +153,20 @@
         <div>
           <h1 data-i18n="heroTitle">DJConnect voor Raspberry Pi</h1>
           <p class="lead" data-i18n="heroLead">Een vaste DJConnect app op Raspberry Pi: een klein scherm of dedicated muziekcontroller die lokaal met Home Assistant koppelt.</p>
-          <a class="btn primary" href="start.html#pairing" data-i18n="heroPrimary">Bekijk pairing</a>
-          <a class="btn" href="#downloads" data-store-link="raspberry-pi" data-i18n="heroSecondary">Download app</a>
+          <a class="btn primary" href="#downloads" data-store-link="raspberry-pi" data-i18n="heroSecondary">Download app</a>
         </div>
-        <div class="mock" aria-hidden="true"><div class="pi-board"><div class="pi-screen" data-i18n="mockLabel">Raspberry Pi app</div></div></div>
+        <div class="mock" aria-hidden="true">
+          <div class="hyperpixel">
+            <div class="hyperpixel-screen">
+              <div class="hyperpixel-status"><span>HyperPixel 4"</span><span class="hyperpixel-pill">Online</span></div>
+              <div class="hyperpixel-main">
+                <span class="hyperpixel-play"></span>
+                <div><div class="hyperpixel-title">DJConnect</div><div class="hyperpixel-subtitle" data-i18n="mockLabel">Linux app</div></div>
+              </div>
+              <div class="hyperpixel-lines"><span></span><span></span></div>
+            </div>
+          </div>
+        </div>
       </div>
     </header>
     <section>
@@ -87,7 +187,7 @@
   </main>
   <footer class="wrap legal">
     <p>Copyright Peter van Tol 2026. All rights reserved.</p>
-    <p class="site-version">DJConnect website v3.1.11</p>
+    <p class="site-version">DJConnect website v3.1.12</p>
   </footer>
   <script src="assets/downloads.js"></script>
   <script>
@@ -101,9 +201,8 @@
         navDownloads: "Downloads",
         heroTitle: "DJConnect voor Raspberry Pi",
         heroLead: "Een vaste DJConnect app op Raspberry Pi: een klein scherm of dedicated muziekcontroller die lokaal met Home Assistant koppelt.",
-        heroPrimary: "Bekijk pairing",
         heroSecondary: "Download app",
-        mockLabel: "Raspberry Pi app",
+        mockLabel: "Linux app",
         fixedTitle: "Vaste client",
         fixedText: "Gebruik Raspberry Pi als always-on DJConnect client voor bediening op een vast punt in huis.",
         pairingTitle: "Zelfde koppeling",
@@ -120,9 +219,8 @@
         navDownloads: "Downloads",
         heroTitle: "DJConnect for Raspberry Pi",
         heroLead: "A fixed DJConnect app on Raspberry Pi: a small screen or dedicated music controller that pairs locally with Home Assistant.",
-        heroPrimary: "View pairing",
         heroSecondary: "Download app",
-        mockLabel: "Raspberry Pi app",
+        mockLabel: "Linux app",
         fixedTitle: "Fixed client",
         fixedText: "Use Raspberry Pi as an always-on DJConnect client for control at a fixed spot in your home.",
         pairingTitle: "Same pairing",

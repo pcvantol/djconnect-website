@@ -1,7 +1,7 @@
 {
   "name": "DJConnect",
   "short_name": "DJConnect",
-  "description": "Your personal music DJ.",
+  "description": "Music control with character.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#070812",

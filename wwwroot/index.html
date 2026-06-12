@@ -419,6 +419,17 @@
       align-content: space-between;
     }
 
+    .device-slide-ios .mini-ui {
+      grid-template-rows: 1fr auto;
+      align-items: center;
+      justify-items: center;
+    }
+
+    .device-slide-ios .line-set {
+      width: 78%;
+      justify-self: center;
+    }
+
     .cover {
       width: 88px;
       height: 88px;
@@ -690,7 +701,7 @@
 
         <div class="platform-stage" aria-label="DJConnect platformoverzicht" data-i18n-attr="aria-label:stageLabel">
           <div class="stage-top">
-            <span data-i18n="stageText">DJConnect. Jouw persoonlijke muziek DJ</span>
+            <span data-i18n="stageText">DJConnect. Muziekbediening met karakter</span>
           </div>
           <div class="device-stack" aria-label="Platform opties" data-i18n-attr="aria-label:stageCarouselLabel">
             <article class="device-slide device-slide-mac">
@@ -827,10 +838,10 @@
           </article>
           <article class="card platform-card">
             <div>
-              <div class="topline"><h3 data-i18n="raspberryTitle">Raspberry Pi</h3><span class="tag" data-i18n="raspberryTag">Voorbereid</span></div>
-              <p data-i18n="raspberryText">Voor een vaste DJConnect app op Raspberry Pi: ideaal als klein scherm of dedicated muziekcontroller.</p>
+              <div class="topline"><h3 data-i18n="raspberryTitle">Linux</h3><span class="tag" data-i18n="raspberryTag">Raspberry Pi</span></div>
+              <p data-i18n="raspberryText">Voor een vaste DJConnect app op Linux: ideaal als klein scherm of dedicated muziekcontroller.</p>
             </div>
-            <a class="btn" href="raspberry-pi.html" data-i18n="raspberryMore">Meer over Raspberry Pi</a>
+            <a class="btn" href="raspberry-pi.html" data-i18n="raspberryMore">Meer over Linux</a>
           </article>
         </div>
       </div>
@@ -841,7 +852,7 @@
   <footer class="wrap legal">
     <p data-i18n="legalCopyright">Copyright Peter van Tol 2026. All rights reserved. DJConnect firmware is proprietary software. The Home Assistant integration may be distributed separately for use with DJConnect devices.</p>
     <p data-i18n="legalSpotify">Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility.</p>
-    <p class="site-version">DJConnect website v3.1.11</p>
+    <p class="site-version">DJConnect website v3.1.12</p>
   </footer>
   <script>
     const translations = {
@@ -867,7 +878,7 @@
         stageCarouselLabel: "Platform opties",
         iosSlideLabel: "Vraag je volgende hit aan",
         embeddedSlideLabel: "Luister naar persoonlijke DJ aankondiging",
-        stageText: "DJConnect. Jouw persoonlijke muziek DJ",
+        stageText: "DJConnect. Muziekbediening met karakter",
         stageScreenText: "Speel muziek & bedien op afstand",
         platformTitle: "De kern van DJConnect",
         platformLead: "DJConnect brengt je muziekwens, speaker keuze en persoonlijke DJ-feedback samen in één vloeiende ervaring.",
@@ -898,10 +909,10 @@
         embeddedTitle: "Embedded device",
         embeddedText: "De fysieke DJConnect-ervaring met LilyGO T-Embed, push-to-talk, displayfeedback en OTA-updates.",
         embeddedCta: "Firmware",
-        raspberryTitle: "Raspberry Pi",
-        raspberryTag: "Voorbereid",
-        raspberryText: "Voor een vaste DJConnect app op Raspberry Pi: ideaal als klein scherm of dedicated muziekcontroller.",
-        raspberryMore: "Meer over Raspberry Pi",
+        raspberryTitle: "Linux",
+        raspberryTag: "Raspberry Pi",
+        raspberryText: "Voor een vaste DJConnect app op Linux: ideaal als klein scherm of dedicated muziekcontroller.",
+        raspberryMore: "Meer over Linux",
         legalCopyright: "Copyright Peter van Tol 2026. All rights reserved. DJConnect firmware is proprietary software. The Home Assistant integration may be distributed separately for use with DJConnect devices.",
         legalSpotify: "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility."
       },
@@ -926,9 +937,9 @@
         stageLabel: "DJConnect platform overview",
         stageCarouselLabel: "Platform options",
         iosSlideLabel: "With voice activation",
-        embeddedSlideLabel: "Run embedded, for the real die-hards",
-        stageText: "DJConnect. Your personal music DJ",
-        stageScreenText: "Play, ask, receive a personal DJ announcement",
+        embeddedSlideLabel: "Listen to personal DJ announcements",
+        stageText: "DJConnect. Music control with character",
+        stageScreenText: "Play music and control remotely",
         platformTitle: "The core of DJConnect",
         platformLead: "DJConnect brings your music request, speaker choice and personal DJ feedback together in one smooth experience.",
         platformVoiceTitle: "Ask for music naturally",
@@ -957,11 +968,11 @@
         iosMore: "More about iOS",
         embeddedTitle: "Embedded device",
         embeddedText: "The physical DJConnect experience with LilyGO T-Embed, push-to-talk, display feedback and OTA updates.",
-        embeddedCta: "Buy & flash",
-        raspberryTitle: "Raspberry Pi",
-        raspberryTag: "Prepared",
-        raspberryText: "For a fixed DJConnect app on Raspberry Pi: ideal as a small screen or dedicated music controller.",
-        raspberryMore: "More about Raspberry Pi",
+        embeddedCta: "Firmware",
+        raspberryTitle: "Linux",
+        raspberryTag: "Raspberry Pi",
+        raspberryText: "For a fixed DJConnect app on Linux: ideal as a small screen or dedicated music controller.",
+        raspberryMore: "More about Linux",
         legalCopyright: "Copyright Peter van Tol 2026. All rights reserved. DJConnect firmware is proprietary software. The Home Assistant integration may be distributed separately for use with DJConnect devices.",
         legalSpotify: "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility."
       }

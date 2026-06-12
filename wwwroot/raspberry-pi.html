@@ -4,8 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DJConnect voor Raspberry Pi</title>
-  <meta name="description" content="DJConnect voor Raspberry Pi: voorbereid voor een vaste DJConnect app op een klein scherm of dedicated muziekcontroller." />
+  <meta name="description" content="DJConnect voor Raspberry Pi: vaste DJConnect app op een klein scherm of dedicated muziekcontroller." />
   <link rel="icon" href="assets/djconnect/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/downloads.css" />
   <style>
     :root { --bg:#0b0d12; --panel:rgba(255,255,255,0.075); --text:#f7f7fb; --muted:#b7bccb; --line:rgba(255,255,255,0.14); --cyan:#66e0ff; --green:#7ef7a7; --max:1080px; }
     * { box-sizing:border-box; }
@@ -52,7 +53,7 @@
           <button type="button" data-lang="nl" aria-pressed="true">NL</button>
           <button type="button" data-lang="en" aria-pressed="false">EN</button>
         </div>
-        <a class="btn primary" href="start.html#pairing" data-i18n="navPair">Koppelen</a>
+        <a class="btn primary" href="#downloads" data-i18n="navDownloads">Downloads</a>
       </div>
     </div>
   </nav>
@@ -61,59 +62,73 @@
       <div class="wrap hero-grid">
         <div>
           <h1 data-i18n="heroTitle">DJConnect voor Raspberry Pi</h1>
-          <p class="lead" data-i18n="heroLead">Voorbereid voor een vaste DJConnect app op Raspberry Pi: een klein scherm of dedicated muziekcontroller die lokaal met Home Assistant koppelt.</p>
+          <p class="lead" data-i18n="heroLead">Een vaste DJConnect app op Raspberry Pi: een klein scherm of dedicated muziekcontroller die lokaal met Home Assistant koppelt.</p>
           <a class="btn primary" href="start.html#pairing" data-i18n="heroPrimary">Bekijk pairing</a>
-          <a class="btn" href="#" aria-disabled="true" data-store-link="raspberry-pi" data-i18n="heroSecondary">Download volgt</a>
+          <a class="btn" href="#downloads" data-store-link="raspberry-pi" data-i18n="heroSecondary">Download app</a>
         </div>
         <div class="mock" aria-hidden="true"><div class="pi-board"><div class="pi-screen" data-i18n="mockLabel">Raspberry Pi app</div></div></div>
       </div>
     </header>
     <section>
       <div class="wrap grid-2">
-        <article class="card"><h2 data-i18n="fixedTitle">Vaste client</h2><p data-i18n="fixedText">Gebruik Raspberry Pi straks als always-on DJConnect client voor bediening op een vast punt in huis.</p></article>
-        <article class="card"><h2 data-i18n="pairingTitle">Zelfde koppeling</h2><p data-i18n="pairingText">De Raspberry Pi app wordt voorbereid op dezelfde Home Assistant integratie setup, koppelcode en lokale Client API route als de andere clients.</p></article>
+        <article class="card"><h2 data-i18n="fixedTitle">Vaste client</h2><p data-i18n="fixedText">Gebruik Raspberry Pi als always-on DJConnect client voor bediening op een vast punt in huis.</p></article>
+        <article class="card"><h2 data-i18n="pairingTitle">Zelfde koppeling</h2><p data-i18n="pairingText">De Raspberry Pi app gebruikt dezelfde Home Assistant integratie setup, koppelcode en lokale Client API route als de andere clients.</p></article>
+      </div>
+    </section>
+    <section id="downloads">
+      <div class="wrap grid-2">
+        <div>
+          <h2 data-i18n="releaseTitle">Beschikbare builds</h2>
+          <p class="lead" data-i18n="releaseLead">Elke release toont de downloadbare Raspberry Pi assets, bestandsgrootte en downloadlink.</p>
+        </div>
+        <div class="download-list" data-github-downloads data-github-owner="pcvantol" data-github-repo="djconnect-pi-releases" data-release-limit="5"></div>
       </div>
     </section>
   </main>
   <footer class="wrap legal">
     <p>Copyright Peter van Tol 2026. All rights reserved.</p>
-    <p class="site-version">DJConnect website v3.1.10</p>
+    <p class="site-version">DJConnect website v3.1.11</p>
   </footer>
+  <script src="assets/downloads.js"></script>
   <script>
     const translations = {
       nl: {
         title: "DJConnect voor Raspberry Pi",
-        metaDescription: "DJConnect voor Raspberry Pi: voorbereid voor een vaste DJConnect app op een klein scherm of dedicated muziekcontroller.",
+        metaDescription: "DJConnect voor Raspberry Pi: vaste DJConnect app op een klein scherm of dedicated muziekcontroller.",
         navLabel: "Navigatie",
         languageToggle: "Taalkeuze",
         navHome: "Home",
-        navPair: "Koppelen",
+        navDownloads: "Downloads",
         heroTitle: "DJConnect voor Raspberry Pi",
-        heroLead: "Voorbereid voor een vaste DJConnect app op Raspberry Pi: een klein scherm of dedicated muziekcontroller die lokaal met Home Assistant koppelt.",
+        heroLead: "Een vaste DJConnect app op Raspberry Pi: een klein scherm of dedicated muziekcontroller die lokaal met Home Assistant koppelt.",
         heroPrimary: "Bekijk pairing",
-        heroSecondary: "Download volgt",
+        heroSecondary: "Download app",
         mockLabel: "Raspberry Pi app",
         fixedTitle: "Vaste client",
-        fixedText: "Gebruik Raspberry Pi straks als always-on DJConnect client voor bediening op een vast punt in huis.",
+        fixedText: "Gebruik Raspberry Pi als always-on DJConnect client voor bediening op een vast punt in huis.",
         pairingTitle: "Zelfde koppeling",
-        pairingText: "De Raspberry Pi app wordt voorbereid op dezelfde Home Assistant integratie setup, koppelcode en lokale Client API route als de andere clients."
+        pairingText: "De Raspberry Pi app gebruikt dezelfde Home Assistant integratie setup, koppelcode en lokale Client API route als de andere clients.",
+        releaseTitle: "Beschikbare builds",
+        releaseLead: "Elke release toont de downloadbare Raspberry Pi assets, bestandsgrootte en downloadlink."
       },
       en: {
         title: "DJConnect for Raspberry Pi",
-        metaDescription: "DJConnect for Raspberry Pi: prepared for a fixed DJConnect app on a small screen or dedicated music controller.",
+        metaDescription: "DJConnect for Raspberry Pi: fixed DJConnect app on a small screen or dedicated music controller.",
         navLabel: "Navigation",
         languageToggle: "Language",
         navHome: "Home",
-        navPair: "Pair",
+        navDownloads: "Downloads",
         heroTitle: "DJConnect for Raspberry Pi",
-        heroLead: "Prepared for a fixed DJConnect app on Raspberry Pi: a small screen or dedicated music controller that pairs locally with Home Assistant.",
+        heroLead: "A fixed DJConnect app on Raspberry Pi: a small screen or dedicated music controller that pairs locally with Home Assistant.",
         heroPrimary: "View pairing",
-        heroSecondary: "Download coming",
+        heroSecondary: "Download app",
         mockLabel: "Raspberry Pi app",
         fixedTitle: "Fixed client",
         fixedText: "Use Raspberry Pi as an always-on DJConnect client for control at a fixed spot in your home.",
         pairingTitle: "Same pairing",
-        pairingText: "The Raspberry Pi app is being prepared for the same Home Assistant integration setup, pairing code and local Client API route as the other clients."
+        pairingText: "The Raspberry Pi app uses the same Home Assistant integration setup, pairing code and local Client API route as the other clients.",
+        releaseTitle: "Available builds",
+        releaseLead: "Each release shows downloadable Raspberry Pi assets, file size and download link."
       }
     };
     const applyLanguage = (language) => {

@@ -6,13 +6,13 @@
 - Production URL: https://djconnect.pages.dev
 - Cloudflare Pages project: `djconnect`
 - Publish directory: `wwwroot`
-- Current version: `3.1.10`
+- Current version: `3.1.11`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Start/setup page: `wwwroot/start.html`
 - macOS app page with binary downloads: `wwwroot/macos.html`
 - iOS app page: `wwwroot/ios.html`
-- Raspberry Pi app placeholder page: `wwwroot/raspberry-pi.html`
+- Raspberry Pi app page with binary downloads: `wwwroot/raspberry-pi.html`
 - Embedded ESP32 one-pager: `wwwroot/embedded.html`
 
 ## Important Notes
@@ -24,7 +24,7 @@
 - The homepage hero uses a swipeable device carousel for macOS, a landscape iPad and LilyGO/ESP32. Keep each device slide spacious and avoid compressing devices side-by-side.
 - The iOS carousel slide intentionally shows one landscape iPad only; do not re-add a second iPhone visual unless the layout is redesigned.
 - The homepage has prepared App Store CTA placeholders with `data-store-link="macos"` and `data-store-link="ios"`, plus a prepared Raspberry Pi route.
-- The Raspberry Pi page is a placeholder for the future app and should not show a release embed until a relevant release repository exists.
+- The Raspberry Pi page loads public builds from `pcvantol/djconnect-pi-releases` using `assets/downloads.js`.
 - The embedded page is now a compact product page: supported hardware, how it works and release embed. Keep experience, setup, requirements and FAQ content off this page.
 - The embedded page should use the same site color language as the homepage: cyan/green primary CTA, subtle pink/green/cyan background accents and no dominant purple-blue page background.
 - The embedded page should point users to LilyGO product specs where relevant. Firmware download and setup links belong on the start page. Do not reintroduce pre-flashed copy.
@@ -34,7 +34,8 @@
 - macOS, iOS, Raspberry Pi and embedded pages label the homepage navigation route as `Home`; app pages should not show cross-links to other app/device pages in the top menu.
 - The embedded page uses `assets/releases.js`, `assets/releases.css` and the Cloudflare Pages Function `functions/api/releases.js` to live-render `pcvantol/djconnect-firmware` releases.
 - macOS downloads are embedded directly on `wwwroot/macos.html` using `assets/downloads.js` and the public repo `pcvantol/djconnect-app-releases`.
-- iOS and Raspberry Pi pages do not embed website repository releases. Add release/download embeds only when they have their own relevant app release source.
+- Raspberry Pi downloads are embedded directly on `wwwroot/raspberry-pi.html` using `assets/downloads.js` and the public repo `pcvantol/djconnect-pi-releases`.
+- iOS does not embed website repository releases. Add a release/download embed only when it has its own relevant app release source.
 - If the GitHub repository/releases are private, set `GITHUB_TOKEN` as a Cloudflare Pages secret for the `djconnect` project.
 - Version is tracked in `VERSION`, `package.json`, page footers and `CHANGELOG.md`.
 - Language switching on the homepage, start page, embedded page, Features page, Raspberry Pi page, iOS page and macOS page is handled through per-page `translations` objects.
@@ -72,8 +73,8 @@ curl -s https://djconnect.pages.dev | grep "DJConnect website v"
 
 ## Current Verification
 
-- `npm test` covers version consistency, route presence, homepage navigation/copy, firmware release embeds, macOS download embeds, absence of website self-release embeds, translation keys, footer copyright, firmware links, compact embedded page structure, Raspberry Pi preparation, LilyGO visual hygiene and stale pre-flashed wording.
-- Current released version `3.1.10` includes the single-iPad homepage hero slide, embedded page color alignment and Pacman in the mini-games copy/sync prompt.
+- `npm test` covers version consistency, route presence, homepage navigation/copy, firmware release embeds, macOS and Raspberry Pi download embeds, absence of website self-release embeds, translation keys, footer copyright, firmware links, compact embedded page structure, LilyGO visual hygiene and stale pre-flashed wording.
+- Current released version `3.1.11` includes the single-iPad homepage hero slide, embedded page color alignment, Pacman in the mini-games copy/sync prompt and Raspberry Pi downloads from `pcvantol/djconnect-pi-releases`.
 - The start page should be manually checked for the voice-assist documentation link, HACS deeplink, firmware/app release links, ESP pairing copy, app pairing copy, Raspberry Pi placeholder copy and troubleshooting text.
 - The embedded page should be manually checked to confirm it no longer shows local quick start, requirements, FAQ or the `Stem via HA / Veilig gekoppeld / DJ-karakter` card row.
 - Manual visual checks are still needed for desktop, tablet and mobile layouts until browser regression tests are formalized in CI.

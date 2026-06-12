@@ -189,8 +189,13 @@ test("raspberry pi page is prepared and translated", async () => {
   const raspberry = await read("wwwroot/raspberry-pi.html");
   assert.match(raspberry, /DJConnect voor Raspberry Pi/);
   assert.match(raspberry, /data-store-link="raspberry-pi"/);
+  assert.match(raspberry, /data-github-downloads/);
+  assert.match(raspberry, /data-github-owner="pcvantol"/);
+  assert.match(raspberry, /data-github-repo="djconnect-pi-releases"/);
+  assert.match(raspberry, /assets\/downloads\.js/);
   assert.doesNotMatch(raspberry, /data-github-releases/);
   assert.doesNotMatch(raspberry, /data-github-repo="djconnect-website"/);
+  assert.doesNotMatch(raspberry, /Download volgt/);
   assert.match(raspberry, /href="index\.html" data-i18n="navHome">Home<\/a>/);
   assert.doesNotMatch(raspberry, /href="macos\.html">macOS<\/a>/);
   assert.doesNotMatch(raspberry, /href="ios\.html">iOS<\/a>/);

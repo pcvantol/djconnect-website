@@ -10,7 +10,7 @@ Static landing page for DJConnect, published through Cloudflare Pages.
 - `wwwroot/embedded.html`: ESP32 embedded-device one-pager.
 - `wwwroot/macos.html`: macOS app page with binaries from `pcvantol/djconnect-app-releases`.
 - `wwwroot/ios.html`: iOS app page with App Store placeholder.
-- `wwwroot/raspberry-pi.html`: prepared Raspberry Pi app placeholder page.
+- `wwwroot/raspberry-pi.html`: Raspberry Pi app page with builds from `pcvantol/djconnect-pi-releases`.
 - `wwwroot/assets/`: logo, favicon and product visuals.
 - `functions/api/releases.js`: Cloudflare Pages Function proxy for GitHub release data.
 - `VERSION`: current site version.
@@ -85,7 +85,8 @@ curl -s https://djconnect.pages.dev | grep "DJConnect website v"
 
 The embedded page renders latest firmware releases through `/api/releases`.
 The macOS page renders binary downloads from `pcvantol/djconnect-app-releases`.
-iOS and Raspberry Pi pages do not load `djconnect-website` releases; add release/download embeds only when a relevant app release source exists.
+The Raspberry Pi page renders binary downloads from `pcvantol/djconnect-pi-releases`.
+iOS does not load `djconnect-website` releases; add release/download embeds only when a relevant app release source exists.
 For private GitHub repositories, set a Cloudflare Pages secret named `GITHUB_TOKEN` with read access to releases.
 
 ## Cleanup

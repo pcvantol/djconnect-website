@@ -113,7 +113,7 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /Home Assistant installatie/);
   assert.match(start, /Open DJConnect in HACS/);
   assert.match(start, /https:\/\/my\.home-assistant\.io\/redirect\/hacs_repository/);
-  assert.match(start, /href="#spotify" data-i18n="navInstall">Installeren<\/a>/);
+  assert.match(start, /href="#hacs" data-i18n="navInstall">Installeren<\/a>/);
   assert.match(start, /href="#pairing" data-i18n="navDownload">Download<\/a>/);
   assert.match(start, /class="lang-toggle"/);
   assert.doesNotMatch(start, /href="#hacs">HACS<\/a>/);
@@ -137,12 +137,13 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /id="client-raspberry"/);
   assert.match(
     start,
-    /<label for="client-ios" role="tab">iOS app<\/label>\s*<label for="client-macos" role="tab">macOS app<\/label>\s*<label for="client-esp" role="tab">ESP32<\/label>\s*<label for="client-raspberry" role="tab">Raspberry Pi app<\/label>/
+    /<label for="client-ios" role="tab">iOS<\/label>\s*<label for="client-macos" role="tab">macOS<\/label>\s*<label for="client-raspberry" role="tab">Linux<\/label>\s*<label for="client-esp" role="tab">ESP32<\/label>/
   );
   assert.match(start, /Download ESP firmware/);
   assert.match(start, /Download iOS app/);
   assert.match(start, /Download macOS app/);
   assert.match(start, /Download Linux app/);
+  assert.match(start, /Installeer de DJConnect Raspberry Pi app via Github/);
   assert.match(start, /Zet het DJConnect device aan en verbind het device met WiFi via captive portal of Home Assistant BLE WiFi provisioning/);
   assert.match(start, /Open DJConnect app en kopieer de koppelgegevens/);
   assert.match(start, /Open DJConnect integratie setup in Home Assistant/);
@@ -192,6 +193,7 @@ test("raspberry pi page is prepared and translated", async () => {
   assert.match(raspberry, /HyperPixel 4"/);
   assert.match(raspberry, /data-store-link="raspberry-pi"/);
   assert.match(raspberry, /data-github-downloads/);
+  assert.match(raspberry, /data-github-install/);
   assert.match(raspberry, /data-github-owner="pcvantol"/);
   assert.match(raspberry, /data-github-repo="djconnect-pi-releases"/);
   assert.match(raspberry, /assets\/downloads\.js/);
@@ -265,6 +267,16 @@ test("release proxy function is present", async () => {
   const proxy = await read("functions/api/releases.js");
   assert.match(proxy, /env\.GITHUB_TOKEN/);
   assert.match(proxy, /api\.github\.com\/repos/);
+});
+
+test("download script renders dynamic Raspberry Pi install command", async () => {
+  const downloads = await read("wwwroot/assets/downloads.js");
+  assert.match(downloads, /installTitle: "DJConnect Pi app install"/);
+  assert.match(downloads, /Installeer DJConnect Pi vanaf de publieke release-bundel/);
+  assert.match(downloads, /releases\/latest\/download\/\$\{bundle\.name\}/);
+  assert.match(downloads, /cd djconnect-pi-\$\{version\}/);
+  assert.match(downloads, /sudo \.\/scripts\/install_raspberry_pi\.sh/);
+  assert.doesNotMatch(downloads, /djconnect-pi-3\.1\.16/);
 });
 
 test("embedded page links back to platform homepage", async () => {

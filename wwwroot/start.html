@@ -87,7 +87,7 @@
       <a class="brand" href="index.html"><img src="assets/djconnect/icon.svg" alt="" /><span>DJConnect</span></a>
       <div class="nav-links" aria-label="Navigatie" data-i18n-attr="aria-label:navLabel">
         <a href="index.html" data-i18n="navHome">Home</a>
-        <a href="#spotify" data-i18n="navInstall">Installeren</a>
+        <a href="#hacs" data-i18n="navInstall">Installeren</a>
         <a href="#pairing" data-i18n="navDownload">Download</a>
         <a href="#troubleshooting" data-i18n="navHelp">Hulp</a>
       </div>
@@ -208,10 +208,10 @@
           <input type="radio" name="client-route" id="client-esp" />
           <input type="radio" name="client-route" id="client-raspberry" />
           <div class="switch-tabs" role="tablist" aria-label="Kies client type" data-i18n-attr="aria-label:clientTypeLabel">
-            <label for="client-ios" role="tab">iOS app</label>
-            <label for="client-macos" role="tab">macOS app</label>
+            <label for="client-ios" role="tab">iOS</label>
+            <label for="client-macos" role="tab">macOS</label>
+            <label for="client-raspberry" role="tab">Linux</label>
             <label for="client-esp" role="tab">ESP32</label>
-            <label for="client-raspberry" role="tab">Raspberry Pi app</label>
           </div>
           <div class="client-panels">
             <article class="card client-panel" data-client-panel="ios">
@@ -251,7 +251,7 @@
               <h3 data-i18n="raspberryTitle">Raspberry Pi app</h3>
               <ol class="steps">
                 <li><a class="btn primary" href="raspberry-pi.html">Download Linux app</a></li>
-                <li>Installeer de DJConnect Raspberry Pi app zodra de release beschikbaar is</li>
+                <li>Installeer de DJConnect Raspberry Pi app via Github</li>
                 <li>Open DJConnect integratie setup in Home Assistant</li>
                 <li>Kies client type <strong>Raspberry Pi app</strong> &amp; plak de koppelgegevens</li>
                 <li>DJConnect Raspberry Pi app is klaar voor gebruik</li>
@@ -296,7 +296,7 @@
   <footer class="wrap legal">
     <p data-i18n="legalCopyright">Copyright Peter van Tol 2026. All rights reserved.</p>
     <p data-i18n="legalSpotify">Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.</p>
-    <p class="site-version">DJConnect website v3.1.13</p>
+    <p class="site-version">DJConnect website v3.1.14</p>
   </footer>
   <script>
     const translations = {

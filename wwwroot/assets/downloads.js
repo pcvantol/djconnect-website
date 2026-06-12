@@ -7,7 +7,11 @@ const downloadCopy = {
     failed: "Downloads konden niet live worden geladen. Open GitHub voor de nieuwste binaries.",
     download: "Download",
     noAssets: "Deze release heeft nog geen downloadbare assets.",
-    github: "Open release op GitHub"
+    github: "Open release op GitHub",
+    installTitle: "DJConnect Pi app install",
+    installText: "Installeer DJConnect Pi vanaf de publieke release-bundel. Gebruik dit nadat Raspberry Pi OS is voorbereid. Het script bewaart bestaande pairing/configuratie en kan later opnieuw worden uitgevoerd voor een handmatige update.",
+    installLoading: "Install-commando laden...",
+    installMissing: "Geen Raspberry Pi install-bundel gevonden in de nieuwste release."
   },
   en: {
     loading: "Loading downloads...",
@@ -17,7 +21,11 @@ const downloadCopy = {
     failed: "Could not load downloads live. Open GitHub for the newest binaries.",
     download: "Download",
     noAssets: "This release does not have downloadable assets yet.",
-    github: "Open release on GitHub"
+    github: "Open release on GitHub",
+    installTitle: "DJConnect Pi app install",
+    installText: "Install DJConnect Pi from the public release bundle. Use this after Raspberry Pi OS has been prepared. The script keeps existing pairing/configuration and can be run again later for a manual update.",
+    installLoading: "Loading install command...",
+    installMissing: "No Raspberry Pi install bundle found in the newest release."
   }
 };
 
@@ -63,6 +71,14 @@ const getDownloadJson = (url) => {
   });
 };
 
+const getReleases = async (owner, repo, limit) => {
+  try {
+    return await getDownloadJson(`/api/releases?owner=${encodeURIComponent(owner)}&repo=${encodeURIComponent(repo)}&limit=${limit}`);
+  } catch (proxyError) {
+    return getDownloadJson(`https://api.github.com/repos/${owner}/${repo}/releases`);
+  }
+};
+
 const renderDownloads = async (root) => {
   const owner = root.dataset.githubOwner || "pcvantol";
   const repo = root.dataset.githubRepo || "djconnect-app-releases";
@@ -74,13 +90,7 @@ const renderDownloads = async (root) => {
   root.innerHTML = `<div class="download-status">${copy.loading}</div>`;
 
   try {
-    let releases;
-    try {
-      releases = await getDownloadJson(`/api/releases?owner=${encodeURIComponent(owner)}&repo=${encodeURIComponent(repo)}&limit=${limit}`);
-    } catch (proxyError) {
-      releases = await getDownloadJson(`https://api.github.com/repos/${owner}/${repo}/releases`);
-    }
-
+    let releases = await getReleases(owner, repo, limit);
     releases = releases.slice(0, limit);
     if (!releases.length) {
       root.innerHTML = `<div class="download-status">${emptyCopy} <a href="https://github.com/${owner}/${repo}/releases" target="_blank" rel="noopener">${copy.github}</a></div>`;
@@ -115,6 +125,51 @@ const renderDownloads = async (root) => {
   }
 };
 
+const renderInstallCommand = async (root) => {
+  const owner = root.dataset.githubOwner || "pcvantol";
+  const repo = root.dataset.githubRepo || "djconnect-pi-releases";
+  const language = document.documentElement.lang === "en" ? "en" : "nl";
+  const copy = downloadCopy[language];
+
+  root.innerHTML = `<div class="download-status">${copy.installLoading}</div>`;
+
+  try {
+    const releases = await getReleases(owner, repo, 1);
+    const release = releases[0];
+    const assets = release?.assets || [];
+    const bundle = assets.find((asset) => /^djconnect-pi-[\d.]+\.tar\.gz$/.test(asset.name)) || assets.find((asset) => asset.name.endsWith(".tar.gz"));
+    if (!release || !bundle) {
+      root.innerHTML = `<div class="download-status">${copy.installMissing} <a href="https://github.com/${owner}/${repo}/releases" target="_blank" rel="noopener">${copy.github}</a></div>`;
+      return;
+    }
+
+    const version = release.tag_name.replace(/^v/i, "");
+    const command = [
+      "mkdir -p ~/djconnect-install && \\",
+      "cd ~/djconnect-install && \\",
+      "rm -rf djconnect-pi-* djconnect-pi.tar.gz && \\",
+      `curl -fsSL https://github.com/${owner}/${repo}/releases/latest/download/${bundle.name} -o djconnect-pi.tar.gz && \\`,
+      "tar -xzf djconnect-pi.tar.gz && \\",
+      `cd djconnect-pi-${version} && \\`,
+      "sudo ./scripts/install_raspberry_pi.sh"
+    ].join("\n");
+
+    root.innerHTML = `
+      <article class="install-card">
+        <h3>${copy.installTitle}</h3>
+        <p>${copy.installText}</p>
+        <pre class="install-command"><code>${command}</code></pre>
+      </article>
+    `;
+  } catch (error) {
+    root.innerHTML = `<div class="download-status">${copy.failed} <a href="https://github.com/${owner}/${repo}/releases" target="_blank" rel="noopener">${copy.github}</a></div>`;
+  }
+};
+
 document.querySelectorAll("[data-github-downloads]").forEach((root) => {
   renderDownloads(root);
+});
+
+document.querySelectorAll("[data-github-install]").forEach((root) => {
+  renderInstallCommand(root);
 });

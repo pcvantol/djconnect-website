@@ -2,7 +2,7 @@
 
 All notable changes to this website are documented here.
 
-## DJConnect website v3.1.9 - 2026-06-11
+## DJConnect website v3.1.10 - 2026-06-11
 
 - Added a platform-independent homepage for DJConnect essentials, with focused navigation for `Hoe werkt het`, `Features`, `Download` and the primary `Aan de slag` CTA.
 - Reworked the homepage hero into a swipeable carousel for macOS, iPad/iPhone and LilyGO/ESP32, with clearer device form factors, play/voice iconography and current Dutch/English copy.
@@ -33,3 +33,4 @@ All notable changes to this website are documented here.
 - Added a `Download` menu item on the start page that jumps to the app/device pairing section.
 - Updated `release.sh` to remove older GitHub Actions workflow runs by default and keep only the latest run.
 - Removed self-referencing website release embeds from iOS and Raspberry Pi pages; only embedded firmware releases and macOS app downloads are loaded live.
+- Synced the canonical cross-repo prompt bundle and updated website copy for the fourth bonus mini-game: Pacman.

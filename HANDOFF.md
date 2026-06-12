@@ -6,7 +6,7 @@
 - Production URL: https://djconnect.pages.dev
 - Cloudflare Pages project: `djconnect`
 - Publish directory: `wwwroot`
-- Current version: `3.1.9`
+- Current version: `3.1.10`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Start/setup page: `wwwroot/start.html`
@@ -73,7 +73,7 @@ curl -s https://djconnect.pages.dev | grep "DJConnect website v"
 ## Current Verification
 
 - `npm test` covers version consistency, route presence, homepage navigation/copy, firmware release embeds, macOS download embeds, absence of website self-release embeds, translation keys, footer copyright, firmware links, compact embedded page structure, Raspberry Pi preparation, LilyGO visual hygiene and stale pre-flashed wording.
-- Current released version `3.1.9` includes the single-iPad homepage hero slide and embedded page color alignment.
+- Current released version `3.1.10` includes the single-iPad homepage hero slide, embedded page color alignment and Pacman in the mini-games copy/sync prompt.
 - The start page should be manually checked for the voice-assist documentation link, HACS deeplink, firmware/app release links, ESP pairing copy, app pairing copy, Raspberry Pi placeholder copy and troubleshooting text.
 - The embedded page should be manually checked to confirm it no longer shows local quick start, requirements, FAQ or the `Stem via HA / Veilig gekoppeld / DJ-karakter` card row.
 - Manual visual checks are still needed for desktop, tablet and mobile layouts until browser regression tests are formalized in CI.

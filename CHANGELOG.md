@@ -7,7 +7,7 @@ All notable changes to this website are documented here.
 - Added a platform-independent homepage for DJConnect essentials, with focused navigation for `Hoe werkt het`, `Features`, `Download` and the primary `Aan de slag` CTA.
 - Reworked the homepage hero into a swipeable carousel for macOS, iPad/iPhone and LilyGO/ESP32, with clearer device form factors, play/voice iconography and current Dutch/English copy.
 - Simplified the homepage iOS hero slide to a single landscape iPad so the device visual has more space.
-- Added a top-level Features page with the main DJConnect functions and bonus mini-games: Pong, Asteroids & Fly.
+- Added a top-level Features page with the main DJConnect functions and bonus mini-games: Pong, Asteroids, Fly & Pacman.
 - Added macOS, iOS and Raspberry Pi placeholder pages with language toggles, release/download routes and translation coverage.
 - Added a Home Assistant `Aan de slag` setup page for voice assist, HACS installation, DJConnect configuration, downloads, client pairing and first use.
 - Reworked the start-page pairing flow into a three-option switch for ESP device, iOS app and macOS app, with target-specific download links and simplified four-step flows.

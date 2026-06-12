@@ -181,7 +181,7 @@ test("features page describes core functions and bonus games", async () => {
   assert.match(features, /Raspberry Pi/);
   assert.match(features, /ESP32 device/);
   assert.match(features, /Bonus: mini-games/);
-  assert.match(features, /Pong, Asteroids & Fly/);
+  assert.match(features, /Pong, Asteroids, Fly & Pacman/);
   assertTranslationsCoverPage(features, "features page");
 });
 

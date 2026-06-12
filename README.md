@@ -5,7 +5,7 @@ Static landing page for DJConnect, published through Cloudflare Pages.
 ## Structure
 
 - `wwwroot/index.html`: platform homepage with DJConnect essentials, download routes and swipeable device hero.
-- `wwwroot/features.html`: feature overview page, including bonus mini-games.
+- `wwwroot/features.html`: feature overview page, including bonus mini-games: Paddle Rally, Meteor Run, Sky Dash and Maze Chase.
 - `wwwroot/start.html`: Home Assistant setup flow for HACS installation, voice pipeline setup, DJConnect configuration, client downloads and pairing.
 - `wwwroot/embedded.html`: ESP32 embedded-device one-pager.
 - `wwwroot/macos.html`: macOS app page with binaries from `pcvantol/djconnect-app-releases`.
@@ -83,7 +83,7 @@ curl -s https://djconnect.pages.dev | grep "DJConnect website v"
 
 ## Live Releases
 
-The embedded page renders latest firmware releases through `/api/releases`.
+The embedded page renders downloadable firmware release assets from `pcvantol/djconnect-firmware`.
 The macOS page renders binary downloads from `pcvantol/djconnect-app-releases`.
 The Raspberry Pi page renders binary downloads from `pcvantol/djconnect-pi-releases`.
 iOS does not load `djconnect-website` releases; add release/download embeds only when a relevant app release source exists.
@@ -103,9 +103,9 @@ Use `./cleanup_old_releases.sh` to remove old GitHub Releases, matching local/re
 - Keep Dutch and English translation keys in sync on the homepage, start page, embedded page, Features page, Raspberry Pi page, iOS page and macOS page.
 - Keep App Store links as placeholders until the macOS and iOS apps are published.
 - Do not describe embedded devices as pre-flashed; link users to the firmware repository and flashing flow instead.
-- Keep homepage navigation focused on `Hoe werkt het`, `Features`, `Download` and the primary `Aan de slag` CTA.
+- Keep homepage navigation focused on `Hoe werkt het`, `Features`, `Installeren` and the primary `Aan de slag` CTA.
 - Keep homepage hero device slides spacious: macOS, iPad/iPhone and LilyGO/ESP32 each get their own carousel slide.
 - Keep the start page aligned with the current setup order: Home Assistant voice pipeline, HACS, DJConnect configuration, client pairing and first use.
-- Keep the embedded page compact: supported hardware, how it works and release embed. Detailed setup, requirements, FAQ and experience content belong off this page.
+- Keep the embedded page compact: supported hardware, how it works and firmware downloads. Detailed setup, requirements, FAQ and experience content belong off this page.
 - Keep macOS, iOS and Raspberry Pi page navigation minimal: `Home`, language toggle and the page CTA.
 - Keep the footer version aligned with `VERSION`, `package.json` and `CHANGELOG.md`.

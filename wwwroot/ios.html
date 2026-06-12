@@ -31,20 +31,26 @@
     .lead { color:var(--muted); font-size:1.2rem; margin:24px 0 30px; }
     section { padding:68px 0; }
     .card { border:1px solid var(--line); border-radius:22px; background:var(--panel); padding:24px; }
-    .mock { min-height:360px; border:1px solid var(--line); border-radius:28px; background:linear-gradient(145deg,rgba(255,255,255,0.12),rgba(255,255,255,0.04)); padding:24px; position:relative; overflow:hidden; }
-    .ipad,.iphone { position:absolute; border:1px solid rgba(255,255,255,0.22); background:linear-gradient(145deg,#273244,#050608 72%); box-shadow:0 32px 72px rgba(0,0,0,0.42); padding:14px; }
-    .ipad { left:7%; top:88px; width:56%; aspect-ratio:1.36; border-radius:30px; }
-    .iphone { right:9%; top:48px; width:23%; aspect-ratio:0.49; border-radius:32px; }
-    .screen { height:100%; border-radius:18px; background:linear-gradient(180deg,#111827,#05070b); border:1px solid rgba(255,255,255,0.12); padding:14px; display:grid; align-content:space-between; }
-    .cover { width:62px; height:62px; border-radius:16px; background:linear-gradient(135deg,var(--cyan),#8b5cf6); }
-    .lines { display:grid; gap:8px; }
+    .mock { min-height:420px; border:1px solid var(--line); border-radius:30px; background:linear-gradient(145deg,rgba(255,255,255,0.12),rgba(255,255,255,0.04)); padding:28px; display:grid; place-items:center; }
+    .ipad { width:min(100%,520px); aspect-ratio:1.42; border:1px solid rgba(255,255,255,0.22); border-radius:34px; background:linear-gradient(145deg,#273244,#050608 72%); box-shadow:0 32px 72px rgba(0,0,0,0.42), inset 0 1px 0 rgba(255,255,255,0.12); padding:18px; }
+    .screen { height:100%; border-radius:22px; background:radial-gradient(circle at 25% 18%,rgba(102,224,255,0.2),transparent 8rem),radial-gradient(circle at 78% 70%,rgba(126,247,167,0.13),transparent 8rem),linear-gradient(180deg,#111827,#05070b); border:1px solid rgba(255,255,255,0.12); padding:22px; display:grid; grid-template-rows:auto 1fr auto; gap:18px; }
+    .screen-status { display:flex; align-items:center; justify-content:space-between; color:var(--muted); font-size:0.74rem; font-weight:850; letter-spacing:0.06em; text-transform:uppercase; }
+    .status-pill { display:inline-flex; align-items:center; gap:6px; padding:6px 9px; border-radius:999px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.1); }
+    .status-pill::before { content:""; width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 14px rgba(126,247,167,0.7); }
+    .app-visual { display:grid; place-items:center; text-align:center; gap:14px; }
+    .cover { width:88px; height:88px; border-radius:26px; background:linear-gradient(135deg,var(--cyan),#8b5cf6); display:grid; place-items:center; box-shadow:0 20px 40px rgba(0,0,0,0.3); }
+    .cover::before { content:""; width:28px; height:44px; border-radius:999px; background:#06110c; box-shadow:0 0 0 9px rgba(6,17,12,0.14); }
+    .cover::after { content:""; position:absolute; width:58px; height:58px; border:5px solid rgba(6,17,12,0.82); border-top-color:transparent; border-left-color:transparent; border-radius:50%; transform:rotate(45deg); }
+    .app-title { font-size:1.28rem; font-weight:950; letter-spacing:-0.04em; }
+    .app-subtitle { color:var(--muted); font-weight:760; }
+    .lines { display:grid; gap:9px; }
     .lines span { height:8px; border-radius:999px; background:rgba(255,255,255,0.24); }
     .lines span:nth-child(2) { width:68%; }
     .muted,.card p { color:var(--muted); }
     .legal { color:var(--muted); font-size:0.86rem; padding:34px 0 44px; border-top:1px solid var(--line); }
     .site-version { margin-top:14px; font-size:0.76rem; color:rgba(183,188,203,0.72); }
     @media (max-width:860px) { .hero-grid,.grid-2 { grid-template-columns:1fr; } .nav-inner { flex-wrap:wrap; padding:12px 0; } .nav-links { order:3; width:100%; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; } .nav-links::-webkit-scrollbar { display:none; } }
-    @media (max-width:560px) { .mock { min-height:300px; } .ipad { left:6%; top:98px; width:58%; } .iphone { right:7%; top:54px; width:25%; } .cover { width:48px; height:48px; } }
+    @media (max-width:560px) { .mock { min-height:320px; padding:18px; } .ipad { width:100%; padding:14px; } .screen { padding:16px; } .cover { width:72px; height:72px; } }
   </style>
 </head>
 <body>
@@ -72,8 +78,13 @@
           <a class="btn primary" href="#" aria-disabled="true" data-store-link="ios" data-i18n="storeCta">App Store link volgt</a>
         </div>
         <div class="mock" aria-hidden="true">
-          <div class="ipad"><div class="screen"><div class="cover"></div><div class="lines"><span></span><span></span></div></div></div>
-          <div class="iphone"><div class="screen"><div class="cover"></div><div class="lines"><span></span><span></span></div></div></div>
+          <div class="ipad">
+            <div class="screen">
+              <div class="screen-status"><span>iPad + iPhone</span><span class="status-pill">Online</span></div>
+              <div class="app-visual"><span class="cover"></span><div><div class="app-title">DJConnect</div><div class="app-subtitle">iOS app</div></div></div>
+              <div class="lines"><span></span><span></span></div>
+            </div>
+          </div>
         </div>
       </div>
     </header>
@@ -86,7 +97,7 @@
   </main>
   <footer class="wrap legal">
     <p>Copyright Peter van Tol 2026. All rights reserved.</p>
-    <p class="site-version">DJConnect website v3.1.12</p>
+    <p class="site-version">DJConnect website v3.1.13</p>
   </footer>
   <script>
     const translations = {

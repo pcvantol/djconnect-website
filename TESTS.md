@@ -4,7 +4,7 @@
 
 - Open `wwwroot/index.html`.
 - Verify the homepage navigation shows `Hoe werkt het`, `Features` and `Download`, with `Aan de slag` only as the primary CTA button.
-- Open `wwwroot/features.html` and verify the core features and bonus mini-games are visible.
+- Open `wwwroot/features.html` and verify the core features and renamed bonus mini-games are visible: Paddle Rally, Meteor Run, Sky Dash and Maze Chase.
 - Open `wwwroot/raspberry-pi.html` and verify it loads Raspberry Pi builds from `pcvantol/djconnect-pi-releases`.
 - Verify the homepage hero uses a swipeable carousel with separate macOS, landscape iPad and LilyGO/ESP32 slides.
 - Verify the iOS carousel slide uses one landscape iPad only, without a second iPhone visual.
@@ -35,7 +35,7 @@
 - Verify the embedded ESP32 visual card has clear spacing and includes the LilyGO product specifications link.
 - Verify the embedded release block points to `pcvantol/djconnect-firmware` releases.
 - Verify the embedded page uses the shared site color styling: cyan/green CTA and the same subtle cyan/pink/green background family as the homepage.
-- Verify iOS does not show website repository release embeds and Raspberry Pi uses `pcvantol/djconnect-pi-releases`.
+- Verify iOS does not show website repository release embeds, ESP32 uses `pcvantol/djconnect-firmware` downloadable assets and Raspberry Pi uses `pcvantol/djconnect-pi-releases`.
 - Verify the embedded page does not mention pre-flashed devices.
 - Verify the embedded page does not show local quick start, requirements, FAQ, the experience section or the `Stem via HA / Veilig gekoppeld / DJ-karakter` row.
 - Verify embedded `Start installatie` buttons route to `wwwroot/start.html`.

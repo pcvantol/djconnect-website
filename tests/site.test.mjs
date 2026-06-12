@@ -66,7 +66,7 @@ test("homepage has platform routes and app store placeholders", async () => {
   assert.match(index, /href="start\.html"/);
   assert.match(index, /data-i18n="navPlatform">Hoe werkt het/);
   assert.match(index, /href="features\.html" data-i18n="navFeatures">Features/);
-  assert.match(index, /data-i18n="navApps">Download/);
+  assert.match(index, /data-i18n="navApps">Installeren/);
   assert.doesNotMatch(index, /data-i18n="navEssentials"/);
   assert.doesNotMatch(index, /data-i18n="navStart">Aan de slag/);
   assert.match(index, /href="embedded\.html"/);
@@ -79,7 +79,7 @@ test("homepage has platform routes and app store placeholders", async () => {
   assert.match(index, /App Store/);
   assert.match(index, /brands\.home-assistant\.io\/_\/homeassistant\/icon\.png/);
   assert.match(index, /Account token & koppelgegevens worden veilig bewaard in versleutelde opslag/);
-  assert.match(index, /Powered by Home Assistant, meerdere apparaten/);
+  assert.match(index, /Powered by Home Assistant, beschikbaar voor meerdere apparaten/);
   assert.match(index, /Spotify integratie, voice assist en app koppeling lopen centraal via je smart-home/);
   assert.match(index, /Meerdere interfaces/);
   assert.match(index, /Gebruik DJConnect op je favoriete Apple scherm of embedded device/);
@@ -181,7 +181,7 @@ test("features page describes core functions and bonus games", async () => {
   assert.match(features, /Linux/);
   assert.match(features, /ESP32 device/);
   assert.match(features, /Bonus: mini-games/);
-  assert.match(features, /Pong, Asteroids, Fly & Pacman/);
+  assert.match(features, /Paddle Rally, Meteor Run, Sky Dash & Maze Chase/);
   assertTranslationsCoverPage(features, "features page");
 });
 
@@ -209,10 +209,11 @@ test("raspberry pi page is prepared and translated", async () => {
 test("embedded page contains firmware release embed", async () => {
   const embedded = await read("wwwroot/embedded.html");
 
-  assert.match(embedded, /data-github-releases/);
+  assert.match(embedded, /data-github-downloads/);
   assert.match(embedded, /data-github-owner="pcvantol"/);
   assert.match(embedded, /data-github-repo="djconnect-firmware"/);
-  assert.match(embedded, /assets\/releases\.js/);
+  assert.match(embedded, /assets\/downloads\.js/);
+  assert.doesNotMatch(embedded, /data-github-releases/);
 });
 
 test("embedded page uses the shared site color styling", async () => {

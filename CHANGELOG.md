@@ -2,7 +2,7 @@
 
 All notable changes to this website are consolidated under the current website version.
 
-## DJConnect website v3.1.18 - 2026-06-12
+## DJConnect website v3.1.19 - 2026-06-12
 
 - Added a platform-independent homepage for DJConnect essentials, with focused navigation for `Hoe werkt het`, `Features`, `Installeren` and the primary `Aan de slag` CTA.
 - Reworked the homepage hero into a swipeable carousel for macOS, iPad/iPhone and LilyGO/ESP32, with spacious device slides and current Dutch/English copy.
@@ -17,8 +17,10 @@ All notable changes to this website are consolidated under the current website v
 - Added supported embedded hardware links for LilyGO T-Embed CC1101 and ESP32-S3-BOX-3, including the LilyGO product-specifications link.
 - Switched embedded ESP32 releases to the download-asset renderer so firmware binaries appear inline like macOS and Linux downloads.
 - Added privacy-friendly aggregate click counters for HACS and download redirects, plus a token-protected stats endpoint that combines redirect totals with GitHub asset `download_count`.
+- Added canonical `djconnect.dev` SEO metadata, `robots.txt` and `sitemap.xml`.
 - Connected macOS downloads to `pcvantol/djconnect-app-releases`, ESP32 firmware downloads to `pcvantol/djconnect-firmware` and Raspberry Pi/Linux downloads to `pcvantol/djconnect-pi-releases`.
 - Added a dynamic Raspberry Pi/Linux install command that uses the latest public GitHub release bundle and preserves pairing/configuration on rerun.
+- Updated the Raspberry Pi/Linux install command to run the renamed public release installer `sudo ./scripts/install.sh`.
 - Fixed dynamic GitHub download/install blocks so generated copy updates when the language toggle changes.
 - Removed redundant local Client API / discovery notes from the start-page client pairing panels.
 - Added a small translated privacy notice to site footers and removed the app-only privacy copy placement.

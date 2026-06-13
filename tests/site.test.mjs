@@ -279,9 +279,10 @@ test("download script renders dynamic Raspberry Pi install command", async () =>
   const downloads = await read("wwwroot/assets/downloads.js");
   assert.match(downloads, /installTitle: "DJConnect Pi app install"/);
   assert.match(downloads, /Installeer DJConnect Pi vanaf de publieke release-bundel/);
-  assert.match(downloads, /https:\/\/djconnect\.pages\.dev\/go\/linux-install/);
+  assert.match(downloads, /https:\/\/djconnect\.dev\/go\/linux-install/);
   assert.match(downloads, /cd djconnect-pi-\$\{version\}/);
-  assert.match(downloads, /sudo \.\/scripts\/install_raspberry_pi\.sh/);
+  assert.match(downloads, /sudo \.\/scripts\/install\.sh/);
+  assert.doesNotMatch(downloads, /install_raspberry_pi\.sh/);
   assert.match(downloads, /new MutationObserver/);
   assert.match(downloads, /attributeName === "lang"/);
   assert.match(downloads, /renderDynamicDownloadBlocks/);
@@ -315,6 +316,37 @@ test("download and HACS clicks use cookieless aggregate redirects", async () => 
   assert.doesNotMatch(combined, /user-agent/i);
   assert.doesNotMatch(combined, /cf-connecting-ip/i);
   assert.doesNotMatch(combined, /x-forwarded-for/i);
+});
+
+test("canonical SEO uses djconnect.dev", async () => {
+  const pages = [
+    ["index", "https://djconnect.dev/"],
+    ["start", "https://djconnect.dev/start"],
+    ["features", "https://djconnect.dev/features"],
+    ["ios", "https://djconnect.dev/ios"],
+    ["macos", "https://djconnect.dev/macos"],
+    ["raspberry-pi", "https://djconnect.dev/raspberry-pi"],
+    ["embedded", "https://djconnect.dev/embedded"]
+  ];
+
+  for (const [page, canonical] of pages) {
+    const html = await read(`wwwroot/${page}.html`);
+    assert.match(html, new RegExp(`<link rel="canonical" href="${canonical.replace(/[/.]/g, "\\$&")}" />`));
+  }
+
+  const [index, robots, sitemap, downloads] = await Promise.all([
+    read("wwwroot/index.html"),
+    read("wwwroot/robots.txt"),
+    read("wwwroot/sitemap.xml"),
+    read("wwwroot/assets/downloads.js")
+  ]);
+
+  assert.match(index, /<meta property="og:url" content="https:\/\/djconnect\.dev\/" \/>/);
+  assert.match(index, /<meta property="og:image" content="https:\/\/djconnect\.dev\/assets\/djconnect\/logo-512x256\.png" \/>/);
+  assert.match(robots, /Sitemap: https:\/\/djconnect\.dev\/sitemap\.xml/);
+  assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/embedded<\/loc>/);
+  assert.match(downloads, /https:\/\/djconnect\.dev\/go\/linux-install/);
 });
 
 test("embedded page links back to platform homepage", async () => {

@@ -159,10 +159,10 @@ const renderInstallCommand = async (root) => {
       "mkdir -p ~/djconnect-install && \\",
       "cd ~/djconnect-install && \\",
       "rm -rf djconnect-pi-* djconnect-pi.tar.gz && \\",
-      "curl -fsSL https://djconnect.pages.dev/go/linux-install -o djconnect-pi.tar.gz && \\",
+      "curl -fsSL https://djconnect.dev/go/linux-install -o djconnect-pi.tar.gz && \\",
       "tar -xzf djconnect-pi.tar.gz && \\",
       `cd djconnect-pi-${version} && \\`,
-      "sudo ./scripts/install_raspberry_pi.sh"
+      "sudo ./scripts/install.sh"
     ].join("\n");
 
     root.innerHTML = `

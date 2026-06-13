@@ -26,7 +26,8 @@ Open `wwwroot/index.html` directly in a browser, or serve the folder with any st
 
 The production site is deployed to Cloudflare Pages:
 
-- Production: https://djconnect.pages.dev
+- Production: https://djconnect.dev
+- Cloudflare Pages fallback: https://djconnect.pages.dev
 - Project name: `djconnect`
 - Publish directory: `wwwroot`
 - Cloudflare account ID: `efe77cadf8317a53832fca0848e3ae51`
@@ -80,8 +81,8 @@ npx wrangler@4 pages deploy wwwroot --project-name djconnect --branch main
 The live site should be checked for both HTTP availability and the footer version:
 
 ```bash
-curl -I https://djconnect.pages.dev
-curl -s https://djconnect.pages.dev | grep "DJConnect website v"
+curl -I https://djconnect.dev
+curl -s https://djconnect.dev | grep "DJConnect website v"
 ```
 
 ## Live Releases
@@ -116,7 +117,7 @@ Then add these Cloudflare Pages bindings/secrets for project `djconnect`:
 Fetch stats:
 
 ```bash
-curl -H "Authorization: Bearer $STATS_TOKEN" "https://djconnect.pages.dev/api/stats?days=30"
+curl -H "Authorization: Bearer $STATS_TOKEN" "https://djconnect.dev/api/stats?days=30"
 ```
 
 The redirect layer is fail-open: if `ANALYTICS_DB` is not configured yet, users are still redirected and no personal data is stored.
@@ -142,3 +143,4 @@ Use `./cleanup_old_releases.sh` to remove old GitHub Releases, matching local/re
 - Keep macOS, iOS and Raspberry Pi page navigation minimal: `Home`, language toggle and the page CTA.
 - Keep the footer version aligned with `VERSION`, `package.json` and `CHANGELOG.md`.
 - Keep click/download analytics aggregate-only: daily target counters in D1 plus GitHub `download_count`, without cookies, IP addresses, user agents or visitor identifiers.
+- Keep `https://djconnect.dev` as canonical production domain in page metadata, `robots.txt`, `sitemap.xml` and public install commands.

@@ -3,10 +3,11 @@
 ## Current State
 
 - Repository remote: `git@github.com:pcvantol/djconnect-website.git`
-- Production URL: https://djconnect.pages.dev
+- Production URL: https://djconnect.dev
+- Cloudflare Pages fallback URL: https://djconnect.pages.dev
 - Cloudflare Pages project: `djconnect`
 - Publish directory: `wwwroot`
-- Current version: `3.1.18`
+- Current version: `3.1.19`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Start/setup page: `wwwroot/start.html`
@@ -50,7 +51,7 @@
 1. Commit all changes to `main`.
 2. Ensure the GitHub Actions repository secret `CLOUDFLARE_API_TOKEN` exists.
 3. Run `./release.sh --skip-deploy` when the token is only available in GitHub Actions.
-4. Verify the GitHub Release, the `Deploy Cloudflare Pages` workflow run and https://djconnect.pages.dev.
+4. Verify the GitHub Release, the `Deploy Cloudflare Pages` workflow run and https://djconnect.dev.
 
 The workflow deploys `wwwroot` to Cloudflare Pages on every push to `main` and sets `CLOUDFLARE_ACCOUNT_ID` explicitly.
 The release script removes older GitHub Actions workflow runs by default and keeps only the newest run. Override with `KEEP_WORKFLOW_RUNS=N` when needed.
@@ -71,7 +72,7 @@ npx wrangler@4 pages deploy wwwroot --project-name djconnect --branch main
 After deploy, confirm the live footer version:
 
 ```bash
-curl -s https://djconnect.pages.dev | grep "DJConnect website v"
+curl -s https://djconnect.dev | grep "DJConnect website v"
 ```
 
 For aggregate download/click stats, configure Cloudflare Pages:
@@ -87,7 +88,8 @@ Bind `ANALYTICS_DB` to that D1 database and set a `STATS_TOKEN` secret. `GITHUB_
 
 - `npm test` covers version consistency, route presence, homepage navigation/copy, firmware download embeds, macOS and Raspberry Pi download embeds, absence of website self-release embeds, translation keys, footer copyright, firmware links, compact embedded page structure, LilyGO visual hygiene and stale pre-flashed wording.
 - `npm test` also covers the cookieless redirect/download analytics structure, D1 migration and tracked GitHub asset links.
-- Current released version `3.1.18` includes the single-iPad homepage hero slide, embedded page color alignment, renamed mini-games copy/sync prompt, Raspberry Pi downloads from `pcvantol/djconnect-pi-releases` and a dynamic public-release Linux install command.
+- Current released version `3.1.19` includes the single-iPad homepage hero slide, embedded page color alignment, renamed mini-games copy/sync prompt, Raspberry Pi downloads from `pcvantol/djconnect-pi-releases` and a dynamic public-release Linux install command that runs `sudo ./scripts/install.sh`.
+- Canonical SEO domain is `https://djconnect.dev`; `djconnect.pages.dev` remains a Cloudflare fallback.
 - Dynamic GitHub download/install blocks now rerender when the language toggle changes, so generated install text follows NL/EN.
 - The start-page client pairing panels no longer show extra Client API/discovery notes under iOS, macOS, Linux or ESP32.
 - Site footers now include a small translated privacy notice. Keep it aligned across homepage, setup, features, iOS, macOS, Linux/Raspberry Pi and ESP32 pages.

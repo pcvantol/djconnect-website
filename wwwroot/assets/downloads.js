@@ -11,7 +11,9 @@ const downloadCopy = {
     installTitle: "DJConnect Pi app install",
     installText: "Installeer DJConnect Pi vanaf de publieke release-bundel. Gebruik dit nadat Raspberry Pi OS is voorbereid. Het script bewaart bestaande pairing/configuratie en kan later opnieuw worden uitgevoerd voor een handmatige update.",
     installLoading: "Install-commando laden...",
-    installMissing: "Geen Raspberry Pi install-bundel gevonden in de nieuwste release."
+    installMissing: "Geen Raspberry Pi install-bundel gevonden in de nieuwste release.",
+    copyCommand: "Kopieer install-commando",
+    copiedCommand: "Gekopieerd"
   },
   en: {
     loading: "Loading downloads...",
@@ -25,7 +27,9 @@ const downloadCopy = {
     installTitle: "DJConnect Pi app install",
     installText: "Install DJConnect Pi from the public release bundle. Use this after Raspberry Pi OS has been prepared. The script keeps existing pairing/configuration and can be run again later for a manual update.",
     installLoading: "Loading install command...",
-    installMissing: "No Raspberry Pi install bundle found in the newest release."
+    installMissing: "No Raspberry Pi install bundle found in the newest release.",
+    copyCommand: "Copy install command",
+    copiedCommand: "Copied"
   }
 };
 
@@ -89,6 +93,14 @@ const downloadTargetForRepo = (repo) => {
 const trackedDownloadUrl = (repo, assetUrl, target = downloadTargetForRepo(repo)) => (
   `/go/download?repo=${encodeURIComponent(repo)}&target=${encodeURIComponent(target)}&url=${encodeURIComponent(assetUrl)}`
 );
+
+const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (char) => ({
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  "\"": "&quot;",
+  "'": "&#39;"
+}[char]));
 
 const renderDownloads = async (root) => {
   const owner = root.dataset.githubOwner || "pcvantol";
@@ -169,13 +181,52 @@ const renderInstallCommand = async (root) => {
       <article class="install-card">
         <h3>${copy.installTitle}</h3>
         <p>${copy.installText}</p>
-        <pre class="install-command"><code>${command}</code></pre>
+        <div class="install-command-wrap">
+          <button class="copy-command" type="button" aria-label="${copy.copyCommand}" title="${copy.copyCommand}" data-copy-text="${escapeHtml(command)}" data-copy-label="${copy.copyCommand}" data-copied-label="${copy.copiedCommand}">
+            <span aria-hidden="true">⧉</span>
+          </button>
+          <pre class="install-command"><code>${command}</code></pre>
+        </div>
       </article>
     `;
   } catch (error) {
     root.innerHTML = `<div class="download-status">${copy.failed} <a href="https://github.com/${owner}/${repo}/releases" target="_blank" rel="noopener">${copy.github}</a></div>`;
   }
 };
+
+const copyText = async (text) => {
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(text);
+    return;
+  }
+
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.left = "-9999px";
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand("copy");
+  textarea.remove();
+};
+
+document.addEventListener("click", async (event) => {
+  const button = event.target.closest("[data-copy-text]");
+  if (!button) return;
+
+  const label = button.dataset.copyLabel;
+  const copiedLabel = button.dataset.copiedLabel;
+  await copyText(button.dataset.copyText);
+  button.setAttribute("aria-label", copiedLabel);
+  button.setAttribute("title", copiedLabel);
+  button.classList.add("is-copied");
+  window.setTimeout(() => {
+    button.setAttribute("aria-label", label);
+    button.setAttribute("title", label);
+    button.classList.remove("is-copied");
+  }, 1500);
+});
 
 const renderDynamicDownloadBlocks = () => {
   document.querySelectorAll("[data-github-downloads]").forEach((root) => {

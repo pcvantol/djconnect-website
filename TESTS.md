@@ -7,6 +7,7 @@
 - Open `wwwroot/features.html` and verify the core features and renamed bonus mini-games are visible: Paddle Rally, Meteor Run, Sky Dash and Maze Chase.
 - Open `wwwroot/raspberry-pi.html` and verify it loads Raspberry Pi builds from `pcvantol/djconnect-pi-releases`.
 - Verify the generated Raspberry Pi install command ends with `sudo ./scripts/install.sh`.
+- Verify the Raspberry Pi install command has a copy-to-clipboard button.
 - Verify the homepage hero uses a swipeable carousel with separate macOS, landscape iPad and LilyGO/ESP32 slides.
 - Verify the iOS carousel slide uses one landscape iPad only, without a second iPhone visual.
 - Verify the homepage hero no longer shows the availability pill.
@@ -39,6 +40,7 @@
 - Verify HACS and download buttons route through `/go/...` redirects and still land on the expected destination.
 - Verify `/api/stats` is unavailable without `STATS_TOKEN` and returns aggregate-only data when authenticated.
 - Verify `https://djconnect.dev` is used in canonical tags, `robots.txt`, `sitemap.xml` and public install commands.
+- Verify `https://www.djconnect.dev` redirects permanently to `https://djconnect.dev`, preserving path and query string.
 - Verify the embedded page uses the shared site color styling: cyan/green CTA and the same subtle cyan/pink/green background family as the homepage.
 - Verify iOS does not show website repository release embeds, ESP32 uses `pcvantol/djconnect-firmware` downloadable assets and Raspberry Pi uses `pcvantol/djconnect-pi-releases`.
 - Verify the embedded page does not mention pre-flashed devices.
@@ -81,6 +83,7 @@ After deployment:
 
 ```bash
 curl -I https://djconnect.dev
+curl -I https://www.djconnect.dev
 curl -s https://djconnect.dev | grep "DJConnect website v"
 ```
 

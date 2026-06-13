@@ -92,17 +92,54 @@
   color: var(--muted);
 }
 
+.install-command-wrap {
+  position: relative;
+}
+
 .install-command {
   margin: 0;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
   border: 1px solid var(--line);
   border-radius: 16px;
-  padding: 14px;
+  padding: 14px 54px 14px 14px;
   background: rgba(0,0,0,0.24);
   color: #d7ffe2;
   font-size: 0.82rem;
   line-height: 1.55;
+}
+
+.copy-command {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255,255,255,0.08);
+  color: var(--text);
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.copy-command:hover,
+.copy-command:focus-visible {
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.13);
+  border-color: rgba(255,255,255,0.3);
+  outline: none;
+}
+
+.copy-command.is-copied {
+  color: #06110c;
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--cyan, #66e0ff), var(--green, #7ef7a7));
 }
 
 @media (max-width: 620px) {

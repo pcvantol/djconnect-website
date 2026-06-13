@@ -27,6 +27,7 @@ Open `wwwroot/index.html` directly in a browser, or serve the folder with any st
 The production site is deployed to Cloudflare Pages:
 
 - Production: https://djconnect.dev
+- Redirect: https://www.djconnect.dev -> https://djconnect.dev
 - Cloudflare Pages fallback: https://djconnect.pages.dev
 - Project name: `djconnect`
 - Publish directory: `wwwroot`
@@ -82,6 +83,7 @@ The live site should be checked for both HTTP availability and the footer versio
 
 ```bash
 curl -I https://djconnect.dev
+curl -I https://www.djconnect.dev
 curl -s https://djconnect.dev | grep "DJConnect website v"
 ```
 
@@ -144,3 +146,4 @@ Use `./cleanup_old_releases.sh` to remove old GitHub Releases, matching local/re
 - Keep the footer version aligned with `VERSION`, `package.json` and `CHANGELOG.md`.
 - Keep click/download analytics aggregate-only: daily target counters in D1 plus GitHub `download_count`, without cookies, IP addresses, user agents or visitor identifiers.
 - Keep `https://djconnect.dev` as canonical production domain in page metadata, `robots.txt`, `sitemap.xml` and public install commands.
+- Keep `https://www.djconnect.dev` as a permanent redirect to `https://djconnect.dev`, preserving path and query string.

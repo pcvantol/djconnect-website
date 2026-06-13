@@ -14,42 +14,13 @@ usage() {
 Usage: ./release.sh [--skip-deploy]
 
 Runs tests, verifies release metadata, creates and pushes tag ${TAG},
-creates a GitHub Release, and deploys ${PUBLISH_DIR} to Cloudflare Pages.
+creates a GitHub Release, deploys ${PUBLISH_DIR} to Cloudflare Pages, and
+cleans up older releases, tags and GitHub Actions workflow runs.
 
 Environment:
   CLOUDFLARE_API_TOKEN  Required unless --skip-deploy is used.
   KEEP_WORKFLOW_RUNS    Number of newest GitHub Actions runs to keep. Defaults to 1.
 USAGE
-}
-
-cleanup_workflow_runs() {
-  if ! command -v gh >/dev/null 2>&1; then
-    echo "Skipping workflow run cleanup: GitHub CLI 'gh' is not available."
-    return
-  fi
-
-  if ! [[ "$KEEP_WORKFLOW_RUNS" =~ ^[0-9]+$ ]]; then
-    echo "KEEP_WORKFLOW_RUNS must be a non-negative integer."
-    exit 1
-  fi
-
-  echo "Keeping newest ${KEEP_WORKFLOW_RUNS} GitHub Actions workflow run(s)."
-  mapfile -t RUN_IDS < <(gh run list --limit 100 --json databaseId --jq '.[].databaseId')
-
-  if [[ ${#RUN_IDS[@]} -le KEEP_WORKFLOW_RUNS ]]; then
-    echo "No old workflow runs to clean up."
-    return
-  fi
-
-  for INDEX in "${!RUN_IDS[@]}"; do
-    if (( INDEX < KEEP_WORKFLOW_RUNS )); then
-      echo "Keeping workflow run ${RUN_IDS[$INDEX]}"
-      continue
-    fi
-
-    echo "Deleting workflow run ${RUN_IDS[$INDEX]}"
-    gh run delete "${RUN_IDS[$INDEX]}"
-  done
 }
 
 SKIP_DEPLOY="false"
@@ -120,6 +91,7 @@ else
   CLOUDFLARE_ACCOUNT_ID="$ACCOUNT_ID" npx wrangler@4 pages deploy "$PUBLISH_DIR" --project-name "$PROJECT_NAME" --branch main
 fi
 
-cleanup_workflow_runs
+echo "Cleaning older releases, tags and workflow runs..."
+./cleanup_old_releases.sh --keep "$TAG" --keep-runs "$KEEP_WORKFLOW_RUNS"
 
 echo "Release complete: https://djconnect.pages.dev"

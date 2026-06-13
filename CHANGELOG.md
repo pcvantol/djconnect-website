@@ -41,5 +41,6 @@ All notable changes to this website are consolidated under the current website v
 - Added automated Node tests for version consistency, routes, store placeholders, copyright, translation coverage, setup/navigation copy and release/download embeds.
 - Added `release.sh` for manual releases and Cloudflare Pages deployment.
 - Added `cleanup_old_releases.sh` for release/tag cleanup and older GitHub Actions workflow run cleanup.
+- Updated `release.sh` so every normal release automatically cleans old GitHub Releases, matching local/remote tags and older workflow runs.
 - Added a GitHub Actions workflow that runs tests and deploys `wwwroot` to Cloudflare Pages on every push to `main` using the `CLOUDFLARE_API_TOKEN` repository secret.
 - Synced the canonical cross-repo prompt bundle with Bonjour/mDNS client discovery guidance and renamed game labels.

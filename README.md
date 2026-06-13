@@ -51,7 +51,7 @@ Minimum Cloudflare token permissions:
 
 Use `./release.sh` for the standard release flow.
 
-The release script runs tests, pushes `main`, creates a `vX.Y.Z` tag, creates a GitHub Release, deploys to Cloudflare Pages and removes older GitHub Actions workflow runs. By default, only the newest workflow run remains.
+The release script runs tests, pushes `main`, creates a `vX.Y.Z` tag, creates a GitHub Release, deploys to Cloudflare Pages and then automatically removes older GitHub Releases, matching local/remote tags and older GitHub Actions workflow runs. By default, only the newest workflow run remains.
 
 ```bash
 npm test
@@ -127,7 +127,7 @@ The redirect layer is fail-open: if `ANALYTICS_DB` is not configured yet, users 
 
 ## Cleanup
 
-Use `./cleanup_old_releases.sh` to remove old GitHub Releases, matching local/remote tags and older GitHub Actions workflow runs. The script keeps the current `VERSION` tag and the newest 10 workflow runs by default.
+Use `./cleanup_old_releases.sh` manually only when you want cleanup outside the normal release flow. `./release.sh` already runs it by default after a successful release. The cleanup script removes old GitHub Releases, matching local/remote tags and older GitHub Actions workflow runs. It keeps the current `VERSION` tag and the newest 10 workflow runs by default.
 
 ```bash
 ./cleanup_old_releases.sh --dry-run

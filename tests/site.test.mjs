@@ -386,6 +386,14 @@ test("redirect endpoints expose only current public targets", async () => {
   assert.match(downloadRedirect, /trackedRedirect\(context, target, destination\)/);
 });
 
+test("release script performs standard cleanup after release", async () => {
+  const releaseScript = await read("release.sh");
+
+  assert.match(releaseScript, /Cleaning older releases, tags and workflow runs/);
+  assert.match(releaseScript, /\.\/cleanup_old_releases\.sh --keep "\$TAG" --keep-runs "\$KEEP_WORKFLOW_RUNS"/);
+  assert.match(releaseScript, /KEEP_WORKFLOW_RUNS="\$\{KEEP_WORKFLOW_RUNS:-1\}"/);
+});
+
 test("canonical SEO uses djconnect.dev", async () => {
   const pages = [
     ["index", "https://djconnect.dev/"],

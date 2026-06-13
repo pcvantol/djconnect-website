@@ -47,7 +47,8 @@
 - If the GitHub repository/releases are private, set `GITHUB_TOKEN` as a Cloudflare Pages secret for the `djconnect` project.
 - Version is tracked in `VERSION`, `package.json`, page footers and `CHANGELOG.md`.
 - Language switching on the homepage, start page, embedded page, Features page, Raspberry Pi page, iOS page and macOS page is handled through per-page `translations` objects.
-- `cleanup_old_releases.sh` removes old GitHub Releases, matching local/remote tags and older workflow runs. It keeps the current `VERSION` tag and the newest 10 workflow runs by default.
+- `release.sh` automatically runs cleanup after a successful release, removing old GitHub Releases, matching local/remote tags and older workflow runs.
+- `cleanup_old_releases.sh` can still be run manually for cleanup outside the normal release flow. It keeps the current `VERSION` tag and the newest 10 workflow runs by default.
 - Do not commit `.wrangler/`; it is local Wrangler cache.
 
 ## Release Steps
@@ -58,7 +59,7 @@
 4. Verify the GitHub Release, the `Deploy Cloudflare Pages` workflow run and https://djconnect.dev.
 
 The workflow deploys `wwwroot` to Cloudflare Pages on every push to `main` and sets `CLOUDFLARE_ACCOUNT_ID` explicitly.
-The release script removes older GitHub Actions workflow runs by default and keeps only the newest run. Override with `KEEP_WORKFLOW_RUNS=N` when needed.
+The release script removes older GitHub Releases, matching local/remote tags and older GitHub Actions workflow runs by default. It keeps the newly released tag and only the newest workflow run. Override workflow-run retention with `KEEP_WORKFLOW_RUNS=N` when needed.
 
 Set the token only in the current shell when needed:
 

@@ -75,7 +75,7 @@ export CLOUDFLARE_API_TOKEN='your-cloudflare-pages-token'
 ./release.sh
 ```
 
-`release.sh` keeps only the newest GitHub Actions workflow run by default. Use `KEEP_WORKFLOW_RUNS=N` to keep more.
+`release.sh` removes old GitHub Releases, matching local/remote tags and older GitHub Actions workflow runs by default. Use `KEEP_WORKFLOW_RUNS=N` to keep more workflow runs.
 
 For a deploy-only pass after a tag/release already exists:
 

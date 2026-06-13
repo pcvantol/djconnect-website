@@ -79,6 +79,17 @@ const getReleases = async (owner, repo, limit) => {
   }
 };
 
+const downloadTargetForRepo = (repo) => {
+  if (repo === "djconnect-firmware") return "firmware";
+  if (repo === "djconnect-pi-releases") return "linux";
+  if (repo === "djconnect-app-releases") return "macos";
+  return "download";
+};
+
+const trackedDownloadUrl = (repo, assetUrl, target = downloadTargetForRepo(repo)) => (
+  `/go/download?repo=${encodeURIComponent(repo)}&target=${encodeURIComponent(target)}&url=${encodeURIComponent(assetUrl)}`
+);
+
 const renderDownloads = async (root) => {
   const owner = root.dataset.githubOwner || "pcvantol";
   const repo = root.dataset.githubRepo || "djconnect-app-releases";
@@ -111,7 +122,7 @@ const renderDownloads = async (root) => {
           </header>
           <div class="asset-list">
             ${assets.length ? assets.map((asset) => `
-              <a class="asset-link" href="${asset.browser_download_url}" rel="noopener">
+              <a class="asset-link" href="${trackedDownloadUrl(repo, asset.browser_download_url)}" rel="noopener">
                 <span><strong>${asset.name}</strong><span>${formatBytes(asset.size)}${asset.download_count ? ` · ${asset.download_count} downloads` : ""}</span></span>
                 <span class="download-cta">${copy.download}</span>
               </a>
@@ -148,7 +159,7 @@ const renderInstallCommand = async (root) => {
       "mkdir -p ~/djconnect-install && \\",
       "cd ~/djconnect-install && \\",
       "rm -rf djconnect-pi-* djconnect-pi.tar.gz && \\",
-      `curl -fsSL https://github.com/${owner}/${repo}/releases/latest/download/${bundle.name} -o djconnect-pi.tar.gz && \\`,
+      "curl -fsSL https://djconnect.pages.dev/go/linux-install -o djconnect-pi.tar.gz && \\",
       "tar -xzf djconnect-pi.tar.gz && \\",
       `cd djconnect-pi-${version} && \\`,
       "sudo ./scripts/install_raspberry_pi.sh"

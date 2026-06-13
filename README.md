@@ -13,6 +13,9 @@ Static landing page for DJConnect, published through Cloudflare Pages.
 - `wwwroot/raspberry-pi.html`: Raspberry Pi app page with builds from `pcvantol/djconnect-pi-releases`.
 - `wwwroot/assets/`: logo, favicon and product visuals.
 - `functions/api/releases.js`: Cloudflare Pages Function proxy for GitHub release data.
+- `functions/go/`: privacy-friendly redirect endpoints for HACS and downloadable assets.
+- `functions/api/stats.js`: token-protected aggregate stats endpoint that combines redirect clicks with GitHub asset `download_count` totals.
+- `migrations/`: optional D1 migration for cookieless aggregate click counters.
 - `VERSION`: current site version.
 
 ## Local Preview
@@ -89,6 +92,35 @@ The Raspberry Pi page renders binary downloads from `pcvantol/djconnect-pi-relea
 iOS does not load `djconnect-website` releases; add release/download embeds only when a relevant app release source exists.
 For private GitHub repositories, set a Cloudflare Pages secret named `GITHUB_TOKEN` with read access to releases.
 
+## Privacy-Friendly Download Insights
+
+Download and HACS clicks can be counted without cookies, IP addresses, user agents or visitor identifiers.
+
+- Website redirect clicks go through `/go/...` and are stored as daily aggregate totals in D1.
+- Direct GitHub download totals come from GitHub release asset `download_count`.
+- `/api/stats` combines both sources behind a `STATS_TOKEN`.
+
+Cloudflare setup:
+
+```bash
+npx wrangler@4 d1 create djconnect_analytics
+npx wrangler@4 d1 migrations apply djconnect_analytics --remote
+```
+
+Then add these Cloudflare Pages bindings/secrets for project `djconnect`:
+
+- D1 binding: `ANALYTICS_DB` -> `djconnect_analytics`
+- Secret: `STATS_TOKEN` -> a private token for `/api/stats`
+- Optional secret: `GITHUB_TOKEN` -> only needed for private release repos or higher GitHub API limits
+
+Fetch stats:
+
+```bash
+curl -H "Authorization: Bearer $STATS_TOKEN" "https://djconnect.pages.dev/api/stats?days=30"
+```
+
+The redirect layer is fail-open: if `ANALYTICS_DB` is not configured yet, users are still redirected and no personal data is stored.
+
 ## Cleanup
 
 Use `./cleanup_old_releases.sh` to remove old GitHub Releases, matching local/remote tags and older GitHub Actions workflow runs. The script keeps the current `VERSION` tag and the newest 10 workflow runs by default.
@@ -109,3 +141,4 @@ Use `./cleanup_old_releases.sh` to remove old GitHub Releases, matching local/re
 - Keep the embedded page compact: supported hardware, how it works and firmware downloads. Detailed setup, requirements, FAQ and experience content belong off this page.
 - Keep macOS, iOS and Raspberry Pi page navigation minimal: `Home`, language toggle and the page CTA.
 - Keep the footer version aligned with `VERSION`, `package.json` and `CHANGELOG.md`.
+- Keep click/download analytics aggregate-only: daily target counters in D1 plus GitHub `download_count`, without cookies, IP addresses, user agents or visitor identifiers.

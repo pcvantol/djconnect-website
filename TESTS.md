@@ -3,7 +3,7 @@
 ## Manual Checks
 
 - Open `wwwroot/index.html`.
-- Verify the homepage navigation shows `Hoe werkt het`, `Features` and `Download`, with `Aan de slag` only as the primary CTA button.
+- Verify the homepage navigation shows `Hoe werkt het`, `Features` and `Installeren`, with `Aan de slag` only as the primary CTA button.
 - Open `wwwroot/features.html` and verify the core features and renamed bonus mini-games are visible: Paddle Rally, Meteor Run, Sky Dash and Maze Chase.
 - Open `wwwroot/raspberry-pi.html` and verify it loads Raspberry Pi builds from `pcvantol/djconnect-pi-releases`.
 - Verify the homepage hero uses a swipeable carousel with separate macOS, landscape iPad and LilyGO/ESP32 slides.
@@ -35,6 +35,8 @@
 - Verify the embedded page lists LilyGO T-Embed CC1101 and ESP32-S3-BOX-3 under supported hardware.
 - Verify the embedded ESP32 visual card has clear spacing and includes the LilyGO product specifications link.
 - Verify the embedded release block points to `pcvantol/djconnect-firmware` releases.
+- Verify HACS and download buttons route through `/go/...` redirects and still land on the expected destination.
+- Verify `/api/stats` is unavailable without `STATS_TOKEN` and returns aggregate-only data when authenticated.
 - Verify the embedded page uses the shared site color styling: cyan/green CTA and the same subtle cyan/pink/green background family as the homepage.
 - Verify iOS does not show website repository release embeds, ESP32 uses `pcvantol/djconnect-firmware` downloadable assets and Raspberry Pi uses `pcvantol/djconnect-pi-releases`.
 - Verify the embedded page does not mention pre-flashed devices.
@@ -54,6 +56,7 @@ git status --short
 test -f wwwroot/index.html
 test -f wwwroot/start.html
 test -f wwwroot/assets/djconnect/site.webmanifest
+test -f migrations/0001_create_click_counters.sql
 ```
 
 For a full release with a new tag:

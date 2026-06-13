@@ -112,7 +112,8 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /DJConnect brengt spraak, muziekbediening en een persoonlijke DJ-reactie samen/);
   assert.match(start, /Home Assistant installatie/);
   assert.match(start, /Open DJConnect in HACS/);
-  assert.match(start, /https:\/\/my\.home-assistant\.io\/redirect\/hacs_repository/);
+  assert.match(start, /href="\/go\/hacs" target="_blank" rel="noopener" data-i18n="hacsButton">Open DJConnect in HACS/);
+  assert.doesNotMatch(start, /href="https:\/\/my\.home-assistant\.io\/redirect\/hacs_repository/);
   assert.match(start, /href="#hacs" data-i18n="navInstall">Installeren<\/a>/);
   assert.match(start, /href="#pairing" data-i18n="navDownload">Download<\/a>/);
   assert.match(start, /class="lang-toggle"/);
@@ -278,13 +279,42 @@ test("download script renders dynamic Raspberry Pi install command", async () =>
   const downloads = await read("wwwroot/assets/downloads.js");
   assert.match(downloads, /installTitle: "DJConnect Pi app install"/);
   assert.match(downloads, /Installeer DJConnect Pi vanaf de publieke release-bundel/);
-  assert.match(downloads, /releases\/latest\/download\/\$\{bundle\.name\}/);
+  assert.match(downloads, /https:\/\/djconnect\.pages\.dev\/go\/linux-install/);
   assert.match(downloads, /cd djconnect-pi-\$\{version\}/);
   assert.match(downloads, /sudo \.\/scripts\/install_raspberry_pi\.sh/);
   assert.match(downloads, /new MutationObserver/);
   assert.match(downloads, /attributeName === "lang"/);
   assert.match(downloads, /renderDynamicDownloadBlocks/);
   assert.doesNotMatch(downloads, /djconnect-pi-3\.1\.16/);
+});
+
+test("download and HACS clicks use cookieless aggregate redirects", async () => {
+  const [downloads, migration, redirect, downloadRedirect, stats] = await Promise.all([
+    read("wwwroot/assets/downloads.js"),
+    read("migrations/0001_create_click_counters.sql"),
+    read("functions/go/[target].js"),
+    read("functions/go/download.js"),
+    read("functions/api/stats.js")
+  ]);
+
+  assert.match(downloads, /trackedDownloadUrl/);
+  assert.match(downloads, /\/go\/download\?repo=/);
+  assert.match(downloads, /asset\.download_count/);
+  assert.match(redirect, /REDIRECT_TARGETS/);
+  assert.match(redirect, /linux-install/);
+  assert.match(downloadRedirect, /isAllowedGithubDownload/);
+  assert.match(stats, /STATS_TOKEN/);
+  assert.match(stats, /download_count/);
+  assert.match(migration, /CREATE TABLE IF NOT EXISTS click_counters/);
+  assert.match(migration, /PRIMARY KEY \(day, target, source\)/);
+
+  assert.match(stats, /No cookies, IP addresses, user agents or identifiers are stored/);
+
+  const combined = [migration, redirect, downloadRedirect].join("\n");
+  assert.doesNotMatch(combined, /cookie/i);
+  assert.doesNotMatch(combined, /user-agent/i);
+  assert.doesNotMatch(combined, /cf-connecting-ip/i);
+  assert.doesNotMatch(combined, /x-forwarded-for/i);
 });
 
 test("embedded page links back to platform homepage", async () => {

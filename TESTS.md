@@ -8,6 +8,7 @@
 - Open `wwwroot/raspberry-pi.html` and verify it loads Raspberry Pi builds from `pcvantol/djconnect-pi-releases`.
 - Verify the generated Raspberry Pi install command ends with `sudo ./scripts/install.sh`.
 - Verify the Raspberry Pi install command has a copy-to-clipboard button.
+- Verify the Raspberry Pi install command downloads through `https://djconnect.dev/go/linux-install`, not a hard-coded release asset URL.
 - Verify the homepage hero uses a swipeable carousel with separate macOS, landscape iPad and LilyGO/ESP32 slides.
 - Verify the iOS carousel slide uses one landscape iPad only, without a second iPhone visual.
 - Verify the homepage hero no longer shows the availability pill.
@@ -37,7 +38,11 @@
 - Verify the embedded page lists LilyGO T-Embed CC1101 and ESP32-S3-BOX-3 under supported hardware.
 - Verify the embedded ESP32 visual card has clear spacing and includes the LilyGO product specifications link.
 - Verify the embedded release block points to `pcvantol/djconnect-firmware` releases.
+- Verify macOS, ESP32 firmware and Raspberry Pi/Linux release blocks show only the latest GitHub release.
+- Verify macOS, ESP32 firmware and Raspberry Pi/Linux release asset links route through `/go/download`.
+- Verify the macOS page no longer links to or mentions the removed `macos-download` route.
 - Verify HACS and download buttons route through `/go/...` redirects and still land on the expected destination.
+- Verify `/go/linux-install` resolves to the latest `pcvantol/djconnect-pi-releases` `.tar.gz` asset.
 - Verify `/api/stats` is unavailable without `STATS_TOKEN` and returns aggregate-only data when authenticated.
 - Verify `https://djconnect.dev` is used in canonical tags, `robots.txt`, `sitemap.xml` and public install commands.
 - Verify `https://www.djconnect.dev` redirects permanently to `https://djconnect.dev`, preserving path and query string.

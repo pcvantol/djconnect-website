@@ -9,6 +9,7 @@ Use GitHub Issues for active tracking. This file captures known repository-level
 - The site currently has no committed browser regression test; responsive layout is covered by manual checks, local browser smoke checks and static assertions.
 - Cloudflare Pages deployment requires `CLOUDFLARE_API_TOKEN` locally or as a GitHub Actions secret.
 - Aggregate click counters require the Cloudflare Pages D1 binding `ANALYTICS_DB`; redirects still work when the binding is not configured.
+- `/api/stats` requires `STATS_TOKEN`; without it the endpoint intentionally returns unauthorized responses.
 - The Home Assistant badge uses the official Home Assistant brand logo; confirm formal "Works with Home Assistant" certification requirements before presenting it as a certification mark.
 
 ## Resolved
@@ -18,3 +19,5 @@ Use GitHub Issues for active tracking. This file captures known repository-level
 - Removed pre-flashed device wording and replaced it with firmware download and flashing guidance.
 - Added static regression tests for homepage hero copy, current setup wording and translation key coverage.
 - Embedded ESP32 downloads now render GitHub release assets inline, matching the macOS and Linux download pages.
+- ESP32, macOS and Linux download embeds are covered by static tests for latest-only rendering and tracked `/go/download` links.
+- The retired `macos-download` route is covered by static tests to prevent accidental relinking.

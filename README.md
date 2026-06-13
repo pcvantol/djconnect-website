@@ -89,9 +89,10 @@ curl -s https://djconnect.dev | grep "DJConnect website v"
 
 ## Live Releases
 
-The embedded page renders downloadable firmware release assets from `pcvantol/djconnect-firmware`.
-The macOS page renders binary downloads from `pcvantol/djconnect-app-releases`.
-The Raspberry Pi page renders binary downloads from `pcvantol/djconnect-pi-releases`.
+The embedded page renders only the latest downloadable firmware release assets from `pcvantol/djconnect-firmware`.
+The macOS page renders only the latest binary downloads from `pcvantol/djconnect-app-releases`.
+The Raspberry Pi page renders only the latest binary downloads from `pcvantol/djconnect-pi-releases`.
+The Raspberry Pi install command is generated from the latest release and downloads through `https://djconnect.dev/go/linux-install`, then runs `sudo ./scripts/install.sh`.
 iOS does not load `djconnect-website` releases; add release/download embeds only when a relevant app release source exists.
 For private GitHub repositories, set a Cloudflare Pages secret named `GITHUB_TOKEN` with read access to releases.
 
@@ -143,6 +144,9 @@ Use `./cleanup_old_releases.sh` to remove old GitHub Releases, matching local/re
 - Keep the start page aligned with the current setup order: Home Assistant voice pipeline, HACS, DJConnect configuration, client pairing and first use.
 - Keep the embedded page compact: supported hardware, how it works and firmware downloads. Detailed setup, requirements, FAQ and experience content belong off this page.
 - Keep macOS, iOS and Raspberry Pi page navigation minimal: `Home`, language toggle and the page CTA.
+- Keep macOS and Raspberry Pi download menu labels singular: `Download`.
+- Keep `macos-download` removed; the canonical macOS app page is `wwwroot/macos.html`.
+- Keep ESP32 firmware, macOS and Raspberry Pi/Linux download embeds limited to the latest release and routed through `/go/download`.
 - Keep the footer version aligned with `VERSION`, `package.json` and `CHANGELOG.md`.
 - Keep click/download analytics aggregate-only: daily target counters in D1 plus GitHub `download_count`, without cookies, IP addresses, user agents or visitor identifiers.
 - Keep `https://djconnect.dev` as canonical production domain in page metadata, `robots.txt`, `sitemap.xml` and public install commands.

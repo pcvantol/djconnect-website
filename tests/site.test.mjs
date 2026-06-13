@@ -310,6 +310,32 @@ test("download script renders dynamic Raspberry Pi install command", async () =>
   assert.doesNotMatch(downloads, /djconnect-pi-3\.1\.16/);
 });
 
+test("download renderer keeps release embeds latest-only and tracked", async () => {
+  const [downloads, macos, raspberry, embedded] = await Promise.all([
+    read("wwwroot/assets/downloads.js"),
+    read("wwwroot/macos.html"),
+    read("wwwroot/raspberry-pi.html"),
+    read("wwwroot/embedded.html")
+  ]);
+
+  assert.match(downloads, /const limit = Number\(root\.dataset\.releaseLimit \|\| 5\)/);
+  assert.match(downloads, /releases = releases\.slice\(0, limit\)/);
+  assert.match(downloads, /repo === "djconnect-firmware"\) return "firmware"/);
+  assert.match(downloads, /repo === "djconnect-pi-releases"\) return "linux"/);
+  assert.match(downloads, /repo === "djconnect-app-releases"\) return "macos"/);
+  assert.match(downloads, /asset\.browser_download_url/);
+  assert.match(downloads, /asset\.download_count/);
+
+  for (const html of [macos, raspberry, embedded]) {
+    assert.match(html, /data-github-downloads/);
+    assert.match(html, /data-release-limit="1"/);
+    assert.doesNotMatch(html, /data-github-releases/);
+    assert.doesNotMatch(html, /Live opgehaald uit GitHub en automatisch geformatteerd/);
+    assert.doesNotMatch(html, /Elke release toont de downloadbare assets/);
+    assert.doesNotMatch(html, /Each release shows the downloadable assets/);
+  }
+});
+
 test("download and HACS clicks use cookieless aggregate redirects", async () => {
   const [downloads, migration, redirect, downloadRedirect, stats] = await Promise.all([
     read("wwwroot/assets/downloads.js"),
@@ -337,6 +363,27 @@ test("download and HACS clicks use cookieless aggregate redirects", async () => 
   assert.doesNotMatch(combined, /user-agent/i);
   assert.doesNotMatch(combined, /cf-connecting-ip/i);
   assert.doesNotMatch(combined, /x-forwarded-for/i);
+});
+
+test("redirect endpoints expose only current public targets", async () => {
+  const [analytics, targetRedirect, downloadRedirect] = await Promise.all([
+    read("functions/_shared/analytics.js"),
+    read("functions/go/[target].js"),
+    read("functions/go/download.js")
+  ]);
+
+  assert.match(analytics, /djconnect-app-releases/);
+  assert.match(analytics, /djconnect-firmware/);
+  assert.match(analytics, /djconnect-pi-releases/);
+  assert.match(analytics, /github-firmware-releases": "https:\/\/github\.com\/pcvantol\/djconnect-firmware\/releases"/);
+  assert.match(analytics, /github-linux-releases": "https:\/\/github\.com\/pcvantol\/djconnect-pi-releases\/releases"/);
+  assert.doesNotMatch(analytics, /djconnect-website\/releases/);
+
+  assert.match(targetRedirect, /"linux-install"/);
+  assert.match(targetRedirect, /fetchLatestRelease\(context\.env, config\.repo\)/);
+  assert.match(targetRedirect, /trackedRedirect\(context, target, asset\.browser_download_url\)/);
+  assert.match(downloadRedirect, /isAllowedGithubDownload\(destination, repo\)/);
+  assert.match(downloadRedirect, /trackedRedirect\(context, target, destination\)/);
 });
 
 test("canonical SEO uses djconnect.dev", async () => {
@@ -368,6 +415,16 @@ test("canonical SEO uses djconnect.dev", async () => {
   assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/embedded<\/loc>/);
   assert.match(downloads, /https:\/\/djconnect\.dev\/go\/linux-install/);
+});
+
+test("legacy macOS download page is not referenced", async () => {
+  const pages = ["index", "start", "features", "ios", "macos", "raspberry-pi", "embedded"];
+
+  for (const page of pages) {
+    const html = await read(`wwwroot/${page}.html`);
+    assert.doesNotMatch(html, /macos-download\.html/, `${page} should not link to the removed macOS download page`);
+    assert.doesNotMatch(html, /macos-download/, `${page} should not mention the removed macOS download route`);
+  }
 });
 
 test("embedded page links back to platform homepage", async () => {

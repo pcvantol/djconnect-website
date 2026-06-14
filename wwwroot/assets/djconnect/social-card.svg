@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">DJConnect social preview</title>
+  <desc id="desc">DJConnect social preview card with current music control tagline.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#091016"/>
+      <stop offset="0.52" stop-color="#0b0d12"/>
+      <stop offset="1" stop-color="#191225"/>
+    </linearGradient>
+    <radialGradient id="cyanGlow" cx="17%" cy="14%" r="70%">
+      <stop offset="0" stop-color="#66e0ff" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#66e0ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="greenGlow" cx="78%" cy="74%" r="58%">
+      <stop offset="0" stop-color="#7ef7a7" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#7ef7a7" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="pinkGlow" cx="92%" cy="8%" r="48%">
+      <stop offset="0" stop-color="#fb7185" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#fb7185" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="220" y2="220" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#66e0ff"/>
+      <stop offset="0.5" stop-color="#8b5cf6"/>
+      <stop offset="1" stop-color="#db5cff"/>
+    </linearGradient>
+    <radialGradient id="vinyl" cx="36%" cy="28%" r="74%">
+      <stop offset="0" stop-color="#343047"/>
+      <stop offset="0.44" stop-color="#13111d"/>
+      <stop offset="1" stop-color="#030207"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="26" stdDeviation="24" flood-color="#000" flood-opacity="0.46"/>
+    </filter>
+    <clipPath id="iconClip">
+      <rect width="210" height="210" rx="42"/>
+    </clipPath>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#cyanGlow)"/>
+  <rect width="1200" height="630" fill="url(#greenGlow)"/>
+  <rect width="1200" height="630" fill="url(#pinkGlow)"/>
+  <rect x="46" y="46" width="1108" height="538" rx="54" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.16)" stroke-width="2"/>
+
+  <g transform="translate(94 132)" filter="url(#shadow)">
+    <g clip-path="url(#iconClip)">
+      <rect width="210" height="210" fill="#0b0815"/>
+      <circle cx="92" cy="104" r="70" fill="url(#vinyl)"/>
+      <circle cx="92" cy="104" r="50" fill="none" stroke="#fff" stroke-opacity="0.08" stroke-width="2"/>
+      <circle cx="92" cy="104" r="20" fill="#151023" stroke="url(#accent)" stroke-width="5"/>
+      <path d="M22 156C5 112 13 58 50 25c39-35 99-39 140-8 37 28 50 81 32 122" fill="none" stroke="url(#accent)" stroke-width="7" stroke-linecap="round"/>
+      <path d="M144 28c12-7 28 2 28 16 0 12-12 21-23 17-9 42-23 79-49 105-11 11-23 19-35 23" fill="none" stroke="#dbe6ff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="155" cy="44" r="16" fill="#131522" stroke="url(#accent)" stroke-width="4"/>
+      <g font-family="Avenir Next, Arial Black, Impact, sans-serif" font-weight="900" font-style="italic">
+        <text x="26" y="166" font-size="86" letter-spacing="-8" fill="#080711" stroke="#080711" stroke-width="18" stroke-linejoin="round">DJ</text>
+        <text x="26" y="166" font-size="86" letter-spacing="-8" fill="#f7f9ff" stroke="url(#accent)" stroke-width="5" stroke-linejoin="round">DJ</text>
+      </g>
+    </g>
+  </g>
+
+  <g font-family="Inter, Avenir Next, Segoe UI, Arial, sans-serif">
+    <text x="350" y="214" font-size="92" font-weight="900" letter-spacing="-5" fill="#f7f7fb">DJConnect</text>
+    <text x="352" y="302" font-size="46" font-weight="850" letter-spacing="-1.5" fill="#c9cfdd">Muziekbediening met karakter</text>
+    <text x="352" y="386" font-size="28" font-weight="650" fill="#b7bccb">Vraag muziek, kies waar het speelt en krijg persoonlijke</text>
+    <text x="352" y="426" font-size="28" font-weight="650" fill="#b7bccb">DJ-feedback op macOS, iOS, Linux en ESP32.</text>
+  </g>
+
+  <g transform="translate(352 478)">
+    <rect width="250" height="52" rx="26" fill="rgba(102,224,255,0.13)" stroke="rgba(102,224,255,0.35)"/>
+    <circle cx="30" cy="26" r="7" fill="#7ef7a7"/>
+    <text x="52" y="35" font-family="Inter, Avenir Next, Segoe UI, Arial, sans-serif" font-size="22" font-weight="850" fill="#f7f7fb">djconnect.dev</text>
+  </g>
+</svg>

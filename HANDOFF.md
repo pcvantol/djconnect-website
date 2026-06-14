@@ -8,7 +8,7 @@
 - Cloudflare Pages fallback URL: https://djconnect.pages.dev
 - Cloudflare Pages project: `djconnect`
 - Publish directory: `wwwroot`
-- Current version: `3.1.21`
+- Current version: `3.1.22`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Start/setup page: `wwwroot/start.html`
@@ -95,7 +95,7 @@ Bind `ANALYTICS_DB` to that D1 database and set a `STATS_TOKEN` secret. `GITHUB_
 
 - `npm test` covers version consistency, route presence, homepage navigation/copy, firmware download embeds, macOS and Raspberry Pi download embeds, latest-only release embed contracts, removed legacy macOS download routes, tracked download redirects, absence of website self-release embeds, translation keys, footer copyright, firmware links, compact embedded page structure, LilyGO visual hygiene and stale pre-flashed wording.
 - `npm test` also covers the cookieless redirect/download analytics structure, D1 migration and tracked GitHub asset links.
-- Current released version `3.1.21` includes the single-iPad homepage hero slide, embedded page color alignment, renamed mini-games copy/sync prompt, Raspberry Pi downloads from `pcvantol/djconnect-pi-releases`, latest-only firmware/Linux embeds and a dynamic public-release Linux install command that runs `sudo ./scripts/install.sh`.
+- Current released version `3.1.22` includes the single-iPad homepage hero slide, embedded page color alignment, renamed mini-games copy/sync prompt, Raspberry Pi downloads from `pcvantol/djconnect-pi-releases`, latest-only firmware/Linux embeds and a dynamic public-release Linux install command that runs `sudo ./scripts/install.sh`.
 - Canonical SEO domain is `https://djconnect.dev`; `djconnect.pages.dev` remains a Cloudflare fallback.
 - `https://www.djconnect.dev` should remain a 301 redirect to the apex domain, preserving path and query string.
 - Dynamic GitHub download/install blocks now rerender when the language toggle changes, so generated install text follows NL/EN.

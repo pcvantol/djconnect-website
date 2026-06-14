@@ -418,11 +418,29 @@ test("canonical SEO uses djconnect.dev", async () => {
   ]);
 
   assert.match(index, /<meta property="og:url" content="https:\/\/djconnect\.dev\/" \/>/);
-  assert.match(index, /<meta property="og:image" content="https:\/\/djconnect\.dev\/assets\/djconnect\/logo-512x256\.png" \/>/);
+  assert.match(index, /<meta property="og:image" content="https:\/\/djconnect\.dev\/assets\/djconnect\/social-card\.png" \/>/);
+  assert.match(index, /<meta property="og:image:width" content="1200" \/>/);
+  assert.match(index, /<meta property="og:image:height" content="630" \/>/);
+  assert.match(index, /<meta property="og:image:alt" content="DJConnect\. Muziekbediening met karakter\." \/>/);
+  assert.match(index, /<meta name="twitter:image" content="https:\/\/djconnect\.dev\/assets\/djconnect\/social-card\.png" \/>/);
   assert.match(robots, /Sitemap: https:\/\/djconnect\.dev\/sitemap\.xml/);
   assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/embedded<\/loc>/);
   assert.match(downloads, /https:\/\/djconnect\.dev\/go\/linux-install/);
+});
+
+test("social preview image uses current branding", async () => {
+  const [logoSvg, socialSvg] = await Promise.all([
+    read("wwwroot/assets/djconnect/logo.svg"),
+    read("wwwroot/assets/djconnect/social-card.svg")
+  ]);
+
+  assert.match(logoSvg, /MUZIEKBEDIENING MET KARAKTER/);
+  assert.doesNotMatch(logoSvg, /YOUR PERSONAL MUSIC DJ/);
+  assert.match(socialSvg, /width="1200" height="630"/);
+  assert.match(socialSvg, /Muziekbediening met karakter/);
+  assert.match(socialSvg, /djconnect\.dev/);
+  assert.doesNotMatch(socialSvg, /YOUR PERSONAL/);
 });
 
 test("legacy macOS download page is not referenced", async () => {

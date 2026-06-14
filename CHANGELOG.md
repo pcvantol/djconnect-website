@@ -2,7 +2,7 @@
 
 All notable changes to this website are consolidated under the current website version.
 
-## DJConnect website v3.1.21 - 2026-06-13
+## DJConnect website v3.1.22 - 2026-06-14
 
 - Added a platform-independent homepage for DJConnect essentials, with focused navigation for `Hoe werkt het`, `Features`, `Installeren` and the primary `Aan de slag` CTA.
 - Reworked the homepage hero into a swipeable carousel for macOS, iPad/iPhone and LilyGO/ESP32, with spacious device slides and current Dutch/English copy.
@@ -18,6 +18,7 @@ All notable changes to this website are consolidated under the current website v
 - Switched embedded ESP32 releases to the download-asset renderer so firmware binaries appear inline like macOS and Linux downloads.
 - Added privacy-friendly aggregate click counters for HACS and download redirects, plus a token-protected stats endpoint that combines redirect totals with GitHub asset `download_count`.
 - Added canonical `djconnect.dev` SEO metadata, `robots.txt`, `sitemap.xml` and documented `www.djconnect.dev` redirect support.
+- Added a dedicated 1200x630 social preview image for WhatsApp/Open Graph without white borders and with the current `Muziekbediening met karakter` tagline.
 - Connected macOS downloads to `pcvantol/djconnect-app-releases`, ESP32 firmware downloads to `pcvantol/djconnect-firmware` and Raspberry Pi/Linux downloads to `pcvantol/djconnect-pi-releases`.
 - Added a dynamic Raspberry Pi/Linux install command that uses the latest public GitHub release bundle and preserves pairing/configuration on rerun.
 - Updated the Raspberry Pi/Linux install command to run the renamed public release installer `sudo ./scripts/install.sh`.

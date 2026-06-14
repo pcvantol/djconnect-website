@@ -66,7 +66,18 @@ test -f wwwroot/index.html
 test -f wwwroot/start.html
 test -f wwwroot/assets/djconnect/site.webmanifest
 test -f migrations/0001_create_click_counters.sql
+test -f README.md
+test -f HANDOFF.md
+test -f TESTS.md
+test -f TODO.md
+test -f ISSUES.md
+test -f CHANGELOG.md
+test -f SYNC_PROMPTS.md
 ```
+
+Before every release, check whether the test suite needs to grow. Add or update tests for changed routes, copy, translations, rendering contracts, analytics redirects, release scripts or deploy behavior.
+
+`release.sh` also enforces the core documentation-file presence and verifies that `CHANGELOG.md` and `HANDOFF.md` mention the current website version.
 
 For a full release with a new tag:
 

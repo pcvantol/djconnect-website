@@ -5,6 +5,7 @@ PROJECT_NAME="djconnect"
 PUBLISH_DIR="wwwroot"
 ACCOUNT_ID="${CLOUDFLARE_ACCOUNT_ID:-efe77cadf8317a53832fca0848e3ae51}"
 KEEP_WORKFLOW_RUNS="${KEEP_WORKFLOW_RUNS:-1}"
+DOC_FILES=(README.md HANDOFF.md TESTS.md TODO.md ISSUES.md CHANGELOG.md SYNC_PROMPTS.md)
 VERSION="$(tr -d '[:space:]' < VERSION)"
 TAG="v${VERSION}"
 BRANCH="$(git branch --show-current)"
@@ -67,7 +68,11 @@ echo "Checking release files..."
 test -f "$PUBLISH_DIR/index.html"
 test -f "$PUBLISH_DIR/embedded.html"
 test -f "$PUBLISH_DIR/assets/djconnect/site.webmanifest"
+for DOC_FILE in "${DOC_FILES[@]}"; do
+  test -f "$DOC_FILE"
+done
 grep -q "DJConnect website ${TAG}" CHANGELOG.md
+grep -q "Current version: \`${VERSION}\`" HANDOFF.md
 grep -q "DJConnect website v${VERSION}" "$PUBLISH_DIR/index.html"
 grep -q "DJConnect website v${VERSION}" "$PUBLISH_DIR/embedded.html"
 

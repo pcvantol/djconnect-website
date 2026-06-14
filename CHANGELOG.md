@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to this website are consolidated under the current website version.
+All notable changes to this website are grouped per release.
 
 ## DJConnect website v3.1.23 - 2026-06-14
 
@@ -39,6 +39,9 @@ All notable changes to this website are consolidated under the current website v
 - Removed pre-flashed wording from current site copy and replaced it with firmware download and flash guidance.
 - Added visible footer copyright and site version metadata.
 - Added repository documentation for releases, TODOs, known issues, handoff and testing.
+- Added a release documentation guard so every release checks core docs and current handoff/changelog version alignment.
+- Documented that every release must include a test-coverage review and test expansion when the change affects behavior, routes, rendering, analytics, release scripts or deployment.
+- Switched the changelog policy back to separate changelog entries per release instead of consolidating all changes into one version entry.
 - Added automated Node tests for version consistency, routes, store placeholders, copyright, translation coverage, setup/navigation copy and release/download embeds.
 - Added `release.sh` for manual releases and Cloudflare Pages deployment.
 - Added `cleanup_old_releases.sh` for release/tag cleanup and older GitHub Actions workflow run cleanup.

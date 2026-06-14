@@ -54,12 +54,14 @@
 ## Release Steps
 
 1. Commit all changes to `main`.
-2. Ensure the GitHub Actions repository secret `CLOUDFLARE_API_TOKEN` exists.
-3. Run `./release.sh --skip-deploy` when the token is only available in GitHub Actions.
-4. Verify the GitHub Release, the `Deploy Cloudflare Pages` workflow run and https://djconnect.dev.
+2. Update or consciously re-check all repository documentation files before release: `README.md`, `HANDOFF.md`, `TESTS.md`, `TODO.md`, `ISSUES.md`, `CHANGELOG.md` and `SYNC_PROMPTS.md`.
+3. Check whether test coverage needs to be expanded for the release change. Add tests for changed routes, copy, rendering contracts, analytics, release scripts or deployment behavior.
+4. Ensure the GitHub Actions repository secret `CLOUDFLARE_API_TOKEN` exists.
+5. Run `./release.sh --skip-deploy` when the token is only available in GitHub Actions.
+6. Verify the GitHub Release, the `Deploy Cloudflare Pages` workflow run and https://djconnect.dev.
 
 The workflow deploys `wwwroot` to Cloudflare Pages on every push to `main` and sets `CLOUDFLARE_ACCOUNT_ID` explicitly.
-The release script removes older GitHub Releases, matching local/remote tags and older GitHub Actions workflow runs by default. It keeps the newly released tag and only the newest workflow run. Override workflow-run retention with `KEEP_WORKFLOW_RUNS=N` when needed.
+The release script verifies the core documentation files exist, checks `CHANGELOG.md` and `HANDOFF.md` against the current `VERSION`, removes older GitHub Releases, matching local/remote tags and older GitHub Actions workflow runs by default. It keeps the newly released tag and only the newest workflow run. Override workflow-run retention with `KEEP_WORKFLOW_RUNS=N` when needed.
 
 Set the token only in the current shell when needed:
 

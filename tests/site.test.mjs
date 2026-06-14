@@ -394,6 +394,20 @@ test("release script performs standard cleanup after release", async () => {
   assert.match(releaseScript, /KEEP_WORKFLOW_RUNS="\$\{KEEP_WORKFLOW_RUNS:-1\}"/);
 });
 
+test("release script checks documentation before tagging", async () => {
+  const releaseScript = await read("release.sh");
+
+  for (const file of ["README.md", "HANDOFF.md", "TESTS.md", "TODO.md", "ISSUES.md", "CHANGELOG.md", "SYNC_PROMPTS.md"]) {
+    assert.match(releaseScript, new RegExp(file.replace(".", "\\.")));
+  }
+
+  assert.match(releaseScript, /for DOC_FILE in "\$\{DOC_FILES\[@\]\}"; do/);
+  assert.match(releaseScript, /test -f "\$DOC_FILE"/);
+  assert.match(releaseScript, /grep -q "DJConnect website \$\{TAG\}" CHANGELOG\.md/);
+  assert.match(releaseScript, /grep -q "Current version:/);
+  assert.match(releaseScript, /HANDOFF\.md/);
+});
+
 test("canonical SEO uses djconnect.dev", async () => {
   const pages = [
     ["index", "https://djconnect.dev/"],

@@ -73,6 +73,7 @@ test -f TODO.md
 test -f ISSUES.md
 test -f CHANGELOG.md
 test -f SYNC_PROMPTS.md
+test -f TECHNICAL_DESIGN.md
 ```
 
 Before every release, check whether the test suite needs to grow. Add or update tests for changed routes, copy, translations, rendering contracts, analytics redirects, release scripts or deploy behavior.

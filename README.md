@@ -62,6 +62,7 @@ Before every release, update or consciously re-check all repository documentatio
 - `ISSUES.md`
 - `CHANGELOG.md`
 - `SYNC_PROMPTS.md`
+- `TECHNICAL_DESIGN.md`
 
 `CHANGELOG.md` gets a separate entry per release and `HANDOFF.md` must mention the current `VERSION`.
 

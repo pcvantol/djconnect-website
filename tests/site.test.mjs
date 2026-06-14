@@ -397,7 +397,7 @@ test("release script performs standard cleanup after release", async () => {
 test("release script checks documentation before tagging", async () => {
   const releaseScript = await read("release.sh");
 
-  for (const file of ["README.md", "HANDOFF.md", "TESTS.md", "TODO.md", "ISSUES.md", "CHANGELOG.md", "SYNC_PROMPTS.md"]) {
+  for (const file of ["README.md", "HANDOFF.md", "TESTS.md", "TODO.md", "ISSUES.md", "CHANGELOG.md", "SYNC_PROMPTS.md", "TECHNICAL_DESIGN.md"]) {
     assert.match(releaseScript, new RegExp(file.replace(".", "\\.")));
   }
 
@@ -406,6 +406,25 @@ test("release script checks documentation before tagging", async () => {
   assert.match(releaseScript, /grep -q "DJConnect website \$\{TAG\}" CHANGELOG\.md/);
   assert.match(releaseScript, /grep -q "Current version:/);
   assert.match(releaseScript, /HANDOFF\.md/);
+  assert.match(releaseScript, /Current website version:/);
+  assert.match(releaseScript, /TECHNICAL_DESIGN\.md/);
+});
+
+test("technical design document records architecture, style and dependency inventory", async () => {
+  const design = await read("TECHNICAL_DESIGN.md");
+
+  assert.match(design, /Static-first Pages/);
+  assert.match(design, /Progressive Enhancement for Dynamic Data/);
+  assert.match(design, /Data Attribute Configuration/);
+  assert.match(design, /Edge Functions as Thin Adapters/);
+  assert.match(design, /Coding Style Conventions/);
+  assert.match(design, /Frameworks, Libraries and Third-party Dependencies/);
+  assert.match(design, /Node\.js/);
+  assert.match(design, /Wrangler/);
+  assert.match(design, /Cloudflare Pages/);
+  assert.match(design, /GitHub REST API/);
+  assert.match(design, /package\.json` declares no production or development package dependencies/);
+  assert.match(design, /Release Maintenance Rule/);
 });
 
 test("canonical SEO uses djconnect.dev", async () => {

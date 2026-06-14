@@ -5,7 +5,7 @@ PROJECT_NAME="djconnect"
 PUBLISH_DIR="wwwroot"
 ACCOUNT_ID="${CLOUDFLARE_ACCOUNT_ID:-efe77cadf8317a53832fca0848e3ae51}"
 KEEP_WORKFLOW_RUNS="${KEEP_WORKFLOW_RUNS:-1}"
-DOC_FILES=(README.md HANDOFF.md TESTS.md TODO.md ISSUES.md CHANGELOG.md SYNC_PROMPTS.md)
+DOC_FILES=(README.md HANDOFF.md TESTS.md TODO.md ISSUES.md CHANGELOG.md SYNC_PROMPTS.md TECHNICAL_DESIGN.md)
 VERSION="$(tr -d '[:space:]' < VERSION)"
 TAG="v${VERSION}"
 BRANCH="$(git branch --show-current)"
@@ -73,6 +73,7 @@ for DOC_FILE in "${DOC_FILES[@]}"; do
 done
 grep -q "DJConnect website ${TAG}" CHANGELOG.md
 grep -q "Current version: \`${VERSION}\`" HANDOFF.md
+grep -q "Current website version: \`${VERSION}\`" TECHNICAL_DESIGN.md
 grep -q "DJConnect website v${VERSION}" "$PUBLISH_DIR/index.html"
 grep -q "DJConnect website v${VERSION}" "$PUBLISH_DIR/embedded.html"
 

@@ -54,7 +54,7 @@
 ## Release Steps
 
 1. Commit all changes to `main`.
-2. Update or consciously re-check all repository documentation files before release: `README.md`, `HANDOFF.md`, `TESTS.md`, `TODO.md`, `ISSUES.md`, `CHANGELOG.md` and `SYNC_PROMPTS.md`.
+2. Update or consciously re-check all repository documentation files before release: `README.md`, `HANDOFF.md`, `TESTS.md`, `TODO.md`, `ISSUES.md`, `CHANGELOG.md`, `SYNC_PROMPTS.md` and `TECHNICAL_DESIGN.md`.
 3. Check whether test coverage needs to be expanded for the release change. Add tests for changed routes, copy, rendering contracts, analytics, release scripts or deployment behavior.
 4. Ensure the GitHub Actions repository secret `CLOUDFLARE_API_TOKEN` exists.
 5. Run `./release.sh --skip-deploy` when the token is only available in GitHub Actions.

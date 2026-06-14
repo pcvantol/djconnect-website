@@ -40,6 +40,8 @@ All notable changes to this website are grouped per release.
 - Added visible footer copyright and site version metadata.
 - Added repository documentation for releases, TODOs, known issues, handoff and testing.
 - Added a release documentation guard so every release checks core docs and current handoff/changelog version alignment.
+- Added `TECHNICAL_DESIGN.md` with reverse-engineered code-level design decisions, language-specific coding conventions and dependency/license inventory.
+- Added `TECHNICAL_DESIGN.md` to the required release documentation set.
 - Documented that every release must include a test-coverage review and test expansion when the change affects behavior, routes, rendering, analytics, release scripts or deployment.
 - Switched the changelog policy back to separate changelog entries per release instead of consolidating all changes into one version entry.
 - Added automated Node tests for version consistency, routes, store placeholders, copyright, translation coverage, setup/navigation copy and release/download embeds.

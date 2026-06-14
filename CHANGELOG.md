@@ -2,7 +2,7 @@
 
 All notable changes to this website are consolidated under the current website version.
 
-## DJConnect website v3.1.22 - 2026-06-14
+## DJConnect website v3.1.23 - 2026-06-14
 
 - Added a platform-independent homepage for DJConnect essentials, with focused navigation for `Hoe werkt het`, `Features`, `Installeren` and the primary `Aan de slag` CTA.
 - Reworked the homepage hero into a swipeable carousel for macOS, iPad/iPhone and LilyGO/ESP32, with spacious device slides and current Dutch/English copy.

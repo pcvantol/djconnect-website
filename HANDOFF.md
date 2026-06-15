@@ -8,9 +8,10 @@
 - Cloudflare Pages fallback URL: https://djconnect.pages.dev
 - Cloudflare Pages project: `djconnect`
 - Publish directory: `wwwroot`
-- Current version: `3.1.24`
+- Current version: `3.1.25`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
+- Voice commands page: `wwwroot/voice-commands.html`
 - Start/setup page: `wwwroot/start.html`
 - macOS app page with binary downloads: `wwwroot/macos.html`
 - iOS app page: `wwwroot/ios.html`
@@ -21,8 +22,11 @@
 
 - The site is static HTML/CSS/JavaScript with no build step.
 - The homepage is platform-independent and routes users to setup and downloads.
-- The homepage navigation intentionally contains `Hoe werkt het`, `Features`, `Blog` and `Installeren`; the `Aan de slag` route is the primary CTA button.
+- The homepage navigation intentionally contains `Hoe werkt het`, `Features`,
+  `Spraak`, `Blog` and `Installeren`; the `Aan de slag` route is the primary
+  CTA button.
 - The features page summarizes the main DJConnect functions and mentions the bonus mini-games: Paddle Rally, Meteor Run, Sky Dash & Maze Chase.
+- The voice commands page documents the user-facing intent families, Home Assistant handling order, artist-first behavior and bilingual example phrases. Keep it aligned with Home Assistant intent parsing and local fallback behavior.
 - The blog section starts at `wwwroot/blog.html`; the first post is `wwwroot/blog-djconnect-project.html` and describes DJConnect as a Home Assistant-backed multi-client music workflow.
 - The homepage hero uses a swipeable device carousel for macOS, a landscape iPad and LilyGO/ESP32. Keep each device slide spacious and avoid compressing devices side-by-side.
 - The iOS carousel slide intentionally shows one landscape iPad only; do not re-add a second iPhone visual unless the layout is redesigned.
@@ -103,13 +107,13 @@ Bind `ANALYTICS_DB` to that D1 database and set a `STATS_TOKEN` secret. `GITHUB_
 
 ## Current Verification
 
-- `npm test` covers version consistency, route presence, homepage navigation/copy, firmware download embeds, macOS and Raspberry Pi download embeds, latest-only release embed contracts, removed legacy macOS download routes, tracked download redirects, absence of website self-release embeds, translation keys, footer copyright/support links, local link checking, firmware links, compact embedded page structure, LilyGO visual hygiene and stale pre-flashed wording.
+- `npm test` covers version consistency, route presence, homepage navigation/copy, voice command intent-family docs, firmware download embeds, macOS and Raspberry Pi download embeds, latest-only release embed contracts, removed legacy macOS download routes, tracked download redirects, absence of website self-release embeds, translation keys, footer copyright/support links, local link checking, firmware links, compact embedded page structure, LilyGO visual hygiene and stale pre-flashed wording.
 - `npm test` also covers the cookieless redirect/download analytics structure, D1 migration, tracked GitHub asset links and the release-script dependency/tool preflight.
 - `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. It is not part of the default dependency-free `npm test` run.
-- Current released version `3.1.24` restores the shared Website/Docs sync prompt
-  contract, keeps the cross-repo product roadmap canonical and preserves the
-  current website rules for blog navigation, SEO/social previews, latest-only
-  downloads, tracked redirects, cookieless analytics and release cleanup.
+- Current released version `3.1.25` adds the voice commands page, documents
+  artist-first intent behavior, restores the shared Website/Docs sync prompt
+  contract with voice-page rules and keeps the cross-repo product roadmap
+  canonical.
 - Canonical SEO domain is `https://djconnect.dev`; `djconnect.pages.dev` remains a Cloudflare fallback.
 - `https://www.djconnect.dev` should remain a 301 redirect to the apex domain, preserving path and query string.
 - Dynamic GitHub download/install blocks now rerender when the language toggle changes, so generated install text follows NL/EN.

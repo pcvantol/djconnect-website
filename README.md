@@ -6,6 +6,7 @@ Static landing page for DJConnect, published through Cloudflare Pages.
 
 - `wwwroot/index.html`: platform homepage with DJConnect essentials, download routes and swipeable device hero.
 - `wwwroot/features.html`: feature overview page, including bonus mini-games: Paddle Rally, Meteor Run, Sky Dash and Maze Chase.
+- `wwwroot/voice-commands.html`: bilingual How To page for DJConnect voice command intent families and artist-first music requests.
 - `wwwroot/blog.html`: blog overview page for project notes and release/design stories.
 - `wwwroot/blog-djconnect-project.html`: first project blogpost about the DJConnect architecture and workflow.
 - `wwwroot/start.html`: Home Assistant setup flow for HACS installation, voice pipeline setup, DJConnect configuration, client downloads and pairing.

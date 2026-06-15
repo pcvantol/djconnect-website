@@ -2,6 +2,19 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.25 - 2026-06-15
+
+- Added a bilingual voice commands page that explains the DJConnect handling
+  flow from client audio/text through Home Assistant STT, Assist intent data,
+  fallback parsing, Spotify playback and personal DJ announcement feedback.
+- Documented the artist-first behavior for generic music requests and added
+  compact Dutch and English examples for artist, track, album, playlist,
+  default playlist/favorites and playback-control intent families.
+- Added the voice commands page to top-level homepage/features/blog navigation,
+  sitemap, README, handoff and manual test documentation.
+- Extended automated tests for the voice commands route, translation coverage,
+  sitemap entry, navigation link and required intent-family copy.
+
 ## DJConnect website v3.1.24 - 2026-06-15
 
 - Restored the `Website/Docs` section in the shared canonical `SYNC_PROMPTS.md`

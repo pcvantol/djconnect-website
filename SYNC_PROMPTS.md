@@ -110,6 +110,55 @@ Canonical repo locations:
 - Website/docs: `pcvantol/djconnect-website`
 - Raspberry Pi client: `pcvantol/djconnect-pi`
 
+## Website/Docs
+
+```text
+Sync the DJConnect website/docs with the Home Assistant integration, Apple app,
+ESP firmware and Raspberry Pi client contracts.
+
+Requirements:
+- Keep the canonical production domain `https://djconnect.dev`; keep
+  `https://www.djconnect.dev` as a permanent redirect to the apex domain.
+- Keep `djconnect.pages.dev` only as the Cloudflare Pages fallback URL.
+- Keep homepage navigation focused on `Hoe werkt het`, `Features`, `Spraak`,
+  `Installeren` and `Blog`, plus the primary `Aan de slag` CTA.
+- Keep the voice commands page at `/voice-commands` aligned with Home Assistant
+  intent parsing and local fallback behavior. It must document artist-first
+  generic music requests, explicit track/album/playlist media words, default
+  playlist/favorites and the expandable playback-control family in Dutch and
+  English.
+- Keep macOS, iOS, Raspberry Pi/Linux and ESP32 pages minimal: app/device pages
+  should label the platform route as `Home` and avoid cross-link clutter in
+  their top menus.
+- Keep `macos-download` retired. The canonical macOS page is `/macos`.
+- Render macOS downloads from `pcvantol/djconnect-app-releases`, ESP32 firmware
+  downloads from `pcvantol/djconnect-firmware`, and Raspberry Pi/Linux downloads
+  from `pcvantol/djconnect-pi-releases`.
+- Show only the latest GitHub release in ESP32 firmware and Raspberry Pi/Linux
+  download blocks. Keep macOS aligned with the same latest-version download
+  pattern unless an App Store link replaces it.
+- Route website-originated download clicks through `/go/download` so aggregate
+  click counters can be combined with GitHub release asset download_count.
+- Route the public Raspberry Pi/Linux installer through `/go/linux-install`;
+  generate the install command from the latest `djconnect-pi-*` tarball and run
+  `sudo ./scripts/install.sh`.
+- Keep click/download analytics cookieless and aggregate-only: no cookies, IP
+  addresses, user agents, referrers or visitor identifiers.
+- Keep SEO metadata, sitemap, canonical URLs and social preview images current
+  for the production domain.
+- Keep the translated footer privacy notice and the footer website version on
+  every public page.
+- Keep bonus game names aligned with the current app labels: Paddle Rally,
+  Meteor Run, Sky Dash and Maze Chase.
+- Keep tests for translation coverage, current navigation, latest-only embeds,
+  tracked redirects, retired routes, SEO canonicals, link checking, voice
+  command intent-family docs and stale pre-flashed copy.
+- Keep release documentation, handoff, tests, changelog, design decisions,
+  roadmap and third-party notices current before every website release.
+- Keep old website releases, tags and workflow runs cleaned up by default after
+  publishing.
+```
+
 ## Home Assistant Integration
 
 ```text

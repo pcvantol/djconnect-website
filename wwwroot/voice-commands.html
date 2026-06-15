@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DJConnect Spraakopdrachten</title>
+  <meta name="description" content="Voorbeelden van DJConnect spraakopdrachten voor artiesten, tracks, albums, playlists, favorieten en playback-bediening." />
+  <link rel="canonical" href="https://djconnect.dev/voice-commands" />
+  <link rel="icon" href="assets/djconnect/icon.svg" type="image/svg+xml" />
+  <style>
+    :root { --bg:#0b0d12; --panel:rgba(255,255,255,0.075); --panel-strong:rgba(255,255,255,0.12); --text:#f7f7fb; --muted:#b7bccb; --line:rgba(255,255,255,0.14); --cyan:#66e0ff; --green:#7ef7a7; --purple:#8b5cf6; --max:1180px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; background:var(--bg); }
+    body { margin:0; color:var(--text); font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height:1.55; background:radial-gradient(circle at 16% 10%, rgba(102,224,255,0.18), transparent 28rem), radial-gradient(circle at 86% 6%, rgba(139,92,246,0.14), transparent 27rem), radial-gradient(circle at 58% 72%, rgba(126,247,167,0.1), transparent 31rem), linear-gradient(180deg,#0b0d12 0%,#111827 54%,#090b10 100%); }
+    a { color:inherit; text-decoration:none; }
+    .wrap { width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
+    .nav { position:sticky; top:0; z-index:20; backdrop-filter:blur(18px); background:rgba(11,13,18,0.7); border-bottom:1px solid var(--line); }
+    .nav-inner { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:22px; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:850; font-size:1.13rem; }
+    .brand img { width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.18); box-shadow:0 0 34px rgba(102,224,255,0.25); }
+    .nav-links { display:flex; align-items:center; gap:18px; color:var(--muted); font-size:0.94rem; }
+    .nav-links a:hover, .nav-links a[aria-current="page"] { color:var(--text); }
+    .nav-controls { display:flex; align-items:center; gap:12px; }
+    .lang-toggle { display:inline-grid; grid-template-columns:repeat(2,1fr); min-width:86px; padding:3px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.06); }
+    .lang-toggle button { min-height:34px; border:0; border-radius:999px; background:transparent; color:var(--muted); font:inherit; font-size:0.82rem; font-weight:850; cursor:pointer; }
+    .lang-toggle button[aria-pressed="true"] { background:rgba(102,224,255,0.18); color:var(--text); }
+    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:0 18px; border-radius:999px; border:1px solid var(--line); background:var(--panel); color:var(--text); font-weight:780; box-shadow:0 10px 30px rgba(0,0,0,0.15); }
+    .btn.primary { border:0; color:#06110c; background:linear-gradient(135deg,var(--cyan),var(--green)); }
+    .hero { padding:82px 0 52px; }
+    .hero-grid { display:grid; grid-template-columns:1fr 0.88fr; gap:42px; align-items:end; }
+    h1,h2,h3 { margin:0; letter-spacing:-0.045em; line-height:1.05; }
+    h1 { font-size:clamp(3.1rem,7vw,6.1rem); max-width:10ch; }
+    h2 { font-size:clamp(2rem,4vw,3.6rem); margin-bottom:18px; }
+    h3 { font-size:1.25rem; margin-bottom:10px; }
+    .lead { color:var(--muted); font-size:clamp(1.08rem,2.1vw,1.32rem); margin:24px 0 0; max-width:760px; }
+    section { padding:62px 0; }
+    .card { border:1px solid var(--line); border-radius:22px; background:var(--panel); padding:24px; box-shadow:0 12px 36px rgba(0,0,0,0.16); }
+    .card p { color:var(--muted); margin:0; }
+    .pill { display:inline-flex; align-items:center; min-height:34px; padding:0 13px; border-radius:999px; background:rgba(102,224,255,0.13); border:1px solid var(--line); color:#aeefff; font-size:0.76rem; font-weight:900; letter-spacing:0.09em; text-transform:uppercase; margin-bottom:14px; }
+    .flow { display:grid; gap:10px; counter-reset:step; }
+    .flow li { list-style:none; counter-increment:step; display:grid; grid-template-columns:46px 1fr; gap:14px; align-items:center; border:1px solid var(--line); border-radius:16px; background:rgba(255,255,255,0.055); padding:12px; color:var(--muted); font-weight:720; }
+    .flow li::before { content:counter(step); width:46px; height:46px; display:grid; place-items:center; border-radius:14px; background:linear-gradient(135deg,var(--cyan),var(--green)); color:#06110c; font-weight:950; }
+    .section-head { display:grid; grid-template-columns:0.85fr 1.15fr; gap:28px; align-items:end; margin-bottom:24px; }
+    .section-head p { color:var(--muted); margin:0; font-size:1.1rem; }
+    .intent-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+    .examples { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:18px; }
+    .examples h4 { margin:0 0 8px; font-size:0.86rem; color:#aeefff; text-transform:uppercase; letter-spacing:0.08em; }
+    .examples ul { margin:0; padding:0; display:grid; gap:8px; }
+    .examples li { list-style:none; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.055); color:var(--muted); padding:8px 12px; font-weight:700; }
+    .note { margin-top:16px; color:var(--muted); border-left:3px solid var(--green); padding-left:14px; }
+    .status { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+    .status span { border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.06); color:var(--muted); padding:8px 12px; font-weight:760; }
+    .status span:first-child { color:#06110c; border:0; background:linear-gradient(135deg,var(--cyan),var(--green)); }
+    .legal { color:var(--muted); font-size:0.86rem; padding:34px 0 44px; border-top:1px solid var(--line); }
+    .site-version { margin-top:14px; font-size:0.76rem; color:rgba(183,188,203,0.72); }
+    .privacy-notice { font-size:0.78rem; color:rgba(183,188,203,0.78); }
+    @media (max-width:900px) { .hero-grid,.section-head,.intent-grid,.examples { grid-template-columns:1fr; } .nav-inner { flex-wrap:wrap; padding:12px 0; } .nav-links { order:3; width:100%; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; } .nav-links::-webkit-scrollbar { display:none; } }
+    @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } .flow li { grid-template-columns:40px 1fr; } .flow li::before { width:40px; height:40px; } }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="index.html"><img src="assets/djconnect/icon.svg" alt="" /><span>DJConnect</span></a>
+      <div class="nav-links" aria-label="Navigatie" data-i18n-attr="aria-label:navLabel">
+        <a href="index.html" data-i18n="navPlatform">Hoe werkt het</a>
+        <a href="features.html" data-i18n="navFeatures">Features</a>
+        <a href="voice-commands.html" aria-current="page" data-i18n="navVoice">Spraak</a>
+        <a href="blog.html" data-i18n="navBlog">Blog</a>
+        <a href="index.html#apps" data-i18n="navDownload">Download</a>
+      </div>
+      <div class="nav-controls">
+        <div class="lang-toggle" aria-label="Taalkeuze" data-i18n-attr="aria-label:languageToggle">
+          <button type="button" data-lang="nl" aria-pressed="true">NL</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="btn primary" href="start.html" data-i18n="navStart">Aan de slag</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="pill" data-i18n="heroLabel">Spraakopdrachten</span>
+          <h1 data-i18n="heroTitle">Wat kun je zeggen?</h1>
+          <p class="lead" data-i18n="heroLead">DJConnect. Muziekbediening met karakter. Vraag via PTT of tekst om muziek; Home Assistant verwerkt je verzoek en DJConnect geeft een persoonlijke DJ aankondiging terug.</p>
+        </div>
+        <div class="card">
+          <span class="pill" data-i18n="flowLabel">Afhandeling</span>
+          <ol class="flow">
+            <li data-i18n="flow1">Client neemt spraak op of stuurt tekst</li>
+            <li data-i18n="flow2">Home Assistant STT maakt tekst</li>
+            <li data-i18n="flow3">DJConnect leest Assist intentdata</li>
+            <li data-i18n="flow4">Fallback parsing vult aan wanneer nodig</li>
+            <li data-i18n="flow5">Spotify start playback via Home Assistant</li>
+            <li data-i18n="flow6">DJConnect stuurt een DJ aankondiging terug</li>
+          </ol>
+        </div>
+      </div>
+    </header>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <h2 data-i18n="artistFirstTitle">Artist-first</h2>
+          <p data-i18n="artistFirstLead">Generieke muziekvragen worden bewust als artiestverzoek behandeld. “Speel Nirvana” start dus de artiestcontext en kiest niet willekeurig een track of album. Dat houdt spraakverzoeken voorspelbaar.</p>
+        </div>
+        <div class="card">
+          <div class="status">
+            <span data-i18n="supportedNow">Nu ondersteund</span>
+            <span data-i18n="artistFirstBadge">Artist-first bij generieke verzoeken</span>
+            <span data-i18n="explicitBadge">Expliciete mediawoorden sturen de zoekrichting</span>
+            <span data-i18n="expandingBadge">Playback-spraakdekking groeit per release</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <h2 data-i18n="familiesTitle">Intentfamilies</h2>
+          <p data-i18n="familiesLead">Gebruik gewone zinnen. Voeg alleen woorden zoals nummer, album of playlist toe wanneer je die media specifiek bedoelt.</p>
+        </div>
+        <div class="intent-grid">
+          <article class="card">
+            <span class="pill" data-i18n="artistPill">Artiest</span>
+            <h3 data-i18n="artistTitle">Artiest starten</h3>
+            <p data-i18n="artistText">Zonder expliciet “nummer”, “album” of “playlist” behandelt DJConnect dit als artiestverzoek.</p>
+            <div class="examples">
+              <div><h4>NL</h4><ul><li>speel Nirvana</li><li>zet Metallica op</li><li>ik heb zin in Pearl Jam</li><li>speel maar af Above & Beyond</li></ul></div>
+              <div><h4>EN</h4><ul><li>play Nirvana</li><li>put on Metallica</li><li>I feel like Fleetwood Mac</li><li>start Above & Beyond</li></ul></div>
+            </div>
+          </article>
+
+          <article class="card">
+            <span class="pill" data-i18n="trackPill">Track</span>
+            <h3 data-i18n="trackTitle">Nummer / track zoeken</h3>
+            <p data-i18n="trackText">Gebruik woorden zoals nummer, liedje, track of song als je echt een specifieke track bedoelt.</p>
+            <div class="examples">
+              <div><h4>NL</h4><ul><li>speel nummer Black van Pearl Jam</li><li>start het liedje Everlong</li><li>zet track Nothing Else Matters op</li><li>speel het nummer Heroes</li></ul></div>
+              <div><h4>EN</h4><ul><li>play song Paranoid Android by Radiohead</li><li>start track Heroes by David Bowie</li><li>put on track Everlong</li><li>play the song Black by Pearl Jam</li></ul></div>
+            </div>
+          </article>
+
+          <article class="card">
+            <span class="pill" data-i18n="albumPill">Album</span>
+            <h3 data-i18n="albumTitle">Album starten</h3>
+            <p data-i18n="albumText">Gebruik album of plaat om album search te forceren.</p>
+            <div class="examples">
+              <div><h4>NL</h4><ul><li>speel album Ten van Pearl Jam</li><li>start het album Nevermind</li><li>zet de plaat OK Computer op</li><li>draai album Rumours</li></ul></div>
+              <div><h4>EN</h4><ul><li>play album In Rainbows by Radiohead</li><li>start the album Nevermind</li><li>put on the album Blue</li><li>start album Rumours</li></ul></div>
+            </div>
+          </article>
+
+          <article class="card">
+            <span class="pill" data-i18n="playlistPill">Playlist</span>
+            <h3 data-i18n="playlistTitle">Playlist starten</h3>
+            <p data-i18n="playlistText">Gebruik playlist of afspeellijst als je een playlistnaam bedoelt.</p>
+            <div class="examples">
+              <div><h4>NL</h4><ul><li>speel playlist Roadtrip</li><li>start mijn playlist Rustig wakker worden</li><li>zet afspeellijst Dinner Jazz op</li><li>start afspeellijst Focus</li></ul></div>
+              <div><h4>EN</h4><ul><li>play playlist Workout</li><li>start my playlist Roadtrip</li><li>put on Chill playlist</li><li>start Focus playlist</li></ul></div>
+            </div>
+          </article>
+
+          <article class="card">
+            <span class="pill" data-i18n="defaultPill">Standaard</span>
+            <h3 data-i18n="defaultTitle">Standaard playlist / favorieten</h3>
+            <p data-i18n="defaultText">Deze gebruikt de standaard playlist URI die in de DJConnect Home Assistant integration is ingesteld.</p>
+            <div class="examples">
+              <div><h4>NL</h4><ul><li>speel standaard playlist</li><li>start mijn favorieten</li><li>zet liked songs op</li><li>speel mijn favorieten</li></ul></div>
+              <div><h4>EN</h4><ul><li>play default playlist</li><li>start my favorites</li><li>play liked songs</li><li>start my default playlist</li></ul></div>
+            </div>
+          </article>
+
+          <article class="card">
+            <span class="pill" data-i18n="playbackPill">Uitbreidbaar</span>
+            <h3 data-i18n="playbackTitle">Playback control / queue</h3>
+            <p data-i18n="playbackText">Playback-bediening loopt via DJConnect backend commands en clientknoppen. Natuurlijke spraakdekking kan per release uitbreiden.</p>
+            <div class="examples">
+              <div><h4>NL</h4><ul><li>pauzeer</li><li>volgende</li><li>volume 50 procent</li><li>wat staat er in de wachtrij?</li></ul></div>
+              <div><h4>EN</h4><ul><li>pause</li><li>next</li><li>volume 50 percent</li><li>what is in the queue?</li></ul></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap legal">
+    <p>Copyright Peter van Tol 2026. All rights reserved.</p>
+    <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: Spotify credentials blijven in Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
+    <p><a href="https://github.com/pcvantol/djconnect-website/issues" target="_blank" rel="noopener" data-i18n="legalSupport">Support: GitHub Issues</a></p>
+    <p class="site-version">DJConnect website v3.1.25</p>
+  </footer>
+  <script>
+    const translations = {
+      nl: {
+        title: "DJConnect Spraakopdrachten",
+        metaDescription: "Voorbeelden van DJConnect spraakopdrachten voor artiesten, tracks, albums, playlists, favorieten en playback-bediening.",
+        navLabel: "Navigatie",
+        languageToggle: "Taalkeuze",
+        navPlatform: "Hoe werkt het",
+        navFeatures: "Features",
+        navVoice: "Spraak",
+        navBlog: "Blog",
+        navDownload: "Download",
+        navStart: "Aan de slag",
+        heroLabel: "Spraakopdrachten",
+        heroTitle: "Wat kun je zeggen?",
+        heroLead: "DJConnect. Muziekbediening met karakter. Vraag via PTT of tekst om muziek; Home Assistant verwerkt je verzoek en DJConnect geeft een persoonlijke DJ aankondiging terug.",
+        flowLabel: "Afhandeling",
+        flow1: "Client neemt spraak op of stuurt tekst",
+        flow2: "Home Assistant STT maakt tekst",
+        flow3: "DJConnect leest Assist intentdata",
+        flow4: "Fallback parsing vult aan wanneer nodig",
+        flow5: "Spotify start playback via Home Assistant",
+        flow6: "DJConnect stuurt een DJ aankondiging terug",
+        artistFirstTitle: "Artist-first",
+        artistFirstLead: "Generieke muziekvragen worden bewust als artiestverzoek behandeld. “Speel Nirvana” start dus de artiestcontext en kiest niet willekeurig een track of album. Dat houdt spraakverzoeken voorspelbaar.",
+        supportedNow: "Nu ondersteund",
+        artistFirstBadge: "Artist-first bij generieke verzoeken",
+        explicitBadge: "Expliciete mediawoorden sturen de zoekrichting",
+        expandingBadge: "Playback-spraakdekking groeit per release",
+        familiesTitle: "Intentfamilies",
+        familiesLead: "Gebruik gewone zinnen. Voeg alleen woorden zoals nummer, album of playlist toe wanneer je die media specifiek bedoelt.",
+        artistPill: "Artiest",
+        artistTitle: "Artiest starten",
+        artistText: "Zonder expliciet “nummer”, “album” of “playlist” behandelt DJConnect dit als artiestverzoek.",
+        trackPill: "Track",
+        trackTitle: "Nummer / track zoeken",
+        trackText: "Gebruik woorden zoals nummer, liedje, track of song als je echt een specifieke track bedoelt.",
+        albumPill: "Album",
+        albumTitle: "Album starten",
+        albumText: "Gebruik album of plaat om album search te forceren.",
+        playlistPill: "Playlist",
+        playlistTitle: "Playlist starten",
+        playlistText: "Gebruik playlist of afspeellijst als je een playlistnaam bedoelt.",
+        defaultPill: "Standaard",
+        defaultTitle: "Standaard playlist / favorieten",
+        defaultText: "Deze gebruikt de standaard playlist URI die in de DJConnect Home Assistant integration is ingesteld.",
+        playbackPill: "Uitbreidbaar",
+        playbackTitle: "Playback control / queue",
+        playbackText: "Playback-bediening loopt via DJConnect backend commands en clientknoppen. Natuurlijke spraakdekking kan per release uitbreiden.",
+        legalPrivacy: "Privacy: Spotify credentials blijven in Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.",
+        legalSupport: "Support: GitHub Issues"
+      },
+      en: {
+        title: "DJConnect Voice Commands",
+        metaDescription: "Examples of DJConnect voice commands for artists, tracks, albums, playlists, favorites and playback control.",
+        navLabel: "Navigation",
+        languageToggle: "Language",
+        navPlatform: "How it works",
+        navFeatures: "Features",
+        navVoice: "Voice",
+        navBlog: "Blog",
+        navDownload: "Download",
+        navStart: "Get started",
+        heroLabel: "Voice commands",
+        heroTitle: "What can you say?",
+        heroLead: "DJConnect. Music control with character. Ask for music through PTT or text; Home Assistant processes the request and DJConnect sends a personal DJ announcement back.",
+        flowLabel: "Handling",
+        flow1: "The client records speech or sends text",
+        flow2: "Home Assistant STT turns it into text",
+        flow3: "DJConnect reads Assist intent data",
+        flow4: "Fallback parsing fills in when needed",
+        flow5: "Spotify starts playback through Home Assistant",
+        flow6: "DJConnect sends a DJ announcement back",
+        artistFirstTitle: "Artist-first",
+        artistFirstLead: "Generic music requests are intentionally handled as artist requests. “Play Nirvana” starts the artist context and does not randomly choose a track or album. That keeps voice requests predictable.",
+        supportedNow: "Supported now",
+        artistFirstBadge: "Artist-first for generic requests",
+        explicitBadge: "Explicit media words steer the search",
+        expandingBadge: "Playback voice coverage grows per release",
+        familiesTitle: "Intent families",
+        familiesLead: "Use normal sentences. Add words like song, album or playlist only when you mean that media type specifically.",
+        artistPill: "Artist",
+        artistTitle: "Start an artist",
+        artistText: "Without explicit “song”, “album” or “playlist” wording, DJConnect treats this as an artist request.",
+        trackPill: "Track",
+        trackTitle: "Find a song / track",
+        trackText: "Use words like song or track when you really mean a specific track.",
+        albumPill: "Album",
+        albumTitle: "Start an album",
+        albumText: "Use album to force album search.",
+        playlistPill: "Playlist",
+        playlistTitle: "Start a playlist",
+        playlistText: "Use playlist when you mean a playlist name.",
+        defaultPill: "Default",
+        defaultTitle: "Default playlist / favorites",
+        defaultText: "This uses the default playlist URI configured in the DJConnect Home Assistant integration.",
+        playbackPill: "Expandable",
+        playbackTitle: "Playback control / queue",
+        playbackText: "Playback controls are supported through DJConnect backend commands and client controls. Natural-language coverage may grow per release.",
+        legalPrivacy: "Privacy: Spotify credentials stay in Home Assistant. This website does not receive or store account details.",
+        legalSupport: "Support: GitHub Issues"
+      }
+    };
+    const getInitialLanguage = () => {
+      const stored = localStorage.getItem("djconnect-language");
+      if (stored === "nl" || stored === "en") return stored;
+      return navigator.language && navigator.language.toLowerCase().startsWith("nl") ? "nl" : "en";
+    };
+    const applyLanguage = (lang) => {
+      const dictionary = translations[lang] || translations.nl;
+      document.documentElement.lang = lang;
+      document.title = dictionary.title;
+      document.querySelector('meta[name="description"]').setAttribute("content", dictionary.metaDescription);
+      document.querySelectorAll("[data-i18n]").forEach((node) => {
+        const value = dictionary[node.dataset.i18n];
+        if (value) node.textContent = value;
+      });
+      document.querySelectorAll("[data-i18n-attr]").forEach((node) => {
+        node.dataset.i18nAttr.split(",").forEach((mapping) => {
+          const [attr, key] = mapping.split(":").map((part) => part.trim());
+          if (attr && key && dictionary[key]) node.setAttribute(attr, dictionary[key]);
+        });
+      });
+      document.querySelectorAll("[data-lang]").forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.lang === lang));
+      });
+      localStorage.setItem("djconnect-language", lang);
+    };
+    document.querySelectorAll("[data-lang]").forEach((button) => {
+      button.addEventListener("click", () => applyLanguage(button.dataset.lang));
+    });
+    applyLanguage(getInitialLanguage());
+  </script>
+</body>
+</html>

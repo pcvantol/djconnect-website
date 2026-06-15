@@ -5,6 +5,7 @@
 - Open `wwwroot/index.html`.
 - Verify the homepage navigation shows `Hoe werkt het`, `Features`, `Blog` and `Installeren`, with `Aan de slag` only as the primary CTA button.
 - Open `wwwroot/features.html` and verify the core features and renamed bonus mini-games are visible: Paddle Rally, Meteor Run, Sky Dash and Maze Chase.
+- Open `wwwroot/voice-commands.html` and verify the artist, track, album, playlist, default playlist and playback-control voice intent families.
 - Open `wwwroot/blog.html` and verify the Blog overview links to `wwwroot/blog-djconnect-project.html`.
 - Open `wwwroot/blog-djconnect-project.html` and verify the post explains the DJConnect project, Home Assistant base and multi-client workflow.
 - Open `wwwroot/raspberry-pi.html` and verify it loads Raspberry Pi builds from `pcvantol/djconnect-pi-releases`.

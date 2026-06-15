@@ -60,6 +60,7 @@ Run before deploying:
 
 ```bash
 node --test
+npm test
 git diff --check
 git status --short
 test -f wwwroot/index.html
@@ -106,9 +107,37 @@ curl -s https://djconnect.dev | grep "DJConnect website v"
 
 Expected result: `HTTP/2 200` and a footer version matching `VERSION`.
 
+## Automated Link Checks
+
+`npm test` includes a static link checker that scans public HTML pages for local `href` and `src` references and verifies that each local page or asset exists under `wwwroot`.
+
+External URLs are intentionally not fetched by the default test run, keeping CI fast and independent of third-party availability.
+
+## Optional Playwright Smoke Tests
+
+The repository includes a starter Playwright smoke suite for live/browser behavior:
+
+```bash
+SMOKE_BASE_URL=https://djconnect.dev npm run test:smoke
+```
+
+The smoke suite covers:
+
+- Core public pages render.
+- Footer version is visible.
+- Language toggle is present.
+- Homepage mobile navigation and setup CTA remain reachable.
+- Download pages expose their latest-release containers.
+
+Install Playwright browsers locally before first use:
+
+```bash
+npx playwright install
+```
+
 ## Future Automation
 
-- Add Playwright smoke tests for language switching and navigation behavior.
-- Add browser smoke tests for live GitHub release embeds.
+- Expand Playwright smoke tests for actual language switching behavior.
+- Expand browser smoke tests for live GitHub release card rendering.
 - Add a link checker for external URLs.
 - Add HTML validation in CI.

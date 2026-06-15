@@ -42,7 +42,9 @@
 - The Raspberry Pi/Linux install command is generated from the latest public release, downloads through `/go/linux-install` and runs `sudo ./scripts/install.sh`.
 - Download and HACS clicks are routed through `/go/...` endpoints. These endpoints optionally write aggregate daily counters to the D1 binding `ANALYTICS_DB`.
 - `/api/stats` is protected by `STATS_TOKEN` and combines D1 redirect counters with GitHub release asset `download_count` totals.
+- `scripts/check-stats.mjs` can be run with `STATS_TOKEN=... npm run stats:check` to print aggregate redirect clicks and GitHub download totals.
 - The analytics design is intentionally cookieless and identifier-free. Do not add IP address, user agent, referrer or visitor-id storage.
+- Public support/contact links point to `https://github.com/pcvantol/djconnect-website/issues` from all public page footers.
 - iOS does not embed website repository releases. Add a release/download embed only when it has its own relevant app release source.
 - If the GitHub repository/releases are private, set `GITHUB_TOKEN` as a Cloudflare Pages secret for the `djconnect` project.
 - Version is tracked in `VERSION`, `package.json`, page footers and `CHANGELOG.md`.
@@ -95,8 +97,9 @@ Bind `ANALYTICS_DB` to that D1 database and set a `STATS_TOKEN` secret. `GITHUB_
 
 ## Current Verification
 
-- `npm test` covers version consistency, route presence, homepage navigation/copy, firmware download embeds, macOS and Raspberry Pi download embeds, latest-only release embed contracts, removed legacy macOS download routes, tracked download redirects, absence of website self-release embeds, translation keys, footer copyright, firmware links, compact embedded page structure, LilyGO visual hygiene and stale pre-flashed wording.
+- `npm test` covers version consistency, route presence, homepage navigation/copy, firmware download embeds, macOS and Raspberry Pi download embeds, latest-only release embed contracts, removed legacy macOS download routes, tracked download redirects, absence of website self-release embeds, translation keys, footer copyright/support links, local link checking, firmware links, compact embedded page structure, LilyGO visual hygiene and stale pre-flashed wording.
 - `npm test` also covers the cookieless redirect/download analytics structure, D1 migration and tracked GitHub asset links.
+- `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. It is not part of the default dependency-free `npm test` run.
 - Current released version `3.1.23` includes the single-iPad homepage hero slide, embedded page color alignment, renamed mini-games copy/sync prompt, Raspberry Pi downloads from `pcvantol/djconnect-pi-releases`, latest-only firmware/Linux embeds and a dynamic public-release Linux install command that runs `sudo ./scripts/install.sh`.
 - Canonical SEO domain is `https://djconnect.dev`; `djconnect.pages.dev` remains a Cloudflare fallback.
 - `https://www.djconnect.dev` should remain a 301 redirect to the apex domain, preserving path and query string.

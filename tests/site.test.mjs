@@ -1,8 +1,9 @@
-import { readFile } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 import test from "node:test";
 import assert from "node:assert/strict";
 
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
+const webRoot = new URL("../wwwroot/", import.meta.url);
 
 const extractDataKeys = (html) => {
   const keys = new Set();
@@ -44,6 +45,41 @@ const assertTranslationsCoverPage = (html, pageName) => {
       assert.match(block, new RegExp(`${key}:`), `${pageName} ${language} missing ${key}`);
     }
   }
+};
+
+const extractRefs = (html) => {
+  const refs = [];
+  for (const match of html.matchAll(/\s(?:href|src)="([^"]+)"/g)) {
+    refs.push(match[1]);
+  }
+  return refs;
+};
+
+const shouldSkipRef = (ref) => (
+  !ref ||
+  ref.startsWith("#") ||
+  ref.startsWith("http://") ||
+  ref.startsWith("https://") ||
+  ref.startsWith("mailto:") ||
+  ref.startsWith("tel:") ||
+  ref.startsWith("/go/") ||
+  ref.startsWith("/api/")
+);
+
+const assertLocalRefExists = async (page, ref) => {
+  if (shouldSkipRef(ref)) return;
+
+  const cleanRef = ref.split("#")[0].split("?")[0];
+  if (!cleanRef) return;
+
+  const base = new URL(`../wwwroot/${page}`, import.meta.url);
+  const target = new URL(cleanRef, base);
+
+  assert.ok(
+    target.href.startsWith(webRoot.href),
+    `${page} references local file outside wwwroot: ${ref}`
+  );
+  await access(target);
 };
 
 test("site version is consistent", async () => {
@@ -569,5 +605,18 @@ test("copyright is shown in the requested form", async () => {
     assert.match(html, /class="privacy-notice" data-i18n="legalPrivacy"/);
     assert.match(html, /Deze website ontvangt of bewaart geen accountgegevens/);
     assert.match(html, /This website does not receive or store account details/);
+    assert.match(html, /href="https:\/\/github\.com\/pcvantol\/djconnect-website\/issues"/);
+    assert.match(html, /data-i18n="legalSupport">Support: GitHub Issues/);
   });
+});
+
+test("link checker validates local page and asset references", async () => {
+  const pages = ["index.html", "start.html", "features.html", "ios.html", "macos.html", "raspberry-pi.html", "embedded.html"];
+
+  for (const page of pages) {
+    const html = await read(`wwwroot/${page}`);
+    const refs = extractRefs(html);
+    assert.ok(refs.length > 0, `${page} should contain links or assets`);
+    await Promise.all(refs.map((ref) => assertLocalRefExists(page, ref)));
+  }
 });

@@ -16,6 +16,8 @@ Primary source files:
 - Edge functions: `functions/**/*.js`
 - Data schema: `migrations/0001_create_click_counters.sql`
 - Tests: `tests/site.test.mjs`
+- Optional browser smoke tests: `tests/smoke.playwright.mjs`
+- Operational helper scripts: `scripts/check-stats.mjs`
 - Release tooling: `release.sh`, `cleanup_old_releases.sh`
 - CI/CD: `.github/workflows/deploy-pages.yml`
 
@@ -146,20 +148,22 @@ Sources:
 - `wwwroot/raspberry-pi.html`
 - `tests/site.test.mjs`
 
-### Static Regression Tests Over Browser Automation
+### Static Regression Tests With Optional Browser Smoke Tests
 
-The test suite uses Node's built-in test runner and file inspection rather than a browser runner. Tests assert route links, version consistency, copy contracts, translation coverage, download embed contracts, release script behavior and SEO/social metadata.
+The default test suite uses Node's built-in test runner and file inspection rather than a browser runner. Tests assert route links, local link existence, version consistency, copy contracts, translation coverage, download embed contracts, release script behavior and SEO/social metadata. A separate Playwright smoke suite exists for live/browser checks and is intentionally kept out of the default dependency-free `npm test` path.
 
 Why:
 
 - Fast tests with no browser dependency.
 - Good fit for a static site with deterministic markup.
 - Easy to run in GitHub Actions before deploying.
+- Browser smoke coverage can grow separately without making every local test run install browsers.
 
 Sources:
 
 - `package.json`
 - `tests/site.test.mjs`
+- `tests/smoke.playwright.mjs`
 - `.github/workflows/deploy-pages.yml`
 
 ### Release Script Owns Publishing Hygiene
@@ -315,6 +319,7 @@ Sources:
 | Node.js | Runtime / test runner | GitHub Actions uses `20`; local version not pinned in repo | MIT-style Node.js license | https://github.com/nodejs/node | `npm test`, `node:test`, `node:assert/strict`, `node:fs/promises` |
 | npm | Package/script runner | Comes with Node; no lockfile version pinned | Artistic License 2.0 | https://github.com/npm/cli | `npm test`, `npx wrangler@4` |
 | Wrangler | Cloudflare CLI | `4` major via `npx wrangler@4`; latest observed during deploy: `4.100.0` | Apache-2.0 | https://github.com/cloudflare/workers-sdk | Cloudflare Pages deploy, D1 setup commands |
+| Playwright | Optional browser automation test runner | Unpinned optional `npx playwright` smoke-test command | Apache-2.0 | https://github.com/microsoft/playwright | Optional `npm run test:smoke` browser checks |
 | Cloudflare Pages | Hosting platform | Service, not vendored | Service terms, not source-licensed library | https://developers.cloudflare.com/pages/ | Static hosting and Pages Functions |
 | Cloudflare Pages Functions / Workers runtime | Edge runtime | Service runtime, not vendored | Service terms, not source-licensed library | https://developers.cloudflare.com/pages/functions/ | `functions/**/*.js` |
 | Cloudflare D1 | Managed SQLite-compatible database | Service, not vendored | Service terms, not source-licensed library | https://developers.cloudflare.com/d1/ | Aggregate click counters |

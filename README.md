@@ -136,7 +136,20 @@ Fetch stats:
 curl -H "Authorization: Bearer $STATS_TOKEN" "https://djconnect.dev/api/stats?days=30"
 ```
 
+Or use the repository helper:
+
+```bash
+STATS_TOKEN='your-stats-token' npm run stats:check
+STATS_DAYS=7 STATS_TOKEN='your-stats-token' npm run stats:check
+```
+
 The redirect layer is fail-open: if `ANALYTICS_DB` is not configured yet, users are still redirected and no personal data is stored.
+
+## Support
+
+Public website support and content issues can be reported through GitHub Issues:
+
+https://github.com/pcvantol/djconnect-website/issues
 
 ## Cleanup
 
@@ -164,3 +177,25 @@ Use `./cleanup_old_releases.sh` manually only when you want cleanup outside the 
 - Keep click/download analytics aggregate-only: daily target counters in D1 plus GitHub `download_count`, without cookies, IP addresses, user agents or visitor identifiers.
 - Keep `https://djconnect.dev` as canonical production domain in page metadata, `robots.txt`, `sitemap.xml` and public install commands.
 - Keep `https://www.djconnect.dev` as a permanent redirect to `https://djconnect.dev`, preserving path and query string.
+
+## Smoke Tests
+
+The default test suite is dependency-free:
+
+```bash
+npm test
+```
+
+It includes a static link checker for local page and asset references.
+
+An optional Playwright smoke-test basis is available for live/browser checks:
+
+```bash
+SMOKE_BASE_URL=https://djconnect.dev npm run test:smoke
+```
+
+Install Playwright browsers locally first when needed:
+
+```bash
+npx playwright install
+```

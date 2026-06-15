@@ -42,6 +42,10 @@ All notable changes to this website are grouped per release.
 - Added a release documentation guard so every release checks core docs and current handoff/changelog version alignment.
 - Added `TECHNICAL_DESIGN.md` with reverse-engineered code-level design decisions, language-specific coding conventions and dependency/license inventory.
 - Added `TECHNICAL_DESIGN.md` to the required release documentation set.
+- Added a `stats:check` helper script for token-protected aggregate download/HACS stats.
+- Added sitewide support links to GitHub Issues.
+- Added static local link checking to the default Node test suite.
+- Added a starter Playwright smoke suite for live/browser checks.
 - Documented that every release must include a test-coverage review and test expansion when the change affects behavior, routes, rendering, analytics, release scripts or deployment.
 - Switched the changelog policy back to separate changelog entries per release instead of consolidating all changes into one version entry.
 - Added automated Node tests for version consistency, routes, store placeholders, copyright, translation coverage, setup/navigation copy and release/download embeds.

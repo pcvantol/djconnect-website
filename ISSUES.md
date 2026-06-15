@@ -6,7 +6,7 @@ Use GitHub Issues for active tracking. This file captures known repository-level
 
 - The macOS and iOS visuals are illustrative placeholders until native app screenshots are available.
 - The Raspberry Pi hero is a CSS HyperPixel-style mockup until a real Linux client screenshot is available.
-- The site currently has no committed browser regression test; responsive layout is covered by manual checks, local browser smoke checks and static assertions.
+- The site has a committed Playwright smoke-test basis, but it is not yet wired into CI with browser installation.
 - Cloudflare Pages deployment requires `CLOUDFLARE_API_TOKEN` locally or as a GitHub Actions secret.
 - Aggregate click counters require the Cloudflare Pages D1 binding `ANALYTICS_DB`; redirects still work when the binding is not configured.
 - `/api/stats` requires `STATS_TOKEN`; without it the endpoint intentionally returns unauthorized responses.
@@ -21,3 +21,6 @@ Use GitHub Issues for active tracking. This file captures known repository-level
 - Embedded ESP32 downloads now render GitHub release assets inline, matching the macOS and Linux download pages.
 - ESP32, macOS and Linux download embeds are covered by static tests for latest-only rendering and tracked `/go/download` links.
 - The retired `macos-download` route is covered by static tests to prevent accidental relinking.
+- Local page and asset links are covered by the default Node test suite.
+- A stats-check helper is available through `STATS_TOKEN=... npm run stats:check`.
+- Public support/contact links now point to GitHub Issues from all public page footers.

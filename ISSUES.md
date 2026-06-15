@@ -10,6 +10,9 @@ Use GitHub Issues for active tracking. This file captures known repository-level
 - Cloudflare Pages deployment requires `CLOUDFLARE_API_TOKEN` locally or as a GitHub Actions secret.
 - Aggregate click counters require the Cloudflare Pages D1 binding `ANALYTICS_DB`; redirects still work when the binding is not configured.
 - `/api/stats` requires `STATS_TOKEN`; without it the endpoint intentionally returns unauthorized responses.
+- `/admin` currently uses Cloudflare Access (`admin` /
+  `REDACTED_ADMIN_PASSWORD`) and shows GitHub runtime download counts only. Replace
+  this before sharing access more broadly.
 - The Home Assistant badge uses the official Home Assistant brand logo; confirm formal "Works with Home Assistant" certification requirements before presenting it as a certification mark.
 
 ## Resolved

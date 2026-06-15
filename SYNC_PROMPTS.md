@@ -32,7 +32,7 @@ commit the updated `SYNC_PROMPTS.md` there.
 ## Current Protocol Line
 
 The current shared protocol/release line is `3.1.x`; this bundle was last
-aligned after website release `v3.1.27`. DJConnect clients on the
+aligned after website release `v3.1.28`. DJConnect clients on the
 `3.1.x` line are compatible with Home Assistant integration versions `>=3.1.0`
 and `<3.2.0`.
 
@@ -152,6 +152,10 @@ Requirements:
   `sudo ./scripts/install.sh`.
 - Keep click/download analytics cookieless and aggregate-only: no cookies, IP
   addresses, user agents, referrers or visitor identifiers.
+- Keep `/admin` protected and out of public navigation/search. The current
+  website implementation is Cloudflare Access and runtime GitHub
+  release asset `download_count` only; do not treat it as a shared public API
+  or persistent analytics contract yet.
 - Keep SEO metadata, sitemap, canonical URLs and social preview images current
   for the production domain.
 - Keep the translated footer privacy notice and the footer website version on

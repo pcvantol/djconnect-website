@@ -2,6 +2,20 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.28 - 2026-06-15
+
+- Added a temporary Basic Auth protected `/admin` Pages Function for download
+  statistics.
+- The admin page fetches GitHub release asset `download_count` values at
+  runtime for the app, firmware and Linux/Raspberry Pi release repositories.
+- Kept the first admin version intentionally persistence-free: D1 aggregate
+  website click counters and download redirect totals stay out of this page
+  until the next analytics iteration.
+- Added noindex, no-store and automated contract coverage for the protected
+  admin route.
+- Updated repository documentation and handoff notes for the temporary admin
+  credentials, GitHub-runtime stats scope and future replacement path.
+
 ## DJConnect website v3.1.27 - 2026-06-15
 
 - Reworked the voice commands page around a maintainable `intentFamilies`

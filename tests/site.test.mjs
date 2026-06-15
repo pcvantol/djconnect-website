@@ -469,6 +469,25 @@ test("download and HACS clicks use cookieless aggregate redirects", async () => 
   assert.doesNotMatch(combined, /x-forwarded-for/i);
 });
 
+test("admin download stats page is protected and GitHub-runtime only", async () => {
+  const admin = await read("functions/admin.js");
+
+  assert.match(admin, /const ADMIN_USER = "managed-by-cloudflare-access"/);
+  assert.match(admin, /const ADMIN_PASSWORD = "managed-by-cloudflare-access"/);
+  assert.match(admin, /WWW-Authenticate.*Cloudflare Access/s);
+  assert.match(admin, /if \(!requireAdmin\(request\)\) return unauthorized\(\)/);
+  assert.match(admin, /api\.github\.com\/repos\/pcvantol\/\$\{repo\}\/releases\?per_page=30/);
+  assert.match(admin, /ALLOWED_RELEASE_REPOS/);
+  assert.match(admin, /download_count/);
+  assert.match(admin, /Runtime opgehaald uit de GitHub API/);
+  assert.match(admin, /database persistence/);
+  assert.match(admin, /website-redirect clicks/);
+  assert.match(admin, /X-Robots-Tag/);
+  assert.match(admin, /noindex, nofollow/);
+  assert.doesNotMatch(admin, /ANALYTICS_DB/);
+  assert.doesNotMatch(admin, /STATS_TOKEN/);
+});
+
 test("redirect endpoints expose only current public targets", async () => {
   const [analytics, targetRedirect, downloadRedirect] = await Promise.all([
     read("functions/_shared/analytics.js"),

@@ -11,7 +11,10 @@ candidates are tracked in `PRODUCT_ROADMAP.md`.
 - Replace the homepage carousel mockups with final product screenshots when the apps and hardware visuals are ready.
 - Replace the iOS and macOS hero mockups with real app screenshots once the native clients are ready.
 - Replace the Raspberry Pi HyperPixel-style mockup with a real product screenshot once the Linux client UI is finalized.
-- Add a tiny admin/dashboard page for aggregate download and HACS counters from `/api/stats`.
+- Replace the temporary hardcoded `/admin` Basic Auth page with Cloudflare Access
+  or secret-backed authentication before broader use.
+- Extend `/admin` beyond GitHub runtime `download_count` totals with D1 redirect
+  click counters when the persistence layer is ready.
 - Add a dedicated privacy page if the site ever moves beyond aggregate, cookieless counters.
 - Replace footer version when preparing the next release.
 

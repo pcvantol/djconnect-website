@@ -19,6 +19,7 @@ Static landing page for DJConnect, published through Cloudflare Pages.
 - `functions/api/releases.js`: Cloudflare Pages Function proxy for GitHub release data.
 - `functions/go/`: privacy-friendly redirect endpoints for HACS and downloadable assets.
 - `functions/api/stats.js`: token-protected aggregate stats endpoint that combines redirect clicks with GitHub asset `download_count` totals.
+- `functions/admin.js`: temporary Basic Auth protected admin page for runtime GitHub download statistics.
 - `migrations/`: optional D1 migration for cookieless aggregate click counters.
 - `VERSION`: current site version.
 
@@ -129,6 +130,11 @@ Download and HACS clicks can be counted without cookies, IP addresses, user agen
 - Website redirect clicks go through `/go/...` and are stored as daily aggregate totals in D1.
 - Direct GitHub download totals come from GitHub release asset `download_count`.
 - `/api/stats` combines both sources behind a `STATS_TOKEN`.
+- `/admin` is a Cloudflare Access page (`admin` /
+  `REDACTED_ADMIN_PASSWORD`) that renders GitHub release asset download counts at
+  runtime only. It does not persist data and does not include website redirect
+  click counters yet. Replace this with Cloudflare Access or secret-backed
+  authentication before broader use.
 
 Cloudflare setup:
 

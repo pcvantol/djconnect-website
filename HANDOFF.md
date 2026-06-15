@@ -8,7 +8,7 @@
 - Cloudflare Pages fallback URL: https://djconnect.pages.dev
 - Cloudflare Pages project: `djconnect`
 - Publish directory: `wwwroot`
-- Current version: `3.1.27`
+- Current version: `3.1.28`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Voice commands page: `wwwroot/voice-commands.html`
@@ -49,6 +49,11 @@
 - The Raspberry Pi/Linux install command is generated from the latest public release, downloads through `/go/linux-install` and runs `sudo ./scripts/install.sh`.
 - Download and HACS clicks are routed through `/go/...` endpoints. These endpoints optionally write aggregate daily counters to the D1 binding `ANALYTICS_DB`.
 - `/api/stats` is protected by `STATS_TOKEN` and combines D1 redirect counters with GitHub release asset `download_count` totals.
+- `/admin` is a Cloudflare Access page (`admin` /
+  `REDACTED_ADMIN_PASSWORD`) for runtime GitHub release asset download statistics. It
+  intentionally does not persist data and does not include website redirect
+  click counters yet. Replace this with Cloudflare Access or secret-backed
+  authentication before wider use.
 - `scripts/check-stats.mjs` can be run with `STATS_TOKEN=... npm run stats:check` to print aggregate redirect clicks and GitHub download totals.
 - The analytics design is intentionally cookieless and identifier-free. Do not add IP address, user agent, referrer or visitor-id storage.
 - Public support/contact links point to `https://github.com/pcvantol/djconnect-website/issues` from all public page footers.
@@ -110,11 +115,11 @@ Bind `ANALYTICS_DB` to that D1 database and set a `STATS_TOKEN` secret. `GITHUB_
 ## Current Verification
 
 - `npm test` covers version consistency, route presence, homepage navigation/copy, homepage voice chips from shared intent data, voice command intent-family docs, data-driven examples and language-scoped rendering behavior, firmware download embeds, macOS and Raspberry Pi download embeds, latest-only release embed contracts, removed legacy macOS download routes, tracked download redirects, absence of website self-release embeds, translation keys, footer copyright/support links, local link checking, firmware links, compact embedded page structure, LilyGO visual hygiene and stale pre-flashed wording.
-- `npm test` also covers the cookieless redirect/download analytics structure, D1 migration, tracked GitHub asset links and the release-script dependency/tool preflight.
+- `npm test` also covers the cookieless redirect/download analytics structure, D1 migration, tracked GitHub asset links, the protected GitHub-runtime `/admin` stats page contract and the release-script dependency/tool preflight.
 - `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. It is not part of the default dependency-free `npm test` run.
-- Current released version `3.1.27` reworks the voice commands page around
-  data-driven NL/EN intent examples, the current interpretation order and the
-  expanded Lithium/example phrase set.
+- Current released version `3.1.28` adds the temporary protected `/admin`
+  GitHub download statistics page and keeps the voice command examples
+  data-driven from the shared intent source.
 - Canonical SEO domain is `https://djconnect.dev`; `djconnect.pages.dev` remains a Cloudflare fallback.
 - `https://www.djconnect.dev` should remain a 301 redirect to the apex domain, preserving path and query string.
 - Dynamic GitHub download/install blocks now rerender when the language toggle changes, so generated install text follows NL/EN.

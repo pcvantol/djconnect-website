@@ -240,6 +240,8 @@ test("voice commands page documents intent families and artist-first behavior", 
   const intents = await read("wwwroot/assets/voice-intents.js");
   const sitemap = await read("wwwroot/sitemap.xml");
   const prompt = await read("VOICE_INTENT_DATA_PROMPT.md");
+  const syncPrompts = await read("SYNC_PROMPTS.md");
+  const handoff = await read("HANDOFF.md");
 
   assert.match(voice, /<title>DJConnect Spraakopdrachten<\/title>/);
   assert.match(voice, /href="https:\/\/djconnect\.dev\/voice-commands"/);
@@ -253,19 +255,21 @@ test("voice commands page documents intent families and artist-first behavior", 
   assert.doesNotMatch(voice, /data-examples-lang=/);
   assert.match(intents, /window\.DJCONNECT_VOICE_INTENTS = \[/);
   assert.match(intents, /Speel Nirvana/);
+  assert.match(intents, /Start Metallica/);
   assert.match(intents, /Play Nirvana/);
   assert.match(intents, /Speel nummer Lithium/);
-  assert.match(intents, /Speel nummer Lithium van artiest Nirvana/);
   assert.match(intents, /Speel artiest Nirvana met nummer Lithium/);
   assert.match(intents, /Play song Lithium/);
-  assert.match(intents, /Play song Lithium by Nirvana/);
+  assert.match(intents, /Play Lithium by Nirvana/);
   assert.match(intents, /Play artist Nirvana with song Lithium/);
   assert.match(intents, /Speel album Nevermind/);
+  assert.match(intents, /Zet de plaat OK Computer van Radiohead op/);
   assert.match(intents, /Play album Nevermind/);
-  assert.match(intents, /Speel playlist Roadtrip/);
-  assert.match(intents, /Play playlist Roadtrip/);
-  assert.match(intents, /Speel standaard playlist/);
-  assert.match(intents, /Play default playlist/);
+  assert.match(intents, /Speel playlist DJConnect/);
+  assert.match(intents, /Start mijn afspeellijst Roadtrip/);
+  assert.match(intents, /Play playlist DJConnect/);
+  assert.match(intents, /Speel mijn standaard playlist/);
+  assert.match(intents, /Play my default playlist/);
   assert.match(intents, /Zet shuffle aan/);
   assert.match(intents, /Turn shuffle on/);
   assert.match(voice, /Tip: noem 'nummer', 'album' of 'playlist'/);
@@ -273,7 +277,15 @@ test("voice commands page documents intent families and artist-first behavior", 
   assert.doesNotMatch(voice, /endorsed/i);
   assert.match(sitemap, /https:\/\/djconnect\.dev\/voice-commands/);
   assert.match(prompt, /Lever uitsluitend gestructureerde intentdata aan/);
+  assert.match(prompt, /examples\/voice_intents\.json/);
+  assert.match(prompt, /generieke artiestverzoeken artist-first/);
+  assert.match(prompt, /`nummer`\/`liedje`\/`track`\/`song`/);
+  assert.match(prompt, /`album`\/`plaat`/);
+  assert.match(prompt, /`playlist`\/`afspeellijst`/);
   assert.match(prompt, /Laat website-rendering, styling, release, changelog en deploy buiten deze/);
+  assert.match(syncPrompts, /Canonical spoken music intent example data lives in/);
+  assert.match(syncPrompts, /examples\/voice_intents\.json/);
+  assert.match(handoff, /Canonical spoken music example data lives in `examples\/voice_intents\.json`/);
   assertTranslationsCoverPage(voice, "voice-commands page");
 });
 

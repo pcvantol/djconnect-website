@@ -1,3 +1,5 @@
+// Canonical spoken music intent examples live in the Home Assistant repo:
+// examples/voice_intents.json. Keep the music families and wording aligned.
 window.DJCONNECT_VOICE_INTENTS = [
   {
     id: "artist",
@@ -8,8 +10,8 @@ window.DJCONNECT_VOICE_INTENTS = [
       en: "Without explicit 'song', 'album' or 'playlist' wording, DJConnect treats this as an artist request."
     },
     examples: {
-      nl: ["Speel Nirvana", "Ik heb zin in Pearl Jam", "Ik wil Metallica horen", "Nirvana wil ik wel horen", "Zet London Grammar op", "Zet Heaven aan", "Speel maar af Above & Beyond", "Artiest Nirvana", "Band Pearl Jam"],
-      en: ["Play Nirvana", "I feel like Pearl Jam", "I want to hear Metallica", "Put on London Grammar", "Start Above & Beyond", "Artist Nirvana", "Band Pearl Jam"]
+      nl: ["Speel Nirvana", "Start Metallica", "Zet London Grammar op", "Draai Pearl Jam", "Ik heb wel zin in Nirvana", "Ik wil Metallica horen", "Nirvana wil ik wel horen"],
+      en: ["Play Nirvana", "Start Metallica", "Put on London Grammar", "I want Pearl Jam", "I feel like Nirvana"]
     }
   },
   {
@@ -21,8 +23,8 @@ window.DJCONNECT_VOICE_INTENTS = [
       en: "Use words like song or track when you really mean a specific track."
     },
     examples: {
-      nl: ["Speel nummer Lithium", "Nummer Lithium", "Speel nummer Lithium van Nirvana", "Speel nummer Lithium van artiest Nirvana", "Speel artiest Nirvana met nummer Lithium", "Start het liedje Everlong", "Zet track Nothing Else Matters van Metallica op", "Draai nummer Teardrop van Massive Attack"],
-      en: ["Play song Lithium", "Song Lithium", "Play song Lithium by Nirvana", "Play artist Nirvana with song Lithium", "Start the track Everlong", "Put on track Heroes by David Bowie", "Play song Paranoid Android by Radiohead"]
+      nl: ["Speel nummer Lithium", "Speel nummer Lithium van Nirvana", "Speel Lithium van Nirvana", "Zet het liedje Black van Pearl Jam op", "Draai track Nothing Else Matters van Metallica", "Speel artiest Nirvana met nummer Lithium"],
+      en: ["Play song Lithium", "Play Lithium by Nirvana", "Play the track Black by Pearl Jam", "Play artist Nirvana with song Lithium"]
     }
   },
   {
@@ -34,8 +36,8 @@ window.DJCONNECT_VOICE_INTENTS = [
       en: "Use album to force album search."
     },
     examples: {
-      nl: ["Speel album Nevermind", "Album Nevermind", "Speel album Ten van Pearl Jam", "De plaat Ten van Pearl Jam", "Start het album Nevermind", "Zet de plaat OK Computer van Radiohead op"],
-      en: ["Play album Nevermind", "Album Nevermind", "Play album Ten by Pearl Jam", "The album Ten by Pearl Jam", "Start the album Nevermind", "Put on the album OK Computer by Radiohead"]
+      nl: ["Speel album Nevermind", "Speel album Ten van Pearl Jam", "Zet de plaat OK Computer van Radiohead op", "Draai album Rumours van Fleetwood Mac"],
+      en: ["Play album Nevermind", "Play the album Ten by Pearl Jam", "Put on album OK Computer by Radiohead"]
     }
   },
   {
@@ -47,8 +49,8 @@ window.DJCONNECT_VOICE_INTENTS = [
       en: "Use playlist when you mean a playlist name."
     },
     examples: {
-      nl: ["Speel playlist Roadtrip", "Start mijn playlist Rustig wakker worden", "Zet afspeellijst Dinner Jazz op", "Speel mijn playlist Workout", "Playlist Roadtrip"],
-      en: ["Play playlist Roadtrip", "Start my playlist Morning Chill", "Put on playlist Dinner Jazz", "Play my playlist Workout", "Playlist Roadtrip"]
+      nl: ["Speel playlist DJConnect", "Start mijn afspeellijst Roadtrip", "Zet Chill playlist op", "Draai afspeellijst Avond"],
+      en: ["Play playlist DJConnect", "Start my playlist Roadtrip", "Put on Chill playlist"]
     }
   },
   {
@@ -60,8 +62,8 @@ window.DJCONNECT_VOICE_INTENTS = [
       en: "This uses the default playlist URI configured in the DJConnect Home Assistant integration."
     },
     examples: {
-      nl: ["Speel standaard playlist", "Start mijn favorieten", "Zet liked songs op", "Speel mijn standaard playlist"],
-      en: ["Play default playlist", "Start my favorites", "Put on liked songs", "Play my default playlist"]
+      nl: ["Speel mijn standaard playlist", "Start favorieten", "Zet liked songs op"],
+      en: ["Play my default playlist", "Start liked songs", "Play favorites"]
     }
   },
   {

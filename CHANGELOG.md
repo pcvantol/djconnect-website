@@ -2,6 +2,16 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.31 - 2026-06-16
+
+- Aligned the website voice-intent example data with the Home Assistant repo
+  canonical source `examples/voice_intents.json`.
+- Documented the canonical intent-family rules for artist-first requests,
+  explicit track/album/playlist keywords and default playlist/favorites
+  handling in the sync prompt, handoff notes and voice-intent data prompt.
+- Extended regression coverage so the site keeps pointing to the canonical HA
+  intent source and no longer drifts into separate hardcoded examples.
+
 ## DJConnect website v3.1.30 - 2026-06-15
 
 - Added expandable changelog/release-notes rendering to the shared latest-version

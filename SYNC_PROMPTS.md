@@ -32,7 +32,7 @@ commit the updated `SYNC_PROMPTS.md` there.
 ## Current Protocol Line
 
 The current shared protocol/release line is `3.1.x`; this bundle was last
-aligned after website release `v3.1.30`. DJConnect clients on the
+aligned after website release `v3.1.31`. DJConnect clients on the
 `3.1.x` line are compatible with Home Assistant integration versions `>=3.1.0`
 and `<3.2.0`.
 
@@ -122,12 +122,20 @@ Requirements:
 - Keep `djconnect.pages.dev` only as the Cloudflare Pages fallback URL.
 - Keep homepage navigation focused on `Hoe werkt het`, `Features`, `Spraak`,
   `Installeren` and `Blog`, plus the primary `Aan de slag` CTA.
+- Canonical spoken music intent example data lives in
+  `examples/voice_intents.json` in the Home Assistant integration repo. Keep
+  the same intent families and example wording aligned in website and client
+  documentation: generic artist requests stay artist-first; explicit
+  `nummer`/`liedje`/`track`/`song` requests become track searches; explicit
+  `album`/`plaat` requests become album searches; explicit
+  `playlist`/`afspeellijst` requests become playlist searches; and default
+  playlist/favorites phrases map to the configured default playlist.
 - Keep the voice commands page at `/voice-commands` aligned with Home Assistant
-  intent parsing and local fallback behavior. It must document artist-first
-  generic music requests, explicit track/album/playlist media words, default
-  playlist/favorites and the expandable playback-control family in Dutch and
-  English. Keep the examples in a maintainable data/config object and render
-  only the selected NL or EN examples according to the website language toggle.
+  intent parsing and local fallback behavior. It must document the canonical
+  music intent families from `examples/voice_intents.json` plus the
+  website-only expandable playback-control family in Dutch and English. Keep
+  the examples in a maintainable data/config object and render only the
+  selected NL or EN examples according to the website language toggle.
 - Keep homepage voice example chips sourced from the same voice intent data as
   `/voice-commands`, not as a separate hardcoded marketing list. The homepage
   should show a compact varied selection and link to the full Spraak/Voice page.

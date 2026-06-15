@@ -4,8 +4,15 @@ Gebruik deze prompt in de DJConnect Home Assistant integration wanneer je de
 website alleen nieuwe voice/PTT intentdata wilt laten verwerken, zonder extra
 website- of layoutinstructies.
 
+Canonical spoken music intent example data lives in
+`examples/voice_intents.json` in the Home Assistant integration repo. Use that
+file as source when updating website/client documentation.
+
 ```text
 Werk de DJConnect voice/PTT intentdata bij voor de website.
+
+Gebruik examples/voice_intents.json uit de Home Assistant integration repo als
+canonical bron voor intentfamilies, volgorde, regels en voorbeeldzinnen.
 
 Lever uitsluitend gestructureerde intentdata aan. Geen HTML, CSS, layoutadvies
 of release-instructies.
@@ -59,6 +66,16 @@ Outputformaat:
 }
 
 Vereisten:
+- Houd dezelfde intentfamilies en dezelfde volgorde aan als
+  examples/voice_intents.json.
+- Houd generieke artiestverzoeken artist-first.
+- Behandel expliciete `nummer`/`liedje`/`track`/`song` verzoeken als track
+  searches.
+- Behandel expliciete `album`/`plaat` verzoeken als album searches.
+- Behandel expliciete `playlist`/`afspeellijst` verzoeken als playlist
+  searches.
+- Laat default playlist/favorieten-zinnen naar de geconfigureerde default
+  playlist mappen.
 - Houd dezelfde intentfamilies en dezelfde volgorde aan in NL en EN.
 - Gebruik geen gemengde NL/EN voorbeeldzinnen in een taalveld, behalve
   producttermen zoals playlist.
@@ -71,4 +88,3 @@ Vereisten:
 - Laat website-rendering, styling, release, changelog en deploy buiten deze
   output.
 ```
-

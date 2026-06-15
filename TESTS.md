@@ -7,7 +7,7 @@
 - Open `wwwroot/features.html` and verify the core features and renamed bonus mini-games are visible: Paddle Rally, Meteor Run, Sky Dash and Maze Chase.
 - Open `wwwroot/voice-commands.html` and verify the artist, track, album, playlist, default playlist and playback-control voice intent families.
 - Verify the voice commands page shows only the selected NL or EN example phrases when the language toggle changes.
-- Verify the voice commands page includes the current Lithium examples for Dutch and English track intents.
+- Verify the voice commands page mirrors the canonical HA repo `examples/voice_intents.json` music examples: generic artist requests stay artist-first, explicit number/song/track requests are track searches, album/plaat requests are album searches, playlist/afspeellijst requests are playlist searches and default playlist/favorites phrases map to the configured default playlist.
 - Verify `VOICE_INTENT_DATA_PROMPT.md` still asks the Home Assistant integration for structured intentdata only.
 - Open `wwwroot/blog.html` and verify the Blog overview links to `wwwroot/blog-djconnect-project.html`.
 - Open `wwwroot/blog-djconnect-project.html` and verify the post explains the DJConnect project, Home Assistant base and multi-client workflow.

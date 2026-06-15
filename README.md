@@ -14,6 +14,7 @@ Static landing page for DJConnect, published through Cloudflare Pages.
 - `wwwroot/ios.html`: iOS app page with App Store placeholder.
 - `wwwroot/raspberry-pi.html`: Raspberry Pi app page with builds from `pcvantol/djconnect-pi-releases`.
 - `wwwroot/assets/`: logo, favicon and product visuals.
+- `PRODUCT_ROADMAP.md`: feature ideas, killer features, production must-haves and premium-function candidates.
 - `functions/api/releases.js`: Cloudflare Pages Function proxy for GitHub release data.
 - `functions/go/`: privacy-friendly redirect endpoints for HACS and downloadable assets.
 - `functions/api/stats.js`: token-protected aggregate stats endpoint that combines redirect clicks with GitHub asset `download_count` totals.

@@ -1,5 +1,8 @@
 # TODO
 
+Product-level ideas, killer features, production must-haves and premium feature
+candidates are tracked in `PRODUCT_ROADMAP.md`.
+
 ## Website
 
 - Replace the homepage `data-store-link="macos"` placeholder with the final Mac App Store URL.

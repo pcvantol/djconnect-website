@@ -120,6 +120,10 @@ The embedded page renders only the latest downloadable firmware release assets f
 The macOS page renders only the latest binary downloads from `pcvantol/djconnect-app-releases`.
 The Raspberry Pi page renders only the latest binary downloads from `pcvantol/djconnect-pi-releases`.
 The Raspberry Pi install command is generated from the latest release and downloads through `https://djconnect.dev/go/linux-install`, then runs `sudo ./scripts/install.sh`.
+The Raspberry Pi page also documents the fresh-Pi path: 32 GB microSD card,
+Raspberry Pi Zero 2 W with header, Pimoroni HyperPixel 4.0 Square, Raspberry Pi
+OS Lite 64-bit, first-boot network/SSH/locale setup, repo-only OS bootstrap and
+then the public app release installer.
 iOS does not load `djconnect-website` releases; add release/download embeds only when a relevant app release source exists.
 For private GitHub repositories, set a Cloudflare Pages secret named `GITHUB_TOKEN` with read access to releases.
 

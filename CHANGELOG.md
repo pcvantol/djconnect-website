@@ -2,6 +2,19 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.29 - 2026-06-15
+
+- Added a functional Raspberry Pi setup section that describes the path from a
+  fresh Raspberry Pi OS Lite 64-bit image through first-boot configuration,
+  SSH, Git checkout and the repo-only OS bootstrap script.
+- Added starter hardware requirements for the Raspberry Pi page: 32 GB microSD
+  card, Raspberry Pi Zero 2 W with header and Pimoroni HyperPixel 4.0 Square.
+- Clarified that the Pi source checkout is used for OS bootstrap only, while the
+  app itself is installed from the public release bundle shown in the Download
+  section.
+- Added Dutch and English translations plus regression coverage for the new
+  Raspberry Pi bootstrap guidance.
+
 ## DJConnect website v3.1.28 - 2026-06-15
 
 - Added a temporary Basic Auth protected `/admin` Pages Function for download

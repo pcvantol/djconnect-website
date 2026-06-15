@@ -301,6 +301,17 @@ test("raspberry pi page is prepared and translated", async () => {
   assert.match(raspberry, /DJConnect voor Raspberry Pi/);
   assert.match(raspberry, /class="hyperpixel"/);
   assert.match(raspberry, /HyperPixel 4"/);
+  assert.match(raspberry, /data-i18n="setupTitle">Van kale Pi naar DJConnect<\/h2>/);
+  assert.match(raspberry, /32 GB microSD-kaart/);
+  assert.match(raspberry, /Raspberry Pi Zero 2 W met header/);
+  assert.match(raspberry, /https:\/\/www\.sossolutions\.nl\/raspberry-pi-zero-2-w-header/);
+  assert.match(raspberry, /Pimoroni HyperPixel 4\.0 Square/);
+  assert.match(raspberry, /https:\/\/shop\.pimoroni\.com\/products\/hyperpixel-4-square\?variant=30138251477075/);
+  assert.match(raspberry, /Flash Raspberry Pi OS Lite 64-bit/);
+  assert.match(raspberry, /hostname, WiFi, SSH en locale/);
+  assert.match(raspberry, /git clone https:\/\/github\.com\/pcvantol\/djconnect-pi\.git/);
+  assert.match(raspberry, /sudo \.\/scripts\/bootstrap_raspberry_pi_os\.sh/);
+  assert.match(raspberry, /The bootstrap belongs to the Pi repo/);
   assert.match(raspberry, /data-store-link="raspberry-pi"/);
   assert.match(raspberry, /data-github-downloads/);
   assert.match(raspberry, /data-github-install/);

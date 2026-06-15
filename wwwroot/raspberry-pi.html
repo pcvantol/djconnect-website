@@ -34,6 +34,52 @@
     section { padding:68px 0; }
     .card { border:1px solid var(--line); border-radius:22px; background:var(--panel); padding:24px; }
     .card p,.muted { color:var(--muted); }
+    .step-grid { display:grid; gap:14px; }
+    .hardware-list { display:grid; gap:12px; margin-top:18px; }
+    .hardware-item {
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:rgba(255,255,255,0.055);
+      padding:14px 16px;
+    }
+    .hardware-item strong { display:block; margin-bottom:4px; }
+    .hardware-item a { color:var(--cyan); font-weight:850; text-decoration:underline; text-underline-offset:4px; }
+    .step-card {
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:16px;
+      align-items:start;
+      border:1px solid var(--line);
+      border-radius:22px;
+      background:var(--panel);
+      padding:18px;
+    }
+    .step-number {
+      width:46px;
+      height:46px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg,var(--cyan),var(--green));
+      color:#06110c;
+      font-weight:950;
+    }
+    .step-card h3 { font-size:1.05rem; margin-bottom:6px; }
+    .step-card p { margin:0; color:var(--muted); }
+    .code-card {
+      margin-top:18px;
+      border:1px solid var(--line);
+      border-radius:22px;
+      background:rgba(255,255,255,0.055);
+      padding:18px;
+    }
+    .code-card pre {
+      margin:12px 0 0;
+      overflow:auto;
+      white-space:pre-wrap;
+      color:#d4ffe2;
+      font:0.92rem/1.5 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
     .mock { min-height:420px; border:1px solid var(--line); border-radius:28px; background:linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04)); padding:24px; display:grid; place-items:center; }
     .hyperpixel {
       position:relative;
@@ -176,6 +222,56 @@
         <article class="card"><h2 data-i18n="fixedTitle">Vaste client</h2><p data-i18n="fixedText">Gebruik Raspberry Pi als always-on DJConnect client voor bediening op een vast punt in huis.</p></article>
       </div>
     </section>
+    <section id="setup">
+      <div class="wrap grid-2">
+        <div>
+          <h2 data-i18n="setupTitle">Van kale Pi naar DJConnect</h2>
+          <p class="lead" data-i18n="setupLead">Bereid eerst Raspberry Pi OS voor. De bootstrap hoort bij de Pi-repo en zet de minimale runtime klaar; de publieke app-install staat daarna onder Download.</p>
+          <div class="hardware-list" aria-label="Benodigde Raspberry Pi hardware" data-i18n-attr="aria-label:hardwareLabel">
+            <div class="hardware-item"><strong data-i18n="hardwareSdTitle">32 GB microSD-kaart</strong><span data-i18n="hardwareSdText">Gebruik een betrouwbare kaart met genoeg ruimte voor Raspberry Pi OS, Qt/PySide en updates.</span></div>
+            <div class="hardware-item"><strong data-i18n="hardwarePiTitle">Raspberry Pi Zero 2 W met header</strong><a href="https://www.sossolutions.nl/raspberry-pi-zero-2-w-header" target="_blank" rel="noopener" data-i18n="hardwarePiLink">Bekijk Raspberry Pi Zero 2 W + Header</a></div>
+            <div class="hardware-item"><strong data-i18n="hardwareDisplayTitle">Pimoroni HyperPixel 4.0 Square</strong><a href="https://shop.pimoroni.com/products/hyperpixel-4-square?variant=30138251477075" target="_blank" rel="noopener" data-i18n="hardwareDisplayLink">Bekijk HyperPixel 4.0 Square</a></div>
+          </div>
+        </div>
+        <div>
+          <div class="step-grid" aria-label="Raspberry Pi setup stappen" data-i18n-attr="aria-label:setupStepsLabel">
+            <article class="step-card">
+              <span class="step-number">1</span>
+              <div><h3 data-i18n="setupStep1Title">Flash Raspberry Pi OS Lite 64-bit</h3><p data-i18n="setupStep1Text">Gebruik Raspberry Pi Imager en kies een 64-bit Lite image als basis.</p></div>
+            </article>
+            <article class="step-card">
+              <span class="step-number">2</span>
+              <div><h3 data-i18n="setupStep2Title">Configureer eerste boot</h3><p data-i18n="setupStep2Text">Stel in Imager alvast hostname, WiFi, SSH en locale in voordat je de Pi start.</p></div>
+            </article>
+            <article class="step-card">
+              <span class="step-number">3</span>
+              <div><h3 data-i18n="setupStep3Title">Log in via SSH</h3><p data-i18n="setupStep3Text">Start de Pi, log in en installeer Git zodat je de bootstrap uit de Pi-repo kunt ophalen.</p></div>
+            </article>
+            <article class="step-card">
+              <span class="step-number">4</span>
+              <div><h3 data-i18n="setupStep4Title">Haal de Pi-repo op</h3><p data-i18n="setupStep4Text">Gebruik de source checkout alleen voor OS-bootstrap. De app zelf installeer je later uit de publieke release-bundel.</p></div>
+            </article>
+            <article class="step-card">
+              <span class="step-number">5</span>
+              <div><h3 data-i18n="setupStep5Title">Draai de OS-bootstrap</h3><p data-i18n="setupStep5Text">De bootstrap vergroot het bestandssysteem, zet swap, tijdsync, SSH, updates, minimale X11/Qt runtime en HyperPixel setup klaar.</p></div>
+            </article>
+          </div>
+          <div class="code-card">
+            <strong data-i18n="bootstrapCommandTitle">Bootstrap commando</strong>
+            <pre><code>sudo apt-get update
+sudo apt-get install -y git
+if [ -d "$HOME/djconnect-pi/.git" ]; then
+  cd "$HOME/djconnect-pi"
+  git pull --ff-only
+else
+  git clone https://github.com/pcvantol/djconnect-pi.git "$HOME/djconnect-pi"
+  cd "$HOME/djconnect-pi"
+fi
+sudo ./scripts/bootstrap_raspberry_pi_os.sh</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
     <section id="downloads">
       <div class="wrap grid-2">
         <div>
@@ -192,7 +288,7 @@
     <p>Copyright Peter van Tol 2026. All rights reserved.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="https://github.com/pcvantol/djconnect-website/issues" target="_blank" rel="noopener" data-i18n="legalSupport">Support: GitHub Issues</a></p>
-    <p class="site-version">DJConnect website v3.1.28</p>
+    <p class="site-version">DJConnect website v3.1.29</p>
   </footer>
   <script src="assets/downloads.js"></script>
   <script>
@@ -210,6 +306,27 @@
         mockLabel: "Linux app",
         fixedTitle: "Vaste client",
         fixedText: "Gebruik Raspberry Pi als always-on DJConnect client voor bediening op een vast punt in huis.",
+        setupTitle: "Van kale Pi naar DJConnect",
+        setupLead: "Bereid eerst Raspberry Pi OS voor. De bootstrap hoort bij de Pi-repo en zet de minimale runtime klaar; de publieke app-install staat daarna onder Download.",
+        hardwareLabel: "Benodigde Raspberry Pi hardware",
+        hardwareSdTitle: "32 GB microSD-kaart",
+        hardwareSdText: "Gebruik een betrouwbare kaart met genoeg ruimte voor Raspberry Pi OS, Qt/PySide en updates.",
+        hardwarePiTitle: "Raspberry Pi Zero 2 W met header",
+        hardwarePiLink: "Bekijk Raspberry Pi Zero 2 W + Header",
+        hardwareDisplayTitle: "Pimoroni HyperPixel 4.0 Square",
+        hardwareDisplayLink: "Bekijk HyperPixel 4.0 Square",
+        setupStepsLabel: "Raspberry Pi setup stappen",
+        setupStep1Title: "Flash Raspberry Pi OS Lite 64-bit",
+        setupStep1Text: "Gebruik Raspberry Pi Imager en kies een 64-bit Lite image als basis.",
+        setupStep2Title: "Configureer eerste boot",
+        setupStep2Text: "Stel in Imager alvast hostname, WiFi, SSH en locale in voordat je de Pi start.",
+        setupStep3Title: "Log in via SSH",
+        setupStep3Text: "Start de Pi, log in en installeer Git zodat je de bootstrap uit de Pi-repo kunt ophalen.",
+        setupStep4Title: "Haal de Pi-repo op",
+        setupStep4Text: "Gebruik de source checkout alleen voor OS-bootstrap. De app zelf installeer je later uit de publieke release-bundel.",
+        setupStep5Title: "Draai de OS-bootstrap",
+        setupStep5Text: "De bootstrap vergroot het bestandssysteem, zet swap, tijdsync, SSH, updates, minimale X11/Qt runtime en HyperPixel setup klaar.",
+        bootstrapCommandTitle: "Bootstrap commando",
         releaseTitle: "Laatste versie",
         legalPrivacy: "Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.",
         legalSupport: "Support: GitHub Issues"
@@ -227,6 +344,27 @@
         mockLabel: "Linux app",
         fixedTitle: "Fixed client",
         fixedText: "Use Raspberry Pi as an always-on DJConnect client for control at a fixed spot in your home.",
+        setupTitle: "From fresh Pi to DJConnect",
+        setupLead: "Prepare Raspberry Pi OS first. The bootstrap belongs to the Pi repo and prepares the minimal runtime; the public app install follows under Download.",
+        hardwareLabel: "Required Raspberry Pi hardware",
+        hardwareSdTitle: "32 GB microSD card",
+        hardwareSdText: "Use a reliable card with enough room for Raspberry Pi OS, Qt/PySide and updates.",
+        hardwarePiTitle: "Raspberry Pi Zero 2 W with header",
+        hardwarePiLink: "View Raspberry Pi Zero 2 W + Header",
+        hardwareDisplayTitle: "Pimoroni HyperPixel 4.0 Square",
+        hardwareDisplayLink: "View HyperPixel 4.0 Square",
+        setupStepsLabel: "Raspberry Pi setup steps",
+        setupStep1Title: "Flash Raspberry Pi OS Lite 64-bit",
+        setupStep1Text: "Use Raspberry Pi Imager and choose a 64-bit Lite image as the base.",
+        setupStep2Title: "Configure first boot",
+        setupStep2Text: "Set hostname, WiFi, SSH and locale in Imager before starting the Pi.",
+        setupStep3Title: "Log in over SSH",
+        setupStep3Text: "Boot the Pi, log in and install Git so you can fetch the bootstrap from the Pi repo.",
+        setupStep4Title: "Fetch the Pi repo",
+        setupStep4Text: "Use the source checkout only for OS bootstrap. Install the app itself later from the public release bundle.",
+        setupStep5Title: "Run the OS bootstrap",
+        setupStep5Text: "The bootstrap expands the filesystem, sets up swap, time sync, SSH, updates, minimal X11/Qt runtime and HyperPixel setup.",
+        bootstrapCommandTitle: "Bootstrap command",
         releaseTitle: "Latest version",
         legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
         legalSupport: "Support: GitHub Issues"

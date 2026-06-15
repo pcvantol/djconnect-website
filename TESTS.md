@@ -12,6 +12,11 @@
 - Open `wwwroot/blog.html` and verify the Blog overview links to `wwwroot/blog-djconnect-project.html`.
 - Open `wwwroot/blog-djconnect-project.html` and verify the post explains the DJConnect project, Home Assistant base and multi-client workflow.
 - Open `wwwroot/raspberry-pi.html` and verify it loads Raspberry Pi builds from `pcvantol/djconnect-pi-releases`.
+- Verify the Raspberry Pi page lists the starter hardware: 32 GB microSD,
+  Raspberry Pi Zero 2 W with header and Pimoroni HyperPixel 4.0 Square.
+- Verify the Raspberry Pi page explains the fresh-Pi flow from Raspberry Pi OS
+  Lite 64-bit through first-boot configuration, SSH, Git checkout and
+  `scripts/bootstrap_raspberry_pi_os.sh`.
 - Verify the generated Raspberry Pi install command ends with `sudo ./scripts/install.sh`.
 - Verify the Raspberry Pi install command has a copy-to-clipboard button.
 - Verify the Raspberry Pi install command downloads through `https://djconnect.dev/go/linux-install`, not a hard-coded release asset URL.

@@ -246,6 +246,9 @@ test("voice commands page documents intent families and artist-first behavior", 
   assert.match(voice, /Artist-first/);
   assert.match(voice, /speel Nirvana/);
   assert.match(voice, /play Nirvana/);
+  assert.match(voice, /data-examples-lang="nl"/);
+  assert.match(voice, /data-examples-lang="en" hidden/);
+  assert.match(voice, /node\.hidden = node\.dataset\.examplesLang !== lang/);
   assert.match(voice, /speel nummer Black van Pearl Jam/);
   assert.match(voice, /play song Paranoid Android by Radiohead/);
   assert.match(voice, /speel album Ten van Pearl Jam/);

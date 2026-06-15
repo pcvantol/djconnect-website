@@ -32,7 +32,7 @@ commit the updated `SYNC_PROMPTS.md` there.
 ## Current Protocol Line
 
 The current shared protocol/release line is `3.1.x`; this bundle was last
-aligned after Raspberry Pi client release `v3.1.25`. DJConnect clients on the
+aligned after website release `v3.1.26`. DJConnect clients on the
 `3.1.x` line are compatible with Home Assistant integration versions `>=3.1.0`
 and `<3.2.0`.
 
@@ -126,7 +126,8 @@ Requirements:
   intent parsing and local fallback behavior. It must document artist-first
   generic music requests, explicit track/album/playlist media words, default
   playlist/favorites and the expandable playback-control family in Dutch and
-  English.
+  English. Keep both language example sets in source, but render only the
+  selected NL or EN examples according to the website language toggle.
 - Keep macOS, iOS, Raspberry Pi/Linux and ESP32 pages minimal: app/device pages
   should label the platform route as `Home` and avoid cross-link clutter in
   their top menus.

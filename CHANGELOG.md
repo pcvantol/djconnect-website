@@ -2,6 +2,15 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.26 - 2026-06-15
+
+- Updated the voice commands page so intent examples follow the selected NL/EN
+  language toggle instead of showing both language columns at the same time.
+- Kept Dutch and English example phrases in the page source for search and
+  documentation value, while rendering only the active language in the UI.
+- Extended automated coverage for language-scoped voice command example blocks
+  and their toggle behavior.
+
 ## DJConnect website v3.1.25 - 2026-06-15
 
 - Added a bilingual voice commands page that explains the DJConnect handling

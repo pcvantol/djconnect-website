@@ -43,9 +43,10 @@
     .section-head { display:grid; grid-template-columns:0.85fr 1.15fr; gap:28px; align-items:end; margin-bottom:24px; }
     .section-head p { color:var(--muted); margin:0; font-size:1.1rem; }
     .intent-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
-    .examples { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:18px; }
+    .examples { margin-top:18px; }
+    .examples [hidden] { display:none !important; }
     .examples h4 { margin:0 0 8px; font-size:0.86rem; color:#aeefff; text-transform:uppercase; letter-spacing:0.08em; }
-    .examples ul { margin:0; padding:0; display:grid; gap:8px; }
+    .examples ul { margin:0; padding:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
     .examples li { list-style:none; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.055); color:var(--muted); padding:8px 12px; font-weight:700; }
     .note { margin-top:16px; color:var(--muted); border-left:3px solid var(--green); padding-left:14px; }
     .status { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
@@ -54,7 +55,8 @@
     .legal { color:var(--muted); font-size:0.86rem; padding:34px 0 44px; border-top:1px solid var(--line); }
     .site-version { margin-top:14px; font-size:0.76rem; color:rgba(183,188,203,0.72); }
     .privacy-notice { font-size:0.78rem; color:rgba(183,188,203,0.78); }
-    @media (max-width:900px) { .hero-grid,.section-head,.intent-grid,.examples { grid-template-columns:1fr; } .nav-inner { flex-wrap:wrap; padding:12px 0; } .nav-links { order:3; width:100%; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; } .nav-links::-webkit-scrollbar { display:none; } }
+    @media (max-width:900px) { .hero-grid,.section-head,.intent-grid { grid-template-columns:1fr; } .nav-inner { flex-wrap:wrap; padding:12px 0; } .nav-links { order:3; width:100%; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; } .nav-links::-webkit-scrollbar { display:none; } }
+    @media (max-width:720px) { .examples ul { grid-template-columns:1fr; } }
     @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } .flow li { grid-template-columns:40px 1fr; } .flow li::before { width:40px; height:40px; } }
   </style>
 </head>
@@ -130,8 +132,8 @@
             <h3 data-i18n="artistTitle">Artiest starten</h3>
             <p data-i18n="artistText">Zonder expliciet “nummer”, “album” of “playlist” behandelt DJConnect dit als artiestverzoek.</p>
             <div class="examples">
-              <div><h4>NL</h4><ul><li>speel Nirvana</li><li>zet Metallica op</li><li>ik heb zin in Pearl Jam</li><li>speel maar af Above & Beyond</li></ul></div>
-              <div><h4>EN</h4><ul><li>play Nirvana</li><li>put on Metallica</li><li>I feel like Fleetwood Mac</li><li>start Above & Beyond</li></ul></div>
+              <div data-examples-lang="nl"><h4>NL</h4><ul><li>speel Nirvana</li><li>zet Metallica op</li><li>ik heb zin in Pearl Jam</li><li>speel maar af Above & Beyond</li></ul></div>
+              <div data-examples-lang="en" hidden><h4>EN</h4><ul><li>play Nirvana</li><li>put on Metallica</li><li>I feel like Fleetwood Mac</li><li>start Above & Beyond</li></ul></div>
             </div>
           </article>
 
@@ -140,8 +142,8 @@
             <h3 data-i18n="trackTitle">Nummer / track zoeken</h3>
             <p data-i18n="trackText">Gebruik woorden zoals nummer, liedje, track of song als je echt een specifieke track bedoelt.</p>
             <div class="examples">
-              <div><h4>NL</h4><ul><li>speel nummer Black van Pearl Jam</li><li>start het liedje Everlong</li><li>zet track Nothing Else Matters op</li><li>speel het nummer Heroes</li></ul></div>
-              <div><h4>EN</h4><ul><li>play song Paranoid Android by Radiohead</li><li>start track Heroes by David Bowie</li><li>put on track Everlong</li><li>play the song Black by Pearl Jam</li></ul></div>
+              <div data-examples-lang="nl"><h4>NL</h4><ul><li>speel nummer Black van Pearl Jam</li><li>start het liedje Everlong</li><li>zet track Nothing Else Matters op</li><li>speel het nummer Heroes</li></ul></div>
+              <div data-examples-lang="en" hidden><h4>EN</h4><ul><li>play song Paranoid Android by Radiohead</li><li>start track Heroes by David Bowie</li><li>put on track Everlong</li><li>play the song Black by Pearl Jam</li></ul></div>
             </div>
           </article>
 
@@ -150,8 +152,8 @@
             <h3 data-i18n="albumTitle">Album starten</h3>
             <p data-i18n="albumText">Gebruik album of plaat om album search te forceren.</p>
             <div class="examples">
-              <div><h4>NL</h4><ul><li>speel album Ten van Pearl Jam</li><li>start het album Nevermind</li><li>zet de plaat OK Computer op</li><li>draai album Rumours</li></ul></div>
-              <div><h4>EN</h4><ul><li>play album In Rainbows by Radiohead</li><li>start the album Nevermind</li><li>put on the album Blue</li><li>start album Rumours</li></ul></div>
+              <div data-examples-lang="nl"><h4>NL</h4><ul><li>speel album Ten van Pearl Jam</li><li>start het album Nevermind</li><li>zet de plaat OK Computer op</li><li>draai album Rumours</li></ul></div>
+              <div data-examples-lang="en" hidden><h4>EN</h4><ul><li>play album In Rainbows by Radiohead</li><li>start the album Nevermind</li><li>put on the album Blue</li><li>start album Rumours</li></ul></div>
             </div>
           </article>
 
@@ -160,8 +162,8 @@
             <h3 data-i18n="playlistTitle">Playlist starten</h3>
             <p data-i18n="playlistText">Gebruik playlist of afspeellijst als je een playlistnaam bedoelt.</p>
             <div class="examples">
-              <div><h4>NL</h4><ul><li>speel playlist Roadtrip</li><li>start mijn playlist Rustig wakker worden</li><li>zet afspeellijst Dinner Jazz op</li><li>start afspeellijst Focus</li></ul></div>
-              <div><h4>EN</h4><ul><li>play playlist Workout</li><li>start my playlist Roadtrip</li><li>put on Chill playlist</li><li>start Focus playlist</li></ul></div>
+              <div data-examples-lang="nl"><h4>NL</h4><ul><li>speel playlist Roadtrip</li><li>start mijn playlist Rustig wakker worden</li><li>zet afspeellijst Dinner Jazz op</li><li>start afspeellijst Focus</li></ul></div>
+              <div data-examples-lang="en" hidden><h4>EN</h4><ul><li>play playlist Workout</li><li>start my playlist Roadtrip</li><li>put on Chill playlist</li><li>start Focus playlist</li></ul></div>
             </div>
           </article>
 
@@ -170,8 +172,8 @@
             <h3 data-i18n="defaultTitle">Standaard playlist / favorieten</h3>
             <p data-i18n="defaultText">Deze gebruikt de standaard playlist URI die in de DJConnect Home Assistant integration is ingesteld.</p>
             <div class="examples">
-              <div><h4>NL</h4><ul><li>speel standaard playlist</li><li>start mijn favorieten</li><li>zet liked songs op</li><li>speel mijn favorieten</li></ul></div>
-              <div><h4>EN</h4><ul><li>play default playlist</li><li>start my favorites</li><li>play liked songs</li><li>start my default playlist</li></ul></div>
+              <div data-examples-lang="nl"><h4>NL</h4><ul><li>speel standaard playlist</li><li>start mijn favorieten</li><li>zet liked songs op</li><li>speel mijn favorieten</li></ul></div>
+              <div data-examples-lang="en" hidden><h4>EN</h4><ul><li>play default playlist</li><li>start my favorites</li><li>play liked songs</li><li>start my default playlist</li></ul></div>
             </div>
           </article>
 
@@ -180,8 +182,8 @@
             <h3 data-i18n="playbackTitle">Playback control / queue</h3>
             <p data-i18n="playbackText">Playback-bediening loopt via DJConnect backend commands en clientknoppen. Natuurlijke spraakdekking kan per release uitbreiden.</p>
             <div class="examples">
-              <div><h4>NL</h4><ul><li>pauzeer</li><li>volgende</li><li>volume 50 procent</li><li>wat staat er in de wachtrij?</li></ul></div>
-              <div><h4>EN</h4><ul><li>pause</li><li>next</li><li>volume 50 percent</li><li>what is in the queue?</li></ul></div>
+              <div data-examples-lang="nl"><h4>NL</h4><ul><li>pauzeer</li><li>volgende</li><li>volume 50 procent</li><li>wat staat er in de wachtrij?</li></ul></div>
+              <div data-examples-lang="en" hidden><h4>EN</h4><ul><li>pause</li><li>next</li><li>volume 50 percent</li><li>what is in the queue?</li></ul></div>
             </div>
           </article>
         </div>
@@ -193,7 +195,7 @@
     <p>Copyright Peter van Tol 2026. All rights reserved.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: Spotify credentials blijven in Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="https://github.com/pcvantol/djconnect-website/issues" target="_blank" rel="noopener" data-i18n="legalSupport">Support: GitHub Issues</a></p>
-    <p class="site-version">DJConnect website v3.1.25</p>
+    <p class="site-version">DJConnect website v3.1.26</p>
   </footer>
   <script>
     const translations = {
@@ -320,6 +322,9 @@
       });
       document.querySelectorAll("[data-lang]").forEach((button) => {
         button.setAttribute("aria-pressed", String(button.dataset.lang === lang));
+      });
+      document.querySelectorAll("[data-examples-lang]").forEach((node) => {
+        node.hidden = node.dataset.examplesLang !== lang;
       });
       localStorage.setItem("djconnect-language", lang);
     };

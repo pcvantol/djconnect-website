@@ -8,7 +8,7 @@
 - Cloudflare Pages fallback URL: https://djconnect.pages.dev
 - Cloudflare Pages project: `djconnect`
 - Publish directory: `wwwroot`
-- Current version: `3.1.23`
+- Current version: `3.1.24`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Start/setup page: `wwwroot/start.html`
@@ -65,6 +65,11 @@
 
 The workflow deploys `wwwroot` to Cloudflare Pages on every push to `main` and sets `CLOUDFLARE_ACCOUNT_ID` explicitly.
 The release script verifies the core documentation files exist, checks `CHANGELOG.md` and `HANDOFF.md` against the current `VERSION`, removes older GitHub Releases, matching local/remote tags and older GitHub Actions workflow runs by default. It keeps the newly released tag and only the newest workflow run. Override workflow-run retention with `KEEP_WORKFLOW_RUNS=N` when needed.
+Before tests, the release script refreshes declared npm dependencies when a
+lockfile exists and records the active `npx wrangler@4` version in the release
+output. If any third-party library, framework or release tool changes version,
+update the dependency inventory and third-party notice details in
+`TECHNICAL_DESIGN.md` and any dedicated notices document before publishing.
 
 Set the token only in the current shell when needed:
 
@@ -99,9 +104,12 @@ Bind `ANALYTICS_DB` to that D1 database and set a `STATS_TOKEN` secret. `GITHUB_
 ## Current Verification
 
 - `npm test` covers version consistency, route presence, homepage navigation/copy, firmware download embeds, macOS and Raspberry Pi download embeds, latest-only release embed contracts, removed legacy macOS download routes, tracked download redirects, absence of website self-release embeds, translation keys, footer copyright/support links, local link checking, firmware links, compact embedded page structure, LilyGO visual hygiene and stale pre-flashed wording.
-- `npm test` also covers the cookieless redirect/download analytics structure, D1 migration and tracked GitHub asset links.
+- `npm test` also covers the cookieless redirect/download analytics structure, D1 migration, tracked GitHub asset links and the release-script dependency/tool preflight.
 - `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. It is not part of the default dependency-free `npm test` run.
-- Current released version `3.1.23` includes the single-iPad homepage hero slide, embedded page color alignment, renamed mini-games copy/sync prompt, Raspberry Pi downloads from `pcvantol/djconnect-pi-releases`, latest-only firmware/Linux embeds and a dynamic public-release Linux install command that runs `sudo ./scripts/install.sh`.
+- Current released version `3.1.24` restores the shared Website/Docs sync prompt
+  contract, keeps the cross-repo product roadmap canonical and preserves the
+  current website rules for blog navigation, SEO/social previews, latest-only
+  downloads, tracked redirects, cookieless analytics and release cleanup.
 - Canonical SEO domain is `https://djconnect.dev`; `djconnect.pages.dev` remains a Cloudflare fallback.
 - `https://www.djconnect.dev` should remain a 301 redirect to the apex domain, preserving path and query string.
 - Dynamic GitHub download/install blocks now rerender when the language toggle changes, so generated install text follows NL/EN.

@@ -9,7 +9,6 @@ DOC_FILES=(README.md HANDOFF.md TESTS.md TODO.md ISSUES.md CHANGELOG.md SYNC_PRO
 VERSION="$(tr -d '[:space:]' < VERSION)"
 TAG="v${VERSION}"
 BRANCH="$(git branch --show-current)"
-
 usage() {
   cat <<USAGE
 Usage: ./release.sh [--skip-deploy]
@@ -62,6 +61,16 @@ if [[ "$SKIP_DEPLOY" != "true" && -z "${CLOUDFLARE_API_TOKEN:-}" ]]; then
 fi
 
 echo "Running tests..."
+if node -e 'const p=require("./package.json"); process.exit((p.dependencies || p.devDependencies || p.optionalDependencies) ? 0 : 1)'; then
+  NPM_UPDATE_ARGS=()
+  if [[ -f package-lock.json ]]; then
+    NPM_UPDATE_ARGS+=(--package-lock-only)
+  fi
+  npm update "${NPM_UPDATE_ARGS[@]}"
+else
+  echo "No declared npm dependencies to update."
+fi
+npx wrangler@4 --version
 npm test
 
 echo "Checking release files..."

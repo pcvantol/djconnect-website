@@ -81,7 +81,12 @@ test -f TECHNICAL_DESIGN.md
 
 Before every release, check whether the test suite needs to grow. Add or update tests for changed routes, copy, translations, rendering contracts, analytics redirects, release scripts or deploy behavior.
 
-`release.sh` also enforces the core documentation-file presence and verifies that `CHANGELOG.md` and `HANDOFF.md` mention the current website version.
+`release.sh` also enforces the core documentation-file presence, verifies that
+`CHANGELOG.md` and `HANDOFF.md` mention the current website version, refreshes
+declared npm dependencies when a lockfile exists and records the active
+`npx wrangler@4` version. When a third-party library, framework or release tool
+is upgraded, update `TECHNICAL_DESIGN.md` and any third-party notices before
+publishing.
 
 For a full release with a new tag:
 

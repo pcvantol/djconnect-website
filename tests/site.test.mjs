@@ -465,6 +465,16 @@ test("release script checks documentation before tagging", async () => {
   assert.match(releaseScript, /TECHNICAL_DESIGN\.md/);
 });
 
+test("release script performs dependency and release-tool preflight", async () => {
+  const releaseScript = await read("release.sh");
+
+  assert.match(releaseScript, /p\.dependencies \|\| p\.devDependencies \|\| p\.optionalDependencies/);
+  assert.match(releaseScript, /package-lock\.json/);
+  assert.match(releaseScript, /npm update "\$\{NPM_UPDATE_ARGS\[@\]\}"/);
+  assert.match(releaseScript, /No declared npm dependencies to update/);
+  assert.match(releaseScript, /npx wrangler@4 --version/);
+});
+
 test("technical design document records architecture, style and dependency inventory", async () => {
   const design = await read("TECHNICAL_DESIGN.md");
 

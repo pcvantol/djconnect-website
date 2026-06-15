@@ -2,7 +2,7 @@
 
 This document records the implementation-level design choices for the DJConnect website. It is reverse-engineered from the repository and must be reviewed for every release.
 
-Current website version: `3.1.23`
+Current website version: `3.1.24`
 
 ## Scope
 
@@ -168,12 +168,19 @@ Sources:
 
 ### Release Script Owns Publishing Hygiene
 
-`release.sh` is the canonical release path. It checks branch cleanliness, version consistency, tests, release files, documentation presence, current changelog/handoff version references, tag creation, GitHub Release creation, Cloudflare Pages deploy and cleanup. `cleanup_old_releases.sh` removes older releases, tags and workflow runs.
+`release.sh` is the canonical release path. It checks branch cleanliness,
+version consistency, refreshes declared npm dependencies when a lockfile exists,
+records the active `npx wrangler@4` version, runs tests, checks release files,
+verifies documentation presence, checks current changelog/handoff version
+references, creates and pushes the tag, creates the GitHub Release, deploys to
+Cloudflare Pages and runs cleanup. `cleanup_old_releases.sh` removes older
+releases, tags and workflow runs.
 
 Why:
 
 - Makes repeated releases predictable.
 - Prevents stale documentation and version drift.
+- Keeps dependency/tool upgrade checks visible before publishing.
 - Keeps the GitHub Releases/tags/actions history tidy by default.
 
 Sources:
@@ -388,3 +395,7 @@ For every future release, update or consciously re-check this document together 
 - `SYNC_PROMPTS.md`
 
 Also decide whether test coverage needs to be expanded. Add tests when a release changes behavior, routes, copy contracts, translation keys, analytics, release scripts, deploy behavior or design-system contracts.
+
+If any third-party library, framework or release tool is updated or upgraded,
+update the dependency inventory and third-party notice details in this document
+and any dedicated notices document before publishing.

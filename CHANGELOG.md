@@ -2,6 +2,25 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.24 - 2026-06-15
+
+- Restored the `Website/Docs` section in the shared canonical `SYNC_PROMPTS.md`
+  so website-specific contracts remain visible to all DJConnect repos.
+- Added the current website navigation, blog, SEO/social preview, latest-only
+  downloads, tracked redirects, cookieless analytics and release-cleanup rules
+  to the shared sync prompt bundle.
+- Restored shared contract notes for Home Assistant-owned Spotify token refresh,
+  ESP32 Up Next queue capacity and the current bonus mini-game names.
+- Updated the canonical product roadmap structure for cross-repo use, including
+  release-cycle rules, production must-haves, killer features and premium
+  feature candidates.
+- Added a release preflight that refreshes declared npm dependencies when a
+  lockfile exists and records the active Wrangler major-version tool before
+  tests.
+- Documented that third-party library, framework and release-tool upgrades must
+  update the dependency inventory, license details and third-party notices
+  before publishing.
+
 ## DJConnect website v3.1.23 - 2026-06-14
 
 - Added a platform-independent homepage for DJConnect essentials, with focused navigation for `Hoe werkt het`, `Features`, `Installeren` and the primary `Aan de slag` CTA.

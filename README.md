@@ -54,7 +54,12 @@ Minimum Cloudflare token permissions:
 
 Use `./release.sh` for the standard release flow.
 
-The release script runs tests, checks core documentation files, pushes `main`, creates a `vX.Y.Z` tag, creates a GitHub Release, deploys to Cloudflare Pages and then automatically removes older GitHub Releases, matching local/remote tags and older GitHub Actions workflow runs. By default, only the newest workflow run remains.
+The release script refreshes declared npm dependencies when a lockfile exists,
+checks the active Wrangler major version, runs tests, checks core documentation
+files, pushes `main`, creates a `vX.Y.Z` tag, creates a GitHub Release, deploys
+to Cloudflare Pages and then automatically removes older GitHub Releases,
+matching local/remote tags and older GitHub Actions workflow runs. By default,
+only the newest workflow run remains.
 
 Before every release, update or consciously re-check all repository documentation files:
 
@@ -66,6 +71,10 @@ Before every release, update or consciously re-check all repository documentatio
 - `CHANGELOG.md`
 - `SYNC_PROMPTS.md`
 - `TECHNICAL_DESIGN.md`
+
+When third-party libraries, frameworks or release tools are updated or upgraded,
+also update the dependency inventory and third-party notice details in
+`TECHNICAL_DESIGN.md` and any dedicated notices document before publishing.
 
 `CHANGELOG.md` gets a separate entry per release and `HANDOFF.md` must mention the current `VERSION`.
 

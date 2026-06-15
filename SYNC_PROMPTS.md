@@ -32,9 +32,68 @@ commit the updated `SYNC_PROMPTS.md` there.
 ## Current Protocol Line
 
 The current shared protocol/release line is `3.1.x`; this bundle was last
-aligned after Raspberry Pi client release `v3.1.25` and website release
-`v3.1.21`. DJConnect clients on the `3.1.x` line are compatible with Home
-Assistant integration versions `>=3.1.0` and `<3.2.0`.
+aligned after Raspberry Pi client release `v3.1.25`. DJConnect clients on the
+`3.1.x` line are compatible with Home Assistant integration versions `>=3.1.0`
+and `<3.2.0`.
+
+## Shared Release Cycle
+
+Every DJConnect release in any repo must follow the shared release hygiene
+checklist. Apply the repo-specific commands and skip only steps that are truly
+not applicable for that repo.
+
+Before publishing:
+
+- Review `PRODUCT_ROADMAP.md`.
+- Keep `PRODUCT_ROADMAP.md` byte-for-byte identical across all DJConnect repos.
+- Check whether any roadmap item was implemented.
+- Mark implemented roadmap items as checked.
+- Add the implementing major.minor version in parentheses, for example
+  `[x] Queue supports up to 100 items (3.1)`.
+- If the implementation is client-specific, include the client after the
+  version, for example `[x] ESP32 screenshot endpoint (3.1, ESP32)`.
+- Do not delete recently implemented checked items during the release; keep
+  them as product memory until a later roadmap cleanup.
+- Update changelog with a new entry for the release. Do not collapse unrelated
+  historical entries into one version.
+- Update README, handoff, tests, design decisions, Postman collections,
+  third-party notices and repo-specific docs when product behavior, APIs,
+  release flow, dependencies or public contracts changed.
+- Update this `SYNC_PROMPTS.md` when the cross-repo contract or release
+  checklist changes.
+- Sync the updated `PRODUCT_ROADMAP.md` and `SYNC_PROMPTS.md` to all sibling
+  DJConnect repos before finishing release hygiene.
+- Bump the repo version according to that repo's release mechanism.
+- Run build cleanup before release/build commands so stale assets do not leak
+  into published artifacts.
+- For repos with managed third-party build dependencies, update/upgrade
+  frameworks, libraries and build tools before compiling release artifacts. If
+  dependency versions changed, update third-party notices and dependency
+  inventory/design documentation before publishing.
+- Run the relevant automated tests for the repo.
+- Run build/package validation for every supported target.
+- Deploy to a connected app/device when the repo has a connected local target
+  available and the release/change calls for it.
+- Run smoke/monkey testing where the repo has an app, website, device or local
+  UI surface. For ESP/device clients, keep monkey tests non-destructive:
+  render/navigation only, no OTA, factory reset, WiFi changes, playback
+  mutations or credential changes.
+- Validate logs after smoke/monkey testing and explicitly check for crashes,
+  watchdogs, panics, assertions, unhandled exceptions, repeated HTTP failures,
+  memory allocation failures and secret leakage.
+
+Publishing and cleanup:
+
+- Publish the release through the repo's standard release script or workflow.
+- Verify published artifacts/assets are present and named according to the
+  current contract.
+- Delete old GitHub releases that should not be retained.
+- Delete old Git tags that should not be retained.
+- Delete old GitHub Actions workflow runs that should not be retained.
+- Keep only the agreed latest stable/beta releases for that repo.
+- Re-run or verify cleanup scripts where the repo provides them.
+- Confirm the final release state in docs/changelog/handoff and note any
+  skipped validation with the reason.
 
 ---
 
@@ -50,43 +109,6 @@ Canonical repo locations:
 - ESP firmware: `pcvantol/djconnect-esp32`
 - Website/docs: `pcvantol/djconnect-website`
 - Raspberry Pi client: `pcvantol/djconnect-pi`
-
-## Website/Docs
-
-```text
-Sync the DJConnect website/docs with the Home Assistant integration, Apple app,
-ESP firmware and Raspberry Pi client contracts.
-
-Requirements:
-- Keep the canonical production domain `https://djconnect.dev`; keep
-  `https://www.djconnect.dev` as a permanent redirect to the apex domain.
-- Keep `djconnect.pages.dev` only as the Cloudflare Pages fallback URL.
-- Keep homepage navigation focused on `Hoe werkt het`, `Features` and
-  `Installeren`, plus the primary `Aan de slag` CTA.
-- Keep macOS, iOS, Raspberry Pi/Linux and ESP32 pages minimal: app/device pages
-  should label the platform route as `Home` and avoid cross-link clutter in
-  their top menus.
-- Keep `macos-download` retired. The canonical macOS page is `/macos`.
-- Render macOS downloads from `pcvantol/djconnect-app-releases`, ESP32 firmware
-  downloads from `pcvantol/djconnect-firmware`, and Raspberry Pi/Linux downloads
-  from `pcvantol/djconnect-pi-releases`.
-- Show only the latest GitHub release in ESP32 firmware and Raspberry Pi/Linux
-  download blocks. Keep macOS aligned with the same latest-version download
-  pattern unless an App Store link replaces it.
-- Route website-originated download clicks through `/go/download` so aggregate
-  click counters can be combined with GitHub release asset download_count.
-- Route the public Raspberry Pi/Linux installer through `/go/linux-install`;
-  generate the install command from the latest `djconnect-pi-*` tarball and run
-  `sudo ./scripts/install.sh`.
-- Keep click/download analytics cookieless and aggregate-only: no cookies, IP
-  addresses, user agents, referrers or visitor identifiers.
-- Keep the translated footer privacy notice and the footer website version on
-  every public page.
-- Keep bonus game names aligned with the current app labels: Paddle Rally,
-  Meteor Run, Sky Dash and Maze Chase.
-- Keep tests for translation coverage, current navigation, latest-only embeds,
-  tracked redirects, retired routes, SEO canonicals and stale pre-flashed copy.
-```
 
 ## Home Assistant Integration
 
@@ -113,11 +135,6 @@ Requirements:
   clients determine their UI language locally.
 - Keep cloud/remote URLs out of Apple app runtime traffic; cloud URLs are only
   needed by Home Assistant-owned Spotify OAuth config flows.
-- Keep Spotify access-token expiry and refresh-token rotation fully HA-internal.
-  Normal access-token expiry, Spotify API 401 retry and rotated refresh-token
-  persistence must not surface as client errors. Only create a Spotify
-  reauthorization Repair after every known stored refresh token source has been
-  rejected by Spotify, and never log token values.
 - When pairing an app-like client, ask for or use the Client API URL shown in
   the client pairing sheet. Do not assume a changing Bonjour hostname remains
   the canonical callback target after pairing.
@@ -367,6 +384,8 @@ Regels:
 
 - `device_id` is model-specifiek: `djconnect-lilygo-t-embed-s3-XXXXXXXXXXXX` voor LilyGO en `djconnect-esp32-s3-box-3-XXXXXXXXXXXX` voor ESP32-S3-BOX-3.
 - De ESP mDNS hostname gebruikt exact dezelfde `device_id`, dus bijvoorbeeld `http://djconnect-esp32-s3-box-3-XXXXXXXXXXXX.local`.
+- ESP mDNS TXT bevat minimaal `name`, `device_id`, `client_type=esp32`,
+  `version`, `paired`, `api` en `model`.
 - Gebruik het mDNS TXT veld `model` of de status/API `model` om het device model te bepalen; parse niet op de oude `djconnect-lilygo-` prefix.
 - `ha_local_url` moet een echte LAN URL zijn.
 - `ha_local_url` mag nooit `.ui.nabu.casa` bevatten.
@@ -924,7 +943,7 @@ Na succesvolle HA direct pair en eerste geaccepteerde HA command/status mag UI n
 Backend unavailable mag niet terug naar pairing-code scherm forceren.
 Pairing stale mag duidelijk tonen: reset/re-pair nodig.
 Soft reset/reboot moet local cue sound en felle witte LED-ring flash tonen vlak voor reboot.
-Bonus games Paddle Rally, Meteor Run, Sky Dash en Maze Chase mogen in UI blijven.
+Bonus games Pong, Asteroids, Fly en Pacman mogen in UI blijven.
 10. Tests
 Voeg/update host tests waar mogelijk:
 
@@ -1657,11 +1676,6 @@ Requirements:
   clients determine their UI language locally.
 - Keep cloud/remote URLs out of Apple app runtime traffic; cloud URLs are only
   needed by Home Assistant-owned Spotify OAuth config flows.
-- Keep Spotify access-token expiry and refresh-token rotation fully HA-internal.
-  Normal access-token expiry, Spotify API 401 retry and rotated refresh-token
-  persistence must not surface as client errors. Only create a Spotify
-  reauthorization Repair after every known stored refresh token source has been
-  rejected by Spotify, and never log token values.
 - When pairing an app-like client, ask for or use the Client API URL shown in
   the client pairing sheet. Do not assume a changing Bonjour hostname remains
   the canonical callback target after pairing.
@@ -1846,9 +1860,6 @@ Requirements:
   language, log_level, and current device settings in status payloads.
 - Send raw WAV voice audio to POST /api/djconnect/voice with Authorization:
   Bearer <device_token> and X-DJConnect-Device-ID.
-- Keep Up Next queue capacity aligned with the shared contract: accept and
-  render up to 100 real queue items from Home Assistant, then truncate locally.
-  Do not pad short queues with repeated current-track entries.
 - Treat backend_unavailable and version_mismatch as recoverable without
   clearing pairing.
 - Treat authenticated 401/403/404 as stale/setup recovery while keeping

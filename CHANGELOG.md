@@ -2,6 +2,25 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.27 - 2026-06-15
+
+- Reworked the voice commands page around a maintainable `intentFamilies`
+  data object, so intent cards and examples render from one NL/EN source.
+- Added `wwwroot/assets/voice-intents.js` as the shared voice intent example
+  source for the homepage and voice commands page.
+- Updated the homepage voice example chips to render a rotating, varied set of
+  real voice intent examples and link to the full Spraak/Voice page.
+- Updated the voice page hero, artist-first explanation, interpretation order,
+  tip text and intent examples to match the current DJConnect voice/PTT
+  contract.
+- Added the expanded Lithium, artist, album, playlist, default playlist and
+  playback-control example sets in both Dutch and English.
+- Added `VOICE_INTENT_DATA_PROMPT.md` so future Home Assistant integration
+  updates can provide structured voice intent data without website/layout
+  instructions.
+- Extended tests to verify the data-driven voice intent examples and the
+  required Dutch/English Lithium phrases.
+
 ## DJConnect website v3.1.26 - 2026-06-15
 
 - Updated the voice commands page so intent examples follow the selected NL/EN

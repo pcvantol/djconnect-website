@@ -32,7 +32,7 @@ commit the updated `SYNC_PROMPTS.md` there.
 ## Current Protocol Line
 
 The current shared protocol/release line is `3.1.x`; this bundle was last
-aligned after website release `v3.1.26`. DJConnect clients on the
+aligned after website release `v3.1.27`. DJConnect clients on the
 `3.1.x` line are compatible with Home Assistant integration versions `>=3.1.0`
 and `<3.2.0`.
 
@@ -126,8 +126,15 @@ Requirements:
   intent parsing and local fallback behavior. It must document artist-first
   generic music requests, explicit track/album/playlist media words, default
   playlist/favorites and the expandable playback-control family in Dutch and
-  English. Keep both language example sets in source, but render only the
-  selected NL or EN examples according to the website language toggle.
+  English. Keep the examples in a maintainable data/config object and render
+  only the selected NL or EN examples according to the website language toggle.
+- Keep homepage voice example chips sourced from the same voice intent data as
+  `/voice-commands`, not as a separate hardcoded marketing list. The homepage
+  should show a compact varied selection and link to the full Spraak/Voice page.
+- Use `VOICE_INTENT_DATA_PROMPT.md` when the Home Assistant integration needs
+  to hand over only updated voice/PTT intentdata to the website. That prompt
+  must request structured data only and exclude website rendering, styling,
+  release, changelog and deploy instructions.
 - Keep macOS, iOS, Raspberry Pi/Linux and ESP32 pages minimal: app/device pages
   should label the platform route as `Home` and avoid cross-link clutter in
   their top menus.
@@ -168,6 +175,10 @@ client contracts.
 
 Requirements:
 - Treat iOS/macOS/Raspberry Pi as app-like clients, not ESP hardware devices.
+- Before pairing, require that Home Assistant has the official Spotify
+  integration configured with at least one Spotify `media_player` entity; if
+  not, show a clear localized config-flow error telling the user to configure
+  Spotify first.
 - Pair app-like clients through POST /api/djconnect/pair. For Raspberry Pi, this is
   the primary pairing path; do not try to call a Pi-local /api/device/pair
   endpoint during initial pairing.
@@ -202,16 +213,17 @@ Requirements:
   default but still require user confirmation; if multiple clients are found,
   show a discovered-client selector with useful labels. Discovery is
   convenience only and must never mark a device paired by itself.
-- If Pi mDNS TXT is visible but `/api/device/pairing-info` fails, show the
-  discovered client as reachable-by-mDNS but not verified, keep manual Client
-  API URL entry available, and surface a clear pairing error instead of silently
-  falling back to `djconnect-{pair_code}`. Do not create a second HA entry when
-  the discovered Pi `device_id` is already configured; guide the user to reset
-  or re-pair that existing client.
+- If Pi mDNS TXT is visible but `/api/device/pairing-info` fails, treat it as a
+  stale/unreachable discovery record and hide it from the discovered-client
+  selector on the next scan. Keep manual Client API URL entry available and
+  surface a clear pairing error when the user-provided URL cannot be probed
+  instead of silently falling back to `djconnect-{pair_code}`. Do not create a
+  second HA entry when the discovered Pi `device_id` is already configured;
+  guide the user to reset or re-pair that existing client.
 - Add/keep HA tests for Raspberry Pi discovery: service TXT acceptance,
-  pairing-info override, config-flow prefill for one Pi, selector behavior for
-  multiple clients, duplicate `device_id` handling, pairing-info failure
-  fallback, and proof that Pi pairing uses the stable discovered
+  pairing-info override, stale/unreachable probe filtering, config-flow prefill
+  for one Pi, selector behavior for multiple clients, duplicate `device_id`
+  handling, manual Client API URL fallback, and proof that Pi pairing uses the stable discovered
   `djconnect-raspberry-pi-XXXXXXXXXXXX` instead of `djconnect-{pair_code}`.
 - Return ha_version or ha_major_minor on status/command responses so Apple
   clients can enforce the matching major.minor contract.
@@ -1743,16 +1755,17 @@ Requirements:
   default but still require user confirmation; if multiple clients are found,
   show a discovered-client selector with useful labels. Discovery is
   convenience only and must never mark a device paired by itself.
-- If Pi mDNS TXT is visible but `/api/device/pairing-info` fails, show the
-  discovered client as reachable-by-mDNS but not verified, keep manual Client
-  API URL entry available, and surface a clear pairing error instead of silently
-  falling back to `djconnect-{pair_code}`. Do not create a second HA entry when
-  the discovered Pi `device_id` is already configured; guide the user to reset
-  or re-pair that existing client.
+- If Pi mDNS TXT is visible but `/api/device/pairing-info` fails, treat it as a
+  stale/unreachable discovery record and hide it from the discovered-client
+  selector on the next scan. Keep manual Client API URL entry available and
+  surface a clear pairing error when the user-provided URL cannot be probed
+  instead of silently falling back to `djconnect-{pair_code}`. Do not create a
+  second HA entry when the discovered Pi `device_id` is already configured;
+  guide the user to reset or re-pair that existing client.
 - Add/keep HA tests for Raspberry Pi discovery: service TXT acceptance,
-  pairing-info override, config-flow prefill for one Pi, selector behavior for
-  multiple clients, duplicate `device_id` handling, pairing-info failure
-  fallback, and proof that Pi pairing uses the stable discovered
+  pairing-info override, stale/unreachable probe filtering, config-flow prefill
+  for one Pi, selector behavior for multiple clients, duplicate `device_id`
+  handling, manual Client API URL fallback, and proof that Pi pairing uses the stable discovered
   `djconnect-raspberry-pi-XXXXXXXXXXXX` instead of `djconnect-{pair_code}`.
 - Return ha_version or ha_major_minor on status/command responses so Apple
   clients can enforce the matching major.minor contract.

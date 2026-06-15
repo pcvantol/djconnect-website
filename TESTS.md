@@ -7,6 +7,8 @@
 - Open `wwwroot/features.html` and verify the core features and renamed bonus mini-games are visible: Paddle Rally, Meteor Run, Sky Dash and Maze Chase.
 - Open `wwwroot/voice-commands.html` and verify the artist, track, album, playlist, default playlist and playback-control voice intent families.
 - Verify the voice commands page shows only the selected NL or EN example phrases when the language toggle changes.
+- Verify the voice commands page includes the current Lithium examples for Dutch and English track intents.
+- Verify `VOICE_INTENT_DATA_PROMPT.md` still asks the Home Assistant integration for structured intentdata only.
 - Open `wwwroot/blog.html` and verify the Blog overview links to `wwwroot/blog-djconnect-project.html`.
 - Open `wwwroot/blog-djconnect-project.html` and verify the post explains the DJConnect project, Home Assistant base and multi-client workflow.
 - Open `wwwroot/raspberry-pi.html` and verify it loads Raspberry Pi builds from `pcvantol/djconnect-pi-releases`.
@@ -21,6 +23,7 @@
 - Verify the iPad/iPhone slide shows the voice icon only in the iPad screen.
 - Verify the LilyGO visual keeps the device display empty.
 - Verify the command examples are quoted, use music-note markers and do not include `Speel Nirvana`.
+- Verify the homepage voice example chips render from `wwwroot/assets/voice-intents.js` and link to the Spraak page for more examples.
 - Open `wwwroot/start.html` and verify the five setup sections: voice assist pipeline, HACS installation, DJConnect configuration, pairing/downloads and first use.
 - Verify the start page has a clear Home button back to `wwwroot/index.html`.
 - Verify the start page clearly separates automatic HACS installation from manual setup steps.

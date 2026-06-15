@@ -125,6 +125,11 @@ test("homepage has platform routes and app store placeholders", async () => {
   assert.match(index, /Gebruik DJConnect op je favoriete Apple scherm of embedded device/);
   assert.match(index, /DJConnect brengt je muziekwens, speaker keuze en persoonlijke DJ-feedback samen/);
   assert.match(index, /Zeg welke artiest je wilt horen/);
+  assert.match(index, /<script src="assets\/voice-intents\.js"><\/script>/);
+  assert.match(index, /id="homepageVoiceExamples"/);
+  assert.match(index, /renderHomepageVoiceExamples\(language\)/);
+  assert.match(index, /href="voice-commands\.html" data-i18n="examplesMore">Bekijk meer spraakvoorbeelden/);
+  assert.doesNotMatch(index, /data-i18n="exampleCommand1"/);
 });
 
 test("homepage hero uses the current device visual and copy", async () => {
@@ -232,36 +237,43 @@ test("features page describes core functions and bonus games", async () => {
 
 test("voice commands page documents intent families and artist-first behavior", async () => {
   const voice = await read("wwwroot/voice-commands.html");
+  const intents = await read("wwwroot/assets/voice-intents.js");
   const sitemap = await read("wwwroot/sitemap.xml");
+  const prompt = await read("VOICE_INTENT_DATA_PROMPT.md");
 
   assert.match(voice, /<title>DJConnect Spraakopdrachten<\/title>/);
   assert.match(voice, /href="https:\/\/djconnect\.dev\/voice-commands"/);
-  assert.match(voice, /DJConnect\. Muziekbediening met karakter/);
-  assert.match(voice, /Client neemt spraak op of stuurt tekst/);
-  assert.match(voice, /Home Assistant STT maakt tekst/);
-  assert.match(voice, /DJConnect leest Assist intentdata/);
-  assert.match(voice, /Fallback parsing vult aan wanneer nodig/);
-  assert.match(voice, /Spotify start playback via Home Assistant/);
-  assert.match(voice, /DJ aankondiging/);
+  assert.match(voice, /DJConnect luistert naar natuurlijke muziekopdrachten/);
+  assert.match(voice, /Default playlist \/ favorieten/);
+  assert.match(voice, /Algemene muziekzoekopdracht als artist-first fallback/);
   assert.match(voice, /Artist-first/);
-  assert.match(voice, /speel Nirvana/);
-  assert.match(voice, /play Nirvana/);
-  assert.match(voice, /data-examples-lang="nl"/);
-  assert.match(voice, /data-examples-lang="en" hidden/);
-  assert.match(voice, /node\.hidden = node\.dataset\.examplesLang !== lang/);
-  assert.match(voice, /speel nummer Black van Pearl Jam/);
-  assert.match(voice, /play song Paranoid Android by Radiohead/);
-  assert.match(voice, /speel album Ten van Pearl Jam/);
-  assert.match(voice, /play album In Rainbows by Radiohead/);
-  assert.match(voice, /speel playlist Roadtrip/);
-  assert.match(voice, /play playlist Workout/);
-  assert.match(voice, /speel standaard playlist/);
-  assert.match(voice, /play default playlist/);
-  assert.match(voice, /Playback-bediening loopt via DJConnect backend commands/);
-  assert.match(voice, /Natural-language coverage may grow per release/);
+  assert.match(voice, /<script src="assets\/voice-intents\.js"><\/script>/);
+  assert.match(voice, /const intentFamilies = window\.DJCONNECT_VOICE_INTENTS \|\| \[\]/);
+  assert.match(voice, /renderIntentFamilies\(lang, dictionary\)/);
+  assert.doesNotMatch(voice, /data-examples-lang=/);
+  assert.match(intents, /window\.DJCONNECT_VOICE_INTENTS = \[/);
+  assert.match(intents, /Speel Nirvana/);
+  assert.match(intents, /Play Nirvana/);
+  assert.match(intents, /Speel nummer Lithium/);
+  assert.match(intents, /Speel nummer Lithium van artiest Nirvana/);
+  assert.match(intents, /Speel artiest Nirvana met nummer Lithium/);
+  assert.match(intents, /Play song Lithium/);
+  assert.match(intents, /Play song Lithium by Nirvana/);
+  assert.match(intents, /Play artist Nirvana with song Lithium/);
+  assert.match(intents, /Speel album Nevermind/);
+  assert.match(intents, /Play album Nevermind/);
+  assert.match(intents, /Speel playlist Roadtrip/);
+  assert.match(intents, /Play playlist Roadtrip/);
+  assert.match(intents, /Speel standaard playlist/);
+  assert.match(intents, /Play default playlist/);
+  assert.match(intents, /Zet shuffle aan/);
+  assert.match(intents, /Turn shuffle on/);
+  assert.match(voice, /Tip: noem 'nummer', 'album' of 'playlist'/);
   assert.doesNotMatch(voice, /sponsored/i);
   assert.doesNotMatch(voice, /endorsed/i);
   assert.match(sitemap, /https:\/\/djconnect\.dev\/voice-commands/);
+  assert.match(prompt, /Lever uitsluitend gestructureerde intentdata aan/);
+  assert.match(prompt, /Laat website-rendering, styling, release, changelog en deploy buiten deze/);
   assertTranslationsCoverPage(voice, "voice-commands page");
 });
 

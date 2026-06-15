@@ -227,6 +227,15 @@
       font-weight: 900;
     }
 
+    .examples-more {
+      display: inline-flex;
+      margin-top: 16px;
+      color: var(--cyan);
+      font-weight: 850;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
     .platform-stage {
       min-height: 560px;
       border: 1px solid var(--line);
@@ -758,12 +767,8 @@
       <div class="wrap">
         <div class="card example-card">
           <h2 data-i18n="examplesTitle">Vraag muziek aan met je stem, zeg bijvoorbeeld:</h2>
-          <div class="commands">
-            <span data-i18n="exampleCommand1">"Ik wil Pearl Jam horen"</span>
-            <span data-i18n="exampleCommand2">"Zet London Grammar op"</span>
-            <span data-i18n="exampleCommand3">"Speel maar af Above & Beyond"</span>
-            <span data-i18n="exampleCommand4">"Ik heb wel zin in Metallica"</span>
-          </div>
+          <div class="commands" id="homepageVoiceExamples"></div>
+          <a class="examples-more" href="voice-commands.html" data-i18n="examplesMore">Bekijk meer spraakvoorbeelden</a>
         </div>
       </div>
     </section>
@@ -875,8 +880,9 @@
     <p data-i18n="legalSpotify">Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="https://github.com/pcvantol/djconnect-website/issues" target="_blank" rel="noopener" data-i18n="legalSupport">Support: GitHub Issues</a></p>
-    <p class="site-version">DJConnect website v3.1.26</p>
+    <p class="site-version">DJConnect website v3.1.27</p>
   </footer>
+  <script src="assets/voice-intents.js"></script>
   <script>
     const translations = {
       nl: {
@@ -895,10 +901,7 @@
         heroPrimary: "Aan de slag",
         examplesLabel: "Vraag muziek aan met je stem, zeg bijvoorbeeld:",
         examplesTitle: "Vraag muziek aan met je stem, zeg bijvoorbeeld:",
-        exampleCommand1: "\"Ik wil Pearl Jam horen\"",
-        exampleCommand2: "\"Zet London Grammar op\"",
-        exampleCommand3: "\"Speel maar af Above & Beyond\"",
-        exampleCommand4: "\"Ik heb wel zin in Metallica\"",
+        examplesMore: "Bekijk meer spraakvoorbeelden",
         stageLabel: "DJConnect platformoverzicht",
         stageCarouselLabel: "Platform opties",
         iosSlideLabel: "Vraag je volgende hit aan",
@@ -959,10 +962,7 @@
         heroPrimary: "How to start",
         examplesLabel: "Request music with your voice, for example:",
         examplesTitle: "Request music with your voice, for example:",
-        exampleCommand1: "\"I want to hear Pearl Jam\"",
-        exampleCommand2: "\"Put on London Grammar\"",
-        exampleCommand3: "\"Play Above & Beyond\"",
-        exampleCommand4: "\"I feel like Metallica\"",
+        examplesMore: "See more voice examples",
         stageLabel: "DJConnect platform overview",
         stageCarouselLabel: "Platform options",
         iosSlideLabel: "With voice activation",
@@ -1009,6 +1009,26 @@
       }
     };
 
+    const renderHomepageVoiceExamples = (language) => {
+      const target = document.querySelector("#homepageVoiceExamples");
+      const intentFamilies = window.DJCONNECT_VOICE_INTENTS || [];
+      if (!target || !intentFamilies.length) return;
+
+      const families = intentFamilies.filter((family) => family.id !== "playback");
+      const daySeed = Math.floor(Date.now() / 86400000);
+      const selected = families.slice(0, 4).map((family, index) => {
+        const examples = family.examples[language] || family.examples.nl || [];
+        return examples[(daySeed + index * 2) % examples.length];
+      });
+
+      target.replaceChildren();
+      selected.forEach((example) => {
+        const chip = document.createElement("span");
+        chip.textContent = `"${example}"`;
+        target.append(chip);
+      });
+    };
+
     const getInitialLanguage = () => {
       const stored = localStorage.getItem("djconnect-language");
       if (stored === "nl" || stored === "en") return stored;
@@ -1034,6 +1054,7 @@
       document.querySelectorAll("[data-lang]").forEach((button) => {
         button.setAttribute("aria-pressed", button.getAttribute("data-lang") === language ? "true" : "false");
       });
+      renderHomepageVoiceExamples(language);
       localStorage.setItem("djconnect-language", language);
     };
 

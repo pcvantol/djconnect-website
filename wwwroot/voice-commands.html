@@ -44,7 +44,6 @@
     .section-head p { color:var(--muted); margin:0; font-size:1.1rem; }
     .intent-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
     .examples { margin-top:18px; }
-    .examples [hidden] { display:none !important; }
     .examples h4 { margin:0 0 8px; font-size:0.86rem; color:#aeefff; text-transform:uppercase; letter-spacing:0.08em; }
     .examples ul { margin:0; padding:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
     .examples li { list-style:none; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.055); color:var(--muted); padding:8px 12px; font-weight:700; }
@@ -87,17 +86,17 @@
         <div>
           <span class="pill" data-i18n="heroLabel">Spraakopdrachten</span>
           <h1 data-i18n="heroTitle">Wat kun je zeggen?</h1>
-          <p class="lead" data-i18n="heroLead">DJConnect. Muziekbediening met karakter. Vraag via PTT of tekst om muziek; Home Assistant verwerkt je verzoek en DJConnect geeft een persoonlijke DJ aankondiging terug.</p>
+          <p class="lead" data-i18n="heroLead">DJConnect luistert naar natuurlijke muziekopdrachten. Je hoeft geen exacte commando's te leren: noem een artiest, nummer, album of playlist. Als je expliciet 'nummer', 'album' of 'playlist' zegt, zoekt DJConnect gericht op dat type.</p>
         </div>
         <div class="card">
-          <span class="pill" data-i18n="flowLabel">Afhandeling</span>
+          <span class="pill" data-i18n="flowLabel">Intentvolgorde</span>
           <ol class="flow">
-            <li data-i18n="flow1">Client neemt spraak op of stuurt tekst</li>
-            <li data-i18n="flow2">Home Assistant STT maakt tekst</li>
-            <li data-i18n="flow3">DJConnect leest Assist intentdata</li>
-            <li data-i18n="flow4">Fallback parsing vult aan wanneer nodig</li>
-            <li data-i18n="flow5">Spotify start playback via Home Assistant</li>
-            <li data-i18n="flow6">DJConnect stuurt een DJ aankondiging terug</li>
+            <li data-i18n="flow1">Default playlist / favorieten</li>
+            <li data-i18n="flow2">Playlist</li>
+            <li data-i18n="flow3">Track / nummer</li>
+            <li data-i18n="flow4">Album</li>
+            <li data-i18n="flow5">Artist / artiest</li>
+            <li data-i18n="flow6">Algemene muziekzoekopdracht als artist-first fallback</li>
           </ol>
         </div>
       </div>
@@ -107,7 +106,7 @@
       <div class="wrap">
         <div class="section-head">
           <h2 data-i18n="artistFirstTitle">Artist-first</h2>
-          <p data-i18n="artistFirstLead">Generieke muziekvragen worden bewust als artiestverzoek behandeld. “Speel Nirvana” start dus de artiestcontext en kiest niet willekeurig een track of album. Dat houdt spraakverzoeken voorspelbaar.</p>
+          <p data-i18n="artistFirstLead">Algemene verzoeken zoals 'speel Nirvana' worden artist-first behandeld. Daardoor start DJConnect de artiestcontext en kiest het niet willekeurig een nummer. Wil je een specifiek nummer, zeg dan 'nummer', 'liedje' of 'track'.</p>
         </div>
         <div class="card">
           <div class="status">
@@ -126,67 +125,8 @@
           <h2 data-i18n="familiesTitle">Intentfamilies</h2>
           <p data-i18n="familiesLead">Gebruik gewone zinnen. Voeg alleen woorden zoals nummer, album of playlist toe wanneer je die media specifiek bedoelt.</p>
         </div>
-        <div class="intent-grid">
-          <article class="card">
-            <span class="pill" data-i18n="artistPill">Artiest</span>
-            <h3 data-i18n="artistTitle">Artiest starten</h3>
-            <p data-i18n="artistText">Zonder expliciet “nummer”, “album” of “playlist” behandelt DJConnect dit als artiestverzoek.</p>
-            <div class="examples">
-              <div data-examples-lang="nl"><h4>NL</h4><ul><li>speel Nirvana</li><li>zet Metallica op</li><li>ik heb zin in Pearl Jam</li><li>speel maar af Above & Beyond</li></ul></div>
-              <div data-examples-lang="en" hidden><h4>EN</h4><ul><li>play Nirvana</li><li>put on Metallica</li><li>I feel like Fleetwood Mac</li><li>start Above & Beyond</li></ul></div>
-            </div>
-          </article>
-
-          <article class="card">
-            <span class="pill" data-i18n="trackPill">Track</span>
-            <h3 data-i18n="trackTitle">Nummer / track zoeken</h3>
-            <p data-i18n="trackText">Gebruik woorden zoals nummer, liedje, track of song als je echt een specifieke track bedoelt.</p>
-            <div class="examples">
-              <div data-examples-lang="nl"><h4>NL</h4><ul><li>speel nummer Black van Pearl Jam</li><li>start het liedje Everlong</li><li>zet track Nothing Else Matters op</li><li>speel het nummer Heroes</li></ul></div>
-              <div data-examples-lang="en" hidden><h4>EN</h4><ul><li>play song Paranoid Android by Radiohead</li><li>start track Heroes by David Bowie</li><li>put on track Everlong</li><li>play the song Black by Pearl Jam</li></ul></div>
-            </div>
-          </article>
-
-          <article class="card">
-            <span class="pill" data-i18n="albumPill">Album</span>
-            <h3 data-i18n="albumTitle">Album starten</h3>
-            <p data-i18n="albumText">Gebruik album of plaat om album search te forceren.</p>
-            <div class="examples">
-              <div data-examples-lang="nl"><h4>NL</h4><ul><li>speel album Ten van Pearl Jam</li><li>start het album Nevermind</li><li>zet de plaat OK Computer op</li><li>draai album Rumours</li></ul></div>
-              <div data-examples-lang="en" hidden><h4>EN</h4><ul><li>play album In Rainbows by Radiohead</li><li>start the album Nevermind</li><li>put on the album Blue</li><li>start album Rumours</li></ul></div>
-            </div>
-          </article>
-
-          <article class="card">
-            <span class="pill" data-i18n="playlistPill">Playlist</span>
-            <h3 data-i18n="playlistTitle">Playlist starten</h3>
-            <p data-i18n="playlistText">Gebruik playlist of afspeellijst als je een playlistnaam bedoelt.</p>
-            <div class="examples">
-              <div data-examples-lang="nl"><h4>NL</h4><ul><li>speel playlist Roadtrip</li><li>start mijn playlist Rustig wakker worden</li><li>zet afspeellijst Dinner Jazz op</li><li>start afspeellijst Focus</li></ul></div>
-              <div data-examples-lang="en" hidden><h4>EN</h4><ul><li>play playlist Workout</li><li>start my playlist Roadtrip</li><li>put on Chill playlist</li><li>start Focus playlist</li></ul></div>
-            </div>
-          </article>
-
-          <article class="card">
-            <span class="pill" data-i18n="defaultPill">Standaard</span>
-            <h3 data-i18n="defaultTitle">Standaard playlist / favorieten</h3>
-            <p data-i18n="defaultText">Deze gebruikt de standaard playlist URI die in de DJConnect Home Assistant integration is ingesteld.</p>
-            <div class="examples">
-              <div data-examples-lang="nl"><h4>NL</h4><ul><li>speel standaard playlist</li><li>start mijn favorieten</li><li>zet liked songs op</li><li>speel mijn favorieten</li></ul></div>
-              <div data-examples-lang="en" hidden><h4>EN</h4><ul><li>play default playlist</li><li>start my favorites</li><li>play liked songs</li><li>start my default playlist</li></ul></div>
-            </div>
-          </article>
-
-          <article class="card">
-            <span class="pill" data-i18n="playbackPill">Uitbreidbaar</span>
-            <h3 data-i18n="playbackTitle">Playback control / queue</h3>
-            <p data-i18n="playbackText">Playback-bediening loopt via DJConnect backend commands en clientknoppen. Natuurlijke spraakdekking kan per release uitbreiden.</p>
-            <div class="examples">
-              <div data-examples-lang="nl"><h4>NL</h4><ul><li>pauzeer</li><li>volgende</li><li>volume 50 procent</li><li>wat staat er in de wachtrij?</li></ul></div>
-              <div data-examples-lang="en" hidden><h4>EN</h4><ul><li>pause</li><li>next</li><li>volume 50 percent</li><li>what is in the queue?</li></ul></div>
-            </div>
-          </article>
-        </div>
+        <div class="intent-grid" id="intentGrid"></div>
+        <p class="note" data-i18n="tipText">Tip: noem 'nummer', 'album' of 'playlist' als je gericht wilt zoeken.</p>
       </div>
     </section>
   </main>
@@ -195,8 +135,9 @@
     <p>Copyright Peter van Tol 2026. All rights reserved.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: Spotify credentials blijven in Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="https://github.com/pcvantol/djconnect-website/issues" target="_blank" rel="noopener" data-i18n="legalSupport">Support: GitHub Issues</a></p>
-    <p class="site-version">DJConnect website v3.1.26</p>
+    <p class="site-version">DJConnect website v3.1.27</p>
   </footer>
+  <script src="assets/voice-intents.js"></script>
   <script>
     const translations = {
       nl: {
@@ -212,16 +153,16 @@
         navStart: "Aan de slag",
         heroLabel: "Spraakopdrachten",
         heroTitle: "Wat kun je zeggen?",
-        heroLead: "DJConnect. Muziekbediening met karakter. Vraag via PTT of tekst om muziek; Home Assistant verwerkt je verzoek en DJConnect geeft een persoonlijke DJ aankondiging terug.",
-        flowLabel: "Afhandeling",
-        flow1: "Client neemt spraak op of stuurt tekst",
-        flow2: "Home Assistant STT maakt tekst",
-        flow3: "DJConnect leest Assist intentdata",
-        flow4: "Fallback parsing vult aan wanneer nodig",
-        flow5: "Spotify start playback via Home Assistant",
-        flow6: "DJConnect stuurt een DJ aankondiging terug",
+        heroLead: "DJConnect luistert naar natuurlijke muziekopdrachten. Je hoeft geen exacte commando's te leren: noem een artiest, nummer, album of playlist. Als je expliciet 'nummer', 'album' of 'playlist' zegt, zoekt DJConnect gericht op dat type.",
+        flowLabel: "Intentvolgorde",
+        flow1: "Default playlist / favorieten",
+        flow2: "Playlist",
+        flow3: "Track / nummer",
+        flow4: "Album",
+        flow5: "Artist / artiest",
+        flow6: "Algemene muziekzoekopdracht als artist-first fallback",
         artistFirstTitle: "Artist-first",
-        artistFirstLead: "Generieke muziekvragen worden bewust als artiestverzoek behandeld. “Speel Nirvana” start dus de artiestcontext en kiest niet willekeurig een track of album. Dat houdt spraakverzoeken voorspelbaar.",
+        artistFirstLead: "Algemene verzoeken zoals 'speel Nirvana' worden artist-first behandeld. Daardoor start DJConnect de artiestcontext en kiest het niet willekeurig een nummer. Wil je een specifiek nummer, zeg dan 'nummer', 'liedje' of 'track'.",
         supportedNow: "Nu ondersteund",
         artistFirstBadge: "Artist-first bij generieke verzoeken",
         explicitBadge: "Expliciete mediawoorden sturen de zoekrichting",
@@ -246,6 +187,8 @@
         playbackPill: "Uitbreidbaar",
         playbackTitle: "Playback control / queue",
         playbackText: "Playback-bediening loopt via DJConnect backend commands en clientknoppen. Natuurlijke spraakdekking kan per release uitbreiden.",
+        examplesLabel: "Voorbeelden",
+        tipText: "Tip: noem 'nummer', 'album' of 'playlist' als je gericht wilt zoeken.",
         legalPrivacy: "Privacy: Spotify credentials blijven in Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.",
         legalSupport: "Support: GitHub Issues"
       },
@@ -262,16 +205,16 @@
         navStart: "Get started",
         heroLabel: "Voice commands",
         heroTitle: "What can you say?",
-        heroLead: "DJConnect. Music control with character. Ask for music through PTT or text; Home Assistant processes the request and DJConnect sends a personal DJ announcement back.",
-        flowLabel: "Handling",
-        flow1: "The client records speech or sends text",
-        flow2: "Home Assistant STT turns it into text",
-        flow3: "DJConnect reads Assist intent data",
-        flow4: "Fallback parsing fills in when needed",
-        flow5: "Spotify starts playback through Home Assistant",
-        flow6: "DJConnect sends a DJ announcement back",
+        heroLead: "DJConnect listens for natural music requests. You do not need to learn exact commands: ask for an artist, song, album or playlist. If you explicitly say 'song', 'album' or 'playlist', DJConnect searches for that type.",
+        flowLabel: "Intent order",
+        flow1: "Default playlist / favorites",
+        flow2: "Playlist",
+        flow3: "Track / song",
+        flow4: "Album",
+        flow5: "Artist",
+        flow6: "Generic music search as artist-first fallback",
         artistFirstTitle: "Artist-first",
-        artistFirstLead: "Generic music requests are intentionally handled as artist requests. “Play Nirvana” starts the artist context and does not randomly choose a track or album. That keeps voice requests predictable.",
+        artistFirstLead: "Generic requests like 'play Nirvana' are handled artist-first. DJConnect starts the artist context instead of picking an arbitrary song. If you want a specific song, say 'song' or 'track'.",
         supportedNow: "Supported now",
         artistFirstBadge: "Artist-first for generic requests",
         explicitBadge: "Explicit media words steer the search",
@@ -296,9 +239,45 @@
         playbackPill: "Expandable",
         playbackTitle: "Playback control / queue",
         playbackText: "Playback controls are supported through DJConnect backend commands and client controls. Natural-language coverage may grow per release.",
+        examplesLabel: "Examples",
+        tipText: "Tip: say 'song', 'album' or 'playlist' when you want a specific search type.",
         legalPrivacy: "Privacy: Spotify credentials stay in Home Assistant. This website does not receive or store account details.",
         legalSupport: "Support: GitHub Issues"
       }
+    };
+    const intentFamilies = window.DJCONNECT_VOICE_INTENTS || [];
+    const renderIntentFamilies = (lang, dictionary) => {
+      const grid = document.querySelector("#intentGrid");
+      if (!grid) return;
+      grid.replaceChildren();
+      intentFamilies.forEach((family) => {
+        const card = document.createElement("article");
+        card.className = "card";
+
+        const pill = document.createElement("span");
+        pill.className = "pill";
+        pill.textContent = family.pill[lang];
+
+        const title = document.createElement("h3");
+        title.textContent = family.title[lang];
+
+        const text = document.createElement("p");
+        text.textContent = family.text[lang];
+
+        const examples = document.createElement("div");
+        examples.className = "examples";
+        const label = document.createElement("h4");
+        label.textContent = dictionary.examplesLabel;
+        const list = document.createElement("ul");
+        family.examples[lang].forEach((example) => {
+          const item = document.createElement("li");
+          item.textContent = example;
+          list.append(item);
+        });
+        examples.append(label, list);
+        card.append(pill, title, text, examples);
+        grid.append(card);
+      });
     };
     const getInitialLanguage = () => {
       const stored = localStorage.getItem("djconnect-language");
@@ -323,9 +302,7 @@
       document.querySelectorAll("[data-lang]").forEach((button) => {
         button.setAttribute("aria-pressed", String(button.dataset.lang === lang));
       });
-      document.querySelectorAll("[data-examples-lang]").forEach((node) => {
-        node.hidden = node.dataset.examplesLang !== lang;
-      });
+      renderIntentFamilies(lang, dictionary);
       localStorage.setItem("djconnect-language", lang);
     };
     document.querySelectorAll("[data-lang]").forEach((button) => {

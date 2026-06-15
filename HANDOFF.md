@@ -8,7 +8,7 @@
 - Cloudflare Pages fallback URL: https://djconnect.pages.dev
 - Cloudflare Pages project: `djconnect`
 - Publish directory: `wwwroot`
-- Current version: `3.1.26`
+- Current version: `3.1.27`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Voice commands page: `wwwroot/voice-commands.html`
@@ -26,7 +26,9 @@
   `Spraak`, `Blog` and `Installeren`; the `Aan de slag` route is the primary
   CTA button.
 - The features page summarizes the main DJConnect functions and mentions the bonus mini-games: Paddle Rally, Meteor Run, Sky Dash & Maze Chase.
-- The voice commands page documents the user-facing intent families, Home Assistant handling order, artist-first behavior and bilingual example phrases. The examples follow the selected NL/EN language toggle instead of showing both languages at once. Keep it aligned with Home Assistant intent parsing and local fallback behavior.
+- The voice commands page documents the user-facing intent families, interpretation order, artist-first behavior and bilingual example phrases. Intent cards render from `wwwroot/assets/voice-intents.js`, so the selected NL/EN language toggle controls labels, descriptions and examples from one maintainable source. Keep it aligned with Home Assistant intent parsing and local fallback behavior.
+- The homepage voice-example chips also render from `wwwroot/assets/voice-intents.js` and should keep linking to `wwwroot/voice-commands.html` for the full intent list.
+- `VOICE_INTENT_DATA_PROMPT.md` contains the compact prompt for asking the Home Assistant integration to provide only structured voice/PTT intentdata for future website updates.
 - The blog section starts at `wwwroot/blog.html`; the first post is `wwwroot/blog-djconnect-project.html` and describes DJConnect as a Home Assistant-backed multi-client music workflow.
 - The homepage hero uses a swipeable device carousel for macOS, a landscape iPad and LilyGO/ESP32. Keep each device slide spacious and avoid compressing devices side-by-side.
 - The iOS carousel slide intentionally shows one landscape iPad only; do not re-add a second iPhone visual unless the layout is redesigned.
@@ -61,7 +63,7 @@
 ## Release Steps
 
 1. Commit all changes to `main`.
-2. Update or consciously re-check all repository documentation files before release: `README.md`, `HANDOFF.md`, `TESTS.md`, `TODO.md`, `ISSUES.md`, `CHANGELOG.md`, `SYNC_PROMPTS.md` and `TECHNICAL_DESIGN.md`.
+2. Update or consciously re-check all repository documentation files before release: `README.md`, `HANDOFF.md`, `TESTS.md`, `TODO.md`, `ISSUES.md`, `CHANGELOG.md`, `SYNC_PROMPTS.md`, `VOICE_INTENT_DATA_PROMPT.md` and `TECHNICAL_DESIGN.md`.
 3. Check whether test coverage needs to be expanded for the release change. Add tests for changed routes, copy, rendering contracts, analytics, release scripts or deployment behavior.
 4. Ensure the GitHub Actions repository secret `CLOUDFLARE_API_TOKEN` exists.
 5. Run `./release.sh --skip-deploy` when the token is only available in GitHub Actions.
@@ -107,12 +109,12 @@ Bind `ANALYTICS_DB` to that D1 database and set a `STATS_TOKEN` secret. `GITHUB_
 
 ## Current Verification
 
-- `npm test` covers version consistency, route presence, homepage navigation/copy, voice command intent-family docs and language-scoped example blocks, firmware download embeds, macOS and Raspberry Pi download embeds, latest-only release embed contracts, removed legacy macOS download routes, tracked download redirects, absence of website self-release embeds, translation keys, footer copyright/support links, local link checking, firmware links, compact embedded page structure, LilyGO visual hygiene and stale pre-flashed wording.
+- `npm test` covers version consistency, route presence, homepage navigation/copy, homepage voice chips from shared intent data, voice command intent-family docs, data-driven examples and language-scoped rendering behavior, firmware download embeds, macOS and Raspberry Pi download embeds, latest-only release embed contracts, removed legacy macOS download routes, tracked download redirects, absence of website self-release embeds, translation keys, footer copyright/support links, local link checking, firmware links, compact embedded page structure, LilyGO visual hygiene and stale pre-flashed wording.
 - `npm test` also covers the cookieless redirect/download analytics structure, D1 migration, tracked GitHub asset links and the release-script dependency/tool preflight.
 - `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. It is not part of the default dependency-free `npm test` run.
-- Current released version `3.1.26` makes the voice commands page examples
-  follow the selected NL/EN language toggle while keeping both language example
-  sets in the page source.
+- Current released version `3.1.27` reworks the voice commands page around
+  data-driven NL/EN intent examples, the current interpretation order and the
+  expanded Lithium/example phrase set.
 - Canonical SEO domain is `https://djconnect.dev`; `djconnect.pages.dev` remains a Cloudflare fallback.
 - `https://www.djconnect.dev` should remain a 301 redirect to the apex domain, preserving path and query string.
 - Dynamic GitHub download/install blocks now rerender when the language toggle changes, so generated install text follows NL/EN.

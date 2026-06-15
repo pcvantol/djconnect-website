@@ -8,6 +8,8 @@ const downloadCopy = {
     download: "Download",
     noAssets: "Deze release heeft nog geen downloadbare assets.",
     github: "Open release op GitHub",
+    changelog: "Changelog",
+    noChangelog: "Geen changelogtekst gepubliceerd bij deze release.",
     installTitle: "DJConnect Pi app install",
     installText: "Installeer DJConnect Pi vanaf de publieke release-bundel. Gebruik dit nadat Raspberry Pi OS is voorbereid. Het script bewaart bestaande pairing/configuratie en kan later opnieuw worden uitgevoerd voor een handmatige update.",
     installLoading: "Install-commando laden...",
@@ -24,6 +26,8 @@ const downloadCopy = {
     download: "Download",
     noAssets: "This release does not have downloadable assets yet.",
     github: "Open release on GitHub",
+    changelog: "Changelog",
+    noChangelog: "No changelog text was published with this release.",
     installTitle: "DJConnect Pi app install",
     installText: "Install DJConnect Pi from the public release bundle. Use this after Raspberry Pi OS has been prepared. The script keeps existing pairing/configuration and can be run again later for a manual update.",
     installLoading: "Loading install command...",
@@ -102,6 +106,25 @@ const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (char) => ({
   "'": "&#39;"
 }[char]));
 
+const renderChangelog = (release, copy) => {
+  const body = String(release.body || "").trim();
+  if (!body) {
+    return `
+      <details class="release-changelog">
+        <summary>${copy.changelog}</summary>
+        <p>${copy.noChangelog}</p>
+      </details>
+    `;
+  }
+
+  return `
+    <details class="release-changelog">
+      <summary>${copy.changelog}</summary>
+      <div class="release-changelog-body">${escapeHtml(body)}</div>
+    </details>
+  `;
+};
+
 const renderDownloads = async (root) => {
   const owner = root.dataset.githubOwner || "pcvantol";
   const repo = root.dataset.githubRepo || "djconnect-app-releases";
@@ -140,6 +163,7 @@ const renderDownloads = async (root) => {
               </a>
             `).join("") : `<div class="download-status">${copy.noAssets}</div>`}
           </div>
+          ${renderChangelog(release, copy)}
         </article>
       `;
     }).join("");

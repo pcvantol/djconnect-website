@@ -32,7 +32,7 @@ commit the updated `SYNC_PROMPTS.md` there.
 ## Current Protocol Line
 
 The current shared protocol/release line is `3.1.x`; this bundle was last
-aligned after website release `v3.1.29`. DJConnect clients on the
+aligned after website release `v3.1.30`. DJConnect clients on the
 `3.1.x` line are compatible with Home Assistant integration versions `>=3.1.0`
 and `<3.2.0`.
 
@@ -145,6 +145,8 @@ Requirements:
 - Show only the latest GitHub release in ESP32 firmware and Raspberry Pi/Linux
   download blocks. Keep macOS aligned with the same latest-version download
   pattern unless an App Store link replaces it.
+- Render GitHub release body text as an expandable changelog in client
+  latest-version download blocks where public release data is embedded.
 - Route website-originated download clicks through `/go/download` so aggregate
   click counters can be combined with GitHub release asset download_count.
 - Route the public Raspberry Pi/Linux installer through `/go/linux-install`;

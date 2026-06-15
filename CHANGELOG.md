@@ -2,6 +2,15 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.30 - 2026-06-15
+
+- Added expandable changelog/release-notes rendering to the shared latest-version
+  download cards for macOS, iOS, ESP32 firmware and Raspberry Pi/Linux clients.
+- Added the iOS page to the same latest app-release block used by macOS, backed
+  by `pcvantol/djconnect-app-releases`.
+- Extended tests to cover changelog rendering from GitHub release body text and
+  the iOS latest-version release embed.
+
 ## DJConnect website v3.1.29 - 2026-06-15
 
 - Added a functional Raspberry Pi setup section that describes the path from a

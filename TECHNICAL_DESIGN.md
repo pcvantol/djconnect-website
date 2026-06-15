@@ -2,7 +2,7 @@
 
 This document records the implementation-level design choices for the DJConnect website. It is reverse-engineered from the repository and must be reviewed for every release.
 
-Current website version: `3.1.29`
+Current website version: `3.1.30`
 
 ## Scope
 
@@ -137,13 +137,15 @@ Sources:
 
 ### Latest-only Release Embeds
 
-macOS, ESP32 firmware and Linux/Raspberry Pi download blocks intentionally show only the latest GitHub release by using `data-release-limit="1"`.
+macOS, iOS, ESP32 firmware and Linux/Raspberry Pi download blocks intentionally show only the latest GitHub release by using `data-release-limit="1"`. Release body text is escaped and rendered as an expandable changelog, rather than parsed as Markdown or HTML.
 
 Why:
 
 - Reduces choice overload for users.
 - Keeps install/download pages focused.
 - Prevents old binaries from being presented as equal choices.
+- Shows release context without adding a Markdown rendering dependency or
+  trusting remote release HTML.
 
 Sources:
 

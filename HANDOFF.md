@@ -8,7 +8,7 @@
 - Cloudflare Pages fallback URL: https://djconnect.pages.dev
 - Cloudflare Pages project: `djconnect`
 - Publish directory: `wwwroot`
-- Current version: `3.1.29`
+- Current version: `3.1.30`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Voice commands page: `wwwroot/voice-commands.html`
@@ -46,7 +46,10 @@
 - macOS, iOS, Raspberry Pi and embedded pages label the homepage navigation route as `Home`; app pages should not show cross-links to other app/device pages in the top menu.
 - The embedded page uses `assets/downloads.js`, `assets/downloads.css` and the Cloudflare Pages Function `functions/api/releases.js` to live-render downloadable assets from `pcvantol/djconnect-firmware` releases.
 - macOS downloads are embedded directly on `wwwroot/macos.html` using `assets/downloads.js` and the public repo `pcvantol/djconnect-app-releases`.
+- iOS downloads are embedded directly on `wwwroot/ios.html` using `assets/downloads.js` and the public repo `pcvantol/djconnect-app-releases` until an App Store link replaces it.
 - Raspberry Pi downloads are embedded directly on `wwwroot/raspberry-pi.html` using `assets/downloads.js` and the public repo `pcvantol/djconnect-pi-releases`.
+- Client latest-version cards show expandable GitHub release body text as
+  `Changelog` on macOS, iOS, ESP32 firmware and Raspberry Pi/Linux pages.
 - ESP32 firmware, macOS and Raspberry Pi/Linux download embeds intentionally show only the latest release and route asset clicks through `/go/download`.
 - The old `macos-download` route is retired; keep macOS downloads on `wwwroot/macos.html`.
 - The Raspberry Pi/Linux install command is generated from the latest public release, downloads through `/go/linux-install` and runs `sudo ./scripts/install.sh`.
@@ -120,9 +123,9 @@ Bind `ANALYTICS_DB` to that D1 database and set a `STATS_TOKEN` secret. `GITHUB_
 - `npm test` covers version consistency, route presence, homepage navigation/copy, homepage voice chips from shared intent data, voice command intent-family docs, data-driven examples and language-scoped rendering behavior, firmware download embeds, macOS and Raspberry Pi download embeds, latest-only release embed contracts, removed legacy macOS download routes, tracked download redirects, absence of website self-release embeds, translation keys, footer copyright/support links, local link checking, firmware links, compact embedded page structure, LilyGO visual hygiene and stale pre-flashed wording.
 - `npm test` also covers the cookieless redirect/download analytics structure, D1 migration, tracked GitHub asset links, the protected GitHub-runtime `/admin` stats page contract and the release-script dependency/tool preflight.
 - `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. It is not part of the default dependency-free `npm test` run.
-- Current released version `3.1.29` adds the temporary protected `/admin`
-  GitHub download statistics page and keeps the voice command examples
-  data-driven from the shared intent source.
+- Current released version `3.1.30` shows GitHub release body text as expandable
+  changelog content in client latest-version cards and adds iOS to the public
+  app-release embed.
 - Canonical SEO domain is `https://djconnect.dev`; `djconnect.pages.dev` remains a Cloudflare fallback.
 - `https://www.djconnect.dev` should remain a 301 redirect to the apex domain, preserving path and query string.
 - Dynamic GitHub download/install blocks now rerender when the language toggle changes, so generated install text follows NL/EN.

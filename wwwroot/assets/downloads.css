@@ -74,6 +74,33 @@
   padding: 18px;
 }
 
+.release-changelog {
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(0,0,0,0.16);
+}
+
+.release-changelog summary {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  color: var(--text);
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.release-changelog-body,
+.release-changelog p {
+  margin: 0;
+  padding: 0 14px 14px;
+  color: var(--muted);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 0.92rem;
+}
+
 .install-card {
   border: 1px solid var(--line);
   border-radius: 22px;

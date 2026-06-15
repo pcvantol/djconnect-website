@@ -118,7 +118,9 @@ curl -s https://djconnect.dev | grep "DJConnect website v"
 
 The embedded page renders only the latest downloadable firmware release assets from `pcvantol/djconnect-firmware`.
 The macOS page renders only the latest binary downloads from `pcvantol/djconnect-app-releases`.
+The iOS page renders the latest app release block from `pcvantol/djconnect-app-releases` until the App Store link is final.
 The Raspberry Pi page renders only the latest binary downloads from `pcvantol/djconnect-pi-releases`.
+Latest-version release cards show the GitHub release body text as an expandable changelog on macOS, iOS, ESP32 firmware and Raspberry Pi/Linux pages.
 The Raspberry Pi install command is generated from the latest release and downloads through `https://djconnect.dev/go/linux-install`, then runs `sudo ./scripts/install.sh`.
 The Raspberry Pi page also documents the fresh-Pi path: 32 GB microSD card,
 Raspberry Pi Zero 2 W with header, Pimoroni HyperPixel 4.0 Square, Raspberry Pi

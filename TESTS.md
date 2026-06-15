@@ -51,6 +51,9 @@
 - Verify the embedded ESP32 visual card has clear spacing and includes the LilyGO product specifications link.
 - Verify the embedded release block points to `pcvantol/djconnect-firmware` releases.
 - Verify macOS, ESP32 firmware and Raspberry Pi/Linux release blocks show only the latest GitHub release.
+- Verify latest-version release cards show an expandable changelog from the
+  GitHub release body text on macOS, iOS, ESP32 firmware and Raspberry Pi/Linux
+  pages.
 - Verify macOS, ESP32 firmware and Raspberry Pi/Linux release asset links route through `/go/download`.
 - Verify the macOS page no longer links to or mentions the removed `macos-download` route.
 - Verify HACS and download buttons route through `/go/...` redirects and still land on the expected destination.

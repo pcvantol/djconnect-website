@@ -392,6 +392,12 @@ test("macOS page shows public binary release repo", async () => {
 test("iOS page labels the platform route as home", async () => {
   const ios = await read("wwwroot/ios.html");
   assert.match(ios, /href="index\.html" data-i18n="navHome">Home<\/a>/);
+  assert.match(ios, /href="#downloads" data-i18n="navDownloads">Download<\/a>/);
+  assert.match(ios, /data-i18n="releaseTitle">Laatste versie<\/h2>/);
+  assert.match(ios, /data-github-downloads/);
+  assert.match(ios, /data-github-repo="djconnect-app-releases"/);
+  assert.match(ios, /data-release-limit="1"/);
+  assert.match(ios, /assets\/downloads\.js/);
   assert.doesNotMatch(ios, /href="index\.html">Platform<\/a>/);
   assert.doesNotMatch(ios, /href="macos\.html">macOS<\/a>/);
   assert.doesNotMatch(ios, /href="embedded\.html"/);
@@ -440,6 +446,10 @@ test("download renderer keeps release embeds latest-only and tracked", async () 
   assert.match(downloads, /repo === "djconnect-app-releases"\) return "macos"/);
   assert.match(downloads, /asset\.browser_download_url/);
   assert.match(downloads, /asset\.download_count/);
+  assert.match(downloads, /renderChangelog\(release, copy\)/);
+  assert.match(downloads, /release\.body/);
+  assert.match(downloads, /changelog: "Changelog"/);
+  assert.match(downloads, /noChangelog/);
 
   for (const html of [macos, raspberry, embedded]) {
     assert.match(html, /data-github-downloads/);

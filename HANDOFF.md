@@ -21,8 +21,9 @@
 
 - The site is static HTML/CSS/JavaScript with no build step.
 - The homepage is platform-independent and routes users to setup and downloads.
-- The homepage navigation intentionally contains `Hoe werkt het`, `Features` and `Installeren`; the `Aan de slag` route is the primary CTA button.
+- The homepage navigation intentionally contains `Hoe werkt het`, `Features`, `Blog` and `Installeren`; the `Aan de slag` route is the primary CTA button.
 - The features page summarizes the main DJConnect functions and mentions the bonus mini-games: Paddle Rally, Meteor Run, Sky Dash & Maze Chase.
+- The blog section starts at `wwwroot/blog.html`; the first post is `wwwroot/blog-djconnect-project.html` and describes DJConnect as a Home Assistant-backed multi-client music workflow.
 - The homepage hero uses a swipeable device carousel for macOS, a landscape iPad and LilyGO/ESP32. Keep each device slide spacious and avoid compressing devices side-by-side.
 - The iOS carousel slide intentionally shows one landscape iPad only; do not re-add a second iPhone visual unless the layout is redesigned.
 - The homepage has prepared App Store CTA placeholders with `data-store-link="macos"` and `data-store-link="ios"`, plus a prepared Raspberry Pi route.

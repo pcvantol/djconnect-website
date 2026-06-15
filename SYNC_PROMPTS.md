@@ -113,6 +113,11 @@ Requirements:
   clients determine their UI language locally.
 - Keep cloud/remote URLs out of Apple app runtime traffic; cloud URLs are only
   needed by Home Assistant-owned Spotify OAuth config flows.
+- Keep Spotify access-token expiry and refresh-token rotation fully HA-internal.
+  Normal access-token expiry, Spotify API 401 retry and rotated refresh-token
+  persistence must not surface as client errors. Only create a Spotify
+  reauthorization Repair after every known stored refresh token source has been
+  rejected by Spotify, and never log token values.
 - When pairing an app-like client, ask for or use the Client API URL shown in
   the client pairing sheet. Do not assume a changing Bonjour hostname remains
   the canonical callback target after pairing.
@@ -316,6 +321,9 @@ Requirements:
   language, log_level, and current device settings in status payloads.
 - Send raw WAV voice audio to POST /api/djconnect/voice with Authorization:
   Bearer <device_token> and X-DJConnect-Device-ID.
+- Keep Up Next queue capacity aligned with the shared contract: accept and
+  render up to 100 real queue items from Home Assistant, then truncate locally.
+  Do not pad short queues with repeated current-track entries.
 - Treat backend_unavailable and version_mismatch as recoverable without
   clearing pairing.
 - Treat authenticated 401/403/404 as stale/setup recovery while keeping
@@ -486,7 +494,8 @@ Voor `POST /api/djconnect/command` met `command:"queue"`:
 Regels:
 
 - App-clients mogen `limit:100` meesturen; HA retourneert maximaal 100 echte
-  backend queue-items.
+  backend queue-items. ESP firmware in de `3.1.x` lijn accepteert en toont
+  maximaal 100 items.
 - Retourneer de echte backend queue/context, niet dezelfde current track als padding.
 - Als er maar 1 queue-item is, retourneer 1 item.
 - `context_uri` blijft nodig voor ESP/web per-item play.
@@ -1648,6 +1657,11 @@ Requirements:
   clients determine their UI language locally.
 - Keep cloud/remote URLs out of Apple app runtime traffic; cloud URLs are only
   needed by Home Assistant-owned Spotify OAuth config flows.
+- Keep Spotify access-token expiry and refresh-token rotation fully HA-internal.
+  Normal access-token expiry, Spotify API 401 retry and rotated refresh-token
+  persistence must not surface as client errors. Only create a Spotify
+  reauthorization Repair after every known stored refresh token source has been
+  rejected by Spotify, and never log token values.
 - When pairing an app-like client, ask for or use the Client API URL shown in
   the client pairing sheet. Do not assume a changing Bonjour hostname remains
   the canonical callback target after pairing.
@@ -1832,6 +1846,9 @@ Requirements:
   language, log_level, and current device settings in status payloads.
 - Send raw WAV voice audio to POST /api/djconnect/voice with Authorization:
   Bearer <device_token> and X-DJConnect-Device-ID.
+- Keep Up Next queue capacity aligned with the shared contract: accept and
+  render up to 100 real queue items from Home Assistant, then truncate locally.
+  Do not pad short queues with repeated current-track entries.
 - Treat backend_unavailable and version_mismatch as recoverable without
   clearing pairing.
 - Treat authenticated 401/403/404 as stale/setup recovery while keeping

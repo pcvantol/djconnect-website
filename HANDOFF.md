@@ -8,7 +8,7 @@
 - Cloudflare Pages fallback URL: https://djconnect.pages.dev
 - Cloudflare Pages project: `djconnect`
 - Publish directory: `wwwroot`
-- Current version: `3.1.32`
+- Current version: `3.1.33`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Voice commands page: `wwwroot/voice-commands.html`
@@ -35,9 +35,10 @@
 - The iOS carousel slide intentionally shows one landscape iPad only; do not re-add a second iPhone visual unless the layout is redesigned.
 - The homepage has prepared App Store CTA placeholders with `data-store-link="macos"` and `data-store-link="ios"`, plus a prepared Raspberry Pi route.
 - The Raspberry Pi page loads public builds from `pcvantol/djconnect-pi-releases` using `assets/downloads.js`.
-- The Raspberry Pi page includes a functional fresh-Pi setup path and starter
-  hardware list: 32 GB microSD, Raspberry Pi Zero 2 W with header and Pimoroni
-  HyperPixel 4.0 Square.
+- The Raspberry Pi page includes a functional fresh-Pi setup path, a copyable
+  bootstrap command and one supported-hardware section for Raspberry Pi Zero 2 W
+  with header plus Pimoroni HyperPixel 4.0 Square. Keep the old separate starter
+  hardware cards off the page.
 - The embedded page is now a compact product page: supported hardware, how it works and firmware downloads. Keep experience, setup, requirements and FAQ content off this page.
 - The embedded page should use the same site color language as the homepage: cyan/green primary CTA, subtle pink/green/cyan background accents and no dominant purple-blue page background.
 - The embedded page should point users to LilyGO product specs where relevant. Firmware download and setup links belong on the start page. Do not reintroduce pre-flashed copy.
@@ -46,8 +47,8 @@
 - The start page pairing switch has separate panels for ESP device, iOS app, macOS app and Raspberry Pi app.
 - macOS, iOS, Raspberry Pi and embedded pages label the homepage navigation route as `Home`; app pages should not show cross-links to other app/device pages in the top menu.
 - The embedded page uses `assets/downloads.js`, `assets/downloads.css` and the Cloudflare Pages Function `functions/api/releases.js` to live-render downloadable assets from `pcvantol/djconnect-firmware` releases.
-- macOS downloads are embedded directly on `wwwroot/macos.html` using `assets/downloads.js` and the public repo `pcvantol/djconnect-app-releases`.
-- iOS downloads are embedded directly on `wwwroot/ios.html` using `assets/downloads.js` and the public repo `pcvantol/djconnect-app-releases` until an App Store link replaces it.
+- macOS downloads are embedded directly on `wwwroot/macos.html` using `assets/downloads.js`, `data-download-target="macos"` and the public repo `pcvantol/djconnect-app-releases`.
+- iOS downloads are embedded directly on `wwwroot/ios.html` using `assets/downloads.js`, `data-download-target="ios"` and the public repo `pcvantol/djconnect-app-releases` until an App Store link replaces it. The iOS page must never show macOS release assets.
 - Raspberry Pi downloads are embedded directly on `wwwroot/raspberry-pi.html` using `assets/downloads.js` and the public repo `pcvantol/djconnect-pi-releases`.
 - Client latest-version cards show expandable GitHub release body text as
   `Changelog` on macOS, iOS, ESP32 firmware and Raspberry Pi/Linux pages.
@@ -125,9 +126,9 @@ Bind `ANALYTICS_DB` to that D1 database and set a `STATS_TOKEN` secret. `GITHUB_
 - `npm test` covers version consistency, route presence, homepage navigation/copy, homepage voice chips from shared intent data, voice command intent-family docs, data-driven examples and language-scoped rendering behavior, firmware download embeds, macOS and Raspberry Pi download embeds, latest-only release embed contracts, removed legacy macOS download routes, tracked download redirects, absence of website self-release embeds, translation keys, footer copyright/support links, local link checking, firmware links, compact embedded page structure, LilyGO visual hygiene and stale pre-flashed wording.
 - `npm test` also covers the cookieless redirect/download analytics structure, D1 migration, tracked GitHub asset links, the protected GitHub-runtime `/admin` stats page contract and the release-script dependency/tool preflight.
 - `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. It is not part of the default dependency-free `npm test` run.
-- Current released version `3.1.32` aligns the website voice-intent examples,
-  sync prompt and documentation with the Home Assistant repo canonical
-  `examples/voice_intents.json` source.
+- Current released version `3.1.33` adds platform-specific app-release filtering,
+  a homepage Platform link on client pages and the Raspberry Pi supported
+  hardware/copy-button update.
 - Canonical SEO domain is `https://djconnect.dev`; `djconnect.pages.dev` remains a Cloudflare fallback.
 - `https://www.djconnect.dev` should remain a 301 redirect to the apex domain, preserving path and query string.
 - Dynamic GitHub download/install blocks now rerender when the language toggle changes, so generated install text follows NL/EN.

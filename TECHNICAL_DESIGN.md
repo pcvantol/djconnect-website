@@ -2,7 +2,7 @@
 
 This document records the implementation-level design choices for the DJConnect website. It is reverse-engineered from the repository and must be reviewed for every release.
 
-Current website version: `3.1.32`
+Current website version: `3.1.33`
 
 ## Scope
 
@@ -62,12 +62,13 @@ Sources:
 
 ### Data Attribute Configuration
 
-Dynamic components are configured with `data-*` attributes such as `data-github-owner`, `data-github-repo`, `data-release-limit`, `data-github-downloads`, `data-github-install` and `data-i18n`.
+Dynamic components are configured with `data-*` attributes such as `data-github-owner`, `data-github-repo`, `data-release-limit`, `data-download-target`, `data-github-downloads`, `data-github-install` and `data-i18n`.
 
 Why:
 
 - Keeps page-specific configuration in markup.
-- Allows the same script to render macOS, ESP32 firmware and Linux/Raspberry Pi downloads.
+- Allows the same script to render macOS, iOS, ESP32 firmware and Linux/Raspberry Pi downloads.
+- Keeps platform filtering explicit when multiple client types share one public release repository.
 - Makes static tests simple: contracts can be asserted by scanning HTML.
 
 Sources:
@@ -137,7 +138,7 @@ Sources:
 
 ### Latest-only Release Embeds
 
-macOS, iOS, ESP32 firmware and Linux/Raspberry Pi download blocks intentionally show only the latest GitHub release by using `data-release-limit="1"`. Release body text is escaped and rendered as an expandable changelog, rather than parsed as Markdown or HTML.
+macOS, iOS, ESP32 firmware and Linux/Raspberry Pi download blocks intentionally show only the latest GitHub release by using `data-release-limit="1"`. macOS and iOS use explicit `data-download-target` values so the shared app release repository cannot show the wrong platform assets on a client page. Release body text is escaped and rendered as an expandable changelog, rather than parsed as Markdown or HTML.
 
 Why:
 

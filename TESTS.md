@@ -12,8 +12,9 @@
 - Open `wwwroot/blog.html` and verify the Blog overview links to `wwwroot/blog-djconnect-project.html`.
 - Open `wwwroot/blog-djconnect-project.html` and verify the post explains the DJConnect project, Home Assistant base and multi-client workflow.
 - Open `wwwroot/raspberry-pi.html` and verify it loads Raspberry Pi builds from `pcvantol/djconnect-pi-releases`.
-- Verify the Raspberry Pi page lists the starter hardware: 32 GB microSD,
-  Raspberry Pi Zero 2 W with header and Pimoroni HyperPixel 4.0 Square.
+- Verify the Raspberry Pi page has one `Ondersteunde hardware` section with a
+  Raspberry Pi Zero 2 W plus Pimoroni HyperPixel 4.0 Square block and external
+  links to both product pages.
 - Verify the Raspberry Pi page explains the fresh-Pi flow from Raspberry Pi OS
   Lite 64-bit through first-boot configuration, SSH, Git checkout and
   `scripts/bootstrap_raspberry_pi_os.sh`.
@@ -42,7 +43,9 @@
 - Verify the Spotify Premium account is configured inside the DJConnect configuration section, not as a separate top-level setup block.
 - Verify the homepage embedded card opens `wwwroot/embedded.html`.
 - Open `wwwroot/macos.html` and `wwwroot/ios.html`.
-- Verify macOS, iOS, Raspberry Pi and embedded pages label the homepage navigation route as `Home`; app pages should not show cross-links to other app or embedded pages.
+- Verify macOS, iOS, Raspberry Pi and embedded pages have `Home` plus
+  `Platform` navigation, where `Platform` links to the homepage app overview.
+  App pages should not show cross-links to other app or embedded pages.
 - Open `wwwroot/macos.html` and verify it shows binaries or the empty app-release-repo state.
 - Verify the embedded release cards load from GitHub or show the release fallback message.
 - Open `wwwroot/embedded.html`.
@@ -50,7 +53,9 @@
 - Verify the embedded page lists LilyGO T-Embed CC1101 and ESP32-S3-BOX-3 under supported hardware.
 - Verify the embedded ESP32 visual card has clear spacing and includes the LilyGO product specifications link.
 - Verify the embedded release block points to `pcvantol/djconnect-firmware` releases.
-- Verify macOS, ESP32 firmware and Raspberry Pi/Linux release blocks show only the latest GitHub release.
+- Verify iOS, macOS, ESP32 firmware and Raspberry Pi/Linux release blocks show only the latest GitHub release.
+- Verify iOS download cards never show macOS assets, and macOS download cards
+  never show iOS assets from the shared app release repository.
 - Verify latest-version release cards show an expandable changelog from the
   GitHub release body text on macOS, iOS, ESP32 firmware and Raspberry Pi/Linux
   pages.
@@ -66,7 +71,7 @@
 - Verify `https://djconnect.dev` is used in canonical tags, `robots.txt`, `sitemap.xml` and public install commands.
 - Verify `https://www.djconnect.dev` redirects permanently to `https://djconnect.dev`, preserving path and query string.
 - Verify the embedded page uses the shared site color styling: cyan/green CTA and the same subtle cyan/pink/green background family as the homepage.
-- Verify iOS does not show website repository release embeds, ESP32 uses `pcvantol/djconnect-firmware` downloadable assets and Raspberry Pi uses `pcvantol/djconnect-pi-releases`.
+- Verify iOS and macOS do not show website repository release embeds, ESP32 uses `pcvantol/djconnect-firmware` downloadable assets and Raspberry Pi uses `pcvantol/djconnect-pi-releases`.
 - Verify the embedded page does not mention pre-flashed devices.
 - Verify the embedded page does not show local quick start, requirements, FAQ, the experience section or the `Stem via HA / Veilig gekoppeld / DJ-karakter` row.
 - Verify embedded `Start installatie` buttons route to `wwwroot/start.html`.

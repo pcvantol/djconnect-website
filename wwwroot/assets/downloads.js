@@ -4,6 +4,7 @@ const downloadCopy = {
     empty: "Er zijn nog geen binaries gepubliceerd in deze release-repo.",
     emptyPi: "Er zijn nog geen Linux builds gepubliceerd in deze release-repo.",
     emptyMac: "Er zijn nog geen macOS binaries gepubliceerd in deze release-repo.",
+    emptyIos: "Er zijn nog geen iOS builds gepubliceerd in deze release-repo.",
     failed: "Downloads konden niet live worden geladen. Open GitHub voor de nieuwste binaries.",
     download: "Download",
     noAssets: "Deze release heeft nog geen downloadbare assets.",
@@ -22,6 +23,7 @@ const downloadCopy = {
     empty: "No binaries have been published in this release repo yet.",
     emptyPi: "No Linux builds have been published in this release repo yet.",
     emptyMac: "No macOS binaries have been published in this release repo yet.",
+    emptyIos: "No iOS builds have been published in this release repo yet.",
     failed: "Could not load downloads live. Open GitHub for the newest binaries.",
     download: "Download",
     noAssets: "This release does not have downloadable assets yet.",
@@ -87,7 +89,8 @@ const getReleases = async (owner, repo, limit) => {
   }
 };
 
-const downloadTargetForRepo = (repo) => {
+const downloadTargetForRepo = (repo, target) => {
+  if (target) return target;
   if (repo === "djconnect-firmware") return "firmware";
   if (repo === "djconnect-pi-releases") return "linux";
   if (repo === "djconnect-app-releases") return "macos";
@@ -125,19 +128,39 @@ const renderChangelog = (release, copy) => {
   `;
 };
 
+const assetMatchesTarget = (asset, target) => {
+  const name = String(asset.name || "").toLowerCase();
+  if (!target || target === "download") return true;
+  if (target === "ios") return /\b(ios|iphone|ipad)\b/.test(name) && !name.includes("macos");
+  if (target === "macos") return name.includes("macos") || name.endsWith(".dmg") || name.endsWith(".pkg");
+  if (target === "linux") return name.includes("linux") || name.includes("pi") || name.endsWith(".tar.gz");
+  if (target === "firmware") return name.endsWith(".bin") || name.includes("firmware") || name.includes("esp32") || name.includes("lilygo");
+  return true;
+};
+
+const releaseMatchesTarget = (release, target) => {
+  if (!target || target === "download") return true;
+  const text = `${release.name || ""} ${release.tag_name || ""}`.toLowerCase();
+  if (target === "ios" && text.includes("macos")) return false;
+  if (target === "macos" && text.includes("ios")) return false;
+  return (release.assets || []).some((asset) => assetMatchesTarget(asset, target));
+};
+
 const renderDownloads = async (root) => {
   const owner = root.dataset.githubOwner || "pcvantol";
   const repo = root.dataset.githubRepo || "djconnect-app-releases";
   const limit = Number(root.dataset.releaseLimit || 5);
+  const target = downloadTargetForRepo(repo, root.dataset.downloadTarget);
   const language = document.documentElement.lang === "en" ? "en" : "nl";
   const copy = downloadCopy[language];
-  const emptyCopy = repo === "djconnect-pi-releases" ? copy.emptyPi : repo === "djconnect-app-releases" ? copy.emptyMac : copy.empty;
+  const emptyCopy = target === "ios" ? copy.emptyIos : repo === "djconnect-pi-releases" ? copy.emptyPi : target === "macos" ? copy.emptyMac : copy.empty;
 
   root.innerHTML = `<div class="download-status">${copy.loading}</div>`;
 
   try {
-    let releases = await getReleases(owner, repo, limit);
-    releases = releases.slice(0, limit);
+    const fetchLimit = repo === "djconnect-app-releases" && target ? Math.max(limit, 20) : limit;
+    let releases = await getReleases(owner, repo, fetchLimit);
+    releases = releases.filter((release) => releaseMatchesTarget(release, target)).slice(0, limit);
     if (!releases.length) {
       root.innerHTML = `<div class="download-status">${emptyCopy} <a href="https://github.com/${owner}/${repo}/releases" target="_blank" rel="noopener">${copy.github}</a></div>`;
       return;
@@ -145,7 +168,7 @@ const renderDownloads = async (root) => {
 
     root.innerHTML = releases.map((release) => {
       const date = release.published_at || release.created_at;
-      const assets = release.assets || [];
+      const assets = (release.assets || []).filter((asset) => assetMatchesTarget(asset, target));
       return `
         <article class="download-release">
           <header>
@@ -157,7 +180,7 @@ const renderDownloads = async (root) => {
           </header>
           <div class="asset-list">
             ${assets.length ? assets.map((asset) => `
-              <a class="asset-link" href="${trackedDownloadUrl(repo, asset.browser_download_url)}" rel="noopener">
+              <a class="asset-link" href="${trackedDownloadUrl(repo, asset.browser_download_url, target)}" rel="noopener">
                 <span><strong>${asset.name}</strong><span>${formatBytes(asset.size)}${asset.download_count ? ` · ${asset.download_count} downloads` : ""}</span></span>
                 <span class="download-cta">${copy.download}</span>
               </a>
@@ -242,6 +265,27 @@ document.addEventListener("click", async (event) => {
   const label = button.dataset.copyLabel;
   const copiedLabel = button.dataset.copiedLabel;
   await copyText(button.dataset.copyText);
+  button.setAttribute("aria-label", copiedLabel);
+  button.setAttribute("title", copiedLabel);
+  button.classList.add("is-copied");
+  window.setTimeout(() => {
+    button.setAttribute("aria-label", label);
+    button.setAttribute("title", label);
+    button.classList.remove("is-copied");
+  }, 1500);
+});
+
+document.addEventListener("click", async (event) => {
+  const button = event.target.closest("[data-copy-selector]");
+  if (!button) return;
+
+  const scope = button.closest(button.dataset.copyScope || ".code-card") || document;
+  const target = scope.querySelector(button.dataset.copySelector);
+  if (!target) return;
+
+  const label = button.dataset.copyLabel || button.getAttribute("aria-label");
+  const copiedLabel = button.dataset.copiedLabel || label;
+  await copyText(target.textContent.trim());
   button.setAttribute("aria-label", copiedLabel);
   button.setAttribute("title", copiedLabel);
   button.classList.add("is-copied");

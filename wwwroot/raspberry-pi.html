@@ -35,15 +35,18 @@
     .card { border:1px solid var(--line); border-radius:22px; background:var(--panel); padding:24px; }
     .card p,.muted { color:var(--muted); }
     .step-grid { display:grid; gap:14px; }
-    .hardware-list { display:grid; gap:12px; margin-top:18px; }
-    .hardware-item {
+    .hardware-grid { display:grid; grid-template-columns:1fr; gap:18px; }
+    .hardware-card {
       border:1px solid var(--line);
-      border-radius:18px;
-      background:rgba(255,255,255,0.055);
-      padding:14px 16px;
+      border-radius:22px;
+      background:var(--panel);
+      padding:24px;
+      display:grid;
+      gap:14px;
     }
-    .hardware-item strong { display:block; margin-bottom:4px; }
-    .hardware-item a { color:var(--cyan); font-weight:850; text-decoration:underline; text-underline-offset:4px; }
+    .hardware-card h3 { font-size:1.4rem; }
+    .hardware-links { display:flex; flex-wrap:wrap; gap:12px; }
+    .hardware-links a { color:var(--cyan); font-weight:850; text-decoration:underline; text-underline-offset:4px; }
     .step-card {
       display:grid;
       grid-template-columns:auto 1fr;
@@ -67,12 +70,15 @@
     .step-card h3 { font-size:1.05rem; margin-bottom:6px; }
     .step-card p { margin:0; color:var(--muted); }
     .code-card {
+      position:relative;
       margin-top:18px;
       border:1px solid var(--line);
       border-radius:22px;
       background:rgba(255,255,255,0.055);
       padding:18px;
     }
+    .code-card > strong { display:block; padding-right:52px; }
+    .code-card .copy-command { position:absolute; top:14px; right:14px; }
     .code-card pre {
       margin:12px 0 0;
       overflow:auto;
@@ -185,6 +191,7 @@
       <a class="brand" href="index.html"><img src="assets/djconnect/icon.svg" alt="" /><span>DJConnect</span></a>
       <div class="nav-links" aria-label="Navigatie" data-i18n-attr="aria-label:navLabel">
         <a href="index.html" data-i18n="navHome">Home</a>
+        <a href="index.html#apps" data-i18n="navPlatform">Platform</a>
       </div>
       <div class="nav-controls">
         <div class="lang-toggle" aria-label="Taalkeuze" data-i18n-attr="aria-label:languageToggle">
@@ -222,16 +229,29 @@
         <article class="card"><h2 data-i18n="fixedTitle">Vaste client</h2><p data-i18n="fixedText">Gebruik Raspberry Pi als always-on DJConnect client voor bediening op een vast punt in huis.</p></article>
       </div>
     </section>
+    <section id="hardware">
+      <div class="wrap grid-2">
+        <div>
+          <h2 data-i18n="hardwareTitle">Ondersteunde hardware</h2>
+          <p class="lead" data-i18n="hardwareLead">De Pi client is bedoeld voor een vaste DJConnect setup met klein touchscreen.</p>
+        </div>
+        <div class="hardware-grid" aria-label="Ondersteunde Raspberry Pi hardware" data-i18n-attr="aria-label:hardwareLabel">
+          <article class="hardware-card">
+            <h3 data-i18n="hardwareBundleTitle">Raspberry Pi Zero 2 W + Pimoroni HyperPixel 4.0 Square</h3>
+            <p data-i18n="hardwareBundleText">Een compacte Linux client met GPIO-header en vierkant touchscreen voor vaste muziekbediening.</p>
+            <div class="hardware-links">
+              <a href="https://www.sossolutions.nl/raspberry-pi-zero-2-w-header" target="_blank" rel="noopener" data-i18n="hardwarePiLink">Raspberry Pi Zero 2 W</a>
+              <a href="https://shop.pimoroni.com/products/hyperpixel-4-square?variant=30138251477075" target="_blank" rel="noopener" data-i18n="hardwareDisplayLink">Pimoroni HyperPixel 4.0 Square</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
     <section id="setup">
       <div class="wrap grid-2">
         <div>
           <h2 data-i18n="setupTitle">Van kale Pi naar DJConnect</h2>
           <p class="lead" data-i18n="setupLead">Bereid eerst Raspberry Pi OS voor. De bootstrap hoort bij de Pi-repo en zet de minimale runtime klaar; de publieke app-install staat daarna onder Download.</p>
-          <div class="hardware-list" aria-label="Benodigde Raspberry Pi hardware" data-i18n-attr="aria-label:hardwareLabel">
-            <div class="hardware-item"><strong data-i18n="hardwareSdTitle">32 GB microSD-kaart</strong><span data-i18n="hardwareSdText">Gebruik een betrouwbare kaart met genoeg ruimte voor Raspberry Pi OS, Qt/PySide en updates.</span></div>
-            <div class="hardware-item"><strong data-i18n="hardwarePiTitle">Raspberry Pi Zero 2 W met header</strong><a href="https://www.sossolutions.nl/raspberry-pi-zero-2-w-header" target="_blank" rel="noopener" data-i18n="hardwarePiLink">Bekijk Raspberry Pi Zero 2 W + Header</a></div>
-            <div class="hardware-item"><strong data-i18n="hardwareDisplayTitle">Pimoroni HyperPixel 4.0 Square</strong><a href="https://shop.pimoroni.com/products/hyperpixel-4-square?variant=30138251477075" target="_blank" rel="noopener" data-i18n="hardwareDisplayLink">Bekijk HyperPixel 4.0 Square</a></div>
-          </div>
         </div>
         <div>
           <div class="step-grid" aria-label="Raspberry Pi setup stappen" data-i18n-attr="aria-label:setupStepsLabel">
@@ -258,7 +278,10 @@
           </div>
           <div class="code-card">
             <strong data-i18n="bootstrapCommandTitle">Bootstrap commando</strong>
-            <pre><code>sudo apt-get update
+            <button class="copy-command" type="button" aria-label="Kopieer bootstrap-commando" title="Kopieer bootstrap-commando" data-copy-selector=".bootstrap-command code" data-copy-label="Kopieer bootstrap-commando" data-copied-label="Gekopieerd" data-i18n-attr="aria-label:copyBootstrap,title:copyBootstrap,data-copy-label:copyBootstrap,data-copied-label:copiedBootstrap">
+              <span aria-hidden="true">⧉</span>
+            </button>
+            <pre class="bootstrap-command"><code>sudo apt-get update
 sudo apt-get install -y git
 if [ -d "$HOME/djconnect-pi/.git" ]; then
   cd "$HOME/djconnect-pi"
@@ -288,7 +311,7 @@ sudo ./scripts/bootstrap_raspberry_pi_os.sh</code></pre>
     <p>Copyright Peter van Tol 2026. All rights reserved.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="https://github.com/pcvantol/djconnect-website/issues" target="_blank" rel="noopener" data-i18n="legalSupport">Support: GitHub Issues</a></p>
-    <p class="site-version">DJConnect website v3.1.32</p>
+    <p class="site-version">DJConnect website v3.1.33</p>
   </footer>
   <script src="assets/downloads.js"></script>
   <script>
@@ -299,6 +322,7 @@ sudo ./scripts/bootstrap_raspberry_pi_os.sh</code></pre>
         navLabel: "Navigatie",
         languageToggle: "Taalkeuze",
         navHome: "Home",
+        navPlatform: "Platform",
         navDownloads: "Download",
         heroTitle: "DJConnect voor Raspberry Pi",
         heroLead: "Een vaste DJConnect app op Raspberry Pi: een klein scherm of dedicated muziekcontroller die lokaal met Home Assistant koppelt.",
@@ -306,15 +330,15 @@ sudo ./scripts/bootstrap_raspberry_pi_os.sh</code></pre>
         mockLabel: "Linux app",
         fixedTitle: "Vaste client",
         fixedText: "Gebruik Raspberry Pi als always-on DJConnect client voor bediening op een vast punt in huis.",
+        hardwareTitle: "Ondersteunde hardware",
+        hardwareLead: "De Pi client is bedoeld voor een vaste DJConnect setup met klein touchscreen.",
+        hardwareLabel: "Ondersteunde Raspberry Pi hardware",
+        hardwareBundleTitle: "Raspberry Pi Zero 2 W + Pimoroni HyperPixel 4.0 Square",
+        hardwareBundleText: "Een compacte Linux client met GPIO-header en vierkant touchscreen voor vaste muziekbediening.",
+        hardwarePiLink: "Raspberry Pi Zero 2 W",
+        hardwareDisplayLink: "Pimoroni HyperPixel 4.0 Square",
         setupTitle: "Van kale Pi naar DJConnect",
         setupLead: "Bereid eerst Raspberry Pi OS voor. De bootstrap hoort bij de Pi-repo en zet de minimale runtime klaar; de publieke app-install staat daarna onder Download.",
-        hardwareLabel: "Benodigde Raspberry Pi hardware",
-        hardwareSdTitle: "32 GB microSD-kaart",
-        hardwareSdText: "Gebruik een betrouwbare kaart met genoeg ruimte voor Raspberry Pi OS, Qt/PySide en updates.",
-        hardwarePiTitle: "Raspberry Pi Zero 2 W met header",
-        hardwarePiLink: "Bekijk Raspberry Pi Zero 2 W + Header",
-        hardwareDisplayTitle: "Pimoroni HyperPixel 4.0 Square",
-        hardwareDisplayLink: "Bekijk HyperPixel 4.0 Square",
         setupStepsLabel: "Raspberry Pi setup stappen",
         setupStep1Title: "Flash Raspberry Pi OS Lite 64-bit",
         setupStep1Text: "Gebruik Raspberry Pi Imager en kies een 64-bit Lite image als basis.",
@@ -327,6 +351,8 @@ sudo ./scripts/bootstrap_raspberry_pi_os.sh</code></pre>
         setupStep5Title: "Draai de OS-bootstrap",
         setupStep5Text: "De bootstrap vergroot het bestandssysteem, zet swap, tijdsync, SSH, updates, minimale X11/Qt runtime en HyperPixel setup klaar.",
         bootstrapCommandTitle: "Bootstrap commando",
+        copyBootstrap: "Kopieer bootstrap-commando",
+        copiedBootstrap: "Gekopieerd",
         releaseTitle: "Laatste versie",
         legalPrivacy: "Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.",
         legalSupport: "Support: GitHub Issues"
@@ -337,6 +363,7 @@ sudo ./scripts/bootstrap_raspberry_pi_os.sh</code></pre>
         navLabel: "Navigation",
         languageToggle: "Language",
         navHome: "Home",
+        navPlatform: "Platform",
         navDownloads: "Download",
         heroTitle: "DJConnect for Raspberry Pi",
         heroLead: "A fixed DJConnect app on Raspberry Pi: a small screen or dedicated music controller that pairs locally with Home Assistant.",
@@ -344,15 +371,15 @@ sudo ./scripts/bootstrap_raspberry_pi_os.sh</code></pre>
         mockLabel: "Linux app",
         fixedTitle: "Fixed client",
         fixedText: "Use Raspberry Pi as an always-on DJConnect client for control at a fixed spot in your home.",
+        hardwareTitle: "Supported hardware",
+        hardwareLead: "The Pi client is intended for a fixed DJConnect setup with a small touchscreen.",
+        hardwareLabel: "Supported Raspberry Pi hardware",
+        hardwareBundleTitle: "Raspberry Pi Zero 2 W + Pimoroni HyperPixel 4.0 Square",
+        hardwareBundleText: "A compact Linux client with GPIO header and square touchscreen for fixed music control.",
+        hardwarePiLink: "Raspberry Pi Zero 2 W",
+        hardwareDisplayLink: "Pimoroni HyperPixel 4.0 Square",
         setupTitle: "From fresh Pi to DJConnect",
         setupLead: "Prepare Raspberry Pi OS first. The bootstrap belongs to the Pi repo and prepares the minimal runtime; the public app install follows under Download.",
-        hardwareLabel: "Required Raspberry Pi hardware",
-        hardwareSdTitle: "32 GB microSD card",
-        hardwareSdText: "Use a reliable card with enough room for Raspberry Pi OS, Qt/PySide and updates.",
-        hardwarePiTitle: "Raspberry Pi Zero 2 W with header",
-        hardwarePiLink: "View Raspberry Pi Zero 2 W + Header",
-        hardwareDisplayTitle: "Pimoroni HyperPixel 4.0 Square",
-        hardwareDisplayLink: "View HyperPixel 4.0 Square",
         setupStepsLabel: "Raspberry Pi setup steps",
         setupStep1Title: "Flash Raspberry Pi OS Lite 64-bit",
         setupStep1Text: "Use Raspberry Pi Imager and choose a 64-bit Lite image as the base.",
@@ -365,6 +392,8 @@ sudo ./scripts/bootstrap_raspberry_pi_os.sh</code></pre>
         setupStep5Title: "Run the OS bootstrap",
         setupStep5Text: "The bootstrap expands the filesystem, sets up swap, time sync, SSH, updates, minimal X11/Qt runtime and HyperPixel setup.",
         bootstrapCommandTitle: "Bootstrap command",
+        copyBootstrap: "Copy bootstrap command",
+        copiedBootstrap: "Copied",
         releaseTitle: "Latest version",
         legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
         legalSupport: "Support: GitHub Issues"

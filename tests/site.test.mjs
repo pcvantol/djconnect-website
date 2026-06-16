@@ -350,16 +350,21 @@ test("raspberry pi page is prepared and translated", async () => {
   assert.match(raspberry, /DJConnect voor Raspberry Pi/);
   assert.match(raspberry, /class="hyperpixel"/);
   assert.match(raspberry, /HyperPixel 4"/);
-  assert.match(raspberry, /data-i18n="setupTitle">Van kale Pi naar DJConnect<\/h2>/);
-  assert.match(raspberry, /32 GB microSD-kaart/);
-  assert.match(raspberry, /Raspberry Pi Zero 2 W met header/);
+  assert.match(raspberry, /href="index\.html#apps" data-i18n="navPlatform">Platform<\/a>/);
+  assert.match(raspberry, /data-i18n="hardwareTitle">Ondersteunde hardware<\/h2>/);
+  assert.match(raspberry, /Raspberry Pi Zero 2 W \+ Pimoroni HyperPixel 4\.0 Square/);
+  assert.match(raspberry, /aria-label="Ondersteunde Raspberry Pi hardware"/);
   assert.match(raspberry, /https:\/\/www\.sossolutions\.nl\/raspberry-pi-zero-2-w-header/);
-  assert.match(raspberry, /Pimoroni HyperPixel 4\.0 Square/);
   assert.match(raspberry, /https:\/\/shop\.pimoroni\.com\/products\/hyperpixel-4-square\?variant=30138251477075/);
+  assert.match(raspberry, /data-i18n="setupTitle">Van kale Pi naar DJConnect<\/h2>/);
+  assert.doesNotMatch(raspberry, /32 GB microSD-kaart/);
+  assert.doesNotMatch(raspberry, /Raspberry Pi Zero 2 W met header/);
   assert.match(raspberry, /Flash Raspberry Pi OS Lite 64-bit/);
   assert.match(raspberry, /hostname, WiFi, SSH en locale/);
   assert.match(raspberry, /git clone https:\/\/github\.com\/pcvantol\/djconnect-pi\.git/);
   assert.match(raspberry, /sudo \.\/scripts\/bootstrap_raspberry_pi_os\.sh/);
+  assert.match(raspberry, /data-copy-selector="\.bootstrap-command code"/);
+  assert.match(raspberry, /data-i18n-attr="aria-label:copyBootstrap,title:copyBootstrap,data-copy-label:copyBootstrap,data-copied-label:copiedBootstrap"/);
   assert.match(raspberry, /The bootstrap belongs to the Pi repo/);
   assert.match(raspberry, /data-store-link="raspberry-pi"/);
   assert.match(raspberry, /data-github-downloads/);
@@ -422,10 +427,13 @@ test("macOS page shows public binary release repo", async () => {
 
   assert.doesNotMatch(macos, /href="macos-download\.html"/);
   assert.match(macos, /href="index\.html" data-i18n="navHome">Home<\/a>/);
+  assert.match(macos, /href="index\.html#apps" data-i18n="navPlatform">Platform<\/a>/);
   assert.doesNotMatch(macos, /href="ios\.html">iOS<\/a>/);
   assert.doesNotMatch(macos, /href="embedded\.html">Embedded device<\/a>/);
   assertTranslationsCoverPage(macos, "macOS page");
   assert.match(macos, /data-github-downloads/);
+  assert.match(macos, /data-download-target="macos"/);
+  assert.doesNotMatch(macos, /data-download-target="ios"/);
   assert.match(macos, /href="#downloads">Download<\/a>/);
   assert.match(macos, /data-i18n="downloadCta">Download<\/a>/);
   assert.match(macos, /data-i18n="releaseTitle">Laatste versie<\/h2>/);
@@ -441,13 +449,15 @@ test("macOS page shows public binary release repo", async () => {
 test("iOS page labels the platform route as home", async () => {
   const ios = await read("wwwroot/ios.html");
   assert.match(ios, /href="index\.html" data-i18n="navHome">Home<\/a>/);
+  assert.match(ios, /href="index\.html#apps" data-i18n="navPlatform">Platform<\/a>/);
   assert.match(ios, /href="#downloads" data-i18n="navDownloads">Download<\/a>/);
   assert.match(ios, /data-i18n="releaseTitle">Laatste versie<\/h2>/);
   assert.match(ios, /data-github-downloads/);
   assert.match(ios, /data-github-repo="djconnect-app-releases"/);
+  assert.match(ios, /data-download-target="ios"/);
+  assert.doesNotMatch(ios, /data-download-target="macos"/);
   assert.match(ios, /data-release-limit="1"/);
   assert.match(ios, /assets\/downloads\.js/);
-  assert.doesNotMatch(ios, /href="index\.html">Platform<\/a>/);
   assert.doesNotMatch(ios, /href="macos\.html">macOS<\/a>/);
   assert.doesNotMatch(ios, /href="embedded\.html"/);
   assert.doesNotMatch(ios, /data-github-releases/);
@@ -489,7 +499,14 @@ test("download renderer keeps release embeds latest-only and tracked", async () 
   ]);
 
   assert.match(downloads, /const limit = Number\(root\.dataset\.releaseLimit \|\| 5\)/);
-  assert.match(downloads, /releases = releases\.slice\(0, limit\)/);
+  assert.match(downloads, /const target = downloadTargetForRepo\(repo, root\.dataset\.downloadTarget\)/);
+  assert.match(downloads, /root\.dataset\.downloadTarget/);
+  assert.match(downloads, /fetchLimit = repo === "djconnect-app-releases" && target \? Math\.max\(limit, 20\) : limit/);
+  assert.match(downloads, /releases = releases\.filter\(\(release\) => releaseMatchesTarget\(release, target\)\)\.slice\(0, limit\)/);
+  assert.match(downloads, /const assets = \(release\.assets \|\| \[\]\)\.filter\(\(asset\) => assetMatchesTarget\(asset, target\)\)/);
+  assert.match(downloads, /target === "ios"/);
+  assert.match(downloads, /!name\.includes\("macos"\)/);
+  assert.match(downloads, /target === "macos"/);
   assert.match(downloads, /repo === "djconnect-firmware"\) return "firmware"/);
   assert.match(downloads, /repo === "djconnect-pi-releases"\) return "linux"/);
   assert.match(downloads, /repo === "djconnect-app-releases"\) return "macos"/);
@@ -508,6 +525,8 @@ test("download renderer keeps release embeds latest-only and tracked", async () 
     assert.doesNotMatch(html, /Elke release toont de downloadbare assets/);
     assert.doesNotMatch(html, /Each release shows the downloadable assets/);
   }
+
+  assert.match(macos, /data-download-target="macos"/);
 });
 
 test("download and HACS clicks use cookieless aggregate redirects", async () => {
@@ -702,7 +721,8 @@ test("legacy macOS download page is not referenced", async () => {
 test("embedded page links back to platform homepage", async () => {
   const embedded = await read("wwwroot/embedded.html");
   assert.match(embedded, /href="index\.html"/);
-  assert.match(embedded, /href="index\.html" data-i18n="navPlatform">Home<\/a>/);
+  assert.match(embedded, /href="index\.html" data-i18n="navHome">Home<\/a>/);
+  assert.match(embedded, /href="index\.html#apps" data-i18n="navPlatform">Platform<\/a>/);
   assert.match(embedded, /DJConnect op ESP32|DJConnect on ESP32/);
   assert.match(embedded, /DJConnect voor ESP32/);
   assert.match(embedded, /Gebruik DJConnect als compacte afstandsbediening voor muziek en DJ aankondiging/);

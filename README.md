@@ -120,16 +120,17 @@ curl -s https://djconnect.dev | grep "DJConnect website v"
 ## Live Releases
 
 The embedded page renders only the latest downloadable firmware release assets from `pcvantol/djconnect-firmware`.
-The macOS page renders only the latest binary downloads from `pcvantol/djconnect-app-releases`.
-The iOS page renders the latest app release block from `pcvantol/djconnect-app-releases` until the App Store link is final.
+The macOS page renders only the latest macOS binary downloads from `pcvantol/djconnect-app-releases` using `data-download-target="macos"`.
+The iOS page renders only the latest iOS builds from `pcvantol/djconnect-app-releases` using `data-download-target="ios"` until the App Store link is final.
 The Raspberry Pi page renders only the latest binary downloads from `pcvantol/djconnect-pi-releases`.
 Latest-version release cards show the GitHub release body text as an expandable changelog on macOS, iOS, ESP32 firmware and Raspberry Pi/Linux pages.
 The Raspberry Pi install command is generated from the latest release and downloads through `https://djconnect.dev/go/linux-install`, then runs `sudo ./scripts/install.sh`.
-The Raspberry Pi page also documents the fresh-Pi path: 32 GB microSD card,
-Raspberry Pi Zero 2 W with header, Pimoroni HyperPixel 4.0 Square, Raspberry Pi
-OS Lite 64-bit, first-boot network/SSH/locale setup, repo-only OS bootstrap and
-then the public app release installer.
-iOS does not load `djconnect-website` releases; add release/download embeds only when a relevant app release source exists.
+The Raspberry Pi page also documents the fresh-Pi path and supported hardware:
+Raspberry Pi Zero 2 W with header plus Pimoroni HyperPixel 4.0 Square, Raspberry
+Pi OS Lite 64-bit, first-boot network/SSH/locale setup, repo-only OS bootstrap
+and then the public app release installer.
+iOS and macOS do not load website repository releases and must not show each
+other's release assets from the shared app release repository.
 For private GitHub repositories, set a Cloudflare Pages secret named `GITHUB_TOKEN` with read access to releases.
 
 ## Privacy-Friendly Download Insights
@@ -197,7 +198,7 @@ Use `./cleanup_old_releases.sh` manually only when you want cleanup outside the 
 - Keep homepage hero device slides spacious: macOS, iPad/iPhone and LilyGO/ESP32 each get their own carousel slide.
 - Keep the start page aligned with the current setup order: Home Assistant voice pipeline, HACS, DJConnect configuration, client pairing and first use.
 - Keep the embedded page compact: supported hardware, how it works and firmware downloads. Detailed setup, requirements, FAQ and experience content belong off this page.
-- Keep macOS, iOS and Raspberry Pi page navigation minimal: `Home`, language toggle and the page CTA.
+- Keep macOS, iOS, ESP32 and Raspberry Pi page navigation minimal: `Home`, `Platform`, language toggle and the page CTA.
 - Keep macOS and Raspberry Pi download menu labels singular: `Download`.
 - Keep `macos-download` removed; the canonical macOS app page is `wwwroot/macos.html`.
 - Keep ESP32 firmware, macOS and Raspberry Pi/Linux download embeds limited to the latest release and routed through `/go/download`.

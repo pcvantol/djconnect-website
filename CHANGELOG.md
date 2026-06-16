@@ -2,6 +2,18 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.33 - 2026-06-16
+
+- Added explicit platform targeting to the shared GitHub download renderer so
+  the iOS page never shows macOS assets and the macOS page never shows iOS
+  assets from the shared app release repository.
+- Added `Platform` navigation links back to the homepage app overview on the
+  macOS, iOS, ESP32 and Raspberry Pi pages.
+- Reworked the Raspberry Pi hardware guidance into one supported-hardware
+  section for Raspberry Pi Zero 2 W plus Pimoroni HyperPixel 4.0 Square and
+  removed the old separate starter-hardware cards.
+- Added a copy-to-clipboard button to the Raspberry Pi bootstrap command block.
+
 ## DJConnect website v3.1.32 - 2026-06-16
 
 - Removed local `SYNC_PROMPTS.md` and `PRODUCT_ROADMAP.md` copies from the

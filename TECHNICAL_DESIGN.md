@@ -2,7 +2,7 @@
 
 This document records the implementation-level design choices for the DJConnect website. It is reverse-engineered from the repository and must be reviewed for every release.
 
-Current website version: `3.1.33`
+Current website version: `3.1.34`
 
 ## Scope
 
@@ -51,10 +51,15 @@ Why:
 - Pages remain deployable without a build pipeline.
 - GitHub release content can change independently of website releases.
 - Download links can route through `/go/download` for aggregate, cookieless click counts.
+- The shared download renderer is loaded with a site-version query string and
+  Cloudflare Pages `_headers` marks it `Cache-Control: no-cache`, so browsers
+  and in-app WebViews revalidate platform-filter changes instead of running a
+  stale release renderer.
 
 Sources:
 
 - `wwwroot/assets/downloads.js`
+- `wwwroot/_headers`
 - `wwwroot/assets/releases.js`
 - `wwwroot/macos.html`
 - `wwwroot/embedded.html`

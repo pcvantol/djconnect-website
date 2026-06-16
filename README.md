@@ -124,6 +124,10 @@ The macOS page renders only the latest macOS binary downloads from `pcvantol/djc
 The iOS page renders only the latest iOS builds from `pcvantol/djconnect-app-releases` using `data-download-target="ios"` until the App Store link is final.
 The Raspberry Pi page renders only the latest binary downloads from `pcvantol/djconnect-pi-releases`.
 Latest-version release cards show the GitHub release body text as an expandable changelog on macOS, iOS, ESP32 firmware and Raspberry Pi/Linux pages.
+Pages that render dynamic downloads load `assets/downloads.js` with a version
+query string, and `wwwroot/_headers` sets `Cache-Control: no-cache` for that
+asset. This prevents stale browser/WebView caches from reusing an old download
+renderer after platform-filter changes.
 The Raspberry Pi install command is generated from the latest release and downloads through `https://djconnect.dev/go/linux-install`, then runs `sudo ./scripts/install.sh`.
 The Raspberry Pi page also documents the fresh-Pi path and supported hardware:
 Raspberry Pi Zero 2 W with header plus Pimoroni HyperPixel 4.0 Square, Raspberry

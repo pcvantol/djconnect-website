@@ -2,6 +2,17 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.34 - 2026-06-16
+
+- Added a cache-busting version query to every page that loads the shared
+  `assets/downloads.js` renderer, preventing stale browser/WebView caches from
+  showing macOS release cards on the iOS page after platform-filter updates.
+- Added Cloudflare Pages `_headers` for `assets/downloads.js` with
+  `Cache-Control: no-cache`, so the dynamic download renderer is revalidated
+  while remaining cacheable.
+- Extended tests to cover the cache header file and versioned download-renderer
+  script references on iOS, macOS, ESP32 and Raspberry Pi pages.
+
 ## DJConnect website v3.1.33 - 2026-06-16
 
 - Added explicit platform targeting to the shared GitHub download renderer so

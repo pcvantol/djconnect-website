@@ -56,6 +56,9 @@
 - Verify iOS, macOS, ESP32 firmware and Raspberry Pi/Linux release blocks show only the latest GitHub release.
 - Verify iOS download cards never show macOS assets, and macOS download cards
   never show iOS assets from the shared app release repository.
+- Verify pages with dynamic download cards load `assets/downloads.js` with the
+  current site version query string and `wwwroot/_headers` keeps that renderer
+  on `Cache-Control: no-cache`.
 - Verify latest-version release cards show an expandable changelog from the
   GitHub release body text on macOS, iOS, ESP32 firmware and Raspberry Pi/Linux
   pages.

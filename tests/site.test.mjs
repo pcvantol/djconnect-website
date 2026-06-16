@@ -491,12 +491,16 @@ test("download script renders dynamic Raspberry Pi install command", async () =>
 });
 
 test("download renderer keeps release embeds latest-only and tracked", async () => {
-  const [downloads, macos, raspberry, embedded] = await Promise.all([
+  const [version, headers, downloads, ios, macos, raspberry, embedded] = await Promise.all([
+    read("VERSION"),
+    read("wwwroot/_headers"),
     read("wwwroot/assets/downloads.js"),
+    read("wwwroot/ios.html"),
     read("wwwroot/macos.html"),
     read("wwwroot/raspberry-pi.html"),
     read("wwwroot/embedded.html")
   ]);
+  const versionQuery = `assets/downloads.js?v=${version.trim()}`;
 
   assert.match(downloads, /const limit = Number\(root\.dataset\.releaseLimit \|\| 5\)/);
   assert.match(downloads, /const target = downloadTargetForRepo\(repo, root\.dataset\.downloadTarget\)/);
@@ -516,10 +520,14 @@ test("download renderer keeps release embeds latest-only and tracked", async () 
   assert.match(downloads, /release\.body/);
   assert.match(downloads, /changelog: "Changelog"/);
   assert.match(downloads, /noChangelog/);
+  assert.match(headers, /\/assets\/downloads\.js/);
+  assert.match(headers, /Cache-Control: no-cache/);
 
-  for (const html of [macos, raspberry, embedded]) {
+  for (const html of [ios, macos, raspberry, embedded]) {
     assert.match(html, /data-github-downloads/);
     assert.match(html, /data-release-limit="1"/);
+    assert.match(html, new RegExp(versionQuery.replace(/[.?]/g, "\\$&")));
+    assert.doesNotMatch(html, /<script src="assets\/downloads\.js"><\/script>/);
     assert.doesNotMatch(html, /data-github-releases/);
     assert.doesNotMatch(html, /Live opgehaald uit GitHub en automatisch geformatteerd/);
     assert.doesNotMatch(html, /Elke release toont de downloadbare assets/);
@@ -527,6 +535,7 @@ test("download renderer keeps release embeds latest-only and tracked", async () 
   }
 
   assert.match(macos, /data-download-target="macos"/);
+  assert.match(ios, /data-download-target="ios"/);
 });
 
 test("download and HACS clicks use cookieless aggregate redirects", async () => {

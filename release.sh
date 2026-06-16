@@ -5,7 +5,8 @@ PROJECT_NAME="djconnect"
 PUBLISH_DIR="wwwroot"
 ACCOUNT_ID="${CLOUDFLARE_ACCOUNT_ID:-efe77cadf8317a53832fca0848e3ae51}"
 KEEP_WORKFLOW_RUNS="${KEEP_WORKFLOW_RUNS:-1}"
-DOC_FILES=(README.md HANDOFF.md TESTS.md TODO.md ISSUES.md CHANGELOG.md SYNC_PROMPTS.md TECHNICAL_DESIGN.md)
+DOC_FILES=(README.md HANDOFF.md TESTS.md TODO.md ISSUES.md CHANGELOG.md TECHNICAL_DESIGN.md)
+FORBIDDEN_CANONICAL_COPIES=(SYNC_PROMPTS.md PRODUCT_ROADMAP.md HA_SYNC_PROMPT.md ESP_SYNC_PROMPT.md IOS_MACOS_APP_HANDOFF.md APPLE_APP_SYNC_PROMPTS.md docs/SYNC_PROMPTS.md)
 VERSION="$(tr -d '[:space:]' < VERSION)"
 TAG="v${VERSION}"
 BRANCH="$(git branch --show-current)"
@@ -79,6 +80,13 @@ test -f "$PUBLISH_DIR/embedded.html"
 test -f "$PUBLISH_DIR/assets/djconnect/site.webmanifest"
 for DOC_FILE in "${DOC_FILES[@]}"; do
   test -f "$DOC_FILE"
+done
+for CANONICAL_COPY in "${FORBIDDEN_CANONICAL_COPIES[@]}"; do
+  if [[ -e "$CANONICAL_COPY" ]]; then
+    echo "Forbidden local canonical copy exists: $CANONICAL_COPY"
+    echo "Use pcvantol/djconnect/SYNC_PROMPTS.md and pcvantol/djconnect/PRODUCT_ROADMAP.md as the canonical cross-repo sources."
+    exit 1
+  fi
 done
 grep -q "DJConnect website ${TAG}" CHANGELOG.md
 grep -q "Current version: \`${VERSION}\`" HANDOFF.md

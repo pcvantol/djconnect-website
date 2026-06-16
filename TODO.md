@@ -1,7 +1,9 @@
 # TODO
 
 Product-level ideas, killer features, production must-haves and premium feature
-candidates are tracked in `PRODUCT_ROADMAP.md`.
+candidates are tracked only in `pcvantol/djconnect/PRODUCT_ROADMAP.md`.
+Cross-repo contract changes are tracked only in
+`pcvantol/djconnect/SYNC_PROMPTS.md`.
 
 ## Website
 

@@ -2,6 +2,17 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.32 - 2026-06-16
+
+- Removed local `SYNC_PROMPTS.md` and `PRODUCT_ROADMAP.md` copies from the
+  website repo.
+- Updated release hygiene, tests and documentation to point to the canonical
+  Home Assistant integration repo sources:
+  `pcvantol/djconnect/SYNC_PROMPTS.md` and
+  `pcvantol/djconnect/PRODUCT_ROADMAP.md`.
+- Added release-script checks that prevent local syncprompt, roadmap or old
+  loose prompt files from being reintroduced.
+
 ## DJConnect website v3.1.31 - 2026-06-16
 
 - Aligned the website voice-intent example data with the Home Assistant repo

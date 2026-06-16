@@ -15,7 +15,6 @@ Static landing page for DJConnect, published through Cloudflare Pages.
 - `wwwroot/ios.html`: iOS app page with App Store placeholder.
 - `wwwroot/raspberry-pi.html`: Raspberry Pi app page with builds from `pcvantol/djconnect-pi-releases`.
 - `wwwroot/assets/`: logo, favicon and product visuals.
-- `PRODUCT_ROADMAP.md`: feature ideas, killer features, production must-haves and premium-function candidates.
 - `functions/api/releases.js`: Cloudflare Pages Function proxy for GitHub release data.
 - `functions/go/`: privacy-friendly redirect endpoints for HACS and downloadable assets.
 - `functions/api/stats.js`: token-protected aggregate stats endpoint that combines redirect clicks with GitHub asset `download_count` totals.
@@ -71,8 +70,12 @@ Before every release, update or consciously re-check all repository documentatio
 - `TODO.md`
 - `ISSUES.md`
 - `CHANGELOG.md`
-- `SYNC_PROMPTS.md`
 - `TECHNICAL_DESIGN.md`
+
+Cross-repo contract changes must update the only canonical sync prompt in
+`pcvantol/djconnect/SYNC_PROMPTS.md`. Product roadmap changes must update the
+only canonical roadmap in `pcvantol/djconnect/PRODUCT_ROADMAP.md`. This website
+repo must not keep local copies of either file.
 
 When third-party libraries, frameworks or release tools are updated or upgraded,
 also update the dependency inventory and third-party notice details in

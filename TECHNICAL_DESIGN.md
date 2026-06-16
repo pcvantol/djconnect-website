@@ -2,7 +2,7 @@
 
 This document records the implementation-level design choices for the DJConnect website. It is reverse-engineered from the repository and must be reviewed for every release.
 
-Current website version: `3.1.31`
+Current website version: `3.1.32`
 
 ## Scope
 
@@ -315,7 +315,7 @@ Source:
 ### Markdown
 
 - Repository documentation uses short operational sections.
-- Release documentation is split across README, HANDOFF, TESTS, TODO, ISSUES, CHANGELOG, SYNC_PROMPTS and this technical design document.
+- Release documentation is split across README, HANDOFF, TESTS, TODO, ISSUES, CHANGELOG and this technical design document. Cross-repo sync prompt policy lives only in `pcvantol/djconnect/SYNC_PROMPTS.md`; the product roadmap lives only in `pcvantol/djconnect/PRODUCT_ROADMAP.md`.
 - `CHANGELOG.md` is grouped per release.
 
 Sources:
@@ -405,9 +405,13 @@ For every future release, update or consciously re-check this document together 
 - `TODO.md`
 - `ISSUES.md`
 - `CHANGELOG.md`
-- `SYNC_PROMPTS.md`
 
 Also decide whether test coverage needs to be expanded. Add tests when a release changes behavior, routes, copy contracts, translation keys, analytics, release scripts, deploy behavior or design-system contracts.
+
+For cross-repo contract changes, update `pcvantol/djconnect/SYNC_PROMPTS.md` in
+the Home Assistant integration repo as a follow-up. For roadmap changes, update
+`pcvantol/djconnect/PRODUCT_ROADMAP.md`. Do not add local copies of either file
+to this website repo.
 
 If any third-party library, framework or release tool is updated or upgraded,
 update the dependency inventory and third-party notice details in this document

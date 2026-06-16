@@ -5,6 +5,14 @@ import assert from "node:assert/strict";
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
 const webRoot = new URL("../wwwroot/", import.meta.url);
 
+const assertMissing = async (path) => {
+  await assert.rejects(
+    access(new URL(`../${path}`, import.meta.url)),
+    { code: "ENOENT" },
+    `${path} must not exist in this repo`
+  );
+};
+
 const extractDataKeys = (html) => {
   const keys = new Set();
   for (const match of html.matchAll(/data-i18n="([^"]+)"/g)) {
@@ -95,6 +103,36 @@ test("site version is consistent", async () => {
   assert.equal(JSON.parse(packageJson).version, cleanVersion);
   assert.match(index, new RegExp(`DJConnect website v${cleanVersion}`));
   assert.match(embedded, new RegExp(`DJConnect website v${cleanVersion}`));
+});
+
+test("canonical cross-repo prompt and roadmap stay external", async () => {
+  const [readme, handoff, testsDoc, todo, design, releaseScript] = await Promise.all([
+    read("README.md"),
+    read("HANDOFF.md"),
+    read("TESTS.md"),
+    read("TODO.md"),
+    read("TECHNICAL_DESIGN.md"),
+    read("release.sh")
+  ]);
+
+  for (const forbidden of [
+    "SYNC_PROMPTS.md",
+    "PRODUCT_ROADMAP.md",
+    "HA_SYNC_PROMPT.md",
+    "ESP_SYNC_PROMPT.md",
+    "IOS_MACOS_APP_HANDOFF.md",
+    "APPLE_APP_SYNC_PROMPTS.md",
+    "docs/SYNC_PROMPTS.md"
+  ]) {
+    await assertMissing(forbidden);
+  }
+
+  for (const doc of [readme, handoff, testsDoc, todo, design, releaseScript]) {
+    assert.match(doc, /pcvantol\/djconnect\/SYNC_PROMPTS\.md/);
+    assert.match(doc, /pcvantol\/djconnect\/PRODUCT_ROADMAP\.md/);
+  }
+
+  assert.doesNotMatch(`${readme}\n${handoff}\n${testsDoc}\n${todo}\n${design}`, /byte-for-byte/i);
 });
 
 test("homepage has platform routes and app store placeholders", async () => {
@@ -240,7 +278,6 @@ test("voice commands page documents intent families and artist-first behavior", 
   const intents = await read("wwwroot/assets/voice-intents.js");
   const sitemap = await read("wwwroot/sitemap.xml");
   const prompt = await read("VOICE_INTENT_DATA_PROMPT.md");
-  const syncPrompts = await read("SYNC_PROMPTS.md");
   const handoff = await read("HANDOFF.md");
 
   assert.match(voice, /<title>DJConnect Spraakopdrachten<\/title>/);
@@ -283,9 +320,9 @@ test("voice commands page documents intent families and artist-first behavior", 
   assert.match(prompt, /`album`\/`plaat`/);
   assert.match(prompt, /`playlist`\/`afspeellijst`/);
   assert.match(prompt, /Laat website-rendering, styling, release, changelog en deploy buiten deze/);
-  assert.match(syncPrompts, /Canonical spoken music intent example data lives in/);
-  assert.match(syncPrompts, /examples\/voice_intents\.json/);
   assert.match(handoff, /Canonical spoken music example data lives in `examples\/voice_intents\.json`/);
+  assert.match(handoff, /pcvantol\/djconnect\/SYNC_PROMPTS\.md/);
+  assert.match(handoff, /pcvantol\/djconnect\/PRODUCT_ROADMAP\.md/);
   assertTranslationsCoverPage(voice, "voice-commands page");
 });
 
@@ -553,12 +590,16 @@ test("release script performs standard cleanup after release", async () => {
 test("release script checks documentation before tagging", async () => {
   const releaseScript = await read("release.sh");
 
-  for (const file of ["README.md", "HANDOFF.md", "TESTS.md", "TODO.md", "ISSUES.md", "CHANGELOG.md", "SYNC_PROMPTS.md", "TECHNICAL_DESIGN.md"]) {
+  for (const file of ["README.md", "HANDOFF.md", "TESTS.md", "TODO.md", "ISSUES.md", "CHANGELOG.md", "TECHNICAL_DESIGN.md"]) {
     assert.match(releaseScript, new RegExp(file.replace(".", "\\.")));
   }
 
+  assert.doesNotMatch(releaseScript, /DOC_FILES=.*SYNC_PROMPTS/);
+  assert.match(releaseScript, /FORBIDDEN_CANONICAL_COPIES=\(SYNC_PROMPTS\.md PRODUCT_ROADMAP\.md/);
+  assert.match(releaseScript, /pcvantol\/djconnect\/SYNC_PROMPTS\.md and pcvantol\/djconnect\/PRODUCT_ROADMAP\.md/);
   assert.match(releaseScript, /for DOC_FILE in "\$\{DOC_FILES\[@\]\}"; do/);
   assert.match(releaseScript, /test -f "\$DOC_FILE"/);
+  assert.match(releaseScript, /for CANONICAL_COPY in "\$\{FORBIDDEN_CANONICAL_COPIES\[@\]\}"; do/);
   assert.match(releaseScript, /grep -q "DJConnect website \$\{TAG\}" CHANGELOG\.md/);
   assert.match(releaseScript, /grep -q "Current version:/);
   assert.match(releaseScript, /HANDOFF\.md/);

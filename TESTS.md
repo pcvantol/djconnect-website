@@ -92,8 +92,14 @@ test -f TESTS.md
 test -f TODO.md
 test -f ISSUES.md
 test -f CHANGELOG.md
-test -f SYNC_PROMPTS.md
 test -f TECHNICAL_DESIGN.md
+test ! -e SYNC_PROMPTS.md
+test ! -e PRODUCT_ROADMAP.md
+test ! -e HA_SYNC_PROMPT.md
+test ! -e ESP_SYNC_PROMPT.md
+test ! -e IOS_MACOS_APP_HANDOFF.md
+test ! -e APPLE_APP_SYNC_PROMPTS.md
+test ! -e docs/SYNC_PROMPTS.md
 ```
 
 Before every release, check whether the test suite needs to grow. Add or update tests for changed routes, copy, translations, rendering contracts, analytics redirects, release scripts or deploy behavior.
@@ -104,6 +110,11 @@ declared npm dependencies when a lockfile exists and records the active
 `npx wrangler@4` version. When a third-party library, framework or release tool
 is upgraded, update `TECHNICAL_DESIGN.md` and any third-party notices before
 publishing.
+
+Cross-repo contract changes must update the only canonical sync prompt in
+`pcvantol/djconnect/SYNC_PROMPTS.md`. Product roadmap changes must update
+`pcvantol/djconnect/PRODUCT_ROADMAP.md`. This website repo must not contain
+local copies of either file or any old loose sync prompt file.
 
 For a full release with a new tag:
 

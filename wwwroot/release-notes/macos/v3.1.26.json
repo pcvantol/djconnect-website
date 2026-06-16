@@ -1,0 +1,6 @@
+{
+  "version": "3.1.26",
+  "platform": "macos",
+  "name": "DJConnect macOS 3.1.26",
+  "body": "### Changed\n\n- Polished Now Playing DJ response presentation and local response audio\n  recovery after voice requests.\n\n### Tests\n\n- Added coverage for DJ response audio URL redaction.\n\n\n---\n\nPlatform: macOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nFor normal macOS distribution, prefer the notarized Developer ID build when attached."
+}

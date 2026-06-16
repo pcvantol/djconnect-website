@@ -2,6 +2,15 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.35 - 2026-06-16
+
+- Added optional Playwright screenshot capture tooling for all public pages,
+  including `npm run screenshots` and `npm run screenshots:live`.
+- Added a laptop live-screenshot manifest and captured page images under
+  `screenshots/live-laptop/` for visual QA review.
+- Updated documentation, dependency inventory and regression coverage for the
+  screenshot workflow and `@playwright/test` development dependency.
+
 ## DJConnect website v3.1.34 - 2026-06-16
 
 - Added a cache-busting version query to every page that loads the shared

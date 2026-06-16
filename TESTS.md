@@ -178,6 +178,26 @@ Install Playwright browsers locally before first use:
 npx playwright install
 ```
 
+## Live Screenshot Capture
+
+Generate full-page screenshots for the published site at a common laptop
+viewport:
+
+```bash
+npm run screenshots:live
+```
+
+By default this captures `https://djconnect.dev` at `1440x900` and writes PNG
+files plus a `manifest.json` to `screenshots/live-laptop/`.
+
+Override the target or viewport when needed:
+
+```bash
+SCREENSHOT_BASE_URL=https://djconnect.pages.dev npm run screenshots
+SCREENSHOT_WIDTH=1366 SCREENSHOT_HEIGHT=768 npm run screenshots:live
+SCREENSHOT_OUTPUT_DIR=screenshots/live-1366 npm run screenshots:live
+```
+
 ## Future Automation
 
 - Expand Playwright smoke tests for actual language switching behavior.

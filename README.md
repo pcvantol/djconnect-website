@@ -219,6 +219,14 @@ The default test suite is dependency-free:
 npm test
 ```
 
+Generate live QA screenshots for all public pages at a laptop viewport:
+
+```bash
+npm run screenshots:live
+```
+
+Screenshots are written to `screenshots/live-laptop/` with a JSON manifest.
+
 It includes a static link checker for local page and asset references.
 
 An optional Playwright smoke-test basis is available for live/browser checks:

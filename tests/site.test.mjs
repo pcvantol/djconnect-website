@@ -105,6 +105,24 @@ test("site version is consistent", async () => {
   assert.match(embedded, new RegExp(`DJConnect website v${cleanVersion}`));
 });
 
+test("screenshot tooling is available for live page review", async () => {
+  const [packageJson, screenshotTest, testsDoc, readme] = await Promise.all([
+    read("package.json"),
+    read("tests/screenshots.spec.mjs"),
+    read("TESTS.md"),
+    read("README.md")
+  ]);
+
+  const scripts = JSON.parse(packageJson).scripts;
+  assert.equal(scripts.screenshots, "npx playwright test tests/screenshots.spec.mjs");
+  assert.match(scripts["screenshots:live"], /SCREENSHOT_BASE_URL=https:\/\/djconnect\.dev/);
+  assert.match(screenshotTest, /width: Number\(process\.env\.SCREENSHOT_WIDTH \|\| 1440\)/);
+  assert.match(screenshotTest, /height: Number\(process\.env\.SCREENSHOT_HEIGHT \|\| 900\)/);
+  assert.match(screenshotTest, /screenshots\/live-laptop/);
+  assert.match(testsDoc, /npm run screenshots:live/);
+  assert.match(readme, /npm run screenshots:live/);
+});
+
 test("canonical cross-repo prompt and roadmap stay external", async () => {
   const [readme, handoff, testsDoc, todo, design, releaseScript] = await Promise.all([
     read("README.md"),
@@ -658,7 +676,8 @@ test("technical design document records architecture, style and dependency inven
   assert.match(design, /Wrangler/);
   assert.match(design, /Cloudflare Pages/);
   assert.match(design, /GitHub REST API/);
-  assert.match(design, /package\.json` declares no production or development package dependencies/);
+  assert.match(design, /package\.json` declares no production package dependencies/);
+  assert.match(design, /The only development package dependency is `@playwright\/test`/);
   assert.match(design, /Release Maintenance Rule/);
 });
 

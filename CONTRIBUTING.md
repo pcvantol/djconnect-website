@@ -63,6 +63,8 @@ website repository.
 ## Contribution Guidelines
 
 - Keep changes small and focused.
+- Follow the community standards in `CODE_OF_CONDUCT.md`.
+- Report vulnerabilities privately through `SECURITY.md`, not public issues.
 - Add or update tests for code, behavior or contract changes.
 - Update documentation, examples and screenshots for user-facing changes.
 - Keep secrets, tokens, passwords and private user data out of commits, logs
@@ -87,9 +89,9 @@ Before opening a pull request:
 The standard release flow is handled by `./release.sh`.
 
 Before release, update `VERSION`, `package.json`, `package-lock.json`,
-`CHANGELOG.md`, `HANDOFF.md` and any public page version strings. Refresh Dutch
-screenshots for all public pages and include the updated files under
-`screenshots/live-laptop/`.
+`CHANGELOG.md`, `HANDOFF.md`, `CODEX_RESTART_PROMPT.md` and any public page
+version strings. Refresh Dutch screenshots for all public pages and include the
+updated files under `screenshots/live-laptop/`.
 
 The release script expects a clean `main` worktree, runs `npm test`, verifies
 release documentation, creates and pushes a `vX.Y.Z` tag, creates the GitHub

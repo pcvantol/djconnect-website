@@ -107,6 +107,7 @@ test -f TODO.md
 test -f ISSUES.md
 test -f CHANGELOG.md
 test -f TECHNICAL_DESIGN.md
+test -f CODEX_RESTART_PROMPT.md
 test ! -e SYNC_PROMPTS.md
 test ! -e PRODUCT_ROADMAP.md
 test ! -e HA_SYNC_PROMPT.md
@@ -119,11 +120,11 @@ test ! -e docs/SYNC_PROMPTS.md
 Before every release, check whether the test suite needs to grow. Add or update tests for changed routes, copy, translations, rendering contracts, analytics redirects, release scripts or deploy behavior.
 
 `release.sh` also enforces the core documentation-file presence, verifies that
-`CHANGELOG.md` and `HANDOFF.md` mention the current website version, refreshes
-declared npm dependencies when a lockfile exists and records the active
-`npx wrangler@4` version. When a third-party library, framework or release tool
-is upgraded, update `TECHNICAL_DESIGN.md` and any third-party notices before
-publishing.
+`CHANGELOG.md` and `HANDOFF.md` mention the current website version, includes
+`CODEX_RESTART_PROMPT.md` in the release documentation set, refreshes declared
+npm dependencies when a lockfile exists and records the active `npx wrangler@4`
+version. When a third-party library, framework or release tool is upgraded,
+update `TECHNICAL_DESIGN.md` and any third-party notices before publishing.
 
 Cross-repo contract changes must update the only canonical sync prompt in
 `pcvantol/djconnect/SYNC_PROMPTS.md`. Product roadmap changes must update

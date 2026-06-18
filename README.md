@@ -75,6 +75,7 @@ Before every release, update or consciously re-check all repository documentatio
 - `ISSUES.md`
 - `CHANGELOG.md`
 - `TECHNICAL_DESIGN.md`
+- `CODEX_RESTART_PROMPT.md`
 
 Cross-repo contract changes must update the only canonical sync prompt in
 `pcvantol/djconnect/SYNC_PROMPTS.md`. Product roadmap changes must update the

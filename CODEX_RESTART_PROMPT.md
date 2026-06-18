@@ -15,9 +15,9 @@ Context:
 - Repo is MIT-licensed via `LICENSE`.
 - Gebruik `npm test` voor de standaard testset.
 - Voor releases: refresh Nederlandse screenshots voor alle publieke pagina's,
-  update versie/changelog/docs, commit, run `./release.sh --skip-deploy`,
-  deploy daarna met `npx wrangler@4 pages deploy wwwroot --project-name
-  djconnect --branch main`.
+  update versie/changelog/docs inclusief `CODEX_RESTART_PROMPT.md`, commit, run
+  `./release.sh --skip-deploy`, deploy daarna met `npx wrangler@4 pages deploy
+  wwwroot --project-name djconnect --branch main`.
 - Cross-repo contracten horen in `pcvantol/djconnect/SYNC_PROMPTS.md` en
   roadmap in `pcvantol/djconnect/PRODUCT_ROADMAP.md`, niet lokaal kopiëren.
 - Let op: `/admin` gebruikt nog Cloudflare Access in `functions/admin.js`.

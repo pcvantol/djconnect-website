@@ -172,6 +172,10 @@ test("homepage has platform routes and app store placeholders", async () => {
   assert.match(index, /data-i18n="navApps">Installeren/);
   assert.match(index, /href="support\.html" data-i18n="navSupport">Support/);
   assert.match(index, /href="privacy\.html" data-i18n="navPrivacy">Privacy/);
+  assert.match(index, /class="menu-toggle"/);
+  assert.match(index, /aria-controls="primaryNav"/);
+  assert.match(index, /\.nav-links\.is-open/);
+  assert.match(index, /setMenuOpen/);
   assert.doesNotMatch(index, /data-i18n="navEssentials"/);
   assert.doesNotMatch(index, /data-i18n="navStart">Aan de slag/);
   assert.match(index, /href="embedded\.html"/);

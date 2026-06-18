@@ -108,6 +108,31 @@
       gap: 12px;
     }
 
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: rgba(255,255,255,0.07);
+      color: var(--text);
+      cursor: pointer;
+      place-items: center;
+    }
+
+    .menu-toggle:hover,
+    .menu-toggle:focus-visible {
+      background: var(--panel-strong);
+      border-color: rgba(255,255,255,0.28);
+      outline: none;
+    }
+
+    .menu-toggle svg {
+      width: 22px;
+      height: 22px;
+      stroke-width: 2.6;
+    }
+
     .lang-toggle {
       display: inline-grid;
       grid-template-columns: repeat(2, 1fr);
@@ -756,12 +781,34 @@
       .hero-grid, .section-head, .callout { grid-template-columns: 1fr; }
       .grid-3 { grid-template-columns: 1fr; }
       .nav-inner { flex-wrap: wrap; padding: 12px 0; }
+      .nav-controls { margin-left: auto; }
+      .menu-toggle { display: grid; }
       .nav-links {
         order: 3;
         width: 100%;
-        overflow-x: auto;
-        padding-bottom: 4px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+        padding: 10px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: rgba(11, 13, 18, 0.92);
+        box-shadow: 0 18px 40px rgba(0,0,0,0.28);
         scrollbar-width: none;
+      }
+      .nav-links.is-open { display: flex; }
+      .nav-links a {
+        min-height: 42px;
+        display: flex;
+        align-items: center;
+        padding: 0 12px;
+        border-radius: 12px;
+      }
+      .nav-links a:hover,
+      .nav-links a:focus-visible {
+        background: rgba(255,255,255,0.08);
+        outline: none;
       }
       .nav-links::-webkit-scrollbar { display: none; }
       .platform-stage { min-height: 520px; }
@@ -769,6 +816,8 @@
 
     @media (max-width: 620px) {
       .wrap { width: min(100% - 24px, var(--max)); }
+      .nav-controls { gap: 8px; }
+      .nav-controls .btn.primary { padding: 0 14px; }
       .hero { padding-top: 48px; }
       .platform-stage { min-height: 470px; padding: 18px; }
       .examples-band { padding-bottom: 42px; }
@@ -810,7 +859,7 @@
         <img src="assets/djconnect/icon.svg" alt="" aria-hidden="true" />
         <span>DJConnect</span>
       </a>
-      <div class="nav-links" aria-label="Navigatie" data-i18n-attr="aria-label:navLabel">
+      <div class="nav-links" id="primaryNav" aria-label="Navigatie" data-i18n-attr="aria-label:navLabel">
         <a href="#platform" data-i18n="navPlatform">Hoe werkt het</a>
         <a href="features.html" data-i18n="navFeatures">Features</a>
         <a href="voice-commands.html" data-i18n="navVoice">Spraak</a>
@@ -825,6 +874,13 @@
           <button type="button" data-lang="en" aria-pressed="false">EN</button>
         </div>
         <a class="btn primary" href="start.html" data-i18n="navChoose">Aan de slag</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Menu" data-i18n-attr="aria-label:navMenu">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round">
+            <path d="M4 7h16" />
+            <path d="M4 12h16" />
+            <path d="M4 17h16" />
+          </svg>
+        </button>
       </div>
     </div>
   </nav>
@@ -1023,7 +1079,7 @@
     <p data-i18n="legalSpotify">Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.1.41</p>
+    <p class="site-version">DJConnect website v3.1.42</p>
   </footer>
   <script src="assets/voice-intents.js"></script>
   <script>
@@ -1040,6 +1096,7 @@
         navApps: "Installeren",
         navSupport: "Support",
         navPrivacy: "Privacy",
+        navMenu: "Menu",
         navChoose: "Aan de slag",
         heroTitle: "DJConnect. Muziekbediening met karakter.",
         heroLead: "DJConnect brengt spraak, muziekbediening en een persoonlijke DJ-reactie samen. De kern blijft hetzelfde op elk device: vraag muziek, kies waar het speelt en krijg directe feedback terug.",
@@ -1106,6 +1163,7 @@
         navApps: "Install",
         navSupport: "Support",
         navPrivacy: "Privacy",
+        navMenu: "Menu",
         navChoose: "How to start",
         heroTitle: "DJConnect. Music control with character.",
         heroLead: "DJConnect brings voice, music control and a personal DJ response together. The core stays the same on every device: ask for music, choose where it plays and get direct feedback.",
@@ -1214,6 +1272,26 @@
     document.querySelectorAll("[data-lang]").forEach((button) => {
       button.addEventListener("click", () => applyLanguage(button.getAttribute("data-lang")));
     });
+
+    const menuToggle = document.querySelector(".menu-toggle");
+    const primaryNav = document.querySelector("#primaryNav");
+    const setMenuOpen = (open) => {
+      if (!menuToggle || !primaryNav) return;
+      menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      primaryNav.classList.toggle("is-open", open);
+    };
+
+    if (menuToggle && primaryNav) {
+      menuToggle.addEventListener("click", () => {
+        setMenuOpen(menuToggle.getAttribute("aria-expanded") !== "true");
+      });
+      primaryNav.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => setMenuOpen(false));
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") setMenuOpen(false);
+      });
+    }
 
     document.querySelectorAll("[data-carousel-direction]").forEach((button) => {
       button.addEventListener("click", () => {

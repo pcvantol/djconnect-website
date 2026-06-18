@@ -74,6 +74,18 @@ website repository.
 - Use the real DJConnect brand assets from this repository. Do not redraw the
   logo or icon unless the brand asset is intentionally being replaced.
 
+## AI-Assisted Development
+
+DJConnect is developed and maintained with AI-assisted and agentic engineering
+workflows, including Codex. AI assistance may be used for code changes,
+documentation, tests, release preparation and cross-repo consistency checks.
+
+All accepted changes remain maintainer-reviewed. Contributors are responsible
+for ensuring their changes are correct, testable, license-compatible and free of
+secrets or private data. Do not include tokens, passwords, private URLs,
+personal data or proprietary third-party material in prompts, issues, logs,
+screenshots or test fixtures.
+
 ## Pull Requests
 
 Before opening a pull request:

@@ -2,6 +2,15 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.49 - 2026-06-18
+
+- Added Voice Assistant as a homepage interface option, linking to the
+  dedicated Home Assistant Assist route.
+- Simplified top navigation on content pages by removing self-links and
+  unnecessary cross-section menu items.
+- Updated regression coverage for the revised homepage interface and
+  page-specific navigation behavior.
+
 ## DJConnect website v3.1.48 - 2026-06-18
 
 - Updated public-readiness TODO notes to reflect that `/admin` is protected by

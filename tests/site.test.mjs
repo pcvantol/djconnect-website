@@ -3,6 +3,7 @@ import { execFile } from "node:child_process";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { promisify } from "node:util";
+import vm from "node:vm";
 
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
 const webRoot = new URL("../wwwroot/", import.meta.url);
@@ -993,6 +994,13 @@ test("release build minifies shared assets before deploy", async () => {
 
   for (const script of ["site-nav", "downloads", "releases", "voice-intents"]) {
     await exec("node", ["--check", `dist/wwwroot/assets/${script}.min.js`], { cwd: new URL("../", import.meta.url) });
+  }
+
+  for (const page of publicPages) {
+    const html = await read(`dist/wwwroot/${page}.html`);
+    for (const match of html.matchAll(/<script(?![^>]*\ssrc=)[^>]*>([\s\S]*?)<\/script>/g)) {
+      assert.doesNotThrow(() => new vm.Script(match[1]), `${page} should not contain invalid inline JavaScript`);
+    }
   }
 });
 

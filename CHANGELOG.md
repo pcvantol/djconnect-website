@@ -2,6 +2,13 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.47 - 2026-06-18
+
+- Fixed an invalid extra brace in the homepage inline script that affected the
+  minified production homepage.
+- Added release-output syntax checks for inline scripts in all public HTML
+  pages.
+
 ## DJConnect website v3.1.46 - 2026-06-18
 
 - Fixed the release builder so JavaScript minification no longer strips

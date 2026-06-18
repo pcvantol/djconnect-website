@@ -40,6 +40,9 @@ Static landing page for DJConnect, published through Cloudflare Pages.
 
 Open `wwwroot/index.html` directly in a browser, or serve the folder with any static web server.
 
+For full local setup, testing, release and Cloudflare Pages details, see
+`DEVELOPMENT_ENVIRONMENT.md`.
+
 ## Deploy
 
 The production site is deployed to Cloudflare Pages:

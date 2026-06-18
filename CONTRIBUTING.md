@@ -17,6 +17,8 @@ data, production logs or diagnostics that contain sensitive values.
 
 ## Development Setup
 
+For the full local environment guide, see `DEVELOPMENT_ENVIRONMENT.md`.
+
 Install dependencies:
 
 ```bash

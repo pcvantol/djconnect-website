@@ -130,6 +130,24 @@ test("screenshot tooling is available for live page review", async () => {
   assert.match(readme, /npm run screenshots:live/);
 });
 
+test("development environment guide documents local workflow", async () => {
+  const [guide, readme, contributing] = await Promise.all([
+    read("DEVELOPMENT_ENVIRONMENT.md"),
+    read("README.md"),
+    read("CONTRIBUTING.md")
+  ]);
+
+  assert.match(guide, /# Development Environment/);
+  assert.match(guide, /npm install/);
+  assert.match(guide, /npm test/);
+  assert.match(guide, /npm run screenshots:live/);
+  assert.match(guide, /\.\/release\.sh --skip-deploy/);
+  assert.match(guide, /CLOUDFLARE_API_TOKEN/);
+  assert.match(guide, /Do not store secrets/);
+  assert.match(readme, /DEVELOPMENT_ENVIRONMENT\.md/);
+  assert.match(contributing, /DEVELOPMENT_ENVIRONMENT\.md/);
+});
+
 test("canonical cross-repo prompt and roadmap stay external", async () => {
   const [readme, handoff, testsDoc, todo, design, releaseScript] = await Promise.all([
     read("README.md"),

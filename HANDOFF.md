@@ -88,7 +88,7 @@
    and include the updated `screenshots/live-laptop/` files in the release
    commit.
 2. Commit all changes to `main`.
-3. Update or consciously re-check all repository documentation files before release: `README.md`, `HANDOFF.md`, `TESTS.md`, `TODO.md`, `ISSUES.md`, `CHANGELOG.md`, `VOICE_INTENT_DATA_PROMPT.md`, `TECHNICAL_DESIGN.md` and `CODEX_RESTART_PROMPT.md`.
+3. Update or consciously re-check all repository documentation files before release: `README.md`, `HANDOFF.md`, `TESTS.md`, `TODO.md`, `ISSUES.md`, `CHANGELOG.md`, `VOICE_INTENT_DATA_PROMPT.md`, `TECHNICAL_DESIGN.md` and `CHAT_BOOTSTRAP.md`.
 4. For cross-repo contract changes, update `pcvantol/djconnect/SYNC_PROMPTS.md` in the Home Assistant integration repo. For roadmap changes, update `pcvantol/djconnect/PRODUCT_ROADMAP.md`. Keep no local copies of either file in this website repo.
 5. Check whether test coverage needs to be expanded for the release change. Add tests for changed routes, copy, rendering contracts, analytics, release scripts or deployment behavior.
 6. Ensure the GitHub Actions repository secret `CLOUDFLARE_API_TOKEN` exists.

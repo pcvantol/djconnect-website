@@ -1,6 +1,6 @@
-# Codex Restart Prompt
+# Chat Bootstrap Prompt
 
-Use this prompt when starting a new Codex chat for this repository:
+Use this prompt to initialize a fresh Codex chat for this repository:
 
 ```text
 Je werkt in de repo `/Users/pcvantol/Documents/GitHub/djconnect-website`.
@@ -15,7 +15,7 @@ Context:
 - Repo is MIT-licensed via `LICENSE`.
 - Gebruik `npm test` voor de standaard testset.
 - Voor releases: refresh Nederlandse screenshots voor alle publieke pagina's,
-  update versie/changelog/docs inclusief `CODEX_RESTART_PROMPT.md`, commit, run
+  update versie/changelog/docs inclusief `CHAT_BOOTSTRAP.md`, commit, run
   `./release.sh --skip-deploy`, deploy daarna met `npx wrangler@4 pages deploy
   wwwroot --project-name djconnect --branch main`.
 - Cross-repo contracten horen in `pcvantol/djconnect/SYNC_PROMPTS.md` en

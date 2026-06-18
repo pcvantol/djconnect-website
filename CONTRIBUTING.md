@@ -89,7 +89,7 @@ Before opening a pull request:
 The standard release flow is handled by `./release.sh`.
 
 Before release, update `VERSION`, `package.json`, `package-lock.json`,
-`CHANGELOG.md`, `HANDOFF.md`, `CODEX_RESTART_PROMPT.md` and any public page
+`CHANGELOG.md`, `HANDOFF.md`, `CHAT_BOOTSTRAP.md` and any public page
 version strings. Refresh Dutch screenshots for all public pages and include the
 updated files under `screenshots/live-laptop/`.
 

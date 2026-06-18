@@ -722,7 +722,7 @@ test("release script performs standard cleanup after release", async () => {
 test("release script checks documentation before tagging", async () => {
   const releaseScript = await read("release.sh");
 
-  for (const file of ["README.md", "HANDOFF.md", "TESTS.md", "TODO.md", "ISSUES.md", "CHANGELOG.md", "TECHNICAL_DESIGN.md", "CODEX_RESTART_PROMPT.md"]) {
+  for (const file of ["README.md", "HANDOFF.md", "TESTS.md", "TODO.md", "ISSUES.md", "CHANGELOG.md", "TECHNICAL_DESIGN.md", "CHAT_BOOTSTRAP.md"]) {
     assert.match(releaseScript, new RegExp(file.replace(".", "\\.")));
   }
 

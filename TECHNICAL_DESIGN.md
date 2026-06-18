@@ -433,7 +433,7 @@ For every future release, update or consciously re-check this document together 
 - `TODO.md`
 - `ISSUES.md`
 - `CHANGELOG.md`
-- `CODEX_RESTART_PROMPT.md`
+- `CHAT_BOOTSTRAP.md`
 
 Also decide whether test coverage needs to be expanded. Add tests when a release changes behavior, routes, copy contracts, translation keys, analytics, release scripts, deploy behavior or design-system contracts.
 

@@ -563,6 +563,11 @@ test("support page provides email support and technical issue fallback", async (
 
   assert.match(support, /<title>DJConnect Support<\/title>/);
   assert.match(support, /href="https:\/\/djconnect\.dev\/support"/);
+  assert.match(support, /href="troubleshooting\.html" data-i18n="navTroubleshooting">Troubleshooting/);
+  assert.match(support, /data-i18n="troubleshootingTitle">Troubleshooting/);
+  assert.match(support, /macOS mDNS\/firewall-problemen/);
+  assert.match(support, /href="troubleshooting\.html" data-i18n="troubleshootingButton">Open troubleshooting/);
+  assert.match(support, /href="troubleshooting\.html" data-i18n="troubleshootingLink">Bekijk veelvoorkomende problemen en oplossingen/);
   assert.match(support, /href="mailto:support@djconnect\.dev">support@djconnect\.dev<\/a>/);
   assert.match(support, /data-i18n="heroTitle">Support<\/h1>/);
   assert.match(support, /Installatie/);
@@ -571,6 +576,35 @@ test("support page provides email support and technical issue fallback", async (
   assert.match(support, /href="https:\/\/github\.com\/pcvantol\/djconnect\/issues"/);
   assert.match(support, /Open GitHub Issues/);
   assertTranslationsCoverPage(support, "support page");
+});
+
+test("troubleshooting page covers common problems", async () => {
+  const troubleshooting = await read("wwwroot/troubleshooting.html");
+  const sitemap = await read("wwwroot/sitemap.xml");
+
+  assert.match(troubleshooting, /<title>DJConnect Troubleshooting<\/title>/);
+  assert.match(troubleshooting, /href="https:\/\/djconnect\.dev\/troubleshooting"/);
+  assert.match(troubleshooting, /Spotify autorisatie lukt niet/);
+  assert.match(troubleshooting, /\/api\/djconnect\/spotify\/callback/);
+  assert.match(troubleshooting, /Nabu Casa HTTPS external URL/);
+  assert.match(troubleshooting, /DJConnect verschijnt niet in HACS/);
+  assert.match(troubleshooting, /Pairing met app of device faalt/);
+  assert.match(troubleshooting, /macOS client wordt via mDNS gezien, maar niet automatisch ingevuld/);
+  assert.match(troubleshooting, /local_url/);
+  assert.match(troubleshooting, /curl -i http:\/\/&lt;mac-lan-ip&gt;:&lt;port&gt;\/api\/device\/pairing-info/);
+  assert.match(troubleshooting, /curl -i http:\/\/&lt;mac-lan-ip&gt;:&lt;port&gt;\/api\/device\/info/);
+  assert.match(troubleshooting, /HTTP 200 met JSON/);
+  assert.match(troubleshooting, /Connection reset by peer/);
+  assert.match(troubleshooting, /ESET, Little Snitch of LuLu/);
+  assert.match(troubleshooting, /applicatie-gebaseerde allow-rule/);
+  assert.match(troubleshooting, /DJConnect vraagt geen automatische firewall-exclusions aan/);
+  assert.match(troubleshooting, /Voice Assistant reageert niet goed/);
+  assert.match(troubleshooting, /AI- en Assist-antwoorden kunnen onjuist zijn/);
+  assert.match(troubleshooting, /Muziek start niet of op de verkeerde speaker/);
+  assert.match(troubleshooting, /Downloads, firmware of updates werken niet/);
+  assert.match(troubleshooting, /support@djconnect\.dev/);
+  assert.match(sitemap, /https:\/\/djconnect\.dev\/troubleshooting/);
+  assertTranslationsCoverPage(troubleshooting, "troubleshooting page");
 });
 
 test("privacy policy page covers App Store requirements", async () => {

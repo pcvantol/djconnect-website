@@ -9,13 +9,14 @@
 - Cloudflare Pages project: `djconnect`
 - Source directory: `wwwroot`
 - Release publish directory: `dist/wwwroot`
-- Current version: `3.1.49`
+- Current version: `3.1.50`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Platform overview page with CSS architecture diagram: `wwwroot/platform.html`
 - Voice commands page: `wwwroot/voice-commands.html`
 - Voice Assistant page: `wwwroot/voice-assistant.html`
 - Support page: `wwwroot/support.html`
+- Troubleshooting page: `wwwroot/troubleshooting.html`
 - Privacy Policy page: `wwwroot/privacy.html`
 - Start/setup page: `wwwroot/start.html`
 - macOS app page with binary downloads: `wwwroot/macos.html`
@@ -103,6 +104,14 @@
 - Public support/contact links point to `wwwroot/support.html` from public page
   footers. The support page lists `support@djconnect.dev` as the primary
   support address and keeps GitHub Issues as a technical fallback.
+- The troubleshooting page collects common setup and runtime fixes for Spotify
+  OAuth redirect mismatches, HACS visibility, pairing, Home Assistant Assist,
+  playback device selection, downloads and firmware updates. Keep it linked
+  from Support.
+- The troubleshooting page also documents macOS mDNS pairing diagnostics for
+  cases where Home Assistant sees `_djconnect._tcp.local` but cannot fetch the
+  advertised `local_url` endpoints. Keep the curl checks and firewall/security
+  software guidance practical and short.
 - Public page footers also link to `wwwroot/privacy.html`. Keep this Privacy
   Policy visible for App Store review and aligned with the aggregate-only
   website analytics, local app/Home Assistant token storage and support mailbox.
@@ -174,11 +183,10 @@ Bind `ANALYTICS_DB` to that D1 database and set a `STATS_TOKEN` secret. `GITHUB_
 - `npm test` covers version consistency, route presence, homepage navigation/copy, homepage voice chips from shared intent data, voice command intent-family docs, data-driven examples and language-scoped rendering behavior, firmware download embeds, macOS and Raspberry Pi download embeds, latest-only release embed contracts, removed legacy macOS download routes, tracked download redirects, absence of website self-release embeds, translation keys, footer copyright/support links, local link checking, firmware links, compact embedded page structure, LilyGO visual hygiene and stale pre-flashed wording.
 - `npm test` also covers the cookieless redirect/download analytics structure, D1 migration, tracked GitHub asset links, the protected GitHub-runtime `/admin` stats page contract and the release-script dependency/tool preflight.
 - `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. `npm run screenshots:live` captures Dutch live production screenshots at a laptop viewport into `screenshots/live-laptop/`. Neither is part of the default `npm test` run.
-- Current released version `3.1.49` adds Voice Assistant to the homepage
-  interface chooser, simplifies page-specific navigation and updates
-  regression coverage. Version `3.1.48` updated public-readiness TODO notes,
-  recorded available GitHub security automation and followed a final local
-  public-readiness scan.
+- Current released version `3.1.50` adds the troubleshooting page, links it
+  from Support and documents macOS mDNS/local API pairing diagnostics. Version
+  `3.1.49` added Voice Assistant to the homepage interface chooser and
+  simplified page-specific navigation.
 - Canonical SEO domain is `https://djconnect.dev`; `djconnect.pages.dev` remains a Cloudflare fallback.
 - `https://www.djconnect.dev` should remain a 301 redirect to the apex domain, preserving path and query string.
 - Dynamic GitHub download/install blocks now rerender when the language toggle changes, so generated install text follows NL/EN.

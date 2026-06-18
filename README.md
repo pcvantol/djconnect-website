@@ -13,6 +13,8 @@ Static landing page for DJConnect, published through Cloudflare Pages.
   mirrored from the HA repo canonical source `examples/voice_intents.json`.
 - `wwwroot/voice-assistant.html`: bilingual explanation page for using DJConnect as Home Assistant Assist Conversation Agent with ESPHome-powered voice assistants.
 - `wwwroot/support.html`: public support page with `support@djconnect.dev` and technical GitHub Issues fallback.
+- `wwwroot/troubleshooting.html`: common-problems guide for Spotify OAuth,
+  HACS, pairing, Home Assistant Assist, playback, downloads and firmware.
 - `wwwroot/privacy.html`: App Store-ready Privacy Policy for website, apps,
   Home Assistant integration, voice/audio flow, aggregate analytics and support
   contact.

@@ -2,6 +2,15 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.50 - 2026-06-18
+
+- Added a dedicated troubleshooting page for common Spotify OAuth, HACS,
+  pairing, Assist, playback, download and firmware issues.
+- Added macOS mDNS/local API pairing diagnostics for cases where Home
+  Assistant sees the client but cannot fetch the advertised `local_url`.
+- Added a prominent Troubleshooting section to the Support page and linked the
+  new route from the sitemap and documentation.
+
 ## DJConnect website v3.1.49 - 2026-06-18
 
 - Added Voice Assistant as a homepage interface option, linking to the

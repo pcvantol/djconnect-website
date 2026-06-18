@@ -36,6 +36,7 @@
     section { padding:54px 0 76px; }
     .card { border:1px solid var(--line); border-radius:22px; background:var(--panel); padding:26px; box-shadow:0 12px 36px rgba(0,0,0,0.16); }
     .card p { color:var(--muted); margin:0; }
+    .support-callout { margin-bottom:18px; }
     .mail-link { display:inline-flex; margin-top:18px; color:#06110c; background:linear-gradient(135deg,var(--cyan),var(--green)); border-radius:999px; padding:12px 18px; font-weight:900; }
     .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
     .note { margin-top:18px; border-left:3px solid var(--green); padding-left:14px; color:var(--muted); }
@@ -46,7 +47,7 @@
     @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } }
 
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.49" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.50" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -55,6 +56,7 @@
       <a class="brand" href="index.html"><img src="assets/djconnect/icon.svg" alt="" aria-hidden="true" /><span>DJConnect</span></a>
       <div class="nav-links" id="primaryNav" aria-label="Navigatie" data-i18n-attr="aria-label:navLabel">
         <a href="index.html" data-i18n="navHome">Home</a>
+        <a href="troubleshooting.html" data-i18n="navTroubleshooting">Troubleshooting</a>
         <a href="support.html" aria-current="page" data-i18n="navSupport">Support</a>
       </div>
       <div class="nav-controls">
@@ -85,11 +87,17 @@
 
     <section>
       <div class="wrap">
+        <div class="card support-callout">
+          <h2 data-i18n="troubleshootingTitle">Troubleshooting</h2>
+          <p data-i18n="troubleshootingText">Bekijk eerst de veelvoorkomende oplossingen voor Spotify OAuth, HACS, pairing, Voice Assistant, playback, downloads en macOS mDNS/firewall-problemen.</p>
+          <a class="mail-link" href="troubleshooting.html" data-i18n="troubleshootingButton">Open troubleshooting</a>
+        </div>
         <div class="grid-3">
           <article class="card"><h3 data-i18n="installTitle">Installatie</h3><p data-i18n="installText">Vragen over HACS, de Home Assistant integratie, app downloads of firmware.</p></article>
           <article class="card"><h3 data-i18n="pairingTitle">Koppelen</h3><p data-i18n="pairingText">Hulp bij pairing tussen je client, DJConnect en Home Assistant.</p></article>
           <article class="card"><h3 data-i18n="playbackTitle">Muziekbediening</h3><p data-i18n="playbackText">Problemen met voice input, Spotify Connect speakers of DJ-aankondigingen.</p></article>
         </div>
+        <p class="note"><a href="troubleshooting.html" data-i18n="troubleshootingLink">Bekijk veelvoorkomende problemen en oplossingen</a></p>
         <p class="note" data-i18n="githubText">Technische issues mogen ook via GitHub Issues, vooral als je logs, foutmeldingen of reproduceerbare stappen wilt delen.</p>
         <p class="note"><a href="https://github.com/pcvantol/djconnect/issues" target="_blank" rel="noopener" data-i18n="githubLink">Open GitHub Issues</a></p>
       </div>
@@ -100,7 +108,7 @@
     <p>Copyright Peter van Tol 2026. Released under the MIT License.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.1.49</p>
+    <p class="site-version">DJConnect website v3.1.50</p>
   </footer>
   <script>
     const translations = {
@@ -111,6 +119,7 @@
         languageToggle: "Taalkeuze",
         navMenu: "Menu",
         navHome: "Home",
+        navTroubleshooting: "Troubleshooting",
         navSupport: "Support",
         navStart: "Aan de slag",
         heroTitle: "Support",
@@ -123,6 +132,10 @@
         pairingText: "Hulp bij pairing tussen je client, DJConnect en Home Assistant.",
         playbackTitle: "Muziekbediening",
         playbackText: "Problemen met voice input, Spotify Connect speakers of DJ-aankondigingen.",
+        troubleshootingTitle: "Troubleshooting",
+        troubleshootingText: "Bekijk eerst de veelvoorkomende oplossingen voor Spotify OAuth, HACS, pairing, Voice Assistant, playback, downloads en macOS mDNS/firewall-problemen.",
+        troubleshootingButton: "Open troubleshooting",
+        troubleshootingLink: "Bekijk veelvoorkomende problemen en oplossingen",
         githubText: "Technische issues mogen ook via GitHub Issues, vooral als je logs, foutmeldingen of reproduceerbare stappen wilt delen.",
         githubLink: "Open GitHub Issues",
         legalPrivacy: "Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.",
@@ -136,6 +149,7 @@
         languageToggle: "Language",
         navMenu: "Menu",
         navHome: "Home",
+        navTroubleshooting: "Troubleshooting",
         navSupport: "Support",
         navStart: "Get started",
         heroTitle: "Support",
@@ -148,6 +162,10 @@
         pairingText: "Help with pairing your client, DJConnect and Home Assistant.",
         playbackTitle: "Music control",
         playbackText: "Problems with voice input, Spotify Connect speakers or DJ announcements.",
+        troubleshootingTitle: "Troubleshooting",
+        troubleshootingText: "First check the common fixes for Spotify OAuth, HACS, pairing, Voice Assistant, playback, downloads and macOS mDNS/firewall issues.",
+        troubleshootingButton: "Open troubleshooting",
+        troubleshootingLink: "View common problems and fixes",
         githubText: "Technical issues can also go through GitHub Issues, especially when you want to share logs, errors or reproducible steps.",
         githubLink: "Open GitHub Issues",
         legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
@@ -186,6 +204,6 @@
     applyLanguage(getInitialLanguage());
 
   </script>
-  <script src="assets/site-nav.js?v=3.1.49"></script>
+  <script src="assets/site-nav.js?v=3.1.50"></script>
 </body>
 </html>

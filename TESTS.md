@@ -29,6 +29,15 @@
 - Open `wwwroot/support.html` and verify `support@djconnect.dev` is the primary
   support contact, the `mailto:` link is present and GitHub Issues remains as a
   technical fallback.
+- Open `wwwroot/troubleshooting.html` and verify it covers common Spotify
+  OAuth redirect URI, HACS, pairing, Home Assistant Assist, playback, download
+  and firmware problems. Verify Support links to this page.
+- Verify the troubleshooting page covers macOS mDNS pairing where Home
+  Assistant sees `_djconnect._tcp.local` but cannot fetch the advertised
+  `local_url` endpoints. It should tell users to test
+  `/api/device/pairing-info` and `/api/device/info` with curl from the Home
+  Assistant host or another LAN device, expect HTTP 200 JSON, and check macOS
+  firewall/security software such as ESET, Little Snitch or LuLu.
 - Open `wwwroot/privacy.html` and verify it clearly covers website analytics,
   app/Home Assistant token storage, voice/audio processing, support email,
   absence of tracking cookies and the `support@djconnect.dev` privacy contact.

@@ -106,6 +106,18 @@
   only. It must not depend on D1 persistence or website redirect click counts
   yet. Do not repeat the credential value in docs, issues or diagnostics.
 - Verify `https://djconnect.dev` is used in canonical tags, `robots.txt`, `sitemap.xml` and public install commands.
+- Verify every public page has one `main` landmark, one `h1`, a visible-on-focus
+  skip link to `#mainContent`, explicit language metadata, and decorative empty
+  images hidden from assistive technology.
+- Verify shared navigation CSS provides focus-visible styling, reduced-motion
+  handling and 44px touch targets for interactive controls.
+- Verify `wwwroot/_headers` sets security headers, cautious HTML caching,
+  long-lived immutable asset caching and no-cache rules for dynamic renderer
+  scripts.
+- Verify `wwwroot/404.html` exists, is marked `noindex` and links users back to
+  Home and Support without being included in `sitemap.xml`.
+- Verify `npm run build:release` creates `dist/wwwroot` with minified shared
+  assets and that deployment commands use that release output.
 - Verify `https://www.djconnect.dev` redirects permanently to `https://djconnect.dev`, preserving path and query string.
 - Verify the embedded page uses the shared site color styling: cyan/green CTA and the same subtle cyan/pink/green background family as the homepage.
 - Verify iOS and macOS do not show website repository release embeds, ESP32 uses `pcvantol/djconnect-firmware` downloadable assets and Raspberry Pi uses `pcvantol/djconnect-pi-releases`.
@@ -152,9 +164,10 @@ Before every release, check whether the test suite needs to grow. Add or update 
 `release.sh` also enforces the core documentation-file presence, verifies that
 `CHANGELOG.md` and `HANDOFF.md` mention the current website version, includes
 `CHAT_BOOTSTRAP.md` in the release documentation set, refreshes declared
-npm dependencies when a lockfile exists and records the active `npx wrangler@4`
-version. When a third-party library, framework or release tool is upgraded,
-update `TECHNICAL_DESIGN.md` and any third-party notices before publishing.
+npm dependencies when a lockfile exists, records the active `npx wrangler@4`
+version and builds the minified release output in `dist/wwwroot`. When a
+third-party library, framework or release tool is upgraded, update
+`TECHNICAL_DESIGN.md` and any third-party notices before publishing.
 
 Cross-repo contract changes must update the only canonical sync prompt in
 `pcvantol/djconnect/SYNC_PROMPTS.md`. Product roadmap changes must update
@@ -174,7 +187,8 @@ For a deploy-only pass after a tag/release already exists:
 
 ```bash
 export CLOUDFLARE_API_TOKEN='your-cloudflare-pages-token'
-npx wrangler pages deploy wwwroot --project-name djconnect --branch main
+npm run build:release
+npx wrangler pages deploy dist/wwwroot --project-name djconnect --branch main
 ```
 
 After deployment:

@@ -108,31 +108,6 @@
       gap: 12px;
     }
 
-    .menu-toggle {
-      display: none;
-      width: 44px;
-      height: 44px;
-      border: 1px solid var(--line);
-      border-radius: 50%;
-      background: rgba(255,255,255,0.07);
-      color: var(--text);
-      cursor: pointer;
-      place-items: center;
-    }
-
-    .menu-toggle:hover,
-    .menu-toggle:focus-visible {
-      background: var(--panel-strong);
-      border-color: rgba(255,255,255,0.28);
-      outline: none;
-    }
-
-    .menu-toggle svg {
-      width: 22px;
-      height: 22px;
-      stroke-width: 2.6;
-    }
-
     .lang-toggle {
       display: inline-grid;
       grid-template-columns: repeat(2, 1fr);
@@ -782,34 +757,6 @@
       .grid-3 { grid-template-columns: 1fr; }
       .nav-inner { flex-wrap: wrap; padding: 12px 0; }
       .nav-controls { margin-left: auto; }
-      .menu-toggle { display: grid; }
-      .nav-links {
-        order: 3;
-        width: 100%;
-        display: none;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 6px;
-        padding: 10px;
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        background: rgba(11, 13, 18, 0.92);
-        box-shadow: 0 18px 40px rgba(0,0,0,0.28);
-        scrollbar-width: none;
-      }
-      .nav-links.is-open { display: flex; }
-      .nav-links a {
-        min-height: 42px;
-        display: flex;
-        align-items: center;
-        padding: 0 12px;
-        border-radius: 12px;
-      }
-      .nav-links a:hover,
-      .nav-links a:focus-visible {
-        background: rgba(255,255,255,0.08);
-        outline: none;
-      }
       .nav-links::-webkit-scrollbar { display: none; }
       .platform-stage { min-height: 520px; }
     }
@@ -851,11 +798,13 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.45" />
 </head>
 <body>
+  <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
   <nav class="nav">
     <div class="wrap nav-inner">
-      <a class="brand" href="#top" aria-label="DJConnect home">
+      <a class="brand" href="index.html" aria-label="DJConnect home">
         <img src="assets/djconnect/icon.svg" alt="" aria-hidden="true" />
         <span>DJConnect</span>
       </a>
@@ -885,7 +834,7 @@
     </div>
   </nav>
 
-  <main id="top">
+  <main id="mainContent">
     <header class="hero">
       <div class="wrap hero-grid">
         <div>
@@ -950,7 +899,7 @@
             </article>
             <article class="device-slide device-slide-embedded">
               <span class="device-slide-label" data-i18n="embeddedSlideLabel">Luister naar persoonlijke DJ aankondiging</span>
-              <div class="embedded" aria-hidden="true"><img src="assets/lilygo-t-embed-djconnect.svg" alt="" /></div>
+              <div class="embedded" aria-hidden="true"><img src="assets/lilygo-t-embed-djconnect.svg" alt="" aria-hidden="true" /></div>
             </article>
           </div>
           <button class="carousel-button next" type="button" data-carousel-direction="1" aria-label="Volgende slide" data-i18n-attr="aria-label:carouselNext">
@@ -1007,7 +956,7 @@
         <div class="grid-3">
           <article class="card">
             <div class="ha-badge">
-              <img src="https://brands.home-assistant.io/_/homeassistant/icon.png" alt="" />
+              <img src="https://brands.home-assistant.io/_/homeassistant/icon.png" alt="" aria-hidden="true" />
               <span>Works with Home Assistant</span>
             </div>
             <h3 data-i18n="essentialsHaTitle">Home Assistant als basis</h3>
@@ -1079,7 +1028,7 @@
     <p data-i18n="legalSpotify">Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.1.44</p>
+    <p class="site-version">DJConnect website v3.1.45</p>
   </footer>
   <script src="assets/voice-intents.js"></script>
   <script>
@@ -1272,25 +1221,6 @@
     document.querySelectorAll("[data-lang]").forEach((button) => {
       button.addEventListener("click", () => applyLanguage(button.getAttribute("data-lang")));
     });
-
-    const menuToggle = document.querySelector(".menu-toggle");
-    const primaryNav = document.querySelector("#primaryNav");
-    const setMenuOpen = (open) => {
-      if (!menuToggle || !primaryNav) return;
-      menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
-      primaryNav.classList.toggle("is-open", open);
-    };
-
-    if (menuToggle && primaryNav) {
-      menuToggle.addEventListener("click", () => {
-        setMenuOpen(menuToggle.getAttribute("aria-expanded") !== "true");
-      });
-      primaryNav.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", () => setMenuOpen(false));
-      });
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") setMenuOpen(false);
-      });
     }
 
     document.querySelectorAll("[data-carousel-direction]").forEach((button) => {
@@ -1307,5 +1237,6 @@
 
     applyLanguage(getInitialLanguage());
   </script>
+  <script src="assets/site-nav.js?v=3.1.45"></script>
 </body>
 </html>

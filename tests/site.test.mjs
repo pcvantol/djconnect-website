@@ -1,9 +1,13 @@
 import { access, readFile } from "node:fs/promises";
+import { execFile } from "node:child_process";
 import test from "node:test";
 import assert from "node:assert/strict";
+import { promisify } from "node:util";
 
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
 const webRoot = new URL("../wwwroot/", import.meta.url);
+const exec = promisify(execFile);
+const publicPages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "privacy", "ios", "testflight", "testflight-macos", "macos", "raspberry-pi", "embedded", "404"];
 
 const assertMissing = async (path) => {
   await assert.rejects(
@@ -192,8 +196,8 @@ test("homepage has platform routes and app store placeholders", async () => {
   assert.match(index, /href="privacy\.html" data-i18n="navPrivacy">Privacy/);
   assert.match(index, /class="menu-toggle"/);
   assert.match(index, /aria-controls="primaryNav"/);
-  assert.match(index, /\.nav-links\.is-open/);
-  assert.match(index, /setMenuOpen/);
+  assert.match(index, /assets\/site-nav\.css/);
+  assert.match(index, /assets\/site-nav\.js/);
   assert.doesNotMatch(index, /data-i18n="navEssentials"/);
   assert.doesNotMatch(index, /data-i18n="navStart">Aan de slag/);
   assert.match(index, /href="embedded\.html"/);
@@ -217,6 +221,52 @@ test("homepage has platform routes and app store placeholders", async () => {
   assert.match(index, /renderHomepageVoiceExamples\(language\)/);
   assert.match(index, /href="voice-commands\.html" data-i18n="examplesMore">Bekijk meer spraakvoorbeelden/);
   assert.doesNotMatch(index, /data-i18n="exampleCommand1"/);
+});
+
+test("all public nav pages include the mobile hamburger menu", async () => {
+  const [navCss, navJs] = await Promise.all([
+    read("wwwroot/assets/site-nav.css"),
+    read("wwwroot/assets/site-nav.js")
+  ]);
+
+  assert.match(navCss, /\.nav-links\.is-open/);
+  assert.match(navCss, /\.menu-toggle/);
+  assert.match(navJs, /const menuToggle/);
+  assert.match(navJs, /setMenuOpen/);
+
+  for (const page of publicPages) {
+    const html = await read(`wwwroot/${page}.html`);
+    assert.match(html, /class="menu-toggle"/, `${page} should include a mobile menu button`);
+    assert.match(html, /aria-expanded="false"/, `${page} should expose collapsed menu state`);
+    assert.match(html, /aria-controls="primaryNav"/, `${page} should connect the menu button to primary nav`);
+    assert.match(html, /id="primaryNav"/, `${page} should identify the primary nav`);
+    assert.match(html, /navMenu: "Menu"/, `${page} should translate the menu label`);
+    assert.match(html, /assets\/site-nav\.css/, `${page} should include shared nav CSS`);
+    assert.match(html, /assets\/site-nav\.js/, `${page} should include shared nav behavior`);
+    assert.doesNotMatch(html, /MOBILE_MENU_ENHANCEMENT/, `${page} should not duplicate mobile nav CSS`);
+  }
+});
+
+test("public pages expose baseline accessibility affordances", async () => {
+  const navCss = await read("wwwroot/assets/site-nav.css");
+
+  assert.match(navCss, /\.skip-link/);
+  assert.match(navCss, /:focus-visible/);
+  assert.match(navCss, /min-width:\s*44px/);
+  assert.match(navCss, /prefers-reduced-motion:\s*reduce/);
+
+  for (const page of publicPages) {
+    const html = await read(`wwwroot/${page}.html`);
+    const h1Count = [...html.matchAll(/<h1[\s>]/g)].length;
+    const mainCount = [...html.matchAll(/<main\b/g)].length;
+
+    assert.equal(mainCount, 1, `${page} should expose exactly one main landmark`);
+    assert.equal(h1Count, 1, `${page} should expose exactly one h1`);
+    assert.match(html, /<a class="skip-link" href="#mainContent">/, `${page} should include a skip link`);
+    assert.match(html, /<main id="mainContent">/, `${page} should expose a skip-link target`);
+    assert.match(html, /<html lang="nl">/, `${page} should declare an initial page language`);
+    assert.doesNotMatch(html, /<img\b(?=[^>]*alt="")(?![^>]*aria-hidden="true")/s, `${page} decorative images should be hidden from assistive tech`);
+  }
 });
 
 test("homepage hero uses the current device visual and copy", async () => {
@@ -898,6 +948,76 @@ test("release script performs standard cleanup after release", async () => {
   assert.match(releaseScript, /Cleaning older releases, tags and workflow runs/);
   assert.match(releaseScript, /\.\/cleanup_old_releases\.sh --keep "\$TAG" --keep-runs "\$KEEP_WORKFLOW_RUNS"/);
   assert.match(releaseScript, /KEEP_WORKFLOW_RUNS="\$\{KEEP_WORKFLOW_RUNS:-1\}"/);
+});
+
+test("release build minifies shared assets before deploy", async () => {
+  const [packageJson, releaseScript, buildScript, deployWorkflow] = await Promise.all([
+    read("package.json"),
+    read("release.sh"),
+    read("scripts/build-release.mjs"),
+    read(".github/workflows/deploy-pages.yml")
+  ]);
+  const scripts = JSON.parse(packageJson).scripts;
+
+  assert.equal(scripts["build:release"], "node scripts/build-release.mjs");
+  assert.match(buildScript, /const outputDir = path\.resolve\("dist\/wwwroot"\)/);
+  assert.match(buildScript, /const sharedAssets = \[/);
+  assert.match(buildScript, /assets\/site-nav\.css/);
+  assert.match(buildScript, /assets\/downloads\.js/);
+  assert.match(buildScript, /assets\/voice-intents\.js/);
+  assert.match(buildScript, /minifyCss/);
+  assert.match(buildScript, /minifyJs/);
+  assert.match(buildScript, /rewriteHtmlReferences/);
+  assert.match(releaseScript, /RELEASE_PUBLISH_DIR="dist\/wwwroot"/);
+  assert.match(releaseScript, /npm run build:release/);
+  assert.match(releaseScript, /assets\/site-nav\.min\.css/);
+  assert.match(releaseScript, /pages deploy "\$RELEASE_PUBLISH_DIR"/);
+  assert.match(deployWorkflow, /npm run build:release/);
+  assert.match(deployWorkflow, /pages deploy dist\/wwwroot --project-name djconnect --branch main/);
+  assert.doesNotMatch(deployWorkflow, /pages deploy wwwroot/);
+
+  await exec("npm", ["run", "build:release"], { cwd: new URL("../", import.meta.url) });
+  const [releaseIndex, releaseNavCss, releaseNavJs] = await Promise.all([
+    read("dist/wwwroot/index.html"),
+    read("dist/wwwroot/assets/site-nav.min.css"),
+    read("dist/wwwroot/assets/site-nav.min.js")
+  ]);
+
+  assert.match(releaseIndex, /assets\/site-nav\.min\.css/);
+  assert.match(releaseIndex, /assets\/site-nav\.min\.js/);
+  assert.doesNotMatch(releaseIndex, /assets\/site-nav\.css\?v=/);
+  assert.doesNotMatch(releaseIndex, /assets\/site-nav\.js\?v=/);
+  assert.ok(releaseNavCss.length < (await read("wwwroot/assets/site-nav.css")).length);
+  assert.ok(releaseNavJs.length <= (await read("wwwroot/assets/site-nav.js")).length);
+});
+
+test("production headers set cache and security defaults", async () => {
+  const headers = await read("wwwroot/_headers");
+
+  assert.match(headers, /\/\*/);
+  assert.match(headers, /X-Content-Type-Options: nosniff/);
+  assert.match(headers, /Referrer-Policy: strict-origin-when-cross-origin/);
+  assert.match(headers, /Permissions-Policy: camera=\(\), microphone=\(\), geolocation=\(\), payment=\(\), usb=\(\)/);
+  assert.match(headers, /X-Frame-Options: DENY/);
+  assert.match(headers, /Strict-Transport-Security: max-age=31536000; includeSubDomains; preload/);
+  assert.match(headers, /Cache-Control: no-cache/);
+  assert.match(headers, /\/assets\/\*\s+Cache-Control: public, max-age=31536000, immutable/s);
+  assert.match(headers, /\/assets\/downloads\.js\s+Cache-Control: no-cache/s);
+  assert.match(headers, /\/assets\/releases\.js\s+Cache-Control: no-cache/s);
+  assert.match(headers, /\/assets\/voice-intents\.js\s+Cache-Control: no-cache/s);
+  assert.match(headers, /\/robots\.txt\s+Cache-Control: public, max-age=3600/s);
+  assert.match(headers, /\/sitemap\.xml\s+Cache-Control: public, max-age=3600/s);
+});
+
+test("404 page is present and excluded from indexing", async () => {
+  const page = await read("wwwroot/404.html");
+  const sitemap = await read("wwwroot/sitemap.xml");
+
+  assert.match(page, /<meta name="robots" content="noindex" \/>/);
+  assert.match(page, /Pagina niet gevonden/);
+  assert.match(page, /Page not found/);
+  assert.match(page, /href="support\.html"/);
+  assert.doesNotMatch(sitemap, /https:\/\/djconnect\.dev\/404/);
 });
 
 test("release script checks documentation before tagging", async () => {

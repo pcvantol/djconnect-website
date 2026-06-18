@@ -7,8 +7,9 @@
 - WWW redirect: https://www.djconnect.dev -> https://djconnect.dev
 - Cloudflare Pages fallback URL: https://djconnect.pages.dev
 - Cloudflare Pages project: `djconnect`
-- Publish directory: `wwwroot`
-- Current version: `3.1.44`
+- Source directory: `wwwroot`
+- Release publish directory: `dist/wwwroot`
+- Current version: `3.1.45`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Platform overview page with CSS architecture diagram: `wwwroot/platform.html`
@@ -26,7 +27,8 @@
 
 ## Important Notes
 
-- The site is static HTML/CSS/JavaScript with no build step.
+- The site source is static HTML/CSS/JavaScript in `wwwroot`; the release cycle
+  builds a minified deploy copy in `dist/wwwroot`.
 - The homepage is platform-independent and routes users to setup and downloads.
 - The homepage navigation intentionally contains `Hoe werkt het`, `Features`,
   `Spraak`, `Blog` and `Installeren`; the `Aan de slag` route is the primary
@@ -117,8 +119,8 @@
 7. Run `./release.sh --skip-deploy` when the token is only available in GitHub Actions.
 8. Verify the GitHub Release, the `Deploy Cloudflare Pages` workflow run and https://djconnect.dev.
 
-The workflow deploys `wwwroot` to Cloudflare Pages on every push to `main` and sets `CLOUDFLARE_ACCOUNT_ID` explicitly.
-The release script verifies the Dutch screenshot manifest, verifies the core documentation files exist, checks `CHANGELOG.md` and `HANDOFF.md` against the current `VERSION`, removes older GitHub Releases, matching local/remote tags and older GitHub Actions workflow runs by default. It keeps the newly released tag and only the newest workflow run. Override workflow-run retention with `KEEP_WORKFLOW_RUNS=N` when needed.
+The workflow builds `dist/wwwroot` and deploys that minified output to Cloudflare Pages on every push to `main`, with `CLOUDFLARE_ACCOUNT_ID` set explicitly.
+The release script verifies the Dutch screenshot manifest, verifies the core documentation files exist, checks `CHANGELOG.md` and `HANDOFF.md` against the current `VERSION`, builds a minified release copy in `dist/wwwroot`, removes older GitHub Releases, matching local/remote tags and older GitHub Actions workflow runs by default. It keeps the newly released tag and only the newest workflow run. Override workflow-run retention with `KEEP_WORKFLOW_RUNS=N` when needed.
 Before tests, the release script refreshes declared npm dependencies when a
 lockfile exists and records the active `npx wrangler@4` version in the release
 output. If any third-party library, framework or release tool changes version,
@@ -132,10 +134,11 @@ export CLOUDFLARE_API_TOKEN='your-cloudflare-pages-token'
 export CLOUDFLARE_ACCOUNT_ID='efe77cadf8317a53832fca0848e3ae51'
 ```
 
-If `./release.sh` was already used with `--skip-deploy` and the tag/release already exists, do not rerun the full release script. Deploy the already released version directly:
+If `./release.sh` was already used with `--skip-deploy` and the tag/release already exists, do not rerun the full release script. Rebuild and deploy the minified release output directly:
 
 ```bash
-npx wrangler@4 pages deploy wwwroot --project-name djconnect --branch main
+npm run build:release
+npx wrangler@4 pages deploy dist/wwwroot --project-name djconnect --branch main
 ```
 
 After deploy, confirm the live footer version:
@@ -160,9 +163,10 @@ Bind `ANALYTICS_DB` to that D1 database and set a `STATS_TOKEN` secret. `GITHUB_
 - `npm test` covers version consistency, route presence, homepage navigation/copy, homepage voice chips from shared intent data, voice command intent-family docs, data-driven examples and language-scoped rendering behavior, firmware download embeds, macOS and Raspberry Pi download embeds, latest-only release embed contracts, removed legacy macOS download routes, tracked download redirects, absence of website self-release embeds, translation keys, footer copyright/support links, local link checking, firmware links, compact embedded page structure, LilyGO visual hygiene and stale pre-flashed wording.
 - `npm test` also covers the cookieless redirect/download analytics structure, D1 migration, tracked GitHub asset links, the protected GitHub-runtime `/admin` stats page contract and the release-script dependency/tool preflight.
 - `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. `npm run screenshots:live` captures Dutch live production screenshots at a laptop viewport into `screenshots/live-laptop/`. Neither is part of the default `npm test` run.
-- Current released version `3.1.44` adds the macOS TestFlight beta route,
-  removes hardcoded `/admin` Basic Auth from the current code path and documents
-  Cloudflare Access as the required protection for `https://djconnect.dev/admin`.
+- Current released version `3.1.45` centralizes shared mobile navigation assets,
+  adds a minified `dist/wwwroot` release build, publishes production cache and
+  security headers, adds a noindex 404 page and enforces baseline accessibility
+  contracts for public pages.
 - Canonical SEO domain is `https://djconnect.dev`; `djconnect.pages.dev` remains a Cloudflare fallback.
 - `https://www.djconnect.dev` should remain a 301 redirect to the apex domain, preserving path and query string.
 - Dynamic GitHub download/install blocks now rerender when the language toggle changes, so generated install text follows NL/EN.

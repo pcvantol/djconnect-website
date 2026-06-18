@@ -2,7 +2,7 @@
 
 This document records the implementation-level design choices for the DJConnect website. It is reverse-engineered from the repository and must be reviewed for every release.
 
-Current website version: `3.1.44`
+Current website version: `3.1.45`
 
 ## Scope
 
@@ -11,21 +11,21 @@ The site is a Cloudflare Pages website with static HTML/CSS/JavaScript, small Cl
 Primary source files:
 
 - Static pages: `wwwroot/*.html`
-- Browser JavaScript: `wwwroot/assets/downloads.js`, `wwwroot/assets/releases.js`
-- Browser CSS: inline page `<style>` blocks plus `wwwroot/assets/downloads.css` and `wwwroot/assets/releases.css`
+- Browser JavaScript: `wwwroot/assets/site-nav.js`, `wwwroot/assets/downloads.js`, `wwwroot/assets/releases.js`
+- Browser CSS: inline page `<style>` blocks plus `wwwroot/assets/site-nav.css`, `wwwroot/assets/downloads.css` and `wwwroot/assets/releases.css`
 - Edge functions: `functions/**/*.js`
 - Data schema: `migrations/0001_create_click_counters.sql`
 - Tests: `tests/site.test.mjs`
 - Optional browser smoke and screenshot tests: `tests/smoke.playwright.mjs`, `tests/screenshots.spec.mjs`
 - Operational helper scripts: `scripts/check-stats.mjs`
-- Release tooling: `release.sh`, `cleanup_old_releases.sh`
+- Release tooling: `release.sh`, `scripts/build-release.mjs`, `cleanup_old_releases.sh`
 - CI/CD: `.github/workflows/deploy-pages.yml`
 
 ## Architecture Decisions
 
 ### Static-first Pages
 
-The site is implemented as static HTML pages in `wwwroot/` instead of a client framework. Each page owns its markup, critical styling, metadata and language dictionary. Shared behavior is limited to small asset scripts for download/release rendering.
+The site is implemented as static HTML pages in `wwwroot/` instead of a client framework. Each page owns its markup, critical styling, metadata and language dictionary. Shared behavior is limited to small asset scripts for responsive navigation and download/release rendering.
 
 Why:
 
@@ -187,20 +187,28 @@ Sources:
 version consistency, refreshes declared npm dependencies when a lockfile exists,
 records the active `npx wrangler@4` version, runs tests, checks release files,
 verifies documentation presence, checks current changelog/handoff version
-references, creates and pushes the tag, creates the GitHub Release, deploys to
+references, builds a minified release copy in `dist/wwwroot`, creates and
+pushes the tag, creates the GitHub Release, deploys the minified output to
 Cloudflare Pages and runs cleanup. `cleanup_old_releases.sh` removes older
 releases, tags and workflow runs.
+
+The GitHub Actions deploy workflow uses the same `npm run build:release`
+output before deploying, so `./release.sh --skip-deploy` and direct CI deploys
+publish the same minified site structure as local releases.
 
 Why:
 
 - Makes repeated releases predictable.
 - Prevents stale documentation and version drift.
+- Keeps production HTML and shared browser assets smaller without making source
+  files hard to review.
 - Keeps dependency/tool upgrade checks visible before publishing.
 - Keeps the GitHub Releases/tags/actions history tidy by default.
 
 Sources:
 
 - `release.sh`
+- `scripts/build-release.mjs`
 - `cleanup_old_releases.sh`
 - `README.md`
 - `HANDOFF.md`
@@ -216,6 +224,8 @@ No separate formatter, linter or style guide configuration is present. The conve
 - Semantic sections: `nav`, `header`, `section`, `article`, `footer`.
 - Reusable class names such as `wrap`, `nav`, `hero`, `card`, `grid-2`, `grid-3`, `btn`.
 - Accessibility attributes are used for navigation, toggles, carousel controls and decorative visuals (`aria-label`, `aria-hidden`, `aria-pressed`, `role`).
+- Every public page exposes one `main` landmark, one `h1`, a skip link to
+  `#mainContent`, visible focus styles and a declared document language.
 - SEO and social metadata live in each page head.
 - Translation keys are attached with `data-i18n` and `data-i18n-attr`.
 
@@ -226,6 +236,33 @@ Sources:
 - `wwwroot/features.html`
 - `wwwroot/support.html`
 - `wwwroot/voice-commands.html`
+- `tests/site.test.mjs`
+
+### Production Hardening
+
+Cloudflare Pages serves static files from the release output. The source pages
+remain readable in `wwwroot`, while `scripts/build-release.mjs` creates
+`dist/wwwroot` with minified HTML and shared browser assets before deploy.
+`wwwroot/_headers` defines conservative defaults for HTML, long-lived immutable
+caching for static assets, no-cache exceptions for dynamic renderer scripts and
+baseline security headers.
+
+The site includes a custom `wwwroot/404.html` marked `noindex`. It links back to
+the homepage and support route and is intentionally excluded from the sitemap.
+
+Why:
+
+- Keeps production assets smaller and more cacheable.
+- Keeps source files reviewable.
+- Gives broken links a branded recovery path.
+- Provides a baseline browser security posture without introducing app state.
+
+Sources:
+
+- `scripts/build-release.mjs`
+- `wwwroot/_headers`
+- `wwwroot/404.html`
+- `.github/workflows/deploy-pages.yml`
 - `tests/site.test.mjs`
 
 ### Public Support Route

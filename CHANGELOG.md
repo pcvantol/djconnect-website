@@ -2,6 +2,20 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.45 - 2026-06-18
+
+- Refactored shared responsive navigation behavior into reusable site assets so
+  public subpages no longer duplicate hamburger-menu CSS and JavaScript.
+- Added a minified release build step that publishes `dist/wwwroot` from
+  `release.sh` and GitHub Actions while keeping source HTML/CSS/JS readable.
+- Added production hardening with Cloudflare Pages security/cache headers, a
+  branded noindex 404 page and documentation for release-output deployment.
+- Added baseline accessibility affordances across public pages: skip links,
+  consistent `main` targets, visible focus styles, reduced-motion handling,
+  44px touch targets and decorative image checks.
+- Expanded regression coverage for shared navigation, accessibility contracts,
+  production headers, 404 behavior and minified release output.
+
 ## DJConnect website v3.1.44 - 2026-06-18
 
 - Added a dedicated macOS TestFlight beta route with requirements, invite-link

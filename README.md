@@ -33,7 +33,12 @@ Static landing page for DJConnect, published through Cloudflare Pages.
 - `wwwroot/testflight-macos.html`: macOS TestFlight beta route with Mac
   TestFlight requirements, Home Assistant pairing and feedback mailbox.
 - `wwwroot/raspberry-pi.html`: Raspberry Pi app page with builds from `pcvantol/djconnect-pi-releases`.
-- `wwwroot/assets/`: logo, favicon and product visuals.
+- `wwwroot/404.html`: branded noindex not-found page with Home and Support recovery links.
+- `wwwroot/_headers`: Cloudflare Pages cache and security headers.
+- `wwwroot/assets/`: logo, favicon, product visuals and shared browser assets.
+- `wwwroot/assets/site-nav.css` and `wwwroot/assets/site-nav.js`: shared
+  responsive navigation styling and hamburger-menu behavior included by all
+  public pages with a top navigation.
 - `functions/api/releases.js`: Cloudflare Pages Function proxy for GitHub release data.
 - `functions/go/`: privacy-friendly redirect endpoints for HACS and downloadable assets.
 - `functions/api/stats.js`: token-protected aggregate stats endpoint that combines redirect clicks with GitHub asset `download_count` totals.
@@ -56,11 +61,16 @@ The production site is deployed to Cloudflare Pages:
 - Redirect: https://www.djconnect.dev -> https://djconnect.dev
 - Cloudflare Pages fallback: https://djconnect.pages.dev
 - Project name: `djconnect`
-- Publish directory: `wwwroot`
+- Source directory: `wwwroot`
+- Release publish directory: `dist/wwwroot`
 - Cloudflare account ID: `efe77cadf8317a53832fca0848e3ae51`
 
 Automatic deployment runs through GitHub Actions on every push to `main`.
-The repository must have an Actions secret named `CLOUDFLARE_API_TOKEN` with permission to deploy Cloudflare Pages. The workflow sets `CLOUDFLARE_ACCOUNT_ID` explicitly so Wrangler does not need to discover account memberships during CI.
+The workflow runs `npm test`, builds the minified release copy with
+`npm run build:release`, and deploys `dist/wwwroot`. The repository must have
+an Actions secret named `CLOUDFLARE_API_TOKEN` with permission to deploy
+Cloudflare Pages. The workflow sets `CLOUDFLARE_ACCOUNT_ID` explicitly so
+Wrangler does not need to discover account memberships during CI.
 
 Configure it in GitHub:
 
@@ -79,9 +89,10 @@ Use `./release.sh` for the standard release flow.
 
 The release script refreshes declared npm dependencies when a lockfile exists,
 checks the active Wrangler major version, runs tests, verifies that the Dutch
-release screenshot manifest exists, checks core documentation files, pushes
-`main`, creates a `vX.Y.Z` tag, creates a GitHub Release, deploys to Cloudflare
-Pages and then automatically removes older GitHub Releases, matching
+release screenshot manifest exists, checks core documentation files, builds a
+minified release copy in `dist/wwwroot`, pushes `main`, creates a `vX.Y.Z` tag,
+creates a GitHub Release, deploys the minified release copy to Cloudflare Pages
+and then automatically removes older GitHub Releases, matching
 local/remote tags and older GitHub Actions workflow runs. By default, only the
 newest workflow run remains.
 
@@ -132,12 +143,13 @@ To keep more workflow runs during a release:
 KEEP_WORKFLOW_RUNS=3 ./release.sh --skip-deploy
 ```
 
-If the version tag and GitHub Release already exist and only the Pages deployment still needs to run, deploy the current `wwwroot` folder directly:
+If the version tag and GitHub Release already exist and only the Pages deployment still needs to run, rebuild the minified release copy and deploy `dist/wwwroot` directly:
 
 ```bash
+npm run build:release
 export CLOUDFLARE_API_TOKEN='your-cloudflare-pages-token'
 export CLOUDFLARE_ACCOUNT_ID='efe77cadf8317a53832fca0848e3ae51'
-npx wrangler@4 pages deploy wwwroot --project-name djconnect --branch main
+npx wrangler@4 pages deploy dist/wwwroot --project-name djconnect --branch main
 ```
 
 The live site should be checked for both HTTP availability and the footer version:

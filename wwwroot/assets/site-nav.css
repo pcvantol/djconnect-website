@@ -1,0 +1,83 @@
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 100;
+  transform: translateY(-150%);
+  border: 2px solid var(--cyan);
+  border-radius: 12px;
+  background: #06110c;
+  color: var(--text);
+  padding: 10px 14px;
+  font-weight: 850;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: none;
+}
+
+:where(a, button, [role="button"], [role="tab"], input, select, textarea):focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+:where(button, .btn, .store-link, .mail-link, .copy-command, .icon-button, .carousel-button) {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.menu-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.07);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.menu-toggle svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+}
+
+@media (max-width: 900px) {
+  .nav-controls { margin-left: auto; }
+  .menu-toggle { display: grid; }
+  .nav-links {
+    display: none;
+    order: 3;
+    width: 100%;
+    flex-direction: column;
+    gap: 6px;
+    padding: 8px 0 4px;
+    overflow: visible;
+    color: var(--text);
+  }
+  .nav-links.is-open { display: flex; }
+  .nav-links a {
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.06);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

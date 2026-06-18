@@ -24,8 +24,11 @@ jobs:
       - name: Test
         run: npm test
 
+      - name: Build release site
+        run: npm run build:release
+
       - name: Deploy to Cloudflare Pages
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: efe77cadf8317a53832fca0848e3ae51
-        run: npx wrangler@4 pages deploy wwwroot --project-name djconnect --branch main
+        run: npx wrangler@4 pages deploy dist/wwwroot --project-name djconnect --branch main

@@ -981,22 +981,26 @@
       .nav-inner { gap: 10px; }
       .nav-controls .btn { display: none; }
     }
+
   </style>
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.45" />
 </head>
 <body>
+  <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
   <nav class="nav">
     <div class="wrap nav-inner">
-      <a class="brand" href="#top" aria-label="DJConnect home">
+      <a class="brand" href="index.html" aria-label="DJConnect home">
         <img class="logo" src="assets/djconnect/icon.svg" alt="" aria-hidden="true" />
         <span>DJConnect</span>
       </a>
-      <div class="nav-links" aria-label="Navigatie" data-i18n-attr="aria-label:navLabel">
+      <div class="nav-links" id="primaryNav" aria-label="Navigatie" data-i18n-attr="aria-label:navLabel">
         <a href="index.html" data-i18n="navHome">Home</a>
         <a href="index.html#apps" data-i18n="navPlatform">Platform</a>
         <a href="#hardware" data-i18n="navHardware">Hardware</a>
         <a href="#releases" data-i18n="navReleases">Download</a>
       </div>
       <div class="nav-controls">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Menu" data-i18n-attr="aria-label:navMenu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg></button>
         <div class="lang-toggle" aria-label="Taalkeuze" data-i18n-attr="aria-label:languageToggle">
           <button type="button" data-lang="nl" aria-pressed="true">NL</button>
           <button type="button" data-lang="en" aria-pressed="false">EN</button>
@@ -1006,7 +1010,7 @@
     </div>
   </nav>
 
-  <main id="top">
+  <main id="mainContent">
     <header class="hero">
       <div class="wrap hero-grid">
         <div>
@@ -1162,7 +1166,7 @@
     <p data-i18n="legalSpotify">Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.1.44</p>
+    <p class="site-version">DJConnect website v3.1.45</p>
   </footer>
   <script>
     const translations = {
@@ -1171,6 +1175,7 @@
         metaDescription: "DJConnect voor ESP32: compacte afstandsbediening voor muziek en persoonlijke DJ aankondiging via Home Assistant.",
         navLabel: "Navigatie",
         languageToggle: "Taalkeuze",
+        navMenu: "Menu",
         navHome: "Home",
         navPlatform: "Platform",
         navStart: "Aan de slag",
@@ -1296,6 +1301,7 @@
         metaDescription: "DJConnect. Music control with character for Home Assistant. Ask for music with your voice, get a short DJ announcement and control playback from one device.",
         navLabel: "Navigation",
         languageToggle: "Language",
+        navMenu: "Menu",
         navHome: "Home",
         navPlatform: "Platform",
         navStart: "How to start",
@@ -1483,7 +1489,9 @@
     });
 
     applyLanguage(getInitialLanguage());
+
   </script>
-  <script src="assets/downloads.js?v=3.1.44"></script>
+  <script src="assets/downloads.js?v=3.1.45"></script>
+  <script src="assets/site-nav.js?v=3.1.45"></script>
 </body>
 </html>

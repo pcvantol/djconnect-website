@@ -3,6 +3,7 @@ set -euo pipefail
 
 PROJECT_NAME="djconnect"
 PUBLISH_DIR="wwwroot"
+RELEASE_PUBLISH_DIR="dist/wwwroot"
 ACCOUNT_ID="${CLOUDFLARE_ACCOUNT_ID:-efe77cadf8317a53832fca0848e3ae51}"
 KEEP_WORKFLOW_RUNS="${KEEP_WORKFLOW_RUNS:-1}"
 DOC_FILES=(README.md HANDOFF.md TESTS.md TODO.md ISSUES.md CHANGELOG.md TECHNICAL_DESIGN.md CHAT_BOOTSTRAP.md)
@@ -15,7 +16,7 @@ usage() {
 Usage: ./release.sh [--skip-deploy]
 
 Runs tests, verifies release metadata, creates and pushes tag ${TAG},
-creates a GitHub Release, deploys ${PUBLISH_DIR} to Cloudflare Pages, and
+creates a GitHub Release, builds a minified release copy, deploys ${RELEASE_PUBLISH_DIR} to Cloudflare Pages, and
 cleans up older releases, tags and GitHub Actions workflow runs.
 
 Environment:
@@ -96,6 +97,14 @@ grep -q "Current website version: \`${VERSION}\`" TECHNICAL_DESIGN.md
 grep -q "DJConnect website v${VERSION}" "$PUBLISH_DIR/index.html"
 grep -q "DJConnect website v${VERSION}" "$PUBLISH_DIR/embedded.html"
 
+echo "Building minified release site..."
+npm run build:release
+test -f "$RELEASE_PUBLISH_DIR/index.html"
+test -f "$RELEASE_PUBLISH_DIR/assets/site-nav.min.css"
+test -f "$RELEASE_PUBLISH_DIR/assets/site-nav.min.js"
+grep -q "assets/site-nav.min.css" "$RELEASE_PUBLISH_DIR/index.html"
+grep -q "assets/site-nav.min.js" "$RELEASE_PUBLISH_DIR/index.html"
+
 echo "Pushing main..."
 git push origin main
 
@@ -112,8 +121,8 @@ gh release create "$TAG" \
 if [[ "$SKIP_DEPLOY" == "true" ]]; then
   echo "Skipped Cloudflare Pages deploy."
 else
-  echo "Deploying $PUBLISH_DIR to Cloudflare Pages project $PROJECT_NAME..."
-  CLOUDFLARE_ACCOUNT_ID="$ACCOUNT_ID" npx wrangler@4 pages deploy "$PUBLISH_DIR" --project-name "$PROJECT_NAME" --branch main
+  echo "Deploying $RELEASE_PUBLISH_DIR to Cloudflare Pages project $PROJECT_NAME..."
+  CLOUDFLARE_ACCOUNT_ID="$ACCOUNT_ID" npx wrangler@4 pages deploy "$RELEASE_PUBLISH_DIR" --project-name "$PROJECT_NAME" --branch main
 fi
 
 echo "Cleaning older releases, tags and workflow runs..."

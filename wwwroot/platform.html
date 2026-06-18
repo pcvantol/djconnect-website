@@ -62,15 +62,17 @@
     .site-version { margin-top:14px; font-size:0.76rem; color:rgba(183,188,203,0.72); }
     .privacy-notice { font-size:0.78rem; color:rgba(183,188,203,0.78); }
     @media (max-width:1050px) { .hero-grid,.overview,.legend { grid-template-columns:1fr; } .wifi-band { grid-column:auto; } .flow-line { display:none; } }
-    @media (max-width:900px) { .nav-inner { flex-wrap:wrap; padding:12px 0; } .nav-links { order:3; width:100%; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; } .nav-links::-webkit-scrollbar { display:none; } }
     @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } .pipeline { grid-template-columns:1fr; } }
+
   </style>
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.45" />
 </head>
 <body>
+  <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
   <nav class="nav">
     <div class="wrap nav-inner">
-      <a class="brand" href="index.html"><img src="assets/djconnect/icon.svg" alt="" /><span>DJConnect</span></a>
-      <div class="nav-links" aria-label="Navigatie" data-i18n-attr="aria-label:navLabel">
+      <a class="brand" href="index.html"><img src="assets/djconnect/icon.svg" alt="" aria-hidden="true" /><span>DJConnect</span></a>
+      <div class="nav-links" id="primaryNav" aria-label="Navigatie" data-i18n-attr="aria-label:navLabel">
         <a href="index.html" data-i18n="navHome">Home</a>
         <a href="platform.html" aria-current="page" data-i18n="navPlatform">Platform</a>
         <a href="features.html" data-i18n="navFeatures">Features</a>
@@ -78,6 +80,7 @@
         <a href="index.html#apps" data-i18n="navDownload">Download</a>
       </div>
       <div class="nav-controls">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Menu" data-i18n-attr="aria-label:navMenu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg></button>
         <div class="lang-toggle" aria-label="Taalkeuze" data-i18n-attr="aria-label:languageToggle">
           <button type="button" data-lang="nl" aria-pressed="true">NL</button>
           <button type="button" data-lang="en" aria-pressed="false">EN</button>
@@ -87,7 +90,7 @@
     </div>
   </nav>
 
-  <main>
+  <main id="mainContent">
     <header class="hero">
       <div class="wrap hero-grid">
         <div>
@@ -158,7 +161,7 @@
     <p>Copyright Peter van Tol 2026. Released under the MIT License.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.1.44</p>
+    <p class="site-version">DJConnect website v3.1.45</p>
   </footer>
   <script>
     const translations = {
@@ -167,6 +170,7 @@
         metaDescription: "Platformoverzicht van DJConnect: clients, Home WiFi, Home Assistant, DJConnect integratie, Assist pipeline, Spotify en speakers.",
         navLabel: "Navigatie",
         languageToggle: "Taalkeuze",
+        navMenu: "Menu",
         navHome: "Home",
         navPlatform: "Platform",
         navFeatures: "Features",
@@ -219,6 +223,7 @@
         metaDescription: "DJConnect platform overview: clients, Home WiFi, Home Assistant, DJConnect integration, Assist pipeline, Spotify and speakers.",
         navLabel: "Navigation",
         languageToggle: "Language",
+        navMenu: "Menu",
         navHome: "Home",
         navPlatform: "Platform",
         navFeatures: "Features",
@@ -297,6 +302,8 @@
       button.addEventListener("click", () => applyLanguage(button.getAttribute("data-lang")));
     });
     applyLanguage(getInitialLanguage());
+
   </script>
+  <script src="assets/site-nav.js?v=3.1.45"></script>
 </body>
 </html>

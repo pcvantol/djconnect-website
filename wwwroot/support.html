@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DJConnect Blog</title>
-  <meta name="description" content="Blog over DJConnect: ontwerpkeuzes, releases, Home Assistant, apps en embedded devices." />
-  <link rel="canonical" href="https://djconnect.dev/blog" />
+  <title>DJConnect Support</title>
+  <meta name="description" content="Support voor DJConnect: mail support@djconnect.dev voor hulp met installatie, koppeling, apps en devices." />
+  <link rel="canonical" href="https://djconnect.dev/support" />
   <link rel="icon" href="assets/djconnect/icon.svg" type="image/svg+xml" />
   <style>
-    :root { --bg:#0b0d12; --panel:rgba(255,255,255,0.075); --text:#f7f7fb; --muted:#b7bccb; --line:rgba(255,255,255,0.14); --cyan:#66e0ff; --green:#7ef7a7; --purple:#8b5cf6; --max:1180px; }
+    :root { --bg:#0b0d12; --panel:rgba(255,255,255,0.075); --text:#f7f7fb; --muted:#b7bccb; --line:rgba(255,255,255,0.14); --cyan:#66e0ff; --green:#7ef7a7; --pink:#fb7185; --max:1180px; }
     * { box-sizing:border-box; }
     html { scroll-behavior:smooth; background:var(--bg); }
-    body { margin:0; color:var(--text); font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height:1.55; background:radial-gradient(circle at 16% 10%, rgba(102,224,255,0.18), transparent 28rem), radial-gradient(circle at 86% 6%, rgba(139,92,246,0.14), transparent 27rem), radial-gradient(circle at 58% 72%, rgba(126,247,167,0.1), transparent 31rem), linear-gradient(180deg,#0b0d12 0%,#111827 54%,#090b10 100%); }
+    body { margin:0; color:var(--text); font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height:1.55; background:radial-gradient(circle at 16% 10%, rgba(102,224,255,0.18), transparent 28rem), radial-gradient(circle at 86% 6%, rgba(251,113,133,0.13), transparent 27rem), radial-gradient(circle at 58% 72%, rgba(126,247,167,0.1), transparent 31rem), linear-gradient(180deg,#0b0d12 0%,#111827 54%,#090b10 100%); }
     a { color:inherit; text-decoration:none; }
     .wrap { width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
     .nav { position:sticky; top:0; z-index:20; backdrop-filter:blur(18px); background:rgba(11,13,18,0.7); border-bottom:1px solid var(--line); }
@@ -26,19 +26,23 @@
     .lang-toggle button[aria-pressed="true"] { background:rgba(102,224,255,0.18); color:var(--text); }
     .btn { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:0 18px; border-radius:999px; border:1px solid var(--line); background:var(--panel); color:var(--text); font-weight:780; box-shadow:0 10px 30px rgba(0,0,0,0.15); }
     .btn.primary { border:0; color:#06110c; background:linear-gradient(135deg,var(--cyan),var(--green)); }
-    .hero { padding:82px 0 48px; }
-    h1,h2 { margin:0; letter-spacing:-0.045em; line-height:1.05; }
+    .hero { padding:82px 0 52px; }
+    .hero-grid { display:grid; grid-template-columns:0.95fr 1.05fr; gap:42px; align-items:end; }
+    h1,h2,h3 { margin:0; letter-spacing:-0.045em; line-height:1.05; }
     h1 { font-size:clamp(3.2rem,7vw,6.2rem); }
-    h2 { font-size:clamp(1.8rem,3.5vw,3.4rem); margin-bottom:18px; }
-    .lead { color:var(--muted); font-size:clamp(1.08rem,2.2vw,1.34rem); margin:24px 0 0; max-width:760px; }
-    section { padding:46px 0 82px; }
-    .post-card { display:grid; grid-template-columns:1fr auto; gap:24px; align-items:end; border:1px solid var(--line); border-radius:22px; background:linear-gradient(135deg, rgba(102,224,255,0.1), rgba(139,92,246,0.12)), var(--panel); padding:30px; box-shadow:0 12px 36px rgba(0,0,0,0.16); }
-    .post-card p { color:var(--muted); margin:0; font-size:1.08rem; max-width:760px; }
-    .meta { color:rgba(183,188,203,0.78); font-size:0.9rem; font-weight:760; margin-bottom:14px; }
+    h2 { font-size:clamp(2rem,4vw,3.6rem); margin-bottom:18px; }
+    h3 { font-size:1.18rem; margin-bottom:10px; }
+    .lead { color:var(--muted); font-size:clamp(1.08rem,2.1vw,1.3rem); margin:24px 0 0; max-width:760px; }
+    section { padding:54px 0 76px; }
+    .card { border:1px solid var(--line); border-radius:22px; background:var(--panel); padding:26px; box-shadow:0 12px 36px rgba(0,0,0,0.16); }
+    .card p { color:var(--muted); margin:0; }
+    .mail-link { display:inline-flex; margin-top:18px; color:#06110c; background:linear-gradient(135deg,var(--cyan),var(--green)); border-radius:999px; padding:12px 18px; font-weight:900; }
+    .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .note { margin-top:18px; border-left:3px solid var(--green); padding-left:14px; color:var(--muted); }
     .legal { color:var(--muted); font-size:0.86rem; padding:34px 0 44px; border-top:1px solid var(--line); }
     .site-version { margin-top:14px; font-size:0.76rem; color:rgba(183,188,203,0.72); }
     .privacy-notice { font-size:0.78rem; color:rgba(183,188,203,0.78); }
-    @media (max-width:900px) { .nav-inner { flex-wrap:wrap; padding:12px 0; } .nav-links { order:3; width:100%; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; } .nav-links::-webkit-scrollbar { display:none; } .post-card { grid-template-columns:1fr; } }
+    @media (max-width:900px) { .hero-grid,.grid-3 { grid-template-columns:1fr; } .nav-inner { flex-wrap:wrap; padding:12px 0; } .nav-links { order:3; width:100%; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; } .nav-links::-webkit-scrollbar { display:none; } }
     @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } }
   </style>
 </head>
@@ -47,10 +51,10 @@
     <div class="wrap nav-inner">
       <a class="brand" href="index.html"><img src="assets/djconnect/icon.svg" alt="" /><span>DJConnect</span></a>
       <div class="nav-links" aria-label="Navigatie" data-i18n-attr="aria-label:navLabel">
-        <a href="index.html" data-i18n="navPlatform">Hoe werkt het</a>
+        <a href="index.html" data-i18n="navHome">Home</a>
         <a href="features.html" data-i18n="navFeatures">Features</a>
         <a href="voice-commands.html" data-i18n="navVoice">Spraak</a>
-        <a href="blog.html" aria-current="page" data-i18n="navBlog">Blog</a>
+        <a href="support.html" aria-current="page" data-i18n="navSupport">Support</a>
         <a href="index.html#apps" data-i18n="navDownload">Download</a>
       </div>
       <div class="nav-controls">
@@ -65,22 +69,28 @@
 
   <main>
     <header class="hero">
-      <div class="wrap">
-        <h1 data-i18n="heroTitle">Blog</h1>
-        <p class="lead" data-i18n="heroLead">Achter de schermen bij DJConnect: ontwerpkeuzes, releases en de route naar muziekbediening met karakter.</p>
+      <div class="wrap hero-grid">
+        <div>
+          <h1 data-i18n="heroTitle">Support</h1>
+          <p class="lead" data-i18n="heroLead">Loop je vast met installatie, koppeling, Spotify playback of een DJConnect device? Mail ons en beschrijf kort wat je probeert te doen.</p>
+        </div>
+        <div class="card">
+          <h2 data-i18n="mailTitle">Mail DJConnect support</h2>
+          <p data-i18n="mailText">Gebruik dit adres voor hulpvragen, bugmeldingen en vragen over de apps of devices.</p>
+          <a class="mail-link" href="mailto:support@djconnect.dev">support@djconnect.dev</a>
+        </div>
       </div>
     </header>
 
     <section>
       <div class="wrap">
-        <article class="post-card">
-          <div>
-            <div class="meta" data-i18n="postMeta">15 juni 2026 · Project</div>
-            <h2 data-i18n="postTitle">DJConnect: muziekbediening met karakter</h2>
-            <p data-i18n="postExcerpt">Waarom DJConnect bestaat, hoe Home Assistant de veilige basis vormt en hoe macOS, iOS, Linux en ESP32 dezelfde muziekworkflow delen.</p>
-          </div>
-          <a class="btn primary" href="blog-djconnect-project.html" data-i18n="postCta">Lees blogpost</a>
-        </article>
+        <div class="grid-3">
+          <article class="card"><h3 data-i18n="installTitle">Installatie</h3><p data-i18n="installText">Vragen over HACS, de Home Assistant integratie, app downloads of firmware.</p></article>
+          <article class="card"><h3 data-i18n="pairingTitle">Koppelen</h3><p data-i18n="pairingText">Hulp bij pairing tussen je client, DJConnect en Home Assistant.</p></article>
+          <article class="card"><h3 data-i18n="playbackTitle">Muziekbediening</h3><p data-i18n="playbackText">Problemen met voice input, Spotify Connect speakers of DJ-aankondigingen.</p></article>
+        </div>
+        <p class="note" data-i18n="githubText">Technische issues mogen ook via GitHub Issues, vooral als je logs, foutmeldingen of reproduceerbare stappen wilt delen.</p>
+        <p class="note"><a href="https://github.com/pcvantol/djconnect-website/issues" target="_blank" rel="noopener" data-i18n="githubLink">Open GitHub Issues</a></p>
       </div>
     </section>
   </main>
@@ -94,42 +104,54 @@
   <script>
     const translations = {
       nl: {
-        title: "DJConnect Blog",
-        metaDescription: "Blog over DJConnect: ontwerpkeuzes, releases, Home Assistant, apps en embedded devices.",
+        title: "DJConnect Support",
+        metaDescription: "Support voor DJConnect: mail support@djconnect.dev voor hulp met installatie, koppeling, apps en devices.",
         navLabel: "Navigatie",
         languageToggle: "Taalkeuze",
-        navPlatform: "Hoe werkt het",
+        navHome: "Home",
         navFeatures: "Features",
         navVoice: "Spraak",
-        navBlog: "Blog",
+        navSupport: "Support",
         navDownload: "Download",
         navStart: "Aan de slag",
-        heroTitle: "Blog",
-        heroLead: "Achter de schermen bij DJConnect: ontwerpkeuzes, releases en de route naar muziekbediening met karakter.",
-        postMeta: "15 juni 2026 · Project",
-        postTitle: "DJConnect: muziekbediening met karakter",
-        postExcerpt: "Waarom DJConnect bestaat, hoe Home Assistant de veilige basis vormt en hoe macOS, iOS, Linux en ESP32 dezelfde muziekworkflow delen.",
-        postCta: "Lees blogpost",
+        heroTitle: "Support",
+        heroLead: "Loop je vast met installatie, koppeling, Spotify playback of een DJConnect device? Mail ons en beschrijf kort wat je probeert te doen.",
+        mailTitle: "Mail DJConnect support",
+        mailText: "Gebruik dit adres voor hulpvragen, bugmeldingen en vragen over de apps of devices.",
+        installTitle: "Installatie",
+        installText: "Vragen over HACS, de Home Assistant integratie, app downloads of firmware.",
+        pairingTitle: "Koppelen",
+        pairingText: "Hulp bij pairing tussen je client, DJConnect en Home Assistant.",
+        playbackTitle: "Muziekbediening",
+        playbackText: "Problemen met voice input, Spotify Connect speakers of DJ-aankondigingen.",
+        githubText: "Technische issues mogen ook via GitHub Issues, vooral als je logs, foutmeldingen of reproduceerbare stappen wilt delen.",
+        githubLink: "Open GitHub Issues",
         legalPrivacy: "Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.",
         legalSupport: "Support"
       },
       en: {
-        title: "DJConnect Blog",
-        metaDescription: "Blog about DJConnect: design choices, releases, Home Assistant, apps and embedded devices.",
+        title: "DJConnect Support",
+        metaDescription: "DJConnect support: email support@djconnect.dev for help with setup, pairing, apps and devices.",
         navLabel: "Navigation",
         languageToggle: "Language",
-        navPlatform: "How it works",
+        navHome: "Home",
         navFeatures: "Features",
         navVoice: "Voice",
-        navBlog: "Blog",
+        navSupport: "Support",
         navDownload: "Download",
         navStart: "Get started",
-        heroTitle: "Blog",
-        heroLead: "Behind the scenes of DJConnect: design choices, releases and the route toward music control with character.",
-        postMeta: "June 15, 2026 · Project",
-        postTitle: "DJConnect: music control with character",
-        postExcerpt: "Why DJConnect exists, how Home Assistant forms the secure base and how macOS, iOS, Linux and ESP32 share the same music workflow.",
-        postCta: "Read blog post",
+        heroTitle: "Support",
+        heroLead: "Need help with setup, pairing, Spotify playback or a DJConnect device? Email us and briefly describe what you are trying to do.",
+        mailTitle: "Email DJConnect support",
+        mailText: "Use this address for support questions, bug reports and questions about the apps or devices.",
+        installTitle: "Setup",
+        installText: "Questions about HACS, the Home Assistant integration, app downloads or firmware.",
+        pairingTitle: "Pairing",
+        pairingText: "Help with pairing your client, DJConnect and Home Assistant.",
+        playbackTitle: "Music control",
+        playbackText: "Problems with voice input, Spotify Connect speakers or DJ announcements.",
+        githubText: "Technical issues can also go through GitHub Issues, especially when you want to share logs, errors or reproducible steps.",
+        githubLink: "Open GitHub Issues",
         legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
         legalSupport: "Support"
       }

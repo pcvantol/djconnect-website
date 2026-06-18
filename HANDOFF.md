@@ -8,7 +8,7 @@
 - Cloudflare Pages fallback URL: https://djconnect.pages.dev
 - Cloudflare Pages project: `djconnect`
 - Publish directory: `wwwroot`
-- Current version: `3.1.36`
+- Current version: `3.1.37`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Platform overview page with CSS architecture diagram: `wwwroot/platform.html`
@@ -69,7 +69,9 @@
   authentication before wider use.
 - `scripts/check-stats.mjs` can be run with `STATS_TOKEN=... npm run stats:check` to print aggregate redirect clicks and GitHub download totals.
 - The analytics design is intentionally cookieless and identifier-free. Do not add IP address, user agent, referrer or visitor-id storage.
-- Public support/contact links point to `https://github.com/pcvantol/djconnect-website/issues` from all public page footers.
+- Public support/contact links point to `wwwroot/support.html` from public page
+  footers. The support page lists `support@djconnect.dev` as the primary
+  support address and keeps GitHub Issues as a technical fallback.
 - iOS does not embed website repository releases. Add a release/download embed only when it has its own relevant app release source.
 - If the GitHub repository/releases are private, set `GITHUB_TOKEN` as a Cloudflare Pages secret for the `djconnect` project.
 - Version is tracked in `VERSION`, `package.json`, page footers and `CHANGELOG.md`.
@@ -134,9 +136,9 @@ Bind `ANALYTICS_DB` to that D1 database and set a `STATS_TOKEN` secret. `GITHUB_
 - `npm test` covers version consistency, route presence, homepage navigation/copy, homepage voice chips from shared intent data, voice command intent-family docs, data-driven examples and language-scoped rendering behavior, firmware download embeds, macOS and Raspberry Pi download embeds, latest-only release embed contracts, removed legacy macOS download routes, tracked download redirects, absence of website self-release embeds, translation keys, footer copyright/support links, local link checking, firmware links, compact embedded page structure, LilyGO visual hygiene and stale pre-flashed wording.
 - `npm test` also covers the cookieless redirect/download analytics structure, D1 migration, tracked GitHub asset links, the protected GitHub-runtime `/admin` stats page contract and the release-script dependency/tool preflight.
 - `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. `npm run screenshots:live` captures Dutch live production screenshots at a laptop viewport into `screenshots/live-laptop/`. Neither is part of the default `npm test` run.
-- Current released version `3.1.36` adds the CSS-only Platform overview page,
-  compact DJ response style guidance on the Spraak page and Dutch release
-  screenshot validation.
+- Current released version `3.1.37` adds the public Support page with
+  `support@djconnect.dev` as the primary support address and routes public
+  footer support links through that page.
 - Canonical SEO domain is `https://djconnect.dev`; `djconnect.pages.dev` remains a Cloudflare fallback.
 - `https://www.djconnect.dev` should remain a 301 redirect to the apex domain, preserving path and query string.
 - Dynamic GitHub download/install blocks now rerender when the language toggle changes, so generated install text follows NL/EN.

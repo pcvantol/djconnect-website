@@ -388,6 +388,21 @@ test("voice commands page documents intent families and DJ response styles", asy
   assertTranslationsCoverPage(voice, "voice-commands page");
 });
 
+test("support page provides email support and technical issue fallback", async () => {
+  const support = await read("wwwroot/support.html");
+
+  assert.match(support, /<title>DJConnect Support<\/title>/);
+  assert.match(support, /href="https:\/\/djconnect\.dev\/support"/);
+  assert.match(support, /href="mailto:support@djconnect\.dev">support@djconnect\.dev<\/a>/);
+  assert.match(support, /data-i18n="heroTitle">Support<\/h1>/);
+  assert.match(support, /Installatie/);
+  assert.match(support, /Koppelen/);
+  assert.match(support, /Muziekbediening/);
+  assert.match(support, /href="https:\/\/github\.com\/pcvantol\/djconnect-website\/issues"/);
+  assert.match(support, /Open GitHub Issues/);
+  assertTranslationsCoverPage(support, "support page");
+});
+
 test("blog pages are present and translated", async () => {
   const [blog, post] = await Promise.all([
     read("wwwroot/blog.html"),
@@ -476,7 +491,7 @@ test("embedded page uses the shared site color styling", async () => {
 });
 
 test("site does not embed website repository releases", async () => {
-  const pages = ["index", "start", "features", "platform", "voice-commands", "ios", "macos", "raspberry-pi", "embedded"];
+  const pages = ["index", "start", "features", "platform", "voice-commands", "blog", "blog-djconnect-project", "support", "ios", "macos", "raspberry-pi", "embedded"];
 
   for (const page of pages) {
     const html = await read(`wwwroot/${page}.html`);
@@ -736,6 +751,7 @@ test("canonical SEO uses djconnect.dev", async () => {
     ["voice-commands", "https://djconnect.dev/voice-commands"],
     ["blog", "https://djconnect.dev/blog"],
     ["blog-djconnect-project", "https://djconnect.dev/blog-djconnect-project"],
+    ["support", "https://djconnect.dev/support"],
     ["ios", "https://djconnect.dev/ios"],
     ["macos", "https://djconnect.dev/macos"],
     ["raspberry-pi", "https://djconnect.dev/raspberry-pi"],
@@ -766,6 +782,7 @@ test("canonical SEO uses djconnect.dev", async () => {
   assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/voice-commands<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/blog<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/blog-djconnect-project<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/support<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/embedded<\/loc>/);
   assert.match(downloads, /https:\/\/djconnect\.dev\/go\/linux-install/);
 });
@@ -785,7 +802,7 @@ test("social preview image uses current branding", async () => {
 });
 
 test("legacy macOS download page is not referenced", async () => {
-  const pages = ["index", "start", "features", "platform", "voice-commands", "blog", "blog-djconnect-project", "ios", "macos", "raspberry-pi", "embedded"];
+  const pages = ["index", "start", "features", "platform", "voice-commands", "blog", "blog-djconnect-project", "support", "ios", "macos", "raspberry-pi", "embedded"];
 
   for (const page of pages) {
     const html = await read(`wwwroot/${page}.html`);
@@ -865,14 +882,14 @@ test("site copy no longer claims devices are pre-flashed", async () => {
 });
 
 test("all translation keys are present in Dutch and English", async () => {
-  const pages = ["index", "start", "features", "platform", "voice-commands", "blog", "blog-djconnect-project", "ios", "macos", "raspberry-pi", "embedded"];
+  const pages = ["index", "start", "features", "platform", "voice-commands", "blog", "blog-djconnect-project", "support", "ios", "macos", "raspberry-pi", "embedded"];
   const htmlPages = await Promise.all(pages.map((page) => read(`wwwroot/${page}.html`)));
 
   htmlPages.forEach((html, index) => assertTranslationsCoverPage(html, `${pages[index]} page`));
 });
 
 test("copyright is shown in the requested form", async () => {
-  const pages = ["index", "start", "features", "platform", "voice-commands", "blog", "blog-djconnect-project", "ios", "macos", "raspberry-pi", "embedded"];
+  const pages = ["index", "start", "features", "platform", "voice-commands", "blog", "blog-djconnect-project", "support", "ios", "macos", "raspberry-pi", "embedded"];
   const htmlPages = await Promise.all(pages.map((page) => read(`wwwroot/${page}.html`)));
 
   htmlPages.forEach((html) => {
@@ -880,13 +897,12 @@ test("copyright is shown in the requested form", async () => {
     assert.match(html, /class="privacy-notice" data-i18n="legalPrivacy"/);
     assert.match(html, /Deze website ontvangt of bewaart geen accountgegevens/);
     assert.match(html, /This website does not receive or store account details/);
-    assert.match(html, /href="https:\/\/github\.com\/pcvantol\/djconnect-website\/issues"/);
-    assert.match(html, /data-i18n="legalSupport">Support: GitHub Issues/);
+    assert.match(html, /href="support\.html" data-i18n="legalSupport">Support<\/a>/);
   });
 });
 
 test("link checker validates local page and asset references", async () => {
-  const pages = ["index.html", "start.html", "features.html", "platform.html", "voice-commands.html", "blog.html", "blog-djconnect-project.html", "ios.html", "macos.html", "raspberry-pi.html", "embedded.html"];
+  const pages = ["index.html", "start.html", "features.html", "platform.html", "voice-commands.html", "blog.html", "blog-djconnect-project.html", "support.html", "ios.html", "macos.html", "raspberry-pi.html", "embedded.html"];
 
   for (const page of pages) {
     const html = await read(`wwwroot/${page}`);

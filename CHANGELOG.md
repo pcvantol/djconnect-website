@@ -2,6 +2,12 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.37 - 2026-06-18
+
+- Added a public Support page with `support@djconnect.dev` as the primary
+  contact address and GitHub Issues as a technical fallback.
+- Updated public page footers to route support links through the Support page.
+
 ## DJConnect website v3.1.36 - 2026-06-18
 
 - Added a CSS-only Platform overview page showing clients, Home WiFi, voice

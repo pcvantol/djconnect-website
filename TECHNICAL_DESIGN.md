@@ -2,7 +2,7 @@
 
 This document records the implementation-level design choices for the DJConnect website. It is reverse-engineered from the repository and must be reviewed for every release.
 
-Current website version: `3.1.36`
+Current website version: `3.1.37`
 
 ## Scope
 
@@ -224,7 +224,27 @@ Sources:
 - `wwwroot/index.html`
 - `wwwroot/start.html`
 - `wwwroot/features.html`
+- `wwwroot/support.html`
 - `wwwroot/voice-commands.html`
+- `tests/site.test.mjs`
+
+### Public Support Route
+
+Public support is routed through `wwwroot/support.html`. Site footers link to
+that page, which presents `support@djconnect.dev` as the primary support
+channel and keeps GitHub Issues as a technical fallback for logs, errors and
+reproducible website issues.
+
+Why:
+
+- Gives non-technical users one clear contact address.
+- Keeps GitHub Issues available for technical reports without making it the
+  primary public support path.
+- Avoids adding forms, tracking or account data collection to the static site.
+
+Sources:
+
+- `wwwroot/support.html`
 - `tests/site.test.mjs`
 
 ### CSS

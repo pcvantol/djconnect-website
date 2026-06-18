@@ -5,7 +5,7 @@
     "width": 1440,
     "height": 900
   },
-  "capturedAt": "2026-06-18T05:40:34.204Z",
+  "capturedAt": "2026-06-18T06:04:48.186Z",
   "pages": [
     {
       "path": "/",
@@ -50,28 +50,34 @@
       "file": "07-blog-djconnect-project-1440x900.png"
     },
     {
+      "path": "/support",
+      "name": "support",
+      "url": "http://127.0.0.1:4173/support.html",
+      "file": "08-support-1440x900.png"
+    },
+    {
       "path": "/ios",
       "name": "ios",
       "url": "http://127.0.0.1:4173/ios.html",
-      "file": "08-ios-1440x900.png"
+      "file": "09-ios-1440x900.png"
     },
     {
       "path": "/macos",
       "name": "macos",
       "url": "http://127.0.0.1:4173/macos.html",
-      "file": "09-macos-1440x900.png"
+      "file": "10-macos-1440x900.png"
     },
     {
       "path": "/raspberry-pi",
       "name": "raspberry-pi",
       "url": "http://127.0.0.1:4173/raspberry-pi.html",
-      "file": "10-raspberry-pi-1440x900.png"
+      "file": "11-raspberry-pi-1440x900.png"
     },
     {
       "path": "/embedded",
       "name": "embedded",
       "url": "http://127.0.0.1:4173/embedded.html",
-      "file": "11-embedded-1440x900.png"
+      "file": "12-embedded-1440x900.png"
     }
   ]
 }

@@ -26,4 +26,6 @@ Use GitHub Issues for active tracking. This file captures known repository-level
 - The retired `macos-download` route is covered by static tests to prevent accidental relinking.
 - Local page and asset links are covered by the default Node test suite.
 - A stats-check helper is available through `STATS_TOKEN=... npm run stats:check`.
-- Public support/contact links now point to GitHub Issues from all public page footers.
+- Public support/contact links now point to the website Support page with
+  `support@djconnect.dev`; GitHub Issues remains available as a technical
+  fallback from that page.

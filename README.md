@@ -8,6 +8,7 @@ Static landing page for DJConnect, published through Cloudflare Pages.
 - `wwwroot/features.html`: feature overview page, including bonus mini-games: Paddle Rally, Meteor Run, Sky Dash and Maze Chase.
 - `wwwroot/platform.html`: CSS-only platform architecture overview for clients, Home Assistant, Assist, Spotify and speakers.
 - `wwwroot/voice-commands.html`: bilingual How To page for DJConnect voice command intent families and artist-first music requests. Spoken music examples are mirrored from the HA repo canonical source `examples/voice_intents.json`.
+- `wwwroot/support.html`: public support page with `support@djconnect.dev` and technical GitHub Issues fallback.
 - `wwwroot/blog.html`: blog overview page for project notes and release/design stories.
 - `wwwroot/blog-djconnect-project.html`: first project blogpost about the DJConnect architecture and workflow.
 - `wwwroot/start.html`: Home Assistant setup flow for HACS installation, voice pipeline setup, DJConnect configuration, client downloads and pairing.
@@ -189,7 +190,12 @@ The redirect layer is fail-open: if `ANALYTICS_DB` is not configured yet, users 
 
 ## Support
 
-Public website support and content issues can be reported through GitHub Issues:
+Public support is available through the website support page and email:
+
+- https://djconnect.dev/support
+- support@djconnect.dev
+
+Technical website issues can still be reported through GitHub Issues:
 
 https://github.com/pcvantol/djconnect-website/issues
 

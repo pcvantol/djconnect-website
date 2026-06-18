@@ -11,6 +11,11 @@
 - Verify `VOICE_INTENT_DATA_PROMPT.md` still asks the Home Assistant integration for structured intentdata only.
 - Open `wwwroot/blog.html` and verify the Blog overview links to `wwwroot/blog-djconnect-project.html`.
 - Open `wwwroot/blog-djconnect-project.html` and verify the post explains the DJConnect project, Home Assistant base and multi-client workflow.
+- Open `wwwroot/support.html` and verify `support@djconnect.dev` is the primary
+  support contact, the `mailto:` link is present and GitHub Issues remains as a
+  technical fallback.
+- Verify public page footers link to `wwwroot/support.html` rather than directly
+  to GitHub Issues.
 - Open `wwwroot/raspberry-pi.html` and verify it loads Raspberry Pi builds from `pcvantol/djconnect-pi-releases`.
 - Verify the Raspberry Pi page has one `Ondersteunde hardware` section with a
   Raspberry Pi Zero 2 W plus Pimoroni HyperPixel 4.0 Square block and external
@@ -92,6 +97,7 @@ git diff --check
 git status --short
 test -f wwwroot/index.html
 test -f wwwroot/start.html
+test -f wwwroot/support.html
 test -f wwwroot/assets/djconnect/site.webmanifest
 test -f migrations/0001_create_click_counters.sql
 test -f README.md

@@ -18,6 +18,7 @@ const pages = [
   { path: "/voice-commands", name: "voice-commands" },
   { path: "/blog", name: "blog" },
   { path: "/blog-djconnect-project", name: "blog-djconnect-project" },
+  { path: "/support", name: "support" },
   { path: "/ios", name: "ios" },
   { path: "/macos", name: "macos" },
   { path: "/raspberry-pi", name: "raspberry-pi" },

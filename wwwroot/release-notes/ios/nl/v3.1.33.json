@@ -1,0 +1,7 @@
+{
+  "version": "3.1.33",
+  "platform": "ios",
+  "language": "nl",
+  "name": "DJConnect iOS 3.1.33",
+  "body": "### Gewijzigd\n\n- De publieke GitHub-repository is aangescherpt met secret scanning, push\n  protection, Dependabot alerts, Dependabot security updates en branch\n  protection op `main`.\n\n---\n\nPlatform: iOS\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nNiet-ondertekende iOS-binaries worden hier gepubliceerd voor diagnostics en interne validatie. Gebruik voor normale iOS-distributie TestFlight/App Store."
+}

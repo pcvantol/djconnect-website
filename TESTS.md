@@ -55,7 +55,8 @@
 - Verify the embedded release cards load from GitHub or show the release fallback message.
 - Open `wwwroot/embedded.html`.
 - Verify Dutch and English language toggles update visible text on start, embedded, iOS, macOS, Features and Raspberry Pi pages.
-- Verify the embedded page lists LilyGO T-Embed CC1101 and ESP32-S3-BOX-3 under supported hardware.
+- Verify the embedded page lists LilyGO T-Embed CC1101 under supported hardware.
+- Verify ESP32-S3-BOX-3 is documented with ESPHome-powered voice assistant devices, alongside the Voice Preview Edition and M5 Atom Echo.
 - Verify the embedded ESP32 visual card has clear spacing and includes the LilyGO product specifications link.
 - Verify the embedded release block points to `pcvantol/djconnect-firmware` releases.
 - Verify iOS, macOS, ESP32 firmware and Raspberry Pi/Linux release blocks show only the latest GitHub release.

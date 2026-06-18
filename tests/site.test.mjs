@@ -356,6 +356,8 @@ test("voice commands page documents intent families and DJ response styles", asy
   assert.match(voice, /Stem, taal en TTS-engine beheer je in Home Assistant Assist/);
   assert.match(voice, /ESPHome voice assistants/);
   assert.match(voice, /Home Assistant Voice Preview Edition/);
+  assert.match(voice, /M5 Atom Echo/);
+  assert.match(voice, /ESP32-S3-BOX-3/);
   assert.match(voice, /Home Assistant conversation agent/);
   assert.match(voice, /Assist Conversation Agent/);
   assert.match(voice, /href="https:\/\/esphome\.io\/projects\/"/);
@@ -422,6 +424,8 @@ test("voice assistant page explains Assist Conversation Agent route", async () =
   assert.match(assistant, /href="https:\/\/djconnect\.dev\/voice-assistant"/);
   assert.match(assistant, /Home Assistant Assist satellites die op ESPHome draaien/);
   assert.match(assistant, /Home Assistant Voice Preview Edition/);
+  assert.match(assistant, /M5 Atom Echo/);
+  assert.match(assistant, /ESP32-S3-BOX-3/);
   assert.match(assistant, /Assist Conversation Agent/);
   assert.match(assistant, /zonder aparte DJConnect hardware-client of koppelcode/);
   assert.match(assistant, /DJConnect is geen onderdeel van ESPHome of Home Assistant/);
@@ -877,9 +881,9 @@ test("embedded page lists supported hardware", async () => {
   assert.match(embedded, /LilyGO T-Embed CC1101/);
   assert.match(embedded, /https:\/\/lilygo\.cc\/en-us\/products\/t-embed-cc1101/);
   assert.match(embedded, /LilyGO productspecificaties/);
-  assert.match(embedded, /ESP32-S3-BOX-3/);
-  assert.match(embedded, /https:\/\/github\.com\/espressif\/esp-box/);
-  assert.match(embedded, /hardware_overview_for_box_3\.md/);
+  assert.doesNotMatch(embedded, /ESP32-S3-BOX-3/);
+  assert.doesNotMatch(embedded, /https:\/\/github\.com\/espressif\/esp-box/);
+  assert.doesNotMatch(embedded, /hardware_overview_for_box_3\.md/);
 });
 
 test("homepage LilyGO visual keeps the device screen empty", async () => {

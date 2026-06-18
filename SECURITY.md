@@ -1,36 +1,58 @@
-# Security Policy
+# DJConnect Security Policy
 
-Thank you for helping keep DJConnect safe.
+## Reporting A Vulnerability
 
-## Reporting a Vulnerability
+Please report security vulnerabilities privately by email:
 
-Please report security vulnerabilities by emailing security@djconnect.dev.
+```text
+security@djconnect.dev
+```
 
-Do not open a public GitHub issue for suspected vulnerabilities, credentials,
-private user data, exploit details or sensitive logs.
+Do not open a public GitHub issue for suspected security vulnerabilities, leaked secrets, credentials, private URLs, exploit details or sensitive logs. Private reporting gives the maintainer time to investigate and prepare a fix before details are widely visible.
 
-When reporting, include as much of the following as is safe to share:
+Useful report details include:
 
-- A clear description of the issue.
-- Steps to reproduce or affected URLs/files.
-- The potential impact.
-- Any relevant screenshots, logs or proof-of-concept details with secrets
-  removed.
+- Affected repository, version, release tag, commit and component.
+- A clear description of the issue and expected impact.
+- Steps to reproduce or a proof of concept, when safe to share.
+- Relevant logs, screenshots, URLs or configuration details with secrets removed.
+- Whether tokens, credentials, local network access, audio, diagnostics or user data may be exposed.
 
-Please do not include tokens, passwords, WiFi credentials, OAuth secrets,
-private logs or personal user data in your report.
+Please do not include real Spotify OAuth credentials, Home Assistant tokens, DJConnect bearer tokens, WiFi passwords, private network URLs, raw diagnostics or other secrets in the report. Redacted examples are preferred.
 
-## Response
+## What To Expect
 
-We will review reports as soon as practical and may ask for more information.
-Confirmed vulnerabilities will be handled before public disclosure where
-appropriate.
+The project maintainer will review security reports as soon as practical. DJConnect is a small community project, so response times may vary, but reports sent to `security@djconnect.dev` are the preferred path and will be handled with care.
 
-## Scope
+The maintainer may ask for clarifying details and will coordinate any fix, release or disclosure timing privately before public discussion. When a vulnerability is confirmed, the maintainer will work on an appropriate fix, document user impact where needed and publish release notes once the fix is available.
 
-This policy covers the DJConnect website repository and its deployed website at
-https://djconnect.dev.
+If a report crosses repository boundaries, email `security@djconnect.dev` and include the affected component names. The report can be routed across the Home Assistant integration, Apple app, ESP32 firmware, website or Raspberry Pi client as needed.
 
-Related DJConnect repositories may have their own security notes. If a report
-crosses repository boundaries, email security@djconnect.dev and include the
-affected component names.
+## Supported Versions
+
+Security fixes for the DJConnect website are normally made against the current production website at `https://djconnect.dev` and the current `main` branch. Users should assume older deployed previews or local forks are unsupported unless the maintainer says otherwise.
+
+## Security Scope
+
+In scope for this repository:
+
+- DJConnect website code, Cloudflare Pages configuration and deployed website behavior.
+- Public download redirects, release metadata rendering and website admin surfaces.
+- Website tests, documentation and release tooling that could expose credentials or private artifacts.
+
+Out of scope for this repository:
+
+- Vulnerabilities in Cloudflare, GitHub, Spotify, Home Assistant, HACS or third-party services themselves.
+- Home Assistant integration, Apple app, ESP32 firmware or Raspberry Pi client issues that belong in a separate DJConnect repository, unless the report crosses repository boundaries.
+
+## Safe Research Guidelines
+
+Please avoid actions that could harm users or services:
+
+- Use your own Home Assistant instance, DJConnect device/client, website test session and Spotify account when testing.
+- Do not access, modify or delete data that is not yours.
+- Do not attempt denial-of-service attacks.
+- Do not publicly disclose a vulnerability before a fix or mitigation is available.
+- Do not exfiltrate tokens, passwords, audio, local-network data, private URLs, diagnostics or personal configuration.
+
+Good-faith security research that follows these guidelines is welcome.

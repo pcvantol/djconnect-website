@@ -2,6 +2,15 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.48 - 2026-06-18
+
+- Updated public-readiness TODO notes to reflect that `/admin` is protected by
+  Cloudflare Access and should be reverified before public repository changes.
+- Enabled available GitHub repository security automation for Dependabot
+  vulnerability alerts and automated security fixes.
+- Ran a final local public-readiness scan for worktree cleanliness, tests,
+  secret-like patterns, credential files and recent git history.
+
 ## DJConnect website v3.1.47 - 2026-06-18
 
 - Fixed an invalid extra brace in the homepage inline script that affected the

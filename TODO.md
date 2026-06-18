@@ -13,8 +13,8 @@ Cross-repo contract changes are tracked only in
 - Replace the homepage carousel mockups with final product screenshots when the apps and hardware visuals are ready.
 - Replace the iOS and macOS hero mockups with real app screenshots once the native clients are ready.
 - Replace the Raspberry Pi HyperPixel-style mockup with a real product screenshot once the Linux client UI is finalized.
-- Replace the temporary hardcoded `/admin` Basic Auth page with Cloudflare Access
-  or secret-backed authentication before broader use.
+- Keep `/admin` protected by Cloudflare Access and verify the Access policy
+  before public repository changes or admin-page releases.
 - Extend `/admin` beyond GitHub runtime `download_count` totals with D1 redirect
   click counters when the persistence layer is ready.
 - Replace footer version when preparing the next release.

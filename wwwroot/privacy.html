@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DJConnect Privacy Policy</title>
+  <meta name="description" content="Privacy Policy voor DJConnect: welke gegevens de website, apps en Home Assistant integratie wel en niet verwerken." />
+  <link rel="canonical" href="https://djconnect.dev/privacy" />
+  <link rel="icon" href="assets/djconnect/icon.svg" type="image/svg+xml" />
+  <style>
+    :root { --bg:#0b0d12; --panel:rgba(255,255,255,0.075); --text:#f7f7fb; --muted:#b7bccb; --line:rgba(255,255,255,0.14); --cyan:#66e0ff; --green:#7ef7a7; --pink:#fb7185; --max:1180px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; background:var(--bg); }
+    body { margin:0; color:var(--text); font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height:1.55; background:radial-gradient(circle at 16% 10%, rgba(102,224,255,0.18), transparent 28rem), radial-gradient(circle at 86% 6%, rgba(251,113,133,0.13), transparent 27rem), radial-gradient(circle at 58% 72%, rgba(126,247,167,0.1), transparent 31rem), linear-gradient(180deg,#0b0d12 0%,#111827 54%,#090b10 100%); }
+    a { color:inherit; text-decoration:none; }
+    .wrap { width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
+    .nav { position:sticky; top:0; z-index:20; backdrop-filter:blur(18px); background:rgba(11,13,18,0.7); border-bottom:1px solid var(--line); }
+    .nav-inner { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:22px; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:850; font-size:1.13rem; }
+    .brand img { width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.18); box-shadow:0 0 34px rgba(102,224,255,0.25); }
+    .nav-links { display:flex; align-items:center; gap:18px; color:var(--muted); font-size:0.94rem; }
+    .nav-links a:hover, .nav-links a[aria-current="page"] { color:var(--text); }
+    .nav-controls { display:flex; align-items:center; gap:12px; }
+    .lang-toggle { display:inline-grid; grid-template-columns:repeat(2,1fr); min-width:86px; padding:3px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.06); }
+    .lang-toggle button { min-height:34px; border:0; border-radius:999px; background:transparent; color:var(--muted); font:inherit; font-size:0.82rem; font-weight:850; cursor:pointer; }
+    .lang-toggle button[aria-pressed="true"] { background:rgba(102,224,255,0.18); color:var(--text); }
+    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:0 18px; border-radius:999px; border:1px solid var(--line); background:var(--panel); color:var(--text); font-weight:780; box-shadow:0 10px 30px rgba(0,0,0,0.15); }
+    .btn.primary { border:0; color:#06110c; background:linear-gradient(135deg,var(--cyan),var(--green)); }
+    .hero { padding:82px 0 52px; }
+    .hero-grid { display:grid; grid-template-columns:0.95fr 1.05fr; gap:42px; align-items:end; }
+    h1,h2,h3 { margin:0; letter-spacing:-0.045em; line-height:1.05; }
+    h1 { font-size:clamp(3.2rem,7vw,6.2rem); }
+    h2 { font-size:clamp(2rem,4vw,3.6rem); margin-bottom:18px; }
+    h3 { font-size:1.18rem; margin-bottom:10px; }
+    .lead { color:var(--muted); font-size:clamp(1.08rem,2.1vw,1.3rem); margin:24px 0 0; max-width:760px; }
+    section { padding:54px 0 76px; }
+    .grid-2 { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+    .card { border:1px solid var(--line); border-radius:22px; background:var(--panel); padding:26px; box-shadow:0 12px 36px rgba(0,0,0,0.16); }
+    .card p, .card li { color:var(--muted); }
+    .card ul { margin:0; padding-left:20px; display:grid; gap:10px; }
+    .note { border-left:3px solid var(--green); padding-left:14px; color:var(--muted); }
+    .mail-link { color:var(--cyan); font-weight:850; text-decoration:underline; text-underline-offset:4px; }
+    .legal { color:var(--muted); font-size:0.86rem; padding:34px 0 44px; border-top:1px solid var(--line); }
+    .site-version { margin-top:14px; font-size:0.76rem; color:rgba(183,188,203,0.72); }
+    .privacy-notice { font-size:0.78rem; color:rgba(183,188,203,0.78); }
+    @media (max-width:900px) { .hero-grid,.grid-2 { grid-template-columns:1fr; } .nav-inner { flex-wrap:wrap; padding:12px 0; } .nav-links { order:3; width:100%; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; } .nav-links::-webkit-scrollbar { display:none; } }
+    @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="index.html"><img src="assets/djconnect/icon.svg" alt="" /><span>DJConnect</span></a>
+      <div class="nav-links" aria-label="Navigatie" data-i18n-attr="aria-label:navLabel">
+        <a href="index.html" data-i18n="navHome">Home</a>
+        <a href="features.html" data-i18n="navFeatures">Features</a>
+        <a href="support.html" data-i18n="navSupport">Support</a>
+        <a href="privacy.html" aria-current="page" data-i18n="navPrivacy">Privacy</a>
+      </div>
+      <div class="nav-controls">
+        <div class="lang-toggle" aria-label="Taalkeuze" data-i18n-attr="aria-label:languageToggle">
+          <button type="button" data-lang="nl" aria-pressed="true">NL</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="btn primary" href="start.html" data-i18n="navStart">Aan de slag</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <h1 data-i18n="heroTitle">Privacy Policy</h1>
+          <p class="lead" data-i18n="heroLead">DJConnect is ontworpen om je muziekbediening privé te houden. Accountgegevens blijven in je app of Home Assistant; deze website gebruikt geen cookies of trackingprofielen.</p>
+        </div>
+        <div class="card">
+          <h2 data-i18n="summaryTitle">Korte samenvatting</h2>
+          <ul>
+            <li data-i18n="summary1">Deze website ontvangt of bewaart geen Spotify accountgegevens.</li>
+            <li data-i18n="summary2">Spotify tokens, Home Assistant tokens en koppelgegevens blijven lokaal in de app of in Home Assistant.</li>
+            <li data-i18n="summary3">Website download- en HACS-clicks worden alleen als cookieloze dagtotalen geteld.</li>
+            <li data-i18n="summary4">Supportmail verwerk je zelf door informatie te mailen naar support@djconnect.dev.</li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <section>
+      <div class="wrap grid-2">
+        <article class="card">
+          <h2 data-i18n="websiteTitle">Website</h2>
+          <p data-i18n="websiteText">De DJConnect website is statisch en gebruikt geen advertentiecookies, trackingcookies of bezoekersprofielen. Download- en HACS-links kunnen via privacyvriendelijke redirect endpoints lopen. Die tellen alleen dagelijkse totalen per doel en bron, zonder IP-adres, user agent, referrer of unieke bezoeker-id op te slaan.</p>
+        </article>
+        <article class="card">
+          <h2 data-i18n="appsTitle">Apps en Home Assistant</h2>
+          <p data-i18n="appsText">De DJConnect apps en Home Assistant integratie bewaren accounttokens en koppelgegevens in de app of in Home Assistant. De website ontvangt die gegevens niet. Spotify playback loopt via je eigen Spotify Developer app, Client ID en Home Assistant-configuratie.</p>
+        </article>
+        <article class="card">
+          <h2 data-i18n="voiceTitle">Voice en audio</h2>
+          <p data-i18n="voiceText">Wanneer je DJConnect met Home Assistant Assist gebruikt, worden spraakherkenning, taal en TTS door je eigen Home Assistant Assist pipeline verwerkt. DJConnect gebruikt de herkende opdracht om muziek te starten en een korte DJ-response terug te geven.</p>
+        </article>
+        <article class="card">
+          <h2 data-i18n="supportTitle">Support en feedback</h2>
+          <p data-i18n="supportText">Als je support mailt, verwerken we de informatie die je zelf meestuurt om je vraag te beantwoorden. Stuur geen wachtwoorden, OAuth tokens, WiFi-wachtwoorden of andere geheimen mee. Gebruik voor privacyvragen support@djconnect.dev.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="card">
+          <h2 data-i18n="rightsTitle">Vragen of verzoeken</h2>
+          <p class="note"><span data-i18n="rightsText">Voor privacyvragen, correctieverzoeken of verwijderverzoeken kun je mailen naar</span> <a class="mail-link" href="mailto:support@djconnect.dev">support@djconnect.dev</a>.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap legal">
+    <p>Copyright Peter van Tol 2026. Released under the MIT License.</p>
+    <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
+    <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
+    <p class="site-version">DJConnect website v3.1.40</p>
+  </footer>
+  <script>
+    const translations = {
+      nl: {
+        title: "DJConnect Privacy Policy",
+        metaDescription: "Privacy Policy voor DJConnect: welke gegevens de website, apps en Home Assistant integratie wel en niet verwerken.",
+        navLabel: "Navigatie",
+        languageToggle: "Taalkeuze",
+        navHome: "Home",
+        navFeatures: "Features",
+        navSupport: "Support",
+        navPrivacy: "Privacy",
+        navStart: "Aan de slag",
+        heroTitle: "Privacy Policy",
+        heroLead: "DJConnect is ontworpen om je muziekbediening privé te houden. Accountgegevens blijven in je app of Home Assistant; deze website gebruikt geen cookies of trackingprofielen.",
+        summaryTitle: "Korte samenvatting",
+        summary1: "Deze website ontvangt of bewaart geen Spotify accountgegevens.",
+        summary2: "Spotify tokens, Home Assistant tokens en koppelgegevens blijven lokaal in de app of in Home Assistant.",
+        summary3: "Website download- en HACS-clicks worden alleen als cookieloze dagtotalen geteld.",
+        summary4: "Supportmail verwerk je zelf door informatie te mailen naar support@djconnect.dev.",
+        websiteTitle: "Website",
+        websiteText: "De DJConnect website is statisch en gebruikt geen advertentiecookies, trackingcookies of bezoekersprofielen. Download- en HACS-links kunnen via privacyvriendelijke redirect endpoints lopen. Die tellen alleen dagelijkse totalen per doel en bron, zonder IP-adres, user agent, referrer of unieke bezoeker-id op te slaan.",
+        appsTitle: "Apps en Home Assistant",
+        appsText: "De DJConnect apps en Home Assistant integratie bewaren accounttokens en koppelgegevens in de app of in Home Assistant. De website ontvangt die gegevens niet. Spotify playback loopt via je eigen Spotify Developer app, Client ID en Home Assistant-configuratie.",
+        voiceTitle: "Voice en audio",
+        voiceText: "Wanneer je DJConnect met Home Assistant Assist gebruikt, worden spraakherkenning, taal en TTS door je eigen Home Assistant Assist pipeline verwerkt. DJConnect gebruikt de herkende opdracht om muziek te starten en een korte DJ-response terug te geven.",
+        supportTitle: "Support en feedback",
+        supportText: "Als je support mailt, verwerken we de informatie die je zelf meestuurt om je vraag te beantwoorden. Stuur geen wachtwoorden, OAuth tokens, WiFi-wachtwoorden of andere geheimen mee. Gebruik voor privacyvragen support@djconnect.dev.",
+        rightsTitle: "Vragen of verzoeken",
+        rightsText: "Voor privacyvragen, correctieverzoeken of verwijderverzoeken kun je mailen naar",
+        legalPrivacy: "Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.",
+        legalPrivacyLink: "Privacy Policy",
+        legalSupport: "Support"
+      },
+      en: {
+        title: "DJConnect Privacy Policy",
+        metaDescription: "DJConnect Privacy Policy: what the website, apps and Home Assistant integration do and do not process.",
+        navLabel: "Navigation",
+        languageToggle: "Language",
+        navHome: "Home",
+        navFeatures: "Features",
+        navSupport: "Support",
+        navPrivacy: "Privacy",
+        navStart: "Get started",
+        heroTitle: "Privacy Policy",
+        heroLead: "DJConnect is designed to keep your music control private. Account details stay in your app or Home Assistant; this website does not use cookies or tracking profiles.",
+        summaryTitle: "Short summary",
+        summary1: "This website does not receive or store Spotify account details.",
+        summary2: "Spotify tokens, Home Assistant tokens and pairing details stay locally in the app or in Home Assistant.",
+        summary3: "Website download and HACS clicks are counted only as cookieless daily totals.",
+        summary4: "Support email is processed from the information you choose to send to support@djconnect.dev.",
+        websiteTitle: "Website",
+        websiteText: "The DJConnect website is static and does not use advertising cookies, tracking cookies or visitor profiles. Download and HACS links may use privacy-friendly redirect endpoints. Those count only daily totals by target and source, without storing IP address, user agent, referrer or unique visitor ID.",
+        appsTitle: "Apps and Home Assistant",
+        appsText: "The DJConnect apps and Home Assistant integration store account tokens and pairing details in the app or in Home Assistant. The website does not receive those details. Spotify playback runs through your own Spotify Developer app, Client ID and Home Assistant configuration.",
+        voiceTitle: "Voice and audio",
+        voiceText: "When you use DJConnect with Home Assistant Assist, speech recognition, language and TTS are handled by your own Home Assistant Assist pipeline. DJConnect uses the recognized request to start music and return a short DJ response.",
+        supportTitle: "Support and feedback",
+        supportText: "If you email support, we process the information you choose to send so we can answer your question. Do not send passwords, OAuth tokens, WiFi passwords or other secrets. Use support@djconnect.dev for privacy questions.",
+        rightsTitle: "Questions or requests",
+        rightsText: "For privacy questions, correction requests or deletion requests, email",
+        legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
+        legalPrivacyLink: "Privacy Policy",
+        legalSupport: "Support"
+      }
+    };
+    const getInitialLanguage = () => {
+      const stored = localStorage.getItem("djconnect-language");
+      if (stored === "nl" || stored === "en") return stored;
+      return navigator.language && navigator.language.toLowerCase().startsWith("nl") ? "nl" : "en";
+    };
+    const applyLanguage = (lang) => {
+      const dictionary = translations[lang] || translations.nl;
+      document.documentElement.lang = lang;
+      document.title = dictionary.title;
+      document.querySelector('meta[name="description"]').setAttribute("content", dictionary.metaDescription);
+      document.querySelectorAll("[data-i18n]").forEach((node) => {
+        const value = dictionary[node.dataset.i18n];
+        if (value) node.textContent = value;
+      });
+      document.querySelectorAll("[data-i18n-attr]").forEach((node) => {
+        node.dataset.i18nAttr.split(",").forEach((mapping) => {
+          const [attr, key] = mapping.split(":").map((part) => part.trim());
+          if (attr && key && dictionary[key]) node.setAttribute(attr, dictionary[key]);
+        });
+      });
+      document.querySelectorAll("[data-lang]").forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.lang === lang));
+      });
+      localStorage.setItem("djconnect-language", lang);
+    };
+    document.querySelectorAll("[data-lang]").forEach((button) => {
+      button.addEventListener("click", () => applyLanguage(button.dataset.lang));
+    });
+    applyLanguage(getInitialLanguage());
+  </script>
+</body>
+</html>

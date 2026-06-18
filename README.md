@@ -10,12 +10,23 @@ Static landing page for DJConnect, published through Cloudflare Pages.
 - `wwwroot/voice-commands.html`: bilingual How To page for DJConnect voice command intent families and artist-first music requests. Spoken music examples are mirrored from the HA repo canonical source `examples/voice_intents.json`.
 - `wwwroot/voice-assistant.html`: bilingual explanation page for using DJConnect as Home Assistant Assist Conversation Agent with ESPHome-powered voice assistants.
 - `wwwroot/support.html`: public support page with `support@djconnect.dev` and technical GitHub Issues fallback.
+- `wwwroot/privacy.html`: App Store-ready Privacy Policy for website, apps,
+  Home Assistant integration, voice/audio flow, aggregate analytics and support
+  contact.
 - `wwwroot/blog.html`: blog overview page for project notes and release/design stories.
 - `wwwroot/blog-djconnect-project.html`: first project blogpost about the DJConnect architecture and workflow.
 - `wwwroot/start.html`: Home Assistant setup flow for HACS installation, voice pipeline setup, DJConnect configuration, client downloads and pairing.
+- Spotify OAuth runs through the user's own Home Assistant installation. Users
+  must create their own Spotify Developer app, register
+  `https://<your-home-assistant-external-url>/api/djconnect/spotify/callback`
+  as redirect URI, copy the Client ID into the DJConnect setup and authorize
+  Spotify through Home Assistant. Prefer the Nabu Casa HTTPS external URL.
+  DJConnect uses PKCE, so a Spotify Client Secret is preferably not required.
 - `wwwroot/embedded.html`: ESP32 embedded-device one-pager.
 - `wwwroot/macos.html`: macOS app page with binaries from `pcvantol/djconnect-app-releases`.
 - `wwwroot/ios.html`: iOS app page with App Store placeholder.
+- `wwwroot/testflight.html`: TestFlight beta route with requirements,
+  invite-link guidance, Home Assistant pairing and feedback mailbox.
 - `wwwroot/raspberry-pi.html`: Raspberry Pi app page with builds from `pcvantol/djconnect-pi-releases`.
 - `wwwroot/assets/`: logo, favicon and product visuals.
 - `functions/api/releases.js`: Cloudflare Pages Function proxy for GitHub release data.
@@ -222,6 +233,9 @@ Use `./cleanup_old_releases.sh` manually only when you want cleanup outside the 
 - Keep homepage navigation focused on `Hoe werkt het`, `Features`, `Installeren` and the primary `Aan de slag` CTA.
 - Keep homepage hero device slides spacious: macOS, iPad/iPhone and LilyGO/ESP32 each get their own carousel slide.
 - Keep the start page aligned with the current setup order: Home Assistant voice pipeline, HACS, DJConnect configuration, client pairing and first use.
+- Keep the start page clear that Spotify OAuth requires the user's own Spotify
+  Developer app because redirect URIs must be registered for their own Home
+  Assistant external URL.
 - Keep the embedded page compact: supported hardware, how it works and firmware downloads. Detailed setup, requirements, FAQ and experience content belong off this page.
 - Keep macOS, iOS, ESP32 and Raspberry Pi page navigation minimal: `Home`, `Platform`, language toggle and the page CTA.
 - Keep macOS and Raspberry Pi download menu labels singular: `Download`.

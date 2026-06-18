@@ -237,6 +237,7 @@
     }
 
     .platform-stage {
+      position: relative;
       min-height: 560px;
       border: 1px solid var(--line);
       border-radius: 28px;
@@ -249,6 +250,64 @@
       display: grid;
       grid-template-rows: auto 1fr;
       gap: 18px;
+    }
+
+    .signal-field {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.9;
+    }
+
+    .signal-ring {
+      fill: none;
+      stroke-width: 1.4;
+      transform-origin: 50% 50%;
+      animation: signalPulse 5.8s ease-in-out infinite;
+    }
+
+    .signal-ring:nth-of-type(2) { animation-delay: 1.3s; }
+    .signal-ring:nth-of-type(3) { animation-delay: 2.6s; }
+
+    .signal-wave {
+      fill: none;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-dasharray: 14 18;
+      animation: waveTravel 6.8s linear infinite;
+    }
+
+    .signal-dot {
+      transform-origin: center;
+      animation: dotFloat 4.5s ease-in-out infinite;
+    }
+
+    .signal-dot:nth-of-type(5) { animation-delay: 0.8s; }
+    .signal-dot:nth-of-type(6) { animation-delay: 1.6s; }
+    .signal-dot:nth-of-type(7) { animation-delay: 2.4s; }
+
+    .stage-top,
+    .device-stack {
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes signalPulse {
+      0%, 100% { opacity: 0.18; transform: scale(0.96); }
+      50% { opacity: 0.55; transform: scale(1.05); }
+    }
+
+    @keyframes waveTravel {
+      from { stroke-dashoffset: 0; }
+      to { stroke-dashoffset: -128; }
+    }
+
+    @keyframes dotFloat {
+      0%, 100% { opacity: 0.28; transform: translateY(0) scale(0.92); }
+      50% { opacity: 0.92; transform: translateY(-12px) scale(1.08); }
     }
 
     .stage-top {
@@ -284,6 +343,41 @@
       scrollbar-width: thin;
       scrollbar-color: rgba(102, 224, 255, 0.55) rgba(255,255,255,0.08);
     }
+
+    .carousel-button {
+      position: absolute;
+      top: 54%;
+      z-index: 4;
+      width: 48px;
+      height: 48px;
+      border: 1px solid rgba(255,255,255,0.28);
+      border-radius: 50%;
+      background: rgba(8, 11, 17, 0.82);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      box-shadow: 0 14px 34px rgba(0,0,0,0.34);
+      backdrop-filter: blur(14px);
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .carousel-button:hover,
+    .carousel-button:focus-visible {
+      transform: translateY(-1px);
+      border-color: rgba(102,224,255,0.72);
+      background: rgba(18, 25, 37, 0.92);
+      outline: none;
+    }
+
+    .carousel-button svg {
+      width: 22px;
+      height: 22px;
+      stroke-width: 2.8;
+    }
+
+    .carousel-button.prev { left: 18px; }
+    .carousel-button.next { right: 18px; }
 
     .device-stack::-webkit-scrollbar { height: 8px; }
     .device-stack::-webkit-scrollbar-track { background: rgba(255,255,255,0.08); border-radius: 999px; }
@@ -683,6 +777,13 @@
       .device-stack { min-height: 390px; gap: 12px; }
       .device-slide { min-height: 370px; padding: 16px; }
       .device-slide-label { top: 14px; left: 14px; }
+      .carousel-button {
+        width: 42px;
+        height: 42px;
+        top: 55%;
+      }
+      .carousel-button.prev { left: 10px; }
+      .carousel-button.next { right: 10px; }
       .macbook { width: min(100%, 360px); }
       .ipad { width: min(100%, 320px); }
       .cover { width: 68px; height: 68px; border-radius: 20px; }
@@ -691,6 +792,14 @@
       .embedded { width: min(100%, 310px); }
       .platform-card .topline { flex-direction: column; }
       .nav-controls .btn { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .signal-ring,
+      .signal-wave,
+      .signal-dot {
+        animation: none;
+      }
     }
   </style>
 </head>
@@ -730,9 +839,36 @@
         </div>
 
         <div class="platform-stage" aria-label="DJConnect platformoverzicht" data-i18n-attr="aria-label:stageLabel">
+          <svg class="signal-field" viewBox="0 0 640 560" aria-hidden="true" focusable="false">
+            <defs>
+              <radialGradient id="signalGlow" cx="50%" cy="48%" r="62%">
+                <stop offset="0%" stop-color="#66e0ff" stop-opacity="0.34" />
+                <stop offset="54%" stop-color="#7ef7a7" stop-opacity="0.16" />
+                <stop offset="100%" stop-color="#fb7185" stop-opacity="0" />
+              </radialGradient>
+              <linearGradient id="signalStroke" x1="70" y1="90" x2="570" y2="470">
+                <stop offset="0%" stop-color="#66e0ff" />
+                <stop offset="52%" stop-color="#7ef7a7" />
+                <stop offset="100%" stop-color="#fb7185" />
+              </linearGradient>
+            </defs>
+            <rect width="640" height="560" fill="url(#signalGlow)" opacity="0.42" />
+            <circle class="signal-ring" cx="320" cy="288" r="145" stroke="url(#signalStroke)" />
+            <circle class="signal-ring" cx="320" cy="288" r="205" stroke="url(#signalStroke)" />
+            <circle class="signal-ring" cx="320" cy="288" r="265" stroke="url(#signalStroke)" />
+            <path class="signal-wave" d="M82 310 C142 252 194 364 254 306 S374 250 434 306 S520 356 574 292" stroke="url(#signalStroke)" />
+            <circle class="signal-dot" cx="118" cy="154" r="5" fill="#66e0ff" />
+            <circle class="signal-dot" cx="522" cy="176" r="6" fill="#7ef7a7" />
+            <circle class="signal-dot" cx="486" cy="438" r="5" fill="#fb7185" />
+          </svg>
           <div class="stage-top">
             <span data-i18n="stageText">DJConnect in een oogopslag</span>
           </div>
+          <button class="carousel-button prev" type="button" data-carousel-direction="-1" aria-label="Vorige slide" data-i18n-attr="aria-label:carouselPrev">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+          </button>
           <div class="device-stack" aria-label="Platform opties" data-i18n-attr="aria-label:stageCarouselLabel">
             <article class="device-slide device-slide-mac">
               <span class="device-slide-label" data-i18n="stageScreenText">Speel muziek & bedien op afstand</span>
@@ -759,6 +895,11 @@
               <div class="embedded" aria-hidden="true"><img src="assets/lilygo-t-embed-djconnect.svg" alt="" /></div>
             </article>
           </div>
+          <button class="carousel-button next" type="button" data-carousel-direction="1" aria-label="Volgende slide" data-i18n-attr="aria-label:carouselNext">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+          </button>
         </div>
       </div>
     </header>
@@ -879,8 +1020,8 @@
     <p data-i18n="legalCopyright">Copyright Peter van Tol 2026. Released under the MIT License. DJConnect firmware and apps may be distributed separately.</p>
     <p data-i18n="legalSpotify">Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
-    <p><a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.1.39</p>
+    <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
+    <p class="site-version">DJConnect website v3.1.40</p>
   </footer>
   <script src="assets/voice-intents.js"></script>
   <script>
@@ -904,6 +1045,8 @@
         examplesMore: "Bekijk meer spraakvoorbeelden",
         stageLabel: "DJConnect platformoverzicht",
         stageCarouselLabel: "Platform opties",
+        carouselPrev: "Vorige slide",
+        carouselNext: "Volgende slide",
         iosSlideLabel: "Vraag je volgende hit aan",
         embeddedSlideLabel: "Luister naar persoonlijke DJ aankondiging",
         stageText: "DJConnect in een oogopslag",
@@ -944,6 +1087,7 @@
         legalCopyright: "Copyright Peter van Tol 2026. Released under the MIT License. DJConnect firmware and apps may be distributed separately.",
         legalSpotify: "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility.",
         legalPrivacy: "Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.",
+        legalPrivacyLink: "Privacy Policy",
         legalSupport: "Support"
       },
       en: {
@@ -965,6 +1109,8 @@
         examplesMore: "See more voice examples",
         stageLabel: "DJConnect platform overview",
         stageCarouselLabel: "Platform options",
+        carouselPrev: "Previous slide",
+        carouselNext: "Next slide",
         iosSlideLabel: "With voice activation",
         embeddedSlideLabel: "Listen to personal DJ announcements",
         stageText: "DJConnect. At a glance",
@@ -1005,6 +1151,7 @@
         legalCopyright: "Copyright Peter van Tol 2026. Released under the MIT License. DJConnect firmware and apps may be distributed separately.",
         legalSpotify: "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility.",
         legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
+        legalPrivacyLink: "Privacy Policy",
         legalSupport: "Support"
       }
     };
@@ -1060,6 +1207,18 @@
 
     document.querySelectorAll("[data-lang]").forEach((button) => {
       button.addEventListener("click", () => applyLanguage(button.getAttribute("data-lang")));
+    });
+
+    document.querySelectorAll("[data-carousel-direction]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const stage = button.closest(".platform-stage");
+        const stack = stage ? stage.querySelector(".device-stack") : null;
+        const direction = Number(button.getAttribute("data-carousel-direction"));
+        const slide = stack ? stack.querySelector(".device-slide") : null;
+        if (!stack || !slide || !direction) return;
+        const gap = parseFloat(getComputedStyle(stack).columnGap || getComputedStyle(stack).gap) || 0;
+        stack.scrollBy({ left: direction * (slide.offsetWidth + gap), behavior: "smooth" });
+      });
     });
 
     applyLanguage(getInitialLanguage());

@@ -198,6 +198,16 @@ test("homepage has platform routes and app store placeholders", async () => {
 test("homepage hero uses the current device visual and copy", async () => {
   const index = await read("wwwroot/index.html");
   assert.match(index, /device-stack/);
+  assert.match(index, /carousel-button prev/);
+  assert.match(index, /data-carousel-direction="-1"/);
+  assert.match(index, /data-carousel-direction="1"/);
+  assert.match(index, /carouselPrev: "Vorige slide"/);
+  assert.match(index, /carouselNext: "Volgende slide"/);
+  assert.match(index, /stack\.scrollBy/);
+  assert.match(index, /class="signal-field"/);
+  assert.match(index, /signalPulse/);
+  assert.match(index, /waveTravel/);
+  assert.match(index, /prefers-reduced-motion: reduce/);
   assert.match(index, /device-slide-mac/);
   assert.match(index, /device-slide-ios/);
   assert.match(index, /device-slide-embedded/);
@@ -235,10 +245,23 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /Maak of controleer je voice assist pipeline binnen Home Assistant/);
   assert.match(start, /Voeg custom repository toe <code>https:\/\/github\.com\/pcvantol\/djconnect<\/code>/);
   assert.match(start, /https:\/\/www\.home-assistant\.io\/voice_control\/voice_remote_cloud_assistant\//);
-  assert.match(start, /3\. Configureer/);
-  assert.match(start, /Voeg DJConnect toe als Home Assistant integratie en koppel je Spotify account/);
+  assert.match(start, /3\. Maak een Spotify Developer app/);
+  assert.match(start, /DJConnect verbindt met Spotify via je eigen Home Assistant installatie/);
+  assert.match(start, /Spotify redirect URI's vooraf geregistreerd moeten zijn/);
+  assert.match(start, /https:\/\/&lt;your-home-assistant-external-url&gt;\/api\/djconnect\/spotify\/callback/);
+  assert.match(start, /Nabu Casa HTTPS external URL/);
+  assert.match(start, /DJConnect gebruikt PKCE/);
+  assert.match(start, /Spotify Client Secret is bij voorkeur niet nodig/);
+  assert.match(start, /Open het Spotify Developer Dashboard/);
+  assert.match(start, /Maak een nieuwe app aan/);
+  assert.match(start, /Kopieer de Spotify Client ID/);
+  assert.match(start, /Vul de Client ID in tijdens de DJConnect setup\/config-flow/);
+  assert.match(start, /Autoriseer Spotify via Home Assistant/);
+  assert.match(start, /4\. Configureer DJConnect/);
+  assert.match(start, /Voeg DJConnect toe als Home Assistant integratie, vul je Spotify Client ID in en koppel je Spotify Premium account/);
   assert.match(start, /Open Home Assistant <strong>Settings -> Devices & services -> Add integration -> DJConnect<\/strong>/);
-  assert.match(start, /Koppel je Spotify Premium account/);
+  assert.match(start, /Vul de Spotify Client ID uit je eigen Spotify Developer app in/);
+  assert.match(start, /Koppel je Spotify Premium account via Home Assistant/);
   assert.match(start, /Configureer je assist pipeline voor stembesturing en pas de stijl van de DJ aankondigingen aan via eigen prompt/);
   assert.match(start, /id="client-ios" checked/);
   assert.match(start, /id="client-macos"/);
@@ -271,16 +294,22 @@ test("how-to-start page covers setup flow", async () => {
   assert.doesNotMatch(start, /De Linux app gebruikt dezelfde lokale Home Assistant koppeling/);
   assert.doesNotMatch(start, /Als automatische discovery \(mDNS\) niet werkt/);
   assert.doesNotMatch(start, /<li>Rond koppeling af<\/li>/);
-  assert.match(start, /4\. Koppel app of device/);
-  assert.match(start, /5\. Klaar voor gebruik/);
+  assert.match(start, /5\. Koppel app of device/);
+  assert.match(start, /6\. Klaar voor gebruik/);
   assert.match(start, /href="embedded\.html">Download ESP firmware<\/a>/);
   assert.match(start, /href="ios\.html"/);
   assert.match(start, /href="macos\.html"/);
   assert.match(start, /Ontvang persoonlijke DJ aankondigingen in de app of op je device/);
   assert.match(start, /Geen Spotify playback/);
   assert.match(start, /Controleer of de Spotify autorisatie in Home Assistant actief is, of herstel deze/);
+  assert.match(start, /Spotify OAuth of redirect fout/);
+  assert.match(start, /exact dezelfde redirect URI in het Spotify Developer Dashboard/);
+  assert.match(start, /Home Assistant external URL HTTPS gebruikt/);
+  assert.match(start, /Nabu Casa\/external URL overeenkomt met wat DJConnect toont/);
+  assert.match(start, /Autoriseer Spotify opnieuw na wijzigingen/);
   assert.match(start, /Ververs HACS update informatie en download de actuele versie van DJConnect/);
   assert.match(start, /Spotify is a trademark of Spotify AB/);
+  assert.match(start, /DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB/);
   assertTranslationsCoverPage(start, "start page");
 });
 
@@ -292,6 +321,8 @@ test("features page describes core functions and bonus games", async () => {
   assert.match(features, /Spotify playback/);
   assert.match(features, /Speaker keuze/);
   assert.match(features, /Home Assistant hub/);
+  assert.match(features, /eigen Spotify Developer app en Client ID/);
+  assert.match(features, /your own Spotify Developer app and Client ID/);
   assert.match(features, /DJ aankondigingen/);
   assert.match(features, /Veilige koppeling/);
   assert.match(features, /macOS/);
@@ -416,6 +447,25 @@ test("support page provides email support and technical issue fallback", async (
   assertTranslationsCoverPage(support, "support page");
 });
 
+test("privacy policy page covers App Store requirements", async () => {
+  const privacy = await read("wwwroot/privacy.html");
+  const sitemap = await read("wwwroot/sitemap.xml");
+
+  assert.match(privacy, /<title>DJConnect Privacy Policy<\/title>/);
+  assert.match(privacy, /href="https:\/\/djconnect\.dev\/privacy"/);
+  assert.match(privacy, /Privacy Policy/);
+  assert.match(privacy, /geen advertentiecookies, trackingcookies of bezoekersprofielen/);
+  assert.match(privacy, /without storing IP address, user agent, referrer or unique visitor ID/);
+  assert.match(privacy, /Spotify tokens, Home Assistant tokens en koppelgegevens blijven lokaal/);
+  assert.match(privacy, /Spotify Developer app, Client ID en Home Assistant-configuratie/);
+  assert.match(privacy, /Voice en audio/);
+  assert.match(privacy, /Home Assistant Assist pipeline/);
+  assert.match(privacy, /support@djconnect\.dev/);
+  assert.match(privacy, /href="mailto:support@djconnect\.dev"/);
+  assert.match(sitemap, /https:\/\/djconnect\.dev\/privacy/);
+  assertTranslationsCoverPage(privacy, "privacy policy page");
+});
+
 test("voice assistant page explains Assist Conversation Agent route", async () => {
   const assistant = await read("wwwroot/voice-assistant.html");
   const sitemap = await read("wwwroot/sitemap.xml");
@@ -522,7 +572,7 @@ test("embedded page uses the shared site color styling", async () => {
 });
 
 test("site does not embed website repository releases", async () => {
-  const pages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "ios", "macos", "raspberry-pi", "embedded"];
+  const pages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "privacy", "ios", "testflight", "macos", "raspberry-pi", "embedded"];
 
   for (const page of pages) {
     const html = await read(`wwwroot/${page}.html`);
@@ -558,7 +608,12 @@ test("iOS page labels the platform route as home", async () => {
   const ios = await read("wwwroot/ios.html");
   assert.match(ios, /href="index\.html" data-i18n="navHome">Home<\/a>/);
   assert.match(ios, /href="index\.html#apps" data-i18n="navPlatform">Platform<\/a>/);
+  assert.match(ios, /href="testflight\.html" data-i18n="testflightCta">Join TestFlight beta<\/a>/);
   assert.match(ios, /href="#downloads" data-i18n="navDownloads">Download<\/a>/);
+  assert.match(ios, /TestFlight beta/);
+  assert.match(ios, /TestFlight beta's verlopen/);
+  assert.match(ios, /Client ID uit je eigen Spotify Developer app/);
+  assert.match(ios, /Client ID from your own Spotify Developer app/);
   assert.match(ios, /data-i18n="releaseTitle">Laatste versie<\/h2>/);
   assert.match(ios, /data-github-downloads/);
   assert.match(ios, /data-github-repo="djconnect-app-releases"/);
@@ -571,6 +626,28 @@ test("iOS page labels the platform route as home", async () => {
   assert.doesNotMatch(ios, /data-github-releases/);
   assert.doesNotMatch(ios, /data-github-repo="djconnect-website"/);
   assertTranslationsCoverPage(ios, "iOS page");
+});
+
+test("TestFlight page explains beta route", async () => {
+  const testflight = await read("wwwroot/testflight.html");
+  const sitemap = await read("wwwroot/sitemap.xml");
+
+  assert.match(testflight, /<title>Join DJConnect TestFlight beta<\/title>/);
+  assert.match(testflight, /href="https:\/\/djconnect\.dev\/testflight"/);
+  assert.match(testflight, /Join TestFlight beta/);
+  assert.match(testflight, /Installeer TestFlight/);
+  assert.match(testflight, /Open de invite link/);
+  assert.match(testflight, /Koppel met Home Assistant/);
+  assert.match(testflight, /Spotify Premium/);
+  assert.match(testflight, /eigen Spotify Developer app/);
+  assert.match(testflight, /Spotify Client ID uit je eigen Spotify Developer app/);
+  assert.match(testflight, /support@djconnect\.dev/);
+  assert.match(testflight, /Plekken kunnen beperkt zijn/);
+  assert.match(testflight, /Beta's verlopen/);
+  assert.match(testflight, /data-testflight-link/);
+  assert.match(testflight, /href="mailto:support@djconnect\.dev"/);
+  assert.match(sitemap, /https:\/\/djconnect\.dev\/testflight/);
+  assertTranslationsCoverPage(testflight, "TestFlight page");
 });
 
 test("release proxy function is present", async () => {
@@ -784,7 +861,9 @@ test("canonical SEO uses djconnect.dev", async () => {
     ["blog", "https://djconnect.dev/blog"],
     ["blog-djconnect-project", "https://djconnect.dev/blog-djconnect-project"],
     ["support", "https://djconnect.dev/support"],
+    ["privacy", "https://djconnect.dev/privacy"],
     ["ios", "https://djconnect.dev/ios"],
+    ["testflight", "https://djconnect.dev/testflight"],
     ["macos", "https://djconnect.dev/macos"],
     ["raspberry-pi", "https://djconnect.dev/raspberry-pi"],
     ["embedded", "https://djconnect.dev/embedded"]
@@ -816,6 +895,8 @@ test("canonical SEO uses djconnect.dev", async () => {
   assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/blog<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/blog-djconnect-project<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/support<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/privacy<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/testflight<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/embedded<\/loc>/);
   assert.match(downloads, /https:\/\/djconnect\.dev\/go\/linux-install/);
 });
@@ -835,7 +916,7 @@ test("social preview image uses current branding", async () => {
 });
 
 test("legacy macOS download page is not referenced", async () => {
-  const pages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "ios", "macos", "raspberry-pi", "embedded"];
+  const pages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "privacy", "ios", "testflight", "macos", "raspberry-pi", "embedded"];
 
   for (const page of pages) {
     const html = await read(`wwwroot/${page}.html`);
@@ -902,8 +983,10 @@ test("site copy no longer claims devices are pre-flashed", async () => {
     read("wwwroot/embedded.html"),
     read("wwwroot/blog.html"),
     read("wwwroot/blog-djconnect-project.html"),
+    read("wwwroot/privacy.html"),
     read("wwwroot/macos.html"),
     read("wwwroot/ios.html"),
+    read("wwwroot/testflight.html"),
     read("wwwroot/raspberry-pi.html")
   ]);
 
@@ -915,7 +998,7 @@ test("site copy no longer claims devices are pre-flashed", async () => {
 });
 
 test("all translation keys are present in Dutch and English", async () => {
-  const pages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "ios", "macos", "raspberry-pi", "embedded"];
+  const pages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "privacy", "ios", "testflight", "macos", "raspberry-pi", "embedded"];
   const htmlPages = await Promise.all(pages.map((page) => read(`wwwroot/${page}.html`)));
 
   htmlPages.forEach((html, index) => assertTranslationsCoverPage(html, `${pages[index]} page`));
@@ -923,7 +1006,7 @@ test("all translation keys are present in Dutch and English", async () => {
 
 test("MIT license and footer notice are shown", async () => {
   const license = await read("LICENSE");
-  const pages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "ios", "macos", "raspberry-pi", "embedded"];
+  const pages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "privacy", "ios", "testflight", "macos", "raspberry-pi", "embedded"];
   const htmlPages = await Promise.all(pages.map((page) => read(`wwwroot/${page}.html`)));
 
   assert.match(license, /MIT License/);
@@ -933,12 +1016,13 @@ test("MIT license and footer notice are shown", async () => {
     assert.match(html, /class="privacy-notice" data-i18n="legalPrivacy"/);
     assert.match(html, /Deze website ontvangt of bewaart geen accountgegevens/);
     assert.match(html, /This website does not receive or store account details/);
+    assert.match(html, /href="privacy\.html" data-i18n="legalPrivacyLink">Privacy Policy<\/a>/);
     assert.match(html, /href="support\.html" data-i18n="legalSupport">Support<\/a>/);
   });
 });
 
 test("link checker validates local page and asset references", async () => {
-  const pages = ["index.html", "start.html", "features.html", "platform.html", "voice-commands.html", "voice-assistant.html", "blog.html", "blog-djconnect-project.html", "support.html", "ios.html", "macos.html", "raspberry-pi.html", "embedded.html"];
+  const pages = ["index.html", "start.html", "features.html", "platform.html", "voice-commands.html", "voice-assistant.html", "blog.html", "blog-djconnect-project.html", "support.html", "privacy.html", "ios.html", "testflight.html", "macos.html", "raspberry-pi.html", "embedded.html"];
 
   for (const page of pages) {
     const html = await read(`wwwroot/${page}`);

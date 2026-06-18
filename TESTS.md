@@ -14,8 +14,13 @@
 - Open `wwwroot/support.html` and verify `support@djconnect.dev` is the primary
   support contact, the `mailto:` link is present and GitHub Issues remains as a
   technical fallback.
+- Open `wwwroot/privacy.html` and verify it clearly covers website analytics,
+  app/Home Assistant token storage, voice/audio processing, support email,
+  absence of tracking cookies and the `support@djconnect.dev` privacy contact.
 - Verify public page footers link to `wwwroot/support.html` rather than directly
   to GitHub Issues.
+- Verify public page footers link to `wwwroot/privacy.html` for App Store
+  review.
 - Open `wwwroot/raspberry-pi.html` and verify it loads Raspberry Pi builds from `pcvantol/djconnect-pi-releases`.
 - Verify the Raspberry Pi page has one `Ondersteunde hardware` section with a
   Raspberry Pi Zero 2 W plus Pimoroni HyperPixel 4.0 Square block and external
@@ -38,16 +43,26 @@
 - Open `wwwroot/start.html` and verify the five setup sections: voice assist pipeline, HACS installation, DJConnect configuration, pairing/downloads and first use.
 - Verify the start page has a clear Home button back to `wwwroot/index.html`.
 - Verify the start page clearly separates automatic HACS installation from manual setup steps.
+- Verify the start page explains that Spotify OAuth uses the user's own Spotify
+  Developer app, the Home Assistant external callback URL and the Spotify
+  Client ID.
+- Verify the Spotify OAuth steps mention the redirect path
+  `/api/djconnect/spotify/callback`, Nabu Casa HTTPS external URL preference,
+  PKCE and that a Client Secret is preferably not required.
 - Verify the start page links to Home Assistant voice assistant documentation, the embedded firmware page and app releases.
 - Verify the ESP pairing flow says Home Assistant configures the device automatically and the device is ready for use.
 - Verify the pairing switch has separate full-width panels for ESP device, iOS app, macOS app and Raspberry Pi app.
 - Verify the footer privacy notice is present and translated on all public pages.
 - Verify each pairing panel has its own download as step 1.
 - Verify the app pairing flow uses the selected client type, not a combined iOS/macOS step.
-- Verify the troubleshooting cards use the current Spotify authorization, HACS refresh and local reachability wording.
+- Verify the troubleshooting cards use the current Spotify authorization,
+  OAuth redirect mismatch, HACS refresh and local reachability wording.
 - Verify the Spotify Premium account is configured inside the DJConnect configuration section, not as a separate top-level setup block.
 - Verify the homepage embedded card opens `wwwroot/embedded.html`.
 - Open `wwwroot/macos.html` and `wwwroot/ios.html`.
+- Open `wwwroot/testflight.html` and verify it explains how to join the
+  TestFlight beta, install TestFlight, open the invite link, pair with Home
+  Assistant and send feedback to `support@djconnect.dev`.
 - Verify macOS, iOS, Raspberry Pi and embedded pages have `Home` plus
   `Platform` navigation, where `Platform` links to the homepage app overview.
   App pages should not show cross-links to other app or embedded pages.
@@ -99,6 +114,7 @@ git status --short
 test -f wwwroot/index.html
 test -f wwwroot/start.html
 test -f wwwroot/support.html
+test -f wwwroot/privacy.html
 test -f wwwroot/assets/djconnect/site.webmanifest
 test -f migrations/0001_create_click_counters.sql
 test -f README.md

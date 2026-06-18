@@ -2,6 +2,18 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.40 - 2026-06-18
+
+- Added visible carousel arrow navigation and a lightweight animated signal
+  layer to the homepage device hero.
+- Added a TestFlight beta route, an App Store-ready Privacy Policy page and
+  visible footer links for privacy and support.
+- Clarified Spotify OAuth setup: users create their own Spotify Developer app,
+  register the Home Assistant callback URL, enter the Client ID in DJConnect
+  and reauthorize after external URL changes.
+- Extended setup troubleshooting and regression tests for Spotify redirect URI
+  mismatches, PKCE guidance and beta/privacy copy.
+
 ## DJConnect website v3.1.39 - 2026-06-18
 
 - Changed the repository license to MIT, including `LICENSE`, package

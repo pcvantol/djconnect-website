@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DJConnect Aan de slag</title>
-  <meta name="description" content="Aan de slag met DJConnect: vereisten, HACS installatie, Spotify koppelen, Home Assistant Assist configureren en je device of app pairen." />
+  <meta name="description" content="Aan de slag met DJConnect: vereisten, HACS installatie, Spotify Developer app, Spotify OAuth via Home Assistant en je device of app pairen." />
   <link rel="canonical" href="https://djconnect.dev/start" />
   <link rel="icon" href="assets/djconnect/icon.svg" type="image/svg+xml" />
   <style>
@@ -137,13 +137,14 @@
           <li>Home Assistant Assist pipeline met werkende STT en TTS</li>
           <li>DJConnect device, DJConnect app of Assist Conversation Agent route</li>
           <li>Home Assistant en DJConnect client op hetzelfde lokale netwerk tijdens pairing, behalve bij Assist Conversation Agent</li>
-          <li>Voor Spotify OAuth: een externe HTTPS Home Assistant URL, bij voorkeur Nabu Casa</li>
+          <li data-i18n="requirementsSpotifyOauth">Voor Spotify OAuth: een eigen Spotify Developer app met je Home Assistant callback URL</li>
+          <li data-i18n="requirementsExternalUrl">Een externe HTTPS Home Assistant URL, bij voorkeur Nabu Casa</li>
         </ul>
       </div>
       <div class="wrap grid-3 section-followup">
-        <article class="card"><h3>Waarom Spotify Premium?</h3><p>DJConnect stuurt playback aan via de Spotify Web API en Spotify playback devices. Daarvoor is Spotify Premium nodig.</p></article>
-        <article class="card"><h3>Credentials blijven in Home Assistant</h3><p>DJConnect devices en apps krijgen geen Spotify refresh token of playback credentials.</p></article>
-        <article class="card"><h3>Assist voor voice</h3><p>Home Assistant Assist wordt gebruikt voor spraakherkenning en gesproken DJ aankondigingen.</p></article>
+        <article class="card"><h3 data-i18n="premiumTitle">Waarom Spotify Premium?</h3><p data-i18n="premiumText">DJConnect stuurt playback aan via de Spotify Web API en Spotify playback devices. Daarvoor is Spotify Premium nodig.</p></article>
+        <article class="card"><h3 data-i18n="credentialsTitle">Credentials blijven in Home Assistant</h3><p data-i18n="credentialsText">DJConnect devices en apps krijgen geen Spotify refresh token of playback credentials.</p></article>
+        <article class="card"><h3 data-i18n="oauthTitle">Waarom een eigen Spotify app?</h3><p data-i18n="oauthText">Spotify vereist dat elke OAuth redirect URL vooraf geregistreerd is. Daarom maak je een eigen Spotify Developer app voor jouw Home Assistant URL.</p></article>
       </div>
     </section>
 
@@ -186,15 +187,34 @@
       </div>
     </section>
 
+    <section id="spotify-oauth">
+      <div class="wrap grid-2">
+        <div>
+          <h2 data-i18n="spotifyOauthTitle">3. Maak een Spotify Developer app</h2>
+          <p class="lead" data-i18n="spotifyOauthLead">DJConnect verbindt met Spotify via je eigen Home Assistant installatie. Omdat Spotify redirect URI's vooraf geregistreerd moeten zijn, maak je zelf een Spotify Developer app en registreer je je Home Assistant callback URL.</p>
+          <p class="note"><span data-i18n="spotifyOauthNotePrefix">Gebruik bij voorkeur je Nabu Casa HTTPS external URL. De callback is</span> <code>https://&lt;your-home-assistant-external-url&gt;/api/djconnect/spotify/callback</code>. <span data-i18n="spotifyOauthNoteSuffix">DJConnect gebruikt PKCE; een Spotify Client Secret is bij voorkeur niet nodig.</span></p>
+        </div>
+        <ol class="steps">
+          <li data-i18n="spotifyStep1">Open het Spotify Developer Dashboard.</li>
+          <li data-i18n="spotifyStep2">Maak een nieuwe app aan.</li>
+          <li><span data-i18n="spotifyStep3">Voeg je Home Assistant redirect URI toe:</span> <code>https://&lt;your-home-assistant-external-url&gt;/api/djconnect/spotify/callback</code>.</li>
+          <li data-i18n="spotifyStep4">Kopieer de Spotify Client ID.</li>
+          <li data-i18n="spotifyStep5">Vul de Client ID in tijdens de DJConnect setup/config-flow.</li>
+          <li data-i18n="spotifyStep6">Autoriseer Spotify via Home Assistant.</li>
+        </ol>
+      </div>
+    </section>
+
     <section id="assist">
       <div class="wrap grid-2">
         <div>
-          <h2 data-i18n="configureTitle">3. Configureer</h2>
-          <p class="lead" data-i18n="configureLead">Voeg DJConnect toe als Home Assistant integratie en koppel je Spotify account.</p>
+          <h2 data-i18n="configureTitle">4. Configureer DJConnect</h2>
+          <p class="lead" data-i18n="configureLead">Voeg DJConnect toe als Home Assistant integratie, vul je Spotify Client ID in en koppel je Spotify Premium account.</p>
         </div>
         <ol class="steps">
           <li>Open Home Assistant <strong>Settings -> Devices & services -> Add integration -> DJConnect</strong></li>
-          <li>Koppel je Spotify Premium account</li>
+          <li data-i18n="configureStep2">Vul de Spotify Client ID uit je eigen Spotify Developer app in</li>
+          <li data-i18n="configureStep3">Koppel je Spotify Premium account via Home Assistant</li>
           <li>Configureer je assist pipeline voor stembesturing en pas de stijl van de DJ aankondigingen aan via eigen prompt</li>
         </ol>
       </div>
@@ -202,7 +222,7 @@
 
     <section id="pairing">
       <div class="wrap">
-        <h2 data-i18n="pairingTitle">4. Koppel app of device</h2>
+        <h2 data-i18n="pairingTitle">5. Koppel app of device</h2>
         <p class="lead" data-i18n="pairingLead">Kies de route die past bij je client.</p>
       </div>
       <div class="wrap">
@@ -278,7 +298,7 @@
     <section id="check">
       <div class="wrap grid-2">
         <div>
-          <h2 data-i18n="readyTitle">5. Klaar voor gebruik</h2>
+          <h2 data-i18n="readyTitle">6. Klaar voor gebruik</h2>
           <p class="lead" data-i18n="readyLead">Start met een Spotify Connect speaker en bedien daarna je muziek via DJConnect.</p>
         </div>
         <ol class="steps">
@@ -295,6 +315,7 @@
         <h2 data-i18n="troubleshootingTitle">Problemen oplossen</h2>
         <div class="grid-3">
           <article class="card"><h3>Geen Spotify playback</h3><p>Controleer Spotify Premium en of er een actief Spotify afspeelapparaat beschikbaar is. Controleer of de Spotify autorisatie in Home Assistant actief is, of herstel deze.</p></article>
+          <article class="card"><h3 data-i18n="oauthTroubleTitle">Spotify OAuth of redirect fout</h3><p data-i18n="oauthTroubleText">Controleer of exact dezelfde redirect URI in het Spotify Developer Dashboard staat, of je Home Assistant external URL HTTPS gebruikt en of de Nabu Casa/external URL overeenkomt met wat DJConnect toont. Autoriseer Spotify opnieuw na wijzigingen.</p></article>
           <article class="card"><h3>Geen spraakherkenning</h3><p>Controleer de Assist pipeline en STT provider.</p></article>
           <article class="card"><h3>Geen DJ aankondiging</h3><p>Controleer TTS provider en DJConnect options.</p></article>
           <article class="card"><h3>Pairing lukt niet</h3><p>Controleer koppelcode, Client API URL en lokaal netwerk.</p></article>
@@ -309,14 +330,14 @@
     <p data-i18n="legalCopyright">Copyright Peter van Tol 2026. Released under the MIT License.</p>
     <p data-i18n="legalSpotify">Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
-    <p><a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.1.39</p>
+    <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
+    <p class="site-version">DJConnect website v3.1.40</p>
   </footer>
   <script>
     const translations = {
       nl: {
         title: "DJConnect Aan de slag",
-        metaDescription: "Aan de slag met DJConnect: vereisten, HACS installatie, Spotify koppelen, Home Assistant Assist configureren en je device of app pairen.",
+        metaDescription: "Aan de slag met DJConnect: vereisten, HACS installatie, Spotify Developer app, Spotify OAuth via Home Assistant en je device of app pairen.",
         navLabel: "Navigatie",
         languageToggle: "Taalkeuze",
         navHome: "Home",
@@ -333,15 +354,35 @@
         overviewDone: "Geniet van je eigen muziek, met je persoonlijke DJ",
         requirementsTitle: "Vereisten",
         requirementsLead: "Deze checklist voorkomt de meeste installatieproblemen.",
+        requirementsSpotifyOauth: "Voor Spotify OAuth: een eigen Spotify Developer app met je Home Assistant callback URL",
+        requirementsExternalUrl: "Een externe HTTPS Home Assistant URL, bij voorkeur Nabu Casa",
+        premiumTitle: "Waarom Spotify Premium?",
+        premiumText: "DJConnect stuurt playback aan via de Spotify Web API en Spotify playback devices. Daarvoor is Spotify Premium nodig.",
+        credentialsTitle: "Credentials blijven in Home Assistant",
+        credentialsText: "DJConnect devices en apps krijgen geen Spotify refresh token of playback credentials.",
+        oauthTitle: "Waarom een eigen Spotify app?",
+        oauthText: "Spotify vereist dat elke OAuth redirect URL vooraf geregistreerd is. Daarom maak je een eigen Spotify Developer app voor jouw Home Assistant URL.",
         voiceTitle: "1. Configureer assist pipeline in Home Assistant",
         voiceLead: "DJConnect gebruikt je Home Assistant voice pipeline voor stembesturing en gesproken DJ aankondigingen.",
         voiceHelp: "Hulp bij Home Assistant voice assist",
         hacsTitle: "2. Voeg toe aan Home Assistant",
         hacsLead: "Gebruik onderstaande Home Assistant Community Store knop om direct naar de DJConnect repository in HACS te gaan.",
         hacsButton: "Open DJConnect in HACS",
-        configureTitle: "3. Configureer",
-        configureLead: "Voeg DJConnect toe als Home Assistant integratie en koppel je Spotify account.",
-        pairingTitle: "4. Koppel app of device",
+        spotifyOauthTitle: "3. Maak een Spotify Developer app",
+        spotifyOauthLead: "DJConnect verbindt met Spotify via je eigen Home Assistant installatie. Omdat Spotify redirect URI's vooraf geregistreerd moeten zijn, maak je zelf een Spotify Developer app en registreer je je Home Assistant callback URL.",
+        spotifyOauthNotePrefix: "Gebruik bij voorkeur je Nabu Casa HTTPS external URL. De callback is",
+        spotifyOauthNoteSuffix: "DJConnect gebruikt PKCE; een Spotify Client Secret is bij voorkeur niet nodig.",
+        spotifyStep1: "Open het Spotify Developer Dashboard.",
+        spotifyStep2: "Maak een nieuwe app aan.",
+        spotifyStep3: "Voeg je Home Assistant redirect URI toe:",
+        spotifyStep4: "Kopieer de Spotify Client ID.",
+        spotifyStep5: "Vul de Client ID in tijdens de DJConnect setup/config-flow.",
+        spotifyStep6: "Autoriseer Spotify via Home Assistant.",
+        configureTitle: "4. Configureer DJConnect",
+        configureLead: "Voeg DJConnect toe als Home Assistant integratie, vul je Spotify Client ID in en koppel je Spotify Premium account.",
+        configureStep2: "Vul de Spotify Client ID uit je eigen Spotify Developer app in",
+        configureStep3: "Koppel je Spotify Premium account via Home Assistant",
+        pairingTitle: "5. Koppel app of device",
         pairingLead: "Kies de route die past bij je client.",
         clientTypeLabel: "Kies client type",
         assistTitle: "Voice Assistant",
@@ -349,17 +390,20 @@
         iosTitle: "iOS app",
         macosTitle: "macOS app",
         raspberryTitle: "Raspberry Pi app",
-        readyTitle: "5. Klaar voor gebruik",
+        readyTitle: "6. Klaar voor gebruik",
         readyLead: "Start met een Spotify Connect speaker en bedien daarna je muziek via DJConnect.",
         troubleshootingTitle: "Problemen oplossen",
+        oauthTroubleTitle: "Spotify OAuth of redirect fout",
+        oauthTroubleText: "Controleer of exact dezelfde redirect URI in het Spotify Developer Dashboard staat, of je Home Assistant external URL HTTPS gebruikt en of de Nabu Casa/external URL overeenkomt met wat DJConnect toont. Autoriseer Spotify opnieuw na wijzigingen.",
         legalCopyright: "Copyright Peter van Tol 2026. Released under the MIT License.",
         legalSpotify: "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.",
         legalPrivacy: "Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.",
+        legalPrivacyLink: "Privacy Policy",
         legalSupport: "Support"
       },
       en: {
         title: "DJConnect Get started",
-        metaDescription: "Get started with DJConnect: requirements, HACS installation, Spotify linking, Home Assistant Assist setup and app or device pairing.",
+        metaDescription: "Get started with DJConnect: requirements, HACS installation, Spotify Developer app, Spotify OAuth through Home Assistant and app or device pairing.",
         navLabel: "Navigation",
         languageToggle: "Language",
         navHome: "Home",
@@ -376,15 +420,35 @@
         overviewDone: "Enjoy your own music, with your personal DJ",
         requirementsTitle: "Requirements",
         requirementsLead: "This checklist prevents most setup issues.",
+        requirementsSpotifyOauth: "For Spotify OAuth: your own Spotify Developer app with your Home Assistant callback URL",
+        requirementsExternalUrl: "An external HTTPS Home Assistant URL, preferably Nabu Casa",
+        premiumTitle: "Why Spotify Premium?",
+        premiumText: "DJConnect controls playback through the Spotify Web API and Spotify playback devices. Spotify Premium is required for that.",
+        credentialsTitle: "Credentials stay in Home Assistant",
+        credentialsText: "DJConnect devices and apps do not receive a Spotify refresh token or playback credentials.",
+        oauthTitle: "Why your own Spotify app?",
+        oauthText: "Spotify requires every OAuth redirect URL to be registered in advance. That is why you create your own Spotify Developer app for your Home Assistant URL.",
         voiceTitle: "1. Configure assist pipeline in Home Assistant",
         voiceLead: "DJConnect uses your Home Assistant voice pipeline for voice control and spoken DJ announcements.",
         voiceHelp: "Help with Home Assistant voice assist",
         hacsTitle: "2. Add to Home Assistant",
         hacsLead: "Use the Home Assistant Community Store button below to open the DJConnect repository in HACS directly.",
         hacsButton: "Open DJConnect in HACS",
-        configureTitle: "3. Configure",
-        configureLead: "Add DJConnect as a Home Assistant integration and connect your Spotify account.",
-        pairingTitle: "4. Pair app or device",
+        spotifyOauthTitle: "3. Create a Spotify Developer app",
+        spotifyOauthLead: "DJConnect connects to Spotify through your own Home Assistant installation. Because Spotify requires every OAuth redirect URL to be registered in advance, you need to create your own Spotify Developer app and register your Home Assistant callback URL.",
+        spotifyOauthNotePrefix: "Prefer your Nabu Casa HTTPS external URL. The callback is",
+        spotifyOauthNoteSuffix: "DJConnect uses PKCE; a Spotify Client Secret is preferably not required.",
+        spotifyStep1: "Open the Spotify Developer Dashboard.",
+        spotifyStep2: "Create a new app.",
+        spotifyStep3: "Add your Home Assistant redirect URI:",
+        spotifyStep4: "Copy the Spotify Client ID.",
+        spotifyStep5: "Enter the Client ID during the DJConnect setup/config flow.",
+        spotifyStep6: "Authorize Spotify through Home Assistant.",
+        configureTitle: "4. Configure DJConnect",
+        configureLead: "Add DJConnect as a Home Assistant integration, enter your Spotify Client ID and connect your Spotify Premium account.",
+        configureStep2: "Enter the Spotify Client ID from your own Spotify Developer app",
+        configureStep3: "Connect your Spotify Premium account through Home Assistant",
+        pairingTitle: "5. Pair app or device",
         pairingLead: "Choose the route that matches your client.",
         clientTypeLabel: "Choose client type",
         assistTitle: "Voice Assistant",
@@ -392,12 +456,15 @@
         iosTitle: "iOS app",
         macosTitle: "macOS app",
         raspberryTitle: "Raspberry Pi app",
-        readyTitle: "5. Ready to use",
+        readyTitle: "6. Ready to use",
         readyLead: "Start with a Spotify Connect speaker, then control your music through DJConnect.",
         troubleshootingTitle: "Troubleshooting",
+        oauthTroubleTitle: "Spotify OAuth or redirect error",
+        oauthTroubleText: "Check that the exact redirect URI is listed in the Spotify Developer Dashboard, that your Home Assistant external URL uses HTTPS and that the Nabu Casa/external URL matches what DJConnect shows. Re-authorize Spotify after changes.",
         legalCopyright: "Copyright Peter van Tol 2026. Released under the MIT License.",
         legalSpotify: "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.",
         legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
+        legalPrivacyLink: "Privacy Policy",
         legalSupport: "Support"
       }
     };

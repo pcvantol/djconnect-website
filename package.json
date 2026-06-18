@@ -1,6 +1,6 @@
 {
   "name": "djconnect-website",
-  "version": "3.1.38",
+  "version": "3.1.39",
   "private": true,
   "scripts": {
     "test": "node --test",
@@ -11,5 +11,6 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.61.0"
-  }
+  },
+  "license": "MIT"
 }

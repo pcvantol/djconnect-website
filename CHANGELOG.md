@@ -2,6 +2,11 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.39 - 2026-06-18
+
+- Changed the repository license to MIT, including `LICENSE`, package
+  metadata and public footer license notices.
+
 ## DJConnect website v3.1.38 - 2026-06-18
 
 - Added a Voice Assistant setup route and explanation page for using

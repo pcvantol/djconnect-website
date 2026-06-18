@@ -200,6 +200,10 @@ Technical website issues can still be reported through GitHub Issues:
 
 https://github.com/pcvantol/djconnect/issues
 
+## License
+
+This repository is released under the MIT License. See `LICENSE`.
+
 ## Cleanup
 
 Use `./cleanup_old_releases.sh` manually only when you want cleanup outside the normal release flow. `./release.sh` already runs it by default after a successful release. The cleanup script removes old GitHub Releases, matching local/remote tags and older GitHub Actions workflow runs. It keeps the current `VERSION` tag and the newest 10 workflow runs by default.

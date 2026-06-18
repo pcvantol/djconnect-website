@@ -99,8 +99,10 @@ test("site version is consistent", async () => {
   ]);
 
   const cleanVersion = version.trim();
+  const packageData = JSON.parse(packageJson);
   assert.match(cleanVersion, /^\d+\.\d+\.\d+$/);
-  assert.equal(JSON.parse(packageJson).version, cleanVersion);
+  assert.equal(packageData.version, cleanVersion);
+  assert.equal(packageData.license, "MIT");
   assert.match(index, new RegExp(`DJConnect website v${cleanVersion}`));
   assert.match(embedded, new RegExp(`DJConnect website v${cleanVersion}`));
 });
@@ -915,12 +917,15 @@ test("all translation keys are present in Dutch and English", async () => {
   htmlPages.forEach((html, index) => assertTranslationsCoverPage(html, `${pages[index]} page`));
 });
 
-test("copyright is shown in the requested form", async () => {
+test("MIT license and footer notice are shown", async () => {
+  const license = await read("LICENSE");
   const pages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "ios", "macos", "raspberry-pi", "embedded"];
   const htmlPages = await Promise.all(pages.map((page) => read(`wwwroot/${page}.html`)));
 
+  assert.match(license, /MIT License/);
+  assert.match(license, /Copyright \(c\) 2026 Peter van Tol/);
   htmlPages.forEach((html) => {
-    assert.match(html, /Copyright Peter van Tol 2026/);
+    assert.match(html, /Copyright Peter van Tol 2026\. Released under the MIT License\./);
     assert.match(html, /class="privacy-notice" data-i18n="legalPrivacy"/);
     assert.match(html, /Deze website ontvangt of bewaart geen accountgegevens/);
     assert.match(html, /This website does not receive or store account details/);

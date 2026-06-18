@@ -14,70 +14,7 @@ const sharedAssets = [
   "assets/voice-intents.js"
 ];
 
-const stripJsComments = (input) => {
-  let output = "";
-  let quote = "";
-  let escaped = false;
-  let lineComment = false;
-  let blockComment = false;
-
-  for (let index = 0; index < input.length; index += 1) {
-    const char = input[index];
-    const next = input[index + 1] || "";
-
-    if (lineComment) {
-      if (char === "\n") {
-        lineComment = false;
-        output += "\n";
-      }
-      continue;
-    }
-
-    if (blockComment) {
-      if (char === "*" && next === "/") {
-        blockComment = false;
-        index += 1;
-      }
-      continue;
-    }
-
-    if (quote) {
-      output += char;
-      if (escaped) {
-        escaped = false;
-      } else if (char === "\\") {
-        escaped = true;
-      } else if (char === quote) {
-        quote = "";
-      }
-      continue;
-    }
-
-    if (char === "\"" || char === "'" || char === "`") {
-      quote = char;
-      output += char;
-      continue;
-    }
-
-    if (char === "/" && next === "/") {
-      lineComment = true;
-      index += 1;
-      continue;
-    }
-
-    if (char === "/" && next === "*") {
-      blockComment = true;
-      index += 1;
-      continue;
-    }
-
-    output += char;
-  }
-
-  return output;
-};
-
-const minifyJs = (input) => stripJsComments(input)
+const minifyJs = (input) => input
   .split("\n")
   .map((line) => line.trim())
   .filter(Boolean)

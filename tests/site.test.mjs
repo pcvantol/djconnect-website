@@ -967,6 +967,7 @@ test("release build minifies shared assets before deploy", async () => {
   assert.match(buildScript, /assets\/voice-intents\.js/);
   assert.match(buildScript, /minifyCss/);
   assert.match(buildScript, /minifyJs/);
+  assert.doesNotMatch(buildScript, /stripJsComments/);
   assert.match(buildScript, /rewriteHtmlReferences/);
   assert.match(releaseScript, /RELEASE_PUBLISH_DIR="dist\/wwwroot"/);
   assert.match(releaseScript, /npm run build:release/);
@@ -989,6 +990,10 @@ test("release build minifies shared assets before deploy", async () => {
   assert.doesNotMatch(releaseIndex, /assets\/site-nav\.js\?v=/);
   assert.ok(releaseNavCss.length < (await read("wwwroot/assets/site-nav.css")).length);
   assert.ok(releaseNavJs.length <= (await read("wwwroot/assets/site-nav.js")).length);
+
+  for (const script of ["site-nav", "downloads", "releases", "voice-intents"]) {
+    await exec("node", ["--check", `dist/wwwroot/assets/${script}.min.js`], { cwd: new URL("../", import.meta.url) });
+  }
 });
 
 test("production headers set cache and security defaults", async () => {

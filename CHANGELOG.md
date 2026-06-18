@@ -2,6 +2,13 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.46 - 2026-06-18
+
+- Fixed the release builder so JavaScript minification no longer strips
+  `https://` inside template literals.
+- Added release-output syntax checks for all generated `.min.js` assets before
+  publishing.
+
 ## DJConnect website v3.1.45 - 2026-06-18
 
 - Refactored shared responsive navigation behavior into reusable site assets so

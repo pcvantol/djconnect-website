@@ -186,7 +186,7 @@ test("canonical cross-repo prompt and roadmap stay external", async () => {
 test("homepage has platform routes and app store placeholders", async () => {
   const index = await read("wwwroot/index.html");
   assert.match(index, /href="start\.html"/);
-  assert.match(index, /data-i18n="navPlatform">Hoe werkt het/);
+  assert.doesNotMatch(index, /data-i18n="navPlatform">Hoe werkt het/);
   assert.match(index, /<title>DJConnect\. Muziekbediening met karakter<\/title>/);
   assert.doesNotMatch(index, /Een persoonlijk muziekplatform voor elk device/);
   assert.match(index, /href="features\.html" data-i18n="navFeatures">Features/);
@@ -195,6 +195,7 @@ test("homepage has platform routes and app store placeholders", async () => {
   assert.match(index, /data-i18n="navApps">Installeren/);
   assert.match(index, /href="support\.html" data-i18n="navSupport">Support/);
   assert.match(index, /href="privacy\.html" data-i18n="navPrivacy">Privacy/);
+  assert.match(index, /href="voice-assistant\.html" data-i18n="voiceAssistantMore">Meer over Voice Assistant/);
   assert.match(index, /class="menu-toggle"/);
   assert.match(index, /aria-controls="primaryNav"/);
   assert.match(index, /assets\/site-nav\.css/);
@@ -620,7 +621,7 @@ test("blog pages are present and translated", async () => {
   assert.match(blog, /<link rel="canonical" href="https:\/\/djconnect\.dev\/blog" \/>/);
   assert.match(blog, /href="blog-djconnect-project\.html"/);
   assert.match(blog, /DJConnect: muziekbediening met karakter/);
-  assert.match(blog, /data-i18n="navBlog">Blog/);
+  assert.doesNotMatch(blog, /data-i18n="navBlog">Blog/);
   assert.match(blog, /href="voice-commands\.html" data-i18n="navVoice">Spraak/);
 
   assert.match(post, /<link rel="canonical" href="https:\/\/djconnect\.dev\/blog-djconnect-project" \/>/);

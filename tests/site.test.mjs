@@ -240,12 +240,16 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /Configureer je assist pipeline voor stembesturing en pas de stijl van de DJ aankondigingen aan via eigen prompt/);
   assert.match(start, /id="client-ios" checked/);
   assert.match(start, /id="client-macos"/);
+  assert.match(start, /id="client-assist"/);
   assert.match(start, /id="client-esp"/);
   assert.match(start, /id="client-raspberry"/);
   assert.match(
     start,
-    /<label for="client-ios" role="tab">iOS<\/label>\s*<label for="client-macos" role="tab">macOS<\/label>\s*<label for="client-raspberry" role="tab">Linux<\/label>\s*<label for="client-esp" role="tab">ESP32<\/label>/
+    /<label for="client-ios" role="tab">iOS<\/label>\s*<label for="client-macos" role="tab">macOS<\/label>\s*<label for="client-assist" role="tab">Voice Assistant<\/label>\s*<label for="client-raspberry" role="tab">Linux<\/label>\s*<label for="client-esp" role="tab">ESP32<\/label>/
   );
+  assert.match(start, /href="voice-assistant\.html">Bekijk Voice Assistant uitleg/);
+  assert.match(start, /Kies in de DJConnect setup voor <strong>Assist Conversation Agent<\/strong>/);
+  assert.match(start, /Geen aparte DJConnect hardware-client of koppelcode nodig/);
   assert.match(start, /Download ESP firmware/);
   assert.match(start, /Download iOS app/);
   assert.match(start, /Download macOS app/);
@@ -348,6 +352,11 @@ test("voice commands page documents intent families and DJ response styles", asy
   assert.match(voice, /De gekozen stijl verandert alleen de DJ-aankondiging, niet de muziekkeuze/);
   assert.match(voice, /Home Assistant Assist pipeline/);
   assert.match(voice, /Stem, taal en TTS-engine beheer je in Home Assistant Assist/);
+  assert.match(voice, /ESPHome voice assistants/);
+  assert.match(voice, /Home Assistant Voice Preview Edition/);
+  assert.match(voice, /Home Assistant conversation agent/);
+  assert.match(voice, /Assist Conversation Agent/);
+  assert.match(voice, /href="https:\/\/esphome\.io\/projects\/"/);
   assert.match(voice, /<script src="assets\/voice-intents\.js"><\/script>/);
   assert.match(voice, /const intentFamilies = window\.DJCONNECT_VOICE_INTENTS \|\| \[\]/);
   assert.match(voice, /renderIntentFamilies\(lang, dictionary\)/);
@@ -398,9 +407,25 @@ test("support page provides email support and technical issue fallback", async (
   assert.match(support, /Installatie/);
   assert.match(support, /Koppelen/);
   assert.match(support, /Muziekbediening/);
-  assert.match(support, /href="https:\/\/github\.com\/pcvantol\/djconnect-website\/issues"/);
+  assert.match(support, /href="https:\/\/github\.com\/pcvantol\/djconnect\/issues"/);
   assert.match(support, /Open GitHub Issues/);
   assertTranslationsCoverPage(support, "support page");
+});
+
+test("voice assistant page explains Assist Conversation Agent route", async () => {
+  const assistant = await read("wwwroot/voice-assistant.html");
+  const sitemap = await read("wwwroot/sitemap.xml");
+
+  assert.match(assistant, /<title>DJConnect Voice Assistant<\/title>/);
+  assert.match(assistant, /href="https:\/\/djconnect\.dev\/voice-assistant"/);
+  assert.match(assistant, /Home Assistant Assist satellites die op ESPHome draaien/);
+  assert.match(assistant, /Home Assistant Voice Preview Edition/);
+  assert.match(assistant, /Assist Conversation Agent/);
+  assert.match(assistant, /zonder aparte DJConnect hardware-client of koppelcode/);
+  assert.match(assistant, /DJConnect is geen onderdeel van ESPHome of Home Assistant/);
+  assert.match(assistant, /href="https:\/\/esphome\.io\/projects\/"/);
+  assert.match(sitemap, /https:\/\/djconnect\.dev\/voice-assistant/);
+  assertTranslationsCoverPage(assistant, "voice-assistant page");
 });
 
 test("blog pages are present and translated", async () => {
@@ -491,7 +516,7 @@ test("embedded page uses the shared site color styling", async () => {
 });
 
 test("site does not embed website repository releases", async () => {
-  const pages = ["index", "start", "features", "platform", "voice-commands", "blog", "blog-djconnect-project", "support", "ios", "macos", "raspberry-pi", "embedded"];
+  const pages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "ios", "macos", "raspberry-pi", "embedded"];
 
   for (const page of pages) {
     const html = await read(`wwwroot/${page}.html`);
@@ -749,6 +774,7 @@ test("canonical SEO uses djconnect.dev", async () => {
     ["features", "https://djconnect.dev/features"],
     ["platform", "https://djconnect.dev/platform"],
     ["voice-commands", "https://djconnect.dev/voice-commands"],
+    ["voice-assistant", "https://djconnect.dev/voice-assistant"],
     ["blog", "https://djconnect.dev/blog"],
     ["blog-djconnect-project", "https://djconnect.dev/blog-djconnect-project"],
     ["support", "https://djconnect.dev/support"],
@@ -780,6 +806,7 @@ test("canonical SEO uses djconnect.dev", async () => {
   assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/platform<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/voice-commands<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/voice-assistant<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/blog<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/blog-djconnect-project<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/support<\/loc>/);
@@ -802,7 +829,7 @@ test("social preview image uses current branding", async () => {
 });
 
 test("legacy macOS download page is not referenced", async () => {
-  const pages = ["index", "start", "features", "platform", "voice-commands", "blog", "blog-djconnect-project", "support", "ios", "macos", "raspberry-pi", "embedded"];
+  const pages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "ios", "macos", "raspberry-pi", "embedded"];
 
   for (const page of pages) {
     const html = await read(`wwwroot/${page}.html`);
@@ -882,14 +909,14 @@ test("site copy no longer claims devices are pre-flashed", async () => {
 });
 
 test("all translation keys are present in Dutch and English", async () => {
-  const pages = ["index", "start", "features", "platform", "voice-commands", "blog", "blog-djconnect-project", "support", "ios", "macos", "raspberry-pi", "embedded"];
+  const pages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "ios", "macos", "raspberry-pi", "embedded"];
   const htmlPages = await Promise.all(pages.map((page) => read(`wwwroot/${page}.html`)));
 
   htmlPages.forEach((html, index) => assertTranslationsCoverPage(html, `${pages[index]} page`));
 });
 
 test("copyright is shown in the requested form", async () => {
-  const pages = ["index", "start", "features", "platform", "voice-commands", "blog", "blog-djconnect-project", "support", "ios", "macos", "raspberry-pi", "embedded"];
+  const pages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "ios", "macos", "raspberry-pi", "embedded"];
   const htmlPages = await Promise.all(pages.map((page) => read(`wwwroot/${page}.html`)));
 
   htmlPages.forEach((html) => {
@@ -902,7 +929,7 @@ test("copyright is shown in the requested form", async () => {
 });
 
 test("link checker validates local page and asset references", async () => {
-  const pages = ["index.html", "start.html", "features.html", "platform.html", "voice-commands.html", "blog.html", "blog-djconnect-project.html", "support.html", "ios.html", "macos.html", "raspberry-pi.html", "embedded.html"];
+  const pages = ["index.html", "start.html", "features.html", "platform.html", "voice-commands.html", "voice-assistant.html", "blog.html", "blog-djconnect-project.html", "support.html", "ios.html", "macos.html", "raspberry-pi.html", "embedded.html"];
 
   for (const page of pages) {
     const html = await read(`wwwroot/${page}`);

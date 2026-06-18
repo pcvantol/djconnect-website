@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DJConnect Voice Assistant</title>
+  <meta name="description" content="Gebruik DJConnect als Home Assistant Assist conversation agent met ESPHome-powered voice assistants." />
+  <link rel="canonical" href="https://djconnect.dev/voice-assistant" />
+  <link rel="icon" href="assets/djconnect/icon.svg" type="image/svg+xml" />
+  <style>
+    :root { --bg:#0b0d12; --panel:rgba(255,255,255,0.075); --text:#f7f7fb; --muted:#b7bccb; --line:rgba(255,255,255,0.14); --cyan:#66e0ff; --green:#7ef7a7; --pink:#fb7185; --max:1180px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; background:var(--bg); }
+    body { margin:0; color:var(--text); font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height:1.55; background:radial-gradient(circle at 16% 10%, rgba(102,224,255,0.18), transparent 28rem), radial-gradient(circle at 86% 6%, rgba(251,113,133,0.13), transparent 27rem), radial-gradient(circle at 58% 72%, rgba(126,247,167,0.1), transparent 31rem), linear-gradient(180deg,#0b0d12 0%,#111827 54%,#090b10 100%); }
+    a { color:inherit; text-decoration:none; }
+    .wrap { width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
+    .nav { position:sticky; top:0; z-index:20; backdrop-filter:blur(18px); background:rgba(11,13,18,0.7); border-bottom:1px solid var(--line); }
+    .nav-inner { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:22px; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:850; font-size:1.13rem; }
+    .brand img { width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.18); box-shadow:0 0 34px rgba(102,224,255,0.25); }
+    .nav-links { display:flex; align-items:center; gap:18px; color:var(--muted); font-size:0.94rem; }
+    .nav-links a:hover, .nav-links a[aria-current="page"] { color:var(--text); }
+    .nav-controls { display:flex; align-items:center; gap:12px; }
+    .lang-toggle { display:inline-grid; grid-template-columns:repeat(2,1fr); min-width:86px; padding:3px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.06); }
+    .lang-toggle button { min-height:34px; border:0; border-radius:999px; background:transparent; color:var(--muted); font:inherit; font-size:0.82rem; font-weight:850; cursor:pointer; }
+    .lang-toggle button[aria-pressed="true"] { background:rgba(102,224,255,0.18); color:var(--text); }
+    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:0 18px; border-radius:999px; border:1px solid var(--line); background:var(--panel); color:var(--text); font-weight:780; box-shadow:0 10px 30px rgba(0,0,0,0.15); }
+    .btn.primary { border:0; color:#06110c; background:linear-gradient(135deg,var(--cyan),var(--green)); }
+    .hero { padding:82px 0 52px; }
+    .hero-grid { display:grid; grid-template-columns:0.95fr 1.05fr; gap:42px; align-items:end; }
+    h1,h2,h3 { margin:0; letter-spacing:-0.045em; line-height:1.05; }
+    h1 { font-size:clamp(3.2rem,7vw,6.2rem); }
+    h2 { font-size:clamp(2rem,4vw,3.6rem); margin-bottom:18px; }
+    h3 { font-size:1.2rem; margin-bottom:10px; }
+    .lead { color:var(--muted); font-size:clamp(1.08rem,2.1vw,1.3rem); margin:24px 0 0; max-width:760px; }
+    section { padding:54px 0 76px; }
+    .card { border:1px solid var(--line); border-radius:22px; background:var(--panel); padding:26px; box-shadow:0 12px 36px rgba(0,0,0,0.16); }
+    .card p { color:var(--muted); margin:0; }
+    .pill { display:inline-flex; align-items:center; min-height:34px; padding:0 13px; border-radius:999px; background:rgba(102,224,255,0.13); border:1px solid var(--line); color:#aeefff; font-size:0.76rem; font-weight:900; letter-spacing:0.09em; text-transform:uppercase; margin-bottom:14px; }
+    .steps { counter-reset:steps; display:grid; gap:14px; margin:18px 0 0; padding:0; }
+    .steps li { list-style:none; counter-increment:steps; display:flex; gap:14px; align-items:flex-start; border:1px solid var(--line); border-radius:20px; background:rgba(255,255,255,0.055); padding:16px; color:var(--muted); overflow-wrap:anywhere; }
+    .steps li::before { content:counter(steps); flex:0 0 48px; width:48px; height:48px; display:grid; place-items:center; border-radius:16px; background:linear-gradient(135deg,var(--cyan),var(--green)); color:#07110b; font-weight:950; }
+    .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .note { margin-top:18px; border-left:3px solid var(--green); padding-left:14px; color:var(--muted); }
+    .subtle-link { color:#aeefff; border-bottom:1px solid rgba(174,239,255,0.45); }
+    .subtle-link:hover { color:var(--text); border-bottom-color:var(--text); }
+    .legal { color:var(--muted); font-size:0.86rem; padding:34px 0 44px; border-top:1px solid var(--line); }
+    .site-version { margin-top:14px; font-size:0.76rem; color:rgba(183,188,203,0.72); }
+    .privacy-notice { font-size:0.78rem; color:rgba(183,188,203,0.78); }
+    @media (max-width:900px) { .hero-grid,.grid-3 { grid-template-columns:1fr; } .nav-inner { flex-wrap:wrap; padding:12px 0; } .nav-links { order:3; width:100%; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; } .nav-links::-webkit-scrollbar { display:none; } }
+    @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="index.html"><img src="assets/djconnect/icon.svg" alt="" /><span>DJConnect</span></a>
+      <div class="nav-links" aria-label="Navigatie" data-i18n-attr="aria-label:navLabel">
+        <a href="index.html" data-i18n="navHome">Home</a>
+        <a href="start.html" data-i18n="navStart">Aan de slag</a>
+        <a href="voice-commands.html" data-i18n="navVoice">Spraak</a>
+        <a href="voice-assistant.html" aria-current="page" data-i18n="navAssistant">Voice Assistant</a>
+        <a href="support.html" data-i18n="navSupport">Support</a>
+      </div>
+      <div class="nav-controls">
+        <div class="lang-toggle" aria-label="Taalkeuze" data-i18n-attr="aria-label:languageToggle">
+          <button type="button" data-lang="nl" aria-pressed="true">NL</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="btn primary" href="start.html#pairing" data-i18n="navSetup">Kies route</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="pill" data-i18n="heroLabel">Assist Conversation Agent</span>
+          <h1 data-i18n="heroTitle">DJConnect via je Voice Assistant</h1>
+          <p class="lead" data-i18n="heroLead">Gebruik DJConnect met Home Assistant Assist satellites die op ESPHome draaien. Zo past DJConnect native in je bestaande Assist setup, zonder aparte DJConnect hardware-client of koppelcode.</p>
+        </div>
+        <div class="card">
+          <h2 data-i18n="cardTitle">Hoe het werkt</h2>
+          <p data-i18n="cardText">Je voice assistant luistert, Home Assistant Assist verwerkt de spraakroute en DJConnect handelt het muziekverzoek af als conversation agent.</p>
+        </div>
+      </div>
+    </header>
+
+    <section>
+      <div class="wrap grid-3">
+        <article class="card"><h3 data-i18n="deviceTitle">ESPHome device</h3><p data-i18n="deviceText">Gebruik bijvoorbeeld de Home Assistant Voice Preview Edition of een ander ESPHome-powered voice assistant project.</p></article>
+        <article class="card"><h3 data-i18n="assistTitle">Home Assistant Assist</h3><p data-i18n="assistText">Het device doet wake word, microfoonopname, STT-route en speaker-output via je ingestelde Assist pipeline.</p></article>
+        <article class="card"><h3 data-i18n="djTitle">DJConnect</h3><p data-i18n="djText">DJConnect verwerkt het muziekverzoek, start Spotify playback via de Home Assistant integration en spreekt de DJ-response uit via TTS.</p></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="card">
+          <h2 data-i18n="setupTitle">Instellen</h2>
+          <ol class="steps">
+            <li data-i18n="setup1">Configureer je Home Assistant Assist pipeline met STT en TTS.</li>
+            <li data-i18n="setup2">Installeer en configureer de DJConnect Home Assistant integration.</li>
+            <li data-i18n="setup3">Kies in de DJConnect setup voor “Assist Conversation Agent”.</li>
+            <li data-i18n="setup4">Selecteer DJConnect als conversation agent voor je Assist satellite.</li>
+            <li data-i18n="setup5">Vraag muziek aan via je voice assistant en laat DJConnect Spotify playback starten.</li>
+          </ol>
+          <p class="note" data-i18n="noteText">Deze route gebruikt je bestaande Home Assistant Assist instellingen voor stem, taal en TTS-engine. DJConnect is geen onderdeel van ESPHome of Home Assistant.</p>
+          <p class="note"><a class="subtle-link" href="https://esphome.io/projects/" target="_blank" rel="noopener" data-i18n="projectsLink">Bekijk ESPHome voice assistant projecten op https://esphome.io/projects/</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap legal">
+    <p>Copyright Peter van Tol 2026. All rights reserved.</p>
+    <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
+    <p><a href="support.html" data-i18n="legalSupport">Support</a></p>
+    <p class="site-version">DJConnect website v3.1.38</p>
+  </footer>
+  <script>
+    const translations = {
+      nl: {
+        title: "DJConnect Voice Assistant",
+        metaDescription: "Gebruik DJConnect als Home Assistant Assist conversation agent met ESPHome-powered voice assistants.",
+        navLabel: "Navigatie",
+        languageToggle: "Taalkeuze",
+        navHome: "Home",
+        navStart: "Aan de slag",
+        navVoice: "Spraak",
+        navAssistant: "Voice Assistant",
+        navSupport: "Support",
+        navSetup: "Kies route",
+        heroLabel: "Assist Conversation Agent",
+        heroTitle: "DJConnect via je Voice Assistant",
+        heroLead: "Gebruik DJConnect met Home Assistant Assist satellites die op ESPHome draaien. Zo past DJConnect native in je bestaande Assist setup, zonder aparte DJConnect hardware-client of koppelcode.",
+        cardTitle: "Hoe het werkt",
+        cardText: "Je voice assistant luistert, Home Assistant Assist verwerkt de spraakroute en DJConnect handelt het muziekverzoek af als conversation agent.",
+        deviceTitle: "ESPHome device",
+        deviceText: "Gebruik bijvoorbeeld de Home Assistant Voice Preview Edition of een ander ESPHome-powered voice assistant project.",
+        assistTitle: "Home Assistant Assist",
+        assistText: "Het device doet wake word, microfoonopname, STT-route en speaker-output via je ingestelde Assist pipeline.",
+        djTitle: "DJConnect",
+        djText: "DJConnect verwerkt het muziekverzoek, start Spotify playback via de Home Assistant integration en spreekt de DJ-response uit via TTS.",
+        setupTitle: "Instellen",
+        setup1: "Configureer je Home Assistant Assist pipeline met STT en TTS.",
+        setup2: "Installeer en configureer de DJConnect Home Assistant integration.",
+        setup3: "Kies in de DJConnect setup voor “Assist Conversation Agent”.",
+        setup4: "Selecteer DJConnect als conversation agent voor je Assist satellite.",
+        setup5: "Vraag muziek aan via je voice assistant en laat DJConnect Spotify playback starten.",
+        noteText: "Deze route gebruikt je bestaande Home Assistant Assist instellingen voor stem, taal en TTS-engine. DJConnect is geen onderdeel van ESPHome of Home Assistant.",
+        projectsLink: "Bekijk ESPHome voice assistant projecten op https://esphome.io/projects/",
+        legalPrivacy: "Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.",
+        legalSupport: "Support"
+      },
+      en: {
+        title: "DJConnect Voice Assistant",
+        metaDescription: "Use DJConnect as a Home Assistant Assist conversation agent with ESPHome-powered voice assistants.",
+        navLabel: "Navigation",
+        languageToggle: "Language",
+        navHome: "Home",
+        navStart: "Get started",
+        navVoice: "Voice",
+        navAssistant: "Voice Assistant",
+        navSupport: "Support",
+        navSetup: "Choose route",
+        heroLabel: "Assist Conversation Agent",
+        heroTitle: "DJConnect through your Voice Assistant",
+        heroLead: "Use DJConnect with Home Assistant Assist satellites powered by ESPHome. DJConnect fits natively into your existing Assist setup, without a separate DJConnect hardware client or pairing code.",
+        cardTitle: "How it works",
+        cardText: "Your voice assistant listens, Home Assistant Assist handles the speech route and DJConnect handles the music request as the conversation agent.",
+        deviceTitle: "ESPHome device",
+        deviceText: "Use the Home Assistant Voice Preview Edition or another ESPHome-powered voice assistant project.",
+        assistTitle: "Home Assistant Assist",
+        assistText: "The device handles wake word, microphone capture, the STT route and speaker output through your configured Assist pipeline.",
+        djTitle: "DJConnect",
+        djText: "DJConnect handles the music request, starts Spotify playback through the Home Assistant integration and speaks the DJ response through TTS.",
+        setupTitle: "Setup",
+        setup1: "Configure your Home Assistant Assist pipeline with STT and TTS.",
+        setup2: "Install and configure the DJConnect Home Assistant integration.",
+        setup3: "Choose “Assist Conversation Agent” in the DJConnect setup.",
+        setup4: "Select DJConnect as the conversation agent for your Assist satellite.",
+        setup5: "Request music through your voice assistant and let DJConnect start Spotify playback.",
+        noteText: "This route uses your existing Home Assistant Assist settings for voice, language and TTS engine. DJConnect is not part of ESPHome or Home Assistant.",
+        projectsLink: "View ESPHome voice assistant projects at https://esphome.io/projects/",
+        legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
+        legalSupport: "Support"
+      }
+    };
+    const applyLanguage = (language) => {
+      const dictionary = translations[language] || translations.nl;
+      document.documentElement.lang = language;
+      document.title = dictionary.title;
+      const meta = document.querySelector('meta[name="description"]');
+      if (meta) meta.setAttribute("content", dictionary.metaDescription);
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const value = dictionary[element.dataset.i18n];
+        if (value) element.textContent = value;
+      });
+      document.querySelectorAll("[data-i18n-attr]").forEach((element) => {
+        element.dataset.i18nAttr.split(",").forEach((mapping) => {
+          const [attr, key] = mapping.split(":").map((part) => part.trim());
+          const value = dictionary[key];
+          if (attr && value) element.setAttribute(attr, value);
+        });
+      });
+      document.querySelectorAll("[data-lang]").forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.lang === language));
+      });
+      localStorage.setItem("djconnect-language", language);
+    };
+    document.querySelectorAll("[data-lang]").forEach((button) => {
+      button.addEventListener("click", () => applyLanguage(button.dataset.lang));
+    });
+    applyLanguage(localStorage.getItem("djconnect-language") || "nl");
+  </script>
+</body>
+</html>

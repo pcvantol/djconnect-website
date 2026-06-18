@@ -2,6 +2,16 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.38 - 2026-06-18
+
+- Added a Voice Assistant setup route and explanation page for using
+  DJConnect as a Home Assistant Assist Conversation Agent with ESPHome-powered
+  voice assistants.
+- Updated the Spraak page with native ESPHome voice assistant guidance and
+  refreshed release screenshot coverage for the new page.
+- Pointed the Support page GitHub Issues fallback to the main
+  `pcvantol/djconnect` repository.
+
 ## DJConnect website v3.1.37 - 2026-06-18
 
 - Added a public Support page with `support@djconnect.dev` as the primary

@@ -16,6 +16,7 @@ const pages = [
   { path: "/features", name: "features" },
   { path: "/platform", name: "platform" },
   { path: "/voice-commands", name: "voice-commands" },
+  { path: "/voice-assistant", name: "voice-assistant" },
   { path: "/blog", name: "blog" },
   { path: "/blog-djconnect-project", name: "blog-djconnect-project" },
   { path: "/support", name: "support" },

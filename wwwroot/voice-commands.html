@@ -50,6 +50,8 @@
     .examples ul { margin:0; padding:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
     .examples li { list-style:none; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.055); color:var(--muted); padding:8px 12px; font-weight:700; }
     .note { margin-top:16px; color:var(--muted); border-left:3px solid var(--green); padding-left:14px; }
+    .subtle-link { color:#aeefff; border-bottom:1px solid rgba(174,239,255,0.45); }
+    .subtle-link:hover { color:var(--text); border-bottom-color:var(--text); }
     .status { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
     .status span { border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.06); color:var(--muted); padding:8px 12px; font-weight:760; }
     .status span:first-child { color:#06110c; border:0; background:linear-gradient(135deg,var(--cyan),var(--green)); }
@@ -140,6 +142,21 @@
     <section>
       <div class="wrap">
         <div class="section-head">
+          <h2 data-i18n="esphomeTitle">ESPHome voice assistants</h2>
+          <p data-i18n="esphomeLead">DJConnect past native in het Home Assistant Assist ecosysteem en werkt ook met Assist satellites die op ESPHome draaien.</p>
+        </div>
+        <article class="card">
+          <span class="pill" data-i18n="esphomePill">Assist satellite</span>
+          <p data-i18n="esphomeText">Denk aan ESPHome voice assistant devices zoals de Home Assistant Voice Preview Edition en andere ESPHome-powered projecten. Het ESPHome device doet wake word, microfoonopname, STT-route en speaker-output via Home Assistant Assist. Kies DJConnect als Home Assistant conversation agent: DJConnect verwerkt het muziekverzoek, start Spotify playback via de DJConnect Home Assistant integration en geeft een DJ-response terug via je ingestelde Assist pipeline en TTS.</p>
+          <p class="note" data-i18n="esphomeSetup">Kies in de DJConnect setup voor “Assist Conversation Agent”. Dan heb je voor deze route geen aparte DJConnect hardware-client of koppelcode nodig.</p>
+          <p class="note"><a class="subtle-link" href="https://esphome.io/projects/" target="_blank" rel="noopener" data-i18n="esphomeLink">Bekijk ESPHome voice assistant projecten op https://esphome.io/projects/</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
           <h2 data-i18n="familiesTitle">Intentfamilies</h2>
           <p data-i18n="familiesLead">Gebruik gewone zinnen. Voeg alleen woorden zoals nummer, album of playlist toe wanneer je die media specifiek bedoelt.</p>
         </div>
@@ -153,7 +170,7 @@
     <p>Copyright Peter van Tol 2026. All rights reserved.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: Spotify credentials blijven in Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.1.37</p>
+    <p class="site-version">DJConnect website v3.1.38</p>
   </footer>
   <script src="assets/voice-intents.js"></script>
   <script>
@@ -194,6 +211,12 @@
         customTitle: "Vrij in te vullen",
         customText: "Schrijf zelf een prompt voor stijl, lengte en toon. Bijvoorbeeld energiek, minimalistisch, Nederlandstalig, Engelstalig of passend bij een specifieke setting.",
         responseStylesNote: "De gekozen stijl verandert alleen de DJ-aankondiging, niet de muziekkeuze. DJConnect gebruikt je ingestelde Home Assistant Assist pipeline voor spraakherkenning en gesproken antwoord. Stem, taal en TTS-engine beheer je in Home Assistant Assist; DJConnect houdt de eigen instellingen simpel.",
+        esphomeTitle: "ESPHome voice assistants",
+        esphomeLead: "DJConnect past native in het Home Assistant Assist ecosysteem en werkt ook met Assist satellites die op ESPHome draaien.",
+        esphomePill: "Assist satellite",
+        esphomeText: "Denk aan ESPHome voice assistant devices zoals de Home Assistant Voice Preview Edition en andere ESPHome-powered projecten. Het ESPHome device doet wake word, microfoonopname, STT-route en speaker-output via Home Assistant Assist. Kies DJConnect als Home Assistant conversation agent: DJConnect verwerkt het muziekverzoek, start Spotify playback via de DJConnect Home Assistant integration en geeft een DJ-response terug via je ingestelde Assist pipeline en TTS.",
+        esphomeSetup: "Kies in de DJConnect setup voor “Assist Conversation Agent”. Dan heb je voor deze route geen aparte DJConnect hardware-client of koppelcode nodig.",
+        esphomeLink: "Bekijk ESPHome voice assistant projecten op https://esphome.io/projects/",
         familiesTitle: "Intentfamilies",
         familiesLead: "Gebruik gewone zinnen. Voeg alleen woorden zoals nummer, album of playlist toe wanneer je die media specifiek bedoelt.",
         artistPill: "Artiest",
@@ -255,6 +278,12 @@
         customTitle: "Write your own",
         customText: "Write your own prompt for style, length and tone. For example energetic, minimal, Dutch, English or suited to a specific setting.",
         responseStylesNote: "The selected style only changes the DJ announcement, not the music choice. DJConnect uses your configured Home Assistant Assist pipeline for speech recognition and spoken response. Voice, language and TTS engine are managed in Home Assistant Assist; DJConnect keeps its own settings simple.",
+        esphomeTitle: "ESPHome voice assistants",
+        esphomeLead: "DJConnect fits natively into the Home Assistant Assist ecosystem and also works with Assist satellites powered by ESPHome.",
+        esphomePill: "Assist satellite",
+        esphomeText: "Think of ESPHome voice assistant devices such as the Home Assistant Voice Preview Edition and other ESPHome-powered projects. The ESPHome device handles wake word, microphone capture, the STT route and speaker output through Home Assistant Assist. Select DJConnect as the Home Assistant conversation agent: DJConnect handles the music request, starts Spotify playback through the DJConnect Home Assistant integration and returns a DJ response through your configured Assist pipeline and TTS.",
+        esphomeSetup: "Choose “Assist Conversation Agent” in the DJConnect setup. For this route, you do not need a separate DJConnect hardware client or pairing code.",
+        esphomeLink: "View ESPHome voice assistant projects at https://esphome.io/projects/",
         familiesTitle: "Intent families",
         familiesLead: "Use normal sentences. Add words like song, album or playlist only when you mean that media type specifically.",
         artistPill: "Artist",

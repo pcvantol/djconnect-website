@@ -1,0 +1,7 @@
+{
+  "version": "3.1.34",
+  "platform": "macos",
+  "language": "nl",
+  "name": "DJConnect macOS 3.1.34",
+  "body": "## Opgelost\n\n- macOS pairing via mDNS robuuster gemaakt: de lokale device-API luistert op het LAN-adres dat als `local_url` wordt geadverteerd.\n- Extra logging toegevoegd voor lokale device-API requests, zodat firewall- en Home Assistant discovery-problemen beter te herkennen zijn.\n- Voorkomt dat het pairing-scherm een oud vastgezet Client adres toont terwijl de app nog niet gekoppeld is.\n- Troubleshooting toegevoegd voor macOS firewall en beveiligingssoftware zoals ESET wanneer mDNS wel werkt maar HTTP requests worden gereset.\n\n## Gewijzigd\n\n- Dubbele Home Assistant- en Spotify-regels uit Over verwijderd.\n- CI-checknaam afgestemd op branch protection en release-tests taal-onafhankelijk gemaakt.\n\n---\n\nPlatform: macOS\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nVoor normale macOS-distributie heeft de genotariseerde Developer ID-build de voorkeur wanneer die is bijgevoegd."
+}

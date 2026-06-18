@@ -17,12 +17,10 @@ Cross-repo contract changes are tracked only in
   or secret-backed authentication before broader use.
 - Extend `/admin` beyond GitHub runtime `download_count` totals with D1 redirect
   click counters when the persistence layer is ready.
-- Add a dedicated privacy page if the site ever moves beyond aggregate, cookieless counters.
 - Replace footer version when preparing the next release.
 
 ## Platform
 
 - Document the expected ESP32 firmware pairing flow with screenshots.
 - Add firmware flashing screenshots from `pcvantol/djconnect-firmware` when the public firmware flow is stable.
-- Decide whether Cloudflare Pages deployments should be manual only or connected to GitHub.
 - Expand Playwright smoke tests for actual language switching, rendered latest download cards and mobile navigation behavior in CI.

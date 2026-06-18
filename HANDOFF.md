@@ -72,11 +72,11 @@
 - The Raspberry Pi/Linux install command is generated from the latest public release, downloads through `/go/linux-install` and runs `sudo ./scripts/install.sh`.
 - Download and HACS clicks are routed through `/go/...` endpoints. These endpoints optionally write aggregate daily counters to the D1 binding `ANALYTICS_DB`.
 - `/api/stats` is protected by `STATS_TOKEN` and combines D1 redirect counters with GitHub release asset `download_count` totals.
-- `/admin` is a Cloudflare Access page (`admin` /
-  `REDACTED_ADMIN_PASSWORD`) for runtime GitHub release asset download statistics. It
-  intentionally does not persist data and does not include website redirect
-  click counters yet. Replace this with Cloudflare Access or secret-backed
-  authentication before wider use.
+- `/admin` is a Cloudflare Access page for runtime GitHub release
+  asset download statistics. It intentionally does not persist data and does
+  not include website redirect click counters yet. Replace this with Cloudflare
+  Access or secret-backed authentication before wider use. Do not repeat admin
+  credentials in documentation, issues or logs.
 - `scripts/check-stats.mjs` can be run with `STATS_TOKEN=... npm run stats:check` to print aggregate redirect clicks and GitHub download totals.
 - The analytics design is intentionally cookieless and identifier-free. Do not add IP address, user agent, referrer or visitor-id storage.
 - Public support/contact links point to `wwwroot/support.html` from public page

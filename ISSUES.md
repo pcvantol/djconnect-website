@@ -10,9 +10,9 @@ Use GitHub Issues for active tracking. This file captures known repository-level
 - Cloudflare Pages deployment requires `CLOUDFLARE_API_TOKEN` locally or as a GitHub Actions secret.
 - Aggregate click counters require the Cloudflare Pages D1 binding `ANALYTICS_DB`; redirects still work when the binding is not configured.
 - `/api/stats` requires `STATS_TOKEN`; without it the endpoint intentionally returns unauthorized responses.
-- `/admin` currently uses Cloudflare Access (`admin` /
-  `REDACTED_ADMIN_PASSWORD`) and shows GitHub runtime download counts only. Replace
-  this before sharing access more broadly.
+- `/admin` currently uses Cloudflare Access credentials and shows
+  GitHub runtime download counts only. Replace this before sharing access more
+  broadly.
 - The Home Assistant badge uses the official Home Assistant brand logo; confirm formal "Works with Home Assistant" certification requirements before presenting it as a certification mark.
 
 ## Resolved
@@ -29,3 +29,6 @@ Use GitHub Issues for active tracking. This file captures known repository-level
 - Public support/contact links now point to the website Support page with
   `support@djconnect.dev`; GitHub Issues remains available as a technical
   fallback from that page.
+- App Store-ready Privacy Policy and visible footer links are live.
+- Cloudflare Pages deployment is connected to GitHub Actions on `main`; direct
+  Wrangler deploy remains a fallback for deploy-only recovery.

@@ -167,11 +167,11 @@ Download and HACS clicks can be counted without cookies, IP addresses, user agen
 - Website redirect clicks go through `/go/...` and are stored as daily aggregate totals in D1.
 - Direct GitHub download totals come from GitHub release asset `download_count`.
 - `/api/stats` combines both sources behind a `STATS_TOKEN`.
-- `/admin` is a Cloudflare Access page (`admin` /
-  `REDACTED_ADMIN_PASSWORD`) that renders GitHub release asset download counts at
-  runtime only. It does not persist data and does not include website redirect
-  click counters yet. Replace this with Cloudflare Access or secret-backed
-  authentication before broader use.
+- `/admin` is a Cloudflare Access page that renders GitHub release
+  asset download counts at runtime only. It does not persist data and does not
+  include website redirect click counters yet. Replace this with Cloudflare
+  Access or secret-backed authentication before broader use. Do not publish or
+  repeat admin credentials in docs, issues or diagnostics.
 
 Cloudflare setup:
 

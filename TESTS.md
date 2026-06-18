@@ -88,10 +88,10 @@
 - Verify HACS and download buttons route through `/go/...` redirects and still land on the expected destination.
 - Verify `/go/linux-install` resolves to the latest `pcvantol/djconnect-pi-releases` `.tar.gz` asset.
 - Verify `/api/stats` is unavailable without `STATS_TOKEN` and returns aggregate-only data when authenticated.
-- Verify `/admin` requires Basic Auth (`admin` / `REDACTED_ADMIN_PASSWORD`), returns
+- Verify `/admin` requires the configured Basic Auth credentials, returns
   noindex/no-store headers and renders GitHub release asset download counts
   only. It must not depend on D1 persistence or website redirect click counts
-  yet.
+  yet. Do not repeat the credential value in docs, issues or diagnostics.
 - Verify `https://djconnect.dev` is used in canonical tags, `robots.txt`, `sitemap.xml` and public install commands.
 - Verify `https://www.djconnect.dev` redirects permanently to `https://djconnect.dev`, preserving path and query string.
 - Verify the embedded page uses the shared site color styling: cyan/green CTA and the same subtle cyan/pink/green background family as the homepage.

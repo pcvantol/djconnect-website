@@ -756,7 +756,7 @@ test("admin download stats page is protected and GitHub-runtime only", async () 
   const admin = await read("functions/admin.js");
 
   assert.match(admin, /const ADMIN_USER = "managed-by-cloudflare-access"/);
-  assert.match(admin, /const ADMIN_PASSWORD = "managed-by-cloudflare-access"/);
+  assert.match(admin, /const ADMIN_PASSWORD = "managed-by-cloudflare-access"]+"/);
   assert.match(admin, /WWW-Authenticate.*Cloudflare Access/s);
   assert.match(admin, /if \(!requireAdmin\(request\)\) return unauthorized\(\)/);
   assert.match(admin, /api\.github\.com\/repos\/pcvantol\/\$\{repo\}\/releases\?per_page=30/);

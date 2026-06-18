@@ -7,7 +7,10 @@ Static landing page for DJConnect, published through Cloudflare Pages.
 - `wwwroot/index.html`: platform homepage with DJConnect essentials, download routes and swipeable device hero.
 - `wwwroot/features.html`: feature overview page, including bonus mini-games: Paddle Rally, Meteor Run, Sky Dash and Maze Chase.
 - `wwwroot/platform.html`: CSS-only platform architecture overview for clients, Home Assistant, Assist, Spotify and speakers.
-- `wwwroot/voice-commands.html`: bilingual How To page for DJConnect voice command intent families and artist-first music requests. Spoken music examples are mirrored from the HA repo canonical source `examples/voice_intents.json`.
+- `wwwroot/voice-commands.html`: bilingual How To page for DJConnect voice
+  command intent families, including current-track status questions, direct
+  playback controls and Spotify music search requests. Spoken examples are
+  mirrored from the HA repo canonical source `examples/voice_intents.json`.
 - `wwwroot/voice-assistant.html`: bilingual explanation page for using DJConnect as Home Assistant Assist Conversation Agent with ESPHome-powered voice assistants.
 - `wwwroot/support.html`: public support page with `support@djconnect.dev` and technical GitHub Issues fallback.
 - `wwwroot/privacy.html`: App Store-ready Privacy Policy for website, apps,

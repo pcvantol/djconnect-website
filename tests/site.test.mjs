@@ -395,8 +395,11 @@ test("voice commands page documents intent families and DJ response styles", asy
   assert.match(voice, /<title>DJConnect Spraakopdrachten<\/title>/);
   assert.match(voice, /href="https:\/\/djconnect\.dev\/voice-commands"/);
   assert.match(voice, /DJConnect luistert naar natuurlijke muziekopdrachten/);
+  assert.match(voice, /Huidige track status/);
+  assert.match(voice, /Playback control/);
   assert.match(voice, /Default playlist \/ favorieten/);
-  assert.match(voice, /Algemene muziekzoekopdracht als artist-first fallback/);
+  assert.match(voice, /Artiest \+ track/);
+  assert.match(voice, /Artist \/ artiest fallback/);
   assert.doesNotMatch(voice, /data-i18n="artistFirstTitle"/);
   assert.doesNotMatch(voice, /data-i18n="supportedNow"/);
   assert.doesNotMatch(voice, /Artist-first bij generieke verzoeken/);
@@ -407,6 +410,8 @@ test("voice commands page documents intent families and DJ response styles", asy
   assert.match(voice, /Vrij in te vullen/);
   assert.match(voice, /Ik zet Pearl Jam voor je klaar/);
   assert.match(voice, /De gekozen stijl verandert alleen de DJ-aankondiging, niet de muziekkeuze/);
+  assert.match(voice, /AI- en Assist-antwoorden kunnen onjuist zijn/);
+  assert.match(voice, /hangen af van je eigen Home Assistant installatie/);
   assert.match(voice, /Home Assistant Assist pipeline/);
   assert.match(voice, /Stem, taal en TTS-engine beheer je in Home Assistant Assist/);
   assert.match(voice, /ESPHome voice assistants/);
@@ -419,8 +424,48 @@ test("voice commands page documents intent families and DJ response styles", asy
   assert.match(voice, /<script src="assets\/voice-intents\.js"><\/script>/);
   assert.match(voice, /const intentFamilies = window\.DJCONNECT_VOICE_INTENTS \|\| \[\]/);
   assert.match(voice, /renderIntentFamilies\(lang, dictionary\)/);
+  assert.match(voice, /family\.commands/);
+  assert.match(voice, /dictionary\.noPlayback/);
   assert.doesNotMatch(voice, /data-examples-lang=/);
   assert.match(intents, /window\.DJCONNECT_VOICE_INTENTS = \[/);
+  const expectedIntentOrder = [
+    "current_track",
+    "playback_control",
+    "default_playlist",
+    "playlist",
+    "artist_with_track",
+    "album",
+    "track",
+    "artist"
+  ];
+  const actualIntentOrder = [...intents.matchAll(/id: "([^"]+)"/g)].map((match) => match[1]);
+  assert.deepEqual(actualIntentOrder, expectedIntentOrder);
+  assert.match(intents, /id: "current_track"/);
+  assert.match(intents, /id: "playback_control"/);
+  assert.match(intents, /id: "default_playlist"/);
+  assert.match(intents, /id: "playlist"/);
+  assert.match(intents, /id: "artist_with_track"/);
+  assert.match(intents, /id: "album"/);
+  assert.match(intents, /id: "track"/);
+  assert.match(intents, /id: "artist"/);
+  assert.match(intents, /Welk nummer draait er nu\?/);
+  assert.match(intents, /What song is playing\?/);
+  assert.match(intents, /playsMusic: false/);
+  assert.match(intents, /spotifyType: "status"/);
+  assert.match(intents, /spotifyType: "backend_command"/);
+  assert.match(intents, /No Spotify search/);
+  assert.match(intents, /command: "pause"/);
+  assert.match(intents, /command: "play\/resume"/);
+  assert.match(intents, /command: "volume \+10"/);
+  assert.match(intents, /command: "volume -10"/);
+  assert.match(intents, /command: "next"/);
+  assert.match(intents, /command: "previous"/);
+  assert.match(intents, /Stop muziek/);
+  assert.match(intents, /Start muziek/);
+  assert.match(intents, /Zet harder/);
+  assert.match(intents, /Zet zachter/);
+  assert.match(intents, /Volgende nummer/);
+  assert.match(intents, /Vorig nummer/);
   assert.match(intents, /Speel Nirvana/);
   assert.match(intents, /Start Metallica/);
   assert.match(intents, /Play Nirvana/);
@@ -437,14 +482,19 @@ test("voice commands page documents intent families and DJ response styles", asy
   assert.match(intents, /Play playlist DJConnect/);
   assert.match(intents, /Speel mijn standaard playlist/);
   assert.match(intents, /Play my default playlist/);
-  assert.match(intents, /Zet shuffle aan/);
-  assert.match(intents, /Turn shuffle on/);
+  assert.doesNotMatch(intents, /Zet shuffle aan/);
+  assert.doesNotMatch(intents, /Turn shuffle on/);
   assert.match(voice, /Tip: noem 'nummer', 'album' of 'playlist'/);
   assert.doesNotMatch(voice, /sponsored/i);
   assert.doesNotMatch(voice, /endorsed/i);
   assert.match(sitemap, /https:\/\/djconnect\.dev\/voice-commands/);
   assert.match(prompt, /Lever uitsluitend gestructureerde intentdata aan/);
   assert.match(prompt, /examples\/voice_intents\.json/);
+  assert.match(prompt, /current_track/);
+  assert.match(prompt, /playback_control/);
+  assert.match(prompt, /artist_with_track/);
+  assert.match(prompt, /`Stop muziek` -> `pause`/);
+  assert.match(prompt, /`Zet harder` -> volume `\+10`/);
   assert.match(prompt, /generieke artiestverzoeken artist-first/);
   assert.match(prompt, /`nummer`\/`liedje`\/`track`\/`song`/);
   assert.match(prompt, /`album`\/`plaat`/);
@@ -502,6 +552,8 @@ test("voice assistant page explains Assist Conversation Agent route", async () =
   assert.match(assistant, /ESP32-S3-BOX-3/);
   assert.match(assistant, /Assist Conversation Agent/);
   assert.match(assistant, /zonder aparte DJConnect hardware-client of koppelcode/);
+  assert.match(assistant, /AI- en Assist-antwoorden kunnen onjuist zijn/);
+  assert.match(assistant, /hangen af van je eigen Home Assistant installatie/);
   assert.match(assistant, /DJConnect is geen onderdeel van ESPHome of Home Assistant/);
   assert.match(assistant, /href="https:\/\/esphome\.io\/projects\/"/);
   assert.match(sitemap, /https:\/\/djconnect\.dev\/voice-assistant/);

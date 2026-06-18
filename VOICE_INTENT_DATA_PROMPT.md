@@ -25,17 +25,19 @@ Outputformaat:
   "updated_at": "YYYY-MM-DD",
   "intent_order": [
     {
-      "id": "default_playlist",
-      "nl": "Default playlist / favorieten",
-      "en": "Default playlist / favorites"
+      "id": "current_track",
+      "nl": "Huidige track status",
+      "en": "Current track status"
     }
   ],
   "families": [
     {
-      "id": "artist",
+      "id": "playback_control",
+      "spotify_type": "backend_command",
+      "plays_music": false,
       "label": {
-        "nl": "Artiest",
-        "en": "Artist"
+        "nl": "Bediening",
+        "en": "Control"
       },
       "title": {
         "nl": "Artiest starten",
@@ -47,12 +49,21 @@ Outputformaat:
       },
       "examples": {
         "nl": [
-          "Speel Nirvana"
+          "Stop muziek"
         ],
         "en": [
-          "Play Nirvana"
+          "Stop music"
         ]
-      }
+      },
+      "commands": [
+        {
+          "phrase": {
+            "nl": "Stop muziek",
+            "en": "Stop music"
+          },
+          "backend_command": "pause"
+        }
+      ]
     }
   ],
   "artist_first": {
@@ -68,6 +79,16 @@ Outputformaat:
 Vereisten:
 - Houd dezelfde intentfamilies en dezelfde volgorde aan als
   examples/voice_intents.json.
+- Neem `current_track` op als statusfamilie: geen Spotify search, geen playback
+  starten of wijzigen, alleen huidige Spotify playback-status lezen en een
+  DJ-response maken.
+- Neem `playback_control` op als directe backend-command familie: geen Spotify
+  search en geen Assist music intent parsing.
+- Documenteer minimaal deze command mapping: `Stop muziek` -> `pause`,
+  `Start muziek` -> `play`, `Zet harder` -> volume `+10`, `Zet zachter` ->
+  volume `-10`, `Volgende nummer` -> `next`, `Vorig nummer` -> `previous`.
+- Neem `artist_with_track` apart op wanneer de handling order dit noemt. Gebruik
+  alleen voorbeeldzinnen die ook in `examples/voice_intents.json` staan.
 - Houd generieke artiestverzoeken artist-first.
 - Behandel expliciete `nummer`/`liedje`/`track`/`song` verzoeken als track
   searches.

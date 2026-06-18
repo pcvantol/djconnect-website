@@ -50,6 +50,12 @@
     .examples ul { margin:0; padding:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
     .examples li { list-style:none; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.055); color:var(--muted); padding:8px 12px; font-weight:700; }
     .note { margin-top:16px; color:var(--muted); border-left:3px solid var(--green); padding-left:14px; }
+    .meta-row { display:flex; flex-wrap:wrap; gap:8px; margin:14px 0 0; }
+    .meta-row span { border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.055); color:var(--muted); padding:6px 10px; font-size:0.78rem; font-weight:820; }
+    .meta-row span:first-child { color:#06110c; border:0; background:linear-gradient(135deg,var(--cyan),var(--green)); }
+    .command-list { margin-top:14px; display:grid; gap:8px; }
+    .command-list div { display:flex; justify-content:space-between; gap:12px; border:1px solid var(--line); border-radius:14px; background:rgba(255,255,255,0.055); color:var(--muted); padding:9px 11px; font-weight:760; }
+    .command-list code { color:#aeefff; font:inherit; white-space:nowrap; }
     .subtle-link { color:#aeefff; border-bottom:1px solid rgba(174,239,255,0.45); }
     .subtle-link:hover { color:var(--text); border-bottom-color:var(--text); }
     .status { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
@@ -91,17 +97,19 @@
         <div>
           <span class="pill" data-i18n="heroLabel">Spraakopdrachten</span>
           <h1 data-i18n="heroTitle">Wat kun je zeggen?</h1>
-          <p class="lead" data-i18n="heroLead">DJConnect luistert naar natuurlijke muziekopdrachten. Je hoeft geen exacte commando's te leren: noem een artiest, nummer, album of playlist. Als je expliciet 'nummer', 'album' of 'playlist' zegt, zoekt DJConnect gericht op dat type.</p>
+          <p class="lead" data-i18n="heroLead">DJConnect luistert naar natuurlijke muziekopdrachten en korte status- of playbackvragen. Je hoeft geen exacte commando's te leren: noem een artiest, nummer, album of playlist, of vraag wat er nu draait.</p>
         </div>
         <div class="card">
           <span class="pill" data-i18n="flowLabel">Intentvolgorde</span>
           <ol class="flow">
-            <li data-i18n="flow1">Default playlist / favorieten</li>
-            <li data-i18n="flow2">Playlist</li>
-            <li data-i18n="flow3">Track / nummer</li>
-            <li data-i18n="flow4">Album</li>
-            <li data-i18n="flow5">Artist / artiest</li>
-            <li data-i18n="flow6">Algemene muziekzoekopdracht als artist-first fallback</li>
+            <li data-i18n="flow1">Huidige track status</li>
+            <li data-i18n="flow2">Playback control</li>
+            <li data-i18n="flow3">Default playlist / favorieten</li>
+            <li data-i18n="flow4">Playlist</li>
+            <li data-i18n="flow5">Artiest + track</li>
+            <li data-i18n="flow6">Album</li>
+            <li data-i18n="flow7">Track / nummer</li>
+            <li data-i18n="flow8">Artist / artiest fallback</li>
           </ol>
         </div>
       </div>
@@ -136,6 +144,7 @@
           </article>
         </div>
         <p class="note" data-i18n="responseStylesNote">De gekozen stijl verandert alleen de DJ-aankondiging, niet de muziekkeuze. DJConnect gebruikt je ingestelde Home Assistant Assist pipeline voor spraakherkenning en gesproken antwoord. Stem, taal en TTS-engine beheer je in Home Assistant Assist; DJConnect houdt de eigen instellingen simpel.</p>
+        <p class="note" data-i18n="aiDisclaimer">AI- en Assist-antwoorden kunnen onjuist zijn. De werking en kwaliteit hangen af van je eigen Home Assistant installatie, Assist pipeline, STT/TTS-engine, taalinstellingen en DJConnect-configuratie.</p>
       </div>
     </section>
 
@@ -170,7 +179,7 @@
     <p>Copyright Peter van Tol 2026. Released under the MIT License.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: Spotify credentials blijven in Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.1.42</p>
+    <p class="site-version">DJConnect website v3.1.43</p>
   </footer>
   <script src="assets/voice-intents.js"></script>
   <script>
@@ -188,14 +197,16 @@
         navStart: "Aan de slag",
         heroLabel: "Spraakopdrachten",
         heroTitle: "Wat kun je zeggen?",
-        heroLead: "DJConnect luistert naar natuurlijke muziekopdrachten. Je hoeft geen exacte commando's te leren: noem een artiest, nummer, album of playlist. Als je expliciet 'nummer', 'album' of 'playlist' zegt, zoekt DJConnect gericht op dat type.",
+        heroLead: "DJConnect luistert naar natuurlijke muziekopdrachten en korte status- of playbackvragen. Je hoeft geen exacte commando's te leren: noem een artiest, nummer, album of playlist, of vraag wat er nu draait.",
         flowLabel: "Intentvolgorde",
-        flow1: "Default playlist / favorieten",
-        flow2: "Playlist",
-        flow3: "Track / nummer",
-        flow4: "Album",
-        flow5: "Artist / artiest",
-        flow6: "Algemene muziekzoekopdracht als artist-first fallback",
+        flow1: "Huidige track status",
+        flow2: "Playback control",
+        flow3: "Default playlist / favorieten",
+        flow4: "Playlist",
+        flow5: "Artiest + track",
+        flow6: "Album",
+        flow7: "Track / nummer",
+        flow8: "Artist / artiest fallback",
         responseStylesTitle: "DJ response stijlen",
         responseStylesLead: "Na een muziekverzoek kan DJConnect op je DJConnect device een korte gesproken aankondiging teruggeven. In de Home Assistant integratie kies je de toon die bij jou past.",
         neutralPill: "Neutraal",
@@ -211,6 +222,7 @@
         customTitle: "Vrij in te vullen",
         customText: "Schrijf zelf een prompt voor stijl, lengte en toon. Bijvoorbeeld energiek, minimalistisch, Nederlandstalig, Engelstalig of passend bij een specifieke setting.",
         responseStylesNote: "De gekozen stijl verandert alleen de DJ-aankondiging, niet de muziekkeuze. DJConnect gebruikt je ingestelde Home Assistant Assist pipeline voor spraakherkenning en gesproken antwoord. Stem, taal en TTS-engine beheer je in Home Assistant Assist; DJConnect houdt de eigen instellingen simpel.",
+        aiDisclaimer: "AI- en Assist-antwoorden kunnen onjuist zijn. De werking en kwaliteit hangen af van je eigen Home Assistant installatie, Assist pipeline, STT/TTS-engine, taalinstellingen en DJConnect-configuratie.",
         esphomeTitle: "ESPHome voice assistants",
         esphomeLead: "DJConnect past native in het Home Assistant Assist ecosysteem en werkt ook met Assist satellites die op ESPHome draaien.",
         esphomePill: "Assist satellite",
@@ -218,7 +230,7 @@
         esphomeSetup: "Kies in de DJConnect setup voor “Assist Conversation Agent”. Dan heb je voor deze route geen aparte DJConnect hardware-client of koppelcode nodig.",
         esphomeLink: "Bekijk ESPHome voice assistant projecten op https://esphome.io/projects/",
         familiesTitle: "Intentfamilies",
-        familiesLead: "Gebruik gewone zinnen. Voeg alleen woorden zoals nummer, album of playlist toe wanneer je die media specifiek bedoelt.",
+        familiesLead: "Gebruik gewone zinnen. Statusvragen lezen alleen wat er speelt, playback-control voert direct commands uit en muziekfamilies zoeken daarna pas in Spotify.",
         artistPill: "Artiest",
         artistTitle: "Artiest starten",
         artistText: "Zonder expliciet “nummer”, “album” of “playlist” behandelt DJConnect dit als artiestverzoek.",
@@ -238,6 +250,10 @@
         playbackTitle: "Playback control / queue",
         playbackText: "Playback-bediening loopt via DJConnect backend commands en clientknoppen. Natuurlijke spraakdekking kan per release uitbreiden.",
         examplesLabel: "Voorbeelden",
+        behaviorLabel: "Gedrag",
+        startsPlayback: "Start Spotify playback",
+        noPlayback: "Start geen Spotify playback",
+        commandLabel: "Backend command",
         tipText: "Tip: noem 'nummer', 'album' of 'playlist' als je gericht wilt zoeken.",
         legalPrivacy: "Privacy: Spotify credentials blijven in Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.",
         legalPrivacyLink: "Privacy Policy",
@@ -256,14 +272,16 @@
         navStart: "Get started",
         heroLabel: "Voice commands",
         heroTitle: "What can you say?",
-        heroLead: "DJConnect listens for natural music requests. You do not need to learn exact commands: ask for an artist, song, album or playlist. If you explicitly say 'song', 'album' or 'playlist', DJConnect searches for that type.",
+        heroLead: "DJConnect listens for natural music requests and short status or playback questions. You do not need to learn exact commands: name an artist, song, album or playlist, or ask what is playing now.",
         flowLabel: "Intent order",
-        flow1: "Default playlist / favorites",
-        flow2: "Playlist",
-        flow3: "Track / song",
-        flow4: "Album",
-        flow5: "Artist",
-        flow6: "Generic music search as artist-first fallback",
+        flow1: "Current track status",
+        flow2: "Playback control",
+        flow3: "Default playlist / favorites",
+        flow4: "Playlist",
+        flow5: "Artist + track",
+        flow6: "Album",
+        flow7: "Track / song",
+        flow8: "Artist fallback",
         responseStylesTitle: "DJ response styles",
         responseStylesLead: "After a music request, DJConnect can speak a short DJ announcement on your DJConnect device. In the Home Assistant integration, you choose the tone that fits you.",
         neutralPill: "Neutral",
@@ -279,6 +297,7 @@
         customTitle: "Write your own",
         customText: "Write your own prompt for style, length and tone. For example energetic, minimal, Dutch, English or suited to a specific setting.",
         responseStylesNote: "The selected style only changes the DJ announcement, not the music choice. DJConnect uses your configured Home Assistant Assist pipeline for speech recognition and spoken response. Voice, language and TTS engine are managed in Home Assistant Assist; DJConnect keeps its own settings simple.",
+        aiDisclaimer: "AI and Assist responses can be incorrect. Behavior and quality depend on your own Home Assistant installation, Assist pipeline, STT/TTS engine, language settings and DJConnect configuration.",
         esphomeTitle: "ESPHome voice assistants",
         esphomeLead: "DJConnect fits natively into the Home Assistant Assist ecosystem and also works with Assist satellites powered by ESPHome.",
         esphomePill: "Assist satellite",
@@ -286,7 +305,7 @@
         esphomeSetup: "Choose “Assist Conversation Agent” in the DJConnect setup. For this route, you do not need a separate DJConnect hardware client or pairing code.",
         esphomeLink: "View ESPHome voice assistant projects at https://esphome.io/projects/",
         familiesTitle: "Intent families",
-        familiesLead: "Use normal sentences. Add words like song, album or playlist only when you mean that media type specifically.",
+        familiesLead: "Use normal sentences. Status questions only read what is playing, playback control runs direct commands and music families search Spotify after that.",
         artistPill: "Artist",
         artistTitle: "Start an artist",
         artistText: "Without explicit “song”, “album” or “playlist” wording, DJConnect treats this as an artist request.",
@@ -306,6 +325,10 @@
         playbackTitle: "Playback control / queue",
         playbackText: "Playback controls are supported through DJConnect backend commands and client controls. Natural-language coverage may grow per release.",
         examplesLabel: "Examples",
+        behaviorLabel: "Behavior",
+        startsPlayback: "Starts Spotify playback",
+        noPlayback: "Does not start Spotify playback",
+        commandLabel: "Backend command",
         tipText: "Tip: say 'song', 'album' or 'playlist' when you want a specific search type.",
         legalPrivacy: "Privacy: Spotify credentials stay in Home Assistant. This website does not receive or store account details.",
         legalPrivacyLink: "Privacy Policy",
@@ -331,6 +354,18 @@
         const text = document.createElement("p");
         text.textContent = family.text[lang];
 
+        const metadata = document.createElement("div");
+        metadata.className = "meta-row";
+        const playback = document.createElement("span");
+        playback.textContent = family.playsMusic ? dictionary.startsPlayback : dictionary.noPlayback;
+        const spotifyType = document.createElement("span");
+        spotifyType.textContent = family.spotifyType;
+        metadata.append(playback, spotifyType);
+
+        const behavior = document.createElement("p");
+        behavior.className = "note";
+        behavior.textContent = `${dictionary.behaviorLabel}: ${family.behavior[lang]}`;
+
         const examples = document.createElement("div");
         examples.className = "examples";
         const label = document.createElement("h4");
@@ -342,7 +377,23 @@
           list.append(item);
         });
         examples.append(label, list);
-        card.append(pill, title, text, examples);
+
+        if (family.commands) {
+          const commandList = document.createElement("div");
+          commandList.className = "command-list";
+          family.commands.forEach((command) => {
+            const row = document.createElement("div");
+            const phrase = document.createElement("span");
+            phrase.textContent = command.phrase[lang];
+            const backendCommand = document.createElement("code");
+            backendCommand.textContent = command.command;
+            row.append(phrase, backendCommand);
+            commandList.append(row);
+          });
+          card.append(pill, title, text, metadata, behavior, examples, commandList);
+        } else {
+          card.append(pill, title, text, metadata, behavior, examples);
+        }
         grid.append(card);
       });
     };

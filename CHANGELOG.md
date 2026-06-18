@@ -2,6 +2,17 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.43 - 2026-06-18
+
+- Updated the shared voice intent data from the Home Assistant repository,
+  including current-track status, direct playback-control commands,
+  artist-with-track handling and the refreshed intent order.
+- Extended the voice commands page with behavior badges, backend command
+  mapping and clearer status-only/no-search explanations.
+- Added an AI/Assist response disclaimer to the voice command and voice
+  assistant pages.
+- Added the development environment guide to the published documentation set.
+
 ## DJConnect website v3.1.42 - 2026-06-18
 
 - Added a mobile hamburger menu to the homepage navigation, including

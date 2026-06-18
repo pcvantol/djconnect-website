@@ -42,7 +42,8 @@ Static landing page for DJConnect, published through Cloudflare Pages.
 - `functions/api/releases.js`: Cloudflare Pages Function proxy for GitHub release data.
 - `functions/go/`: privacy-friendly redirect endpoints for HACS and downloadable assets.
 - `functions/api/stats.js`: token-protected aggregate stats endpoint that combines redirect clicks with GitHub asset `download_count` totals.
-- `functions/admin.js`: temporary Basic Auth protected admin page for runtime GitHub download statistics.
+- `functions/admin.js`: admin page for runtime GitHub download statistics;
+  production access is protected externally with Cloudflare Access for `/admin`.
 - `migrations/`: optional D1 migration for cookieless aggregate click counters.
 - `VERSION`: current site version.
 
@@ -247,10 +248,19 @@ Use `./cleanup_old_releases.sh` manually only when you want cleanup outside the 
 
 ## Content Hygiene
 
-- Keep Dutch and English translation keys in sync on the homepage, start page, embedded page, Features page, Raspberry Pi page, iOS page and macOS page.
+- Keep Dutch and English translation keys in sync on the homepage, start page,
+  embedded page, Features page, Spraak page, Blog page, Privacy page, Support
+  page, Raspberry Pi page, iOS page, macOS page and Voice Assistant page.
 - Keep App Store links as placeholders until the macOS and iOS apps are published.
 - Do not describe embedded devices as pre-flashed; link users to the firmware repository and flashing flow instead.
-- Keep homepage navigation focused on `Hoe werkt het`, `Features`, `Installeren` and the primary `Aan de slag` CTA.
+- Keep homepage navigation focused on cross-page routes: `Features`, `Spraak`,
+  `Blog`, `Installeren`, `Support`, `Privacy` and the primary `Aan de slag`
+  CTA. Do not add a `Hoe werkt het` self-link to the homepage top navigation.
+- Keep content-page navigation free of self-links. Features, Spraak, Blog,
+  Support and Privacy should not show their own page as a menu option.
+- Keep the homepage `Kies je interface` cards aligned with the supported
+  routes: macOS, iPhone/iPad, Voice Assistant, Embedded device and
+  Linux/Raspberry Pi.
 - Keep homepage hero device slides spacious: macOS, iPad/iPhone and LilyGO/ESP32 each get their own carousel slide.
 - Keep the start page aligned with the current setup order: Home Assistant voice pipeline, HACS, DJConnect configuration, client pairing and first use.
 - Keep the start page clear that Spotify OAuth requires the user's own Spotify

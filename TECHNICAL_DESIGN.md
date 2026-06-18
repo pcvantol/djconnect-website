@@ -87,9 +87,9 @@ Cloudflare Pages Functions are kept small and task-specific:
 
 - `/api/releases`: proxies GitHub release API calls and applies a response cache.
 - `/api/stats`: returns token-protected aggregate click counters plus GitHub `download_count` totals.
-- `/admin`: temporary Basic Auth protected HTML page that fetches GitHub release
-  asset `download_count` values at runtime for app, firmware and Linux/Pi
-  release repositories.
+- `/admin`: HTML page that fetches GitHub release asset `download_count` values
+  at runtime for app, firmware and Linux/Pi release repositories. Production
+  access is protected outside the function with Cloudflare Access for `/admin`.
 - `/go/[target]`: redirects known targets such as HACS and latest Linux install bundle.
 - `/go/download`: redirects allowed GitHub release asset URLs.
 

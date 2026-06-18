@@ -30,9 +30,17 @@
 - The site source is static HTML/CSS/JavaScript in `wwwroot`; the release cycle
   builds a minified deploy copy in `dist/wwwroot`.
 - The homepage is platform-independent and routes users to setup and downloads.
-- The homepage navigation intentionally contains `Hoe werkt het`, `Features`,
-  `Spraak`, `Blog` and `Installeren`; the `Aan de slag` route is the primary
-  CTA button.
+- The homepage navigation intentionally contains cross-page routes only:
+  `Features`, `Spraak`, `Blog`, `Installeren`, `Support` and `Privacy`; the
+  `Aan de slag` route is the primary CTA button. Do not add a `Hoe werkt het`
+  self-link to the homepage top navigation.
+- Content pages should avoid self-links in their top navigation. Features,
+  Spraak, Blog, Support and Privacy intentionally omit their own page from the
+  menu, and the compact Support/Privacy menus stay focused on their legal or
+  help context.
+- The homepage `Kies je interface` section lists macOS, iPhone/iPad, Voice
+  Assistant, Embedded device and Linux/Raspberry Pi. Keep the Voice Assistant
+  card linked to `wwwroot/voice-assistant.html`.
 - The features page summarizes the main DJConnect functions and mentions the bonus mini-games: Paddle Rally, Meteor Run, Sky Dash & Maze Chase.
 - The voice commands page documents the user-facing intent families,
   interpretation order, current-track status behavior, direct playback-control
@@ -101,7 +109,10 @@
 - iOS does not embed website repository releases. Add a release/download embed only when it has its own relevant app release source.
 - If the GitHub repository/releases are private, set `GITHUB_TOKEN` as a Cloudflare Pages secret for the `djconnect` project.
 - Version is tracked in `VERSION`, `package.json`, page footers and `CHANGELOG.md`.
-- Language switching on the homepage, start page, embedded page, Features page, Raspberry Pi page, iOS page and macOS page is handled through per-page `translations` objects.
+- Language switching on the homepage, start page, embedded page, Features page,
+  Spraak page, Blog page, Privacy page, Support page, Raspberry Pi page, iOS
+  page, macOS page and Voice Assistant page is handled through per-page
+  `translations` objects.
 - `release.sh` automatically runs cleanup after a successful release, removing old GitHub Releases, matching local/remote tags and older workflow runs.
 - `cleanup_old_releases.sh` can still be run manually for cleanup outside the normal release flow. It keeps the current `VERSION` tag and the newest 10 workflow runs by default.
 - Do not commit `.wrangler/`; it is local Wrangler cache.

@@ -3,8 +3,15 @@
 ## Manual Checks
 
 - Open `wwwroot/index.html`.
-- Verify the homepage navigation shows `Hoe werkt het`, `Features`, `Blog` and `Installeren`, with `Aan de slag` only as the primary CTA button.
+- Verify the homepage navigation shows `Features`, `Spraak`, `Blog`,
+  `Installeren`, `Support` and `Privacy`, with `Aan de slag` only as the
+  primary CTA button. The homepage should not show a `Hoe werkt het` self-link.
+- Verify the homepage `Kies je interface` section includes macOS, iPhone/iPad,
+  Voice Assistant, Embedded device and Linux/Raspberry Pi cards. The Voice
+  Assistant card must link to `wwwroot/voice-assistant.html`.
 - Open `wwwroot/features.html` and verify the core features and renamed bonus mini-games are visible: Paddle Rally, Meteor Run, Sky Dash and Maze Chase.
+- Verify the Features, Spraak, Blog, Support and Privacy pages keep their top
+  navigation focused on relevant cross-links only and do not show self-links.
 - Open `wwwroot/voice-commands.html` and verify the current-track,
   playback-control, default playlist, playlist, artist-with-track, album, track
   and artist voice intent families.
@@ -101,10 +108,11 @@
 - Verify HACS and download buttons route through `/go/...` redirects and still land on the expected destination.
 - Verify `/go/linux-install` resolves to the latest `pcvantol/djconnect-pi-releases` `.tar.gz` asset.
 - Verify `/api/stats` is unavailable without `STATS_TOKEN` and returns aggregate-only data when authenticated.
-- Verify `/admin` requires the configured Basic Auth credentials, returns
-  noindex/no-store headers and renders GitHub release asset download counts
+- Verify `/admin` is protected by Cloudflare Access, returns noindex/no-store
+  headers after authentication and renders GitHub release asset download counts
   only. It must not depend on D1 persistence or website redirect click counts
-  yet. Do not repeat the credential value in docs, issues or diagnostics.
+  yet. Do not document private Access policy details or credentials in docs,
+  issues or diagnostics.
 - Verify `https://djconnect.dev` is used in canonical tags, `robots.txt`, `sitemap.xml` and public install commands.
 - Verify every public page has one `main` landmark, one `h1`, a visible-on-focus
   skip link to `#mainContent`, explicit language metadata, and decorative empty

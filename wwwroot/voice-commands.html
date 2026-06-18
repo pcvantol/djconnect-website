@@ -43,6 +43,8 @@
     .section-head { display:grid; grid-template-columns:0.85fr 1.15fr; gap:28px; align-items:end; margin-bottom:24px; }
     .section-head p { color:var(--muted); margin:0; font-size:1.1rem; }
     .intent-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+    .style-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+    .style-grid .card { padding:20px; }
     .examples { margin-top:18px; }
     .examples h4 { margin:0 0 8px; font-size:0.86rem; color:#aeefff; text-transform:uppercase; letter-spacing:0.08em; }
     .examples ul { margin:0; padding:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
@@ -54,9 +56,10 @@
     .legal { color:var(--muted); font-size:0.86rem; padding:34px 0 44px; border-top:1px solid var(--line); }
     .site-version { margin-top:14px; font-size:0.76rem; color:rgba(183,188,203,0.72); }
     .privacy-notice { font-size:0.78rem; color:rgba(183,188,203,0.78); }
+    @media (max-width:1100px) { .style-grid { grid-template-columns:repeat(2,1fr); } }
     @media (max-width:900px) { .hero-grid,.section-head,.intent-grid { grid-template-columns:1fr; } .nav-inner { flex-wrap:wrap; padding:12px 0; } .nav-links { order:3; width:100%; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; } .nav-links::-webkit-scrollbar { display:none; } }
     @media (max-width:720px) { .examples ul { grid-template-columns:1fr; } }
-    @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } .flow li { grid-template-columns:40px 1fr; } .flow li::before { width:40px; height:40px; } }
+    @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } .flow li { grid-template-columns:40px 1fr; } .flow li::before { width:40px; height:40px; } .style-grid { grid-template-columns:1fr; } }
   </style>
 </head>
 <body>
@@ -105,17 +108,32 @@
     <section>
       <div class="wrap">
         <div class="section-head">
-          <h2 data-i18n="artistFirstTitle">Artist-first</h2>
-          <p data-i18n="artistFirstLead">Algemene verzoeken zoals 'speel Nirvana' worden artist-first behandeld. Daardoor start DJConnect de artiestcontext en kiest het niet willekeurig een nummer. Wil je een specifiek nummer, zeg dan 'nummer', 'liedje' of 'track'.</p>
+          <h2 data-i18n="responseStylesTitle">DJ response stijlen</h2>
+          <p data-i18n="responseStylesLead">Na een muziekverzoek kan DJConnect op je DJConnect device een korte gesproken aankondiging teruggeven. In de Home Assistant integratie kies je de toon die bij jou past.</p>
         </div>
-        <div class="card">
-          <div class="status">
-            <span data-i18n="supportedNow">Nu ondersteund</span>
-            <span data-i18n="artistFirstBadge">Artist-first bij generieke verzoeken</span>
-            <span data-i18n="explicitBadge">Expliciete mediawoorden sturen de zoekrichting</span>
-            <span data-i18n="expandingBadge">Playback-spraakdekking groeit per release</span>
-          </div>
+        <div class="style-grid">
+          <article class="card">
+            <span class="pill" data-i18n="neutralPill">Neutraal</span>
+            <h3 data-i18n="neutralTitle">Neutraal en zakelijk</h3>
+            <p data-i18n="neutralText">Korte, duidelijke aankondigingen zonder veel emotie of grapjes. Handig als je vooral functionele feedback wilt, zoals: “Ik zet Pearl Jam voor je klaar.”</p>
+          </article>
+          <article class="card">
+            <span class="pill" data-i18n="warmPill">Warm</span>
+            <h3 data-i18n="warmTitle">Warm en persoonlijk</h3>
+            <p data-i18n="warmText">Vriendelijker en menselijker van toon, alsof een rustige radio-DJ het nummer aankondigt. Fijn voor thuis en een wat gezelligere interactie.</p>
+          </article>
+          <article class="card">
+            <span class="pill" data-i18n="humorPill">Geestig</span>
+            <h3 data-i18n="humorTitle">Humoristisch en gevat</h3>
+            <p data-i18n="humorText">Luchtige, speelse aankondigingen met een kleine knipoog. Niet te lang en geen flauwe grappen, maar wel wat meer karakter.</p>
+          </article>
+          <article class="card">
+            <span class="pill" data-i18n="customPill">Vrij</span>
+            <h3 data-i18n="customTitle">Vrij in te vullen</h3>
+            <p data-i18n="customText">Schrijf zelf een prompt voor stijl, lengte en toon. Bijvoorbeeld energiek, minimalistisch, Nederlandstalig, Engelstalig of passend bij een specifieke setting.</p>
+          </article>
         </div>
+        <p class="note" data-i18n="responseStylesNote">De gekozen stijl verandert alleen de DJ-aankondiging, niet de muziekkeuze. DJConnect gebruikt je ingestelde Home Assistant Assist pipeline voor spraakherkenning en gesproken antwoord. Stem, taal en TTS-engine beheer je in Home Assistant Assist; DJConnect houdt de eigen instellingen simpel.</p>
       </div>
     </section>
 
@@ -135,7 +153,7 @@
     <p>Copyright Peter van Tol 2026. All rights reserved.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: Spotify credentials blijven in Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="https://github.com/pcvantol/djconnect-website/issues" target="_blank" rel="noopener" data-i18n="legalSupport">Support: GitHub Issues</a></p>
-    <p class="site-version">DJConnect website v3.1.35</p>
+    <p class="site-version">DJConnect website v3.1.36</p>
   </footer>
   <script src="assets/voice-intents.js"></script>
   <script>
@@ -161,12 +179,21 @@
         flow4: "Album",
         flow5: "Artist / artiest",
         flow6: "Algemene muziekzoekopdracht als artist-first fallback",
-        artistFirstTitle: "Artist-first",
-        artistFirstLead: "Algemene verzoeken zoals 'speel Nirvana' worden artist-first behandeld. Daardoor start DJConnect de artiestcontext en kiest het niet willekeurig een nummer. Wil je een specifiek nummer, zeg dan 'nummer', 'liedje' of 'track'.",
-        supportedNow: "Nu ondersteund",
-        artistFirstBadge: "Artist-first bij generieke verzoeken",
-        explicitBadge: "Expliciete mediawoorden sturen de zoekrichting",
-        expandingBadge: "Playback-spraakdekking groeit per release",
+        responseStylesTitle: "DJ response stijlen",
+        responseStylesLead: "Na een muziekverzoek kan DJConnect op je DJConnect device een korte gesproken aankondiging teruggeven. In de Home Assistant integratie kies je de toon die bij jou past.",
+        neutralPill: "Neutraal",
+        neutralTitle: "Neutraal en zakelijk",
+        neutralText: "Korte, duidelijke aankondigingen zonder veel emotie of grapjes. Handig als je vooral functionele feedback wilt, zoals: “Ik zet Pearl Jam voor je klaar.”",
+        warmPill: "Warm",
+        warmTitle: "Warm en persoonlijk",
+        warmText: "Vriendelijker en menselijker van toon, alsof een rustige radio-DJ het nummer aankondigt. Fijn voor thuis en een wat gezelligere interactie.",
+        humorPill: "Geestig",
+        humorTitle: "Humoristisch en gevat",
+        humorText: "Luchtige, speelse aankondigingen met een kleine knipoog. Niet te lang en geen flauwe grappen, maar wel wat meer karakter.",
+        customPill: "Vrij",
+        customTitle: "Vrij in te vullen",
+        customText: "Schrijf zelf een prompt voor stijl, lengte en toon. Bijvoorbeeld energiek, minimalistisch, Nederlandstalig, Engelstalig of passend bij een specifieke setting.",
+        responseStylesNote: "De gekozen stijl verandert alleen de DJ-aankondiging, niet de muziekkeuze. DJConnect gebruikt je ingestelde Home Assistant Assist pipeline voor spraakherkenning en gesproken antwoord. Stem, taal en TTS-engine beheer je in Home Assistant Assist; DJConnect houdt de eigen instellingen simpel.",
         familiesTitle: "Intentfamilies",
         familiesLead: "Gebruik gewone zinnen. Voeg alleen woorden zoals nummer, album of playlist toe wanneer je die media specifiek bedoelt.",
         artistPill: "Artiest",
@@ -213,12 +240,21 @@
         flow4: "Album",
         flow5: "Artist",
         flow6: "Generic music search as artist-first fallback",
-        artistFirstTitle: "Artist-first",
-        artistFirstLead: "Generic requests like 'play Nirvana' are handled artist-first. DJConnect starts the artist context instead of picking an arbitrary song. If you want a specific song, say 'song' or 'track'.",
-        supportedNow: "Supported now",
-        artistFirstBadge: "Artist-first for generic requests",
-        explicitBadge: "Explicit media words steer the search",
-        expandingBadge: "Playback voice coverage grows per release",
+        responseStylesTitle: "DJ response styles",
+        responseStylesLead: "After a music request, DJConnect can speak a short DJ announcement on your DJConnect device. In the Home Assistant integration, you choose the tone that fits you.",
+        neutralPill: "Neutral",
+        neutralTitle: "Neutral and practical",
+        neutralText: "Short, clear announcements without much emotion or jokes. Useful when you mainly want functional feedback, such as: “I’ll get Pearl Jam ready for you.”",
+        warmPill: "Warm",
+        warmTitle: "Warm and personal",
+        warmText: "Friendlier and more human in tone, like a calm radio DJ announcing the song. Nice for home use and a cozier interaction.",
+        humorPill: "Witty",
+        humorTitle: "Humorous and witty",
+        humorText: "Light, playful announcements with a small wink. Not too long and no forced jokes, but with a little more character.",
+        customPill: "Custom",
+        customTitle: "Write your own",
+        customText: "Write your own prompt for style, length and tone. For example energetic, minimal, Dutch, English or suited to a specific setting.",
+        responseStylesNote: "The selected style only changes the DJ announcement, not the music choice. DJConnect uses your configured Home Assistant Assist pipeline for speech recognition and spoken response. Voice, language and TTS engine are managed in Home Assistant Assist; DJConnect keeps its own settings simple.",
         familiesTitle: "Intent families",
         familiesLead: "Use normal sentences. Add words like song, album or playlist only when you mean that media type specifically.",
         artistPill: "Artist",

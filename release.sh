@@ -78,6 +78,8 @@ echo "Checking release files..."
 test -f "$PUBLISH_DIR/index.html"
 test -f "$PUBLISH_DIR/embedded.html"
 test -f "$PUBLISH_DIR/assets/djconnect/site.webmanifest"
+test -f screenshots/live-laptop/manifest.json
+grep -q '"language": "nl"' screenshots/live-laptop/manifest.json
 for DOC_FILE in "${DOC_FILES[@]}"; do
   test -f "$DOC_FILE"
 done

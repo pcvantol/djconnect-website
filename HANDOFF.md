@@ -8,9 +8,10 @@
 - Cloudflare Pages fallback URL: https://djconnect.pages.dev
 - Cloudflare Pages project: `djconnect`
 - Publish directory: `wwwroot`
-- Current version: `3.1.35`
+- Current version: `3.1.36`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
+- Platform overview page with CSS architecture diagram: `wwwroot/platform.html`
 - Voice commands page: `wwwroot/voice-commands.html`
 - Start/setup page: `wwwroot/start.html`
 - macOS app page with binary downloads: `wwwroot/macos.html`
@@ -79,16 +80,19 @@
 
 ## Release Steps
 
-1. Commit all changes to `main`.
-2. Update or consciously re-check all repository documentation files before release: `README.md`, `HANDOFF.md`, `TESTS.md`, `TODO.md`, `ISSUES.md`, `CHANGELOG.md`, `VOICE_INTENT_DATA_PROMPT.md` and `TECHNICAL_DESIGN.md`.
-3. For cross-repo contract changes, update `pcvantol/djconnect/SYNC_PROMPTS.md` in the Home Assistant integration repo. For roadmap changes, update `pcvantol/djconnect/PRODUCT_ROADMAP.md`. Keep no local copies of either file in this website repo.
-4. Check whether test coverage needs to be expanded for the release change. Add tests for changed routes, copy, rendering contracts, analytics, release scripts or deployment behavior.
-5. Ensure the GitHub Actions repository secret `CLOUDFLARE_API_TOKEN` exists.
-6. Run `./release.sh --skip-deploy` when the token is only available in GitHub Actions.
-7. Verify the GitHub Release, the `Deploy Cloudflare Pages` workflow run and https://djconnect.dev.
+1. Refresh Dutch screenshots for all public pages with `npm run screenshots:live`
+   and include the updated `screenshots/live-laptop/` files in the release
+   commit.
+2. Commit all changes to `main`.
+3. Update or consciously re-check all repository documentation files before release: `README.md`, `HANDOFF.md`, `TESTS.md`, `TODO.md`, `ISSUES.md`, `CHANGELOG.md`, `VOICE_INTENT_DATA_PROMPT.md` and `TECHNICAL_DESIGN.md`.
+4. For cross-repo contract changes, update `pcvantol/djconnect/SYNC_PROMPTS.md` in the Home Assistant integration repo. For roadmap changes, update `pcvantol/djconnect/PRODUCT_ROADMAP.md`. Keep no local copies of either file in this website repo.
+5. Check whether test coverage needs to be expanded for the release change. Add tests for changed routes, copy, rendering contracts, analytics, release scripts or deployment behavior.
+6. Ensure the GitHub Actions repository secret `CLOUDFLARE_API_TOKEN` exists.
+7. Run `./release.sh --skip-deploy` when the token is only available in GitHub Actions.
+8. Verify the GitHub Release, the `Deploy Cloudflare Pages` workflow run and https://djconnect.dev.
 
 The workflow deploys `wwwroot` to Cloudflare Pages on every push to `main` and sets `CLOUDFLARE_ACCOUNT_ID` explicitly.
-The release script verifies the core documentation files exist, checks `CHANGELOG.md` and `HANDOFF.md` against the current `VERSION`, removes older GitHub Releases, matching local/remote tags and older GitHub Actions workflow runs by default. It keeps the newly released tag and only the newest workflow run. Override workflow-run retention with `KEEP_WORKFLOW_RUNS=N` when needed.
+The release script verifies the Dutch screenshot manifest, verifies the core documentation files exist, checks `CHANGELOG.md` and `HANDOFF.md` against the current `VERSION`, removes older GitHub Releases, matching local/remote tags and older GitHub Actions workflow runs by default. It keeps the newly released tag and only the newest workflow run. Override workflow-run retention with `KEEP_WORKFLOW_RUNS=N` when needed.
 Before tests, the release script refreshes declared npm dependencies when a
 lockfile exists and records the active `npx wrangler@4` version in the release
 output. If any third-party library, framework or release tool changes version,
@@ -129,9 +133,10 @@ Bind `ANALYTICS_DB` to that D1 database and set a `STATS_TOKEN` secret. `GITHUB_
 
 - `npm test` covers version consistency, route presence, homepage navigation/copy, homepage voice chips from shared intent data, voice command intent-family docs, data-driven examples and language-scoped rendering behavior, firmware download embeds, macOS and Raspberry Pi download embeds, latest-only release embed contracts, removed legacy macOS download routes, tracked download redirects, absence of website self-release embeds, translation keys, footer copyright/support links, local link checking, firmware links, compact embedded page structure, LilyGO visual hygiene and stale pre-flashed wording.
 - `npm test` also covers the cookieless redirect/download analytics structure, D1 migration, tracked GitHub asset links, the protected GitHub-runtime `/admin` stats page contract and the release-script dependency/tool preflight.
-- `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. `npm run screenshots:live` captures live production screenshots at a laptop viewport into `screenshots/live-laptop/`. Neither is part of the default `npm test` run.
-- Current released version `3.1.35` adds optional Playwright screenshot capture
-  tooling and live laptop screenshots for public-page visual QA review.
+- `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. `npm run screenshots:live` captures Dutch live production screenshots at a laptop viewport into `screenshots/live-laptop/`. Neither is part of the default `npm test` run.
+- Current released version `3.1.36` adds the CSS-only Platform overview page,
+  compact DJ response style guidance on the Spraak page and Dutch release
+  screenshot validation.
 - Canonical SEO domain is `https://djconnect.dev`; `djconnect.pages.dev` remains a Cloudflare fallback.
 - `https://www.djconnect.dev` should remain a 301 redirect to the apex domain, preserving path and query string.
 - Dynamic GitHub download/install blocks now rerender when the language toggle changes, so generated install text follows NL/EN.

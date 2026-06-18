@@ -180,15 +180,17 @@ npx playwright install
 
 ## Live Screenshot Capture
 
-Generate full-page screenshots for the published site at a common laptop
-viewport:
+Generate full-page screenshots for the published site in Dutch at a common
+laptop viewport:
 
 ```bash
 npm run screenshots:live
 ```
 
-By default this captures `https://djconnect.dev` at `1440x900` and writes PNG
-files plus a `manifest.json` to `screenshots/live-laptop/`.
+By default this captures `https://djconnect.dev` at `1440x900`, forces the
+website language to Dutch and writes PNG files plus a `manifest.json` to
+`screenshots/live-laptop/`. The manifest records `"language": "nl"` and the
+release script checks for that value before tagging.
 
 Override the target or viewport when needed:
 
@@ -196,6 +198,7 @@ Override the target or viewport when needed:
 SCREENSHOT_BASE_URL=https://djconnect.pages.dev npm run screenshots
 SCREENSHOT_WIDTH=1366 SCREENSHOT_HEIGHT=768 npm run screenshots:live
 SCREENSHOT_OUTPUT_DIR=screenshots/live-1366 npm run screenshots:live
+SCREENSHOT_LANG=en SCREENSHOT_OUTPUT_DIR=screenshots/live-en npm run screenshots
 ```
 
 ## Future Automation

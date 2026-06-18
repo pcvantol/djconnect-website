@@ -2,7 +2,7 @@
 
 This document records the implementation-level design choices for the DJConnect website. It is reverse-engineered from the repository and must be reviewed for every release.
 
-Current website version: `3.1.35`
+Current website version: `3.1.36`
 
 ## Scope
 
@@ -163,7 +163,7 @@ Sources:
 
 ### Static Regression Tests With Optional Browser Smoke Tests
 
-The default test suite uses Node's built-in test runner and file inspection rather than a browser runner. Tests assert route links, local link existence, version consistency, copy contracts, translation coverage, download embed contracts, release script behavior and SEO/social metadata. Separate Playwright suites exist for live/browser smoke checks and laptop screenshot capture, and are intentionally kept out of the default `npm test` path.
+The default test suite uses Node's built-in test runner and file inspection rather than a browser runner. Tests assert route links, local link existence, version consistency, copy contracts, translation coverage, download embed contracts, release script behavior and SEO/social metadata. Separate Playwright suites exist for live/browser smoke checks and Dutch laptop screenshot capture, and are intentionally kept out of the default `npm test` path.
 
 Why:
 
@@ -171,6 +171,7 @@ Why:
 - Good fit for a static site with deterministic markup.
 - Easy to run in GitHub Actions before deploying.
 - Browser smoke coverage can grow separately without making every local test run install browsers.
+- Release screenshots force `SCREENSHOT_LANG=nl`, set the site language in browser storage and record `"language": "nl"` in `screenshots/live-laptop/manifest.json`.
 
 Sources:
 

@@ -2,6 +2,16 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.36 - 2026-06-18
+
+- Added a CSS-only Platform overview page showing clients, Home WiFi, voice
+  input, Home Assistant with the DJConnect integration, Assist pipeline modes,
+  Spotify, Spotify Connect speakers and future multi-music-backend space.
+- Added compact DJ response style guidance to the Spraak page and removed the
+  separate Artist-first status block.
+- Updated release screenshot capture so Dutch screenshots are refreshed and
+  validated as part of release preparation.
+
 ## DJConnect website v3.1.35 - 2026-06-16
 
 - Added optional Playwright screenshot capture tooling for all public pages,

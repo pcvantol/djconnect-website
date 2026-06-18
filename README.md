@@ -6,6 +6,7 @@ Static landing page for DJConnect, published through Cloudflare Pages.
 
 - `wwwroot/index.html`: platform homepage with DJConnect essentials, download routes and swipeable device hero.
 - `wwwroot/features.html`: feature overview page, including bonus mini-games: Paddle Rally, Meteor Run, Sky Dash and Maze Chase.
+- `wwwroot/platform.html`: CSS-only platform architecture overview for clients, Home Assistant, Assist, Spotify and speakers.
 - `wwwroot/voice-commands.html`: bilingual How To page for DJConnect voice command intent families and artist-first music requests. Spoken music examples are mirrored from the HA repo canonical source `examples/voice_intents.json`.
 - `wwwroot/blog.html`: blog overview page for project notes and release/design stories.
 - `wwwroot/blog-djconnect-project.html`: first project blogpost about the DJConnect architecture and workflow.
@@ -56,11 +57,12 @@ Minimum Cloudflare token permissions:
 Use `./release.sh` for the standard release flow.
 
 The release script refreshes declared npm dependencies when a lockfile exists,
-checks the active Wrangler major version, runs tests, checks core documentation
-files, pushes `main`, creates a `vX.Y.Z` tag, creates a GitHub Release, deploys
-to Cloudflare Pages and then automatically removes older GitHub Releases,
-matching local/remote tags and older GitHub Actions workflow runs. By default,
-only the newest workflow run remains.
+checks the active Wrangler major version, runs tests, verifies that the Dutch
+release screenshot manifest exists, checks core documentation files, pushes
+`main`, creates a `vX.Y.Z` tag, creates a GitHub Release, deploys to Cloudflare
+Pages and then automatically removes older GitHub Releases, matching
+local/remote tags and older GitHub Actions workflow runs. By default, only the
+newest workflow run remains.
 
 Before every release, update or consciously re-check all repository documentation files:
 
@@ -82,6 +84,13 @@ also update the dependency inventory and third-party notice details in
 `TECHNICAL_DESIGN.md` and any dedicated notices document before publishing.
 
 `CHANGELOG.md` gets a separate entry per release and `HANDOFF.md` must mention the current `VERSION`.
+
+Before committing the release, refresh the Dutch visual QA screenshots for all
+public pages:
+
+```bash
+npm run screenshots:live
+```
 
 ```bash
 npm test
@@ -219,13 +228,14 @@ The default test suite is dependency-free:
 npm test
 ```
 
-Generate live QA screenshots for all public pages at a laptop viewport:
+Generate live QA screenshots for all public pages in Dutch at a laptop viewport:
 
 ```bash
 npm run screenshots:live
 ```
 
-Screenshots are written to `screenshots/live-laptop/` with a JSON manifest.
+Screenshots are written to `screenshots/live-laptop/` with a JSON manifest that
+records `"language": "nl"`.
 
 It includes a static link checker for local page and asset references.
 

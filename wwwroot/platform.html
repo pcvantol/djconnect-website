@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DJConnect Platform overview</title>
+  <meta name="description" content="Platformoverzicht van DJConnect: clients, Home WiFi, Home Assistant, DJConnect integratie, Assist pipeline, Spotify en speakers." />
+  <link rel="canonical" href="https://djconnect.dev/platform" />
+  <link rel="icon" href="assets/djconnect/icon.svg" type="image/svg+xml" />
+  <style>
+    :root { --bg:#0b0d12; --panel:rgba(255,255,255,0.075); --panel-strong:rgba(255,255,255,0.12); --text:#f7f7fb; --muted:#b7bccb; --line:rgba(255,255,255,0.14); --cyan:#66e0ff; --green:#7ef7a7; --pink:#fb7185; --amber:#fbbf24; --max:1180px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; background:var(--bg); }
+    body { margin:0; color:var(--text); font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height:1.55; background:radial-gradient(circle at 14% 10%, rgba(102,224,255,0.18), transparent 28rem), radial-gradient(circle at 86% 8%, rgba(251,113,133,0.13), transparent 26rem), radial-gradient(circle at 55% 76%, rgba(126,247,167,0.11), transparent 32rem), linear-gradient(180deg,#0b0d12 0%,#111827 54%,#090b10 100%); }
+    a { color:inherit; text-decoration:none; }
+    .wrap { width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
+    .nav { position:sticky; top:0; z-index:20; backdrop-filter:blur(18px); background:rgba(11,13,18,0.7); border-bottom:1px solid var(--line); }
+    .nav-inner { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:22px; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:850; font-size:1.13rem; }
+    .brand img { width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.18); box-shadow:0 0 34px rgba(102,224,255,0.25); }
+    .nav-links { display:flex; align-items:center; gap:18px; color:var(--muted); font-size:0.94rem; }
+    .nav-links a:hover, .nav-links a[aria-current="page"] { color:var(--text); }
+    .nav-controls { display:flex; align-items:center; gap:12px; }
+    .lang-toggle { display:inline-grid; grid-template-columns:repeat(2,1fr); min-width:86px; padding:3px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.06); }
+    .lang-toggle button { min-height:34px; border:0; border-radius:999px; background:transparent; color:var(--muted); font:inherit; font-size:0.82rem; font-weight:850; cursor:pointer; }
+    .lang-toggle button[aria-pressed="true"] { background:rgba(102,224,255,0.18); color:var(--text); }
+    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:0 18px; border-radius:999px; border:1px solid var(--line); background:var(--panel); color:var(--text); font-weight:780; box-shadow:0 10px 30px rgba(0,0,0,0.15); }
+    .btn.primary { border:0; color:#06110c; background:linear-gradient(135deg,var(--cyan),var(--green)); }
+    .hero { padding:82px 0 34px; }
+    .hero-grid { display:grid; grid-template-columns:0.9fr 1.1fr; gap:48px; align-items:end; }
+    h1,h2,h3 { margin:0; letter-spacing:-0.045em; line-height:1.05; }
+    h1 { font-size:clamp(3rem,7vw,6rem); max-width:11ch; }
+    h2 { font-size:clamp(2rem,4vw,3.6rem); margin-bottom:18px; }
+    h3 { font-size:1.06rem; margin-bottom:8px; }
+    .lead { color:var(--muted); font-size:clamp(1.08rem,2.1vw,1.28rem); margin:24px 0 0; max-width:760px; }
+    section { padding:56px 0; }
+    .card { border:1px solid var(--line); border-radius:22px; background:var(--panel); padding:24px; box-shadow:0 12px 36px rgba(0,0,0,0.16); }
+    .card p { color:var(--muted); margin:0; }
+    .pill { display:inline-flex; align-items:center; min-height:34px; padding:0 13px; border-radius:999px; background:rgba(102,224,255,0.13); border:1px solid var(--line); color:#aeefff; font-size:0.76rem; font-weight:900; letter-spacing:0.09em; text-transform:uppercase; margin-bottom:14px; }
+    .overview { position:relative; display:grid; grid-template-columns:1fr 1fr 1.2fr 1fr; gap:16px; align-items:stretch; margin-top:28px; }
+    .lane { display:grid; gap:12px; align-content:start; }
+    .lane-title { color:#aeefff; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.09em; font-weight:900; }
+    .node { position:relative; min-height:82px; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,0.065); padding:15px; display:grid; align-content:center; gap:5px; }
+    .node strong { font-size:1rem; }
+    .node span { color:var(--muted); font-size:0.88rem; }
+    .node.primary { background:linear-gradient(135deg, rgba(102,224,255,0.18), rgba(126,247,167,0.12)); border-color:rgba(102,224,255,0.34); }
+    .node.future { border-style:dashed; background:rgba(251,191,36,0.08); }
+    .hub { min-height:100%; display:grid; gap:14px; align-content:stretch; }
+    .ha-core { border:1px solid rgba(126,247,167,0.38); border-radius:22px; padding:18px; background:linear-gradient(135deg, rgba(126,247,167,0.14), rgba(102,224,255,0.09)); }
+    .ha-core h3 { font-size:1.42rem; }
+    .integration { margin-top:14px; border:1px solid var(--line); border-radius:16px; padding:14px; background:rgba(11,13,18,0.42); }
+    .wifi-band { grid-column:1 / span 2; border:1px solid rgba(102,224,255,0.32); border-radius:20px; background:linear-gradient(135deg, rgba(102,224,255,0.13), rgba(255,255,255,0.045)); padding:16px; }
+    .pipeline { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:12px; }
+    .pipeline span { border:1px solid var(--line); border-radius:14px; padding:10px; color:var(--muted); font-weight:760; text-align:center; background:rgba(255,255,255,0.055); }
+    .flow-line { position:absolute; left:24%; right:24%; top:50%; height:2px; background:linear-gradient(90deg, transparent, rgba(102,224,255,0.7), rgba(126,247,167,0.65), transparent); pointer-events:none; }
+    .flow-line::before, .flow-line::after { content:""; position:absolute; top:50%; width:10px; height:10px; border-top:2px solid rgba(126,247,167,0.9); border-right:2px solid rgba(126,247,167,0.9); transform:translateY(-50%) rotate(45deg); }
+    .flow-line::before { left:33%; }
+    .flow-line::after { right:0; }
+    .legend { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:18px; }
+    .legend .card { padding:18px; }
+    .legal { color:var(--muted); font-size:0.86rem; padding:34px 0 44px; border-top:1px solid var(--line); }
+    .site-version { margin-top:14px; font-size:0.76rem; color:rgba(183,188,203,0.72); }
+    .privacy-notice { font-size:0.78rem; color:rgba(183,188,203,0.78); }
+    @media (max-width:1050px) { .hero-grid,.overview,.legend { grid-template-columns:1fr; } .wifi-band { grid-column:auto; } .flow-line { display:none; } }
+    @media (max-width:900px) { .nav-inner { flex-wrap:wrap; padding:12px 0; } .nav-links { order:3; width:100%; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; } .nav-links::-webkit-scrollbar { display:none; } }
+    @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } .pipeline { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="index.html"><img src="assets/djconnect/icon.svg" alt="" /><span>DJConnect</span></a>
+      <div class="nav-links" aria-label="Navigatie" data-i18n-attr="aria-label:navLabel">
+        <a href="index.html" data-i18n="navHome">Home</a>
+        <a href="platform.html" aria-current="page" data-i18n="navPlatform">Platform</a>
+        <a href="features.html" data-i18n="navFeatures">Features</a>
+        <a href="voice-commands.html" data-i18n="navVoice">Spraak</a>
+        <a href="index.html#apps" data-i18n="navDownload">Download</a>
+      </div>
+      <div class="nav-controls">
+        <div class="lang-toggle" aria-label="Taalkeuze" data-i18n-attr="aria-label:languageToggle">
+          <button type="button" data-lang="nl" aria-pressed="true">NL</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="btn primary" href="start.html" data-i18n="navStart">Aan de slag</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="pill" data-i18n="heroLabel">Platform overview</span>
+          <h1 data-i18n="heroTitle">Hoe DJConnect samenwerkt</h1>
+          <p class="lead" data-i18n="heroLead">DJConnect verbindt je clients, Home WiFi, Home Assistant, Assist pipeline, Spotify en Spotify Connect speakers in een overzichtelijke muziekflow.</p>
+        </div>
+        <div class="card">
+          <h2 data-i18n="summaryTitle">Een centrale hub, meerdere interfaces</h2>
+          <p data-i18n="summaryText">Je gebruikt macOS, iOS, Linux/Raspberry Pi of een ESP32 device als bediening. Home Assistant en de DJConnect integratie houden de koppeling, voice input, muziekactie en DJ response bij elkaar.</p>
+        </div>
+      </div>
+    </header>
+
+    <section>
+      <div class="wrap">
+        <div class="overview" aria-label="DJConnect platform architectuur" data-i18n-attr="aria-label:diagramLabel">
+          <div class="flow-line" aria-hidden="true"></div>
+          <div class="lane">
+            <div class="lane-title" data-i18n="clientsTitle">Clients</div>
+            <div class="node primary"><strong>macOS</strong><span data-i18n="macosNode">Desktop bediening</span></div>
+            <div class="node primary"><strong>iOS</strong><span data-i18n="iosNode">Mobiele bediening</span></div>
+            <div class="node primary"><strong>Linux / Raspberry Pi</strong><span data-i18n="linuxNode">Vaste controller</span></div>
+            <div class="node primary"><strong>ESP32 device</strong><span data-i18n="espNode">Voice input en DJ response</span></div>
+          </div>
+          <div class="lane">
+            <div class="lane-title" data-i18n="networkTitle">Thuisnetwerk</div>
+            <div class="wifi-band">
+              <h3 data-i18n="wifiTitle">Home WiFi</h3>
+              <p data-i18n="wifiText">Clients en speakers zitten in hetzelfde thuisnetwerk en praten via Home Assistant met DJConnect.</p>
+            </div>
+            <div class="node"><strong data-i18n="voiceTitle">Voice input</strong><span data-i18n="voiceText">Push-to-talk, app of device microfoon</span></div>
+          </div>
+          <div class="hub">
+            <div class="lane-title" data-i18n="hubTitle">Home Assistant</div>
+            <div class="ha-core">
+              <h3>Home Assistant</h3>
+              <p data-i18n="haText">Centrale plek voor accounts, apparaten, Assist en automatisering.</p>
+              <div class="integration">
+                <strong>DJConnect integration</strong>
+                <p data-i18n="integrationText">Koppelt clients, muziekverzoeken, DJ response stijlen en speakerkeuze.</p>
+              </div>
+              <div class="pipeline" aria-label="Assist pipeline opties" data-i18n-attr="aria-label:pipelineLabel">
+                <span data-i18n="pipelineLocal">Assist pipeline: local</span>
+                <span data-i18n="pipelineCloud">cloud</span>
+                <span data-i18n="pipelineMixed">mixed</span>
+              </div>
+            </div>
+          </div>
+          <div class="lane">
+            <div class="lane-title" data-i18n="musicTitle">Muziek</div>
+            <div class="node primary"><strong>Spotify</strong><span data-i18n="spotifyText">Huidige muziekbackend</span></div>
+            <div class="node"><strong data-i18n="speakersTitle">Spotify Connect speakers</strong><span data-i18n="speakersText">Woonkamer, keuken, studio of meerdere speakers</span></div>
+            <div class="node future"><strong data-i18n="futureTitle">Multi muziek backend</strong><span data-i18n="futureText">Future: ruimte voor extra muziekbronnen naast Spotify</span></div>
+          </div>
+        </div>
+        <div class="legend">
+          <article class="card"><h3 data-i18n="legendClientsTitle">Alle clients</h3><p data-i18n="legendClientsText">Elke client gebruikt dezelfde DJConnect flow, maar met een eigen scherm of fysieke bediening.</p></article>
+          <article class="card"><h3 data-i18n="legendAssistTitle">Assist bepaalt stem</h3><p data-i18n="legendAssistText">STT, taal, stem en TTS-engine beheer je in Home Assistant Assist.</p></article>
+          <article class="card"><h3 data-i18n="legendSpotifyTitle">Spotify speelt af</h3><p data-i18n="legendSpotifyText">DJConnect kiest de actie en speaker; Spotify Connect verzorgt de playback.</p></article>
+          <article class="card"><h3 data-i18n="legendFutureTitle">Voorbereid op later</h3><p data-i18n="legendFutureText">De architectuur laat zien waar toekomstige muziekbackends kunnen aansluiten.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap legal">
+    <p>Copyright Peter van Tol 2026. All rights reserved.</p>
+    <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
+    <p><a href="https://github.com/pcvantol/djconnect-website/issues" target="_blank" rel="noopener" data-i18n="legalSupport">Support: GitHub Issues</a></p>
+    <p class="site-version">DJConnect website v3.1.36</p>
+  </footer>
+  <script>
+    const translations = {
+      nl: {
+        title: "DJConnect Platform overview",
+        metaDescription: "Platformoverzicht van DJConnect: clients, Home WiFi, Home Assistant, DJConnect integratie, Assist pipeline, Spotify en speakers.",
+        navLabel: "Navigatie",
+        languageToggle: "Taalkeuze",
+        navHome: "Home",
+        navPlatform: "Platform",
+        navFeatures: "Features",
+        navVoice: "Spraak",
+        navDownload: "Download",
+        navStart: "Aan de slag",
+        heroLabel: "Platform overview",
+        heroTitle: "Hoe DJConnect samenwerkt",
+        heroLead: "DJConnect verbindt je clients, Home WiFi, Home Assistant, Assist pipeline, Spotify en Spotify Connect speakers in een overzichtelijke muziekflow.",
+        summaryTitle: "Een centrale hub, meerdere interfaces",
+        summaryText: "Je gebruikt macOS, iOS, Linux/Raspberry Pi of een ESP32 device als bediening. Home Assistant en de DJConnect integratie houden de koppeling, voice input, muziekactie en DJ response bij elkaar.",
+        diagramLabel: "DJConnect platform architectuur",
+        clientsTitle: "Clients",
+        macosNode: "Desktop bediening",
+        iosNode: "Mobiele bediening",
+        linuxNode: "Vaste controller",
+        espNode: "Voice input en DJ response",
+        networkTitle: "Thuisnetwerk",
+        wifiTitle: "Home WiFi",
+        wifiText: "Clients en speakers zitten in hetzelfde thuisnetwerk en praten via Home Assistant met DJConnect.",
+        voiceTitle: "Voice input",
+        voiceText: "Push-to-talk, app of device microfoon",
+        hubTitle: "Home Assistant",
+        haText: "Centrale plek voor accounts, apparaten, Assist en automatisering.",
+        integrationText: "Koppelt clients, muziekverzoeken, DJ response stijlen en speakerkeuze.",
+        pipelineLabel: "Assist pipeline opties",
+        pipelineLocal: "Assist pipeline: local",
+        pipelineCloud: "cloud",
+        pipelineMixed: "mixed",
+        musicTitle: "Muziek",
+        spotifyText: "Huidige muziekbackend",
+        speakersTitle: "Spotify Connect speakers",
+        speakersText: "Woonkamer, keuken, studio of meerdere speakers",
+        futureTitle: "Multi muziek backend",
+        futureText: "Future: ruimte voor extra muziekbronnen naast Spotify",
+        legendClientsTitle: "Alle clients",
+        legendClientsText: "Elke client gebruikt dezelfde DJConnect flow, maar met een eigen scherm of fysieke bediening.",
+        legendAssistTitle: "Assist bepaalt stem",
+        legendAssistText: "STT, taal, stem en TTS-engine beheer je in Home Assistant Assist.",
+        legendSpotifyTitle: "Spotify speelt af",
+        legendSpotifyText: "DJConnect kiest de actie en speaker; Spotify Connect verzorgt de playback.",
+        legendFutureTitle: "Voorbereid op later",
+        legendFutureText: "De architectuur laat zien waar toekomstige muziekbackends kunnen aansluiten.",
+        legalPrivacy: "Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.",
+        legalSupport: "Support: GitHub Issues"
+      },
+      en: {
+        title: "DJConnect Platform overview",
+        metaDescription: "DJConnect platform overview: clients, Home WiFi, Home Assistant, DJConnect integration, Assist pipeline, Spotify and speakers.",
+        navLabel: "Navigation",
+        languageToggle: "Language",
+        navHome: "Home",
+        navPlatform: "Platform",
+        navFeatures: "Features",
+        navVoice: "Voice",
+        navDownload: "Download",
+        navStart: "Get started",
+        heroLabel: "Platform overview",
+        heroTitle: "How DJConnect fits together",
+        heroLead: "DJConnect connects your clients, Home WiFi, Home Assistant, Assist pipeline, Spotify and Spotify Connect speakers in one clear music flow.",
+        summaryTitle: "One central hub, multiple interfaces",
+        summaryText: "You use macOS, iOS, Linux/Raspberry Pi or an ESP32 device as the interface. Home Assistant and the DJConnect integration keep pairing, voice input, music actions and DJ response together.",
+        diagramLabel: "DJConnect platform architecture",
+        clientsTitle: "Clients",
+        macosNode: "Desktop control",
+        iosNode: "Mobile control",
+        linuxNode: "Fixed controller",
+        espNode: "Voice input and DJ response",
+        networkTitle: "Home network",
+        wifiTitle: "Home WiFi",
+        wifiText: "Clients and speakers are on the same home network and talk to DJConnect through Home Assistant.",
+        voiceTitle: "Voice input",
+        voiceText: "Push-to-talk, app or device microphone",
+        hubTitle: "Home Assistant",
+        haText: "Central place for accounts, devices, Assist and automation.",
+        integrationText: "Connects clients, music requests, DJ response styles and speaker choice.",
+        pipelineLabel: "Assist pipeline options",
+        pipelineLocal: "Assist pipeline: local",
+        pipelineCloud: "cloud",
+        pipelineMixed: "mixed",
+        musicTitle: "Music",
+        spotifyText: "Current music backend",
+        speakersTitle: "Spotify Connect speakers",
+        speakersText: "Living room, kitchen, studio or multiple speakers",
+        futureTitle: "Multi music backend",
+        futureText: "Future: room for extra music sources beyond Spotify",
+        legendClientsTitle: "All clients",
+        legendClientsText: "Every client uses the same DJConnect flow, with its own screen or physical controls.",
+        legendAssistTitle: "Assist controls voice",
+        legendAssistText: "STT, language, voice and TTS engine are managed in Home Assistant Assist.",
+        legendSpotifyTitle: "Spotify plays",
+        legendSpotifyText: "DJConnect chooses the action and speaker; Spotify Connect handles playback.",
+        legendFutureTitle: "Ready for later",
+        legendFutureText: "The architecture shows where future music backends can connect.",
+        legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
+        legalSupport: "Support: GitHub Issues"
+      }
+    };
+    const getInitialLanguage = () => {
+      const stored = localStorage.getItem("djconnect-language");
+      if (stored === "nl" || stored === "en") return stored;
+      return navigator.language && navigator.language.toLowerCase().startsWith("nl") ? "nl" : "en";
+    };
+    const applyLanguage = (language) => {
+      const copy = translations[language] || translations.nl;
+      document.documentElement.lang = language;
+      document.title = copy.title;
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) metaDescription.setAttribute("content", copy.metaDescription);
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.getAttribute("data-i18n");
+        if (copy[key]) element.textContent = copy[key];
+      });
+      document.querySelectorAll("[data-i18n-attr]").forEach((element) => {
+        element.getAttribute("data-i18n-attr").split(",").forEach((mapping) => {
+          const [attribute, key] = mapping.split(":").map((part) => part.trim());
+          if (attribute && key && copy[key]) element.setAttribute(attribute, copy[key]);
+        });
+      });
+      document.querySelectorAll("[data-lang]").forEach((button) => {
+        button.setAttribute("aria-pressed", button.getAttribute("data-lang") === language ? "true" : "false");
+      });
+      localStorage.setItem("djconnect-language", language);
+    };
+    document.querySelectorAll("[data-lang]").forEach((button) => {
+      button.addEventListener("click", () => applyLanguage(button.getAttribute("data-lang")));
+    });
+    applyLanguage(getInitialLanguage());
+  </script>
+</body>
+</html>

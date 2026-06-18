@@ -2,6 +2,13 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.41 - 2026-06-18
+
+- Added visible Support and Privacy links to the homepage navigation, with
+  Dutch and English translation coverage.
+- Updated repository bootstrap hygiene to mention AI-assisted development
+  review and secret-handling expectations.
+
 ## DJConnect website v3.1.40 - 2026-06-18
 
 - Added visible carousel arrow navigation and a lightweight animated signal

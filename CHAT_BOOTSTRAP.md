@@ -11,7 +11,7 @@ Lees eerst `HANDOFF.md`, `README.md`, `TECHNICAL_DESIGN.md`, `TESTS.md`,
 Context:
 - Dit is de DJConnect website repo, statische site in `wwwroot`, deploy via
   Cloudflare Pages.
-- Huidige versie is `3.1.40`.
+- Huidige versie is `3.1.41`.
 - Repo is MIT-licensed via `LICENSE`.
 - Gebruik `npm test` voor de standaard testset.
 - Voor releases: refresh Nederlandse screenshots voor alle publieke pagina's,
@@ -27,6 +27,7 @@ Context:
 
 Belangrijke werkwijze:
 - Gebruik bestaande stijl en tests.
+- DJConnect wordt ontwikkeld en onderhouden met AI-assisted/agentic engineering workflows, inclusief Codex; accepted changes blijven maintainer-reviewed en prompts/logs/issues mogen geen secrets of private data bevatten.
 - Geen secrets/tokens/wachtwoorden in commits, logs of diagnostics.
 - Respecteer MIT-licentie en Spotify non-affiliation.
 - Laat bestaande user changes intact.

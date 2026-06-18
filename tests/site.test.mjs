@@ -170,6 +170,8 @@ test("homepage has platform routes and app store placeholders", async () => {
   assert.match(index, /href="voice-commands\.html" data-i18n="navVoice">Spraak/);
   assert.match(index, /href="blog\.html" data-i18n="navBlog">Blog/);
   assert.match(index, /data-i18n="navApps">Installeren/);
+  assert.match(index, /href="support\.html" data-i18n="navSupport">Support/);
+  assert.match(index, /href="privacy\.html" data-i18n="navPrivacy">Privacy/);
   assert.doesNotMatch(index, /data-i18n="navEssentials"/);
   assert.doesNotMatch(index, /data-i18n="navStart">Aan de slag/);
   assert.match(index, /href="embedded\.html"/);

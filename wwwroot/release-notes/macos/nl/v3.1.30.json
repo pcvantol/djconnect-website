@@ -1,0 +1,7 @@
+{
+  "version": "3.1.30",
+  "platform": "macos",
+  "language": "nl",
+  "name": "DJConnect macOS 3.1.30",
+  "body": "### Changed\n\n- Added community documentation with a Code of Conduct and private security\n  reporting policy for `security@djconnect.dev`.\n- Documented the release-cycle requirement to keep the Codex chat bootstrap\n  prompt current for each release.\n- Renamed the chat bootstrap prompt to `CHAT_BOOTSTRAP.md` for clearer repo\n  onboarding.\n\n\n---\n\nPlatform: macOS\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nVoor normale macOS-distributie heeft de genotariseerde Developer ID-build de voorkeur wanneer die is bijgevoegd."
+}

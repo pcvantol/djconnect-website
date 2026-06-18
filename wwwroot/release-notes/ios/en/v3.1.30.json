@@ -1,0 +1,7 @@
+{
+  "version": "3.1.30",
+  "platform": "ios",
+  "language": "en",
+  "name": "DJConnect iOS 3.1.30",
+  "body": "### Changed\n\n- Added community documentation with a Code of Conduct and private security\n  reporting policy for `security@djconnect.dev`.\n- Documented the release-cycle requirement to keep the Codex chat bootstrap\n  prompt current for each release.\n- Renamed the chat bootstrap prompt to `CHAT_BOOTSTRAP.md` for clearer repo\n  onboarding.\n\n\n---\n\nPlatform: iOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nUnsigned iOS binaries are published here for diagnostics and internal validation. For normal iOS distribution, use TestFlight/App Store."
+}

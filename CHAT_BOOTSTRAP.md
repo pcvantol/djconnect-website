@@ -20,10 +20,9 @@ Context:
   Controleer daarna de Pages-workflow en de live footer-versie.
 - Cross-repo contracten horen in `pcvantol/djconnect/SYNC_PROMPTS.md` en
   roadmap in `pcvantol/djconnect/PRODUCT_ROADMAP.md`, niet lokaal kopiëren.
-- Let op: `/admin` gebruikt nog Cloudflare Access in
-  `functions/admin.js`. Dat moet worden vervangen door Cloudflare Access of
-  secret-backed auth voordat de repo veilig breder gedeeld wordt. Daarna moet
-  eventueel git history worden opgeschoond voor oude credentialwaarden.
+- Let op: `/admin` hoort achter Cloudflare Access te staan. Beheer toegestane
+  gebruikers en policies in Cloudflare Zero Trust, niet in deze repository.
+  Voeg geen admin-wachtwoorden of gedeelde secrets toe aan code, docs of tests.
 
 Belangrijke werkwijze:
 - Gebruik bestaande stijl en tests.

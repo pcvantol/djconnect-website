@@ -8,7 +8,7 @@
 - Cloudflare Pages fallback URL: https://djconnect.pages.dev
 - Cloudflare Pages project: `djconnect`
 - Publish directory: `wwwroot`
-- Current version: `3.1.43`
+- Current version: `3.1.44`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Platform overview page with CSS architecture diagram: `wwwroot/platform.html`
@@ -20,6 +20,7 @@
 - macOS app page with binary downloads: `wwwroot/macos.html`
 - iOS app page: `wwwroot/ios.html`
 - TestFlight beta page: `wwwroot/testflight.html`
+- macOS TestFlight beta page: `wwwroot/testflight-macos.html`
 - Raspberry Pi app page with binary downloads: `wwwroot/raspberry-pi.html`
 - Embedded ESP32 one-pager: `wwwroot/embedded.html`
 
@@ -82,11 +83,11 @@
 - The Raspberry Pi/Linux install command is generated from the latest public release, downloads through `/go/linux-install` and runs `sudo ./scripts/install.sh`.
 - Download and HACS clicks are routed through `/go/...` endpoints. These endpoints optionally write aggregate daily counters to the D1 binding `ANALYTICS_DB`.
 - `/api/stats` is protected by `STATS_TOKEN` and combines D1 redirect counters with GitHub release asset `download_count` totals.
-- `/admin` is a Cloudflare Access page for runtime GitHub release
-  asset download statistics. It intentionally does not persist data and does
-  not include website redirect click counters yet. Replace this with Cloudflare
-  Access or secret-backed authentication before wider use. Do not repeat admin
-  credentials in documentation, issues or logs.
+- `/admin` is an internal page for runtime GitHub release asset download
+  statistics. It must be protected by Cloudflare Access for
+  `https://djconnect.dev/admin`. Access users and policies live in Cloudflare
+  Zero Trust, not in this repository. The page intentionally does not persist
+  data and does not include website redirect click counters yet.
 - `scripts/check-stats.mjs` can be run with `STATS_TOKEN=... npm run stats:check` to print aggregate redirect clicks and GitHub download totals.
 - The analytics design is intentionally cookieless and identifier-free. Do not add IP address, user agent, referrer or visitor-id storage.
 - Public support/contact links point to `wwwroot/support.html` from public page
@@ -159,10 +160,9 @@ Bind `ANALYTICS_DB` to that D1 database and set a `STATS_TOKEN` secret. `GITHUB_
 - `npm test` covers version consistency, route presence, homepage navigation/copy, homepage voice chips from shared intent data, voice command intent-family docs, data-driven examples and language-scoped rendering behavior, firmware download embeds, macOS and Raspberry Pi download embeds, latest-only release embed contracts, removed legacy macOS download routes, tracked download redirects, absence of website self-release embeds, translation keys, footer copyright/support links, local link checking, firmware links, compact embedded page structure, LilyGO visual hygiene and stale pre-flashed wording.
 - `npm test` also covers the cookieless redirect/download analytics structure, D1 migration, tracked GitHub asset links, the protected GitHub-runtime `/admin` stats page contract and the release-script dependency/tool preflight.
 - `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. `npm run screenshots:live` captures Dutch live production screenshots at a laptop viewport into `screenshots/live-laptop/`. Neither is part of the default `npm test` run.
-- Current released version `3.1.43` updates the shared voice intent data from
-  the Home Assistant repo, documents current-track status and direct playback
-  command behavior, adds AI/Assist response disclaimers and includes the
-  development environment guide.
+- Current released version `3.1.44` adds the macOS TestFlight beta route,
+  removes hardcoded `/admin` Basic Auth from the current code path and documents
+  Cloudflare Access as the required protection for `https://djconnect.dev/admin`.
 - Canonical SEO domain is `https://djconnect.dev`; `djconnect.pages.dev` remains a Cloudflare fallback.
 - `https://www.djconnect.dev` should remain a 301 redirect to the apex domain, preserving path and query string.
 - Dynamic GitHub download/install blocks now rerender when the language toggle changes, so generated install text follows NL/EN.

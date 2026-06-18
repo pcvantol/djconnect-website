@@ -30,6 +30,8 @@ Static landing page for DJConnect, published through Cloudflare Pages.
 - `wwwroot/ios.html`: iOS app page with App Store placeholder.
 - `wwwroot/testflight.html`: TestFlight beta route with requirements,
   invite-link guidance, Home Assistant pairing and feedback mailbox.
+- `wwwroot/testflight-macos.html`: macOS TestFlight beta route with Mac
+  TestFlight requirements, Home Assistant pairing and feedback mailbox.
 - `wwwroot/raspberry-pi.html`: Raspberry Pi app page with builds from `pcvantol/djconnect-pi-releases`.
 - `wwwroot/assets/`: logo, favicon and product visuals.
 - `functions/api/releases.js`: Cloudflare Pages Function proxy for GitHub release data.
@@ -173,11 +175,11 @@ Download and HACS clicks can be counted without cookies, IP addresses, user agen
 - Website redirect clicks go through `/go/...` and are stored as daily aggregate totals in D1.
 - Direct GitHub download totals come from GitHub release asset `download_count`.
 - `/api/stats` combines both sources behind a `STATS_TOKEN`.
-- `/admin` is a Cloudflare Access page that renders GitHub release
-  asset download counts at runtime only. It does not persist data and does not
-  include website redirect click counters yet. Replace this with Cloudflare
-  Access or secret-backed authentication before broader use. Do not publish or
-  repeat admin credentials in docs, issues or diagnostics.
+- `/admin` is an internal admin page for GitHub release asset download counts
+  at runtime only. It must be protected by a Cloudflare Access application for
+  `https://djconnect.dev/admin`. Access users and policies are managed in
+  Cloudflare Zero Trust, not in this repository. The page does not persist data
+  and does not include website redirect click counters yet.
 
 Cloudflare setup:
 

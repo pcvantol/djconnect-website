@@ -73,6 +73,9 @@
 - Open `wwwroot/testflight.html` and verify it explains how to join the
   TestFlight beta, install TestFlight, open the invite link, pair with Home
   Assistant and send feedback to `support@djconnect.dev`.
+- Open `wwwroot/testflight-macos.html` and verify it explains the macOS
+  TestFlight route, Mac TestFlight install step, Home Assistant pairing,
+  limited beta places, expiry and feedback mailbox.
 - Verify macOS, iOS, Raspberry Pi and embedded pages have `Home` plus
   `Platform` navigation, where `Platform` links to the homepage app overview.
   App pages should not show cross-links to other app or embedded pages.

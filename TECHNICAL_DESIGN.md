@@ -2,7 +2,7 @@
 
 This document records the implementation-level design choices for the DJConnect website. It is reverse-engineered from the repository and must be reviewed for every release.
 
-Current website version: `3.1.43`
+Current website version: `3.1.44`
 
 ## Scope
 
@@ -407,10 +407,9 @@ Source:
 
 - GitHub tokens are read only from server-side environment bindings and are never exposed to the browser.
 - `/api/stats` requires `STATS_TOKEN`; unauthorized requests return `404`.
-- `/admin` currently uses Cloudflare Access credentials and
-  noindex/no-store headers. Treat this as an interim internal admin page and
-  replace it with Cloudflare Access or secret-backed authentication before
-  broader use.
+- `/admin` uses noindex/no-store headers and must be protected by a Cloudflare
+  Access application for `https://djconnect.dev/admin`. Admin users and access
+  policies live in Cloudflare Zero Trust, not in this repository.
 - Download redirects validate that the destination is a GitHub release URL in an allowed DJConnect release repo.
 - Redirect analytics store aggregate counts only.
 - No cookies or persistent browser identifiers are set by the website code.

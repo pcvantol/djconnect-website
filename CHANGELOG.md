@@ -2,6 +2,18 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.44 - 2026-06-18
+
+- Added a dedicated macOS TestFlight beta route with requirements, invite-link
+  guidance, Home Assistant pairing, beta expiry notes and feedback mailbox.
+- Linked the macOS app page to the macOS TestFlight beta route and added the
+  route to sitemap, screenshot coverage and local link checks.
+- Removed hardcoded `/admin` Basic Auth from the current admin function and
+  documented Cloudflare Access as the required protection for
+  `https://djconnect.dev/admin`.
+- Rewrote local git history to remove the old concrete admin credential before
+  making the repository safer to publish publicly.
+
 ## DJConnect website v3.1.43 - 2026-06-18
 
 - Updated the shared voice intent data from the Home Assistant repository,

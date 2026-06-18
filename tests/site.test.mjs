@@ -648,7 +648,7 @@ test("embedded page uses the shared site color styling", async () => {
 });
 
 test("site does not embed website repository releases", async () => {
-  const pages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "privacy", "ios", "testflight", "macos", "raspberry-pi", "embedded"];
+  const pages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "privacy", "ios", "testflight", "testflight-macos", "macos", "raspberry-pi", "embedded"];
 
   for (const page of pages) {
     const html = await read(`wwwroot/${page}.html`);
@@ -670,6 +670,9 @@ test("macOS page shows public binary release repo", async () => {
   assert.doesNotMatch(macos, /data-download-target="ios"/);
   assert.match(macos, /href="#downloads">Download<\/a>/);
   assert.match(macos, /data-i18n="downloadCta">Download<\/a>/);
+  assert.match(macos, /href="testflight-macos\.html" data-i18n="testflightCta">Join TestFlight beta<\/a>/);
+  assert.match(macos, /data-i18n="testflightTitle">TestFlight beta<\/h2>/);
+  assert.match(macos, /TestFlight beta's verlopen/);
   assert.match(macos, /data-i18n="releaseTitle">Laatste versie<\/h2>/);
   assert.doesNotMatch(macos, /Download binaries/);
   assert.doesNotMatch(macos, /Downloads voorbereid/);
@@ -706,6 +709,7 @@ test("iOS page labels the platform route as home", async () => {
 
 test("TestFlight page explains beta route", async () => {
   const testflight = await read("wwwroot/testflight.html");
+  const testflightMacos = await read("wwwroot/testflight-macos.html");
   const sitemap = await read("wwwroot/sitemap.xml");
 
   assert.match(testflight, /<title>Join DJConnect TestFlight beta<\/title>/);
@@ -724,6 +728,25 @@ test("TestFlight page explains beta route", async () => {
   assert.match(testflight, /href="mailto:support@djconnect\.dev"/);
   assert.match(sitemap, /https:\/\/djconnect\.dev\/testflight/);
   assertTranslationsCoverPage(testflight, "TestFlight page");
+
+  assert.match(testflightMacos, /<title>Join DJConnect macOS TestFlight beta<\/title>/);
+  assert.match(testflightMacos, /href="https:\/\/djconnect\.dev\/testflight-macos"/);
+  assert.match(testflightMacos, /Join macOS TestFlight beta/);
+  assert.match(testflightMacos, /Installeer TestFlight/);
+  assert.match(testflightMacos, /Mac App Store/);
+  assert.match(testflightMacos, /Open de invite link/);
+  assert.match(testflightMacos, /Koppel met Home Assistant/);
+  assert.match(testflightMacos, /Spotify Premium/);
+  assert.match(testflightMacos, /eigen Spotify Developer app/);
+  assert.match(testflightMacos, /Spotify Client ID uit je eigen Spotify Developer app/);
+  assert.match(testflightMacos, /Mac-model, macOS-versie/);
+  assert.match(testflightMacos, /support@djconnect\.dev/);
+  assert.match(testflightMacos, /Plekken kunnen beperkt zijn/);
+  assert.match(testflightMacos, /Beta's verlopen/);
+  assert.match(testflightMacos, /data-testflight-link/);
+  assert.match(testflightMacos, /href="mailto:support@djconnect\.dev"/);
+  assert.match(sitemap, /https:\/\/djconnect\.dev\/testflight-macos/);
+  assertTranslationsCoverPage(testflightMacos, "macOS TestFlight page");
 });
 
 test("release proxy function is present", async () => {
@@ -831,10 +854,11 @@ test("download and HACS clicks use cookieless aggregate redirects", async () => 
 test("admin download stats page is protected and GitHub-runtime only", async () => {
   const admin = await read("functions/admin.js");
 
-  assert.match(admin, /const ADMIN_USER = "managed-by-cloudflare-access"/);
-  assert.match(admin, /const ADMIN_PASSWORD = "managed-by-cloudflare-access"]+"/);
-  assert.match(admin, /WWW-Authenticate.*Cloudflare Access/s);
-  assert.match(admin, /if \(!requireAdmin\(request\)\) return unauthorized\(\)/);
+  assert.doesNotMatch(admin, /ADMIN_USER/);
+  assert.doesNotMatch(admin, /ADMIN_PASSWORD/);
+  assert.doesNotMatch(admin, /Basic realm="DJConnect Admin"/);
+  assert.doesNotMatch(admin, /Authorization/);
+  assert.match(admin, /Afgeschermd via Cloudflare Access/);
   assert.match(admin, /api\.github\.com\/repos\/pcvantol\/\$\{repo\}\/releases\?per_page=30/);
   assert.match(admin, /ALLOWED_RELEASE_REPOS/);
   assert.match(admin, /download_count/);
@@ -940,6 +964,7 @@ test("canonical SEO uses djconnect.dev", async () => {
     ["privacy", "https://djconnect.dev/privacy"],
     ["ios", "https://djconnect.dev/ios"],
     ["testflight", "https://djconnect.dev/testflight"],
+    ["testflight-macos", "https://djconnect.dev/testflight-macos"],
     ["macos", "https://djconnect.dev/macos"],
     ["raspberry-pi", "https://djconnect.dev/raspberry-pi"],
     ["embedded", "https://djconnect.dev/embedded"]
@@ -973,6 +998,7 @@ test("canonical SEO uses djconnect.dev", async () => {
   assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/support<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/privacy<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/testflight<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/testflight-macos<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/embedded<\/loc>/);
   assert.match(downloads, /https:\/\/djconnect\.dev\/go\/linux-install/);
 });
@@ -992,7 +1018,7 @@ test("social preview image uses current branding", async () => {
 });
 
 test("legacy macOS download page is not referenced", async () => {
-  const pages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "privacy", "ios", "testflight", "macos", "raspberry-pi", "embedded"];
+  const pages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "privacy", "ios", "testflight", "testflight-macos", "macos", "raspberry-pi", "embedded"];
 
   for (const page of pages) {
     const html = await read(`wwwroot/${page}.html`);
@@ -1063,6 +1089,7 @@ test("site copy no longer claims devices are pre-flashed", async () => {
     read("wwwroot/macos.html"),
     read("wwwroot/ios.html"),
     read("wwwroot/testflight.html"),
+    read("wwwroot/testflight-macos.html"),
     read("wwwroot/raspberry-pi.html")
   ]);
 
@@ -1074,7 +1101,7 @@ test("site copy no longer claims devices are pre-flashed", async () => {
 });
 
 test("all translation keys are present in Dutch and English", async () => {
-  const pages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "privacy", "ios", "testflight", "macos", "raspberry-pi", "embedded"];
+  const pages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "privacy", "ios", "testflight", "testflight-macos", "macos", "raspberry-pi", "embedded"];
   const htmlPages = await Promise.all(pages.map((page) => read(`wwwroot/${page}.html`)));
 
   htmlPages.forEach((html, index) => assertTranslationsCoverPage(html, `${pages[index]} page`));
@@ -1082,7 +1109,7 @@ test("all translation keys are present in Dutch and English", async () => {
 
 test("MIT license and footer notice are shown", async () => {
   const license = await read("LICENSE");
-  const pages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "privacy", "ios", "testflight", "macos", "raspberry-pi", "embedded"];
+  const pages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "privacy", "ios", "testflight", "testflight-macos", "macos", "raspberry-pi", "embedded"];
   const htmlPages = await Promise.all(pages.map((page) => read(`wwwroot/${page}.html`)));
 
   assert.match(license, /MIT License/);
@@ -1098,7 +1125,7 @@ test("MIT license and footer notice are shown", async () => {
 });
 
 test("link checker validates local page and asset references", async () => {
-  const pages = ["index.html", "start.html", "features.html", "platform.html", "voice-commands.html", "voice-assistant.html", "blog.html", "blog-djconnect-project.html", "support.html", "privacy.html", "ios.html", "testflight.html", "macos.html", "raspberry-pi.html", "embedded.html"];
+  const pages = ["index.html", "start.html", "features.html", "platform.html", "voice-commands.html", "voice-assistant.html", "blog.html", "blog-djconnect-project.html", "support.html", "privacy.html", "ios.html", "testflight.html", "testflight-macos.html", "macos.html", "raspberry-pi.html", "embedded.html"];
 
   for (const page of pages) {
     const html = await read(`wwwroot/${page}`);

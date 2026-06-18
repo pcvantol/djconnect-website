@@ -21,6 +21,7 @@ const pages = [
   { path: "/blog-djconnect-project", name: "blog-djconnect-project" },
   { path: "/support", name: "support" },
   { path: "/ios", name: "ios" },
+  { path: "/testflight-macos", name: "testflight-macos" },
   { path: "/macos", name: "macos" },
   { path: "/raspberry-pi", name: "raspberry-pi" },
   { path: "/embedded", name: "embedded" }

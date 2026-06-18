@@ -187,7 +187,7 @@ Expected results:
 Report vulnerabilities privately through `SECURITY.md` and
 `security@djconnect.dev`.
 
-The `/admin` route is still a temporary internal admin surface with Cloudflare Access
-protection in code. Replace it with Cloudflare Access or
-secret-backed authentication before broader use, and do not repeat credential
-values in documentation, issues or diagnostics.
+The `/admin` route is an internal admin surface and must be protected by
+Cloudflare Access for `https://djconnect.dev/admin`. Define allowed users and
+policies in Cloudflare Zero Trust. Do not add admin passwords or shared secrets
+to this repository, documentation, issues or diagnostics.

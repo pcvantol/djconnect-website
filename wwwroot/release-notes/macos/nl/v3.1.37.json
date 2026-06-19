@@ -1,0 +1,7 @@
+{
+  "version": "3.1.37",
+  "platform": "macos",
+  "language": "nl",
+  "name": "DJConnect macOS 3.1.37",
+  "body": "DJConnect App 3.1.37\n\n---\n\nPlatform: macOS\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nVoor normale macOS-distributie heeft de genotariseerde Developer ID-build de voorkeur wanneer die is bijgevoegd."
+}

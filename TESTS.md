@@ -21,6 +21,10 @@
 - Open `wwwroot/voice-commands.html` and verify the current-track,
   playback-control, default playlist, playlist, artist-with-track, album, track
   and artist voice intent families.
+- Verify the Spraak page shows Ask DJ examples separately from deterministic
+  voice commands, including conversational follow-ups, album/artist questions,
+  concert agenda, listening-profile analysis, recommendations with explicit
+  `Play Now`, DJ announcements and ambient system facts.
 - Verify the voice commands page shows only the selected NL or EN example phrases when the language toggle changes.
 - Verify the voice commands page mirrors the canonical HA repo
   `examples/voice_intents.json` examples: current-track questions read status

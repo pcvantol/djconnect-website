@@ -57,6 +57,11 @@
   `wwwroot/assets/voice-intents.js`. Intent cards render from that asset, so the
   selected NL/EN language toggle controls labels, behavior notes and examples
   from one maintainable source.
+- `wwwroot/assets/voice-intents.js` also exposes `DJCONNECT_ASK_DJ_INTENTS`
+  from the HA repo `ask_dj_intents` source. Keep those examples rendered
+  separately from deterministic voice commands so users understand which
+  phrases are conversational Ask DJ requests rather than direct Spotify search
+  commands.
 - The homepage voice-example chips also render from
   `wwwroot/assets/voice-intents.js` and should keep linking to
   `wwwroot/voice-commands.html` for the full intent list. Do not introduce a

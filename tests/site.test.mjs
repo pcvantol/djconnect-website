@@ -516,11 +516,19 @@ test("voice commands page documents intent families and DJ response styles", asy
   assert.match(voice, /href="https:\/\/esphome\.io\/projects\/"/);
   assert.match(voice, /<script src="assets\/voice-intents\.js"><\/script>/);
   assert.match(voice, /const intentFamilies = window\.DJCONNECT_VOICE_INTENTS \|\| \[\]/);
+  assert.match(voice, /const askDjFamilies = window\.DJCONNECT_ASK_DJ_INTENTS \|\| \[\]/);
   assert.match(voice, /renderIntentFamilies\(lang, dictionary\)/);
+  assert.match(voice, /renderAskDjFamilies\(lang, dictionary\)/);
   assert.match(voice, /family\.commands/);
   assert.match(voice, /dictionary\.noPlayback/);
+  assert.match(voice, /Ask DJ voorbeelden/);
+  assert.match(voice, /Ze staan los van de deterministische Spotify zoekcommando's hierboven/);
+  assert.match(voice, /Aanbevelingen starten niet automatisch/);
+  assert.match(voice, /playback start pas na jouw tap/);
+  assert.match(voice, /Ask DJ examples/);
   assert.doesNotMatch(voice, /data-examples-lang=/);
   assert.match(intents, /window\.DJCONNECT_VOICE_INTENTS = \[/);
+  assert.match(intents, /window\.DJCONNECT_ASK_DJ_INTENTS = \[/);
   const expectedIntentOrder = [
     "current_track",
     "playback_control",
@@ -531,28 +539,29 @@ test("voice commands page documents intent families and DJ response styles", asy
     "track",
     "artist"
   ];
-  const actualIntentOrder = [...intents.matchAll(/id: "([^"]+)"/g)].map((match) => match[1]);
+  const voiceIntentSource = intents.split("window.DJCONNECT_ASK_DJ_INTENTS")[0];
+  const actualIntentOrder = [...voiceIntentSource.matchAll(/"id": "([^"]+)"/g)].map((match) => match[1]);
   assert.deepEqual(actualIntentOrder, expectedIntentOrder);
-  assert.match(intents, /id: "current_track"/);
-  assert.match(intents, /id: "playback_control"/);
-  assert.match(intents, /id: "default_playlist"/);
-  assert.match(intents, /id: "playlist"/);
-  assert.match(intents, /id: "artist_with_track"/);
-  assert.match(intents, /id: "album"/);
-  assert.match(intents, /id: "track"/);
-  assert.match(intents, /id: "artist"/);
+  assert.match(intents, /"id": "current_track"/);
+  assert.match(intents, /"id": "playback_control"/);
+  assert.match(intents, /"id": "default_playlist"/);
+  assert.match(intents, /"id": "playlist"/);
+  assert.match(intents, /"id": "artist_with_track"/);
+  assert.match(intents, /"id": "album"/);
+  assert.match(intents, /"id": "track"/);
+  assert.match(intents, /"id": "artist"/);
   assert.match(intents, /Welk nummer draait er nu\?/);
   assert.match(intents, /What song is playing\?/);
-  assert.match(intents, /playsMusic: false/);
-  assert.match(intents, /spotifyType: "status"/);
-  assert.match(intents, /spotifyType: "backend_command"/);
+  assert.match(intents, /"playsMusic": false/);
+  assert.match(intents, /"spotifyType": "status"/);
+  assert.match(intents, /"spotifyType": "backend_command"/);
   assert.match(intents, /No Spotify search/);
-  assert.match(intents, /command: "pause"/);
-  assert.match(intents, /command: "play\/resume"/);
-  assert.match(intents, /command: "volume \+10"/);
-  assert.match(intents, /command: "volume -10"/);
-  assert.match(intents, /command: "next"/);
-  assert.match(intents, /command: "previous"/);
+  assert.match(intents, /"command": "pause"/);
+  assert.match(intents, /"command": "play\/resume"/);
+  assert.match(intents, /"command": "volume \+10"/);
+  assert.match(intents, /"command": "volume -10"/);
+  assert.match(intents, /"command": "next"/);
+  assert.match(intents, /"command": "previous"/);
   assert.match(intents, /Stop muziek/);
   assert.match(intents, /Start muziek/);
   assert.match(intents, /Zet harder/);
@@ -575,6 +584,18 @@ test("voice commands page documents intent families and DJ response styles", asy
   assert.match(intents, /Play playlist DJConnect/);
   assert.match(intents, /Speel mijn standaard playlist/);
   assert.match(intents, /Play my default playlist/);
+  assert.match(intents, /"id": "conversation_followup"/);
+  assert.match(intents, /Geeft niet/);
+  assert.match(intents, /Welke albums hebben Radiohead uitgebracht\?/);
+  assert.match(intents, /Welke artiesten maken vergelijkbare muziek als wat nu speelt\?/);
+  assert.match(intents, /Wat voor muziek maakt Beastie Boys\?/);
+  assert.match(intents, /Wanneer speelt Radiohead in Nederland\?/);
+  assert.match(intents, /Omschrijf eens waar ik zoal naar luisterde de afgelopen maand/);
+  assert.match(intents, /Ik voel me moe en geprikkeld, zet iets ontspannends klaar/);
+  assert.match(intents, /Geef me een leuke aankondiging voor wat nu speelt/);
+  assert.match(intents, /Automatisch DJ feitje bij nieuw album of nieuwe artiest/);
+  assert.match(intents, /Play Now (buttons|actions)/);
+  assert.match(intents, /"messageKind": "system"/);
   assert.doesNotMatch(intents, /Zet shuffle aan/);
   assert.doesNotMatch(intents, /Turn shuffle on/);
   assert.match(voice, /Tip: noem 'nummer', 'album' of 'playlist'/);

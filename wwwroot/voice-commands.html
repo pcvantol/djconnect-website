@@ -43,6 +43,7 @@
     .section-head { display:grid; grid-template-columns:0.85fr 1.15fr; gap:28px; align-items:end; margin-bottom:24px; }
     .section-head p { color:var(--muted); margin:0; font-size:1.1rem; }
     .intent-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+    .ask-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
     .style-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
     .style-grid .card { padding:20px; }
     .examples { margin-top:18px; }
@@ -64,8 +65,8 @@
     .legal { color:var(--muted); font-size:0.86rem; padding:34px 0 44px; border-top:1px solid var(--line); }
     .site-version { margin-top:14px; font-size:0.76rem; color:rgba(183,188,203,0.72); }
     .privacy-notice { font-size:0.78rem; color:rgba(183,188,203,0.78); }
-    @media (max-width:1100px) { .style-grid { grid-template-columns:repeat(2,1fr); } }
-    @media (max-width:900px) { .hero-grid,.section-head,.intent-grid { grid-template-columns:1fr; } .nav-inner { flex-wrap:wrap; padding:12px 0; } .nav-links { order:3; width:100%; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; } .nav-links::-webkit-scrollbar { display:none; } }
+    @media (max-width:1100px) { .style-grid,.ask-grid { grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:900px) { .hero-grid,.section-head,.intent-grid,.ask-grid { grid-template-columns:1fr; } .nav-inner { flex-wrap:wrap; padding:12px 0; } .nav-links { order:3; width:100%; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; } .nav-links::-webkit-scrollbar { display:none; } }
     @media (max-width:720px) { .examples ul { grid-template-columns:1fr; } }
     @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } .flow li { grid-template-columns:40px 1fr; } .flow li::before { width:40px; height:40px; } .style-grid { grid-template-columns:1fr; } }
 
@@ -174,6 +175,17 @@
         <p class="note" data-i18n="tipText">Tip: noem 'nummer', 'album' of 'playlist' als je gericht wilt zoeken.</p>
       </div>
     </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <h2 data-i18n="askDjFamiliesTitle">Ask DJ voorbeelden</h2>
+          <p data-i18n="askDjFamiliesLead">Ask DJ is conversationeel: sommige vragen geven tekst, bronnen of afbeeldingen terug, andere kunnen Play Now-acties tonen. Ze staan los van de deterministische Spotify zoekcommando's hierboven.</p>
+        </div>
+        <div class="ask-grid" id="askDjGrid"></div>
+        <p class="note" data-i18n="askDjPlayNowNote">Aanbevelingen starten niet automatisch. DJConnect toont Play Now wanneer er een concrete aanbeveling is; playback start pas na jouw tap.</p>
+      </div>
+    </section>
   </main>
 
   <footer class="wrap legal">
@@ -230,6 +242,12 @@
         esphomeLink: "Bekijk ESPHome voice assistant projecten op https://esphome.io/projects/",
         familiesTitle: "Intentfamilies",
         familiesLead: "Gebruik gewone zinnen. Statusvragen lezen alleen wat er speelt, playback-control voert direct commands uit en muziekfamilies zoeken daarna pas in Spotify.",
+        askDjFamiliesTitle: "Ask DJ voorbeelden",
+        askDjFamiliesLead: "Ask DJ is conversationeel: sommige vragen geven tekst, bronnen of afbeeldingen terug, andere kunnen Play Now-acties tonen. Ze staan los van de deterministische Spotify zoekcommando's hierboven.",
+        askDjPlayNowNote: "Aanbevelingen starten niet automatisch. DJConnect toont Play Now wanneer er een concrete aanbeveling is; playback start pas na jouw tap.",
+        askDjActionLabel: "Actie",
+        askDjSystemLabel: "Systeem",
+        askDjUserLabel: "Gebruiker",
         artistPill: "Artiest",
         artistTitle: "Artiest starten",
         artistText: "Zonder expliciet “nummer”, “album” of “playlist” behandelt DJConnect dit als artiestverzoek.",
@@ -303,6 +321,12 @@
         esphomeLink: "View ESPHome voice assistant projects at https://esphome.io/projects/",
         familiesTitle: "Intent families",
         familiesLead: "Use normal sentences. Status questions only read what is playing, playback control runs direct commands and music families search Spotify after that.",
+        askDjFamiliesTitle: "Ask DJ examples",
+        askDjFamiliesLead: "Ask DJ is conversational: some questions return text, sources or images, while others can show Play Now actions. They are separate from the deterministic Spotify search commands above.",
+        askDjPlayNowNote: "Recommendations do not start automatically. DJConnect shows Play Now when there is a concrete recommendation; playback starts only after your tap.",
+        askDjActionLabel: "Action",
+        askDjSystemLabel: "System",
+        askDjUserLabel: "User",
         artistPill: "Artist",
         artistTitle: "Start an artist",
         artistText: "Without explicit “song”, “album” or “playlist” wording, DJConnect treats this as an artist request.",
@@ -333,6 +357,7 @@
       }
     };
     const intentFamilies = window.DJCONNECT_VOICE_INTENTS || [];
+    const askDjFamilies = window.DJCONNECT_ASK_DJ_INTENTS || [];
     const renderIntentFamilies = (lang, dictionary) => {
       const grid = document.querySelector("#intentGrid");
       if (!grid) return;
@@ -394,6 +419,47 @@
         grid.append(card);
       });
     };
+    const renderAskDjFamilies = (lang, dictionary) => {
+      const grid = document.querySelector("#askDjGrid");
+      if (!grid) return;
+      grid.replaceChildren();
+      askDjFamilies.forEach((family) => {
+        const card = document.createElement("article");
+        card.className = "card";
+
+        const pill = document.createElement("span");
+        pill.className = "pill";
+        pill.textContent = family.pill[lang];
+
+        const title = document.createElement("h3");
+        title.textContent = family.title[lang];
+
+        const text = document.createElement("p");
+        text.textContent = family.description;
+
+        const metadata = document.createElement("div");
+        metadata.className = "meta-row";
+        const action = document.createElement("span");
+        action.textContent = `${dictionary.askDjActionLabel}: ${family.action || "none"}`;
+        const kind = document.createElement("span");
+        kind.textContent = family.messageKind === "system" ? dictionary.askDjSystemLabel : dictionary.askDjUserLabel;
+        metadata.append(action, kind);
+
+        const examples = document.createElement("div");
+        examples.className = "examples";
+        const label = document.createElement("h4");
+        label.textContent = dictionary.examplesLabel;
+        const list = document.createElement("ul");
+        family.examples[lang].forEach((example) => {
+          const item = document.createElement("li");
+          item.textContent = example;
+          list.append(item);
+        });
+        examples.append(label, list);
+        card.append(pill, title, text, metadata, examples);
+        grid.append(card);
+      });
+    };
     const getInitialLanguage = () => {
       const stored = localStorage.getItem("djconnect-language");
       if (stored === "nl" || stored === "en") return stored;
@@ -418,6 +484,7 @@
         button.setAttribute("aria-pressed", String(button.dataset.lang === lang));
       });
       renderIntentFamilies(lang, dictionary);
+      renderAskDjFamilies(lang, dictionary);
       localStorage.setItem("djconnect-language", lang);
     };
     document.querySelectorAll("[data-lang]").forEach((button) => {

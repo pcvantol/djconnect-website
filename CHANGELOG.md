@@ -2,6 +2,17 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.51 - 2026-06-19
+
+- Added Ask DJ as a major homepage and feature-page product section for iOS,
+  macOS and Apple Watch clients.
+- Documented Ask DJ chat, personal recommendations, explicit `Play Now`,
+  cross-device history, voice/PTT, optional audio replies and compact
+  Home Assistant-side privacy boundaries.
+- Updated homepage mobile navigation behavior and removed the inline
+  troubleshooting block from the start page so troubleshooting stays on the
+  dedicated help route.
+
 ## DJConnect website v3.1.50 - 2026-06-18
 
 - Added a dedicated troubleshooting page for common Spotify OAuth, HACS,

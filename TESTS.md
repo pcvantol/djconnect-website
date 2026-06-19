@@ -3,13 +3,19 @@
 ## Manual Checks
 
 - Open `wwwroot/index.html`.
-- Verify the homepage navigation shows `Features`, `Spraak`, `Blog`,
+- Verify the homepage navigation shows `Features`, `Ask DJ`, `Spraak`, `Blog`,
   `Installeren`, `Support` and `Privacy`, with `Aan de slag` only as the
   primary CTA button. The homepage should not show a `Hoe werkt het` self-link.
+- Verify the homepage Ask DJ section explains chat, personal recommendations,
+  explicit `Play Now`, Watch/iPhone/Mac continuity, Home Assistant server-side
+  DJ Memory/history, voice/PTT with Assist STT/TTS and compact privacy
+  boundaries.
 - Verify the homepage `Kies je interface` section includes macOS, iPhone/iPad,
   Voice Assistant, Embedded device and Linux/Raspberry Pi cards. The Voice
   Assistant card must link to `wwwroot/voice-assistant.html`.
-- Open `wwwroot/features.html` and verify the core features and renamed bonus mini-games are visible: Paddle Rally, Meteor Run, Sky Dash and Maze Chase.
+- Open `wwwroot/features.html` and verify Ask DJ, the core features and renamed
+  bonus mini-games are visible: Paddle Rally, Meteor Run, Sky Dash and Maze
+  Chase.
 - Verify the Features, Spraak, Blog, Support and Privacy pages keep their top
   navigation focused on relevant cross-links only and do not show self-links.
 - Open `wwwroot/voice-commands.html` and verify the current-track,
@@ -81,8 +87,8 @@
 - Verify the footer privacy notice is present and translated on all public pages.
 - Verify each pairing panel has its own download as step 1.
 - Verify the app pairing flow uses the selected client type, not a combined iOS/macOS step.
-- Verify the troubleshooting cards use the current Spotify authorization,
-  OAuth redirect mismatch, HACS refresh and local reachability wording.
+- Verify the start page does not include an inline troubleshooting section;
+  troubleshooting content belongs on `wwwroot/troubleshooting.html`.
 - Verify the Spotify Premium account is configured inside the DJConnect configuration section, not as a separate top-level setup block.
 - Verify the homepage embedded card opens `wwwroot/embedded.html`.
 - Open `wwwroot/macos.html` and `wwwroot/ios.html`.

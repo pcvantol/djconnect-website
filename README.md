@@ -4,8 +4,8 @@ Static landing page for DJConnect, published through Cloudflare Pages.
 
 ## Structure
 
-- `wwwroot/index.html`: platform homepage with DJConnect essentials, download routes and swipeable device hero.
-- `wwwroot/features.html`: feature overview page, including bonus mini-games: Paddle Rally, Meteor Run, Sky Dash and Maze Chase.
+- `wwwroot/index.html`: platform homepage with DJConnect essentials, Ask DJ, download routes and swipeable device hero.
+- `wwwroot/features.html`: feature overview page, including Ask DJ and bonus mini-games: Paddle Rally, Meteor Run, Sky Dash and Maze Chase.
 - `wwwroot/platform.html`: CSS-only platform architecture overview for clients, Home Assistant, Assist, Spotify and speakers.
 - `wwwroot/voice-commands.html`: bilingual How To page for DJConnect voice
   command intent families, including current-track status questions, direct
@@ -27,6 +27,11 @@ Static landing page for DJConnect, published through Cloudflare Pages.
   as redirect URI, copy the Client ID into the DJConnect setup and authorize
   Spotify through Home Assistant. Prefer the Nabu Casa HTTPS external URL.
   DJConnect uses PKCE, so a Spotify Client Secret is preferably not required.
+- Ask DJ is a major product feature for iOS, macOS and Apple Watch clients.
+  Website copy should keep it clear that Ask DJ runs through Home Assistant and
+  DJConnect integration v3.1.62+, uses compact server-side DJ Memory/history,
+  carries chat continuity across devices and starts concrete recommendations
+  only after the user taps `Play Now`.
 - `wwwroot/embedded.html`: ESP32 embedded-device one-pager.
 - `wwwroot/macos.html`: macOS app page with binaries from `pcvantol/djconnect-app-releases`.
 - `wwwroot/ios.html`: iOS app page with App Store placeholder.
@@ -255,9 +260,13 @@ Use `./cleanup_old_releases.sh` manually only when you want cleanup outside the 
   page, Raspberry Pi page, iOS page, macOS page and Voice Assistant page.
 - Keep App Store links as placeholders until the macOS and iOS apps are published.
 - Do not describe embedded devices as pre-flashed; link users to the firmware repository and flashing flow instead.
-- Keep homepage navigation focused on cross-page routes: `Features`, `Spraak`,
-  `Blog`, `Installeren`, `Support`, `Privacy` and the primary `Aan de slag`
+- Keep homepage navigation focused on cross-page routes: `Features`, `Ask DJ`,
+  `Spraak`, `Blog`, `Installeren`, `Support`, `Privacy` and the primary `Aan de slag`
   CTA. Do not add a `Hoe werkt het` self-link to the homepage top navigation.
+- Keep Ask DJ product copy user-facing, not API-reference style: mention Home
+  Assistant, server-side DJ Memory/history, Apple Watch/iPhone/Mac continuity,
+  explicit `Play Now`, voice/PTT with Assist STT/TTS, and compact privacy
+  boundaries without implying Spotify affiliation.
 - Keep content-page navigation free of self-links. Features, Spraak, Blog,
   Support and Privacy should not show their own page as a menu option.
 - Keep the homepage `Kies je interface` cards aligned with the supported

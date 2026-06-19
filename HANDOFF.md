@@ -9,7 +9,7 @@
 - Cloudflare Pages project: `djconnect`
 - Source directory: `wwwroot`
 - Release publish directory: `dist/wwwroot`
-- Current version: `3.1.50`
+- Current version: `3.1.51`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Platform overview page with CSS architecture diagram: `wwwroot/platform.html`
@@ -32,9 +32,9 @@
   builds a minified deploy copy in `dist/wwwroot`.
 - The homepage is platform-independent and routes users to setup and downloads.
 - The homepage navigation intentionally contains cross-page routes only:
-  `Features`, `Spraak`, `Blog`, `Installeren`, `Support` and `Privacy`; the
-  `Aan de slag` route is the primary CTA button. Do not add a `Hoe werkt het`
-  self-link to the homepage top navigation.
+  `Features`, `Ask DJ`, `Spraak`, `Blog`, `Installeren`, `Support` and
+  `Privacy`; the `Aan de slag` route is the primary CTA button. Do not add a
+  `Hoe werkt het` self-link to the homepage top navigation.
 - Content pages should avoid self-links in their top navigation. Features,
   Spraak, Blog, Support and Privacy intentionally omit their own page from the
   menu, and the compact Support/Privacy menus stay focused on their legal or
@@ -42,7 +42,13 @@
 - The homepage `Kies je interface` section lists macOS, iPhone/iPad, Voice
   Assistant, Embedded device and Linux/Raspberry Pi. Keep the Voice Assistant
   card linked to `wwwroot/voice-assistant.html`.
-- The features page summarizes the main DJConnect functions and mentions the bonus mini-games: Paddle Rally, Meteor Run, Sky Dash & Maze Chase.
+- Ask DJ is a major product feature on the homepage and Features page. Keep
+  copy clear that it runs through Home Assistant with DJConnect integration
+  v3.1.62+, uses compact server-side DJ Memory/history per Home Assistant user,
+  supports Apple Watch/iPhone/Mac continuity, and starts recommendations only
+  after an explicit `Play Now` tap.
+- The features page summarizes the main DJConnect functions and mentions Ask DJ
+  plus the bonus mini-games: Paddle Rally, Meteor Run, Sky Dash & Maze Chase.
 - The voice commands page documents the user-facing intent families,
   interpretation order, current-track status behavior, direct playback-control
   commands, artist-first fallback behavior and bilingual example phrases.
@@ -183,10 +189,12 @@ Bind `ANALYTICS_DB` to that D1 database and set a `STATS_TOKEN` secret. `GITHUB_
 - `npm test` covers version consistency, route presence, homepage navigation/copy, homepage voice chips from shared intent data, voice command intent-family docs, data-driven examples and language-scoped rendering behavior, firmware download embeds, macOS and Raspberry Pi download embeds, latest-only release embed contracts, removed legacy macOS download routes, tracked download redirects, absence of website self-release embeds, translation keys, footer copyright/support links, local link checking, firmware links, compact embedded page structure, LilyGO visual hygiene and stale pre-flashed wording.
 - `npm test` also covers the cookieless redirect/download analytics structure, D1 migration, tracked GitHub asset links, the protected GitHub-runtime `/admin` stats page contract and the release-script dependency/tool preflight.
 - `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. `npm run screenshots:live` captures Dutch live production screenshots at a laptop viewport into `screenshots/live-laptop/`. Neither is part of the default `npm test` run.
-- Current released version `3.1.50` adds the troubleshooting page, links it
-  from Support and documents macOS mDNS/local API pairing diagnostics. Version
-  `3.1.49` added Voice Assistant to the homepage interface chooser and
-  simplified page-specific navigation.
+- Current released version `3.1.51` adds Ask DJ as a major homepage and
+  feature-page product section, documents explicit `Play Now`,
+  Watch/iPhone/Mac continuity, voice/PTT and compact Home Assistant-side
+  privacy boundaries, and keeps troubleshooting on the dedicated help route.
+  Version `3.1.50` added the troubleshooting page and macOS mDNS/local API
+  pairing diagnostics.
 - Canonical SEO domain is `https://djconnect.dev`; `djconnect.pages.dev` remains a Cloudflare fallback.
 - `https://www.djconnect.dev` should remain a 301 redirect to the apex domain, preserving path and query string.
 - Dynamic GitHub download/install blocks now rerender when the language toggle changes, so generated install text follows NL/EN.
@@ -195,6 +203,10 @@ Bind `ANALYTICS_DB` to that D1 database and set a `STATS_TOKEN` secret. `GITHUB_
 - Raspberry Pi setup copy now says to paste pairing details in the Home Assistant integration.
 - Linux/Raspberry Pi and ESP32 firmware download embeds intentionally use `data-release-limit="1"` so only the latest release is shown.
 - The start page `Installeren` navigation now jumps to `2. Voeg toe aan Home Assistant`; the separate `Start installatie` CTA still starts at the voice assist pipeline.
-- The start page should be manually checked for the voice-assist documentation link, HACS deeplink, Spotify Developer app/OAuth redirect guidance, firmware/app release links, ESP pairing copy, app pairing copy, Raspberry Pi placeholder copy and troubleshooting text.
+- The start page should be manually checked for the voice-assist documentation
+  link, HACS deeplink, Spotify Developer app/OAuth redirect guidance,
+  firmware/app release links, ESP pairing copy, app pairing copy and Raspberry
+  Pi placeholder copy. Troubleshooting content belongs on
+  `wwwroot/troubleshooting.html`, not inline on the start page.
 - The embedded page should be manually checked to confirm it no longer shows local quick start, requirements, FAQ or the `Stem via HA / Veilig gekoppeld / DJ-karakter` card row.
 - Manual visual checks are still needed for desktop, tablet and mobile layouts until browser regression tests are formalized in CI.

@@ -85,7 +85,7 @@
     @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } .switch-tabs { grid-template-columns:1fr; } }
 
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.50" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.51" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -96,7 +96,6 @@
         <a href="index.html" data-i18n="navHome">Home</a>
         <a href="#hacs" data-i18n="navInstall">Installeren</a>
         <a href="#pairing" data-i18n="navDownload">Download</a>
-        <a href="#troubleshooting" data-i18n="navHelp">Hulp</a>
       </div>
       <div class="nav-controls">
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Menu" data-i18n-attr="aria-label:navMenu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg></button>
@@ -314,20 +313,6 @@
       </div>
     </section>
 
-    <section id="troubleshooting">
-      <div class="wrap">
-        <h2 data-i18n="troubleshootingTitle">Problemen oplossen</h2>
-        <div class="grid-3">
-          <article class="card"><h3>Geen Spotify playback</h3><p>Controleer Spotify Premium en of er een actief Spotify afspeelapparaat beschikbaar is. Controleer of de Spotify autorisatie in Home Assistant actief is, of herstel deze.</p></article>
-          <article class="card"><h3 data-i18n="oauthTroubleTitle">Spotify OAuth of redirect fout</h3><p data-i18n="oauthTroubleText">Controleer of exact dezelfde redirect URI in het Spotify Developer Dashboard staat, of je Home Assistant external URL HTTPS gebruikt en of de Nabu Casa/external URL overeenkomt met wat DJConnect toont. Autoriseer Spotify opnieuw na wijzigingen.</p></article>
-          <article class="card"><h3>Geen spraakherkenning</h3><p>Controleer de Assist pipeline en STT provider.</p></article>
-          <article class="card"><h3>Geen DJ aankondiging</h3><p>Controleer TTS provider en DJConnect options.</p></article>
-          <article class="card"><h3>Pairing lukt niet</h3><p>Controleer koppelcode, Client API URL en lokaal netwerk.</p></article>
-          <article class="card"><h3>HACS toont oude versie</h3><p>Ververs HACS update informatie en download de actuele versie van DJConnect. Herstart Home Assistant.</p></article>
-          <article class="card"><h3>Device blijft rood/pending</h3><p>Controleer of Home Assistant lokaal bereikbaar is vanaf de app of device.</p></article>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="wrap legal">
@@ -335,7 +320,7 @@
     <p data-i18n="legalSpotify">Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.1.50</p>
+    <p class="site-version">DJConnect website v3.1.51</p>
   </footer>
   <script>
     const translations = {
@@ -348,7 +333,6 @@
         navHome: "Home",
         navInstall: "Installeren",
         navDownload: "Download",
-        navHelp: "Hulp",
         navStart: "Start installatie",
         heroTitle: "DJConnect. Muziekbediening met karakter.",
         heroLead: "DJConnect brengt spraak, muziekbediening en een persoonlijke DJ-reactie samen. De kern blijft hetzelfde op elk device: vraag muziek, kies waar het speelt en krijg directe feedback terug.",
@@ -397,9 +381,6 @@
         raspberryTitle: "Raspberry Pi app",
         readyTitle: "6. Klaar voor gebruik",
         readyLead: "Start met een Spotify Connect speaker en bedien daarna je muziek via DJConnect.",
-        troubleshootingTitle: "Problemen oplossen",
-        oauthTroubleTitle: "Spotify OAuth of redirect fout",
-        oauthTroubleText: "Controleer of exact dezelfde redirect URI in het Spotify Developer Dashboard staat, of je Home Assistant external URL HTTPS gebruikt en of de Nabu Casa/external URL overeenkomt met wat DJConnect toont. Autoriseer Spotify opnieuw na wijzigingen.",
         legalCopyright: "Copyright Peter van Tol 2026. Released under the MIT License.",
         legalSpotify: "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.",
         legalPrivacy: "Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.",
@@ -415,7 +396,6 @@
         navHome: "Home",
         navInstall: "Install",
         navDownload: "Download",
-        navHelp: "Help",
         navStart: "Start setup",
         heroTitle: "DJConnect. Music control with character.",
         heroLead: "DJConnect brings voice, music control and a personal DJ response together. The core stays the same on every device: request music, choose where it plays and get direct feedback.",
@@ -464,9 +444,6 @@
         raspberryTitle: "Raspberry Pi app",
         readyTitle: "6. Ready to use",
         readyLead: "Start with a Spotify Connect speaker, then control your music through DJConnect.",
-        troubleshootingTitle: "Troubleshooting",
-        oauthTroubleTitle: "Spotify OAuth or redirect error",
-        oauthTroubleText: "Check that the exact redirect URI is listed in the Spotify Developer Dashboard, that your Home Assistant external URL uses HTTPS and that the Nabu Casa/external URL matches what DJConnect shows. Re-authorize Spotify after changes.",
         legalCopyright: "Copyright Peter van Tol 2026. Released under the MIT License.",
         legalSpotify: "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.",
         legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
@@ -499,6 +476,6 @@
     });
 
   </script>
-  <script src="assets/site-nav.js?v=3.1.50"></script>
+  <script src="assets/site-nav.js?v=3.1.51"></script>
 </body>
 </html>

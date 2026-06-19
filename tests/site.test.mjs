@@ -190,6 +190,7 @@ test("homepage has platform routes and app store placeholders", async () => {
   assert.match(index, /<title>DJConnect\. Muziekbediening met karakter<\/title>/);
   assert.doesNotMatch(index, /Een persoonlijk muziekplatform voor elk device/);
   assert.match(index, /href="features\.html" data-i18n="navFeatures">Features/);
+  assert.match(index, /href="#ask-dj" data-i18n="navAskDj">Ask DJ/);
   assert.match(index, /href="voice-commands\.html" data-i18n="navVoice">Spraak/);
   assert.match(index, /href="blog\.html" data-i18n="navBlog">Blog/);
   assert.match(index, /data-i18n="navApps">Installeren/);
@@ -225,6 +226,39 @@ test("homepage has platform routes and app store placeholders", async () => {
   assert.doesNotMatch(index, /data-i18n="exampleCommand1"/);
 });
 
+test("homepage promotes Ask DJ as a major product feature", async () => {
+  const index = await read("wwwroot/index.html");
+  assert.match(index, /<section id="ask-dj">/);
+  assert.match(index, /data-i18n="askDjTitle">Ask DJ<\/h2>/);
+  assert.match(index, /AI-DJ chat voor muziekvragen, persoonlijke aanbevelingen, playback-acties/);
+  assert.match(index, /Via Home Assistant en DJConnect integration v3\.1\.62\+/);
+  assert.match(index, /Meer dan Spotify command parsing/);
+  assert.match(index, /DJConnect Memory en Spotify listening profile data/);
+  assert.match(index, /"Waarom koos je dit nummer\?"/);
+  assert.match(index, /"Welke muziek raad je mij aan\?"/);
+  assert.match(index, /"Omschrijf eens waar ik de afgelopen maand naar luisterde\."/);
+  assert.match(index, /"Volgende nummer\."/);
+  assert.match(index, /"Zet iets rustigers op\."/);
+  assert.match(index, /Home Assistant haalt context, history en playbackstatus op/);
+  assert.match(index, /DJConnect antwoordt met tekst, bronnen, afbeeldingen en optionele audio/);
+  assert.match(index, /Play Now; playback start pas na jouw tap/);
+  assert.match(index, /Continuity op Watch, iPhone en Mac/);
+  assert.match(index, /server-side per Home Assistant gebruiker/);
+  assert.match(index, /Home Assistant is de bron van waarheid/);
+  assert.match(index, /Home Assistant STT transcribeert/);
+  assert.match(index, /TTS kan audio-antwoorden leveren/);
+  assert.match(index, /Replay verschijnt alleen als er audio beschikbaar is/);
+  assert.match(index, /Clients bewaren geen DJ Memory/);
+  assert.match(index, /zonder Spotify OAuth tokens, bearer tokens, raw audio of volledige prompts/);
+  assert.match(index, /Ruwe voice-audio wordt standaard niet opgeslagen/);
+  assert.match(index, /Spotify Premium, je eigen Spotify Developer app met Client ID/);
+  assert.match(index, /Nabu Casa of een stabiele HTTPS external URL is aanbevolen/);
+  assert.match(index, /For concrete recommendations you choose Play Now yourself; playback starts only after your tap/);
+  assert.match(index, /Spotify is a trademark of Spotify AB/);
+  assert.match(index, /DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB/);
+  assertTranslationsCoverPage(index, "homepage");
+});
+
 test("all public nav pages include the mobile hamburger menu", async () => {
   const [navCss, navJs] = await Promise.all([
     read("wwwroot/assets/site-nav.css"),
@@ -233,8 +267,13 @@ test("all public nav pages include the mobile hamburger menu", async () => {
 
   assert.match(navCss, /\.nav-links\.is-open/);
   assert.match(navCss, /\.menu-toggle/);
+  assert.match(navCss, /body\.site-nav-open::before/);
+  assert.match(navCss, /position: fixed/);
+  assert.match(navCss, /translateX\(-105%\)/);
+  assert.match(navCss, /text-align: left/);
   assert.match(navJs, /const menuToggle/);
   assert.match(navJs, /setMenuOpen/);
+  assert.match(navJs, /site-nav-open/);
 
   for (const page of publicPages) {
     const html = await read(`wwwroot/${page}.html`);
@@ -376,14 +415,12 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /href="ios\.html"/);
   assert.match(start, /href="macos\.html"/);
   assert.match(start, /Ontvang persoonlijke DJ aankondigingen in de app of op je device/);
-  assert.match(start, /Geen Spotify playback/);
-  assert.match(start, /Controleer of de Spotify autorisatie in Home Assistant actief is, of herstel deze/);
-  assert.match(start, /Spotify OAuth of redirect fout/);
-  assert.match(start, /exact dezelfde redirect URI in het Spotify Developer Dashboard/);
-  assert.match(start, /Home Assistant external URL HTTPS gebruikt/);
-  assert.match(start, /Nabu Casa\/external URL overeenkomt met wat DJConnect toont/);
-  assert.match(start, /Autoriseer Spotify opnieuw na wijzigingen/);
-  assert.match(start, /Ververs HACS update informatie en download de actuele versie van DJConnect/);
+  assert.doesNotMatch(start, /href="#troubleshooting"/);
+  assert.doesNotMatch(start, /id="troubleshooting"/);
+  assert.doesNotMatch(start, /Problemen oplossen/);
+  assert.doesNotMatch(start, /Geen Spotify playback/);
+  assert.doesNotMatch(start, /Spotify OAuth of redirect fout/);
+  assert.doesNotMatch(start, /Ververs HACS update informatie/);
   assert.match(start, /Spotify is a trademark of Spotify AB/);
   assert.match(start, /DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB/);
   assertTranslationsCoverPage(start, "start page");
@@ -394,6 +431,10 @@ test("features page describes core functions and bonus games", async () => {
   assert.match(features, /data-i18n="heroTitle">Features<\/h1>/);
   assert.match(features, /href="platform\.html" data-i18n="heroPlatformCta">Bekijk platform overview<\/a>/);
   assert.match(features, /Muziek aanvragen/);
+  assert.match(features, /data-i18n="askDjTitle">Ask DJ<\/h3>/);
+  assert.match(features, /Chat met je AI-DJ voor muziekvragen, persoonlijke aanbevelingen en playback-acties via Home Assistant/);
+  assert.match(features, /Aanbevelingen tonen Play Now en starten pas na jouw tap/);
+  assert.match(features, /Chat with your AI DJ for music questions, personal recommendations and playback actions through Home Assistant/);
   assert.match(features, /Spotify playback/);
   assert.match(features, /Speaker keuze/);
   assert.match(features, /Home Assistant hub/);
@@ -402,7 +443,7 @@ test("features page describes core functions and bonus games", async () => {
   assert.match(features, /DJ aankondigingen/);
   assert.match(features, /Veilige koppeling/);
   assert.match(features, /macOS/);
-  assert.match(features, /iOS/);
+  assert.match(features, /iOS en Apple Watch/);
   assert.match(features, /Linux/);
   assert.match(features, /ESP32 device/);
   assert.match(features, /Bonus: mini-games/);

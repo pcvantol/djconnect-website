@@ -6,6 +6,7 @@
     if (!menuToggle || !primaryNav) return;
     menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
     primaryNav.classList.toggle("is-open", open);
+    document.body.classList.toggle("site-nav-open", open);
   };
 
   menuToggle?.addEventListener("click", () => {
@@ -18,5 +19,11 @@
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") setMenuOpen(false);
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!document.body.classList.contains("site-nav-open")) return;
+    if (primaryNav?.contains(event.target) || menuToggle?.contains(event.target)) return;
+    setMenuOpen(false);
   });
 })();

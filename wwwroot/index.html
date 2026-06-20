@@ -869,7 +869,7 @@
       }
     }
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.52" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.53" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -1000,7 +1000,7 @@
         </div>
         <div class="ask-dj-panel">
           <article class="card ask-dj-card">
-            <span class="ask-dj-pill" data-i18n="askDjBadge">Via Home Assistant en DJConnect integration v3.1.65+</span>
+            <span class="ask-dj-pill" data-i18n="askDjBadge">Via Home Assistant en DJConnect integration v3.1.69+</span>
             <h3 data-i18n="askDjChatTitle">Meer dan Spotify command parsing</h3>
             <p data-i18n="askDjChatText">Stel muziekvragen in natuurlijke taal. Ask DJ gebruikt actuele playbackcontext, DJConnect Memory en Spotify listening profile data waar beschikbaar om persoonlijk te antwoorden.</p>
             <div class="ask-dj-chips" aria-label="Ask DJ voorbeeldvragen" data-i18n-attr="aria-label:askDjExamplesLabel">
@@ -1035,12 +1035,17 @@
           <article class="card">
             <div class="icon">🔔</div>
             <h3 data-i18n="askDjNotificationsTitle">Optionele meldingen</h3>
-            <p data-i18n="askDjNotificationsText">Apple clients kunnen optionele pushmeldingen gebruiken als wake- of synchint voor Ask DJ. De melding bevat geen tokens, ruwe prompts, volledige history of lange DJ-antwoorden; de app synchroniseert daarna veilig via Home Assistant.</p>
+            <p data-i18n="askDjNotificationsText">Apple clients kunnen optionele pushmeldingen gebruiken als wake- of synchint voor Ask DJ via de DJConnect pushrelay. Push blijft beperkt tot Ask DJ-antwoorden of wachtende keuzes en bevat geen tokens, ruwe prompts, volledige history of lange DJ-antwoorden.</p>
           </article>
           <article class="card">
             <div class="icon">🔐</div>
             <h3 data-i18n="askDjPrivacyTitle">Privacy compact gehouden</h3>
             <p data-i18n="askDjPrivacyText">Clients bewaren geen DJ Memory. Home Assistant bewaart compacte context/history, zonder Spotify OAuth tokens, bearer tokens, raw audio of volledige prompts. Ruwe voice-audio wordt standaard niet opgeslagen.</p>
+          </article>
+          <article class="card">
+            <div class="icon">🖥</div>
+            <h3 data-i18n="askDjPiTitle">Raspberry Pi leest mee</h3>
+            <p data-i18n="askDjPiText">Op Raspberry Pi is Ask DJ gericht op read-only history display. Chatten, voice/PTT en audio-antwoorden blijven voor Apple clients, tenzij een toekomstige Pi-versie die scope expliciet uitbreidt.</p>
           </article>
           <article class="card">
             <div class="icon">☑</div>
@@ -1050,7 +1055,7 @@
           <article class="card">
             <div class="icon">✅</div>
             <h3 data-i18n="askDjRequirementsTitle">Wat je nodig hebt</h3>
-            <p data-i18n="askDjRequirementsText">Home Assistant, HACS DJConnect integration v3.1.65+, Spotify Premium, je eigen Spotify Developer app met Client ID en voor voice/audio een Assist pipeline met STT/TTS. Nabu Casa of een stabiele HTTPS external URL is aanbevolen.</p>
+            <p data-i18n="askDjRequirementsText">Home Assistant, HACS DJConnect integration v3.1.69+, Spotify Premium, je eigen Spotify Developer app met Client ID en voor voice/audio een Assist pipeline met STT/TTS. Nabu Casa of een stabiele HTTPS external URL is aanbevolen.</p>
           </article>
         </div>
       </div>
@@ -1170,7 +1175,7 @@
     <p data-i18n="legalSpotify">Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.1.52</p>
+    <p class="site-version">DJConnect website v3.1.53</p>
   </footer>
   <script src="assets/voice-intents.js"></script>
   <script>
@@ -1197,7 +1202,7 @@
         examplesMore: "Bekijk meer spraakvoorbeelden",
         askDjTitle: "Ask DJ",
         askDjLead: "Ask DJ is je AI-DJ chat voor muziekvragen, persoonlijke aanbevelingen, playback-acties en gesprekken die meegaan van Apple Watch naar iPhone en Mac.",
-        askDjBadge: "Via Home Assistant en DJConnect integration v3.1.65+",
+        askDjBadge: "Via Home Assistant en DJConnect integration v3.1.69+",
         askDjChatTitle: "Meer dan Spotify command parsing",
         askDjChatText: "Stel muziekvragen in natuurlijke taal. Ask DJ gebruikt actuele playbackcontext, DJConnect Memory en Spotify listening profile data waar beschikbaar om persoonlijk te antwoorden.",
         askDjExamplesLabel: "Ask DJ voorbeeldvragen",
@@ -1218,11 +1223,13 @@
         askDjVoiceTitle: "Voice en audio",
         askDjVoiceText: "iOS, macOS en Apple Watch kunnen voice/PTT gebruiken. Home Assistant STT transcribeert; TTS kan audio-antwoorden leveren. Replay verschijnt alleen als er audio beschikbaar is.",
         askDjNotificationsTitle: "Optionele meldingen",
-        askDjNotificationsText: "Apple clients kunnen optionele pushmeldingen gebruiken als wake- of synchint voor Ask DJ. De melding bevat geen tokens, ruwe prompts, volledige history of lange DJ-antwoorden; de app synchroniseert daarna veilig via Home Assistant.",
+        askDjNotificationsText: "Apple clients kunnen optionele pushmeldingen gebruiken als wake- of synchint voor Ask DJ via de DJConnect pushrelay. Push blijft beperkt tot Ask DJ-antwoorden of wachtende keuzes en bevat geen tokens, ruwe prompts, volledige history of lange DJ-antwoorden.",
         askDjPrivacyTitle: "Privacy compact gehouden",
         askDjPrivacyText: "Clients bewaren geen DJ Memory. Home Assistant bewaart compacte context/history, zonder Spotify OAuth tokens, bearer tokens, raw audio of volledige prompts. Ruwe voice-audio wordt standaard niet opgeslagen.",
+        askDjPiTitle: "Raspberry Pi leest mee",
+        askDjPiText: "Op Raspberry Pi is Ask DJ gericht op read-only history display. Chatten, voice/PTT en audio-antwoorden blijven voor Apple clients, tenzij een toekomstige Pi-versie die scope expliciet uitbreidt.",
         askDjRequirementsTitle: "Wat je nodig hebt",
-        askDjRequirementsText: "Home Assistant, HACS DJConnect integration v3.1.65+, Spotify Premium, je eigen Spotify Developer app met Client ID en voor voice/audio een Assist pipeline met STT/TTS. Nabu Casa of een stabiele HTTPS external URL is aanbevolen.",
+        askDjRequirementsText: "Home Assistant, HACS DJConnect integration v3.1.69+, Spotify Premium, je eigen Spotify Developer app met Client ID en voor voice/audio een Assist pipeline met STT/TTS. Nabu Casa of een stabiele HTTPS external URL is aanbevolen.",
         stageLabel: "DJConnect platformoverzicht",
         stageCarouselLabel: "Platform opties",
         carouselPrev: "Vorige slide",
@@ -1296,7 +1303,7 @@
         examplesMore: "See more voice examples",
         askDjTitle: "Ask DJ",
         askDjLead: "Ask DJ is your AI DJ chat for music questions, personal recommendations, playback actions and conversations that continue across Apple Watch, iPhone and Mac.",
-        askDjBadge: "Through Home Assistant and DJConnect integration v3.1.65+",
+        askDjBadge: "Through Home Assistant and DJConnect integration v3.1.69+",
         askDjChatTitle: "More than Spotify command parsing",
         askDjChatText: "Ask music questions in natural language. Ask DJ uses current playback context, DJConnect Memory and Spotify listening profile data where available to answer personally.",
         askDjExamplesLabel: "Ask DJ example questions",
@@ -1317,11 +1324,13 @@
         askDjVoiceTitle: "Voice and audio",
         askDjVoiceText: "iOS, macOS and Apple Watch can use voice/PTT. Home Assistant STT transcribes; TTS can provide audio replies. Replay appears only when audio is available.",
         askDjNotificationsTitle: "Optional notifications",
-        askDjNotificationsText: "Apple clients can use optional push notifications as wake or sync hints for Ask DJ. The notification contains no tokens, raw prompts, full history or long DJ replies; the app then syncs safely through Home Assistant.",
+        askDjNotificationsText: "Apple clients can use optional push notifications as wake or sync hints for Ask DJ through the DJConnect push relay. Push is limited to Ask DJ replies or waiting choices and contains no tokens, raw prompts, full history or long DJ replies.",
         askDjPrivacyTitle: "Privacy kept compact",
         askDjPrivacyText: "Clients do not store DJ Memory. Home Assistant stores compact context/history without Spotify OAuth tokens, bearer tokens, raw audio or full prompts. Raw voice audio is not stored by default.",
+        askDjPiTitle: "Raspberry Pi follows along",
+        askDjPiText: "On Raspberry Pi, Ask DJ is focused on read-only history display. Chat, voice/PTT and audio replies stay with Apple clients unless a future Pi version explicitly expands that scope.",
         askDjRequirementsTitle: "What you need",
-        askDjRequirementsText: "Home Assistant, HACS DJConnect integration v3.1.65+, Spotify Premium, your own Spotify Developer app with Client ID and, for voice/audio, an Assist pipeline with STT/TTS. Nabu Casa or a stable HTTPS external URL is recommended.",
+        askDjRequirementsText: "Home Assistant, HACS DJConnect integration v3.1.69+, Spotify Premium, your own Spotify Developer app with Client ID and, for voice/audio, an Assist pipeline with STT/TTS. Nabu Casa or a stable HTTPS external URL is recommended.",
         stageLabel: "DJConnect platform overview",
         stageCarouselLabel: "Platform options",
         carouselPrev: "Previous slide",
@@ -1442,6 +1451,6 @@
 
     applyLanguage(getInitialLanguage());
   </script>
-  <script src="assets/site-nav.js?v=3.1.52"></script>
+  <script src="assets/site-nav.js?v=3.1.53"></script>
 </body>
 </html>

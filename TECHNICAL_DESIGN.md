@@ -2,7 +2,7 @@
 
 This document records the implementation-level design choices for the DJConnect website. It is reverse-engineered from the repository and must be reviewed for every release.
 
-Current website version: `3.1.52`
+Current website version: `3.1.53`
 
 ## Scope
 
@@ -192,9 +192,11 @@ pushes the tag, creates the GitHub Release, deploys the minified output to
 Cloudflare Pages and runs cleanup. `cleanup_old_releases.sh` removes older
 releases, tags and workflow runs.
 
-The GitHub Actions deploy workflow uses the same `npm run build:release`
-output before deploying, so `./release.sh --skip-deploy` and direct CI deploys
-publish the same minified site structure as local releases.
+The GitHub Actions workflow runs `npm ci`, `npm test` and
+`npm run build:release` for pull requests and pushes to `main`. The deploy job
+depends on that test job and is skipped for pull requests, so
+`./release.sh --skip-deploy` and direct CI deploys publish the same minified
+site structure as local releases only after automated checks pass.
 
 Why:
 

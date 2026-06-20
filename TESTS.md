@@ -9,8 +9,10 @@
 - Verify the homepage Ask DJ section explains chat, personal recommendations,
   explicit `Play Now`, Watch/iPhone/Mac continuity, Home Assistant server-side
   DJ Memory/history, Ja/Nee follow-ups, bounded history trim behavior,
-  voice/PTT with Assist STT/TTS, optional Apple push notifications as wake/sync
-  hints and compact privacy boundaries.
+  voice/PTT with Assist STT/TTS, Raspberry Pi read-only history display,
+  optional Apple push notifications as wake/sync hints through the central push
+  relay for Ask DJ replies or waiting choices only, and compact privacy
+  boundaries.
 - Verify the homepage `Kies je interface` section includes macOS, iPhone/iPad,
   Voice Assistant, Embedded device and Linux/Raspberry Pi cards. The Voice
   Assistant card must link to `wwwroot/voice-assistant.html`.
@@ -53,9 +55,9 @@
   firewall/security software such as ESET, Little Snitch or LuLu.
 - Open `wwwroot/privacy.html` and verify it clearly covers website analytics,
   app/Home Assistant token storage, voice/audio processing, support email,
-  optional Apple push notifications as wake/sync hints without tokens or full
-  Ask DJ history, absence of tracking cookies and the `support@djconnect.dev`
-  privacy contact.
+  optional Apple push notifications through the central push relay as Ask
+  DJ-only wake/sync hints without tokens or full Ask DJ history, absence of
+  tracking cookies and the `support@djconnect.dev` privacy contact.
 - Verify public page footers link to `wwwroot/support.html` rather than directly
   to GitHub Issues.
 - Verify public page footers link to `wwwroot/privacy.html` for App Store

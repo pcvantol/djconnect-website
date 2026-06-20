@@ -2,7 +2,7 @@
 
 All notable changes to this website are grouped per release.
 
-## Unreleased
+## DJConnect website v3.1.53 - 2026-06-20
 
 - Synced the Ask DJ example data with the latest Home Assistant integration
   `ask_dj_intents`, including contextual play follow-ups, next-track info,
@@ -10,6 +10,11 @@ All notable changes to this website are grouped per release.
 - Updated website and privacy copy for optional Apple push notifications,
   clarifying that they are wake/sync hints and do not carry tokens, raw prompts
   or full Ask DJ history.
+- Aligned Ask DJ website requirements with the Home Assistant integration
+  `v3.1.69+` contract, including Raspberry Pi read-only history display and
+  central push relay wording for Ask DJ replies and waiting choices.
+- Updated the GitHub Actions Pages workflow so pull requests run automated
+  tests and release-build validation before deploy-capable `main` workflows.
 
 ## DJConnect website v3.1.52 - 2026-06-20
 

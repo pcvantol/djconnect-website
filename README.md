@@ -28,13 +28,16 @@ Static landing page for DJConnect, published through Cloudflare Pages.
   as redirect URI, copy the Client ID into the DJConnect setup and authorize
   Spotify through Home Assistant. Prefer the Nabu Casa HTTPS external URL.
   DJConnect uses PKCE, so a Spotify Client Secret is preferably not required.
-- Ask DJ is a major product feature for iOS, macOS and Apple Watch clients.
+- Ask DJ is a major product feature for iOS, macOS, Apple Watch and Raspberry
+  Pi clients.
   Website copy should keep it clear that Ask DJ runs through Home Assistant and
-  DJConnect integration v3.1.65+, uses compact bounded server-side DJ
+  DJConnect integration v3.1.69+, uses compact bounded server-side DJ
   Memory/history, carries chat continuity across devices, can show Ja/Nee
   follow-up controls, can use optional Apple push notifications only as
-  wake/sync hints and starts concrete recommendations only after the user taps
-  `Play Now`.
+  wake/sync hints through the central push relay and starts concrete
+  recommendations only after the user taps `Play Now`. Raspberry Pi Ask DJ is
+  currently read-only history display unless a future Pi release explicitly
+  expands that scope.
 - `wwwroot/embedded.html`: ESP32 embedded-device one-pager.
 - `wwwroot/macos.html`: macOS app page with binaries from `pcvantol/djconnect-app-releases`.
 - `wwwroot/ios.html`: iOS app page with App Store placeholder.
@@ -76,12 +79,13 @@ The production site is deployed to Cloudflare Pages:
 - Release publish directory: `dist/wwwroot`
 - Cloudflare account ID: `efe77cadf8317a53832fca0848e3ae51`
 
-Automatic deployment runs through GitHub Actions on every push to `main`.
-The workflow runs `npm test`, builds the minified release copy with
-`npm run build:release`, and deploys `dist/wwwroot`. The repository must have
-an Actions secret named `CLOUDFLARE_API_TOKEN` with permission to deploy
-Cloudflare Pages. The workflow sets `CLOUDFLARE_ACCOUNT_ID` explicitly so
-Wrangler does not need to discover account memberships during CI.
+GitHub Actions runs the automated website tests and release build on pull
+requests and pushes to `main`. Pushes to `main` and manual workflow dispatches
+also deploy `dist/wwwroot` to Cloudflare Pages after the test job succeeds. The
+repository must have an Actions secret named `CLOUDFLARE_API_TOKEN` with
+permission to deploy Cloudflare Pages. The workflow sets
+`CLOUDFLARE_ACCOUNT_ID` explicitly so Wrangler does not need to discover
+account memberships during CI.
 
 Configure it in GitHub:
 
@@ -269,9 +273,10 @@ Use `./cleanup_old_releases.sh` manually only when you want cleanup outside the 
 - Keep Ask DJ product copy user-facing, not API-reference style: mention Home
   Assistant, server-side DJ Memory/history, Apple Watch/iPhone/Mac continuity,
   explicit `Play Now`, Ja/Nee follow-ups, bounded history/trim behavior,
-  voice/PTT with Assist STT/TTS, optional Apple push notifications as wake/sync
-  hints only, and compact privacy boundaries without implying Spotify
-  affiliation.
+  voice/PTT with Assist STT/TTS, Raspberry Pi read-only history display,
+  optional Apple push notifications as wake/sync hints through the central
+  push relay for Ask DJ replies or waiting choices only, and compact privacy
+  boundaries without implying Spotify affiliation.
 - Keep content-page navigation free of self-links. Features, Spraak, Blog,
   Support and Privacy should not show their own page as a menu option.
 - Keep the homepage `Kies je interface` cards aligned with the supported

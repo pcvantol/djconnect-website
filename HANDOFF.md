@@ -3,13 +3,16 @@
 ## Current State
 
 - Repository remote: `git@github.com:pcvantol/djconnect-website.git`
+- Canonical cross-repo sync prompt lives in `pcvantol/djconnect/SYNC_PROMPTS.md`
+  and includes the central API backend `pcvantol/djconnect-api` for APNs push
+  relay contract reviews.
 - Production URL: https://djconnect.dev
 - WWW redirect: https://www.djconnect.dev -> https://djconnect.dev
 - Cloudflare Pages fallback URL: https://djconnect.pages.dev
 - Cloudflare Pages project: `djconnect`
 - Source directory: `wwwroot`
 - Release publish directory: `dist/wwwroot`
-- Current version: `3.1.52`
+- Current version: `3.1.53`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Platform overview page with CSS architecture diagram: `wwwroot/platform.html`
@@ -44,11 +47,13 @@
   card linked to `wwwroot/voice-assistant.html`.
 - Ask DJ is a major product feature on the homepage and Features page. Keep
   copy clear that it runs through Home Assistant with DJConnect integration
-  v3.1.65+, uses compact bounded server-side DJ Memory/history per Home
+  v3.1.69+, uses compact bounded server-side DJ Memory/history per Home
   Assistant user, supports Apple Watch/iPhone/Mac continuity, can show Ja/Nee
   follow-up controls, can use optional Apple push notifications only as
-  wake/sync hints, and starts recommendations only after an explicit `Play Now`
-  tap.
+  wake/sync hints through the central push relay for Ask DJ replies or waiting
+  choices, and starts recommendations only after an explicit `Play Now` tap.
+  Raspberry Pi Ask DJ is currently read-only history display unless a future Pi
+  release explicitly expands that scope.
 - The features page summarizes the main DJConnect functions and mentions Ask DJ
   plus the bonus mini-games: Paddle Rally, Meteor Run, Sky Dash & Maze Chase.
 - The voice commands page documents the user-facing intent families,
@@ -69,7 +74,7 @@
   `wwwroot/voice-commands.html` for the full intent list. Do not introduce a
   separate hardcoded homepage command list.
 - `VOICE_INTENT_DATA_PROMPT.md` contains the compact prompt for asking the Home Assistant integration to provide only structured voice/PTT intentdata for future website updates.
-- Cross-repo policy: the only canonical sync prompt is `pcvantol/djconnect/SYNC_PROMPTS.md` and the only canonical product roadmap is `pcvantol/djconnect/PRODUCT_ROADMAP.md` in the Home Assistant integration repo. Do not add local copies to this website repo. If a website change affects cross-repo contracts or roadmap scope, update and commit the canonical file in `pcvantol/djconnect` as a follow-up.
+- Cross-repo policy: the only canonical sync prompt is `pcvantol/djconnect/SYNC_PROMPTS.md` and the only canonical product roadmap is `pcvantol/djconnect/PRODUCT_ROADMAP.md` in the Home Assistant integration repo. Do not add local copies to this website repo. If a website change affects cross-repo contracts, the central API backend contract or roadmap scope, update and commit the canonical file in `pcvantol/djconnect` as a follow-up.
 - The blog section starts at `wwwroot/blog.html`; the first post is `wwwroot/blog-djconnect-project.html` and describes DJConnect as a Home Assistant-backed multi-client music workflow.
 - The homepage hero uses a swipeable device carousel for macOS, a landscape iPad and LilyGO/ESP32. Keep each device slide spacious and avoid compressing devices side-by-side.
 - The iOS carousel slide intentionally shows one landscape iPad only; do not re-add a second iPhone visual unless the layout is redesigned.
@@ -152,7 +157,7 @@
 7. Run `./release.sh --skip-deploy` when the token is only available in GitHub Actions.
 8. Verify the GitHub Release, the `Deploy Cloudflare Pages` workflow run and https://djconnect.dev.
 
-The workflow builds `dist/wwwroot` and deploys that minified output to Cloudflare Pages on every push to `main`, with `CLOUDFLARE_ACCOUNT_ID` set explicitly.
+The workflow runs `npm ci`, `npm test` and `npm run build:release` on pull requests and pushes to `main`. Pushes to `main` and manual workflow dispatches deploy `dist/wwwroot` to Cloudflare Pages after the test job succeeds, with `CLOUDFLARE_ACCOUNT_ID` set explicitly.
 The release script verifies the Dutch screenshot manifest, verifies the core documentation files exist, checks `CHANGELOG.md` and `HANDOFF.md` against the current `VERSION`, builds a minified release copy in `dist/wwwroot`, removes older GitHub Releases, matching local/remote tags and older GitHub Actions workflow runs by default. It keeps the newly released tag and only the newest workflow run. Override workflow-run retention with `KEEP_WORKFLOW_RUNS=N` when needed.
 Before tests, the release script refreshes declared npm dependencies when a
 lockfile exists and records the active `npx wrangler@4` version in the release
@@ -196,11 +201,12 @@ Bind `ANALYTICS_DB` to that D1 database and set a `STATS_TOKEN` secret. `GITHUB_
 - `npm test` covers version consistency, route presence, homepage navigation/copy, homepage voice chips from shared intent data, voice command intent-family docs, data-driven examples and language-scoped rendering behavior, firmware download embeds, macOS and Raspberry Pi download embeds, latest-only release embed contracts, removed legacy macOS download routes, tracked download redirects, absence of website self-release embeds, translation keys, footer copyright/support links, local link checking, firmware links, compact embedded page structure, LilyGO visual hygiene and stale pre-flashed wording.
 - `npm test` also covers the cookieless redirect/download analytics structure, D1 migration, tracked GitHub asset links, the protected GitHub-runtime `/admin` stats page contract and the release-script dependency/tool preflight.
 - `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. `npm run screenshots:live` captures Dutch live production screenshots at a laptop viewport into `screenshots/live-laptop/`. Neither is part of the default `npm test` run.
-- Current released version `3.1.52` syncs Ask DJ website copy with the
-  canonical Home Assistant integration `v3.1.65+` contract, including Ja/Nee
-  follow-ups, bounded server-side history trim metadata and the separate Ask DJ
-  conversational examples on the Spraak page. Version `3.1.51` added Ask DJ as
-  a major homepage and feature-page product section.
+- Current released version `3.1.53` syncs Ask DJ website copy with the
+  canonical Home Assistant integration `v3.1.69+` contract, including
+  Raspberry Pi read-only history display, central push relay wording, refreshed
+  Ask DJ conversational examples and PR CI validation. Version `3.1.52` synced
+  the earlier `v3.1.65+` Ask DJ contract, including Ja/Nee follow-ups and
+  bounded server-side history trim metadata.
 - Canonical SEO domain is `https://djconnect.dev`; `djconnect.pages.dev` remains a Cloudflare fallback.
 - `https://www.djconnect.dev` should remain a 301 redirect to the apex domain, preserving path and query string.
 - Dynamic GitHub download/install blocks now rerender when the language toggle changes, so generated install text follows NL/EN.

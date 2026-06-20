@@ -57,7 +57,7 @@
     @media (max-width:560px) { .mock { min-height:320px; padding:18px; } .ipad { width:100%; padding:14px; } .screen { padding:16px; } .cover { width:72px; height:72px; } }
 
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.52" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.53" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -103,7 +103,7 @@
     <section>
       <div class="wrap grid-2">
         <article class="card"><h2 data-i18n="closeTitle">Voor bediening dichtbij</h2><p data-i18n="closeText">Gebruik DJConnect vanaf het device dat meestal al naast je ligt.</p></article>
-        <article class="card"><h2 data-i18n="notificationsTitle">Meldingen voor Ask DJ</h2><p data-i18n="notificationsText">Optionele pushmeldingen kunnen je iPhone of iPad wekken voor Ask DJ-sync. De melding is alleen een korte hint; de app haalt echte chatgeschiedenis en acties daarna veilig op via Home Assistant.</p></article>
+        <article class="card"><h2 data-i18n="notificationsTitle">Meldingen voor Ask DJ</h2><p data-i18n="notificationsText">Optionele pushmeldingen kunnen je iPhone of iPad wekken voor Ask DJ-sync via de DJConnect pushrelay. Ze zijn beperkt tot Ask DJ-antwoorden of keuzes die op je wachten; echte chatgeschiedenis en acties haalt de app veilig op via Home Assistant.</p></article>
         <article class="card"><h2 data-i18n="storeTitle">Beta en App Store</h2><p data-i18n="storeText">Join de TestFlight beta zolang er plekken beschikbaar zijn. TestFlight beta's verlopen; de definitieve App Store link volgt zodra de app gepubliceerd is. Voor Spotify gebruik je de Client ID uit je eigen Spotify Developer app in de Home Assistant setup.</p></article>
       </div>
     </section>
@@ -120,9 +120,9 @@
     <p>Copyright Peter van Tol 2026. Released under the MIT License.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.1.52</p>
+    <p class="site-version">DJConnect website v3.1.53</p>
   </footer>
-  <script src="assets/downloads.js?v=3.1.52"></script>
+  <script src="assets/downloads.js?v=3.1.53"></script>
   <script>
     const translations = {
       nl: {
@@ -142,7 +142,7 @@
         closeTitle: "Voor bediening dichtbij",
         closeText: "Gebruik DJConnect vanaf het device dat meestal al naast je ligt.",
         notificationsTitle: "Meldingen voor Ask DJ",
-        notificationsText: "Optionele pushmeldingen kunnen je iPhone of iPad wekken voor Ask DJ-sync. De melding is alleen een korte hint; de app haalt echte chatgeschiedenis en acties daarna veilig op via Home Assistant.",
+        notificationsText: "Optionele pushmeldingen kunnen je iPhone of iPad wekken voor Ask DJ-sync via de DJConnect pushrelay. Ze zijn beperkt tot Ask DJ-antwoorden of keuzes die op je wachten; echte chatgeschiedenis en acties haalt de app veilig op via Home Assistant.",
         storeTitle: "Beta en App Store",
         storeText: "Join de TestFlight beta zolang er plekken beschikbaar zijn. TestFlight beta's verlopen; de definitieve App Store link volgt zodra de app gepubliceerd is. Voor Spotify gebruik je de Client ID uit je eigen Spotify Developer app in de Home Assistant setup.",
         releaseTitle: "Laatste versie",
@@ -167,7 +167,7 @@
         closeTitle: "Control close by",
         closeText: "Use DJConnect from the device that is usually already next to you.",
         notificationsTitle: "Ask DJ notifications",
-        notificationsText: "Optional push notifications can wake your iPhone or iPad for Ask DJ sync. The notification is only a short hint; the app fetches real chat history and actions safely through Home Assistant afterward.",
+        notificationsText: "Optional push notifications can wake your iPhone or iPad for Ask DJ sync through the DJConnect push relay. They are limited to Ask DJ replies or choices waiting for you; the app fetches real chat history and actions safely through Home Assistant.",
         storeTitle: "Beta and App Store",
         storeText: "Join the TestFlight beta while places are available. TestFlight betas expire; the final App Store link will follow once the app is published. For Spotify, use the Client ID from your own Spotify Developer app in the Home Assistant setup.",
         releaseTitle: "Latest version",
@@ -200,6 +200,6 @@
     });
     applyLanguage(localStorage.getItem("djconnect-language") || "nl");
   </script>
-  <script src="assets/site-nav.js?v=3.1.52"></script>
+  <script src="assets/site-nav.js?v=3.1.53"></script>
 </body>
 </html>

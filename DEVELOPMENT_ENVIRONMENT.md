@@ -123,7 +123,9 @@ prompts, issues, logs and diagnostics.
 
 ## Cloudflare Pages
 
-Production deployment is handled by GitHub Actions on pushes to `main`.
+GitHub Actions runs `npm ci`, `npm test` and `npm run build:release` on pull
+requests and pushes to `main`. Production deployment runs only for pushes to
+`main` and manual workflow dispatches after the test job succeeds.
 
 Required GitHub Actions secret:
 

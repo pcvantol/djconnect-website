@@ -73,7 +73,7 @@
     @media (max-width: 860px) { .hero-grid, .grid-2 { grid-template-columns: 1fr; } .nav-inner { flex-wrap: wrap; padding: 12px 0; } .nav-links { order: 3; width: 100%; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; } .nav-links::-webkit-scrollbar { display: none; } }
 
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.52" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.53" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -121,7 +121,7 @@
     <section>
       <div class="wrap grid-2">
         <article class="card"><h2 data-i18n="fixedTitle">Voor vaste bediening</h2><p data-i18n="fixedText">Gebruik je Mac als centrale cockpit voor muziekvragen, output en status.</p></article>
-        <article class="card"><h2 data-i18n="notificationsTitle">Meldingen als synchint</h2><p data-i18n="notificationsText">Optionele Apple pushmeldingen kunnen de Mac attenderen op Ask DJ-updates. Ze bevatten geen tokens, ruwe prompts of volledige history; DJConnect synchroniseert inhoud via Home Assistant zodra je de app opent.</p></article>
+        <article class="card"><h2 data-i18n="notificationsTitle">Meldingen als synchint</h2><p data-i18n="notificationsText">Optionele Apple pushmeldingen kunnen de Mac attenderen op Ask DJ-updates via de DJConnect pushrelay. Ze zijn beperkt tot Ask DJ-antwoorden of wachtende keuzes en bevatten geen tokens, ruwe prompts of volledige history.</p></article>
         <article class="card"><h2 data-i18n="testflightTitle">TestFlight beta</h2><p data-i18n="testflightText">Join de macOS TestFlight beta zolang er plekken beschikbaar zijn. TestFlight beta's verlopen; de definitieve Mac App Store link volgt zodra de app gepubliceerd is.</p></article>
       </div>
     </section>
@@ -138,9 +138,9 @@
     <p>Copyright Peter van Tol 2026. Released under the MIT License.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.1.52</p>
+    <p class="site-version">DJConnect website v3.1.53</p>
   </footer>
-  <script src="assets/downloads.js?v=3.1.52"></script>
+  <script src="assets/downloads.js?v=3.1.53"></script>
   <script>
     const translations = {
       nl: {
@@ -159,7 +159,7 @@
         fixedTitle: "Voor vaste bediening",
         fixedText: "Gebruik je Mac als centrale cockpit voor muziekvragen, output en status.",
         notificationsTitle: "Meldingen als synchint",
-        notificationsText: "Optionele Apple pushmeldingen kunnen de Mac attenderen op Ask DJ-updates. Ze bevatten geen tokens, ruwe prompts of volledige history; DJConnect synchroniseert inhoud via Home Assistant zodra je de app opent.",
+        notificationsText: "Optionele Apple pushmeldingen kunnen de Mac attenderen op Ask DJ-updates via de DJConnect pushrelay. Ze zijn beperkt tot Ask DJ-antwoorden of wachtende keuzes en bevatten geen tokens, ruwe prompts of volledige history.",
         testflightTitle: "TestFlight beta",
         testflightText: "Join de macOS TestFlight beta zolang er plekken beschikbaar zijn. TestFlight beta's verlopen; de definitieve Mac App Store link volgt zodra de app gepubliceerd is.",
         releaseTitle: "Laatste versie",
@@ -183,7 +183,7 @@
         fixedTitle: "Fixed control",
         fixedText: "Use your Mac as the central cockpit for music requests, output and status.",
         notificationsTitle: "Notifications as sync hints",
-        notificationsText: "Optional Apple push notifications can alert the Mac about Ask DJ updates. They contain no tokens, raw prompts or full history; DJConnect syncs content through Home Assistant when you open the app.",
+        notificationsText: "Optional Apple push notifications can alert the Mac about Ask DJ updates through the DJConnect push relay. They are limited to Ask DJ replies or waiting choices and contain no tokens, raw prompts or full history.",
         testflightTitle: "TestFlight beta",
         testflightText: "Join the macOS TestFlight beta while places are available. TestFlight betas expire; the final Mac App Store link will follow once the app is published.",
         releaseTitle: "Latest version",
@@ -216,6 +216,6 @@
     });
     applyLanguage(localStorage.getItem("djconnect-language") || "nl");
   </script>
-  <script src="assets/site-nav.js?v=3.1.52"></script>
+  <script src="assets/site-nav.js?v=3.1.53"></script>
 </body>
 </html>

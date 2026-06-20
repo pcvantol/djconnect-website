@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>DJConnect Admin Stats</title>
+  <meta name="description" content="Interne DJConnect statistieken op basis van D1 aggregate counters en GitHub release downloads." />
+  <link rel="icon" href="assets/djconnect/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/admin.css?v=3.1.54" />
+</head>
+<body>
+  <main class="admin-shell">
+    <header class="admin-hero">
+      <a class="brand" href="/" aria-label="DJConnect home">
+        <img src="assets/djconnect/icon.svg" alt="" />
+        <span>DJConnect</span>
+      </a>
+      <div>
+        <p class="eyebrow">Internal admin</p>
+        <h1>Operator tooling</h1>
+        <p class="lead">Aggregate website stats and incident-response actions for DJConnect operators.</p>
+      </div>
+    </header>
+
+    <section class="toolbar" aria-label="Stats controls">
+      <label>
+        <span>Stats token</span>
+        <input id="stats-token" type="password" autocomplete="off" placeholder="STATS_TOKEN" />
+      </label>
+      <label>
+        <span>Days</span>
+        <select id="stats-days">
+          <option value="7">7</option>
+          <option value="30" selected>30</option>
+          <option value="90">90</option>
+          <option value="365">365</option>
+        </select>
+      </label>
+      <button id="load-stats" type="button">Refresh</button>
+    </section>
+
+    <p id="stats-status" class="status" role="status">Enter the stats token to load aggregate data.</p>
+
+    <section class="metric-grid" aria-label="Summary">
+      <article class="metric">
+        <span>Redirect clicks</span>
+        <strong id="metric-clicks">-</strong>
+      </article>
+      <article class="metric">
+        <span>GitHub downloads</span>
+        <strong id="metric-downloads">-</strong>
+      </article>
+      <article class="metric">
+        <span>D1 rows</span>
+        <strong id="metric-rows">-</strong>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>D1 redirect clicks</h2>
+        <p>Daily aggregate counters from <code>click_counters</code>.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Target</th>
+              <th>Source</th>
+              <th class="numeric">Clicks</th>
+            </tr>
+          </thead>
+          <tbody id="click-totals">
+            <tr><td colspan="3">No data loaded.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>GitHub release downloads</h2>
+        <p>Release asset totals from the configured DJConnect repositories.</p>
+      </div>
+      <div id="download-groups" class="download-groups">No data loaded.</div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Daily D1 rows</h2>
+        <p>Raw aggregate rows returned by <code>/api/stats</code>.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Day</th>
+              <th>Target</th>
+              <th>Source</th>
+              <th class="numeric">Clicks</th>
+            </tr>
+          </thead>
+          <tbody id="daily-rows">
+            <tr><td colspan="4">No data loaded.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel danger-zone" aria-labelledby="revoke-title">
+      <div class="panel-head">
+        <div>
+          <h2 id="revoke-title">Revoke install token</h2>
+          <p>Operator-only incident response for compromised per-install <code>djci_...</code> tokens.</p>
+        </div>
+      </div>
+
+      <div class="warning">
+        Revoking an install token blocks push/register/event calls for that Home Assistant installation until a new token is provisioned separately. This action does not rotate or issue a replacement token.
+      </div>
+
+      <form id="revoke-form" class="operator-form">
+        <div class="form-intro">
+          <h3>Find target by IDs</h3>
+          <p>Use only install ID and token ID. Do not paste raw <code>djci_...</code> token values.</p>
+        </div>
+        <label>
+          <span>API base URL</span>
+          <input id="operator-api-base" type="url" value="https://api.djconnect.dev" autocomplete="off" />
+        </label>
+        <label>
+          <span>Operator/bootstrap token</span>
+          <input id="operator-token" type="password" autocomplete="off" placeholder="Operator bearer token" />
+        </label>
+        <label>
+          <span>HA install ID</span>
+          <input id="revoke-install-id" type="text" autocomplete="off" placeholder="example-ha-install" />
+        </label>
+        <label>
+          <span>Install token ID</span>
+          <input id="revoke-token-id" type="text" autocomplete="off" placeholder="example-install-token-id" />
+        </label>
+        <label>
+          <span>Reason</span>
+          <select id="revoke-reason" required>
+            <option value="">Select reason</option>
+            <option value="compromised">compromised</option>
+            <option value="operator_requested">operator_requested</option>
+            <option value="cleanup">cleanup</option>
+            <option value="other">other</option>
+          </select>
+        </label>
+        <div class="operator-actions">
+          <button id="prepare-revoke" type="submit">Prepare revoke</button>
+        </div>
+      </form>
+
+      <div id="revoke-confirm" class="confirm-box" hidden>
+        <h3>Confirm revoke</h3>
+        <dl>
+          <div><dt>Install ID</dt><dd id="confirm-install-id">-</dd></div>
+          <div><dt>Token ID</dt><dd id="confirm-token-id">-</dd></div>
+          <div><dt>Reason</dt><dd id="confirm-reason">-</dd></div>
+        </dl>
+        <label class="check-row">
+          <input id="confirm-revoke-check" type="checkbox" />
+          <span>I understand this disables the install token without provisioning a replacement.</span>
+        </label>
+        <button id="execute-revoke" class="danger-button" type="button" disabled>Revoke token</button>
+      </div>
+
+      <p id="revoke-status" class="status" role="status">No revoke prepared.</p>
+    </section>
+  </main>
+
+  <script src="assets/admin.js?v=3.1.54" defer></script>
+</body>
+</html>

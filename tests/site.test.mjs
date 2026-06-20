@@ -1052,24 +1052,84 @@ test("download and HACS clicks use cookieless aggregate redirects", async () => 
   assert.doesNotMatch(combined, /x-forwarded-for/i);
 });
 
-test("admin download stats page is protected and GitHub-runtime only", async () => {
-  const admin = await read("functions/admin.js");
+test("D1 admin UI uses token-protected stats API without restoring legacy route", async () => {
+  const [stats, sitemap, adminHtml, adminJs, adminCss] = await Promise.all([
+    read("functions/api/stats.js"),
+    read("wwwroot/sitemap.xml"),
+    read("wwwroot/admin.html"),
+    read("wwwroot/assets/admin.js"),
+    read("wwwroot/assets/admin.css")
+  ]);
 
-  assert.doesNotMatch(admin, /ADMIN_USER/);
-  assert.doesNotMatch(admin, /ADMIN_PASSWORD/);
-  assert.doesNotMatch(admin, /Basic realm="DJConnect Admin"/);
-  assert.doesNotMatch(admin, /Authorization/);
-  assert.match(admin, /Afgeschermd via Cloudflare Access/);
-  assert.match(admin, /api\.github\.com\/repos\/pcvantol\/\$\{repo\}\/releases\?per_page=30/);
-  assert.match(admin, /ALLOWED_RELEASE_REPOS/);
-  assert.match(admin, /download_count/);
-  assert.match(admin, /Runtime opgehaald uit de GitHub API/);
-  assert.match(admin, /database persistence/);
-  assert.match(admin, /website-redirect clicks/);
-  assert.match(admin, /X-Robots-Tag/);
-  assert.match(admin, /noindex, nofollow/);
-  assert.doesNotMatch(admin, /ANALYTICS_DB/);
-  assert.doesNotMatch(admin, /STATS_TOKEN/);
+  await assertMissing("functions/admin.js");
+  assert.doesNotMatch(sitemap, /\/admin/);
+  assert.match(adminHtml, /<meta name="robots" content="noindex, nofollow"/);
+  assert.match(adminHtml, /Operator tooling/);
+  assert.match(adminHtml, /D1 redirect clicks/);
+  assert.match(adminHtml, /assets\/admin\.js\?v=/);
+  assert.match(adminHtml, /assets\/admin\.css\?v=/);
+  assert.match(adminHtml, /STATS_TOKEN/);
+  assert.match(adminJs, /\/api\/stats\?days=/);
+  assert.match(adminJs, /Authorization: `Bearer \$\{token\}`/);
+  assert.match(adminJs, /sessionStorage/);
+  assert.match(adminJs, /redirectClicks/);
+  assert.match(adminJs, /githubDownloads/);
+  assert.match(adminJs, /No D1 redirect clicks/);
+  assert.match(adminCss, /\.metric-grid/);
+  assert.match(stats, /STATS_TOKEN/);
+  assert.match(stats, /ANALYTICS_DB/);
+  assert.match(stats, /click_counters/);
+  assert.match(stats, /download_count/);
+  assert.match(stats, /Not found/);
+  assert.match(stats, /No cookies, IP addresses, user agents or identifiers are stored/);
+});
+
+test("operator install-token revoke flow is explicit, bootstrap-only and redacted", async () => {
+  const [adminHtml, adminJs, readme, testsDoc] = await Promise.all([
+    read("wwwroot/admin.html"),
+    read("wwwroot/assets/admin.js"),
+    read("README.md"),
+    read("TESTS.md")
+  ]);
+
+  assert.match(adminHtml, /Revoke install token/);
+  assert.match(adminHtml, /Find target by IDs/);
+  assert.match(adminHtml, /Do not paste raw <code>djci_\.\.\.<\/code> token values/);
+  assert.match(adminHtml, /Operator\/bootstrap token/);
+  assert.match(adminHtml, /type="password"/);
+  assert.match(adminHtml, /example-ha-install/);
+  assert.match(adminHtml, /example-install-token-id/);
+  assert.match(adminHtml, /compromised/);
+  assert.match(adminHtml, /operator_requested/);
+  assert.match(adminHtml, /cleanup/);
+  assert.match(adminHtml, /other/);
+  assert.match(adminHtml, /I understand this disables the install token without provisioning a replacement/);
+  assert.match(adminHtml, /disabled>Revoke token/);
+  assert.match(adminHtml, /blocks push\/register\/event calls/);
+
+  assert.match(adminJs, /\/v1\/operator\/install-token\/revoke/);
+  assert.match(adminJs, /https:\/\/api\.djconnect\.dev/);
+  assert.match(adminJs, /Authorization: `Bearer \$\{operatorToken\}`/);
+  assert.match(adminJs, /JSON\.stringify\(preparedRevoke\)/);
+  assert.match(adminJs, /ha_install_id: haInstallId/);
+  assert.match(adminJs, /token_id: tokenId/);
+  assert.match(adminJs, /reason/);
+  assert.match(adminJs, /confirmRevokeCheck\.checked/);
+  assert.match(adminJs, /Explicit confirmation is required before revoking/);
+  assert.match(adminJs, /sanitizeError/);
+  assert.match(adminJs, /djci_\[redacted\]/);
+  assert.match(adminJs, /Bearer \[redacted\]/);
+  assert.match(adminJs, /Provisioning a new token is a separate operator action/);
+  assert.doesNotMatch(adminJs, /console\./);
+  assert.doesNotMatch(adminHtml + adminJs, /djci_[A-Za-z0-9_-]{16,}/);
+  assert.doesNotMatch(adminHtml + adminJs, /DJCONNECT_RELAY_SECRET\s*=/);
+
+  assert.match(readme, /operator-only install-token revoke flow/);
+  assert.match(readme, /New token provisioning is a separate operator action/);
+  assert.match(testsDoc, /happy path revoke/);
+  assert.match(testsDoc, /confirm-required/);
+  assert.match(testsDoc, /API error rendering/);
+  assert.match(testsDoc, /secret redaction/);
 });
 
 test("redirect endpoints expose only current public targets", async () => {

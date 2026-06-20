@@ -12,6 +12,9 @@
 /assets/downloads.js
   Cache-Control: no-cache
 
+/assets/admin.js
+  Cache-Control: no-cache
+
 /assets/releases.js
   Cache-Control: no-cache
 

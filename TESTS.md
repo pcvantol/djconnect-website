@@ -134,11 +134,16 @@
 - Verify HACS and download buttons route through `/go/...` redirects and still land on the expected destination.
 - Verify `/go/linux-install` resolves to the latest `pcvantol/djconnect-pi-releases` `.tar.gz` asset.
 - Verify `/api/stats` is unavailable without `STATS_TOKEN` and returns aggregate-only data when authenticated.
-- Verify `/admin` is protected by Cloudflare Access, returns noindex/no-store
-  headers after authentication and renders GitHub release asset download counts
-  only. It must not depend on D1 persistence or website redirect click counts
-  yet. Do not document private Access policy details or credentials in docs,
-  issues or diagnostics.
+- Verify the old `/admin` Pages Function route is absent. The static
+  `admin.html` UI must use token-protected `/api/stats`; that endpoint combines
+  GitHub release asset `download_count` download counts with D1 redirect-click
+  counters when `ANALYTICS_DB` is bound.
+- Verify the operator install-token revoke UI targets the bootstrap-only
+  `POST /v1/operator/install-token/revoke` contract, covers happy path revoke,
+  confirm-required behavior, API error rendering and secret redaction, and does
+  not include real tokens or production identifiers in source or fixtures.
+  Do not document private access details or credentials in docs, issues or
+  diagnostics.
 - Verify `https://djconnect.dev` is used in canonical tags, `robots.txt`, `sitemap.xml` and public install commands.
 - Verify every public page has one `main` landmark, one `h1`, a visible-on-focus
   skip link to `#mainContent`, explicit language metadata, and decorative empty

@@ -55,8 +55,6 @@ Static landing page for DJConnect, published through Cloudflare Pages.
 - `functions/api/releases.js`: Cloudflare Pages Function proxy for GitHub release data.
 - `functions/go/`: privacy-friendly redirect endpoints for HACS and downloadable assets.
 - `functions/api/stats.js`: token-protected aggregate stats endpoint that combines redirect clicks with GitHub asset `download_count` totals.
-- `functions/admin.js`: admin page for runtime GitHub download statistics;
-  production access is protected externally with Cloudflare Access for `/admin`.
 - `migrations/`: optional D1 migration for cookieless aggregate click counters.
 - `VERSION`: current site version.
 
@@ -202,11 +200,9 @@ Download and HACS clicks can be counted without cookies, IP addresses, user agen
 - Website redirect clicks go through `/go/...` and are stored as daily aggregate totals in D1.
 - Direct GitHub download totals come from GitHub release asset `download_count`.
 - `/api/stats` combines both sources behind a `STATS_TOKEN`.
-- `/admin` is an internal admin page for GitHub release asset download counts
-  at runtime only. It must be protected by a Cloudflare Access application for
-  `https://djconnect.dev/admin`. Access users and policies are managed in
-  Cloudflare Zero Trust, not in this repository. The page does not persist data
-  and does not include website redirect click counters yet.
+- `/admin` is retired. The new static `admin.html` UI reads the token-protected
+  `/api/stats` endpoint and shows D1 redirect-click counters plus GitHub
+  download totals.
 
 Cloudflare setup:
 
@@ -233,6 +229,18 @@ Or use the repository helper:
 STATS_TOKEN='your-stats-token' npm run stats:check
 STATS_DAYS=7 STATS_TOKEN='your-stats-token' npm run stats:check
 ```
+
+Open `https://djconnect.dev/admin.html` for the browser UI. Keep external
+access protected with Cloudflare Access or another edge policy; the UI does not
+contain secrets and still requires `STATS_TOKEN` before it can read data.
+
+The same admin UI also contains an operator-only install-token revoke flow for
+incident response when a per-install `djci_...` token is compromised. It is
+designed for bootstrap/operator auth against `POST
+https://api.djconnect.dev/v1/operator/install-token/revoke`, requires explicit
+confirmation and a bounded reason (`compromised`, `operator_requested`,
+`cleanup` or `other`), and never provisions a replacement token automatically.
+New token provisioning is a separate operator action.
 
 The redirect layer is fail-open: if `ANALYTICS_DB` is not configured yet, users are still redirected and no personal data is stored.
 

@@ -2,7 +2,7 @@
 
 This document records the implementation-level design choices for the DJConnect website. It is reverse-engineered from the repository and must be reviewed for every release.
 
-Current website version: `3.1.53`
+Current website version: `3.1.54`
 
 ## Scope
 
@@ -87,9 +87,10 @@ Cloudflare Pages Functions are kept small and task-specific:
 
 - `/api/releases`: proxies GitHub release API calls and applies a response cache.
 - `/api/stats`: returns token-protected aggregate click counters plus GitHub `download_count` totals.
-- `/admin`: HTML page that fetches GitHub release asset `download_count` values
-  at runtime for app, firmware and Linux/Pi release repositories. Production
-  access is protected outside the function with Cloudflare Access for `/admin`.
+- `admin.html`: static internal UI for the D1-backed `/api/stats` contract.
+  The old `/admin` Pages Function route is retired.
+- `admin.html` operator tooling: prepares explicit install-token revocation
+  calls against the DJConnect API bootstrap/operator contract.
 - `/go/[target]`: redirects known targets such as HACS and latest Linux install bundle.
 - `/go/download`: redirects allowed GitHub release asset URLs.
 
@@ -103,7 +104,6 @@ Sources:
 
 - `functions/api/releases.js`
 - `functions/api/stats.js`
-- `functions/admin.js`
 - `functions/go/[target].js`
 - `functions/go/download.js`
 - `functions/_shared/analytics.js`
@@ -138,7 +138,6 @@ Sources:
 
 - `functions/_shared/analytics.js`
 - `functions/api/stats.js`
-- `functions/admin.js`
 - `migrations/0001_create_click_counters.sql`
 
 ### Latest-only Release Embeds
@@ -446,9 +445,8 @@ Source:
 
 - GitHub tokens are read only from server-side environment bindings and are never exposed to the browser.
 - `/api/stats` requires `STATS_TOKEN`; unauthorized requests return `404`.
-- `/admin` uses noindex/no-store headers and must be protected by a Cloudflare
-  Access application for `https://djconnect.dev/admin`. Admin users and access
-  policies live in Cloudflare Zero Trust, not in this repository.
+- The old `/admin` Pages Function route is retired. The static `admin.html`
+  surface is `noindex` and still requires `STATS_TOKEN` to load data.
 - Download redirects validate that the destination is a GitHub release URL in an allowed DJConnect release repo.
 - Redirect analytics store aggregate counts only.
 - No cookies or persistent browser identifiers are set by the website code.
@@ -457,7 +455,6 @@ Sources:
 
 - `functions/_shared/analytics.js`
 - `functions/api/stats.js`
-- `functions/admin.js`
 - `functions/go/download.js`
 - `README.md`
 

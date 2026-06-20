@@ -13,10 +13,12 @@ Cross-repo contract changes are tracked only in
 - Replace the homepage carousel mockups with final product screenshots when the apps and hardware visuals are ready.
 - Replace the iOS and macOS hero mockups with real app screenshots once the native clients are ready.
 - Replace the Raspberry Pi HyperPixel-style mockup with a real product screenshot once the Linux client UI is finalized.
-- Keep `/admin` protected by Cloudflare Access and verify the Access policy
-  before public repository changes or admin-page releases.
-- Extend `/admin` beyond GitHub runtime `download_count` totals with D1 redirect
-  click counters when the persistence layer is ready.
+- Keep the old `/admin` Pages Function retired; the static `admin.html` UI
+  should stay token-backed through `/api/stats`.
+- Bind `ANALYTICS_DB` in Cloudflare Pages when website redirect-click totals
+  should be included in `/api/stats`.
+- Wire the admin install-token revoke UI to the live API once
+  `POST /v1/operator/install-token/revoke` is implemented in `djconnect-api`.
 - Replace footer version when preparing the next release.
 
 ## Platform

@@ -9,7 +9,8 @@
 - Verify the homepage Ask DJ section explains chat, personal recommendations,
   explicit `Play Now`, Watch/iPhone/Mac continuity, Home Assistant server-side
   DJ Memory/history, Ja/Nee follow-ups, bounded history trim behavior,
-  voice/PTT with Assist STT/TTS and compact privacy boundaries.
+  voice/PTT with Assist STT/TTS, optional Apple push notifications as wake/sync
+  hints and compact privacy boundaries.
 - Verify the homepage `Kies je interface` section includes macOS, iPhone/iPad,
   Voice Assistant, Embedded device and Linux/Raspberry Pi cards. The Voice
   Assistant card must link to `wwwroot/voice-assistant.html`.
@@ -22,9 +23,11 @@
   playback-control, default playlist, playlist, artist-with-track, album, track
   and artist voice intent families.
 - Verify the Spraak page shows Ask DJ examples separately from deterministic
-  voice commands, including conversational follow-ups, album/artist questions,
-  concert agenda, listening-profile analysis, recommendations with explicit
-  `Play Now`, DJ announcements and ambient system facts.
+  voice commands, including conversational follow-ups, contextual play
+  follow-ups, album/artist questions, concert agenda, next-track info,
+  listening-profile analysis, recommendations with explicit `Play Now`, seeded
+  mix/playlist requests, DJ announcements, ambient system facts and idle
+  suggestions.
 - Verify the voice commands page shows only the selected NL or EN example phrases when the language toggle changes.
 - Verify the voice commands page mirrors the canonical HA repo
   `examples/voice_intents.json` examples: current-track questions read status
@@ -50,7 +53,9 @@
   firewall/security software such as ESET, Little Snitch or LuLu.
 - Open `wwwroot/privacy.html` and verify it clearly covers website analytics,
   app/Home Assistant token storage, voice/audio processing, support email,
-  absence of tracking cookies and the `support@djconnect.dev` privacy contact.
+  optional Apple push notifications as wake/sync hints without tokens or full
+  Ask DJ history, absence of tracking cookies and the `support@djconnect.dev`
+  privacy contact.
 - Verify public page footers link to `wwwroot/support.html` rather than directly
   to GitHub Issues.
 - Verify public page footers link to `wwwroot/privacy.html` for App Store

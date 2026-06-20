@@ -382,12 +382,46 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     }
   },
   {
+    "id": "contextual_play_followup",
+    "playsMusic": true,
+    "action": "play_music",
+    "messageKind": "user",
+    "origin": null,
+    "description": "Short playback follow-ups resolve against recent Ask DJ chat context. If the recent track has no artist context, Ask DJ asks which artist the user means instead of guessing.",
+    "pill": {
+      "nl": "Context",
+      "en": "Context"
+    },
+    "title": {
+      "nl": "Contextueel afspelen",
+      "en": "Contextual playback"
+    },
+    "examples": {
+      "nl": [
+        "Speel af",
+        "Speel maar",
+        "Speel maar af",
+        "Zet maar op",
+        "Wat is die beuker?",
+        "Speel die dikke knaller",
+        "Vertel iets over die monsterhit",
+        "Welke artiest bedoel je?"
+      ],
+      "en": [
+        "Play it",
+        "Play that",
+        "Play this",
+        "Which artist do you mean?"
+      ]
+    }
+  },
+  {
     "id": "album_discography",
     "playsMusic": false,
     "action": "none",
     "messageKind": "user",
     "origin": null,
-    "description": "Ask for an artist's albums. DJConnect can return a chronological album list with proxied album covers.",
+    "description": "Ask for an artist's albums. DJConnect can return a chronological album list with proxied album covers and Play Now actions per album.",
     "pill": {
       "nl": "Albums",
       "en": "Albums"
@@ -401,7 +435,8 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "Welke albums hebben Radiohead uitgebracht?",
         "Welke albums bracht deze artiest uit?",
         "Welke albums zijn er van Prince?",
-        "Albums van Suzan en Freek"
+        "Albums van Suzan en Freek",
+        "Geef me de albums van Guns N' Roses"
       ],
       "en": [
         "Which albums has Radiohead released?",
@@ -499,6 +534,34 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     }
   },
   {
+    "id": "next_track_info",
+    "playsMusic": false,
+    "action": "none",
+    "messageKind": "user",
+    "origin": null,
+    "description": "Ask what the next queued track is. DJConnect reads Spotify queue context and can return track, artist, album art and a Play Now action without skipping automatically.",
+    "pill": {
+      "nl": "Volgende",
+      "en": "Next"
+    },
+    "title": {
+      "nl": "Volgende track",
+      "en": "Next track"
+    },
+    "examples": {
+      "nl": [
+        "Wat wordt het volgende nummer?",
+        "Wat is het volgende nummer?",
+        "Welke track komt hierna?"
+      ],
+      "en": [
+        "What is the next song?",
+        "Which track is up next?",
+        "What will play next?"
+      ]
+    }
+  },
+  {
     "id": "personal_music_profile_analysis",
     "playsMusic": false,
     "action": "profile_analysis",
@@ -559,6 +622,38 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     }
   },
   {
+    "id": "seed_playlist_mix",
+    "playsMusic": false,
+    "action": "none",
+    "messageKind": "user",
+    "origin": null,
+    "description": "Ask DJ to compose a playable mix from artist, track or genre seeds. The response returns a track_mix Play Now action and can later save the mix as a Spotify playlist.",
+    "pill": {
+      "nl": "Mix",
+      "en": "Mix"
+    },
+    "title": {
+      "nl": "Mix samenstellen",
+      "en": "Build a mix"
+    },
+    "examples": {
+      "nl": [
+        "Stel een playlist samen op basis van Radiohead, Massive Attack en Portishead",
+        "Maak een mix met Above & Beyond, Armin van Buuren en Ferry Corsten",
+        "Ik wil een playlist obv tracks Reckoner, Teardrop en Angel",
+        "Ik wil een playlist in genre ambient, techno en downtempo",
+        "Sla deze mix op als Spotify playlist"
+      ],
+      "en": [
+        "Create a playlist based on Radiohead, Massive Attack and Portishead",
+        "Make a mix with Above & Beyond, Armin van Buuren and Ferry Corsten",
+        "I want a playlist based on tracks Reckoner, Teardrop and Angel",
+        "I want a playlist in genres ambient, techno and downtempo",
+        "Save this mix as a Spotify playlist"
+      ]
+    }
+  },
+  {
     "id": "dj_announcement",
     "playsMusic": false,
     "action": "announce",
@@ -607,6 +702,30 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
       ],
       "en": [
         "Automatic DJ fact when a new album or artist starts"
+      ]
+    }
+  },
+  {
+    "id": "idle_suggestion",
+    "playsMusic": false,
+    "action": "none",
+    "messageKind": "system",
+    "origin": "idle_suggestion",
+    "description": "Backend-generated Ask DJ system message when the client opens Ask DJ while Spotify is idle. It can include one personalized Play Now action.",
+    "pill": {
+      "nl": "Suggestie",
+      "en": "Suggestion"
+    },
+    "title": {
+      "nl": "Idle suggestie",
+      "en": "Idle suggestion"
+    },
+    "examples": {
+      "nl": [
+        "Er speelt nu niets. Zin in iets nieuws?"
+      ],
+      "en": [
+        "Nothing is playing right now. Want something new?"
       ]
     }
   }

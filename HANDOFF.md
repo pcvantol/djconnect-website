@@ -46,8 +46,9 @@
   copy clear that it runs through Home Assistant with DJConnect integration
   v3.1.65+, uses compact bounded server-side DJ Memory/history per Home
   Assistant user, supports Apple Watch/iPhone/Mac continuity, can show Ja/Nee
-  follow-up controls, and starts recommendations only after an explicit
-  `Play Now` tap.
+  follow-up controls, can use optional Apple push notifications only as
+  wake/sync hints, and starts recommendations only after an explicit `Play Now`
+  tap.
 - The features page summarizes the main DJConnect functions and mentions Ask DJ
   plus the bonus mini-games: Paddle Rally, Meteor Run, Sky Dash & Maze Chase.
 - The voice commands page documents the user-facing intent families,

@@ -253,6 +253,10 @@ test("homepage promotes Ask DJ as a major product feature", async () => {
   assert.match(index, /Home Assistant STT transcribeert/);
   assert.match(index, /TTS kan audio-antwoorden leveren/);
   assert.match(index, /Replay verschijnt alleen als er audio beschikbaar is/);
+  assert.match(index, /Optionele meldingen/);
+  assert.match(index, /pushmeldingen gebruiken als wake- of synchint/);
+  assert.match(index, /geen tokens, ruwe prompts, volledige history of lange DJ-antwoorden/);
+  assert.match(index, /The notification contains no tokens, raw prompts, full history or long DJ replies/);
   assert.match(index, /Clients bewaren geen DJ Memory/);
   assert.match(index, /zonder Spotify OAuth tokens, bearer tokens, raw audio of volledige prompts/);
   assert.match(index, /Ruwe voice-audio wordt standaard niet opgeslagen/);
@@ -590,16 +594,40 @@ test("voice commands page documents intent families and DJ response styles", asy
   assert.match(intents, /Play playlist DJConnect/);
   assert.match(intents, /Speel mijn standaard playlist/);
   assert.match(intents, /Play my default playlist/);
-  assert.match(intents, /"id": "conversation_followup"/);
+  const askDjIntentSource = intents.split("window.DJCONNECT_ASK_DJ_INTENTS = [")[1];
+  const actualAskDjIntentOrder = [...askDjIntentSource.matchAll(/"id": "([^"]+)"/g)].map((match) => match[1]);
+  assert.deepEqual(actualAskDjIntentOrder, [
+    "conversation_followup",
+    "contextual_play_followup",
+    "album_discography",
+    "similar_artists",
+    "artist_genre_style",
+    "concert_agenda",
+    "next_track_info",
+    "personal_music_profile_analysis",
+    "personal_music_recommendations",
+    "seed_playlist_mix",
+    "dj_announcement",
+    "ambient_music_fact",
+    "idle_suggestion"
+  ]);
   assert.match(intents, /Geeft niet/);
+  assert.match(intents, /Speel maar af/);
+  assert.match(intents, /Which artist do you mean\?/);
   assert.match(intents, /Welke albums hebben Radiohead uitgebracht\?/);
+  assert.match(intents, /Geef me de albums van Guns N' Roses/);
   assert.match(intents, /Welke artiesten maken vergelijkbare muziek als wat nu speelt\?/);
   assert.match(intents, /Wat voor muziek maakt Beastie Boys\?/);
   assert.match(intents, /Wanneer speelt Radiohead in Nederland\?/);
+  assert.match(intents, /Wat wordt het volgende nummer\?/);
+  assert.match(intents, /What will play next\?/);
   assert.match(intents, /Omschrijf eens waar ik zoal naar luisterde de afgelopen maand/);
   assert.match(intents, /Ik voel me moe en geprikkeld, zet iets ontspannends klaar/);
+  assert.match(intents, /Stel een playlist samen op basis van Radiohead, Massive Attack en Portishead/);
+  assert.match(intents, /Save this mix as a Spotify playlist/);
   assert.match(intents, /Geef me een leuke aankondiging voor wat nu speelt/);
   assert.match(intents, /Automatisch DJ feitje bij nieuw album of nieuwe artiest/);
+  assert.match(intents, /Er speelt nu niets\. Zin in iets nieuws\?/);
   assert.match(intents, /Play Now (buttons|actions)/);
   assert.match(intents, /"messageKind": "system"/);
   assert.doesNotMatch(intents, /Zet shuffle aan/);
@@ -686,6 +714,11 @@ test("privacy policy page covers App Store requirements", async () => {
   assert.match(privacy, /without storing IP address, user agent, referrer or unique visitor ID/);
   assert.match(privacy, /Spotify tokens, Home Assistant tokens en koppelgegevens blijven lokaal/);
   assert.match(privacy, /Spotify Developer app, Client ID en Home Assistant-configuratie/);
+  assert.match(privacy, /Apple meldingen/);
+  assert.match(privacy, /APNs-registratie per gebruiker, device en token/);
+  assert.match(privacy, /Pushberichten zijn alleen wake- of synchints/);
+  assert.match(privacy, /geen Spotify tokens, Home Assistant tokens, ruwe prompts, volledige DJ Memory\/history of lange DJ-antwoorden/);
+  assert.match(privacy, /Push messages are only wake or sync hints/);
   assert.match(privacy, /Voice en audio/);
   assert.match(privacy, /Home Assistant Assist pipeline/);
   assert.match(privacy, /support@djconnect\.dev/);
@@ -827,6 +860,9 @@ test("macOS page shows public binary release repo", async () => {
   assert.match(macos, /href="testflight-macos\.html" data-i18n="testflightCta">Join TestFlight beta<\/a>/);
   assert.match(macos, /data-i18n="testflightTitle">TestFlight beta<\/h2>/);
   assert.match(macos, /TestFlight beta's verlopen/);
+  assert.match(macos, /Meldingen als synchint/);
+  assert.match(macos, /geen tokens, ruwe prompts of volledige history/);
+  assert.match(macos, /Notifications as sync hints/);
   assert.match(macos, /data-i18n="releaseTitle">Laatste versie<\/h2>/);
   assert.doesNotMatch(macos, /Download binaries/);
   assert.doesNotMatch(macos, /Downloads voorbereid/);
@@ -847,6 +883,9 @@ test("iOS page labels the platform route as home", async () => {
   assert.match(ios, /TestFlight beta's verlopen/);
   assert.match(ios, /Client ID uit je eigen Spotify Developer app/);
   assert.match(ios, /Client ID from your own Spotify Developer app/);
+  assert.match(ios, /Meldingen voor Ask DJ/);
+  assert.match(ios, /alleen een korte hint/);
+  assert.match(ios, /Ask DJ notifications/);
   assert.match(ios, /data-i18n="releaseTitle">Laatste versie<\/h2>/);
   assert.match(ios, /data-github-downloads/);
   assert.match(ios, /data-github-repo="djconnect-app-releases"/);

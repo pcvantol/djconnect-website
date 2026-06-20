@@ -2,6 +2,15 @@
 
 All notable changes to this website are grouped per release.
 
+## Unreleased
+
+- Synced the Ask DJ example data with the latest Home Assistant integration
+  `ask_dj_intents`, including contextual play follow-ups, next-track info,
+  seeded mix/playlist requests and idle suggestions.
+- Updated website and privacy copy for optional Apple push notifications,
+  clarifying that they are wake/sync hints and do not carry tokens, raw prompts
+  or full Ask DJ history.
+
 ## DJConnect website v3.1.52 - 2026-06-20
 
 - Synced the website Ask DJ copy with the Home Assistant integration v3.1.65

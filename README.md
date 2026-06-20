@@ -215,6 +215,10 @@ Then add these Cloudflare Pages bindings/secrets for project `djconnect`:
 
 - D1 binding: `ANALYTICS_DB` -> `djconnect_analytics`
 - Secret: `STATS_TOKEN` -> a private token for `/api/stats`
+- Secret: `DJCONNECT_RELAY_SECRET` -> API operator/bootstrap secret used only
+  by server-side Pages Functions for operator actions.
+- Optional variable: `DJCONNECT_API_BASE_URL` -> defaults to
+  `https://api.djconnect.dev`.
 - Optional secret: `GITHUB_TOKEN` -> only needed for private release repos or higher GitHub API limits
 
 Fetch stats:
@@ -231,16 +235,20 @@ STATS_DAYS=7 STATS_TOKEN='your-stats-token' npm run stats:check
 ```
 
 Open `https://djconnect.dev/operator.html` for the browser UI. Keep external
-access protected with Cloudflare Access or another edge policy; the UI does not
-contain secrets and still requires `STATS_TOKEN` before it can read data.
+access protected with Cloudflare Access or another edge policy for both
+`/operator` and `/api/operator/*`; the UI does not contain operator secrets and
+still requires `STATS_TOKEN` before it can read stats data.
 
 The same admin UI also contains an operator-only install-token revoke flow for
 incident response when a per-install `djci_...` token is compromised. It is
-designed for bootstrap/operator auth against `POST
-https://api.djconnect.dev/v1/operator/install-token/revoke`, requires explicit
-confirmation and a bounded reason (`compromised`, `operator_requested`,
-`cleanup` or `other`), and never provisions a replacement token automatically.
-New token provisioning is a separate operator action.
+implemented through the server-side Pages Function
+`POST /api/operator/install-token/revoke`, which calls
+`POST https://api.djconnect.dev/v1/operator/install-token/revoke` with
+`DJCONNECT_RELAY_SECRET`. The browser request contains only `ha_install_id`,
+`token_id` and a bounded reason such as
+`operator-disabled-compromised-install`; it never sends raw `djci_...` token
+material or the operator secret. New token provisioning is a separate operator
+action.
 
 The redirect layer is fail-open: if `ANALYTICS_DB` is not configured yet, users are still redirected and no personal data is stored.
 

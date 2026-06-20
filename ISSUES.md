@@ -12,8 +12,8 @@ Use GitHub Issues for active tracking. This file captures known repository-level
 - `/api/stats` requires `STATS_TOKEN`; without it the endpoint intentionally returns unauthorized responses.
 - `/admin` is retired; the new static `operator.html` UI uses token-protected
   `/api/stats`.
-- The admin UI has a proposed operator-only install-token revoke action, but it
-  depends on the API repo adding `POST /v1/operator/install-token/revoke`.
+- The admin UI install-token revoke action depends on Cloudflare Access or an
+  equivalent edge policy protecting `/operator` and `/api/operator/*`.
 - The Home Assistant badge uses the official Home Assistant brand logo; confirm formal "Works with Home Assistant" certification requirements before presenting it as a certification mark.
 
 ## Resolved

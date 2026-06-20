@@ -12,7 +12,7 @@
 - Cloudflare Pages project: `djconnect`
 - Source directory: `wwwroot`
 - Release publish directory: `dist/wwwroot`
-- Current version: `3.1.55`
+- Current version: `3.1.56`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Platform overview page with CSS architecture diagram: `wwwroot/platform.html`
@@ -116,9 +116,12 @@
   reads the token-protected `/api/stats` endpoint, combining GitHub release
   asset download counts with optional D1 redirect-click counters.
 - `operator.html` also includes an operator-only install-token revoke flow for
-  compromised per-install `djci_...` tokens. It is built against bootstrap auth
-  and `POST https://api.djconnect.dev/v1/operator/install-token/revoke`; it
-  disables without issuing a replacement token.
+  compromised per-install `djci_...` tokens. The browser calls
+  `POST /api/operator/install-token/revoke`; that Pages Function uses
+  server-side `DJCONNECT_RELAY_SECRET` to call
+  `POST https://api.djconnect.dev/v1/operator/install-token/revoke`. It disables
+  without issuing a replacement token and never sends raw token material from
+  the browser.
 - `scripts/check-stats.mjs` can be run with `STATS_TOKEN=... npm run stats:check` to print aggregate redirect clicks and GitHub download totals.
 - The analytics design is intentionally cookieless and identifier-free. Do not add IP address, user agent, referrer or visitor-id storage.
 - Public support/contact links point to `wwwroot/support.html` from public page
@@ -196,7 +199,9 @@ npx wrangler@4 d1 create djconnect_analytics
 npx wrangler@4 d1 migrations apply djconnect_analytics --remote
 ```
 
-Bind `ANALYTICS_DB` to that D1 database and set a `STATS_TOKEN` secret. `GITHUB_TOKEN` is optional for public release repos but useful for higher GitHub API limits.
+Bind `ANALYTICS_DB` to that D1 database and set `STATS_TOKEN` plus
+`DJCONNECT_RELAY_SECRET` secrets. `GITHUB_TOKEN` is optional for public release
+repos but useful for higher GitHub API limits.
 
 ## Current Verification
 
@@ -206,7 +211,7 @@ Bind `ANALYTICS_DB` to that D1 database and set a `STATS_TOKEN` secret. `GITHUB_
   the token-protected `/api/stats` contract and the release-script
   dependency/tool preflight.
 - `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. `npm run screenshots:live` captures Dutch live production screenshots at a laptop viewport into `screenshots/live-laptop/`. Neither is part of the default `npm test` run.
-- Current released version `3.1.55` syncs Ask DJ website copy with the
+- Current released version `3.1.56` syncs Ask DJ website copy with the
   canonical Home Assistant integration `v3.1.69+` contract, including
   Raspberry Pi read-only history display, central push relay wording, refreshed
   Ask DJ conversational examples and PR CI validation. Version `3.1.52` synced

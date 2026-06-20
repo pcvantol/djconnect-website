@@ -17,8 +17,9 @@ Cross-repo contract changes are tracked only in
   should stay token-backed through `/api/stats`.
 - Bind `ANALYTICS_DB` in Cloudflare Pages when website redirect-click totals
   should be included in `/api/stats`.
-- Wire the admin install-token revoke UI to the live API once
-  `POST /v1/operator/install-token/revoke` is implemented in `djconnect-api`.
+- Keep the admin install-token revoke UI wired through the server-side
+  `/api/operator/install-token/revoke` proxy so `DJCONNECT_RELAY_SECRET` never
+  enters browser code.
 - Replace footer version when preparing the next release.
 
 ## Platform

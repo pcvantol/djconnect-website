@@ -7,7 +7,7 @@
   <title>DJConnect Admin Stats</title>
   <meta name="description" content="Interne DJConnect statistieken op basis van D1 aggregate counters en GitHub release downloads." />
   <link rel="icon" href="assets/djconnect/icon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="assets/admin.css?v=3.1.55" />
+  <link rel="stylesheet" href="assets/admin.css?v=3.1.56" />
 </head>
 <body>
   <main class="admin-shell">
@@ -126,14 +126,6 @@
           <p>Use only install ID and token ID. Do not paste raw <code>djci_...</code> token values.</p>
         </div>
         <label>
-          <span>API base URL</span>
-          <input id="operator-api-base" type="url" value="https://api.djconnect.dev" autocomplete="off" />
-        </label>
-        <label>
-          <span>Operator/bootstrap token</span>
-          <input id="operator-token" type="password" autocomplete="off" placeholder="Operator bearer token" />
-        </label>
-        <label>
           <span>HA install ID</span>
           <input id="revoke-install-id" type="text" autocomplete="off" placeholder="example-ha-install" />
         </label>
@@ -145,10 +137,10 @@
           <span>Reason</span>
           <select id="revoke-reason" required>
             <option value="">Select reason</option>
-            <option value="compromised">compromised</option>
-            <option value="operator_requested">operator_requested</option>
-            <option value="cleanup">cleanup</option>
-            <option value="other">other</option>
+            <option value="operator-disabled-compromised-install">operator-disabled-compromised-install</option>
+            <option value="operator-disabled-requested">operator-disabled-requested</option>
+            <option value="operator-disabled-cleanup">operator-disabled-cleanup</option>
+            <option value="operator-disabled-other">operator-disabled-other</option>
           </select>
         </label>
         <div class="operator-actions">
@@ -174,6 +166,6 @@
     </section>
   </main>
 
-  <script src="assets/admin.js?v=3.1.55" defer></script>
+  <script src="assets/admin.js?v=3.1.56" defer></script>
 </body>
 </html>

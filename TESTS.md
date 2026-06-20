@@ -138,10 +138,13 @@
   `operator.html` UI must use token-protected `/api/stats`; that endpoint combines
   GitHub release asset `download_count` download counts with D1 redirect-click
   counters when `ANALYTICS_DB` is bound.
-- Verify the operator install-token revoke UI targets the bootstrap-only
-  `POST /v1/operator/install-token/revoke` contract, covers happy path revoke,
-  confirm-required behavior, API error rendering and secret redaction, and does
-  not include real tokens or production identifiers in source or fixtures.
+- Verify the operator install-token revoke UI calls local
+  `POST /api/operator/install-token/revoke`, while the Pages Function targets
+  the bootstrap-only `POST /v1/operator/install-token/revoke` API contract with
+  server-side `DJCONNECT_RELAY_SECRET`. Cover happy path revoke, revoked-0
+  already-disabled/not-found behavior, confirm-required behavior, API 401/403
+  rendering and secret redaction. Do not include real tokens or production
+  identifiers in source or fixtures.
   Do not document private access details or credentials in docs, issues or
   diagnostics.
 - Verify `https://djconnect.dev` is used in canonical tags, `robots.txt`, `sitemap.xml` and public install commands.

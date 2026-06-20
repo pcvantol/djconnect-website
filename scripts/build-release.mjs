@@ -9,6 +9,8 @@ const sharedAssets = [
   "assets/site-nav.js",
   "assets/downloads.css",
   "assets/downloads.js",
+  "assets/admin.css",
+  "assets/admin.js",
   "assets/releases.css",
   "assets/releases.js",
   "assets/voice-intents.js"

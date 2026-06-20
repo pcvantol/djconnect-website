@@ -1085,9 +1085,10 @@ test("D1 admin UI uses token-protected stats API without restoring legacy route"
 });
 
 test("operator install-token revoke flow is explicit, bootstrap-only and redacted", async () => {
-  const [adminHtml, adminJs, readme, testsDoc] = await Promise.all([
+  const [adminHtml, adminJs, proxy, readme, testsDoc] = await Promise.all([
     read("wwwroot/operator.html"),
     read("wwwroot/assets/admin.js"),
+    read("functions/api/operator/install-token/revoke.js"),
     read("README.md"),
     read("TESTS.md")
   ]);
@@ -1095,40 +1096,57 @@ test("operator install-token revoke flow is explicit, bootstrap-only and redacte
   assert.match(adminHtml, /Revoke install token/);
   assert.match(adminHtml, /Find target by IDs/);
   assert.match(adminHtml, /Do not paste raw <code>djci_\.\.\.<\/code> token values/);
-  assert.match(adminHtml, /Operator\/bootstrap token/);
-  assert.match(adminHtml, /type="password"/);
+  assert.doesNotMatch(adminHtml, /Operator\/bootstrap token/);
+  assert.doesNotMatch(adminHtml, /operator-token/);
+  assert.doesNotMatch(adminHtml, /operator-api-base/);
   assert.match(adminHtml, /example-ha-install/);
   assert.match(adminHtml, /example-install-token-id/);
-  assert.match(adminHtml, /compromised/);
-  assert.match(adminHtml, /operator_requested/);
-  assert.match(adminHtml, /cleanup/);
-  assert.match(adminHtml, /other/);
+  assert.match(adminHtml, /operator-disabled-compromised-install/);
+  assert.match(adminHtml, /operator-disabled-requested/);
+  assert.match(adminHtml, /operator-disabled-cleanup/);
+  assert.match(adminHtml, /operator-disabled-other/);
   assert.match(adminHtml, /I understand this disables the install token without provisioning a replacement/);
   assert.match(adminHtml, /disabled>Revoke token/);
   assert.match(adminHtml, /blocks push\/register\/event calls/);
 
-  assert.match(adminJs, /\/v1\/operator\/install-token\/revoke/);
-  assert.match(adminJs, /https:\/\/api\.djconnect\.dev/);
-  assert.match(adminJs, /Authorization: `Bearer \$\{operatorToken\}`/);
+  assert.match(adminJs, /\/api\/operator\/install-token\/revoke/);
+  assert.doesNotMatch(adminJs, /https:\/\/api\.djconnect\.dev/);
+  assert.doesNotMatch(adminJs, /operatorToken/);
+  assert.doesNotMatch(adminJs, /OPERATOR_TOKEN_KEY/);
+  assert.doesNotMatch(adminJs, /DJCONNECT_RELAY_SECRET/);
   assert.match(adminJs, /JSON\.stringify\(preparedRevoke\)/);
   assert.match(adminJs, /ha_install_id: haInstallId/);
   assert.match(adminJs, /token_id: tokenId/);
-  assert.match(adminJs, /reason/);
+  assert.match(adminJs, /operator-disabled-compromised-install/);
   assert.match(adminJs, /confirmRevokeCheck\.checked/);
   assert.match(adminJs, /Explicit confirmation is required before revoking/);
   assert.match(adminJs, /sanitizeError/);
   assert.match(adminJs, /djci_\[redacted\]/);
   assert.match(adminJs, /Bearer \[redacted\]/);
-  assert.match(adminJs, /Provisioning a new token is a separate operator action/);
+  assert.match(adminJs, /Token disabled\. Provisioning a new token is a separate operator action/);
+  assert.match(adminJs, /Token was already disabled or no active token matched that install ID and token ID/);
   assert.doesNotMatch(adminJs, /console\./);
   assert.doesNotMatch(adminHtml + adminJs, /djci_[A-Za-z0-9_-]{16,}/);
   assert.doesNotMatch(adminHtml + adminJs, /DJCONNECT_RELAY_SECRET\s*=/);
 
+  assert.match(proxy, /\/v1\/operator\/install-token\/revoke/);
+  assert.match(proxy, /https:\/\/api\.djconnect\.dev/);
+  assert.match(proxy, /DJCONNECT_RELAY_SECRET/);
+  assert.match(proxy, /Authorization: `Bearer \$\{env\.DJCONNECT_RELAY_SECRET\}`/);
+  assert.match(proxy, /ha_install_id: String\(input\?\.ha_install_id/);
+  assert.match(proxy, /token_id: String\(input\?\.token_id/);
+  assert.match(proxy, /reason: String\(input\?\.reason/);
+  assert.match(proxy, /operator-disabled-compromised-install/);
+  assert.match(proxy, /revoked: Number\(body\.revoked \|\| 0\) === 1 \? 1 : 0/);
+  assert.match(proxy, /operator_revoke_failed_\$\{response\.status\}/);
+  assert.doesNotMatch(proxy, /console\./);
+  assert.doesNotMatch(proxy, /apns_token|spotify|prompt|response_text|chat_history/);
+
   assert.match(readme, /operator-only install-token revoke flow/);
-  assert.match(readme, /New token provisioning is a separate operator action/);
+  assert.match(readme, /New token provisioning is a separate operator action|separate operator\s+action/);
   assert.match(testsDoc, /happy path revoke/);
   assert.match(testsDoc, /confirm-required/);
-  assert.match(testsDoc, /API error rendering/);
+  assert.match(testsDoc, /API 401\/403\s+rendering/);
   assert.match(testsDoc, /secret redaction/);
 });
 

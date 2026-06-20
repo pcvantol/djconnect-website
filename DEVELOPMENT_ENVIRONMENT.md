@@ -193,6 +193,8 @@ Report vulnerabilities privately through `SECURITY.md` and
 
 The old `/admin` Pages Function route is retired. The internal browser UI lives
 at `https://djconnect.dev/operator.html`, should remain protected by Cloudflare
-Access or another edge policy, and still requires `STATS_TOKEN` before it can
-read `/api/stats`. Do not add admin passwords or shared secrets to this
-repository, documentation, issues or diagnostics.
+Access or another edge policy for both `/operator` and `/api/operator/*`, and
+still requires `STATS_TOKEN` before it can read `/api/stats`. Operator API
+actions use server-side `DJCONNECT_RELAY_SECRET` from Cloudflare Pages secrets;
+never expose that secret in browser code, docs, tests, screenshots, issues or
+diagnostics.

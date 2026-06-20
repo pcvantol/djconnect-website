@@ -9,8 +9,6 @@ const clickTotalsEl = document.querySelector("#click-totals");
 const dailyRowsEl = document.querySelector("#daily-rows");
 const downloadGroupsEl = document.querySelector("#download-groups");
 const revokeForm = document.querySelector("#revoke-form");
-const operatorApiBaseInput = document.querySelector("#operator-api-base");
-const operatorTokenInput = document.querySelector("#operator-token");
 const revokeInstallIdInput = document.querySelector("#revoke-install-id");
 const revokeTokenIdInput = document.querySelector("#revoke-token-id");
 const revokeReasonInput = document.querySelector("#revoke-reason");
@@ -23,10 +21,13 @@ const executeRevokeButton = document.querySelector("#execute-revoke");
 const revokeStatusEl = document.querySelector("#revoke-status");
 
 const TOKEN_KEY = "djconnect.statsToken";
-const OPERATOR_TOKEN_KEY = "djconnect.operatorToken";
-const OPERATOR_API_BASE_KEY = "djconnect.operatorApiBase";
-const REVOKE_ENDPOINT = "/v1/operator/install-token/revoke";
-const REVOKE_REASONS = new Set(["compromised", "operator_requested", "cleanup", "other"]);
+const REVOKE_ENDPOINT = "/api/operator/install-token/revoke";
+const REVOKE_REASONS = new Set([
+  "operator-disabled-compromised-install",
+  "operator-disabled-requested",
+  "operator-disabled-cleanup",
+  "operator-disabled-other"
+]);
 let preparedRevoke = null;
 
 const formatNumber = (value) => new Intl.NumberFormat("nl-NL").format(Number(value || 0));
@@ -114,11 +115,6 @@ const renderGithubDownloads = (groups) => {
   }).join("");
 };
 
-const normalizedApiBase = () => {
-  const base = operatorApiBaseInput.value.trim().replace(/\/+$/, "");
-  return base || "https://api.djconnect.dev";
-};
-
 const resetRevokeConfirm = () => {
   preparedRevoke = null;
   revokeConfirm.hidden = true;
@@ -131,16 +127,13 @@ const prepareRevoke = (event) => {
   const haInstallId = revokeInstallIdInput.value.trim();
   const tokenId = revokeTokenIdInput.value.trim();
   const reason = revokeReasonInput.value;
-  const operatorToken = operatorTokenInput.value.trim();
 
-  if (!operatorToken || !haInstallId || !tokenId || !REVOKE_REASONS.has(reason)) {
+  if (!haInstallId || !tokenId || !REVOKE_REASONS.has(reason)) {
     resetRevokeConfirm();
-    setRevokeStatus("Operator token, install ID, token ID and reason are required.", "error");
+    setRevokeStatus("Install ID, token ID and reason are required.", "error");
     return;
   }
 
-  sessionStorage.setItem(OPERATOR_TOKEN_KEY, operatorToken);
-  sessionStorage.setItem(OPERATOR_API_BASE_KEY, normalizedApiBase());
   preparedRevoke = { ha_install_id: haInstallId, token_id: tokenId, reason };
   confirmInstallId.textContent = haInstallId;
   confirmTokenId.textContent = tokenId;
@@ -165,20 +158,13 @@ const revokeInstallToken = async () => {
     return;
   }
 
-  const operatorToken = operatorTokenInput.value.trim();
-  if (!operatorToken) {
-    setRevokeStatus("Operator token is required.", "error");
-    return;
-  }
-
   executeRevokeButton.disabled = true;
   setRevokeStatus("Revoking install token...");
 
   try {
-    const response = await fetch(`${normalizedApiBase()}${REVOKE_ENDPOINT}`, {
+    const response = await fetch(REVOKE_ENDPOINT, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${operatorToken}`,
         "Content-Type": "application/json"
       },
       body: JSON.stringify(preparedRevoke),
@@ -192,13 +178,23 @@ const revokeInstallToken = async () => {
       body = {};
     }
 
-    if (!response.ok || body.ok !== true || body.revoked !== true) {
+    if (!response.ok) {
       throw new Error(sanitizeError(body.error || `revoke_failed_${response.status}`));
     }
 
-    const id = sanitizeError(body.id || preparedRevoke.token_id);
-    setRevokeStatus(`Token ${id} revoked. Provisioning a new token is a separate operator action.`, "success");
-    resetRevokeConfirm();
+    if (body.ok === true && Number(body.revoked) === 1) {
+      setRevokeStatus("Token disabled. Provisioning a new token is a separate operator action.", "success");
+      resetRevokeConfirm();
+      return;
+    }
+
+    if (body.ok === true && Number(body.revoked) === 0) {
+      setRevokeStatus("Token was already disabled or no active token matched that install ID and token ID.", "success");
+      resetRevokeConfirm();
+      return;
+    }
+
+    throw new Error(sanitizeError(body.error || "unexpected_revoke_response"));
   } catch (error) {
     setRevokeStatus(sanitizeError(error.message), "error");
     executeRevokeButton.disabled = !confirmRevokeCheck.checked;
@@ -249,8 +245,6 @@ const loadStats = async () => {
 };
 
 tokenInput.value = sessionStorage.getItem(TOKEN_KEY) || "";
-operatorTokenInput.value = sessionStorage.getItem(OPERATOR_TOKEN_KEY) || "";
-operatorApiBaseInput.value = sessionStorage.getItem(OPERATOR_API_BASE_KEY) || operatorApiBaseInput.value;
 loadButton.addEventListener("click", loadStats);
 daysInput.addEventListener("change", () => {
   if (tokenInput.value.trim()) loadStats();

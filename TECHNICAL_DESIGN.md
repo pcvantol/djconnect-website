@@ -90,7 +90,9 @@ Cloudflare Pages Functions are kept small and task-specific:
 - `operator.html`: static internal UI for the D1-backed `/api/stats` contract.
   The old `/admin` Pages Function route is retired.
 - `operator.html` operator tooling: prepares explicit install-token revocation
-  calls against the DJConnect API bootstrap/operator contract.
+  calls through `/api/operator/install-token/revoke`, a server-side Pages
+  Function that holds `DJCONNECT_RELAY_SECRET` and calls the DJConnect API
+  bootstrap/operator contract.
 - `/go/[target]`: redirects known targets such as HACS and latest Linux install bundle.
 - `/go/download`: redirects allowed GitHub release asset URLs.
 
@@ -447,6 +449,10 @@ Source:
 - `/api/stats` requires `STATS_TOKEN`; unauthorized requests return `404`.
 - The old `/admin` Pages Function route is retired. The static `operator.html`
   surface is `noindex` and still requires `STATS_TOKEN` to load data.
+- Operator revoke actions must go through the server-side
+  `/api/operator/install-token/revoke` proxy. `DJCONNECT_RELAY_SECRET` must stay
+  only in Cloudflare Pages secrets and must never be embedded in browser
+  bundles, screenshots, docs or fixtures.
 - Download redirects validate that the destination is a GitHub release URL in an allowed DJConnect release repo.
 - Redirect analytics store aggregate counts only.
 - No cookies or persistent browser identifiers are set by the website code.

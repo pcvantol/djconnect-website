@@ -20,6 +20,9 @@ All notable changes to this website are grouped per release.
   redirect-click counters when `ANALYTICS_DB` is bound.
 - Added an operator-only admin flow proposal for explicitly revoking a
   compromised install token without issuing a replacement token.
+- Wired the operator revoke flow through a server-side Pages Function proxy so
+  `DJCONNECT_RELAY_SECRET` stays out of the browser while the API disables
+  matching active install tokens.
 
 ## DJConnect website v3.1.52 - 2026-06-20
 

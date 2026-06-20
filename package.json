@@ -3,6 +3,7 @@
   "version": "3.1.55",
   "private": true,
   "scripts": {
+    "build": "npm run build:release",
     "build:release": "node scripts/build-release.mjs",
     "test": "node --test",
     "stats:check": "node scripts/check-stats.mjs",

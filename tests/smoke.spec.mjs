@@ -15,7 +15,8 @@ test.describe("DJConnect smoke", () => {
   test("homepage mobile navigation and setup CTA remain reachable", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto(baseURL);
-    await expect(page.getByRole("link", { name: /Aan de slag|Get started/ })).toBeVisible();
+    await expect(page.getByRole("button", { name: /Menu/ })).toBeVisible();
+    await expect(page.getByRole("link", { name: /Aan de slag|How to start/ }).first()).toBeVisible();
     await expect(page.getByRole("link", { name: /Features/ })).toBeVisible();
   });
 

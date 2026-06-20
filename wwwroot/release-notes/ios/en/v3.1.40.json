@@ -1,0 +1,7 @@
+{
+  "version": "3.1.40",
+  "platform": "ios",
+  "language": "en",
+  "name": "DJConnect iOS 3.1.40",
+  "body": "### Added\n\n- Added On Air, an AirPlay/TV-oriented Ask DJ presentation with large live chat\n  bubbles, now-playing artwork, an AirPlay route picker, and automated iOS demo\n  screenshot coverage.\n\n\n---\n\nPlatform: iOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nUnsigned iOS binaries are published here for diagnostics and internal validation. For normal iOS distribution, use TestFlight/App Store."
+}

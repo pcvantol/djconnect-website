@@ -40,6 +40,8 @@ In scope for this repository:
 
 - DJConnect website code, Cloudflare Pages configuration and deployed website behavior.
 - Public download redirects, release metadata rendering and website admin surfaces.
+- Operator Pages Functions under `/api/operator/*`, including server-side use
+  of `DJCONNECT_RELAY_SECRET` for central API calls.
 - Website tests, documentation and release tooling that could expose credentials or private artifacts.
 
 Out of scope for this repository:
@@ -56,5 +58,7 @@ Please avoid actions that could harm users or services:
 - Do not attempt denial-of-service attacks.
 - Do not publicly disclose a vulnerability before a fix or mitigation is available.
 - Do not exfiltrate tokens, passwords, audio, local-network data, private URLs, diagnostics or personal configuration.
+- Do not put `DJCONNECT_RELAY_SECRET`, raw `djci_...` install tokens or API
+  request bodies in browser code, logs, screenshots, issues or fixtures.
 
 Good-faith security research that follows these guidelines is welcome.

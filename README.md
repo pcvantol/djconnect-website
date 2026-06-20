@@ -239,6 +239,14 @@ access protected with Cloudflare Access or another edge policy for both
 `/operator` and `/api/operator/*`; the UI does not contain operator secrets and
 still requires `STATS_TOKEN` before it can read stats data.
 
+Operator revoke actions must stay server-side. The browser calls
+`POST /api/operator/install-token/revoke`; that Pages Function uses
+`DJCONNECT_RELAY_SECRET` to call central API
+`POST https://api.djconnect.dev/v1/operator/install-token/revoke`. Browser
+payloads contain `ha_install_id`, central API `token_id` and a short reason
+only. Never send raw `djci_...` token material from the browser and never expose
+`DJCONNECT_RELAY_SECRET` in static assets or client-side JavaScript.
+
 The same admin UI also contains an operator-only install-token revoke flow for
 incident response when a per-install `djci_...` token is compromised. It is
 implemented through the server-side Pages Function
@@ -332,7 +340,9 @@ records `"language": "nl"`.
 
 It includes a static link checker for local page and asset references.
 
-An optional Playwright smoke-test basis is available for live/browser checks:
+GitHub Actions installs Chromium and runs `tests/smoke.spec.mjs` before
+building or deploying the release site. Run the same live/browser checks
+locally with:
 
 ```bash
 SMOKE_BASE_URL=https://djconnect.dev npm run test:smoke

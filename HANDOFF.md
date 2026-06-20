@@ -9,7 +9,7 @@
 - Cloudflare Pages project: `djconnect`
 - Source directory: `wwwroot`
 - Release publish directory: `dist/wwwroot`
-- Current version: `3.1.51`
+- Current version: `3.1.52`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Platform overview page with CSS architecture diagram: `wwwroot/platform.html`
@@ -44,9 +44,10 @@
   card linked to `wwwroot/voice-assistant.html`.
 - Ask DJ is a major product feature on the homepage and Features page. Keep
   copy clear that it runs through Home Assistant with DJConnect integration
-  v3.1.62+, uses compact server-side DJ Memory/history per Home Assistant user,
-  supports Apple Watch/iPhone/Mac continuity, and starts recommendations only
-  after an explicit `Play Now` tap.
+  v3.1.65+, uses compact bounded server-side DJ Memory/history per Home
+  Assistant user, supports Apple Watch/iPhone/Mac continuity, can show Ja/Nee
+  follow-up controls, and starts recommendations only after an explicit
+  `Play Now` tap.
 - The features page summarizes the main DJConnect functions and mentions Ask DJ
   plus the bonus mini-games: Paddle Rally, Meteor Run, Sky Dash & Maze Chase.
 - The voice commands page documents the user-facing intent families,
@@ -194,12 +195,11 @@ Bind `ANALYTICS_DB` to that D1 database and set a `STATS_TOKEN` secret. `GITHUB_
 - `npm test` covers version consistency, route presence, homepage navigation/copy, homepage voice chips from shared intent data, voice command intent-family docs, data-driven examples and language-scoped rendering behavior, firmware download embeds, macOS and Raspberry Pi download embeds, latest-only release embed contracts, removed legacy macOS download routes, tracked download redirects, absence of website self-release embeds, translation keys, footer copyright/support links, local link checking, firmware links, compact embedded page structure, LilyGO visual hygiene and stale pre-flashed wording.
 - `npm test` also covers the cookieless redirect/download analytics structure, D1 migration, tracked GitHub asset links, the protected GitHub-runtime `/admin` stats page contract and the release-script dependency/tool preflight.
 - `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. `npm run screenshots:live` captures Dutch live production screenshots at a laptop viewport into `screenshots/live-laptop/`. Neither is part of the default `npm test` run.
-- Current released version `3.1.51` adds Ask DJ as a major homepage and
-  feature-page product section, documents explicit `Play Now`,
-  Watch/iPhone/Mac continuity, voice/PTT and compact Home Assistant-side
-  privacy boundaries, and keeps troubleshooting on the dedicated help route.
-  Version `3.1.50` added the troubleshooting page and macOS mDNS/local API
-  pairing diagnostics.
+- Current released version `3.1.52` syncs Ask DJ website copy with the
+  canonical Home Assistant integration `v3.1.65+` contract, including Ja/Nee
+  follow-ups, bounded server-side history trim metadata and the separate Ask DJ
+  conversational examples on the Spraak page. Version `3.1.51` added Ask DJ as
+  a major homepage and feature-page product section.
 - Canonical SEO domain is `https://djconnect.dev`; `djconnect.pages.dev` remains a Cloudflare fallback.
 - `https://www.djconnect.dev` should remain a 301 redirect to the apex domain, preserving path and query string.
 - Dynamic GitHub download/install blocks now rerender when the language toggle changes, so generated install text follows NL/EN.

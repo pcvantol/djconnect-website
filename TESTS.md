@@ -8,8 +8,8 @@
   primary CTA button. The homepage should not show a `Hoe werkt het` self-link.
 - Verify the homepage Ask DJ section explains chat, personal recommendations,
   explicit `Play Now`, Watch/iPhone/Mac continuity, Home Assistant server-side
-  DJ Memory/history, voice/PTT with Assist STT/TTS and compact privacy
-  boundaries.
+  DJ Memory/history, Ja/Nee follow-ups, bounded history trim behavior,
+  voice/PTT with Assist STT/TTS and compact privacy boundaries.
 - Verify the homepage `Kies je interface` section includes macOS, iPhone/iPad,
   Voice Assistant, Embedded device and Linux/Raspberry Pi cards. The Voice
   Assistant card must link to `wwwroot/voice-assistant.html`.

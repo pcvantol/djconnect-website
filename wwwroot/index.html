@@ -869,7 +869,7 @@
       }
     }
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.51" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.52" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -1000,7 +1000,7 @@
         </div>
         <div class="ask-dj-panel">
           <article class="card ask-dj-card">
-            <span class="ask-dj-pill" data-i18n="askDjBadge">Via Home Assistant en DJConnect integration v3.1.62+</span>
+            <span class="ask-dj-pill" data-i18n="askDjBadge">Via Home Assistant en DJConnect integration v3.1.65+</span>
             <h3 data-i18n="askDjChatTitle">Meer dan Spotify command parsing</h3>
             <p data-i18n="askDjChatText">Stel muziekvragen in natuurlijke taal. Ask DJ gebruikt actuele playbackcontext, DJConnect Memory en Spotify listening profile data waar beschikbaar om persoonlijk te antwoorden.</p>
             <div class="ask-dj-chips" aria-label="Ask DJ voorbeeldvragen" data-i18n-attr="aria-label:askDjExamplesLabel">
@@ -1025,7 +1025,7 @@
           <article class="card">
             <div class="icon">⌚</div>
             <h3 data-i18n="askDjContinuityTitle">Continuity op Watch, iPhone en Mac</h3>
-            <p data-i18n="askDjContinuityText">Ask DJ history wordt server-side per Home Assistant gebruiker bewaard. Lokale clientcache is alleen cache; Home Assistant is de bron van waarheid.</p>
+            <p data-i18n="askDjContinuityText">Ask DJ history wordt server-side per Home Assistant gebruiker bewaard en is begrensd. Als de limiet is bereikt, trimt Home Assistant oudste berichten en blijven clients via trim metadata netjes in sync.</p>
           </article>
           <article class="card">
             <div class="icon">🎤</div>
@@ -1038,9 +1038,14 @@
             <p data-i18n="askDjPrivacyText">Clients bewaren geen DJ Memory. Home Assistant bewaart compacte context/history, zonder Spotify OAuth tokens, bearer tokens, raw audio of volledige prompts. Ruwe voice-audio wordt standaard niet opgeslagen.</p>
           </article>
           <article class="card">
+            <div class="icon">☑</div>
+            <h3 data-i18n="askDjFollowupTitle">Follow-ups met Ja/Nee</h3>
+            <p data-i18n="askDjFollowupText">Soms stelt Ask DJ een vervolgvraag, bijvoorbeeld na “Goedemorgen” of “Wil je dit nu afspelen?”. Clients kunnen dan duidelijke Ja/Nee-controls tonen.</p>
+          </article>
+          <article class="card">
             <div class="icon">✅</div>
             <h3 data-i18n="askDjRequirementsTitle">Wat je nodig hebt</h3>
-            <p data-i18n="askDjRequirementsText">Home Assistant, HACS DJConnect integration v3.1.62+, Spotify Premium, je eigen Spotify Developer app met Client ID en voor voice/audio een Assist pipeline met STT/TTS. Nabu Casa of een stabiele HTTPS external URL is aanbevolen.</p>
+            <p data-i18n="askDjRequirementsText">Home Assistant, HACS DJConnect integration v3.1.65+, Spotify Premium, je eigen Spotify Developer app met Client ID en voor voice/audio een Assist pipeline met STT/TTS. Nabu Casa of een stabiele HTTPS external URL is aanbevolen.</p>
           </article>
         </div>
       </div>
@@ -1160,7 +1165,7 @@
     <p data-i18n="legalSpotify">Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.1.51</p>
+    <p class="site-version">DJConnect website v3.1.52</p>
   </footer>
   <script src="assets/voice-intents.js"></script>
   <script>
@@ -1187,7 +1192,7 @@
         examplesMore: "Bekijk meer spraakvoorbeelden",
         askDjTitle: "Ask DJ",
         askDjLead: "Ask DJ is je AI-DJ chat voor muziekvragen, persoonlijke aanbevelingen, playback-acties en gesprekken die meegaan van Apple Watch naar iPhone en Mac.",
-        askDjBadge: "Via Home Assistant en DJConnect integration v3.1.62+",
+        askDjBadge: "Via Home Assistant en DJConnect integration v3.1.65+",
         askDjChatTitle: "Meer dan Spotify command parsing",
         askDjChatText: "Stel muziekvragen in natuurlijke taal. Ask DJ gebruikt actuele playbackcontext, DJConnect Memory en Spotify listening profile data waar beschikbaar om persoonlijk te antwoorden.",
         askDjExamplesLabel: "Ask DJ voorbeeldvragen",
@@ -1202,13 +1207,15 @@
         askDjStep3: "DJConnect antwoordt met tekst, bronnen, afbeeldingen en optionele audio.",
         askDjStep4: "Bij concrete aanbevelingen kies je zelf Play Now; playback start pas na jouw tap.",
         askDjContinuityTitle: "Continuity op Watch, iPhone en Mac",
-        askDjContinuityText: "Ask DJ history wordt server-side per Home Assistant gebruiker bewaard. Lokale clientcache is alleen cache; Home Assistant is de bron van waarheid.",
+        askDjContinuityText: "Ask DJ history wordt server-side per Home Assistant gebruiker bewaard en is begrensd. Als de limiet is bereikt, trimt Home Assistant oudste berichten en blijven clients via trim metadata netjes in sync.",
+        askDjFollowupTitle: "Follow-ups met Ja/Nee",
+        askDjFollowupText: "Soms stelt Ask DJ een vervolgvraag, bijvoorbeeld na “Goedemorgen” of “Wil je dit nu afspelen?”. Clients kunnen dan duidelijke Ja/Nee-controls tonen.",
         askDjVoiceTitle: "Voice en audio",
         askDjVoiceText: "iOS, macOS en Apple Watch kunnen voice/PTT gebruiken. Home Assistant STT transcribeert; TTS kan audio-antwoorden leveren. Replay verschijnt alleen als er audio beschikbaar is.",
         askDjPrivacyTitle: "Privacy compact gehouden",
         askDjPrivacyText: "Clients bewaren geen DJ Memory. Home Assistant bewaart compacte context/history, zonder Spotify OAuth tokens, bearer tokens, raw audio of volledige prompts. Ruwe voice-audio wordt standaard niet opgeslagen.",
         askDjRequirementsTitle: "Wat je nodig hebt",
-        askDjRequirementsText: "Home Assistant, HACS DJConnect integration v3.1.62+, Spotify Premium, je eigen Spotify Developer app met Client ID en voor voice/audio een Assist pipeline met STT/TTS. Nabu Casa of een stabiele HTTPS external URL is aanbevolen.",
+        askDjRequirementsText: "Home Assistant, HACS DJConnect integration v3.1.65+, Spotify Premium, je eigen Spotify Developer app met Client ID en voor voice/audio een Assist pipeline met STT/TTS. Nabu Casa of een stabiele HTTPS external URL is aanbevolen.",
         stageLabel: "DJConnect platformoverzicht",
         stageCarouselLabel: "Platform opties",
         carouselPrev: "Vorige slide",
@@ -1282,7 +1289,7 @@
         examplesMore: "See more voice examples",
         askDjTitle: "Ask DJ",
         askDjLead: "Ask DJ is your AI DJ chat for music questions, personal recommendations, playback actions and conversations that continue across Apple Watch, iPhone and Mac.",
-        askDjBadge: "Through Home Assistant and DJConnect integration v3.1.62+",
+        askDjBadge: "Through Home Assistant and DJConnect integration v3.1.65+",
         askDjChatTitle: "More than Spotify command parsing",
         askDjChatText: "Ask music questions in natural language. Ask DJ uses current playback context, DJConnect Memory and Spotify listening profile data where available to answer personally.",
         askDjExamplesLabel: "Ask DJ example questions",
@@ -1297,13 +1304,15 @@
         askDjStep3: "DJConnect replies with text, sources, images and optional audio.",
         askDjStep4: "For concrete recommendations you choose Play Now yourself; playback starts only after your tap.",
         askDjContinuityTitle: "Continuity on Watch, iPhone and Mac",
-        askDjContinuityText: "Ask DJ history is stored server-side per Home Assistant user. Local client cache is only cache; Home Assistant is the source of truth.",
+        askDjContinuityText: "Ask DJ history is stored server-side per Home Assistant user and is bounded. When the limit is reached, Home Assistant trims oldest messages and clients stay in sync through trim metadata.",
+        askDjFollowupTitle: "Follow-ups with Yes/No",
+        askDjFollowupText: "Ask DJ can ask a follow-up question, for example after “Good morning” or “Do you want to play this now?”. Clients can then show clear Yes/No controls.",
         askDjVoiceTitle: "Voice and audio",
         askDjVoiceText: "iOS, macOS and Apple Watch can use voice/PTT. Home Assistant STT transcribes; TTS can provide audio replies. Replay appears only when audio is available.",
         askDjPrivacyTitle: "Privacy kept compact",
         askDjPrivacyText: "Clients do not store DJ Memory. Home Assistant stores compact context/history without Spotify OAuth tokens, bearer tokens, raw audio or full prompts. Raw voice audio is not stored by default.",
         askDjRequirementsTitle: "What you need",
-        askDjRequirementsText: "Home Assistant, HACS DJConnect integration v3.1.62+, Spotify Premium, your own Spotify Developer app with Client ID and, for voice/audio, an Assist pipeline with STT/TTS. Nabu Casa or a stable HTTPS external URL is recommended.",
+        askDjRequirementsText: "Home Assistant, HACS DJConnect integration v3.1.65+, Spotify Premium, your own Spotify Developer app with Client ID and, for voice/audio, an Assist pipeline with STT/TTS. Nabu Casa or a stable HTTPS external URL is recommended.",
         stageLabel: "DJConnect platform overview",
         stageCarouselLabel: "Platform options",
         carouselPrev: "Previous slide",
@@ -1424,6 +1433,6 @@
 
     applyLanguage(getInitialLanguage());
   </script>
-  <script src="assets/site-nav.js?v=3.1.51"></script>
+  <script src="assets/site-nav.js?v=3.1.52"></script>
 </body>
 </html>

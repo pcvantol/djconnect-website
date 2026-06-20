@@ -2,6 +2,15 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.52 - 2026-06-20
+
+- Synced the website Ask DJ copy with the Home Assistant integration v3.1.65
+  contract.
+- Added user-facing copy for Ask DJ follow-up Ja/Nee controls and bounded
+  server-side chat history trim behavior.
+- Updated voice intent documentation to render Ask DJ conversational examples
+  separately from deterministic Spotify voice commands.
+
 ## DJConnect website v3.1.51 - 2026-06-19
 
 - Added Ask DJ as a major homepage and feature-page product section for iOS,

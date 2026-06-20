@@ -30,9 +30,10 @@ Static landing page for DJConnect, published through Cloudflare Pages.
   DJConnect uses PKCE, so a Spotify Client Secret is preferably not required.
 - Ask DJ is a major product feature for iOS, macOS and Apple Watch clients.
   Website copy should keep it clear that Ask DJ runs through Home Assistant and
-  DJConnect integration v3.1.62+, uses compact server-side DJ Memory/history,
-  carries chat continuity across devices and starts concrete recommendations
-  only after the user taps `Play Now`.
+  DJConnect integration v3.1.65+, uses compact bounded server-side DJ
+  Memory/history, carries chat continuity across devices, can show Ja/Nee
+  follow-up controls and starts concrete recommendations only after the user
+  taps `Play Now`.
 - `wwwroot/embedded.html`: ESP32 embedded-device one-pager.
 - `wwwroot/macos.html`: macOS app page with binaries from `pcvantol/djconnect-app-releases`.
 - `wwwroot/ios.html`: iOS app page with App Store placeholder.
@@ -266,8 +267,9 @@ Use `./cleanup_old_releases.sh` manually only when you want cleanup outside the 
   CTA. Do not add a `Hoe werkt het` self-link to the homepage top navigation.
 - Keep Ask DJ product copy user-facing, not API-reference style: mention Home
   Assistant, server-side DJ Memory/history, Apple Watch/iPhone/Mac continuity,
-  explicit `Play Now`, voice/PTT with Assist STT/TTS, and compact privacy
-  boundaries without implying Spotify affiliation.
+  explicit `Play Now`, Ja/Nee follow-ups, bounded history/trim behavior,
+  voice/PTT with Assist STT/TTS, and compact privacy boundaries without
+  implying Spotify affiliation.
 - Keep content-page navigation free of self-links. Features, Spraak, Blog,
   Support and Privacy should not show their own page as a menu option.
 - Keep the homepage `Kies je interface` cards aligned with the supported

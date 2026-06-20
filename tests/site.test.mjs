@@ -231,7 +231,7 @@ test("homepage promotes Ask DJ as a major product feature", async () => {
   assert.match(index, /<section id="ask-dj">/);
   assert.match(index, /data-i18n="askDjTitle">Ask DJ<\/h2>/);
   assert.match(index, /AI-DJ chat voor muziekvragen, persoonlijke aanbevelingen, playback-acties/);
-  assert.match(index, /Via Home Assistant en DJConnect integration v3\.1\.62\+/);
+  assert.match(index, /Via Home Assistant en DJConnect integration v3\.1\.65\+/);
   assert.match(index, /Meer dan Spotify command parsing/);
   assert.match(index, /DJConnect Memory en Spotify listening profile data/);
   assert.match(index, /"Waarom koos je dit nummer\?"/);
@@ -244,7 +244,12 @@ test("homepage promotes Ask DJ as a major product feature", async () => {
   assert.match(index, /Play Now; playback start pas na jouw tap/);
   assert.match(index, /Continuity op Watch, iPhone en Mac/);
   assert.match(index, /server-side per Home Assistant gebruiker/);
-  assert.match(index, /Home Assistant is de bron van waarheid/);
+  assert.match(index, /is begrensd/);
+  assert.match(index, /trimt Home Assistant oudste berichten/);
+  assert.match(index, /trim metadata netjes in sync/);
+  assert.match(index, /Follow-ups met Ja\/Nee/);
+  assert.match(index, /Goedemorgen/);
+  assert.match(index, /Wil je dit nu afspelen/);
   assert.match(index, /Home Assistant STT transcribeert/);
   assert.match(index, /TTS kan audio-antwoorden leveren/);
   assert.match(index, /Replay verschijnt alleen als er audio beschikbaar is/);
@@ -252,6 +257,7 @@ test("homepage promotes Ask DJ as a major product feature", async () => {
   assert.match(index, /zonder Spotify OAuth tokens, bearer tokens, raw audio of volledige prompts/);
   assert.match(index, /Ruwe voice-audio wordt standaard niet opgeslagen/);
   assert.match(index, /Spotify Premium, je eigen Spotify Developer app met Client ID/);
+  assert.match(index, /HACS DJConnect integration v3\.1\.65\+/);
   assert.match(index, /Nabu Casa of een stabiele HTTPS external URL is aanbevolen/);
   assert.match(index, /For concrete recommendations you choose Play Now yourself; playback starts only after your tap/);
   assert.match(index, /Spotify is a trademark of Spotify AB/);

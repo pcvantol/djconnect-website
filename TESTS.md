@@ -273,6 +273,15 @@ Install Playwright browsers locally before first use:
 npx playwright install
 ```
 
+## Operator Access Guard
+
+Static tests assert that `/operator`, `/operator.html` and `/api/operator/*`
+are covered by Pages middleware and require a Cloudflare Access JWT. The
+middleware validates `Cf-Access-Jwt-Assertion` against the Access certs endpoint
+for `CLOUDFLARE_ACCESS_TEAM_DOMAIN` and the configured
+`CLOUDFLARE_ACCESS_AUD`. Without those Pages settings the operator routes
+return a fail-closed error instead of serving the UI or proxying revoke calls.
+
 ## Live Screenshot Capture
 
 Generate full-page screenshots for the published site in Dutch at a common

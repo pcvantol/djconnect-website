@@ -217,6 +217,10 @@ Then add these Cloudflare Pages bindings/secrets for project `djconnect`:
 - Secret: `STATS_TOKEN` -> a private token for `/api/stats`
 - Secret: `DJCONNECT_RELAY_SECRET` -> API operator/bootstrap secret used only
   by server-side Pages Functions for operator actions.
+- Variable/secret: `CLOUDFLARE_ACCESS_TEAM_DOMAIN` -> your Zero Trust team
+  domain, for example `your-team.cloudflareaccess.com`.
+- Secret: `CLOUDFLARE_ACCESS_AUD` -> the Cloudflare Access application
+  audience tag for the `djconnect.dev/operator` application.
 - Optional variable: `DJCONNECT_API_BASE_URL` -> defaults to
   `https://api.djconnect.dev`.
 - Optional secret: `GITHUB_TOKEN` -> only needed for private release repos or higher GitHub API limits
@@ -234,10 +238,14 @@ STATS_TOKEN='your-stats-token' npm run stats:check
 STATS_DAYS=7 STATS_TOKEN='your-stats-token' npm run stats:check
 ```
 
-Open `https://djconnect.dev/operator.html` for the browser UI. Keep external
-access protected with Cloudflare Access or another edge policy for both
-`/operator` and `/api/operator/*`; the UI does not contain operator secrets and
-still requires `STATS_TOKEN` before it can read stats data.
+Open `https://djconnect.dev/operator.html` for the browser UI. External access
+must be protected with a Cloudflare Access self-hosted application for
+`djconnect.dev` covering `/operator`, `/operator.html` and `/api/operator/*`.
+The Pages middleware verifies the `Cf-Access-Jwt-Assertion` JWT against
+`CLOUDFLARE_ACCESS_TEAM_DOMAIN` and `CLOUDFLARE_ACCESS_AUD`; when either value
+is missing or the JWT is invalid, operator routes fail closed. The UI does not
+contain operator secrets and still requires `STATS_TOKEN` before it can read
+stats data.
 
 Operator revoke actions must stay server-side. The browser calls
 `POST /api/operator/install-token/revoke`; that Pages Function uses

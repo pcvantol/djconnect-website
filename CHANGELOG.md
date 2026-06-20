@@ -2,6 +2,15 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.58 - 2026-06-20
+
+- Added fail-closed Pages middleware for `/operator`, `/operator.html` and
+  `/api/operator/*` that verifies Cloudflare Access JWTs before serving the
+  operator UI or proxying operator actions.
+- Documented the required Cloudflare Access application settings and Pages
+  runtime values `CLOUDFLARE_ACCESS_TEAM_DOMAIN` and
+  `CLOUDFLARE_ACCESS_AUD`.
+
 ## DJConnect website v3.1.57 - 2026-06-20
 
 - Refined the Ask DJ homepage copy by removing visible integration version

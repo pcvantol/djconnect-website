@@ -11,8 +11,9 @@ Use GitHub Issues for active tracking. This file captures known repository-level
 - `/api/stats` requires `STATS_TOKEN`; without it the endpoint intentionally returns unauthorized responses.
 - `/admin` is retired; the new static `operator.html` UI uses token-protected
   `/api/stats`.
-- The admin UI install-token revoke action depends on Cloudflare Access or an
-  equivalent edge policy protecting `/operator` and `/api/operator/*`.
+- Cloudflare Access must be configured with a self-hosted application covering
+  `/operator`, `/operator.html` and `/api/operator/*`; Pages middleware now
+  fails these routes closed until the Access JWT settings are present.
 - The Home Assistant badge uses the official Home Assistant brand logo; confirm formal "Works with Home Assistant" certification requirements before presenting it as a certification mark.
 
 ## Resolved
@@ -34,3 +35,5 @@ Use GitHub Issues for active tracking. This file captures known repository-level
   Wrangler deploy remains a fallback for deploy-only recovery.
 - GitHub Actions installs the Chromium Playwright browser and runs the live
   `test:smoke` suite before building/deploying the release site.
+- Operator routes have fail-closed Pages middleware that verifies Cloudflare
+  Access JWTs before serving `/operator` or `/api/operator/*`.

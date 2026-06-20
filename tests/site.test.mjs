@@ -1090,10 +1090,11 @@ test("D1 admin UI uses token-protected stats API without restoring legacy route"
 });
 
 test("operator install-token revoke flow is explicit, bootstrap-only and redacted", async () => {
-  const [adminHtml, adminJs, proxy, readme, testsDoc] = await Promise.all([
+  const [adminHtml, adminJs, proxy, middleware, readme, testsDoc] = await Promise.all([
     read("wwwroot/operator.html"),
     read("wwwroot/assets/admin.js"),
     read("functions/api/operator/install-token/revoke.js"),
+    read("functions/_middleware.js"),
     read("README.md"),
     read("TESTS.md")
   ]);
@@ -1147,7 +1148,23 @@ test("operator install-token revoke flow is explicit, bootstrap-only and redacte
   assert.doesNotMatch(proxy, /console\./);
   assert.doesNotMatch(proxy, /apns_token|spotify|prompt|response_text|chat_history/);
 
+  assert.match(middleware, /PROTECTED_OPERATOR_PATHS/);
+  assert.match(middleware, /"\/operator"/);
+  assert.match(middleware, /"\/operator.html"/);
+  assert.match(middleware, /"\/api\/operator\/"/);
+  assert.match(middleware, /Cf-Access-Jwt-Assertion/);
+  assert.match(middleware, /CLOUDFLARE_ACCESS_TEAM_DOMAIN/);
+  assert.match(middleware, /CLOUDFLARE_ACCESS_AUD/);
+  assert.match(middleware, /operator_access_not_configured/);
+  assert.match(middleware, /crypto\.subtle\.verify/);
+  assert.match(middleware, /cdn-cgi\/access\/certs/);
+  assert.doesNotMatch(middleware, /DJCONNECT_RELAY_SECRET/);
+  assert.doesNotMatch(middleware, /console\./);
+
   assert.match(readme, /operator-only install-token revoke flow/);
+  assert.match(readme, /Cloudflare Access/);
+  assert.match(readme, /CLOUDFLARE_ACCESS_TEAM_DOMAIN/);
+  assert.match(readme, /CLOUDFLARE_ACCESS_AUD/);
   assert.match(readme, /New token provisioning is a separate operator action|separate operator\s+action/);
   assert.match(testsDoc, /happy path revoke/);
   assert.match(testsDoc, /confirm-required/);

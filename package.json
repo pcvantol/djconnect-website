@@ -1,6 +1,6 @@
 {
   "name": "djconnect-website",
-  "version": "3.1.56",
+  "version": "3.1.57",
   "private": true,
   "scripts": {
     "build": "npm run build:release",
@@ -9,7 +9,7 @@
     "stats:check": "node scripts/check-stats.mjs",
     "screenshots": "SCREENSHOT_LANG=nl npx playwright test tests/screenshots.spec.mjs",
     "screenshots:live": "SCREENSHOT_LANG=nl SCREENSHOT_BASE_URL=https://djconnect.dev npx playwright test tests/screenshots.spec.mjs",
-    "test:smoke": "npx playwright test tests/smoke.playwright.mjs"
+    "test:smoke": "npx playwright test tests/smoke.spec.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.61.0"

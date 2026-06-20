@@ -12,7 +12,7 @@
 - Cloudflare Pages project: `djconnect`
 - Source directory: `wwwroot`
 - Release publish directory: `dist/wwwroot`
-- Current version: `3.1.56`
+- Current version: `3.1.57`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Platform overview page with CSS architecture diagram: `wwwroot/platform.html`
@@ -211,7 +211,7 @@ repos but useful for higher GitHub API limits.
   the token-protected `/api/stats` contract and the release-script
   dependency/tool preflight.
 - `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. `npm run screenshots:live` captures Dutch live production screenshots at a laptop viewport into `screenshots/live-laptop/`. Neither is part of the default `npm test` run.
-- Current released version `3.1.56` syncs Ask DJ website copy with the
+- Current released version `3.1.57` syncs Ask DJ website copy with the
   canonical Home Assistant integration `v3.1.69+` contract, including
   Raspberry Pi read-only history display, central push relay wording, refreshed
   Ask DJ conversational examples and PR CI validation. Version `3.1.52` synced

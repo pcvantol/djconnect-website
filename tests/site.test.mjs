@@ -123,6 +123,7 @@ test("screenshot tooling is available for live page review", async () => {
   const scripts = JSON.parse(packageJson).scripts;
   assert.equal(scripts.screenshots, "SCREENSHOT_LANG=nl npx playwright test tests/screenshots.spec.mjs");
   assert.match(scripts["screenshots:live"], /SCREENSHOT_LANG=nl SCREENSHOT_BASE_URL=https:\/\/djconnect\.dev/);
+  assert.equal(scripts["test:smoke"], "npx playwright test tests/smoke.spec.mjs");
   assert.match(screenshotTest, /width: Number\(process\.env\.SCREENSHOT_WIDTH \|\| 1440\)/);
   assert.match(screenshotTest, /height: Number\(process\.env\.SCREENSHOT_HEIGHT \|\| 900\)/);
   assert.match(screenshotTest, /const language = process\.env\.SCREENSHOT_LANG \|\| "nl"/);
@@ -231,7 +232,8 @@ test("homepage promotes Ask DJ as a major product feature", async () => {
   assert.match(index, /<section id="ask-dj">/);
   assert.match(index, /data-i18n="askDjTitle">Ask DJ<\/h2>/);
   assert.match(index, /AI-DJ chat voor muziekvragen, persoonlijke aanbevelingen, playback-acties/);
-  assert.match(index, /Via Home Assistant en DJConnect integration v3\.1\.69\+/);
+  assert.doesNotMatch(index, /ask-dj-pill/);
+  assert.doesNotMatch(index, /Via Home Assistant en DJConnect integration v3\.1\.69\+/);
   assert.match(index, /Meer dan Spotify command parsing/);
   assert.match(index, /DJConnect Memory en Spotify listening profile data/);
   assert.match(index, /"Waarom koos je dit nummer\?"/);
@@ -242,6 +244,8 @@ test("homepage promotes Ask DJ as a major product feature", async () => {
   assert.match(index, /Home Assistant haalt context, history en playbackstatus op/);
   assert.match(index, /DJConnect antwoordt met tekst, bronnen, afbeeldingen en optionele audio/);
   assert.match(index, /Play Now; playback start pas na jouw tap/);
+  assert.match(index, /Van vraag naar actie/);
+  assert.match(index, /Vraag om muziek, kies een speaker, start een suggestie of bevestig een vervolgactie/);
   assert.match(index, /Continuity op Watch, iPhone en Mac/);
   assert.match(index, /server-side per Home Assistant gebruiker/);
   assert.match(index, /is begrensd/);
@@ -265,7 +269,8 @@ test("homepage promotes Ask DJ as a major product feature", async () => {
   assert.match(index, /zonder Spotify OAuth tokens, bearer tokens, raw audio of volledige prompts/);
   assert.match(index, /Ruwe voice-audio wordt standaard niet opgeslagen/);
   assert.match(index, /Spotify Premium, je eigen Spotify Developer app met Client ID/);
-  assert.match(index, /HACS DJConnect integration v3\.1\.69\+/);
+  assert.match(index, /HACS DJConnect integration, Spotify Premium/);
+  assert.doesNotMatch(index, /HACS DJConnect integration v3\.1\.69\+/);
   assert.match(index, /Nabu Casa of een stabiele HTTPS external URL is aanbevolen/);
   assert.match(index, /For concrete recommendations you choose Play Now yourself; playback starts only after your tap/);
   assert.match(index, /Spotify is a trademark of Spotify AB/);
@@ -445,10 +450,10 @@ test("features page describes core functions and bonus games", async () => {
   assert.match(features, /data-i18n="heroTitle">Features<\/h1>/);
   assert.match(features, /href="platform\.html" data-i18n="heroPlatformCta">Bekijk platform overview<\/a>/);
   assert.match(features, /Muziek aanvragen/);
-  assert.match(features, /data-i18n="askDjTitle">Ask DJ<\/h3>/);
-  assert.match(features, /Chat met je AI-DJ voor muziekvragen, persoonlijke aanbevelingen en playback-acties via Home Assistant/);
-  assert.match(features, /Aanbevelingen tonen Play Now en starten pas na jouw tap/);
-  assert.match(features, /Chat with your AI DJ for music questions, personal recommendations and playback actions through Home Assistant/);
+  assert.match(features, /data-i18n="askDjTitle">Slimme follow-ups<\/h3>/);
+  assert.match(features, /Ask DJ geeft niet alleen antwoord, maar ook acties/);
+  assert.match(features, /Wissel direct van speaker, kies een aanbevolen track, bekijk album art/);
+  assert.match(features, /Ask DJ does more than answer: it gives you actions/);
   assert.match(features, /Spotify playback/);
   assert.match(features, /Speaker keuze/);
   assert.match(features, /Home Assistant hub/);
@@ -1207,6 +1212,9 @@ test("release build minifies shared assets before deploy", async () => {
   assert.match(deployWorkflow, /cache: npm/);
   assert.match(deployWorkflow, /npm ci/);
   assert.match(deployWorkflow, /npm test/);
+  assert.match(deployWorkflow, /npx playwright install --with-deps chromium/);
+  assert.match(deployWorkflow, /SMOKE_BASE_URL: https:\/\/djconnect\.dev/);
+  assert.match(deployWorkflow, /npm run test:smoke/);
   assert.match(deployWorkflow, /npm run build:release/);
   assert.match(deployWorkflow, /needs: test/);
   assert.match(deployWorkflow, /if: github\.event_name != 'pull_request'/);

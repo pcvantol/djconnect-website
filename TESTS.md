@@ -249,9 +249,11 @@ Expected result: `HTTP/2 200` and a footer version matching `VERSION`.
 
 External URLs are intentionally not fetched by the default test run, keeping CI fast and independent of third-party availability.
 
-## Optional Playwright Smoke Tests
+## Playwright Smoke Tests
 
-The repository includes a starter Playwright smoke suite for live/browser behavior:
+GitHub Actions installs the Chromium Playwright browser and runs
+`tests/smoke.spec.mjs` as the live smoke suite before building or deploying the
+release site. Run the same check locally with:
 
 ```bash
 SMOKE_BASE_URL=https://djconnect.dev npm run test:smoke

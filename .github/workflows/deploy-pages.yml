@@ -31,6 +31,14 @@ jobs:
       - name: Run automated tests
         run: npm test
 
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Run browser smoke tests
+        env:
+          SMOKE_BASE_URL: https://djconnect.dev
+        run: npm run test:smoke
+
       - name: Build release site
         run: npm run build:release
 

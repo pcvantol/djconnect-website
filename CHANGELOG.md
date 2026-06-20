@@ -2,6 +2,16 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.57 - 2026-06-20
+
+- Refined the Ask DJ homepage copy by removing visible integration version
+  badges and adding an action-focused feature card for speaker choice,
+  suggestions and follow-up actions.
+- Updated the features page with the shorter "Slimme follow-ups" Ask DJ
+  marketing copy in Dutch and English.
+- Wired the Playwright live smoke suite into GitHub Actions with Chromium
+  browser installation before release-build validation.
+
 ## DJConnect website v3.1.56 - 2026-06-20
 
 - Synced the Ask DJ example data with the latest Home Assistant integration

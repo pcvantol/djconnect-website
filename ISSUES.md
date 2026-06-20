@@ -6,7 +6,6 @@ Use GitHub Issues for active tracking. This file captures known repository-level
 
 - The macOS and iOS visuals are illustrative placeholders until native app screenshots are available.
 - The Raspberry Pi hero is a CSS HyperPixel-style mockup until a real Linux client screenshot is available.
-- The site has a committed Playwright smoke-test basis, but it is not yet wired into CI with browser installation.
 - Cloudflare Pages deployment requires `CLOUDFLARE_API_TOKEN` locally or as a GitHub Actions secret.
 - Aggregate click counters require the Cloudflare Pages D1 binding `ANALYTICS_DB`; redirects still work when the binding is not configured.
 - `/api/stats` requires `STATS_TOKEN`; without it the endpoint intentionally returns unauthorized responses.
@@ -33,3 +32,5 @@ Use GitHub Issues for active tracking. This file captures known repository-level
 - App Store-ready Privacy Policy and visible footer links are live.
 - Cloudflare Pages deployment is connected to GitHub Actions on `main`; direct
   Wrangler deploy remains a fallback for deploy-only recovery.
+- GitHub Actions installs the Chromium Playwright browser and runs the live
+  `test:smoke` suite before building/deploying the release site.

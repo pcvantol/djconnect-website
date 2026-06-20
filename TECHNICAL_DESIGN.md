@@ -2,7 +2,7 @@
 
 This document records the implementation-level design choices for the DJConnect website. It is reverse-engineered from the repository and must be reviewed for every release.
 
-Current website version: `3.1.54`
+Current website version: `3.1.55`
 
 ## Scope
 
@@ -87,9 +87,9 @@ Cloudflare Pages Functions are kept small and task-specific:
 
 - `/api/releases`: proxies GitHub release API calls and applies a response cache.
 - `/api/stats`: returns token-protected aggregate click counters plus GitHub `download_count` totals.
-- `admin.html`: static internal UI for the D1-backed `/api/stats` contract.
+- `operator.html`: static internal UI for the D1-backed `/api/stats` contract.
   The old `/admin` Pages Function route is retired.
-- `admin.html` operator tooling: prepares explicit install-token revocation
+- `operator.html` operator tooling: prepares explicit install-token revocation
   calls against the DJConnect API bootstrap/operator contract.
 - `/go/[target]`: redirects known targets such as HACS and latest Linux install bundle.
 - `/go/download`: redirects allowed GitHub release asset URLs.
@@ -445,7 +445,7 @@ Source:
 
 - GitHub tokens are read only from server-side environment bindings and are never exposed to the browser.
 - `/api/stats` requires `STATS_TOKEN`; unauthorized requests return `404`.
-- The old `/admin` Pages Function route is retired. The static `admin.html`
+- The old `/admin` Pages Function route is retired. The static `operator.html`
   surface is `noindex` and still requires `STATS_TOKEN` to load data.
 - Download redirects validate that the destination is a GitHub release URL in an allowed DJConnect release repo.
 - Redirect analytics store aggregate counts only.

@@ -2,7 +2,7 @@
 
 All notable changes to this website are grouped per release.
 
-## DJConnect website v3.1.54 - 2026-06-20
+## DJConnect website v3.1.55 - 2026-06-20
 
 - Synced the Ask DJ example data with the latest Home Assistant integration
   `ask_dj_intents`, including contextual play follow-ups, next-track info,
@@ -16,7 +16,7 @@ All notable changes to this website are grouped per release.
 - Updated the GitHub Actions Pages workflow so pull requests run automated
   tests and release-build validation before deploy-capable `main` workflows.
 - Removed the legacy `/admin` Pages Function and added a new static
-  `admin.html` UI on top of token-protected `/api/stats`, including optional D1
+  `operator.html` UI on top of token-protected `/api/stats`, including optional D1
   redirect-click counters when `ANALYTICS_DB` is bound.
 - Added an operator-only admin flow proposal for explicitly revoking a
   compromised install token without issuing a replacement token.

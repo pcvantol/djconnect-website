@@ -135,7 +135,7 @@
 - Verify `/go/linux-install` resolves to the latest `pcvantol/djconnect-pi-releases` `.tar.gz` asset.
 - Verify `/api/stats` is unavailable without `STATS_TOKEN` and returns aggregate-only data when authenticated.
 - Verify the old `/admin` Pages Function route is absent. The static
-  `admin.html` UI must use token-protected `/api/stats`; that endpoint combines
+  `operator.html` UI must use token-protected `/api/stats`; that endpoint combines
   GitHub release asset `download_count` download counts with D1 redirect-click
   counters when `ANALYTICS_DB` is bound.
 - Verify the operator install-token revoke UI targets the bootstrap-only

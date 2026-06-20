@@ -87,7 +87,7 @@ STATS_TOKEN='your-stats-token' npm run stats:check
 - `wwwroot/assets/`: shared browser assets, icons and product visuals.
 - `functions/`: Cloudflare Pages Functions for release data, redirects,
   statistics and token-protected stats data.
-- `wwwroot/admin.html`: static D1 admin UI that reads `/api/stats` with a
+- `wwwroot/operator.html`: static D1 admin UI that reads `/api/stats` with a
   private `STATS_TOKEN`.
 - `migrations/`: optional D1 migration for cookieless aggregate counters.
 - `tests/`: Node test suite plus optional Playwright smoke/screenshot tests.
@@ -192,7 +192,7 @@ Report vulnerabilities privately through `SECURITY.md` and
 `security@djconnect.dev`.
 
 The old `/admin` Pages Function route is retired. The internal browser UI lives
-at `https://djconnect.dev/admin.html`, should remain protected by Cloudflare
+at `https://djconnect.dev/operator.html`, should remain protected by Cloudflare
 Access or another edge policy, and still requires `STATS_TOKEN` before it can
 read `/api/stats`. Do not add admin passwords or shared secrets to this
 repository, documentation, issues or diagnostics.

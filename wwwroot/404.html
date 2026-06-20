@@ -38,7 +38,7 @@
     @media (max-width:900px) { .nav-inner { flex-wrap:wrap; padding:12px 0; } }
     @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .actions { flex-direction:column; align-items:stretch; } }
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.54" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.55" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -78,7 +78,7 @@
   <footer class="wrap legal">
     <p>Copyright Peter van Tol 2026. Released under the MIT License.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.1.54</p>
+    <p class="site-version">DJConnect website v3.1.55</p>
   </footer>
   <script>
     const translations = {
@@ -144,6 +144,6 @@
     document.querySelectorAll("[data-lang]").forEach((button) => button.addEventListener("click", () => setLanguage(button.dataset.lang)));
     setLanguage(localStorage.getItem("djconnect-language") || "nl");
   </script>
-  <script src="assets/site-nav.js?v=3.1.54"></script>
+  <script src="assets/site-nav.js?v=3.1.55"></script>
 </body>
 </html>

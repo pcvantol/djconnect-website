@@ -1056,7 +1056,7 @@ test("D1 admin UI uses token-protected stats API without restoring legacy route"
   const [stats, sitemap, adminHtml, adminJs, adminCss] = await Promise.all([
     read("functions/api/stats.js"),
     read("wwwroot/sitemap.xml"),
-    read("wwwroot/admin.html"),
+    read("wwwroot/operator.html"),
     read("wwwroot/assets/admin.js"),
     read("wwwroot/assets/admin.css")
   ]);
@@ -1086,7 +1086,7 @@ test("D1 admin UI uses token-protected stats API without restoring legacy route"
 
 test("operator install-token revoke flow is explicit, bootstrap-only and redacted", async () => {
   const [adminHtml, adminJs, readme, testsDoc] = await Promise.all([
-    read("wwwroot/admin.html"),
+    read("wwwroot/operator.html"),
     read("wwwroot/assets/admin.js"),
     read("README.md"),
     read("TESTS.md")

@@ -200,7 +200,7 @@ Download and HACS clicks can be counted without cookies, IP addresses, user agen
 - Website redirect clicks go through `/go/...` and are stored as daily aggregate totals in D1.
 - Direct GitHub download totals come from GitHub release asset `download_count`.
 - `/api/stats` combines both sources behind a `STATS_TOKEN`.
-- `/admin` is retired. The new static `admin.html` UI reads the token-protected
+- `/admin` is retired. The new static `operator.html` UI reads the token-protected
   `/api/stats` endpoint and shows D1 redirect-click counters plus GitHub
   download totals.
 
@@ -230,7 +230,7 @@ STATS_TOKEN='your-stats-token' npm run stats:check
 STATS_DAYS=7 STATS_TOKEN='your-stats-token' npm run stats:check
 ```
 
-Open `https://djconnect.dev/admin.html` for the browser UI. Keep external
+Open `https://djconnect.dev/operator.html` for the browser UI. Keep external
 access protected with Cloudflare Access or another edge policy; the UI does not
 contain secrets and still requires `STATS_TOKEN` before it can read data.
 

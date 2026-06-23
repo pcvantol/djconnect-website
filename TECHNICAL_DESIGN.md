@@ -2,7 +2,7 @@
 
 This document records the implementation-level design choices for the DJConnect website. It is reverse-engineered from the repository and must be reviewed for every release.
 
-Current website version: `3.1.60`
+Current website version: `3.1.61`
 
 ## Scope
 
@@ -449,6 +449,12 @@ Source:
 - `/api/stats` requires `STATS_TOKEN`; unauthorized requests return `404`.
 - The old `/admin` Pages Function route is retired. The static `operator.html`
   surface is `noindex` and still requires `STATS_TOKEN` to load data.
+- Operator APNs device registration overview flow:
+  `operator.html -> /api/operator/registrations -> https://api.djconnect.dev/v1/admin/registrations`.
+  The Pages Function adds server-side `DJCONNECT_RELAY_SECRET` auth, validates
+  pagination/filter query values and returns only privacy-safe metadata that the
+  central API already redacts. The website does not query D1 directly for Apple
+  device registrations.
 - Operator revoke actions must go through the server-side
   `/api/operator/install-token/revoke` proxy. `DJCONNECT_RELAY_SECRET` must stay
   only in Cloudflare Pages secrets and must never be embedded in browser

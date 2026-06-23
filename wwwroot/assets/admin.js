@@ -8,6 +8,17 @@ const metricRows = document.querySelector("#metric-rows");
 const clickTotalsEl = document.querySelector("#click-totals");
 const dailyRowsEl = document.querySelector("#daily-rows");
 const downloadGroupsEl = document.querySelector("#download-groups");
+const registrationsForm = document.querySelector("#registrations-form");
+const registrationClientTypeInput = document.querySelector("#registration-client-type");
+const registrationApnsEnvironmentInput = document.querySelector("#registration-apns-environment");
+const registrationStatusFilterInput = document.querySelector("#registration-status-filter");
+const registrationInstallFilterInput = document.querySelector("#registration-install-filter");
+const loadRegistrationsButton = document.querySelector("#load-registrations");
+const registrationsStatusEl = document.querySelector("#registrations-status");
+const registrationRowsEl = document.querySelector("#registration-rows");
+const previousRegistrationsButton = document.querySelector("#previous-registrations");
+const nextRegistrationsButton = document.querySelector("#next-registrations");
+const registrationsPageLabel = document.querySelector("#registrations-page-label");
 const revokeForm = document.querySelector("#revoke-form");
 const revokeInstallIdInput = document.querySelector("#revoke-install-id");
 const revokeTokenIdInput = document.querySelector("#revoke-token-id");
@@ -21,6 +32,8 @@ const executeRevokeButton = document.querySelector("#execute-revoke");
 const revokeStatusEl = document.querySelector("#revoke-status");
 
 const TOKEN_KEY = "djconnect.statsToken";
+const REGISTRATIONS_ENDPOINT = "/api/operator/registrations";
+const REGISTRATIONS_LIMIT = 25;
 const REVOKE_ENDPOINT = "/api/operator/install-token/revoke";
 const REVOKE_REASONS = new Set([
   "operator-disabled-compromised-install",
@@ -29,6 +42,8 @@ const REVOKE_REASONS = new Set([
   "operator-disabled-other"
 ]);
 let preparedRevoke = null;
+let registrationsOffset = 0;
+let registrationsNextOffset = null;
 
 const formatNumber = (value) => new Intl.NumberFormat("nl-NL").format(Number(value || 0));
 
@@ -113,6 +128,119 @@ const renderGithubDownloads = (groups) => {
       </article>
     `;
   }).join("");
+};
+
+
+const setRegistrationsStatus = (message, type = "info") => {
+  registrationsStatusEl.textContent = message;
+  registrationsStatusEl.classList.toggle("error", type === "error");
+  registrationsStatusEl.classList.toggle("success", type === "success");
+};
+
+const formatDateTime = (value) => {
+  if (!value) return "-";
+  const date = new Date(String(value).replace(" ", "T") + "Z");
+  if (Number.isNaN(date.getTime())) return String(value);
+  return new Intl.DateTimeFormat("nl-NL", {
+    dateStyle: "short",
+    timeStyle: "short"
+  }).format(date);
+};
+
+const renderStatusPill = (registration) => {
+  if (registration.invalid) return '<span class="pill error">Invalid</span>';
+  if (registration.disabled) return '<span class="pill muted">Disabled</span>';
+  return '<span class="pill success">Active</span>';
+};
+
+const renderRegistrations = (registrations) => {
+  if (!registrations.length) {
+    renderEmptyRow(registrationRowsEl, 8, "No APNs registrations match these filters.");
+    return;
+  }
+
+  registrationRowsEl.innerHTML = registrations.map((registration) => `
+    <tr>
+      <td>${escapeText(registration.client_type)}</td>
+      <td>${escapeText(registration.apns_environment)}</td>
+      <td><code>${escapeText(registration.ha_install_id_hash)}</code></td>
+      <td><code>${escapeText(registration.device_id_hash)}</code></td>
+      <td>${renderStatusPill(registration)}</td>
+      <td>${escapeText(formatDateTime(registration.last_success_at))}</td>
+      <td>${escapeText(registration.last_error_code || "-")}</td>
+      <td>${escapeText(formatDateTime(registration.updated_at))}</td>
+    </tr>
+  `).join("");
+};
+
+const registrationQueryParams = () => {
+  const params = new URLSearchParams({
+    limit: String(REGISTRATIONS_LIMIT),
+    offset: String(registrationsOffset)
+  });
+  const clientType = registrationClientTypeInput.value;
+  const apnsEnvironment = registrationApnsEnvironmentInput.value;
+  const installFilter = registrationInstallFilterInput.value.trim();
+  const statusFilter = registrationStatusFilterInput.value;
+
+  if (clientType) params.set("client_type", clientType);
+  if (apnsEnvironment) params.set("apns_environment", apnsEnvironment);
+  if (installFilter) params.set("ha_install_id", installFilter);
+  if (statusFilter === "active") params.set("disabled", "false");
+  if (statusFilter === "disabled") params.set("disabled", "true");
+  if (statusFilter === "invalid") params.set("invalid", "true");
+  return params;
+};
+
+const loadRegistrations = async (event) => {
+  if (event) {
+    event.preventDefault();
+    registrationsOffset = 0;
+  }
+
+  loadRegistrationsButton.disabled = true;
+  previousRegistrationsButton.disabled = true;
+  nextRegistrationsButton.disabled = true;
+  setRegistrationsStatus("Loading APNs registrations...");
+
+  try {
+    const response = await fetch(`${REGISTRATIONS_ENDPOINT}?${registrationQueryParams()}`, {
+      cache: "no-store"
+    });
+
+    let body = {};
+    try {
+      body = await response.json();
+    } catch {
+      body = {};
+    }
+
+    if (!response.ok || body.ok !== true) {
+      throw new Error(sanitizeError(body.error || `registrations_failed_${response.status}`));
+    }
+
+    const registrations = body.registrations || [];
+    registrationsNextOffset = body.next_offset ?? null;
+    renderRegistrations(registrations);
+    registrationsPageLabel.textContent = `Page ${Math.floor(registrationsOffset / REGISTRATIONS_LIMIT) + 1}`;
+    previousRegistrationsButton.disabled = registrationsOffset === 0;
+    nextRegistrationsButton.disabled = registrationsNextOffset === null;
+    setRegistrationsStatus(`Loaded ${formatNumber(registrations.length)} APNs registrations.`, "success");
+  } catch (error) {
+    setRegistrationsStatus(sanitizeError(error.message), "error");
+    renderEmptyRow(registrationRowsEl, 8, "Could not load APNs registrations.");
+  } finally {
+    loadRegistrationsButton.disabled = false;
+  }
+};
+
+const moveRegistrationsPage = (direction) => {
+  if (direction < 0) {
+    registrationsOffset = Math.max(0, registrationsOffset - REGISTRATIONS_LIMIT);
+  } else if (registrationsNextOffset !== null) {
+    registrationsOffset = registrationsNextOffset;
+  }
+  loadRegistrations();
 };
 
 const resetRevokeConfirm = () => {
@@ -252,6 +380,9 @@ daysInput.addEventListener("change", () => {
 tokenInput.addEventListener("keydown", (event) => {
   if (event.key === "Enter") loadStats();
 });
+registrationsForm.addEventListener("submit", loadRegistrations);
+previousRegistrationsButton.addEventListener("click", () => moveRegistrationsPage(-1));
+nextRegistrationsButton.addEventListener("click", () => moveRegistrationsPage(1));
 revokeForm.addEventListener("submit", prepareRevoke);
 confirmRevokeCheck.addEventListener("change", () => {
   executeRevokeButton.disabled = !confirmRevokeCheck.checked;

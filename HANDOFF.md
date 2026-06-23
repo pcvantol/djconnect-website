@@ -12,7 +12,7 @@
 - Cloudflare Pages project: `djconnect`
 - Source directory: `wwwroot`
 - Release publish directory: `dist/wwwroot`
-- Current version: `3.1.60`
+- Current version: `3.1.61`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Platform overview page with CSS architecture diagram: `wwwroot/platform.html`
@@ -120,6 +120,18 @@
 - The old `/admin` Pages Function route is retired. The static `operator.html` UI
   reads the token-protected `/api/stats` endpoint, combining GitHub release
   asset download counts with optional D1 redirect-click counters.
+- `operator.html` includes an Apple device registration overview for operators.
+  The browser calls `GET /api/operator/registrations`; the Pages Function uses
+  server-side `DJCONNECT_RELAY_SECRET` and forwards to
+  `GET https://api.djconnect.dev/v1/admin/registrations`. The website must not
+  read D1 directly for this data.
+- The registrations overview may display only privacy-safe fields:
+  `ha_install_id_hash`, `ha_user_hash`, `device_id_hash`, `client_type`,
+  `apns_environment`, `topic`, `app_bundle_id`, `app_version`, `locale`,
+  `categories`, `disabled`, `invalid`, `created_at`, `updated_at`,
+  `last_success_at` and `last_error_code`. Never expose APNs token material,
+  token ciphertext/nonces, raw production install IDs, raw device IDs or
+  per-install `djci_...` tokens in the website.
 - `operator.html` also includes an operator-only install-token revoke flow for
   compromised per-install `djci_...` tokens. The browser calls
   `POST /api/operator/install-token/revoke`; that Pages Function uses
@@ -217,7 +229,8 @@ useful for higher GitHub API limits.
   the token-protected `/api/stats` contract and the release-script
   dependency/tool preflight.
 - `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. `npm run screenshots:live` captures Dutch live production screenshots at a laptop viewport into `screenshots/live-laptop/`. Neither is part of the default `npm test` run.
-- Current released version `3.1.60` syncs Ask DJ website copy with the
+- Current released version `3.1.61` adds the operator APNs registration overview
+  and privacy-focused tests/docs. Version `3.1.60` syncs Ask DJ website copy with the
   canonical Home Assistant integration `v3.1.69+` contract, including
   Raspberry Pi read-only history display, central push relay wording, refreshed
   Ask DJ conversational examples and PR CI validation. Version `3.1.52` synced

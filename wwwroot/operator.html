@@ -7,7 +7,7 @@
   <title>DJConnect Admin Stats</title>
   <meta name="description" content="Interne DJConnect statistieken op basis van D1 aggregate counters en GitHub release downloads." />
   <link rel="icon" href="assets/djconnect/icon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="assets/admin.css?v=3.1.60" />
+  <link rel="stylesheet" href="assets/admin.css?v=3.1.61" />
 </head>
 <body>
   <main class="admin-shell">
@@ -108,6 +108,75 @@
       </div>
     </section>
 
+    <section class="panel" aria-labelledby="registrations-title">
+      <div class="panel-head">
+        <div>
+          <h2 id="registrations-title">Apple device registrations</h2>
+          <p>Privacy-safe APNs registration metadata from the central DJConnect API.</p>
+        </div>
+      </div>
+      <form id="registrations-form" class="operator-form compact-form">
+        <label>
+          <span>Client type</span>
+          <select id="registration-client-type">
+            <option value="">All</option>
+            <option value="ios">iOS</option>
+            <option value="macos">macOS</option>
+            <option value="watchos">watchOS</option>
+          </select>
+        </label>
+        <label>
+          <span>APNs environment</span>
+          <select id="registration-apns-environment">
+            <option value="">All</option>
+            <option value="sandbox">Sandbox</option>
+            <option value="production">Production</option>
+          </select>
+        </label>
+        <label>
+          <span>Status</span>
+          <select id="registration-status-filter">
+            <option value="active">Active</option>
+            <option value="disabled">Disabled</option>
+            <option value="invalid">Invalid</option>
+            <option value="all">All</option>
+          </select>
+        </label>
+        <label>
+          <span>Install ID filter</span>
+          <input id="registration-install-filter" type="text" autocomplete="off" placeholder="example-ha-install" />
+        </label>
+        <div class="operator-actions">
+          <button id="load-registrations" type="submit">Load devices</button>
+        </div>
+      </form>
+      <p id="registrations-status" class="status" role="status">Load APNs registrations after signing in through Cloudflare Access.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Client</th>
+              <th>Environment</th>
+              <th>Install hash</th>
+              <th>Device hash</th>
+              <th>Status</th>
+              <th>Last success</th>
+              <th>Error</th>
+              <th>Updated</th>
+            </tr>
+          </thead>
+          <tbody id="registration-rows">
+            <tr><td colspan="8">No devices loaded.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pagination-row">
+        <button id="previous-registrations" type="button" disabled>Previous</button>
+        <span id="registrations-page-label">Page 1</span>
+        <button id="next-registrations" type="button" disabled>Next</button>
+      </div>
+    </section>
+
     <section class="panel danger-zone" aria-labelledby="revoke-title">
       <div class="panel-head">
         <div>
@@ -166,6 +235,6 @@
     </section>
   </main>
 
-  <script src="assets/admin.js?v=3.1.60" defer></script>
+  <script src="assets/admin.js?v=3.1.61" defer></script>
 </body>
 </html>

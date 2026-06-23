@@ -2,6 +2,13 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.61 - 2026-06-23
+
+- Added the operator Apple device registration overview backed by the
+  server-side `/api/operator/registrations` proxy.
+- Expanded static tests and documentation for APNs registration privacy,
+  filters, pagination, proxy validation and redaction boundaries.
+
 ## DJConnect website v3.1.60 - 2026-06-23
 
 - Synced the Ask DJ example voice intents with the current Home Assistant

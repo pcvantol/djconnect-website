@@ -20,6 +20,10 @@ Cross-repo contract changes are tracked only in
 - Keep the admin install-token revoke UI wired through the server-side
   `/api/operator/install-token/revoke` proxy so `DJCONNECT_RELAY_SECRET` never
   enters browser code.
+- Keep future operator Apple device registration fields privacy-safe. Add only
+  hashes, prefixes, status flags or non-sensitive metadata to the UI and tests;
+  never expose raw APNs tokens, ciphertext/nonces, raw install IDs, raw device
+  IDs or per-install tokens.
 - Replace footer version when preparing the next release.
 
 ## Platform

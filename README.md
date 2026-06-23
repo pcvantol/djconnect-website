@@ -203,6 +203,10 @@ Download and HACS clicks can be counted without cookies, IP addresses, user agen
 - `/admin` is retired. The new static `operator.html` UI reads the token-protected
   `/api/stats` endpoint and shows D1 redirect-click counters plus GitHub
   download totals.
+- `operator.html` also shows a privacy-safe Apple device registration overview
+  through the server-side `/api/operator/registrations` proxy. The browser never
+  reads D1 directly and never receives APNs tokens, ciphertext, nonces or raw
+  production install/device identifiers.
 
 Cloudflare setup:
 
@@ -265,6 +269,15 @@ implemented through the server-side Pages Function
 `operator-disabled-compromised-install`; it never sends raw `djci_...` token
 material or the operator secret. New token provisioning is a separate operator
 action.
+
+The operator Apple device overview calls `GET /api/operator/registrations`.
+That Pages Function adds server-side `DJCONNECT_RELAY_SECRET` auth and forwards
+to `GET https://api.djconnect.dev/v1/admin/registrations`. The UI may render
+only privacy-safe metadata such as `ha_install_id_hash`, `device_id_hash`,
+`client_type`, `apns_environment`, status flags, last success/error and
+timestamps. Do not add raw APNs tokens, token ciphertext/nonces, per-install
+tokens, raw production install IDs or raw device IDs to browser code, fixtures
+or docs.
 
 The redirect layer is fail-open: if `ANALYTICS_DB` is not configured yet, users are still redirected and no personal data is stored.
 

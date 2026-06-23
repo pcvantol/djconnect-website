@@ -145,6 +145,13 @@
   already-disabled/not-found behavior, confirm-required behavior, API 401/403
   rendering and secret redaction. Do not include real tokens or production
   identifiers in source or fixtures.
+- Verify the operator APNs registration overview is reachable only after
+  Cloudflare Access, calls local `GET /api/operator/registrations`, and never
+  calls the central API directly from the browser. Test filters for client type,
+  APNs environment, status and install ID; test previous/next pagination; verify
+  errors redact bearer tokens and `djci_...` values; confirm visible rows contain
+  only hashes/prefixes and privacy-safe metadata, never raw APNs tokens,
+  ciphertext, nonces, raw install IDs or raw device IDs.
   Do not document private access details or credentials in docs, issues or
   diagnostics.
 - Verify `https://djconnect.dev` is used in canonical tags, `robots.txt`, `sitemap.xml` and public install commands.

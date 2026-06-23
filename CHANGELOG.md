@@ -2,6 +2,11 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.59 - 2026-06-23
+
+- Removed all On Air and AirPlay feature references from iOS and macOS
+  `v3.1.40` release notes because the Apple-client feature has been removed.
+
 ## DJConnect website v3.1.58 - 2026-06-20
 
 - Added fail-closed Pages middleware for `/operator`, `/operator.html` and

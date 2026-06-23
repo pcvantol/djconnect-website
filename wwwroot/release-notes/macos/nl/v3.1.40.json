@@ -3,5 +3,5 @@
   "platform": "macos",
   "language": "nl",
   "name": "DJConnect macOS 3.1.40",
-  "body": "# DJConnect App 3.1.40\n\n- On Air toont Ask DJ nu als woonkamerweergave voor AirPlay/TV, met grote live chatbubbles, now-playing artwork en een AirPlay route picker.\n- DJ-audio uit Ask DJ volgt in On Air de gekozen iOS-audioroute, inclusief AirPlay wanneer die route actief is.\n- De iOS-demo-screenshotdekking is uitgebreid zodat de On Air-weergave automatisch wordt gecontroleerd.\n\n---\n\nPlatform: macOS\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nVoor normale macOS-distributie heeft de genotariseerde Developer ID-build de voorkeur wanneer die is bijgevoegd."
+  "body": "# DJConnect App 3.1.40\n\n- Ask DJ toont grotere live chatbubbles en now-playing artwork.\n- De demo-screenshotdekking is uitgebreid zodat de Ask DJ-weergave automatisch wordt gecontroleerd.\n\n---\n\nPlatform: macOS\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nVoor normale macOS-distributie heeft de genotariseerde Developer ID-build de voorkeur wanneer die is bijgevoegd."
 }

@@ -1,0 +1,7 @@
+{
+  "version": "3.1.44",
+  "platform": "ios",
+  "language": "nl",
+  "name": "DJConnect iOS 3.1.44",
+  "body": "# DJConnect App 3.1.44\n\n- Ask DJ toont recent afgespeelde nummers, albums, artiesten en playlists nu als compacte lijsten.\n- Album-art in Ask DJ past beter binnen chatbubbels op iOS en macOS.\n- De macOS mood-kiezer blijft netjes uitgelijnd zonder het menu of de chat te verschuiven.\n- Home Assistant koppelen via macOS is betrouwbaarder doordat de lokale mDNS-advertentie actief blijft tijdens pairing.\n- Tekstantwoorden zonder artwork tonen geen oude album- of playlistafbeeldingen meer.\n\n---\n\nPlatform: iOS\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nNiet-ondertekende iOS-binaries worden hier gepubliceerd voor diagnostics en interne validatie. Gebruik voor normale iOS-distributie TestFlight/App Store."
+}

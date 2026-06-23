@@ -2,6 +2,14 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.60 - 2026-06-23
+
+- Synced the Ask DJ example voice intents with the current Home Assistant
+  integration source data, including help, speaker switching, retry and recent
+  listening-history examples.
+- Updated regression coverage so the website keeps the Ask DJ example intent
+  order and privacy-safe metadata aligned with the canonical HACS data.
+
 ## DJConnect website v3.1.59 - 2026-06-23
 
 - Removed all On Air and AirPlay feature references from iOS and macOS

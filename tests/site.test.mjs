@@ -607,6 +607,9 @@ test("voice commands page documents intent families and DJ response styles", asy
   const actualAskDjIntentOrder = [...askDjIntentSource.matchAll(/"id": "([^"]+)"/g)].map((match) => match[1]);
   assert.deepEqual(actualAskDjIntentOrder, [
     "conversation_followup",
+    "help",
+    "speaker_outputs",
+    "retry_previous_request",
     "contextual_play_followup",
     "album_discography",
     "similar_artists",
@@ -614,6 +617,7 @@ test("voice commands page documents intent families and DJ response styles", asy
     "concert_agenda",
     "next_track_info",
     "personal_music_profile_analysis",
+    "recently_played_history",
     "personal_music_recommendations",
     "seed_playlist_mix",
     "dj_announcement",
@@ -621,6 +625,13 @@ test("voice commands page documents intent families and DJ response styles", asy
     "idle_suggestion"
   ]);
   assert.match(intents, /Geeft niet/);
+  assert.match(intents, /Wat kun je\?/);
+  assert.match(intents, /Welke commando's kan ik gebruiken\?/);
+  assert.match(intents, /Welke speakers zijn er\?/);
+  assert.match(intents, /Wissel van speaker/);
+  assert.match(intents, /Move music to the living room speaker/);
+  assert.match(intents, /Probeer opnieuw/);
+  assert.match(intents, /Do that again/);
   assert.match(intents, /Speel maar af/);
   assert.match(intents, /Which artist do you mean\?/);
   assert.match(intents, /Welke albums hebben Radiohead uitgebracht\?/);
@@ -631,12 +642,21 @@ test("voice commands page documents intent families and DJ response styles", asy
   assert.match(intents, /Wat wordt het volgende nummer\?/);
   assert.match(intents, /What will play next\?/);
   assert.match(intents, /Omschrijf eens waar ik zoal naar luisterde de afgelopen maand/);
+  assert.match(intents, /Welke nummers heb ik afgelopen uur afgespeeld\?/);
+  assert.match(intents, /Welke albums heb ik vandaag geluisterd\?/);
+  assert.match(intents, /Which playlists did I play in the last hour\?/);
   assert.match(intents, /Ik voel me moe en geprikkeld, zet iets ontspannends klaar/);
   assert.match(intents, /Stel een playlist samen op basis van Radiohead, Massive Attack en Portishead/);
   assert.match(intents, /Save this mix as a Spotify playlist/);
   assert.match(intents, /Geef me een leuke aankondiging voor wat nu speelt/);
   assert.match(intents, /Automatisch DJ feitje bij nieuw album of nieuwe artiest/);
   assert.match(intents, /Er speelt nu niets\. Zin in iets nieuws\?/);
+  assert.match(intents, /"intent": "recently_played_history"/);
+  assert.match(intents, /"intent_category": "informational"/);
+  assert.match(intents, /"item_types": \[/);
+  assert.match(intents, /"response_shape": \{/);
+  assert.match(intents, /"plays_music": false/);
+  assert.match(intents, /"playsMusic": false/);
   assert.match(intents, /Play Now (buttons|actions)/);
   assert.match(intents, /"messageKind": "system"/);
   assert.doesNotMatch(intents, /Zet shuffle aan/);

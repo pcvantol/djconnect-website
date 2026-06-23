@@ -351,18 +351,32 @@ window.DJCONNECT_VOICE_INTENTS = [
 window.DJCONNECT_ASK_DJ_INTENTS = [
   {
     "id": "conversation_followup",
-    "playsMusic": false,
+    "plays_music": false,
     "action": "none",
-    "messageKind": "user",
-    "origin": null,
     "description": "Short conversational replies are answered naturally without rerunning the previous lookup or mutating playback.",
+    "nl": [
+      "Geeft niet",
+      "Dank je",
+      "Laat maar",
+      "Prima",
+      "Jammer"
+    ],
+    "en": [
+      "No worries",
+      "Thanks",
+      "Never mind",
+      "That's fine",
+      "Too bad"
+    ],
+    "playsMusic": false,
+    "messageKind": "user",
     "pill": {
-      "nl": "Follow-up",
-      "en": "Follow-up"
+      "nl": "Gesprek",
+      "en": "Chat"
     },
     "title": {
-      "nl": "Korte reacties",
-      "en": "Short replies"
+      "nl": "Korte reactie",
+      "en": "Short reply"
     },
     "examples": {
       "nl": [
@@ -382,19 +396,174 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     }
   },
   {
-    "id": "contextual_play_followup",
-    "playsMusic": true,
-    "action": "play_music",
+    "id": "help",
+    "plays_music": false,
+    "action": "none",
+    "intent": "help",
+    "response_shape": {
+      "text_only": true,
+      "images": [],
+      "playback_actions": []
+    },
+    "description": "Ask what DJConnect can do. The response is a categorized text-only list of prompt options and must not reuse media cards or artwork.",
+    "nl": [
+      "Help",
+      "Hulp",
+      "Wat kun je?",
+      "Welke commando's kan ik gebruiken?"
+    ],
+    "en": [
+      "Help",
+      "What can you do?",
+      "Which commands can I use?"
+    ],
+    "playsMusic": false,
     "messageKind": "user",
-    "origin": null,
+    "pill": {
+      "nl": "Help",
+      "en": "Help"
+    },
+    "title": {
+      "nl": "Wat kan Ask DJ?",
+      "en": "What can Ask DJ do?"
+    },
+    "examples": {
+      "nl": [
+        "Help",
+        "Hulp",
+        "Wat kun je?",
+        "Welke commando's kan ik gebruiken?"
+      ],
+      "en": [
+        "Help",
+        "What can you do?",
+        "Which commands can I use?"
+      ]
+    }
+  },
+  {
+    "id": "speaker_outputs",
+    "plays_music": false,
+    "action": "devices",
+    "intent": "list_outputs",
+    "response_shape": {
+      "playback_actions_kind": "output",
+      "button_labels": [
+        "Activeer",
+        "Actief"
+      ]
+    },
+    "description": "Ask which Spotify output devices are available or request speaker switching. DJConnect returns a text list plus output actions when devices are known.",
+    "nl": [
+      "Welke speakers zijn er?",
+      "Welke apparaten kan ik gebruiken?",
+      "Wissel van speaker",
+      "Zet de muziek op de woonkamer speaker"
+    ],
+    "en": [
+      "Which speakers are available?",
+      "Which devices can I use?",
+      "Switch speaker",
+      "Move music to the living room speaker"
+    ],
+    "playsMusic": false,
+    "messageKind": "user",
+    "pill": {
+      "nl": "Speakers",
+      "en": "Speakers"
+    },
+    "title": {
+      "nl": "Speaker kiezen",
+      "en": "Choose a speaker"
+    },
+    "examples": {
+      "nl": [
+        "Welke speakers zijn er?",
+        "Welke apparaten kan ik gebruiken?",
+        "Wissel van speaker",
+        "Zet de muziek op de woonkamer speaker"
+      ],
+      "en": [
+        "Which speakers are available?",
+        "Which devices can I use?",
+        "Switch speaker",
+        "Move music to the living room speaker"
+      ]
+    }
+  },
+  {
+    "id": "retry_previous_request",
+    "plays_music": true,
+    "action": "retry",
+    "intent": "retry_previous_request",
+    "description": "Retry the previous retryable playback request from server-side Ask DJ history or memory. Clients must not reconstruct the old request locally.",
+    "nl": [
+      "Probeer opnieuw",
+      "Nog een keer",
+      "Retry",
+      "Doe nog eens"
+    ],
+    "en": [
+      "Try again",
+      "Retry",
+      "One more time",
+      "Do that again"
+    ],
+    "playsMusic": true,
+    "messageKind": "user",
+    "pill": {
+      "nl": "Opnieuw",
+      "en": "Retry"
+    },
+    "title": {
+      "nl": "Vorige vraag opnieuw proberen",
+      "en": "Retry previous request"
+    },
+    "examples": {
+      "nl": [
+        "Probeer opnieuw",
+        "Nog een keer",
+        "Retry",
+        "Doe nog eens"
+      ],
+      "en": [
+        "Try again",
+        "Retry",
+        "One more time",
+        "Do that again"
+      ]
+    }
+  },
+  {
+    "id": "contextual_play_followup",
+    "plays_music": true,
+    "action": "play_music",
     "description": "Short playback follow-ups resolve against recent Ask DJ chat context. If the recent track has no artist context, Ask DJ asks which artist the user means instead of guessing.",
+    "nl": [
+      "Speel af",
+      "Speel maar",
+      "Speel maar af",
+      "Zet maar op",
+      "Wat is die beuker?",
+      "Speel die dikke knaller",
+      "Vertel iets over die monsterhit",
+      "Welke artiest bedoel je?"
+    ],
+    "en": [
+      "Play it",
+      "Play that",
+      "Play this",
+      "Which artist do you mean?"
+    ],
+    "playsMusic": true,
+    "messageKind": "user",
     "pill": {
       "nl": "Context",
       "en": "Context"
     },
     "title": {
-      "nl": "Contextueel afspelen",
-      "en": "Contextual playback"
+      "nl": "Play Now follow-up",
+      "en": "Play Now follow-up"
     },
     "examples": {
       "nl": [
@@ -417,18 +586,30 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
   },
   {
     "id": "album_discography",
-    "playsMusic": false,
+    "plays_music": false,
     "action": "none",
-    "messageKind": "user",
-    "origin": null,
     "description": "Ask for an artist's albums. DJConnect can return a chronological album list with proxied album covers and Play Now actions per album.",
+    "nl": [
+      "Welke albums hebben Radiohead uitgebracht?",
+      "Welke albums bracht deze artiest uit?",
+      "Welke albums zijn er van Prince?",
+      "Albums van Suzan en Freek",
+      "Geef me de albums van Guns N' Roses"
+    ],
+    "en": [
+      "Which albums has Radiohead released?",
+      "Which albums did this artist release?",
+      "Albums by Prince"
+    ],
+    "playsMusic": false,
+    "messageKind": "user",
     "pill": {
       "nl": "Albums",
       "en": "Albums"
     },
     "title": {
-      "nl": "Discografie vragen",
-      "en": "Discography questions"
+      "nl": "Albums van een artiest",
+      "en": "Artist albums"
     },
     "examples": {
       "nl": [
@@ -447,11 +628,22 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
   },
   {
     "id": "similar_artists",
-    "playsMusic": false,
+    "plays_music": false,
     "action": "none",
-    "messageKind": "user",
-    "origin": null,
     "description": "Ask for artists with similar music, using an explicit artist, current playback artist or recent conversation artist.",
+    "nl": [
+      "Welke artiesten maken vergelijkbare muziek als Radiohead?",
+      "Welke artiesten maken vergelijkbare muziek als wat nu speelt?",
+      "Welke artiesten lijken op deze artiest?",
+      "Vergelijkbare artiesten als de artiest waar het in de conversatie over gaat"
+    ],
+    "en": [
+      "Which artists make similar music to Radiohead?",
+      "Which artists are similar to what is playing now?",
+      "Similar artists to this artist"
+    ],
+    "playsMusic": false,
+    "messageKind": "user",
     "pill": {
       "nl": "Vergelijkbaar",
       "en": "Similar"
@@ -476,14 +668,25 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
   },
   {
     "id": "artist_genre_style",
-    "playsMusic": false,
+    "plays_music": false,
     "action": "none",
-    "messageKind": "user",
-    "origin": null,
     "description": "Ask what kind of music an artist makes. DJConnect phrases Spotify genre/profile data naturally.",
+    "nl": [
+      "Wat voor muziek maakt Beastie Boys?",
+      "Wat voor muziek maakt deze artiest?",
+      "Welk genre maakt Muse?",
+      "Wat is het genre van Radiohead?"
+    ],
+    "en": [
+      "What kind of music does Beastie Boys make?",
+      "What kind of music does this artist make?",
+      "What genre is Muse?"
+    ],
+    "playsMusic": false,
+    "messageKind": "user",
     "pill": {
-      "nl": "Genre",
-      "en": "Genre"
+      "nl": "Stijl",
+      "en": "Style"
     },
     "title": {
       "nl": "Genre en stijl",
@@ -505,18 +708,30 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
   },
   {
     "id": "concert_agenda",
-    "playsMusic": false,
+    "plays_music": false,
     "action": "none",
-    "messageKind": "user",
-    "origin": null,
     "description": "Ask for upcoming concerts. DJConnect can return date, location and clickable source links when web agenda data is available.",
+    "nl": [
+      "Wanneer speelt Radiohead in Nederland?",
+      "Heeft deze artiest binnenkort concerten?",
+      "Concerten van The National",
+      "Tourdata voor Muse"
+    ],
+    "en": [
+      "When does Radiohead play in the Netherlands?",
+      "Does this artist have upcoming concerts?",
+      "Concerts for The National",
+      "Tour dates for Muse"
+    ],
+    "playsMusic": false,
+    "messageKind": "user",
     "pill": {
       "nl": "Concerten",
       "en": "Concerts"
     },
     "title": {
       "nl": "Concertagenda",
-      "en": "Concert agenda"
+      "en": "Concert calendar"
     },
     "examples": {
       "nl": [
@@ -535,14 +750,24 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
   },
   {
     "id": "next_track_info",
-    "playsMusic": false,
+    "plays_music": false,
     "action": "none",
-    "messageKind": "user",
-    "origin": null,
     "description": "Ask what the next queued track is. DJConnect reads Spotify queue context and can return track, artist, album art and a Play Now action without skipping automatically.",
+    "nl": [
+      "Wat wordt het volgende nummer?",
+      "Wat is het volgende nummer?",
+      "Welke track komt hierna?"
+    ],
+    "en": [
+      "What is the next song?",
+      "Which track is up next?",
+      "What will play next?"
+    ],
+    "playsMusic": false,
+    "messageKind": "user",
     "pill": {
-      "nl": "Volgende",
-      "en": "Next"
+      "nl": "Wachtrij",
+      "en": "Queue"
     },
     "title": {
       "nl": "Volgende track",
@@ -563,18 +788,30 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
   },
   {
     "id": "personal_music_profile_analysis",
-    "playsMusic": false,
+    "plays_music": false,
     "action": "profile_analysis",
-    "messageKind": "user",
-    "origin": null,
     "description": "Ask for a personal listening profile based on DJConnect Memory and Spotify recently played/top profile data.",
+    "nl": [
+      "Omschrijf eens waar ik zoal naar luisterde de afgelopen maand",
+      "Wat zegt mijn muziek van de laatste twee weken over mijn stemming?",
+      "Welke genres luister ik de laatste tijd veel?",
+      "Maak een profiel van mijn muzieksmaak dit jaar"
+    ],
+    "en": [
+      "Describe what I have been listening to over the last month",
+      "What does my music from the last two weeks say about my mood?",
+      "Which genres have I been listening to lately?",
+      "Make a profile of my music taste this year"
+    ],
+    "playsMusic": false,
+    "messageKind": "user",
     "pill": {
       "nl": "Profiel",
       "en": "Profile"
     },
     "title": {
-      "nl": "Luisterprofiel",
-      "en": "Listening profile"
+      "nl": "Luisterprofiel analyseren",
+      "en": "Analyze listening profile"
     },
     "examples": {
       "nl": [
@@ -592,18 +829,98 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     }
   },
   {
-    "id": "personal_music_recommendations",
+    "id": "recently_played_history",
+    "plays_music": false,
+    "action": "recently_played",
+    "intent": "recently_played_history",
+    "intent_category": "informational",
+    "sources": [
+      "spotify_recently_played"
+    ],
+    "item_types": [
+      "tracks",
+      "albums",
+      "artists",
+      "playlists"
+    ],
+    "response_shape": {
+      "items": true,
+      "assistant_message_items": true,
+      "images": true,
+      "playback_actions": "none unless explicitly returned by backend",
+      "rendering": "compact_list"
+    },
+    "description": "Ask for recent listening-history lists for tracks, albums, artists or playlist contexts. DJConnect reads Spotify recently played data and returns read-only items with art/icon metadata.",
+    "nl": [
+      "Welke nummers heb ik afgelopen uur afgespeeld?",
+      "Welke tracks heb ik net gehoord?",
+      "Welke albums heb ik vandaag geluisterd?",
+      "Welke artiesten hoorde ik net?",
+      "Welke playlists heb ik afgelopen uur gespeeld?",
+      "Wat heb ik vandaag geluisterd?"
+    ],
+    "en": [
+      "Which tracks did I play in the last hour?",
+      "Which songs did I just hear?",
+      "Which albums did I listen to today?",
+      "Which artists did I just hear?",
+      "Which playlists did I play in the last hour?",
+      "What did I listen to today?"
+    ],
     "playsMusic": false,
-    "action": "none",
     "messageKind": "user",
-    "origin": null,
-    "description": "Ask for recommendations. DJConnect can return Play Now actions but does not start playback until the user taps Play Now.",
     "pill": {
-      "nl": "Aanbevelingen",
-      "en": "Recommendations"
+      "nl": "Recent",
+      "en": "Recent"
     },
     "title": {
-      "nl": "Persoonlijke tips",
+      "nl": "Recent geluisterd",
+      "en": "Recently played"
+    },
+    "examples": {
+      "nl": [
+        "Welke nummers heb ik afgelopen uur afgespeeld?",
+        "Welke tracks heb ik net gehoord?",
+        "Welke albums heb ik vandaag geluisterd?",
+        "Welke artiesten hoorde ik net?",
+        "Welke playlists heb ik afgelopen uur gespeeld?",
+        "Wat heb ik vandaag geluisterd?"
+      ],
+      "en": [
+        "Which tracks did I play in the last hour?",
+        "Which songs did I just hear?",
+        "Which albums did I listen to today?",
+        "Which artists did I just hear?",
+        "Which playlists did I play in the last hour?",
+        "What did I listen to today?"
+      ]
+    }
+  },
+  {
+    "id": "personal_music_recommendations",
+    "plays_music": false,
+    "action": "none",
+    "description": "Ask for recommendations. DJConnect can return Play Now actions but does not start playback until the user taps Play Now.",
+    "nl": [
+      "Speel wat anders",
+      "Doe maar wat leuks van Radiohead",
+      "Zet een leuke playlist op met rustige muziek",
+      "Ik voel me moe en geprikkeld, zet iets ontspannends klaar"
+    ],
+    "en": [
+      "Play something different",
+      "Give me something fun by Radiohead",
+      "Find a nice playlist with calm music",
+      "I feel tired and overstimulated, suggest something relaxing"
+    ],
+    "playsMusic": false,
+    "messageKind": "user",
+    "pill": {
+      "nl": "Aanbeveling",
+      "en": "Recommendation"
+    },
+    "title": {
+      "nl": "Persoonlijke aanbevelingen",
       "en": "Personal recommendations"
     },
     "examples": {
@@ -623,18 +940,32 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
   },
   {
     "id": "seed_playlist_mix",
-    "playsMusic": false,
+    "plays_music": false,
     "action": "none",
-    "messageKind": "user",
-    "origin": null,
     "description": "Ask DJ to compose a playable mix from artist, track or genre seeds. The response returns a track_mix Play Now action and can later save the mix as a Spotify playlist.",
+    "nl": [
+      "Stel een playlist samen op basis van Radiohead, Massive Attack en Portishead",
+      "Maak een mix met Above & Beyond, Armin van Buuren en Ferry Corsten",
+      "Ik wil een playlist obv tracks Reckoner, Teardrop en Angel",
+      "Ik wil een playlist in genre ambient, techno en downtempo",
+      "Sla deze mix op als Spotify playlist"
+    ],
+    "en": [
+      "Create a playlist based on Radiohead, Massive Attack and Portishead",
+      "Make a mix with Above & Beyond, Armin van Buuren and Ferry Corsten",
+      "I want a playlist based on tracks Reckoner, Teardrop and Angel",
+      "I want a playlist in genres ambient, techno and downtempo",
+      "Save this mix as a Spotify playlist"
+    ],
+    "playsMusic": false,
+    "messageKind": "user",
     "pill": {
       "nl": "Mix",
       "en": "Mix"
     },
     "title": {
-      "nl": "Mix samenstellen",
-      "en": "Build a mix"
+      "nl": "Mix of playlist samenstellen",
+      "en": "Build a mix or playlist"
     },
     "examples": {
       "nl": [
@@ -655,11 +986,21 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
   },
   {
     "id": "dj_announcement",
-    "playsMusic": false,
+    "plays_music": false,
     "action": "announce",
-    "messageKind": "user",
-    "origin": null,
     "description": "Ask for a DJ-style announcement for the current or next track without changing playback.",
+    "nl": [
+      "Geef me een leuke aankondiging voor wat nu speelt",
+      "Maak een DJ intro voor dit nummer",
+      "Vertel iets leuks over het volgende nummer"
+    ],
+    "en": [
+      "Give me a fun announcement for what is playing now",
+      "Make a DJ intro for this song",
+      "Tell me something fun about the next track"
+    ],
+    "playsMusic": false,
+    "messageKind": "user",
     "pill": {
       "nl": "DJ intro",
       "en": "DJ intro"
@@ -683,11 +1024,19 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
   },
   {
     "id": "ambient_music_fact",
-    "playsMusic": false,
+    "plays_music": false,
     "action": "none",
-    "messageKind": "system",
+    "message_kind": "system",
     "origin": "spotify_playback_context",
     "description": "Backend-generated text-only Ask DJ fact when Spotify playback moves to another artist/album combination. This has no user phrase and is included so website/client docs can explain the system bubble.",
+    "nl": [
+      "Automatisch DJ feitje bij nieuw album of nieuwe artiest"
+    ],
+    "en": [
+      "Automatic DJ fact when a new album or artist starts"
+    ],
+    "playsMusic": false,
+    "messageKind": "system",
     "pill": {
       "nl": "Systeem",
       "en": "System"
@@ -707,11 +1056,19 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
   },
   {
     "id": "idle_suggestion",
-    "playsMusic": false,
+    "plays_music": false,
     "action": "none",
-    "messageKind": "system",
+    "message_kind": "system",
     "origin": "idle_suggestion",
     "description": "Backend-generated Ask DJ system message when the client opens Ask DJ while Spotify is idle. It can include one personalized Play Now action.",
+    "nl": [
+      "Er speelt nu niets. Zin in iets nieuws?"
+    ],
+    "en": [
+      "Nothing is playing right now. Want something new?"
+    ],
+    "playsMusic": false,
+    "messageKind": "system",
     "pill": {
       "nl": "Suggestie",
       "en": "Suggestion"

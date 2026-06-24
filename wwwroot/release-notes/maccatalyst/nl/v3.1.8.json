@@ -1,0 +1,7 @@
+{
+  "version": "3.1.8",
+  "platform": "maccatalyst",
+  "language": "nl",
+  "name": "DJConnect Mac Catalyst 3.1.8",
+  "body": "# DJConnect Windows 3.1.8\n\n- De 3.1.x desktop feature release opnieuw uitgebracht waarbij Windows unsigned artifacts elke runtime direct vóór de bijbehorende no-restore publish restoren.\n- Bevat het werk uit 3.1.2 voor onboarding, pairing, Speelt Nu, Ask DJ, Wachtrij, Afspeellijsten, Instellingen, Privacy, Logs, Feedback, Crashrapport, Demo Mode, Wakeword-gated UI en diagnostics-redaction.\n\n---\n\nPlatform: MacCatalyst\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nMac Catalyst-artifacts zijn niet ondertekend en niet genotariseerd."
+}

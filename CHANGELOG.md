@@ -2,6 +2,13 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.63 - 2026-06-24
+
+- Added Windows to the static homepage SEO/social descriptions and Features
+  platform-flow copy.
+- Expanded regression coverage so Windows stays present in public metadata and
+  feature-map copy.
+
 ## DJConnect website v3.1.62 - 2026-06-24
 
 - Synced public website copy and setup documentation with the new Windows

@@ -189,6 +189,8 @@ test("homepage has platform routes and app store placeholders", async () => {
   assert.match(index, /href="start\.html"/);
   assert.doesNotMatch(index, /data-i18n="navPlatform">Hoe werkt het/);
   assert.match(index, /<title>DJConnect\. Muziekbediening met karakter<\/title>/);
+  assert.match(index, /content="DJConnect verbindt voice, Home Assistant en muziekbediening op macOS, Windows, iOS, Raspberry Pi en embedded ESP32-devices\."/);
+  assert.match(index, /content="Vraag muziek, kies waar het speelt en krijg persoonlijke DJ-feedback op macOS, Windows, iOS, Linux en ESP32\."/);
   assert.doesNotMatch(index, /Een persoonlijk muziekplatform voor elk device/);
   assert.match(index, /href="features\.html" data-i18n="navFeatures">Features/);
   assert.match(index, /href="#ask-dj" data-i18n="navAskDj">Ask DJ/);
@@ -456,6 +458,7 @@ test("features page describes core functions and bonus games", async () => {
   assert.match(features, /Muziek aanvragen/);
   assert.match(features, /data-i18n="askDjTitle">Slimme follow-ups<\/h3>/);
   assert.match(features, /Ask DJ geeft niet alleen antwoord, maar ook acties/);
+  assert.match(features, /Gebruik dezelfde flow op Mac, Windows, iOS, Linux en ESP32/);
   assert.match(features, /Wissel direct van speaker, kies een aanbevolen track, bekijk album art/);
   assert.match(features, /Ask DJ does more than answer: it gives you actions/);
   assert.match(features, /Spotify playback/);

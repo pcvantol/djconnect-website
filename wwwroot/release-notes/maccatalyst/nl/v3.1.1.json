@@ -1,6 +1,7 @@
 {
   "version": "3.1.1",
   "platform": "maccatalyst",
+  "language": "nl",
   "name": "DJConnect Mac Catalyst 3.1.1",
-  "body": "### Gewijzigd\n\n- Publieke unsigned releaseflow toegevoegd voor DJConnect Mac Catalyst artifacts in `pcvantol/djconnect-app-releases`.\n- Mac Catalyst release-artifacts gepubliceerd onder de publieke release tag `maccatalyst/v3.1.1`.\n- Minimum supported OS platform version voor Mac Catalyst verhoogd naar 15.0.\n- Mac Catalyst MAUI platform entrypoint toegevoegd en app startup omgezet naar `CreateWindow`.\n- Engelse en Nederlandse What's New release-notes toegevoegd via `djconnect.dev`.\n\n### Downloads\n\n- `DJConnect-MacCatalyst-3.1.1-unsigned.zip`\n- `DJConnect-MacCatalyst-3.1.1-SHA256SUMS.txt`\n- `SHA256SUMS.txt`\n\n---\n\nPlatform: Mac Catalyst\n\nUnsigned Mac Catalyst builds zijn bedoeld voor diagnostics en interne validatie. Deze download is unsigned en niet genotariseerd."
+  "body": "# DJConnect Windows 3.1.1\n\n- Publicatie van niet-ondertekende Windows- en Mac Catalyst-releases toegevoegd naar de gedeelde DJConnect app releases-repository.\n- Nederlandse en Engelse What's New-publicatie toegevoegd voor Windows en Mac Catalyst op djconnect.dev.\n- MAUI build-inrichting voor Mac Catalyst gerepareerd, inclusief platform-entrypoint en documentatie voor side-by-side Xcode 26.4 builds.\n- Windows MAUI platform-entrypoint en manifestbestanden toegevoegd voor CI/release builds.\n- Release-permissiedocumentatie bijgewerkt voor GitHub Actions, releasepublicatie en workflow cleanup.\n\n---\n\nPlatform: MacCatalyst\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nMac Catalyst-artifacts zijn niet ondertekend en niet genotariseerd."
 }

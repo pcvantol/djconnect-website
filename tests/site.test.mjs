@@ -1094,7 +1094,14 @@ test("download renderer keeps release embeds latest-only and tracked", async () 
   assert.match(downloads, /repo === "djconnect-app-releases"\) return "macos"/);
   assert.match(downloads, /asset\.browser_download_url/);
   assert.match(downloads, /asset\.download_count/);
-  assert.match(downloads, /renderChangelog\(release, copy\)/);
+  assert.match(downloads, /renderChangelog\(release, copy, target, language\)/);
+  assert.match(downloads, /getReleaseNoteBody\(release, target, language\)/);
+  assert.match(downloads, /releaseNoteVersionFromTag/);
+  assert.match(downloads, /String\(tagName \|\| ""\)\.split\("\/"\)\.pop\(\)/);
+  assert.match(downloads, /\/release-notes\/\$\{platform\}\/\$\{language\}\/\$\{version\}\.json/);
+  assert.match(downloads, /\/release-notes\/\$\{platform\}\/en\/\$\{version\}\.json/);
+  assert.match(downloads, /\/release-notes\/\$\{platform\}\/\$\{version\}\.json/);
+  assert.match(downloads, /Static release notes are optional/);
   assert.match(downloads, /release\.body/);
   assert.match(downloads, /changelog: "Changelog"/);
   assert.match(downloads, /noChangelog/);
@@ -1141,6 +1148,56 @@ test("Windows and Mac Catalyst release notes expose localized v3.1.1 JSON paths"
     assert.equal(legacy.platform, platform);
     assert.match(legacy.body, /### Changed/);
   }
+});
+
+test("download changelog renderer loads localized static release notes before GitHub body", async () => {
+  const downloads = await read("wwwroot/assets/downloads.js");
+  const requests = [];
+  const context = {
+    fetch: async (url) => {
+      requests.push(url);
+      if (url === "/release-notes/windows/nl/v3.1.1.json") {
+        return {
+          ok: true,
+          json: async () => ({ body: "Nederlandse Windows changelog" })
+        };
+      }
+      return { ok: false, status: 404 };
+    },
+    XMLHttpRequest: function XMLHttpRequest() {},
+    Intl,
+    Number,
+    String,
+    RegExp,
+    Error,
+    Promise,
+    document: {
+      addEventListener() {},
+      querySelectorAll() {
+        return [];
+      },
+      documentElement: {
+        lang: "nl"
+      }
+    },
+    window: {
+      setTimeout() {}
+    },
+    navigator: {}
+  };
+  context.MutationObserver = class MutationObserver {
+    observe() {}
+  };
+  vm.createContext(context);
+  vm.runInContext(downloads, context);
+
+  const html = await vm.runInContext(
+    "renderChangelog({ tag_name: 'windows/v3.1.1', body: 'GitHub body' }, downloadCopy.nl, 'windows', 'nl')",
+    context
+  );
+  assert.match(html, /Nederlandse Windows changelog/);
+  assert.doesNotMatch(html, /GitHub body/);
+  assert.deepEqual(requests, ["/release-notes/windows/nl/v3.1.1.json"]);
 });
 
 test("download and HACS clicks use cookieless aggregate redirects", async () => {

@@ -113,8 +113,44 @@ const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (char) => ({
   "'": "&#39;"
 }[char]));
 
-const renderChangelog = (release, copy) => {
-  const body = String(release.body || "").trim();
+const releaseNotePlatformForTarget = (target) => {
+  if (["ios", "macos", "windows", "maccatalyst"].includes(target)) return target;
+  return "";
+};
+
+const releaseNoteVersionFromTag = (tagName) => {
+  const tag = String(tagName || "").split("/").pop();
+  if (!tag) return "";
+  return tag.startsWith("v") ? tag : `v${tag}`;
+};
+
+const getReleaseNoteBody = async (release, target, language) => {
+  const platform = releaseNotePlatformForTarget(target);
+  const version = releaseNoteVersionFromTag(release.tag_name);
+  if (!platform || !version) return "";
+
+  const candidates = [
+    `/release-notes/${platform}/${language}/${version}.json`,
+    language === "en" ? "" : `/release-notes/${platform}/en/${version}.json`,
+    `/release-notes/${platform}/${version}.json`
+  ].filter(Boolean);
+
+  for (const url of candidates) {
+    try {
+      const note = await getDownloadJson(url);
+      const body = String(note.body || "").trim();
+      if (body) return body;
+    } catch (error) {
+      // Static release notes are optional; GitHub release text remains the fallback.
+    }
+  }
+
+  return "";
+};
+
+const renderChangelog = async (release, copy, target, language) => {
+  const staticBody = await getReleaseNoteBody(release, target, language);
+  const body = String(staticBody || release.body || "").trim();
   if (!body) {
     return `
       <details class="release-changelog">
@@ -174,7 +210,7 @@ const renderDownloads = async (root) => {
       return;
     }
 
-    root.innerHTML = releases.map((release) => {
+    const releaseCards = await Promise.all(releases.map(async (release) => {
       const date = release.published_at || release.created_at;
       const assets = (release.assets || []).filter((asset) => assetMatchesTarget(asset, target));
       return `
@@ -194,10 +230,11 @@ const renderDownloads = async (root) => {
               </a>
             `).join("") : `<div class="download-status">${copy.noAssets}</div>`}
           </div>
-          ${renderChangelog(release, copy)}
+          ${await renderChangelog(release, copy, target, language)}
         </article>
       `;
-    }).join("");
+    }));
+    root.innerHTML = releaseCards.join("");
   } catch (error) {
     root.innerHTML = `<div class="download-status">${copy.failed} <a href="https://github.com/${owner}/${repo}/releases" target="_blank" rel="noopener">${copy.github}</a></div>`;
   }

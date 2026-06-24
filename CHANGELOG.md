@@ -2,6 +2,14 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.65 - 2026-06-24
+
+- Changed dynamic download-page changelogs to load the localized static
+  `release-notes/{platform}/{language}/vX.Y.Z.json` What's New body before
+  falling back to GitHub release text.
+- Added regression coverage for namespaced release tags and language-specific
+  Windows/Mac Catalyst changelog rendering.
+
 ## DJConnect website v3.1.64 - 2026-06-24
 
 - Added dedicated Windows and Mac Catalyst client pages with Home Assistant

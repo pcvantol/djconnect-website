@@ -246,7 +246,7 @@ test("homepage promotes Ask DJ as a major product feature", async () => {
   assert.match(index, /Play Now; playback start pas na jouw tap/);
   assert.match(index, /Van vraag naar actie/);
   assert.match(index, /Vraag om muziek, kies een speaker, start een suggestie of bevestig een vervolgactie/);
-  assert.match(index, /Continuity op Watch, iPhone en Mac/);
+  assert.match(index, /Continuity op Watch, iPhone, Mac en Windows/);
   assert.match(index, /server-side per Home Assistant gebruiker/);
   assert.match(index, /is begrensd/);
   assert.match(index, /trimt Home Assistant oudste berichten/);
@@ -263,7 +263,8 @@ test("homepage promotes Ask DJ as a major product feature", async () => {
   assert.match(index, /geen tokens, ruwe prompts, volledige history of lange DJ-antwoorden/);
   assert.match(index, /Raspberry Pi leest mee/);
   assert.match(index, /read-only history display/);
-  assert.match(index, /Chatten, voice\/PTT en audio-antwoorden blijven voor Apple clients/);
+  assert.match(index, /Chatten, voice\/PTT en audio-antwoorden blijven voor desktop- en Apple clients/);
+  assert.match(index, /iOS, macOS, Apple Watch en Windows kunnen voice\/PTT gebruiken/);
   assert.match(index, /Push is limited to Ask DJ replies or waiting choices/);
   assert.match(index, /Clients bewaren geen DJ Memory/);
   assert.match(index, /zonder Spotify OAuth tokens, bearer tokens, raw audio of volledige prompts/);
@@ -399,12 +400,13 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /Configureer je assist pipeline voor stembesturing en pas de stijl van de DJ aankondigingen aan via eigen prompt/);
   assert.match(start, /id="client-ios" checked/);
   assert.match(start, /id="client-macos"/);
+  assert.match(start, /id="client-windows"/);
   assert.match(start, /id="client-assist"/);
   assert.match(start, /id="client-esp"/);
   assert.match(start, /id="client-raspberry"/);
   assert.match(
     start,
-    /<label for="client-ios" role="tab">iOS<\/label>\s*<label for="client-macos" role="tab">macOS<\/label>\s*<label for="client-assist" role="tab">Voice Assistant<\/label>\s*<label for="client-raspberry" role="tab">Linux<\/label>\s*<label for="client-esp" role="tab">ESP32<\/label>/
+    /<label for="client-ios" role="tab">iOS<\/label>\s*<label for="client-macos" role="tab">macOS<\/label>\s*<label for="client-windows" role="tab">Windows<\/label>\s*<label for="client-assist" role="tab">Voice Assistant<\/label>\s*<label for="client-raspberry" role="tab">Linux<\/label>\s*<label for="client-esp" role="tab">ESP32<\/label>/
   );
   assert.match(start, /href="voice-assistant\.html">Bekijk Voice Assistant uitleg/);
   assert.match(start, /Kies in de DJConnect setup voor <strong>Assist Conversation Agent<\/strong>/);
@@ -412,6 +414,7 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /Download ESP firmware/);
   assert.match(start, /Download iOS app/);
   assert.match(start, /Download macOS app/);
+  assert.match(start, /Installeer de DJConnect Windows desktop app zodra je build beschikbaar is/);
   assert.match(start, /Download Linux app/);
   assert.match(start, /Installeer de DJConnect Raspberry Pi app via Github/);
   assert.match(start, /Zet het DJConnect device aan en verbind het device met WiFi via captive portal of Home Assistant BLE WiFi provisioning/);
@@ -419,6 +422,7 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /Open DJConnect integratie setup in Home Assistant/);
   assert.match(start, /Kies client type <strong>iOS app<\/strong> &amp; plak de koppelgegevens in de Home Assistant integratie/);
   assert.match(start, /Kies client type <strong>macOS app<\/strong> &amp; plak de koppelgegevens in de Home Assistant integratie/);
+  assert.match(start, /Kies client type <strong>Windows app<\/strong> &amp; plak de koppelgegevens in de Home Assistant integratie/);
   assert.doesNotMatch(start, /Kies client type <strong>iOS app<\/strong> of <strong>macOS app<\/strong>/);
   assert.match(start, /Kies client type <strong>Raspberry Pi app<\/strong> &amp; plak de koppelgegevens in de Home Assistant integratie/);
   assert.match(start, /DJConnect app is klaar voor gebruik/);
@@ -477,6 +481,7 @@ test("platform overview page renders the CSS architecture map", async () => {
   assert.match(platform, /data-i18n="heroTitle">Hoe DJConnect samenwerkt<\/h1>/);
   assert.match(platform, /DJConnect platform architectuur/);
   assert.match(platform, /macOS/);
+  assert.match(platform, /Windows/);
   assert.match(platform, /iOS/);
   assert.match(platform, /Linux \/ Raspberry Pi/);
   assert.match(platform, /ESP32 device/);
@@ -791,7 +796,7 @@ test("blog pages are present and translated", async () => {
 
   assert.match(post, /<link rel="canonical" href="https:\/\/djconnect\.dev\/blog-djconnect-project" \/>/);
   assert.match(post, /Home Assistant als veilige basis/);
-  assert.match(post, /macOS, iOS, Linux\/Raspberry Pi en ESP32/);
+  assert.match(post, /macOS, Windows, iOS, Linux\/Raspberry Pi en ESP32/);
   assert.match(post, /privacyvriendelijk: alleen aggregate counters/);
   assert.match(post, /DJConnect: music control with character/);
 });

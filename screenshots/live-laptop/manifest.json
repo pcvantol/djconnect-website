@@ -1,89 +1,95 @@
 {
-  "baseURL": "http://127.0.0.1:4173",
+  "baseURL": "https://djconnect.dev",
   "language": "nl",
   "viewport": {
     "width": 1440,
     "height": 900
   },
-  "capturedAt": "2026-06-18T06:33:47.009Z",
+  "capturedAt": "2026-06-24T08:54:35.914Z",
   "pages": [
     {
       "path": "/",
       "name": "home",
-      "url": "http://127.0.0.1:4173/",
+      "url": "https://djconnect.dev/",
       "file": "01-home-1440x900.png"
     },
     {
       "path": "/start",
       "name": "start",
-      "url": "http://127.0.0.1:4173/start.html",
+      "url": "https://djconnect.dev/start",
       "file": "02-start-1440x900.png"
     },
     {
       "path": "/features",
       "name": "features",
-      "url": "http://127.0.0.1:4173/features.html",
+      "url": "https://djconnect.dev/features",
       "file": "03-features-1440x900.png"
     },
     {
       "path": "/platform",
       "name": "platform",
-      "url": "http://127.0.0.1:4173/platform.html",
+      "url": "https://djconnect.dev/platform",
       "file": "04-platform-1440x900.png"
     },
     {
       "path": "/voice-commands",
       "name": "voice-commands",
-      "url": "http://127.0.0.1:4173/voice-commands.html",
+      "url": "https://djconnect.dev/voice-commands",
       "file": "05-voice-commands-1440x900.png"
     },
     {
       "path": "/voice-assistant",
       "name": "voice-assistant",
-      "url": "http://127.0.0.1:4173/voice-assistant.html",
+      "url": "https://djconnect.dev/voice-assistant",
       "file": "06-voice-assistant-1440x900.png"
     },
     {
       "path": "/blog",
       "name": "blog",
-      "url": "http://127.0.0.1:4173/blog.html",
+      "url": "https://djconnect.dev/blog",
       "file": "07-blog-1440x900.png"
     },
     {
       "path": "/blog-djconnect-project",
       "name": "blog-djconnect-project",
-      "url": "http://127.0.0.1:4173/blog-djconnect-project.html",
+      "url": "https://djconnect.dev/blog-djconnect-project",
       "file": "08-blog-djconnect-project-1440x900.png"
     },
     {
       "path": "/support",
       "name": "support",
-      "url": "http://127.0.0.1:4173/support.html",
+      "url": "https://djconnect.dev/support",
       "file": "09-support-1440x900.png"
     },
     {
       "path": "/ios",
       "name": "ios",
-      "url": "http://127.0.0.1:4173/ios.html",
+      "url": "https://djconnect.dev/ios",
       "file": "10-ios-1440x900.png"
+    },
+    {
+      "path": "/testflight-macos",
+      "name": "testflight-macos",
+      "url": "https://djconnect.dev/testflight-macos",
+      "file": "11-testflight-macos-1440x900.png"
     },
     {
       "path": "/macos",
       "name": "macos",
-      "url": "http://127.0.0.1:4173/macos.html",
-      "file": "11-macos-1440x900.png"
+      "url": "https://djconnect.dev/macos",
+      "file": "12-macos-1440x900.png"
     },
     {
       "path": "/raspberry-pi",
       "name": "raspberry-pi",
-      "url": "http://127.0.0.1:4173/raspberry-pi.html",
-      "file": "12-raspberry-pi-1440x900.png"
+      "url": "https://djconnect.dev/raspberry-pi",
+      "file": "13-raspberry-pi-1440x900.png"
     },
     {
       "path": "/embedded",
       "name": "embedded",
-      "url": "http://127.0.0.1:4173/embedded.html",
-      "file": "13-embedded-1440x900.png"
+      "url": "https://djconnect.dev/embedded",
+      "file": "14-embedded-1440x900.png"
     }
   ]
 }

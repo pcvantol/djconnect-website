@@ -12,7 +12,7 @@
 - Cloudflare Pages project: `djconnect`
 - Source directory: `wwwroot`
 - Release publish directory: `dist/wwwroot`
-- Current version: `3.1.61`
+- Current version: `3.1.62`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Platform overview page with CSS architecture diagram: `wwwroot/platform.html`
@@ -44,11 +44,13 @@
   help context.
 - The homepage `Kies je interface` section lists macOS, iPhone/iPad, Voice
   Assistant, Embedded device and Linux/Raspberry Pi. Keep the Voice Assistant
-  card linked to `wwwroot/voice-assistant.html`.
+  card linked to `wwwroot/voice-assistant.html`. Windows is part of the shared
+  platform/Ask DJ contract, but does not yet have a dedicated public website
+  page or download route.
 - Ask DJ is a major product feature on the homepage and Features page. Keep
   copy clear that it runs through Home Assistant with DJConnect integration
   v3.1.69+, uses compact bounded server-side DJ Memory/history per Home
-  Assistant user, supports Apple Watch/iPhone/Mac continuity, can show Ja/Nee
+  Assistant user, supports Apple Watch/iPhone/Mac/Windows continuity, can show Ja/Nee
   follow-up controls, can use optional Apple push notifications only as
   wake/sync hints through the central push relay for Ask DJ replies or waiting
   choices, and starts recommendations only after an explicit `Play Now` tap.
@@ -229,8 +231,9 @@ useful for higher GitHub API limits.
   the token-protected `/api/stats` contract and the release-script
   dependency/tool preflight.
 - `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. `npm run screenshots:live` captures Dutch live production screenshots at a laptop viewport into `screenshots/live-laptop/`. Neither is part of the default `npm test` run.
-- Current released version `3.1.61` adds the operator APNs registration overview
-  and privacy-focused tests/docs. Version `3.1.60` syncs Ask DJ website copy with the
+- Current released version `3.1.62` syncs the website with the new Windows
+  desktop client contract. Version `3.1.61` adds the operator APNs registration
+  overview and privacy-focused tests/docs. Version `3.1.60` syncs Ask DJ website copy with the
   canonical Home Assistant integration `v3.1.69+` contract, including
   Raspberry Pi read-only history display, central push relay wording, refreshed
   Ask DJ conversational examples and PR CI validation. Version `3.1.52` synced

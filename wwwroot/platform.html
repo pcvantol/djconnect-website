@@ -65,7 +65,7 @@
     @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } .pipeline { grid-template-columns:1fr; } }
 
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.61" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.62" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -100,7 +100,7 @@
         </div>
         <div class="card">
           <h2 data-i18n="summaryTitle">Een centrale hub, meerdere interfaces</h2>
-          <p data-i18n="summaryText">Je gebruikt macOS, iOS, Linux/Raspberry Pi of een ESP32 device als bediening. Home Assistant en de DJConnect integratie houden de koppeling, voice input, muziekactie en DJ response bij elkaar.</p>
+          <p data-i18n="summaryText">Je gebruikt macOS, Windows, iOS, Linux/Raspberry Pi of een ESP32 device als bediening. Home Assistant en de DJConnect integratie houden de koppeling, voice input, muziekactie en DJ response bij elkaar.</p>
         </div>
       </div>
     </header>
@@ -112,6 +112,7 @@
           <div class="lane">
             <div class="lane-title" data-i18n="clientsTitle">Clients</div>
             <div class="node primary"><strong>macOS</strong><span data-i18n="macosNode">Desktop bediening</span></div>
+            <div class="node primary"><strong>Windows</strong><span data-i18n="windowsNode">Desktop bediening</span></div>
             <div class="node primary"><strong>iOS</strong><span data-i18n="iosNode">Mobiele bediening</span></div>
             <div class="node primary"><strong>Linux / Raspberry Pi</strong><span data-i18n="linuxNode">Vaste controller</span></div>
             <div class="node primary"><strong>ESP32 device</strong><span data-i18n="espNode">Voice input en DJ response</span></div>
@@ -161,7 +162,7 @@
     <p>Copyright Peter van Tol 2026. Released under the MIT License.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.1.61</p>
+    <p class="site-version">DJConnect website v3.1.62</p>
   </footer>
   <script>
     const translations = {
@@ -181,10 +182,11 @@
         heroTitle: "Hoe DJConnect samenwerkt",
         heroLead: "DJConnect verbindt je clients, Home WiFi, Home Assistant, Assist pipeline, Spotify en Spotify Connect speakers in een overzichtelijke muziekflow.",
         summaryTitle: "Een centrale hub, meerdere interfaces",
-        summaryText: "Je gebruikt macOS, iOS, Linux/Raspberry Pi of een ESP32 device als bediening. Home Assistant en de DJConnect integratie houden de koppeling, voice input, muziekactie en DJ response bij elkaar.",
+        summaryText: "Je gebruikt macOS, Windows, iOS, Linux/Raspberry Pi of een ESP32 device als bediening. Home Assistant en de DJConnect integratie houden de koppeling, voice input, muziekactie en DJ response bij elkaar.",
         diagramLabel: "DJConnect platform architectuur",
         clientsTitle: "Clients",
         macosNode: "Desktop bediening",
+        windowsNode: "Desktop bediening",
         iosNode: "Mobiele bediening",
         linuxNode: "Vaste controller",
         espNode: "Voice input en DJ response",
@@ -234,10 +236,11 @@
         heroTitle: "How DJConnect fits together",
         heroLead: "DJConnect connects your clients, Home WiFi, Home Assistant, Assist pipeline, Spotify and Spotify Connect speakers in one clear music flow.",
         summaryTitle: "One central hub, multiple interfaces",
-        summaryText: "You use macOS, iOS, Linux/Raspberry Pi or an ESP32 device as the interface. Home Assistant and the DJConnect integration keep pairing, voice input, music actions and DJ response together.",
+        summaryText: "You use macOS, Windows, iOS, Linux/Raspberry Pi or an ESP32 device as the interface. Home Assistant and the DJConnect integration keep pairing, voice input, music actions and DJ response together.",
         diagramLabel: "DJConnect platform architecture",
         clientsTitle: "Clients",
         macosNode: "Desktop control",
+        windowsNode: "Desktop control",
         iosNode: "Mobile control",
         linuxNode: "Fixed controller",
         espNode: "Voice input and DJ response",
@@ -304,6 +307,6 @@
     applyLanguage(getInitialLanguage());
 
   </script>
-  <script src="assets/site-nav.js?v=3.1.61"></script>
+  <script src="assets/site-nav.js?v=3.1.62"></script>
 </body>
 </html>

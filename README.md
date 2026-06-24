@@ -28,8 +28,8 @@ Static landing page for DJConnect, published through Cloudflare Pages.
   as redirect URI, copy the Client ID into the DJConnect setup and authorize
   Spotify through Home Assistant. Prefer the Nabu Casa HTTPS external URL.
   DJConnect uses PKCE, so a Spotify Client Secret is preferably not required.
-- Ask DJ is a major product feature for iOS, macOS, Apple Watch and Raspberry
-  Pi clients.
+- Ask DJ is a major product feature for iOS, macOS, Windows, Apple Watch and
+  Raspberry Pi clients.
   Website copy should keep it clear that Ask DJ runs through Home Assistant and
   DJConnect integration v3.1.69+, uses compact bounded server-side DJ
   Memory/history, carries chat continuity across devices, can show Ja/Nee
@@ -316,9 +316,10 @@ Use `./cleanup_old_releases.sh` manually only when you want cleanup outside the 
   `Spraak`, `Blog`, `Installeren`, `Support`, `Privacy` and the primary `Aan de slag`
   CTA. Do not add a `Hoe werkt het` self-link to the homepage top navigation.
 - Keep Ask DJ product copy user-facing, not API-reference style: mention Home
-  Assistant, server-side DJ Memory/history, Apple Watch/iPhone/Mac continuity,
+  Assistant, server-side DJ Memory/history, Apple Watch/iPhone/Mac/Windows continuity,
   explicit `Play Now`, Ja/Nee follow-ups, bounded history/trim behavior,
-  voice/PTT with Assist STT/TTS, Raspberry Pi read-only history display,
+  voice/PTT with Assist STT/TTS on iOS, macOS, Windows and Apple Watch,
+  Raspberry Pi read-only history display,
   optional Apple push notifications as wake/sync hints through the central
   push relay for Ask DJ replies or waiting choices only, and compact privacy
   boundaries without implying Spotify affiliation.
@@ -326,7 +327,8 @@ Use `./cleanup_old_releases.sh` manually only when you want cleanup outside the 
   Support and Privacy should not show their own page as a menu option.
 - Keep the homepage `Kies je interface` cards aligned with the supported
   routes: macOS, iPhone/iPad, Voice Assistant, Embedded device and
-  Linux/Raspberry Pi.
+  Linux/Raspberry Pi. Mention Windows in shared platform/Ask DJ documentation
+  until a dedicated public Windows page or download route is added.
 - Keep homepage hero device slides spacious: macOS, iPad/iPhone and LilyGO/ESP32 each get their own carousel slide.
 - Keep the start page aligned with the current setup order: Home Assistant voice pipeline, HACS, DJConnect configuration, client pairing and first use.
 - Keep the start page clear that Spotify OAuth requires the user's own Spotify

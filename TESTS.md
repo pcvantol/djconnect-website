@@ -7,7 +7,7 @@
   `Installeren`, `Support` and `Privacy`, with `Aan de slag` only as the
   primary CTA button. The homepage should not show a `Hoe werkt het` self-link.
 - Verify the homepage Ask DJ section explains chat, personal recommendations,
-  explicit `Play Now`, Watch/iPhone/Mac continuity, Home Assistant server-side
+  explicit `Play Now`, Watch/iPhone/Mac/Windows continuity, Home Assistant server-side
   DJ Memory/history, Ja/Nee follow-ups, bounded history trim behavior,
   voice/PTT with Assist STT/TTS, Raspberry Pi read-only history display,
   optional Apple push notifications as wake/sync hints through the central push
@@ -15,7 +15,9 @@
   boundaries.
 - Verify the homepage `Kies je interface` section includes macOS, iPhone/iPad,
   Voice Assistant, Embedded device and Linux/Raspberry Pi cards. The Voice
-  Assistant card must link to `wwwroot/voice-assistant.html`.
+  Assistant card must link to `wwwroot/voice-assistant.html`. Verify shared
+  platform and Ask DJ docs mention Windows until a dedicated public Windows
+  page or download route exists.
 - Open `wwwroot/features.html` and verify Ask DJ, the core features and renamed
   bonus mini-games are visible: Paddle Rally, Meteor Run, Sky Dash and Maze
   Chase.
@@ -94,7 +96,7 @@
   PKCE and that a Client Secret is preferably not required.
 - Verify the start page links to Home Assistant voice assistant documentation, the embedded firmware page and app releases.
 - Verify the ESP pairing flow says Home Assistant configures the device automatically and the device is ready for use.
-- Verify the pairing switch has separate full-width panels for ESP device, iOS app, macOS app and Raspberry Pi app.
+- Verify the pairing switch has separate full-width panels for ESP device, iOS app, macOS app, Windows app and Raspberry Pi app.
 - Verify the footer privacy notice is present and translated on all public pages.
 - Verify each pairing panel has its own download as step 1.
 - Verify the app pairing flow uses the selected client type, not a combined iOS/macOS step.

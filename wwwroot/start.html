@@ -66,6 +66,7 @@
     #client-assist:checked ~ .switch-tabs label[for="client-assist"],
     #client-ios:checked ~ .switch-tabs label[for="client-ios"],
     #client-macos:checked ~ .switch-tabs label[for="client-macos"],
+    #client-windows:checked ~ .switch-tabs label[for="client-windows"],
     #client-raspberry:checked ~ .switch-tabs label[for="client-raspberry"] { color:#06110c; border-color:transparent; background:linear-gradient(135deg,var(--cyan),var(--green)); transform:translateY(-1px); }
     .client-panels { display:grid; }
     .client-panel { grid-area:1 / 1; visibility:hidden; opacity:0; transform:translateY(8px); pointer-events:none; transition:opacity 180ms ease, transform 180ms ease, visibility 180ms ease; }
@@ -73,6 +74,7 @@
     #client-assist:checked ~ .client-panels [data-client-panel="assist"],
     #client-ios:checked ~ .client-panels [data-client-panel="ios"],
     #client-macos:checked ~ .client-panels [data-client-panel="macos"],
+    #client-windows:checked ~ .client-panels [data-client-panel="windows"],
     #client-raspberry:checked ~ .client-panels [data-client-panel="raspberry"] { visibility:visible; opacity:1; transform:translateY(0); pointer-events:auto; }
     .client-panel .steps { margin-top:18px; }
     .client-panel .steps .btn { margin-top:2px; }
@@ -85,7 +87,7 @@
     @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } .switch-tabs { grid-template-columns:1fr; } }
 
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.61" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.62" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -232,12 +234,14 @@
         <div class="client-switch">
           <input type="radio" name="client-route" id="client-ios" checked />
           <input type="radio" name="client-route" id="client-macos" />
+          <input type="radio" name="client-route" id="client-windows" />
           <input type="radio" name="client-route" id="client-assist" />
           <input type="radio" name="client-route" id="client-esp" />
           <input type="radio" name="client-route" id="client-raspberry" />
           <div class="switch-tabs" role="tablist" aria-label="Kies client type" data-i18n-attr="aria-label:clientTypeLabel">
             <label for="client-ios" role="tab">iOS</label>
             <label for="client-macos" role="tab">macOS</label>
+            <label for="client-windows" role="tab">Windows</label>
             <label for="client-assist" role="tab">Voice Assistant</label>
             <label for="client-raspberry" role="tab">Linux</label>
             <label for="client-esp" role="tab">ESP32</label>
@@ -261,6 +265,16 @@
                 <li>Open DJConnect integratie setup in Home Assistant</li>
                 <li>Kies client type <strong>macOS app</strong> &amp; plak de koppelgegevens in de Home Assistant integratie</li>
                 <li>DJConnect app is klaar voor gebruik</li>
+              </ol>
+            </article>
+            <article class="card client-panel" data-client-panel="windows">
+              <h3 data-i18n="windowsTitle">Windows app</h3>
+              <ol class="steps">
+                <li>Installeer de DJConnect Windows desktop app zodra je build beschikbaar is</li>
+                <li>Open DJConnect app en kopieer de koppelcode</li>
+                <li>Open DJConnect integratie setup in Home Assistant</li>
+                <li>Kies client type <strong>Windows app</strong> &amp; plak de koppelgegevens in de Home Assistant integratie</li>
+                <li>DJConnect Windows app is klaar voor Ask DJ en playback-bediening</li>
               </ol>
             </article>
             <article class="card client-panel" data-client-panel="esp">
@@ -320,7 +334,7 @@
     <p data-i18n="legalSpotify">Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.1.61</p>
+    <p class="site-version">DJConnect website v3.1.62</p>
   </footer>
   <script>
     const translations = {
@@ -378,6 +392,7 @@
         espTitle: "ESP device",
         iosTitle: "iOS app",
         macosTitle: "macOS app",
+        windowsTitle: "Windows app",
         raspberryTitle: "Raspberry Pi app",
         readyTitle: "6. Klaar voor gebruik",
         readyLead: "Start met een Spotify Connect speaker en bedien daarna je muziek via DJConnect.",
@@ -441,6 +456,7 @@
         espTitle: "ESP device",
         iosTitle: "iOS app",
         macosTitle: "macOS app",
+        windowsTitle: "Windows app",
         raspberryTitle: "Raspberry Pi app",
         readyTitle: "6. Ready to use",
         readyLead: "Start with a Spotify Connect speaker, then control your music through DJConnect.",
@@ -476,6 +492,6 @@
     });
 
   </script>
-  <script src="assets/site-nav.js?v=3.1.61"></script>
+  <script src="assets/site-nav.js?v=3.1.62"></script>
 </body>
 </html>

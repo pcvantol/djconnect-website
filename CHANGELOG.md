@@ -2,6 +2,13 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.62 - 2026-06-24
+
+- Synced public website copy and setup documentation with the new Windows
+  desktop client contract.
+- Added Windows to shared Ask DJ continuity, voice/PTT, platform overview,
+  start-page pairing and project blog copy.
+
 ## DJConnect website v3.1.61 - 2026-06-23
 
 - Added the operator Apple device registration overview backed by the

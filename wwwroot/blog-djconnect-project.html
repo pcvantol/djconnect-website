@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DJConnect: muziekbediening met karakter</title>
-  <meta name="description" content="Een blogpost over het DJConnect project, de Home Assistant basis en de gedeelde workflow voor macOS, iOS, Linux en ESP32." />
+  <meta name="description" content="Een blogpost over het DJConnect project, de Home Assistant basis en de gedeelde workflow voor macOS, Windows, iOS, Linux en ESP32." />
   <link rel="canonical" href="https://djconnect.dev/blog-djconnect-project" />
   <link rel="icon" href="assets/djconnect/icon.svg" type="image/svg+xml" />
   <style>
@@ -43,7 +43,7 @@
     @media (max-width:620px) { .wrap,.nav-inner { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } }
 
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.61" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.62" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -82,12 +82,13 @@
 
       <h2 data-i18n="haTitle">Home Assistant als veilige basis</h2>
       <p data-i18n="haP1">Home Assistant is de centrale hub. Spotify autorisatie, voice assist, client-koppeling en lokale netwerkcommunicatie blijven daar waar ze horen: in je eigen smart-home omgeving.</p>
-      <p data-i18n="haP2">Dat maakt de clients eenvoudiger en veiliger. Een iPhone, Mac, Linux-scherm of ESP32-device hoeft geen Spotify-wachtwoorden te kennen. Account token en koppelgegevens blijven bewaard in de juiste omgeving.</p>
+      <p data-i18n="haP2">Dat maakt de clients eenvoudiger en veiliger. Een iPhone, Mac, Windows desktop, Linux-scherm of ESP32-device hoeft geen Spotify-wachtwoorden te kennen. Account token en koppelgegevens blijven bewaard in de juiste omgeving.</p>
 
       <h2 data-i18n="clientsTitle">Een workflow voor meerdere clients</h2>
-      <p data-i18n="clientsP1">DJConnect is beschikbaar voor macOS, iOS, Linux/Raspberry Pi en ESP32. Elke client heeft zijn eigen vorm, maar de kern blijft gelijk: dezelfde Home Assistant integratie, dezelfde muzieklogica en dezelfde manier van koppelen.</p>
+      <p data-i18n="clientsP1">DJConnect is beschikbaar voor macOS, Windows, iOS, Linux/Raspberry Pi en ESP32. Elke client heeft zijn eigen vorm, maar de kern blijft gelijk: dezelfde Home Assistant integratie, dezelfde muzieklogica en dezelfde manier van koppelen.</p>
       <ul>
         <li data-i18n="clientMac">macOS voor vaste desktopbediening.</li>
+        <li data-i18n="clientWindows">Windows voor desktopbediening naast je muzieksetup.</li>
         <li data-i18n="clientIos">iOS voor snelle bediening dichtbij.</li>
         <li data-i18n="clientLinux">Linux/Raspberry Pi voor een dedicated scherm.</li>
         <li data-i18n="clientEsp">ESP32 voor een fysieke embedded afstandsbediening.</li>
@@ -109,13 +110,13 @@
     <p>Copyright Peter van Tol 2026. Released under the MIT License.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.1.61</p>
+    <p class="site-version">DJConnect website v3.1.62</p>
   </footer>
   <script>
     const translations = {
       nl: {
         title: "DJConnect: muziekbediening met karakter",
-        metaDescription: "Een blogpost over het DJConnect project, de Home Assistant basis en de gedeelde workflow voor macOS, iOS, Linux en ESP32.",
+        metaDescription: "Een blogpost over het DJConnect project, de Home Assistant basis en de gedeelde workflow voor macOS, Windows, iOS, Linux en ESP32.",
         navLabel: "Navigatie",
         languageToggle: "Taalkeuze",
         navMenu: "Menu",
@@ -133,10 +134,11 @@
         whyP2: "De ervaring draait niet alleen om play en pause. Het project zoekt juist naar dat kleine beetje karakter: een korte aankondiging, context bij je muziekwens en bediening die op meerdere schermen vertrouwd voelt.",
         haTitle: "Home Assistant als veilige basis",
         haP1: "Home Assistant is de centrale hub. Spotify autorisatie, voice assist, client-koppeling en lokale netwerkcommunicatie blijven daar waar ze horen: in je eigen smart-home omgeving.",
-        haP2: "Dat maakt de clients eenvoudiger en veiliger. Een iPhone, Mac, Linux-scherm of ESP32-device hoeft geen Spotify-wachtwoorden te kennen. Account token en koppelgegevens blijven bewaard in de juiste omgeving.",
+        haP2: "Dat maakt de clients eenvoudiger en veiliger. Een iPhone, Mac, Windows desktop, Linux-scherm of ESP32-device hoeft geen Spotify-wachtwoorden te kennen. Account token en koppelgegevens blijven bewaard in de juiste omgeving.",
         clientsTitle: "Een workflow voor meerdere clients",
-        clientsP1: "DJConnect is beschikbaar voor macOS, iOS, Linux/Raspberry Pi en ESP32. Elke client heeft zijn eigen vorm, maar de kern blijft gelijk: dezelfde Home Assistant integratie, dezelfde muzieklogica en dezelfde manier van koppelen.",
+        clientsP1: "DJConnect is beschikbaar voor macOS, Windows, iOS, Linux/Raspberry Pi en ESP32. Elke client heeft zijn eigen vorm, maar de kern blijft gelijk: dezelfde Home Assistant integratie, dezelfde muzieklogica en dezelfde manier van koppelen.",
         clientMac: "macOS voor vaste desktopbediening.",
+        clientWindows: "Windows voor desktopbediening naast je muzieksetup.",
         clientIos: "iOS voor snelle bediening dichtbij.",
         clientLinux: "Linux/Raspberry Pi voor een dedicated scherm.",
         clientEsp: "ESP32 voor een fysieke embedded afstandsbediening.",
@@ -152,7 +154,7 @@
       },
       en: {
         title: "DJConnect: music control with character",
-        metaDescription: "A blog post about the DJConnect project, the Home Assistant base and the shared workflow for macOS, iOS, Linux and ESP32.",
+        metaDescription: "A blog post about the DJConnect project, the Home Assistant base and the shared workflow for macOS, Windows, iOS, Linux and ESP32.",
         navLabel: "Navigation",
         languageToggle: "Language",
         navMenu: "Menu",
@@ -170,10 +172,11 @@
         whyP2: "The experience is not only about play and pause. The project looks for that bit of character: a short announcement, context around your music request and controls that feel familiar on multiple screens.",
         haTitle: "Home Assistant as the secure base",
         haP1: "Home Assistant is the central hub. Spotify authorization, voice assist, client pairing and local network communication stay where they belong: in your own smart-home environment.",
-        haP2: "That keeps clients simpler and safer. An iPhone, Mac, Linux screen or ESP32 device does not need Spotify passwords. Account tokens and pairing details remain in the right environment.",
+        haP2: "That keeps clients simpler and safer. An iPhone, Mac, Windows desktop, Linux screen or ESP32 device does not need Spotify passwords. Account tokens and pairing details remain in the right environment.",
         clientsTitle: "One workflow for multiple clients",
-        clientsP1: "DJConnect is available or prepared for macOS, iOS, Linux/Raspberry Pi and ESP32. Each client has its own shape, but the core stays the same: the same Home Assistant integration, the same music logic and the same pairing model.",
+        clientsP1: "DJConnect is available or prepared for macOS, Windows, iOS, Linux/Raspberry Pi and ESP32. Each client has its own shape, but the core stays the same: the same Home Assistant integration, the same music logic and the same pairing model.",
         clientMac: "macOS for fixed desktop control.",
+        clientWindows: "Windows for desktop control alongside your music setup.",
         clientIos: "iOS for fast nearby control.",
         clientLinux: "Linux/Raspberry Pi for a dedicated screen.",
         clientEsp: "ESP32 for a physical embedded remote.",
@@ -219,6 +222,6 @@
     applyLanguage(getInitialLanguage());
 
   </script>
-  <script src="assets/site-nav.js?v=3.1.61"></script>
+  <script src="assets/site-nav.js?v=3.1.62"></script>
 </body>
 </html>

@@ -2,7 +2,7 @@
 
 This document records the implementation-level design choices for the DJConnect website. It is reverse-engineered from the repository and must be reviewed for every release.
 
-Current website version: `3.1.61`
+Current website version: `3.1.62`
 
 ## Scope
 
@@ -401,8 +401,8 @@ Sources:
 | --- | --- | --- | --- | --- | --- |
 | Node.js | Runtime / test runner | GitHub Actions uses `20`; local version not pinned in repo | MIT-style Node.js license | https://github.com/nodejs/node | `npm test`, `node:test`, `node:assert/strict`, `node:fs/promises` |
 | npm | Package/script runner | Comes with Node; no lockfile version pinned | Artistic License 2.0 | https://github.com/npm/cli | `npm test`, `npx wrangler@4` |
-| Wrangler | Cloudflare CLI | `4` major via `npx wrangler@4`; latest observed during deploy: `4.100.0` | Apache-2.0 | https://github.com/cloudflare/workers-sdk | Cloudflare Pages deploy, D1 setup commands |
-| Playwright / `@playwright/test` | Optional browser automation test runner | 1.61.0 devDependency | Apache-2.0 | https://github.com/microsoft/playwright | Optional `npm run test:smoke`, `npm run screenshots` and `npm run screenshots:live` browser checks |
+| Wrangler | Cloudflare CLI | `4` major via `npx wrangler@4`; latest observed during deploy: `4.104.0` | Apache-2.0 | https://github.com/cloudflare/workers-sdk | Cloudflare Pages deploy, D1 setup commands |
+| Playwright / `@playwright/test` | Optional browser automation test runner | 1.61.1 locked devDependency | Apache-2.0 | https://github.com/microsoft/playwright | Optional `npm run test:smoke`, `npm run screenshots` and `npm run screenshots:live` browser checks |
 | Cloudflare Pages | Hosting platform | Service, not vendored | Service terms, not source-licensed library | https://developers.cloudflare.com/pages/ | Static hosting and Pages Functions |
 | Cloudflare Pages Functions / Workers runtime | Edge runtime | Service runtime, not vendored | Service terms, not source-licensed library | https://developers.cloudflare.com/pages/functions/ | `functions/**/*.js` |
 | Cloudflare D1 | Managed SQLite-compatible database | Service, not vendored | Service terms, not source-licensed library | https://developers.cloudflare.com/d1/ | Aggregate click counters |

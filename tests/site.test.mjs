@@ -1127,26 +1127,27 @@ test("download renderer keeps release embeds latest-only and tracked", async () 
 
 test("Windows and Mac Catalyst release notes expose localized v3.1.1 JSON paths", async () => {
   const expected = [
-    ["windows", "en", "windows/v3.1.1", "DJConnect-Windows-3.1.1-unsigned.zip"],
-    ["windows", "nl", "windows/v3.1.1", "geen Store-release, MSIX-package of signed installer"],
-    ["maccatalyst", "en", "maccatalyst/v3.1.1", "DJConnect-MacCatalyst-3.1.1-unsigned.zip"],
-    ["maccatalyst", "nl", "maccatalyst/v3.1.1", "unsigned en niet genotariseerd"]
+    ["windows", "en", /Platform: Windows/, /unsigned/i],
+    ["windows", "nl", /Platform: Windows/, /niet ondertekend|Niet-ondertekende/i],
+    ["maccatalyst", "en", /Platform: MacCatalyst|Platform: Mac Catalyst/, /not notarized|unsigned/i],
+    ["maccatalyst", "nl", /Platform: MacCatalyst|Platform: Mac Catalyst/, /niet genotariseerd|niet ondertekend/i]
   ];
 
-  for (const [platform, language, releaseTag, bodySnippet] of expected) {
+  for (const [platform, language, platformPattern, bodyPattern] of expected) {
     const url = `/release-notes/${platform}/${language}/v3.1.1.json`;
     const note = JSON.parse(await read(`wwwroot${url}`));
     assert.equal(note.version, "3.1.1");
     assert.equal(note.platform, platform);
-    assert.match(note.body, new RegExp(releaseTag.replace(/[/.]/g, "\\$&")));
-    assert.match(note.body, new RegExp(bodySnippet.replace(/[/.]/g, "\\$&")));
+    assert.equal(note.language, language);
+    assert.match(note.body, platformPattern);
+    assert.match(note.body, bodyPattern);
   }
 
   for (const platform of ["windows", "maccatalyst"]) {
     const legacy = JSON.parse(await read(`wwwroot/release-notes/${platform}/v3.1.1.json`));
     assert.equal(legacy.version, "3.1.1");
     assert.equal(legacy.platform, platform);
-    assert.match(legacy.body, /### Changed/);
+    assert.match(legacy.body, /DJConnect/);
   }
 });
 

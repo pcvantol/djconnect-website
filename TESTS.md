@@ -13,11 +13,10 @@
   optional Apple push notifications as wake/sync hints through the central push
   relay for Ask DJ replies or waiting choices only, and compact privacy
   boundaries.
-- Verify the homepage `Kies je interface` section includes macOS, iPhone/iPad,
-  Voice Assistant, Embedded device and Linux/Raspberry Pi cards. The Voice
-  Assistant card must link to `wwwroot/voice-assistant.html`. Verify shared
-  platform and Ask DJ docs mention Windows until a dedicated public Windows
-  page or download route exists.
+- Verify the homepage `Kies je interface` section includes macOS, Windows,
+  Mac Catalyst, iPhone/iPad, Voice Assistant, Embedded device and
+  Linux/Raspberry Pi cards.
+  The Voice Assistant card must link to `wwwroot/voice-assistant.html`.
 - Open `wwwroot/features.html` and verify Ask DJ, the core features and renamed
   bonus mini-games are visible: Paddle Rally, Meteor Run, Sky Dash and Maze
   Chase.
@@ -111,27 +110,30 @@
 - Open `wwwroot/testflight-macos.html` and verify it explains the macOS
   TestFlight route, Mac TestFlight install step, Home Assistant pairing,
   limited beta places, expiry and feedback mailbox.
-- Verify macOS, iOS, Raspberry Pi and embedded pages have `Home` plus
+- Verify macOS, Windows, Mac Catalyst, iOS, Raspberry Pi and embedded pages have `Home` plus
   `Platform` navigation, where `Platform` links to the homepage app overview.
   App pages should not show cross-links to other app or embedded pages.
-- Open `wwwroot/macos.html` and verify it shows binaries or the empty app-release-repo state.
+- Open `wwwroot/macos.html`, `wwwroot/windows.html` and `wwwroot/maccatalyst.html` and verify each shows binaries or the empty app-release-repo state for its own target.
 - Verify the embedded release cards load from GitHub or show the release fallback message.
 - Open `wwwroot/embedded.html`.
-- Verify Dutch and English language toggles update visible text on start, embedded, iOS, macOS, Features and Raspberry Pi pages.
+- Verify Dutch and English language toggles update visible text on start, embedded, iOS, macOS, Windows, Mac Catalyst, Features and Raspberry Pi pages.
 - Verify the embedded page lists LilyGO T-Embed CC1101 under supported hardware.
 - Verify ESP32-S3-BOX-3 is documented with ESPHome-powered voice assistant devices, alongside the Voice Preview Edition and M5 Atom Echo.
 - Verify the embedded ESP32 visual card has clear spacing and includes the LilyGO product specifications link.
 - Verify the embedded release block points to `pcvantol/djconnect-firmware` releases.
-- Verify iOS, macOS, ESP32 firmware and Raspberry Pi/Linux release blocks show only the latest GitHub release.
+- Verify iOS, macOS, Windows, Mac Catalyst, ESP32 firmware and Raspberry Pi/Linux release blocks show only the latest GitHub release.
 - Verify iOS download cards never show macOS assets, and macOS download cards
   never show iOS assets from the shared app release repository.
+- Verify Windows and Mac Catalyst download cards filter namespaced
+  `windows/vX.Y.Z` and `maccatalyst/vX.Y.Z` releases separately and show the
+  unsigned validation-build copy.
 - Verify pages with dynamic download cards load `assets/downloads.js` with the
   current site version query string and `wwwroot/_headers` keeps that renderer
   on `Cache-Control: no-cache`.
 - Verify latest-version release cards show an expandable changelog from the
   GitHub release body text on macOS, iOS, ESP32 firmware and Raspberry Pi/Linux
   pages.
-- Verify macOS, ESP32 firmware and Raspberry Pi/Linux release asset links route through `/go/download`.
+- Verify macOS, Windows, Mac Catalyst, ESP32 firmware and Raspberry Pi/Linux release asset links route through `/go/download`.
 - Verify the macOS page no longer links to or mentions the removed `macos-download` route.
 - Verify HACS and download buttons route through `/go/...` redirects and still land on the expected destination.
 - Verify `/go/linux-install` resolves to the latest `pcvantol/djconnect-pi-releases` `.tar.gz` asset.
@@ -171,7 +173,7 @@
   assets and that deployment commands use that release output.
 - Verify `https://www.djconnect.dev` redirects permanently to `https://djconnect.dev`, preserving path and query string.
 - Verify the embedded page uses the shared site color styling: cyan/green CTA and the same subtle cyan/pink/green background family as the homepage.
-- Verify iOS and macOS do not show website repository release embeds, ESP32 uses `pcvantol/djconnect-firmware` downloadable assets and Raspberry Pi uses `pcvantol/djconnect-pi-releases`.
+- Verify iOS, macOS, Windows and Mac Catalyst do not show website repository release embeds, iOS/macOS/Windows/Mac Catalyst use `pcvantol/djconnect-app-releases`, ESP32 uses `pcvantol/djconnect-firmware` downloadable assets and Raspberry Pi uses `pcvantol/djconnect-pi-releases`.
 - Verify the embedded page does not mention pre-flashed devices.
 - Verify the embedded page does not show local quick start, requirements, FAQ, the experience section or the `Stem via HA / Veilig gekoppeld / DJ-karakter` row.
 - Verify embedded `Start installatie` buttons route to `wwwroot/start.html`.

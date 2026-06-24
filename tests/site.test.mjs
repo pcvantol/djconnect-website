@@ -8,7 +8,7 @@ import vm from "node:vm";
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
 const webRoot = new URL("../wwwroot/", import.meta.url);
 const exec = promisify(execFile);
-const publicPages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "privacy", "ios", "testflight", "testflight-macos", "macos", "raspberry-pi", "embedded", "404"];
+const publicPages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "privacy", "ios", "testflight", "testflight-macos", "macos", "windows", "maccatalyst", "raspberry-pi", "embedded", "404"];
 
 const assertMissing = async (path) => {
   await assert.rejects(
@@ -208,6 +208,12 @@ test("homepage has platform routes and app store placeholders", async () => {
   assert.doesNotMatch(index, /data-i18n="navStart">Aan de slag/);
   assert.match(index, /href="embedded\.html"/);
   assert.match(index, /href="macos\.html"/);
+  assert.match(index, /href="windows\.html"/);
+  assert.match(index, /Windows builds/);
+  assert.match(index, /Voor desktopbediening op Windows/);
+  assert.match(index, /href="maccatalyst\.html"/);
+  assert.match(index, /Mac Catalyst builds/);
+  assert.match(index, /Unsigned Mac Catalyst build voor diagnostics/);
   assert.match(index, /href="ios\.html"/);
   assert.match(index, /href="raspberry-pi\.html"/);
   assert.match(index, /data-store-link="macos"/);
@@ -219,7 +225,7 @@ test("homepage has platform routes and app store placeholders", async () => {
   assert.match(index, /Powered by Home Assistant, beschikbaar voor meerdere apparaten/);
   assert.match(index, /Spotify integratie, voice assist en app koppeling lopen centraal via je smart-home/);
   assert.match(index, /Meerdere interfaces/);
-  assert.match(index, /Gebruik DJConnect op je favoriete Apple scherm of embedded device/);
+  assert.match(index, /Gebruik DJConnect op je favoriete desktop, mobiel scherm of embedded device/);
   assert.match(index, /DJConnect brengt je muziekwens, speaker keuze en persoonlijke DJ-feedback samen/);
   assert.match(index, /Zeg welke artiest je wilt horen/);
   assert.match(index, /<script src="assets\/voice-intents\.js"><\/script>/);
@@ -416,6 +422,7 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /Download ESP firmware/);
   assert.match(start, /Download iOS app/);
   assert.match(start, /Download macOS app/);
+  assert.match(start, /href="windows\.html">Download Windows app/);
   assert.match(start, /Installeer de DJConnect Windows desktop app zodra je build beschikbaar is/);
   assert.match(start, /Download Linux app/);
   assert.match(start, /Installeer de DJConnect Raspberry Pi app via Github/);
@@ -459,6 +466,7 @@ test("features page describes core functions and bonus games", async () => {
   assert.match(features, /data-i18n="askDjTitle">Slimme follow-ups<\/h3>/);
   assert.match(features, /Ask DJ geeft niet alleen antwoord, maar ook acties/);
   assert.match(features, /Gebruik dezelfde flow op Mac, Windows, iOS, Linux en ESP32/);
+  assert.match(features, /Desktopbediening met Ask DJ, playback-acties en veilige tokenopslag in Windows Credential Manager/);
   assert.match(features, /Wissel direct van speaker, kies een aanbevolen track, bekijk album art/);
   assert.match(features, /Ask DJ does more than answer: it gives you actions/);
   assert.match(features, /Spotify playback/);
@@ -469,6 +477,7 @@ test("features page describes core functions and bonus games", async () => {
   assert.match(features, /DJ aankondigingen/);
   assert.match(features, /Veilige koppeling/);
   assert.match(features, /macOS/);
+  assert.match(features, /Windows/);
   assert.match(features, /iOS en Apple Watch/);
   assert.match(features, /Linux/);
   assert.match(features, /ESP32 device/);
@@ -873,7 +882,7 @@ test("embedded page uses the shared site color styling", async () => {
 });
 
 test("site does not embed website repository releases", async () => {
-  const pages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "privacy", "ios", "testflight", "testflight-macos", "macos", "raspberry-pi", "embedded"];
+  const pages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "privacy", "ios", "testflight", "testflight-macos", "macos", "windows", "maccatalyst", "raspberry-pi", "embedded"];
 
   for (const page of pages) {
     const html = await read(`wwwroot/${page}.html`);
@@ -911,6 +920,52 @@ test("macOS page shows public binary release repo", async () => {
   assert.match(macos, /data-github-owner="pcvantol"/);
   assert.match(macos, /data-github-repo="djconnect-app-releases"/);
   assert.match(macos, /assets\/downloads\.js/);
+});
+
+test("Windows page shows Windows client release repo", async () => {
+  const windows = await read("wwwroot/windows.html");
+
+  assert.match(windows, /<title>DJConnect voor Windows<\/title>/);
+  assert.match(windows, /href="https:\/\/djconnect\.dev\/windows"/);
+  assert.match(windows, /href="index\.html" data-i18n="navHome">Home<\/a>/);
+  assert.match(windows, /href="index\.html#apps" data-i18n="navPlatform">Platform<\/a>/);
+  assert.match(windows, /data-i18n="heroTitle">DJConnect voor Windows<\/h1>/);
+  assert.match(windows, /Windows Credential Manager/);
+  assert.match(windows, /Spotify OAuth, DJ Memory en backend playback blijven in Home Assistant/);
+  assert.match(windows, /Ask DJ op desktop/);
+  assert.match(windows, /Home Assistant STT\/TTS/);
+  assert.match(windows, /data-github-downloads/);
+  assert.match(windows, /data-github-repo="djconnect-app-releases"/);
+  assert.match(windows, /data-download-target="windows"/);
+  assert.match(windows, /data-release-limit="1"/);
+  assert.match(windows, /assets\/downloads\.js/);
+  assert.match(windows, /Unsigned validatiebuilds/);
+  assert.match(windows, /geen Store-release, MSIX-package of signed installer/);
+  assert.doesNotMatch(windows, /DJConnect pushrelay/);
+  assert.doesNotMatch(windows, /TestFlight/);
+  assert.doesNotMatch(windows, /App Store/);
+  assertTranslationsCoverPage(windows, "Windows page");
+});
+
+test("Mac Catalyst page shows unsigned validation release repo", async () => {
+  const macCatalyst = await read("wwwroot/maccatalyst.html");
+
+  assert.match(macCatalyst, /<title>DJConnect Mac Catalyst<\/title>/);
+  assert.match(macCatalyst, /href="https:\/\/djconnect\.dev\/maccatalyst"/);
+  assert.match(macCatalyst, /href="index\.html" data-i18n="navHome">Home<\/a>/);
+  assert.match(macCatalyst, /href="index\.html#apps" data-i18n="navPlatform">Platform<\/a>/);
+  assert.match(macCatalyst, /data-i18n="heroTitle">DJConnect Mac Catalyst<\/h1>/);
+  assert.match(macCatalyst, /Unsigned Mac Catalyst build/);
+  assert.match(macCatalyst, /unsigned en niet genotariseerd/);
+  assert.match(macCatalyst, /diagnostics en interne validatie/);
+  assert.match(macCatalyst, /data-github-downloads/);
+  assert.match(macCatalyst, /data-github-repo="djconnect-app-releases"/);
+  assert.match(macCatalyst, /data-download-target="maccatalyst"/);
+  assert.match(macCatalyst, /data-release-limit="1"/);
+  assert.match(macCatalyst, /assets\/downloads\.js/);
+  assert.doesNotMatch(macCatalyst, /TestFlight/);
+  assert.doesNotMatch(macCatalyst, /App Store/);
+  assertTranslationsCoverPage(macCatalyst, "Mac Catalyst page");
 });
 
 test("iOS page labels the platform route as home", async () => {
@@ -1009,12 +1064,14 @@ test("download script renders dynamic Raspberry Pi install command", async () =>
 });
 
 test("download renderer keeps release embeds latest-only and tracked", async () => {
-  const [version, headers, downloads, ios, macos, raspberry, embedded] = await Promise.all([
+  const [version, headers, downloads, ios, macos, windows, macCatalyst, raspberry, embedded] = await Promise.all([
     read("VERSION"),
     read("wwwroot/_headers"),
     read("wwwroot/assets/downloads.js"),
     read("wwwroot/ios.html"),
     read("wwwroot/macos.html"),
+    read("wwwroot/windows.html"),
+    read("wwwroot/maccatalyst.html"),
     read("wwwroot/raspberry-pi.html"),
     read("wwwroot/embedded.html")
   ]);
@@ -1029,6 +1086,9 @@ test("download renderer keeps release embeds latest-only and tracked", async () 
   assert.match(downloads, /target === "ios"/);
   assert.match(downloads, /!name\.includes\("macos"\)/);
   assert.match(downloads, /target === "macos"/);
+  assert.match(downloads, /target === "windows"/);
+  assert.match(downloads, /target === "maccatalyst"/);
+  assert.match(downloads, /emptyMacCatalyst/);
   assert.match(downloads, /repo === "djconnect-firmware"\) return "firmware"/);
   assert.match(downloads, /repo === "djconnect-pi-releases"\) return "linux"/);
   assert.match(downloads, /repo === "djconnect-app-releases"\) return "macos"/);
@@ -1041,7 +1101,7 @@ test("download renderer keeps release embeds latest-only and tracked", async () 
   assert.match(headers, /\/assets\/downloads\.js/);
   assert.match(headers, /Cache-Control: no-cache/);
 
-  for (const html of [ios, macos, raspberry, embedded]) {
+  for (const html of [ios, macos, windows, macCatalyst, raspberry, embedded]) {
     assert.match(html, /data-github-downloads/);
     assert.match(html, /data-release-limit="1"/);
     assert.match(html, new RegExp(versionQuery.replace(/[.?]/g, "\\$&")));
@@ -1053,7 +1113,34 @@ test("download renderer keeps release embeds latest-only and tracked", async () 
   }
 
   assert.match(macos, /data-download-target="macos"/);
+  assert.match(windows, /data-download-target="windows"/);
+  assert.match(macCatalyst, /data-download-target="maccatalyst"/);
   assert.match(ios, /data-download-target="ios"/);
+});
+
+test("Windows and Mac Catalyst release notes expose localized v3.1.1 JSON paths", async () => {
+  const expected = [
+    ["windows", "en", "windows/v3.1.1", "DJConnect-Windows-3.1.1-unsigned.zip"],
+    ["windows", "nl", "windows/v3.1.1", "geen Store-release, MSIX-package of signed installer"],
+    ["maccatalyst", "en", "maccatalyst/v3.1.1", "DJConnect-MacCatalyst-3.1.1-unsigned.zip"],
+    ["maccatalyst", "nl", "maccatalyst/v3.1.1", "unsigned en niet genotariseerd"]
+  ];
+
+  for (const [platform, language, releaseTag, bodySnippet] of expected) {
+    const url = `/release-notes/${platform}/${language}/v3.1.1.json`;
+    const note = JSON.parse(await read(`wwwroot${url}`));
+    assert.equal(note.version, "3.1.1");
+    assert.equal(note.platform, platform);
+    assert.match(note.body, new RegExp(releaseTag.replace(/[/.]/g, "\\$&")));
+    assert.match(note.body, new RegExp(bodySnippet.replace(/[/.]/g, "\\$&")));
+  }
+
+  for (const platform of ["windows", "maccatalyst"]) {
+    const legacy = JSON.parse(await read(`wwwroot/release-notes/${platform}/v3.1.1.json`));
+    assert.equal(legacy.version, "3.1.1");
+    assert.equal(legacy.platform, platform);
+    assert.match(legacy.body, /### Changed/);
+  }
 });
 
 test("download and HACS clicks use cookieless aggregate redirects", async () => {
@@ -1387,6 +1474,8 @@ test("canonical SEO uses djconnect.dev", async () => {
     ["testflight", "https://djconnect.dev/testflight"],
     ["testflight-macos", "https://djconnect.dev/testflight-macos"],
     ["macos", "https://djconnect.dev/macos"],
+    ["windows", "https://djconnect.dev/windows"],
+    ["maccatalyst", "https://djconnect.dev/maccatalyst"],
     ["raspberry-pi", "https://djconnect.dev/raspberry-pi"],
     ["embedded", "https://djconnect.dev/embedded"]
   ];
@@ -1420,6 +1509,8 @@ test("canonical SEO uses djconnect.dev", async () => {
   assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/privacy<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/testflight<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/testflight-macos<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/windows<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/maccatalyst<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/djconnect\.dev\/embedded<\/loc>/);
   assert.match(downloads, /https:\/\/djconnect\.dev\/go\/linux-install/);
 });
@@ -1439,7 +1530,7 @@ test("social preview image uses current branding", async () => {
 });
 
 test("legacy macOS download page is not referenced", async () => {
-  const pages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "privacy", "ios", "testflight", "testflight-macos", "macos", "raspberry-pi", "embedded"];
+  const pages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "privacy", "ios", "testflight", "testflight-macos", "macos", "windows", "maccatalyst", "raspberry-pi", "embedded"];
 
   for (const page of pages) {
     const html = await read(`wwwroot/${page}.html`);
@@ -1522,7 +1613,7 @@ test("site copy no longer claims devices are pre-flashed", async () => {
 });
 
 test("all translation keys are present in Dutch and English", async () => {
-  const pages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "privacy", "ios", "testflight", "testflight-macos", "macos", "raspberry-pi", "embedded"];
+  const pages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "privacy", "ios", "testflight", "testflight-macos", "macos", "windows", "maccatalyst", "raspberry-pi", "embedded"];
   const htmlPages = await Promise.all(pages.map((page) => read(`wwwroot/${page}.html`)));
 
   htmlPages.forEach((html, index) => assertTranslationsCoverPage(html, `${pages[index]} page`));
@@ -1530,7 +1621,7 @@ test("all translation keys are present in Dutch and English", async () => {
 
 test("MIT license and footer notice are shown", async () => {
   const license = await read("LICENSE");
-  const pages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "privacy", "ios", "testflight", "testflight-macos", "macos", "raspberry-pi", "embedded"];
+  const pages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "privacy", "ios", "testflight", "testflight-macos", "macos", "windows", "maccatalyst", "raspberry-pi", "embedded"];
   const htmlPages = await Promise.all(pages.map((page) => read(`wwwroot/${page}.html`)));
 
   assert.match(license, /MIT License/);

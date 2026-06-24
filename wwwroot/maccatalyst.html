@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DJConnect voor macOS</title>
-  <meta name="description" content="DJConnect voor macOS: desktopbediening voor muziek, output en DJ-feedback." />
-  <link rel="canonical" href="https://djconnect.dev/macos" />
+  <title>DJConnect Mac Catalyst</title>
+  <meta name="description" content="DJConnect Mac Catalyst: unsigned diagnostic build voor desktopbediening via Home Assistant." />
+  <link rel="canonical" href="https://djconnect.dev/maccatalyst" />
   <link rel="icon" href="assets/djconnect/icon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="assets/downloads.css" />
   <style>
@@ -98,18 +98,17 @@
     <header class="hero">
       <div class="wrap hero-grid">
         <div>
-          <h1 data-i18n="heroTitle">DJConnect voor macOS</h1>
-          <p class="lead" data-i18n="heroLead">Desktopbediening voor zoeken, outputkeuze, playback en DJ-feedback zonder Home Assistant steeds te openen.</p>
+          <h1 data-i18n="heroTitle">DJConnect Mac Catalyst</h1>
+          <p class="lead" data-i18n="heroLead">Unsigned Mac Catalyst build voor interne validatie van zoeken, outputkeuze, playback en DJ-feedback via Home Assistant.</p>
           <a class="btn primary" href="#downloads" data-i18n="downloadCta">Download</a>
-          <a class="btn" href="#" aria-disabled="true" data-store-link="macos" data-i18n="storeCta">Mac App Store link volgt</a>
-          <a class="btn" href="testflight-macos.html" data-i18n="testflightCta">Join TestFlight beta</a>
+          <a class="btn" href="start.html#pairing" data-i18n="pairingCta">Koppel met Home Assistant</a>
         </div>
         <div class="mock" aria-hidden="true">
           <div class="mac-device">
             <div class="screen">
               <div class="screen-inner">
-                <div class="screen-status"><span>macOS</span><span class="status-pill">Online</span></div>
-                <div class="app-visual"><span class="play-icon"></span><div><div class="app-title">DJConnect</div><div class="app-subtitle">macOS app</div></div></div>
+                <div class="screen-status"><span>Mac Catalyst</span><span class="status-pill">Online</span></div>
+                <div class="app-visual"><span class="play-icon"></span><div><div class="app-title">DJConnect</div><div class="app-subtitle">Mac Catalyst build</div></div></div>
                 <div class="lines"><span></span><span></span></div>
               </div>
             </div>
@@ -120,9 +119,9 @@
     </header>
     <section>
       <div class="wrap grid-2">
-        <article class="card"><h2 data-i18n="fixedTitle">Voor vaste bediening</h2><p data-i18n="fixedText">Gebruik je Mac als centrale cockpit voor muziekvragen, output en status.</p></article>
-        <article class="card"><h2 data-i18n="notificationsTitle">Meldingen als synchint</h2><p data-i18n="notificationsText">Optionele Apple pushmeldingen kunnen de Mac attenderen op Ask DJ-updates via de DJConnect pushrelay. Ze zijn beperkt tot Ask DJ-antwoorden of wachtende keuzes en bevatten geen tokens, ruwe prompts of volledige history.</p></article>
-        <article class="card"><h2 data-i18n="testflightTitle">TestFlight beta</h2><p data-i18n="testflightText">Join de macOS TestFlight beta zolang er plekken beschikbaar zijn. TestFlight beta's verlopen; de definitieve Mac App Store link volgt zodra de app gepubliceerd is.</p></article>
+        <article class="card"><h2 data-i18n="fixedTitle">Voor vaste bediening</h2><p data-i18n="fixedText">Gebruik de Mac Catalyst build als diagnostische desktopclient voor muziekvragen, output en status.</p></article>
+        <article class="card"><h2 data-i18n="askDjTitle">Ask DJ op desktop</h2><p data-i18n="askDjText">Chat met Ask DJ, gebruik push-to-talk via Home Assistant STT/TTS en laat Home Assistant de server-side history, DJ Memory en playback-acties beheren.</p></article>
+        <article class="card"><h2 data-i18n="securityTitle">Unsigned validatiebuild</h2><p data-i18n="securityText">Deze Mac Catalyst download is unsigned en niet genotariseerd. Gebruik hem voorlopig alleen voor diagnostics en interne validatie; Spotify OAuth, DJ Memory en backend playback blijven in Home Assistant.</p></article>
       </div>
     </section>
     <section id="downloads">
@@ -130,7 +129,7 @@
         <div>
           <h2 data-i18n="releaseTitle">Laatste versie</h2>
         </div>
-        <div class="download-list" data-github-downloads data-github-owner="pcvantol" data-github-repo="djconnect-app-releases" data-download-target="macos" data-release-limit="1"></div>
+        <div class="download-list" data-github-downloads data-github-owner="pcvantol" data-github-repo="djconnect-app-releases" data-download-target="maccatalyst" data-release-limit="1"></div>
       </div>
     </section>
   </main>
@@ -144,48 +143,46 @@
   <script>
     const translations = {
       nl: {
-        title: "DJConnect voor macOS",
-        metaDescription: "DJConnect voor macOS: desktopbediening voor muziek, output en DJ-feedback.",
+        title: "DJConnect Mac Catalyst",
+        metaDescription: "DJConnect Mac Catalyst: unsigned diagnostic build voor desktopbediening via Home Assistant.",
         navLabel: "Navigatie",
         languageToggle: "Taalkeuze",
         navMenu: "Menu",
         navHome: "Home",
         navPlatform: "Platform",
-        heroTitle: "DJConnect voor macOS",
-        heroLead: "Desktopbediening voor zoeken, outputkeuze, playback en DJ-feedback zonder Home Assistant steeds te openen.",
+        heroTitle: "DJConnect Mac Catalyst",
+        heroLead: "Unsigned Mac Catalyst build voor interne validatie van zoeken, outputkeuze, playback en DJ-feedback via Home Assistant.",
         downloadCta: "Download",
-        storeCta: "Mac App Store link volgt",
-        testflightCta: "Join TestFlight beta",
+        pairingCta: "Koppel met Home Assistant",
         fixedTitle: "Voor vaste bediening",
-        fixedText: "Gebruik je Mac als centrale cockpit voor muziekvragen, output en status.",
-        notificationsTitle: "Meldingen als synchint",
-        notificationsText: "Optionele Apple pushmeldingen kunnen de Mac attenderen op Ask DJ-updates via de DJConnect pushrelay. Ze zijn beperkt tot Ask DJ-antwoorden of wachtende keuzes en bevatten geen tokens, ruwe prompts of volledige history.",
-        testflightTitle: "TestFlight beta",
-        testflightText: "Join de macOS TestFlight beta zolang er plekken beschikbaar zijn. TestFlight beta's verlopen; de definitieve Mac App Store link volgt zodra de app gepubliceerd is.",
+        fixedText: "Gebruik de Mac Catalyst build als diagnostische desktopclient voor muziekvragen, output en status.",
+        askDjTitle: "Ask DJ op desktop",
+        askDjText: "Chat met Ask DJ, gebruik push-to-talk via Home Assistant STT/TTS en laat Home Assistant de server-side history, DJ Memory en playback-acties beheren.",
+        securityTitle: "Unsigned validatiebuild",
+        securityText: "Deze Mac Catalyst download is unsigned en niet genotariseerd. Gebruik hem voorlopig alleen voor diagnostics en interne validatie; Spotify OAuth, DJ Memory en backend playback blijven in Home Assistant.",
         releaseTitle: "Laatste versie",
         legalPrivacy: "Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.",
         legalPrivacyLink: "Privacy Policy",
         legalSupport: "Support"
       },
       en: {
-        title: "DJConnect for macOS",
-        metaDescription: "DJConnect for macOS: desktop control for music, output and DJ feedback.",
+        title: "DJConnect Mac Catalyst",
+        metaDescription: "DJConnect Mac Catalyst: unsigned diagnostic build for desktop control through Home Assistant.",
         navLabel: "Navigation",
         languageToggle: "Language",
         navMenu: "Menu",
         navHome: "Home",
         navPlatform: "Platform",
-        heroTitle: "DJConnect for macOS",
-        heroLead: "Desktop control for search, output choice, playback and DJ feedback without constantly opening Home Assistant.",
+        heroTitle: "DJConnect Mac Catalyst",
+        heroLead: "Unsigned Mac Catalyst build for internal validation of search, output choice, playback and DJ feedback through Home Assistant.",
         downloadCta: "Download",
-        storeCta: "Mac App Store link coming",
-        testflightCta: "Join TestFlight beta",
+        pairingCta: "Pair with Home Assistant",
         fixedTitle: "Fixed control",
-        fixedText: "Use your Mac as the central cockpit for music requests, output and status.",
-        notificationsTitle: "Notifications as sync hints",
-        notificationsText: "Optional Apple push notifications can alert the Mac about Ask DJ updates through the DJConnect push relay. They are limited to Ask DJ replies or waiting choices and contain no tokens, raw prompts or full history.",
-        testflightTitle: "TestFlight beta",
-        testflightText: "Join the macOS TestFlight beta while places are available. TestFlight betas expire; the final Mac App Store link will follow once the app is published.",
+        fixedText: "Use the Mac Catalyst build as a diagnostic desktop client for music requests, output and status.",
+        askDjTitle: "Ask DJ on desktop",
+        askDjText: "Chat with Ask DJ, use push-to-talk through Home Assistant STT/TTS and let Home Assistant manage server-side history, DJ Memory and playback actions.",
+        securityTitle: "Unsigned validation build",
+        securityText: "This Mac Catalyst download is unsigned and not notarized. Use it for diagnostics and internal validation only for now; Spotify OAuth, DJ Memory and backend playback stay in Home Assistant.",
         releaseTitle: "Latest version",
         legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
         legalPrivacyLink: "Privacy Policy",

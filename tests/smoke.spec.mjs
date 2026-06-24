@@ -4,7 +4,7 @@ const baseURL = process.env.SMOKE_BASE_URL || "https://djconnect.dev";
 
 test.describe("DJConnect smoke", () => {
   test("core pages render and expose language toggle", async ({ page }) => {
-    for (const path of ["/", "/start", "/features", "/macos", "/ios", "/raspberry-pi", "/embedded"]) {
+    for (const path of ["/", "/start", "/features", "/macos", "/windows", "/maccatalyst", "/ios", "/raspberry-pi", "/embedded"]) {
       await page.goto(`${baseURL}${path}`);
       await expect(page.locator("body")).toBeVisible();
       await expect(page.locator(".site-version")).toContainText("DJConnect website v");
@@ -23,7 +23,7 @@ test.describe("DJConnect smoke", () => {
   });
 
   test("download pages expose latest release containers", async ({ page }) => {
-    for (const path of ["/macos", "/raspberry-pi", "/embedded"]) {
+    for (const path of ["/macos", "/windows", "/maccatalyst", "/raspberry-pi", "/embedded"]) {
       await page.goto(`${baseURL}${path}`);
       await expect(page.locator("[data-github-downloads]")).toBeVisible();
     }

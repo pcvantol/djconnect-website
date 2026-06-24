@@ -23,6 +23,8 @@ const pages = [
   { path: "/ios", name: "ios" },
   { path: "/testflight-macos", name: "testflight-macos" },
   { path: "/macos", name: "macos" },
+  { path: "/windows", name: "windows" },
+  { path: "/maccatalyst", name: "maccatalyst" },
   { path: "/raspberry-pi", name: "raspberry-pi" },
   { path: "/embedded", name: "embedded" }
 ];

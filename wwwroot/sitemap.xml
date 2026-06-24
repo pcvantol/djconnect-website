@@ -58,7 +58,15 @@
   </url>
   <url>
     <loc>https://djconnect.dev/macos</loc>
-    <lastmod>2026-06-13</lastmod>
+    <lastmod>2026-06-24</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/windows</loc>
+    <lastmod>2026-06-24</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/maccatalyst</loc>
+    <lastmod>2026-06-24</lastmod>
   </url>
   <url>
     <loc>https://djconnect.dev/raspberry-pi</loc>

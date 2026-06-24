@@ -12,7 +12,7 @@
 - Cloudflare Pages project: `djconnect`
 - Source directory: `wwwroot`
 - Release publish directory: `dist/wwwroot`
-- Current version: `3.1.63`
+- Current version: `3.1.64`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Platform overview page with CSS architecture diagram: `wwwroot/platform.html`
@@ -23,6 +23,8 @@
 - Privacy Policy page: `wwwroot/privacy.html`
 - Start/setup page: `wwwroot/start.html`
 - macOS app page with binary downloads: `wwwroot/macos.html`
+- Windows desktop app page with binary downloads: `wwwroot/windows.html`
+- Mac Catalyst validation build page with binary downloads: `wwwroot/maccatalyst.html`
 - iOS app page: `wwwroot/ios.html`
 - TestFlight beta page: `wwwroot/testflight.html`
 - macOS TestFlight beta page: `wwwroot/testflight-macos.html`
@@ -42,11 +44,9 @@
   Spraak, Blog, Support and Privacy intentionally omit their own page from the
   menu, and the compact Support/Privacy menus stay focused on their legal or
   help context.
-- The homepage `Kies je interface` section lists macOS, iPhone/iPad, Voice
-  Assistant, Embedded device and Linux/Raspberry Pi. Keep the Voice Assistant
-  card linked to `wwwroot/voice-assistant.html`. Windows is part of the shared
-  platform/Ask DJ contract, but does not yet have a dedicated public website
-  page or download route.
+- The homepage `Kies je interface` section lists macOS, Windows, Mac Catalyst,
+  iPhone/iPad, Voice Assistant, Embedded device and Linux/Raspberry Pi. Keep the Voice
+  Assistant card linked to `wwwroot/voice-assistant.html`.
 - Ask DJ is a major product feature on the homepage and Features page. Keep
   copy clear that it runs through Home Assistant with DJConnect integration
   v3.1.69+, uses compact bounded server-side DJ Memory/history per Home
@@ -97,10 +97,12 @@
   HTTPS external URLs. DJConnect uses PKCE, so a Spotify Client Secret is
   preferably not required.
 - The start page links to Home Assistant voice assistant documentation, the embedded firmware page and `pcvantol/djconnect-app-releases`.
-- The start page pairing switch has separate panels for ESP device, iOS app, macOS app and Raspberry Pi app.
-- macOS, iOS, Raspberry Pi and embedded pages label the homepage navigation route as `Home`; app pages should not show cross-links to other app/device pages in the top menu.
+- The start page pairing switch has separate panels for ESP device, iOS app, macOS app, Windows app and Raspberry Pi app.
+- macOS, Windows, Mac Catalyst, iOS, Raspberry Pi and embedded pages label the homepage navigation route as `Home`; app pages should not show cross-links to other app/device pages in the top menu.
 - The embedded page uses `assets/downloads.js`, `assets/downloads.css` and the Cloudflare Pages Function `functions/api/releases.js` to live-render downloadable assets from `pcvantol/djconnect-firmware` releases.
 - macOS downloads are embedded directly on `wwwroot/macos.html` using `assets/downloads.js`, `data-download-target="macos"` and the public repo `pcvantol/djconnect-app-releases`.
+- Windows downloads are embedded directly on `wwwroot/windows.html` using `assets/downloads.js`, `data-download-target="windows"` and the public repo `pcvantol/djconnect-app-releases`. The public release tags are namespaced as `windows/vX.Y.Z`; current Windows downloads are unsigned diagnostic/internal validation builds, with no Store release, MSIX package or signed installer yet.
+- Mac Catalyst downloads are embedded directly on `wwwroot/maccatalyst.html` using `assets/downloads.js`, `data-download-target="maccatalyst"` and the public repo `pcvantol/djconnect-app-releases`. The public release tags are namespaced as `maccatalyst/vX.Y.Z`; current Mac Catalyst downloads are unsigned and not notarized.
 - iOS downloads are embedded directly on `wwwroot/ios.html` using `assets/downloads.js`, `data-download-target="ios"` and the public repo `pcvantol/djconnect-app-releases` until an App Store link replaces it. The iOS page must never show macOS release assets. The TestFlight beta route should keep warning that beta places may be limited and builds expire.
 - Raspberry Pi downloads are embedded directly on `wwwroot/raspberry-pi.html` using `assets/downloads.js` and the public repo `pcvantol/djconnect-pi-releases`.
 - Client latest-version cards show expandable GitHub release body text as
@@ -109,7 +111,7 @@
   site-version query string, and `wwwroot/_headers` sets `Cache-Control:
   no-cache` for that asset. Keep this in place so old browser/WebView caches do
   not render stale release cards after platform filter changes.
-- ESP32 firmware, macOS and Raspberry Pi/Linux download embeds intentionally show only the latest release and route asset clicks through `/go/download`.
+- ESP32 firmware, macOS, Windows, Mac Catalyst and Raspberry Pi/Linux download embeds intentionally show only the latest release and route asset clicks through `/go/download`.
 - The old `macos-download` route is retired; keep macOS downloads on `wwwroot/macos.html`.
 - The Raspberry Pi/Linux install command is generated from the latest public release, downloads through `/go/linux-install` and runs `sudo ./scripts/install.sh`.
 - Download and HACS clicks are routed through `/go/...` endpoints. These endpoints optionally write aggregate daily counters to the D1 binding `ANALYTICS_DB`.
@@ -225,14 +227,16 @@ useful for higher GitHub API limits.
 
 ## Current Verification
 
-- `npm test` covers version consistency, route presence, homepage navigation/copy, homepage voice chips from shared intent data, voice command intent-family docs, data-driven examples and language-scoped rendering behavior, firmware download embeds, macOS and Raspberry Pi download embeds, latest-only release embed contracts, removed legacy macOS download routes, tracked download redirects, absence of website self-release embeds, translation keys, footer copyright/support links, local link checking, firmware links, compact embedded page structure, LilyGO visual hygiene and stale pre-flashed wording.
+- `npm test` covers version consistency, route presence, homepage navigation/copy, homepage voice chips from shared intent data, voice command intent-family docs, data-driven examples and language-scoped rendering behavior, firmware download embeds, macOS, Windows, Mac Catalyst and Raspberry Pi download embeds, latest-only release embed contracts, removed legacy macOS download routes, tracked download redirects, absence of website self-release embeds, translation keys, footer copyright/support links, local link checking, firmware links, compact embedded page structure, LilyGO visual hygiene and stale pre-flashed wording.
 - `npm test` also covers the cookieless redirect/download analytics structure,
   D1 migration, tracked GitHub asset links, the removed legacy `/admin` route,
   the token-protected `/api/stats` contract and the release-script
   dependency/tool preflight.
 - `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. `npm run screenshots:live` captures Dutch live production screenshots at a laptop viewport into `screenshots/live-laptop/`. Neither is part of the default `npm test` run.
-- Current released version `3.1.63` adds Windows to static homepage metadata
-  and Features platform-flow copy. Version `3.1.62` syncs the website with the
+- Current released version `3.1.64` adds dedicated Windows and Mac Catalyst
+  client pages, homepage cards, download rendering and release-note paths. Version `3.1.63`
+  adds Windows to static homepage metadata and Features platform-flow copy.
+  Version `3.1.62` syncs the website with the
   new Windows desktop client contract. Version `3.1.61` adds the operator APNs
   registration overview and privacy-focused tests/docs. Version `3.1.60` syncs Ask DJ website copy with the
   canonical Home Assistant integration `v3.1.69+` contract, including
@@ -243,7 +247,7 @@ useful for higher GitHub API limits.
 - Canonical SEO domain is `https://djconnect.dev`; `djconnect.pages.dev` remains a Cloudflare fallback.
 - `https://www.djconnect.dev` should remain a 301 redirect to the apex domain, preserving path and query string.
 - Dynamic GitHub download/install blocks now rerender when the language toggle changes, so generated install text follows NL/EN.
-- The start-page client pairing panels no longer show extra Client API/discovery notes under iOS, macOS, Linux or ESP32.
+- The start-page client pairing panels no longer show extra Client API/discovery notes under iOS, macOS, Windows, Linux or ESP32.
 - Site footers now include a small translated privacy notice. Keep it aligned across homepage, setup, features, iOS, macOS, Linux/Raspberry Pi and ESP32 pages.
 - Raspberry Pi setup copy now says to paste pairing details in the Home Assistant integration.
 - Linux/Raspberry Pi and ESP32 firmware download embeds intentionally use `data-release-limit="1"` so only the latest release is shown.

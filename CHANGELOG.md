@@ -2,6 +2,19 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.64 - 2026-06-24
+
+- Added dedicated Windows and Mac Catalyst client pages with Home Assistant
+  pairing guidance, Ask DJ desktop copy and shared app-release download
+  rendering.
+- Added Windows and Mac Catalyst to the homepage interface cards, sitemap,
+  screenshot manifest and platform-filtered download rendering.
+- Added static EN/NL `v3.1.1` What's New release-note JSON/Markdown files for
+  `windows` and `maccatalyst`, including legacy English fallback paths.
+- Expanded tests and documentation for Windows/Mac Catalyst page routing,
+  unsigned validation-build copy, namespaced release embeds and tracked
+  download redirects.
+
 ## DJConnect website v3.1.63 - 2026-06-24
 
 - Added Windows to the static homepage SEO/social descriptions and Features

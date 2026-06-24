@@ -1,0 +1,6 @@
+{
+  "version": "3.1.1",
+  "platform": "maccatalyst",
+  "name": "DJConnect Mac Catalyst 3.1.1",
+  "body": "### Changed\n\n- Added the public unsigned release flow for DJConnect Mac Catalyst artifacts in `pcvantol/djconnect-app-releases`.\n- Published Mac Catalyst release artifacts under the `maccatalyst/v3.1.1` public release tag.\n- Raised the Mac Catalyst minimum supported OS platform version to 15.0.\n- Added the Mac Catalyst MAUI platform entrypoint and switched app startup to `CreateWindow`.\n- Added English and Dutch What's New release-note publication through `djconnect.dev`.\n\n### Downloads\n\n- `DJConnect-MacCatalyst-3.1.1-unsigned.zip`\n- `DJConnect-MacCatalyst-3.1.1-SHA256SUMS.txt`\n- `SHA256SUMS.txt`\n\n---\n\nPlatform: Mac Catalyst\n\nUnsigned Mac Catalyst builds are intended for diagnostics and internal validation. This download is unsigned and not notarized."
+}

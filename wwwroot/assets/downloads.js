@@ -4,7 +4,9 @@ const downloadCopy = {
     empty: "Er zijn nog geen binaries gepubliceerd in deze release-repo.",
     emptyPi: "Er zijn nog geen Linux builds gepubliceerd in deze release-repo.",
     emptyMac: "Er zijn nog geen macOS binaries gepubliceerd in deze release-repo.",
+    emptyMacCatalyst: "Er zijn nog geen Mac Catalyst builds gepubliceerd in deze release-repo.",
     emptyIos: "Er zijn nog geen iOS builds gepubliceerd in deze release-repo.",
+    emptyWindows: "Er zijn nog geen Windows builds gepubliceerd in deze release-repo.",
     failed: "Downloads konden niet live worden geladen. Open GitHub voor de nieuwste binaries.",
     download: "Download",
     noAssets: "Deze release heeft nog geen downloadbare assets.",
@@ -23,7 +25,9 @@ const downloadCopy = {
     empty: "No binaries have been published in this release repo yet.",
     emptyPi: "No Linux builds have been published in this release repo yet.",
     emptyMac: "No macOS binaries have been published in this release repo yet.",
+    emptyMacCatalyst: "No Mac Catalyst builds have been published in this release repo yet.",
     emptyIos: "No iOS builds have been published in this release repo yet.",
+    emptyWindows: "No Windows builds have been published in this release repo yet.",
     failed: "Could not load downloads live. Open GitHub for the newest binaries.",
     download: "Download",
     noAssets: "This release does not have downloadable assets yet.",
@@ -132,7 +136,9 @@ const assetMatchesTarget = (asset, target) => {
   const name = String(asset.name || "").toLowerCase();
   if (!target || target === "download") return true;
   if (target === "ios") return /\b(ios|iphone|ipad)\b/.test(name) && !name.includes("macos");
-  if (target === "macos") return name.includes("macos") || name.endsWith(".dmg") || name.endsWith(".pkg");
+  if (target === "macos") return (name.includes("macos") || name.endsWith(".dmg") || name.endsWith(".pkg")) && !name.includes("maccatalyst") && !name.includes("mac-catalyst");
+  if (target === "maccatalyst") return name.includes("maccatalyst") || name.includes("mac-catalyst") || name === "sha256sums.txt";
+  if (target === "windows") return name.includes("windows") || name.includes("win-") || name.includes("win_") || name === "sha256sums.txt" || name.endsWith(".msix") || name.endsWith(".msixbundle") || name.endsWith(".appinstaller") || name.endsWith(".exe") || name.endsWith(".msi");
   if (target === "linux") return name.includes("linux") || name.includes("pi") || name.endsWith(".tar.gz");
   if (target === "firmware") return name.endsWith(".bin") || name.includes("firmware") || name.includes("esp32") || name.includes("lilygo");
   return true;
@@ -142,7 +148,9 @@ const releaseMatchesTarget = (release, target) => {
   if (!target || target === "download") return true;
   const text = `${release.name || ""} ${release.tag_name || ""}`.toLowerCase();
   if (target === "ios" && text.includes("macos")) return false;
-  if (target === "macos" && text.includes("ios")) return false;
+  if (target === "macos" && (text.includes("ios") || text.includes("maccatalyst") || text.includes("mac-catalyst"))) return false;
+  if (target === "maccatalyst" && (text.includes("ios") || text.includes("windows"))) return false;
+  if (target === "windows" && (text.includes("macos") || text.includes("ios"))) return false;
   return (release.assets || []).some((asset) => assetMatchesTarget(asset, target));
 };
 
@@ -153,7 +161,7 @@ const renderDownloads = async (root) => {
   const target = downloadTargetForRepo(repo, root.dataset.downloadTarget);
   const language = document.documentElement.lang === "en" ? "en" : "nl";
   const copy = downloadCopy[language];
-  const emptyCopy = target === "ios" ? copy.emptyIos : repo === "djconnect-pi-releases" ? copy.emptyPi : target === "macos" ? copy.emptyMac : copy.empty;
+  const emptyCopy = target === "ios" ? copy.emptyIos : target === "windows" ? copy.emptyWindows : target === "maccatalyst" ? copy.emptyMacCatalyst : repo === "djconnect-pi-releases" ? copy.emptyPi : target === "macos" ? copy.emptyMac : copy.empty;
 
   root.innerHTML = `<div class="download-status">${copy.loading}</div>`;
 

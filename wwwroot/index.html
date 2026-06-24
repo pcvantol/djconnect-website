@@ -868,7 +868,7 @@
       }
     }
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.63" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.64" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -1138,6 +1138,26 @@
           </article>
           <article class="card platform-card">
             <div>
+              <div class="topline"><h3>Windows</h3><span class="tag">Desktop</span></div>
+              <p data-i18n="windowsText">Voor desktopbediening op Windows: Ask DJ, playback-acties en outputkeuze via je Home Assistant integratie.</p>
+            </div>
+            <div class="download-actions" aria-label="Windows downloads" data-i18n-attr="aria-label:windowsDownloadsLabel">
+              <a class="store-link primary" href="windows.html#downloads" data-i18n="windowsDownloadsCta">Windows builds</a>
+              <a class="store-link" href="windows.html" data-i18n="windowsMore">Meer over Windows</a>
+            </div>
+          </article>
+          <article class="card platform-card">
+            <div>
+              <div class="topline"><h3>Mac Catalyst</h3><span class="tag" data-i18n="macCatalystTag">Validatie</span></div>
+              <p data-i18n="macCatalystText">Unsigned Mac Catalyst build voor diagnostics en interne validatie naast de Windows client.</p>
+            </div>
+            <div class="download-actions" aria-label="Mac Catalyst downloads" data-i18n-attr="aria-label:macCatalystDownloadsLabel">
+              <a class="store-link primary" href="maccatalyst.html#downloads" data-i18n="macCatalystDownloadsCta">Mac Catalyst builds</a>
+              <a class="store-link" href="maccatalyst.html" data-i18n="macCatalystMore">Meer over Mac Catalyst</a>
+            </div>
+          </article>
+          <article class="card platform-card">
+            <div>
               <div class="topline"><h3 data-i18n="iosTitle">iPhone en iPad</h3><span class="tag" data-i18n="iosTag">Mobiel</span></div>
               <p data-i18n="iosText">Voor snelle bediening dichtbij: bank, keuken, studio of overal waar je je telefoon al gebruikt.</p>
             </div>
@@ -1178,7 +1198,7 @@
     <p data-i18n="legalSpotify">Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.1.63</p>
+    <p class="site-version">DJConnect website v3.1.64</p>
   </footer>
   <script src="assets/voice-intents.js"></script>
   <script>
@@ -1263,6 +1283,15 @@
         macText: "Voor vaste bediening op je Mac: zoeken, output kiezen en de DJConnect-status in beeld houden.",
         macDownloadsLabel: "macOS downloads",
         macMore: "Meer over macOS",
+        windowsText: "Voor desktopbediening op Windows: Ask DJ, playback-acties en outputkeuze via je Home Assistant integratie.",
+        windowsDownloadsLabel: "Windows downloads",
+        windowsDownloadsCta: "Windows builds",
+        windowsMore: "Meer over Windows",
+        macCatalystTag: "Validatie",
+        macCatalystText: "Unsigned Mac Catalyst build voor diagnostics en interne validatie naast de Windows client.",
+        macCatalystDownloadsLabel: "Mac Catalyst downloads",
+        macCatalystDownloadsCta: "Mac Catalyst builds",
+        macCatalystMore: "Meer over Mac Catalyst",
         iosTitle: "iPhone en iPad",
         iosTag: "Mobiel",
         iosText: "Voor snelle bediening dichtbij: bank, keuken, studio of overal waar je je telefoon al gebruikt.",
@@ -1365,6 +1394,15 @@
         macText: "For fixed control on your Mac: search, choose output and keep DJConnect status in view.",
         macDownloadsLabel: "macOS downloads",
         macMore: "More about macOS",
+        windowsText: "For desktop control on Windows: Ask DJ, playback actions and output choice through your Home Assistant integration.",
+        windowsDownloadsLabel: "Windows downloads",
+        windowsDownloadsCta: "Windows builds",
+        windowsMore: "More about Windows",
+        macCatalystTag: "Validation",
+        macCatalystText: "Unsigned Mac Catalyst build for diagnostics and internal validation alongside the Windows client.",
+        macCatalystDownloadsLabel: "Mac Catalyst downloads",
+        macCatalystDownloadsCta: "Mac Catalyst builds",
+        macCatalystMore: "More about Mac Catalyst",
         iosTitle: "iPhone and iPad",
         iosTag: "Mobile",
         iosText: "For fast control close by: couch, kitchen, studio or anywhere you already use your phone.",
@@ -1456,6 +1494,6 @@
 
     applyLanguage(getInitialLanguage());
   </script>
-  <script src="assets/site-nav.js?v=3.1.63"></script>
+  <script src="assets/site-nav.js?v=3.1.64"></script>
 </body>
 </html>

@@ -40,6 +40,8 @@ Static landing page for DJConnect, published through Cloudflare Pages.
   expands that scope.
 - `wwwroot/embedded.html`: ESP32 embedded-device one-pager.
 - `wwwroot/macos.html`: macOS app page with binaries from `pcvantol/djconnect-app-releases`.
+- `wwwroot/windows.html`: Windows desktop app page with binaries from `pcvantol/djconnect-app-releases`.
+- `wwwroot/maccatalyst.html`: Mac Catalyst diagnostic build page with unsigned binaries from `pcvantol/djconnect-app-releases`.
 - `wwwroot/ios.html`: iOS app page with App Store placeholder.
 - `wwwroot/testflight.html`: TestFlight beta route with requirements,
   invite-link guidance, Home Assistant pairing and feedback mailbox.
@@ -177,6 +179,8 @@ curl -s https://djconnect.dev | grep "DJConnect website v"
 
 The embedded page renders only the latest downloadable firmware release assets from `pcvantol/djconnect-firmware`.
 The macOS page renders only the latest macOS binary downloads from `pcvantol/djconnect-app-releases` using `data-download-target="macos"`.
+The Windows page renders only the latest Windows desktop builds from `pcvantol/djconnect-app-releases` using `data-download-target="windows"`.
+The Mac Catalyst page renders only the latest unsigned Mac Catalyst validation builds from `pcvantol/djconnect-app-releases` using `data-download-target="maccatalyst"`.
 The iOS page renders only the latest iOS builds from `pcvantol/djconnect-app-releases` using `data-download-target="ios"` until the App Store link is final.
 The Raspberry Pi page renders only the latest binary downloads from `pcvantol/djconnect-pi-releases`.
 Latest-version release cards show the GitHub release body text as an expandable changelog on macOS, iOS, ESP32 firmware and Raspberry Pi/Linux pages.
@@ -189,8 +193,11 @@ The Raspberry Pi page also documents the fresh-Pi path and supported hardware:
 Raspberry Pi Zero 2 W with header plus Pimoroni HyperPixel 4.0 Square, Raspberry
 Pi OS Lite 64-bit, first-boot network/SSH/locale setup, repo-only OS bootstrap
 and then the public app release installer.
-iOS and macOS do not load website repository releases and must not show each
-other's release assets from the shared app release repository.
+iOS, macOS, Windows and Mac Catalyst do not load website repository releases and
+must not show each other's release assets from the shared app release
+repository. Windows public release tags use `windows/vX.Y.Z`; Mac Catalyst
+public release tags use `maccatalyst/vX.Y.Z`. Both are unsigned
+diagnostic/internal validation downloads for now.
 For private GitHub repositories, set a Cloudflare Pages secret named `GITHUB_TOKEN` with read access to releases.
 
 ## Privacy-Friendly Download Insights
@@ -326,19 +333,18 @@ Use `./cleanup_old_releases.sh` manually only when you want cleanup outside the 
 - Keep content-page navigation free of self-links. Features, Spraak, Blog,
   Support and Privacy should not show their own page as a menu option.
 - Keep the homepage `Kies je interface` cards aligned with the supported
-  routes: macOS, iPhone/iPad, Voice Assistant, Embedded device and
-  Linux/Raspberry Pi. Mention Windows in shared platform/Ask DJ documentation
-  until a dedicated public Windows page or download route is added.
+  routes: macOS, Windows, Mac Catalyst, iPhone/iPad, Voice Assistant, Embedded
+  device and Linux/Raspberry Pi.
 - Keep homepage hero device slides spacious: macOS, iPad/iPhone and LilyGO/ESP32 each get their own carousel slide.
 - Keep the start page aligned with the current setup order: Home Assistant voice pipeline, HACS, DJConnect configuration, client pairing and first use.
 - Keep the start page clear that Spotify OAuth requires the user's own Spotify
   Developer app because redirect URIs must be registered for their own Home
   Assistant external URL.
 - Keep the embedded page compact: supported hardware, how it works and firmware downloads. Detailed setup, requirements, FAQ and experience content belong off this page.
-- Keep macOS, iOS, ESP32 and Raspberry Pi page navigation minimal: `Home`, `Platform`, language toggle and the page CTA.
+- Keep macOS, Windows, Mac Catalyst, iOS, ESP32 and Raspberry Pi page navigation minimal: `Home`, `Platform`, language toggle and the page CTA.
 - Keep macOS and Raspberry Pi download menu labels singular: `Download`.
 - Keep `macos-download` removed; the canonical macOS app page is `wwwroot/macos.html`.
-- Keep ESP32 firmware, macOS and Raspberry Pi/Linux download embeds limited to the latest release and routed through `/go/download`.
+- Keep ESP32 firmware, macOS, Windows, Mac Catalyst and Raspberry Pi/Linux download embeds limited to the latest release and routed through `/go/download`.
 - Keep the footer version aligned with `VERSION`, `package.json` and `CHANGELOG.md`.
 - Keep click/download analytics aggregate-only: daily target counters in D1 plus GitHub `download_count`, without cookies, IP addresses, user agents or visitor identifiers.
 - Keep `https://djconnect.dev` as canonical production domain in page metadata, `robots.txt`, `sitemap.xml` and public install commands.

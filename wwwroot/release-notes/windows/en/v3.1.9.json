@@ -1,0 +1,7 @@
+{
+  "version": "3.1.9",
+  "platform": "windows",
+  "language": "en",
+  "name": "DJConnect Windows 3.1.9",
+  "body": "# DJConnect Windows 3.1.9\n\n- Tightens Ask DJ so text and future voice/push-to-talk input stay backend-owned through the Home Assistant DJConnect integration.\n- Renders response-owned images, sources, items, playback actions and confirmation actions only when the backend explicitly returns them.\n- Adds client identity and client message ids to command/action payloads and clears local Ask DJ cache when Home Assistant reports stale pairing.\n- Keeps Demo Mode monkey-test behavior non-destructive for CI and UI stress runs.\n\n---\n\nPlatform: Windows\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nWindows artifacts are unsigned and are not a store/MSIX installer yet."
+}

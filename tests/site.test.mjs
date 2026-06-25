@@ -598,12 +598,17 @@ test("voice commands page documents intent families and DJ response styles", asy
   assert.match(intents, /"command": "volume -10"/);
   assert.match(intents, /"command": "next"/);
   assert.match(intents, /"command": "previous"/);
+  assert.match(intents, /"command": "save_current_track"/);
   assert.match(intents, /Stop muziek/);
   assert.match(intents, /Start muziek/);
   assert.match(intents, /Zet harder/);
   assert.match(intents, /Zet zachter/);
   assert.match(intents, /Volgende nummer/);
   assert.match(intents, /Vorig nummer/);
+  assert.match(intents, /Zet huidig nummer in favorieten/);
+  assert.match(intents, /Voeg dit nummer toe aan favorieten/);
+  assert.match(intents, /Save this track to liked songs/);
+  assert.match(intents, /Like this track/);
   assert.match(intents, /Speel Nirvana/);
   assert.match(intents, /Start Metallica/);
   assert.match(intents, /Play Nirvana/);
@@ -638,6 +643,7 @@ test("voice commands page documents intent families and DJ response styles", asy
     "recently_played_history",
     "personal_music_recommendations",
     "seed_playlist_mix",
+    "save_current_track",
     "dj_announcement",
     "ambient_music_fact",
     "idle_suggestion"
@@ -679,6 +685,9 @@ test("voice commands page documents intent families and DJ response styles", asy
   assert.match(intents, /Ik voel me moe en geprikkeld, zet iets ontspannends klaar/);
   assert.match(intents, /Stel een playlist samen op basis van Radiohead, Massive Attack en Portishead/);
   assert.match(intents, /Save this mix as a Spotify playlist/);
+  assert.match(intents, /"id": "save_current_track"/);
+  assert.match(intents, /"action": "save_current_track"/);
+  assert.match(intents, /Saves the currently playing Spotify track to Liked Songs\/favorites/);
   assert.match(intents, /Geef me een leuke aankondiging voor wat nu speelt/);
   assert.match(intents, /Automatisch DJ feitje bij nieuw album of nieuwe artiest/);
   assert.match(intents, /Er speelt nu niets\. Zin in iets nieuws\?/);

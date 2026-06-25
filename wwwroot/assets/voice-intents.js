@@ -76,7 +76,12 @@ window.DJCONNECT_VOICE_INTENTS = [
                 "Volgende track",
                 "Vorig nummer",
                 "Vorige track",
-                "Vorig liedje"
+                "Vorig liedje",
+                "Zet huidig nummer in favorieten",
+                "Voeg dit nummer toe aan favorieten",
+                "Bewaar deze track in favorieten",
+                "Like dit nummer",
+                "Zet deze song in mijn liked songs"
           ],
           "en": [
                 "Stop music",
@@ -94,7 +99,10 @@ window.DJCONNECT_VOICE_INTENTS = [
                 "Next track",
                 "Skip",
                 "Previous song",
-                "Previous track"
+                "Previous track",
+                "Save this track to liked songs",
+                "Add this song to favorites",
+                "Like this track"
           ]
     },
     "commands": [
@@ -139,6 +147,13 @@ window.DJCONNECT_VOICE_INTENTS = [
           "en": "Previous song"
         },
         "command": "previous"
+      },
+      {
+        "phrase": {
+          "nl": "Zet huidig nummer in favorieten",
+          "en": "Save this track to liked songs"
+        },
+        "command": "save_current_track"
       }
     ]
   },
@@ -1038,6 +1053,58 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "I want a playlist based on tracks Reckoner, Teardrop and Angel",
         "I want a playlist in genres ambient, techno and downtempo",
         "Save this mix as a Spotify playlist"
+      ]
+    }
+  },
+  {
+    "id": "save_current_track",
+    "plays_music": false,
+    "action": "save_current_track",
+    "intent": "playback_control",
+    "response_shape": {
+      "text_only": true,
+      "images": [],
+      "playback_actions": []
+    },
+    "description": "Save the currently playing Spotify track to the user's Liked Songs/favorites. Now Playing cards can expose this as a control action labelled Zet in favorieten.",
+    "nl": [
+      "Zet huidig nummer in favorieten",
+      "Voeg dit nummer toe aan favorieten",
+      "Bewaar deze track in favorieten",
+      "Like dit nummer"
+    ],
+    "en": [
+      "Save this track to liked songs",
+      "Add this song to favorites",
+      "Like this track",
+      "Save the current song"
+    ],
+    "playsMusic": false,
+    "messageKind": "user",
+    "pill": {
+      "nl": "Favoriet",
+      "en": "Favorite"
+    },
+    "title": {
+      "nl": "Huidig nummer opslaan",
+      "en": "Save current track"
+    },
+    "text": {
+      "nl": "Slaat de huidige Spotify-track op in Liked Songs/favorieten. Geen Spotify search, geen media card en geen extra artwork.",
+      "en": "Saves the currently playing Spotify track to Liked Songs/favorites. No Spotify search, media card or extra artwork."
+    },
+    "examples": {
+      "nl": [
+        "Zet huidig nummer in favorieten",
+        "Voeg dit nummer toe aan favorieten",
+        "Bewaar deze track in favorieten",
+        "Like dit nummer"
+      ],
+      "en": [
+        "Save this track to liked songs",
+        "Add this song to favorites",
+        "Like this track",
+        "Save the current song"
       ]
     }
   },

@@ -442,6 +442,63 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     }
   },
   {
+    "id": "personal_memory_summary",
+    "plays_music": false,
+    "action": "memory_summary",
+    "intent": "personal_memory_summary",
+    "response_shape": {
+      "text_only": true,
+      "images": [],
+      "playback_actions": [],
+      "sources": [
+        "djconnect_memory"
+      ]
+    },
+    "description": "Ask what DJConnect currently remembers about the user. The response must be based on DJ Memory only, without live playback artwork, Spotify profile enrichment, TTS replay or Play Now actions.",
+    "nl": [
+      "Wat weet je nu over mij?",
+      "Wat weet je over mij?",
+      "Wat weet DJConnect over mij?",
+      "Wat staat er in mijn DJ Memory?",
+      "Wat herinner je je over mij?"
+    ],
+    "en": [
+      "What do you know about me?",
+      "What does DJConnect know about me?",
+      "What is in my DJ Memory?",
+      "What do you remember about me?"
+    ],
+    "playsMusic": false,
+    "messageKind": "user",
+    "pill": {
+      "nl": "Privacy",
+      "en": "Privacy"
+    },
+    "title": {
+      "nl": "DJ Memory bekijken",
+      "en": "Review DJ Memory"
+    },
+    "text": {
+      "nl": "Privacyvraag over server-side DJ Memory. Render als tekst met bron djconnect_memory: geen oude album art, mediakaarten, TTS replay, Play Now en geen live Spotify playback of Spotify-profielverrijking.",
+      "en": "Privacy question about server-side DJ Memory. Render as text with djconnect_memory source: no old album art, media cards, TTS replay, Play Now, live Spotify playback or Spotify profile enrichment."
+    },
+    "examples": {
+      "nl": [
+        "Wat weet je nu over mij?",
+        "Wat weet je over mij?",
+        "Wat weet DJConnect over mij?",
+        "Wat staat er in mijn DJ Memory?",
+        "Wat herinner je je over mij?"
+      ],
+      "en": [
+        "What do you know about me?",
+        "What does DJConnect know about me?",
+        "What is in my DJ Memory?",
+        "What do you remember about me?"
+      ]
+    }
+  },
+  {
     "id": "speaker_outputs",
     "plays_music": false,
     "action": "devices",

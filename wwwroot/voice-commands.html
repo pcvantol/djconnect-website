@@ -49,7 +49,7 @@
     .examples { margin-top:18px; }
     .examples h4 { margin:0 0 8px; font-size:0.86rem; color:#aeefff; text-transform:uppercase; letter-spacing:0.08em; }
     .examples ul { margin:0; padding:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
-    .examples li { list-style:none; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.055); color:var(--muted); padding:8px 12px; font-weight:700; }
+    .examples li { list-style:none; border:1px solid var(--line); border-radius:16px; background:rgba(255,255,255,0.055); color:var(--muted); padding:8px 12px; font-weight:700; overflow-wrap:anywhere; }
     .note { margin-top:16px; color:var(--muted); border-left:3px solid var(--green); padding-left:14px; }
     .meta-row { display:flex; flex-wrap:wrap; gap:8px; margin:14px 0 0; }
     .meta-row span { border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.055); color:var(--muted); padding:6px 10px; font-size:0.78rem; font-weight:820; }
@@ -71,7 +71,7 @@
     @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } .flow li { grid-template-columns:40px 1fr; } .flow li::before { width:40px; height:40px; } .style-grid { grid-template-columns:1fr; } }
 
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.65" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.66" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -192,7 +192,7 @@
     <p>Copyright Peter van Tol 2026. Released under the MIT License.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: Spotify credentials blijven in Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.1.65</p>
+    <p class="site-version">DJConnect website v3.1.66</p>
   </footer>
   <script src="assets/voice-intents.js"></script>
   <script>
@@ -243,8 +243,8 @@
         familiesTitle: "Intentfamilies",
         familiesLead: "Gebruik gewone zinnen. Statusvragen lezen alleen wat er speelt, playback-control voert direct commands uit en muziekfamilies zoeken daarna pas in Spotify.",
         askDjFamiliesTitle: "Ask DJ voorbeelden",
-        askDjFamiliesLead: "Ask DJ is conversationeel: sommige vragen geven tekst, bronnen of afbeeldingen terug, andere kunnen Play Now-acties tonen. Ze staan los van de deterministische Spotify zoekcommando's hierboven.",
-        askDjPlayNowNote: "Aanbevelingen starten niet automatisch. DJConnect toont Play Now wanneer er een concrete aanbeveling is; playback start pas na jouw tap.",
+        askDjFamiliesLead: "Ask DJ is conversationeel: sommige vragen geven tekst, bronnen of afbeeldingen terug, andere kunnen Play Now-acties tonen. Privacyvragen over DJ Memory zijn tekst-only en staan los van live Spotify playback of Spotify-profielverrijking.",
+        askDjPlayNowNote: "Aanbevelingen starten niet automatisch. DJConnect toont Play Now wanneer er een concrete aanbeveling is; playback start pas na jouw tap. DJ Memory-samenvattingen tonen geen oude album art, mediakaarten, TTS replay of Play Now-knoppen.",
         askDjActionLabel: "Actie",
         askDjSystemLabel: "Systeem",
         askDjUserLabel: "Gebruiker",
@@ -322,8 +322,8 @@
         familiesTitle: "Intent families",
         familiesLead: "Use normal sentences. Status questions only read what is playing, playback control runs direct commands and music families search Spotify after that.",
         askDjFamiliesTitle: "Ask DJ examples",
-        askDjFamiliesLead: "Ask DJ is conversational: some questions return text, sources or images, while others can show Play Now actions. They are separate from the deterministic Spotify search commands above.",
-        askDjPlayNowNote: "Recommendations do not start automatically. DJConnect shows Play Now when there is a concrete recommendation; playback starts only after your tap.",
+        askDjFamiliesLead: "Ask DJ is conversational: some questions return text, sources or images, while others can show Play Now actions. Privacy questions about DJ Memory are text-only and separate from live Spotify playback or Spotify profile enrichment.",
+        askDjPlayNowNote: "Recommendations do not start automatically. DJConnect shows Play Now when there is a concrete recommendation; playback starts only after your tap. DJ Memory summaries show no old album art, media cards, TTS replay or Play Now buttons.",
         askDjActionLabel: "Action",
         askDjSystemLabel: "System",
         askDjUserLabel: "User",
@@ -435,7 +435,7 @@
         title.textContent = family.title[lang];
 
         const text = document.createElement("p");
-        text.textContent = family.description;
+        text.textContent = family.text?.[lang] || family.description;
 
         const metadata = document.createElement("div");
         metadata.className = "meta-row";
@@ -493,6 +493,6 @@
     applyLanguage(getInitialLanguage());
 
   </script>
-  <script src="assets/site-nav.js?v=3.1.65"></script>
+  <script src="assets/site-nav.js?v=3.1.66"></script>
 </body>
 </html>

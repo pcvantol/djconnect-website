@@ -2,6 +2,17 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.1.66 - 2026-06-25
+
+- Synced the voice command and Ask DJ example data with the Home Assistant
+  integration v3.1.92 source, including the new `personal_memory_summary`
+  Ask DJ intent family.
+- Documented DJ Memory summary rendering as privacy-focused, text-only output
+  sourced from `djconnect_memory`, without stale artwork, media cards, TTS
+  replay or `Play Now` controls.
+- Improved mobile wrapping for longer voice/Ask DJ example chips and expanded
+  regression coverage for the new memory-summary contract.
+
 ## DJConnect website v3.1.65 - 2026-06-24
 
 - Changed dynamic download-page changelogs to load the localized static

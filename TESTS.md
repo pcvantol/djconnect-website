@@ -27,10 +27,10 @@
   and artist voice intent families.
 - Verify the Spraak page shows Ask DJ examples separately from deterministic
   voice commands, including conversational follow-ups, contextual play
-  follow-ups, album/artist questions, concert agenda, next-track info,
-  listening-profile analysis, recommendations with explicit `Play Now`, seeded
-  mix/playlist requests, DJ announcements, ambient system facts and idle
-  suggestions.
+  follow-ups, DJ Memory summary privacy questions, album/artist questions,
+  concert agenda, next-track info, listening-profile analysis, recommendations
+  with explicit `Play Now`, seeded mix/playlist requests, DJ announcements,
+  ambient system facts and idle suggestions.
 - Verify the voice commands page shows only the selected NL or EN example phrases when the language toggle changes.
 - Verify the voice commands page mirrors the canonical HA repo
   `examples/voice_intents.json` examples: current-track questions read status

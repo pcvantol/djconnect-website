@@ -38,6 +38,10 @@ Static landing page for DJConnect, published through Cloudflare Pages.
   recommendations only after the user taps `Play Now`. Raspberry Pi Ask DJ is
   currently read-only history display unless a future Pi release explicitly
   expands that scope.
+  DJ Memory summary questions such as `Wat weet je nu over mij?` /
+  `What do you know about me?` are privacy/info answers from server-side
+  `djconnect_memory` only: render text and sources, not stale album art,
+  media cards, TTS replay buttons or `Play Now` controls.
 - `wwwroot/embedded.html`: ESP32 embedded-device one-pager.
 - `wwwroot/macos.html`: macOS app page with binaries from `pcvantol/djconnect-app-releases`.
 - `wwwroot/windows.html`: Windows desktop app page with binaries from `pcvantol/djconnect-app-releases`.

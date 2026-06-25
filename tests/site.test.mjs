@@ -625,6 +625,7 @@ test("voice commands page documents intent families and DJ response styles", asy
   assert.deepEqual(actualAskDjIntentOrder, [
     "conversation_followup",
     "help",
+    "personal_memory_summary",
     "speaker_outputs",
     "retry_previous_request",
     "contextual_play_followup",
@@ -644,6 +645,19 @@ test("voice commands page documents intent families and DJ response styles", asy
   assert.match(intents, /Geeft niet/);
   assert.match(intents, /Wat kun je\?/);
   assert.match(intents, /Welke commando's kan ik gebruiken\?/);
+  assert.match(intents, /"id": "personal_memory_summary"/);
+  assert.match(intents, /"action": "memory_summary"/);
+  assert.match(intents, /"intent": "personal_memory_summary"/);
+  assert.match(intents, /"sources": \[\s*"djconnect_memory"\s*\]/);
+  assert.match(intents, /"images": \[\]/);
+  assert.match(intents, /"playback_actions": \[\]/);
+  assert.match(intents, /Wat weet je nu over mij\?/);
+  assert.match(intents, /Wat weet DJConnect over mij\?/);
+  assert.match(intents, /Wat staat er in mijn DJ Memory\?/);
+  assert.match(intents, /What does DJConnect know about me\?/);
+  assert.match(intents, /What is in my DJ Memory\?/);
+  assert.match(intents, /server-side DJ Memory/);
+  assert.match(intents, /no old album art, media cards, TTS replay, Play Now, live Spotify playback or Spotify profile enrichment/);
   assert.match(intents, /Welke speakers zijn er\?/);
   assert.match(intents, /Wissel van speaker/);
   assert.match(intents, /Move music to the living room speaker/);
@@ -676,6 +690,10 @@ test("voice commands page documents intent families and DJ response styles", asy
   assert.match(intents, /"playsMusic": false/);
   assert.match(intents, /Play Now (buttons|actions)/);
   assert.match(intents, /"messageKind": "system"/);
+  assert.match(voice, /DJ Memory-samenvattingen tonen geen oude album art, mediakaarten, TTS replay of Play Now-knoppen/);
+  assert.match(voice, /DJ Memory summaries show no old album art, media cards, TTS replay or Play Now buttons/);
+  assert.match(voice, /Privacyvragen over DJ Memory zijn tekst-only/);
+  assert.match(voice, /Privacy questions about DJ Memory are text-only/);
   assert.doesNotMatch(intents, /Zet shuffle aan/);
   assert.doesNotMatch(intents, /Turn shuffle on/);
   assert.match(voice, /Tip: noem 'nummer', 'album' of 'playlist'/);

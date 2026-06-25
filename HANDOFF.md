@@ -12,7 +12,7 @@
 - Cloudflare Pages project: `djconnect`
 - Source directory: `wwwroot`
 - Release publish directory: `dist/wwwroot`
-- Current version: `3.1.65`
+- Current version: `3.1.66`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Platform overview page with CSS architecture diagram: `wwwroot/platform.html`
@@ -71,6 +71,11 @@
   separately from deterministic voice commands so users understand which
   phrases are conversational Ask DJ requests rather than direct Spotify search
   commands.
+- The `personal_memory_summary` Ask DJ family is a privacy / DJ Memory info
+  question. It has `action: "memory_summary"`, source `djconnect_memory`, no
+  images and no playback actions. Website/client guidance must keep it
+  text-only and must not imply live Spotify playback, Spotify profile
+  enrichment, stale artwork, TTS replay or `Play Now`.
 - The homepage voice-example chips also render from
   `wwwroot/assets/voice-intents.js` and should keep linking to
   `wwwroot/voice-commands.html` for the full intent list. Do not introduce a
@@ -233,7 +238,7 @@ useful for higher GitHub API limits.
   the token-protected `/api/stats` contract and the release-script
   dependency/tool preflight.
 - `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. `npm run screenshots:live` captures Dutch live production screenshots at a laptop viewport into `screenshots/live-laptop/`. Neither is part of the default `npm test` run.
-- Current released version `3.1.65` loads localized static What's New JSON on
+- Current released version `3.1.66` loads localized static What's New JSON on
   download-page changelogs before falling back to GitHub release bodies.
   Version `3.1.64` adds dedicated Windows and Mac Catalyst client pages,
   homepage cards, download rendering and release-note paths. Version `3.1.63`

@@ -12,7 +12,7 @@
 - Cloudflare Pages project: `djconnect`
 - Source directory: `wwwroot`
 - Release publish directory: `dist/wwwroot`
-- Current version: `3.1.66`
+- Current version: `3.1.67`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Platform overview page with CSS architecture diagram: `wwwroot/platform.html`
@@ -56,6 +56,12 @@
   choices, and starts recommendations only after an explicit `Play Now` tap.
   Raspberry Pi Ask DJ is currently read-only history display unless a future Pi
   release explicitly expands that scope.
+- Ask DJ Track Analysis copy must stay clear that DJConnect does not directly
+  analyze encrypted Spotify playback audio. Exact BPM, key, sections or
+  timestamps are shown only when available from source data or a user-configured
+  local/provider analysis path; otherwise Ask DJ should label the answer as
+  musical interpretation. The feature is read-only and must not imply playback
+  changes.
 - The features page summarizes the main DJConnect functions and mentions Ask DJ
   plus the bonus mini-games: Paddle Rally, Meteor Run, Sky Dash & Maze Chase.
 - The voice commands page documents the user-facing intent families,
@@ -238,7 +244,7 @@ useful for higher GitHub API limits.
   the token-protected `/api/stats` contract and the release-script
   dependency/tool preflight.
 - `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. `npm run screenshots:live` captures Dutch live production screenshots at a laptop viewport into `screenshots/live-laptop/`. Neither is part of the default `npm test` run.
-- Current released version `3.1.66` loads localized static What's New JSON on
+- Current released version `3.1.67` loads localized static What's New JSON on
   download-page changelogs before falling back to GitHub release bodies.
   Version `3.1.64` adds dedicated Windows and Mac Catalyst client pages,
   homepage cards, download rendering and release-note paths. Version `3.1.63`

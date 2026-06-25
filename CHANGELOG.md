@@ -4,9 +4,14 @@ All notable changes to this website are grouped per release.
 
 ## Unreleased
 
+## DJConnect website v3.1.67 - 2026-06-25
+
 - Synced website voice/Ask DJ intent examples with the Home Assistant
   `save_current_track` favorite contract, including liked-songs phrases and
   the direct `Zet in favorieten` Ask DJ action family.
+- Added Ask DJ Track Analysis website copy for musical/technical analysis of
+  the current track, with local-first provider nuance and read-only playback
+  boundaries.
 
 ## DJConnect website v3.1.66 - 2026-06-25
 

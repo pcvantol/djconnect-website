@@ -254,6 +254,11 @@ test("homepage promotes Ask DJ as a major product feature", async () => {
   assert.match(index, /Play Now; playback start pas na jouw tap/);
   assert.match(index, /Van vraag naar actie/);
   assert.match(index, /Vraag om muziek, kies een speaker, start een suggestie of bevestig een vervolgactie/);
+  assert.match(index, /Ask DJ Track Analysis/);
+  assert.match(index, /Laat Ask DJ uitleggen waarom een track werkt/);
+  assert.match(index, /Analyseer deze track/);
+  assert.match(index, /BPM, key, energiecurve, groove, structuur, instrumentatie, productie en mixbaarheid/);
+  assert.match(index, /optional providers you configure/);
   assert.match(index, /Continuity op Watch, iPhone, Mac en Windows/);
   assert.match(index, /server-side per Home Assistant gebruiker/);
   assert.match(index, /is begrensd/);
@@ -284,6 +289,11 @@ test("homepage promotes Ask DJ as a major product feature", async () => {
   assert.match(index, /For concrete recommendations you choose Play Now yourself; playback starts only after your tap/);
   assert.match(index, /Spotify is a trademark of Spotify AB/);
   assert.match(index, /DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB/);
+  assert.doesNotMatch(index, /Spotify stream analysis/i);
+  assert.doesNotMatch(index, /DJConnect listens to Spotify audio/i);
+  assert.doesNotMatch(index, /official Spotify partner/i);
+  assert.doesNotMatch(index, /powered by Spotify/i);
+  assert.doesNotMatch(index, /guaranteed BPM\/key for every track/i);
   assertTranslationsCoverPage(index, "homepage");
 });
 
@@ -455,6 +465,10 @@ test("how-to-start page covers setup flow", async () => {
   assert.doesNotMatch(start, /Ververs HACS update informatie/);
   assert.match(start, /Spotify is a trademark of Spotify AB/);
   assert.match(start, /DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB/);
+  assert.match(start, /Optioneel: Track Analysis providers/);
+  assert.match(start, /Track Analysis werkt standaard met beschikbare playbackcontext/);
+  assert.match(start, /API keys blijven in je eigen Home Assistant-installatie/);
+  assert.match(start, /music metadata API or local audio-analysis add-on/);
   assertTranslationsCoverPage(start, "start page");
 });
 
@@ -465,6 +479,11 @@ test("features page describes core functions and bonus games", async () => {
   assert.match(features, /Muziek aanvragen/);
   assert.match(features, /data-i18n="askDjTitle">Slimme follow-ups<\/h3>/);
   assert.match(features, /Ask DJ geeft niet alleen antwoord, maar ook acties/);
+  assert.match(features, /Ask DJ Track Analysis/);
+  assert.match(features, /BPM en key waar brondata beschikbaar is/);
+  assert.match(features, /energiecurve, groove, intro, refrein, breakdowns, instrumentatie, productie en mixbaarheid/);
+  assert.match(features, /Read-only: analyse verandert nooit je playback/);
+  assert.match(features, /analysis never changes playback/);
   assert.match(features, /Gebruik dezelfde flow op Mac, Windows, iOS, Linux en ESP32/);
   assert.match(features, /Desktopbediening met Ask DJ, playback-acties en veilige tokenopslag in Windows Credential Manager/);
   assert.match(features, /Wissel direct van speaker, kies een aanbevolen track, bekijk album art/);

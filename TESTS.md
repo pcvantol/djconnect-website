@@ -13,6 +13,12 @@
   optional Apple push notifications as wake/sync hints through the central push
   relay for Ask DJ replies or waiting choices only, and compact privacy
   boundaries.
+- Verify Ask DJ Track Analysis copy explains musical/technical track analysis,
+  example prompts such as "Analyseer deze track", BPM/key only where source data
+  is available, optional user-configured metadata or local analysis providers,
+  local-first Home Assistant operation and read-only playback behavior. It must
+  not claim direct analysis of encrypted Spotify playback audio or guaranteed
+  BPM/key for every track.
 - Verify the homepage `Kies je interface` section includes macOS, Windows,
   Mac Catalyst, iPhone/iPad, Voice Assistant, Embedded device and
   Linux/Raspberry Pi cards.
@@ -20,6 +26,8 @@
 - Open `wwwroot/features.html` and verify Ask DJ, the core features and renamed
   bonus mini-games are visible: Paddle Rally, Meteor Run, Sky Dash and Maze
   Chase.
+- Verify the Features page includes Ask DJ Track Analysis with BPM/key source
+  nuance, music structure, production/mixability copy and read-only behavior.
 - Verify the Features, Spraak, Blog, Support and Privacy pages keep their top
   navigation focused on relevant cross-links only and do not show self-links.
 - Open `wwwroot/voice-commands.html` and verify the current-track,

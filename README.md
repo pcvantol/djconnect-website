@@ -42,6 +42,11 @@ Static landing page for DJConnect, published through Cloudflare Pages.
   `What do you know about me?` are privacy/info answers from server-side
   `djconnect_memory` only: render text and sources, not stale album art,
   media cards, TTS replay buttons or `Play Now` controls.
+  Ask DJ Track Analysis should be described as musical/technical explanation
+  from playback context plus optional user-configured providers. Do not imply
+  DJConnect directly analyzes encrypted Spotify playback audio; exact BPM, key,
+  section or timestamp data requires an available source or local analysis
+  provider. The feature is read-only and should never change playback.
 - `wwwroot/embedded.html`: ESP32 embedded-device one-pager.
 - `wwwroot/macos.html`: macOS app page with binaries from `pcvantol/djconnect-app-releases`.
 - `wwwroot/windows.html`: Windows desktop app page with binaries from `pcvantol/djconnect-app-releases`.

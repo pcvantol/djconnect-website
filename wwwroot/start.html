@@ -87,7 +87,7 @@
     @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } .switch-tabs { grid-template-columns:1fr; } }
 
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.66" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.67" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -150,6 +150,7 @@
         <article class="card"><h3 data-i18n="premiumTitle">Waarom Spotify Premium?</h3><p data-i18n="premiumText">DJConnect stuurt playback aan via de Spotify Web API en Spotify playback devices. Daarvoor is Spotify Premium nodig.</p></article>
         <article class="card"><h3 data-i18n="credentialsTitle">Credentials blijven in Home Assistant</h3><p data-i18n="credentialsText">DJConnect devices en apps krijgen geen Spotify refresh token of playback credentials.</p></article>
         <article class="card"><h3 data-i18n="oauthTitle">Waarom een eigen Spotify app?</h3><p data-i18n="oauthText">Spotify vereist dat elke OAuth redirect URL vooraf geregistreerd is. Daarom maak je een eigen Spotify Developer app voor jouw Home Assistant URL.</p></article>
+        <article class="card"><h3 data-i18n="trackAnalysisProviderTitle">Optioneel: Track Analysis providers</h3><p data-i18n="trackAnalysisProviderText">Track Analysis werkt standaard met beschikbare playbackcontext. Voor diepere analyse kun je later eigen providers configureren, zoals een muziekmetadata-API of lokale audio-analyse add-on. API keys blijven in je eigen Home Assistant-installatie.</p></article>
       </div>
     </section>
 
@@ -335,7 +336,7 @@
     <p data-i18n="legalSpotify">Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.1.66</p>
+    <p class="site-version">DJConnect website v3.1.67</p>
   </footer>
   <script>
     const translations = {
@@ -366,6 +367,8 @@
         credentialsText: "DJConnect devices en apps krijgen geen Spotify refresh token of playback credentials.",
         oauthTitle: "Waarom een eigen Spotify app?",
         oauthText: "Spotify vereist dat elke OAuth redirect URL vooraf geregistreerd is. Daarom maak je een eigen Spotify Developer app voor jouw Home Assistant URL.",
+        trackAnalysisProviderTitle: "Optioneel: Track Analysis providers",
+        trackAnalysisProviderText: "Track Analysis werkt standaard met beschikbare playbackcontext. Voor diepere analyse kun je later eigen providers configureren, zoals een muziekmetadata-API of lokale audio-analyse add-on. API keys blijven in je eigen Home Assistant-installatie.",
         voiceTitle: "1. Configureer assist pipeline in Home Assistant",
         voiceLead: "DJConnect gebruikt je Home Assistant voice pipeline voor stembesturing en gesproken DJ aankondigingen.",
         voiceHelp: "Hulp bij Home Assistant voice assist",
@@ -430,6 +433,8 @@
         credentialsText: "DJConnect devices and apps do not receive a Spotify refresh token or playback credentials.",
         oauthTitle: "Why your own Spotify app?",
         oauthText: "Spotify requires every OAuth redirect URL to be registered in advance. That is why you create your own Spotify Developer app for your Home Assistant URL.",
+        trackAnalysisProviderTitle: "Optional: Track Analysis providers",
+        trackAnalysisProviderText: "Track Analysis works by default with available playback context. For deeper analysis, you can later configure your own providers, such as a music metadata API or local audio-analysis add-on. API keys stay in your own Home Assistant installation.",
         voiceTitle: "1. Configure assist pipeline in Home Assistant",
         voiceLead: "DJConnect uses your Home Assistant voice pipeline for voice control and spoken DJ announcements.",
         voiceHelp: "Help with Home Assistant voice assist",
@@ -493,6 +498,6 @@
     });
 
   </script>
-  <script src="assets/site-nav.js?v=3.1.66"></script>
+  <script src="assets/site-nav.js?v=3.1.67"></script>
 </body>
 </html>

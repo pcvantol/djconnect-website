@@ -5,7 +5,7 @@
     "width": 1440,
     "height": 900
   },
-  "capturedAt": "2026-06-24T08:54:35.914Z",
+  "capturedAt": "2026-06-25T18:47:53.929Z",
   "pages": [
     {
       "path": "/",
@@ -80,16 +80,28 @@
       "file": "12-macos-1440x900.png"
     },
     {
+      "path": "/windows",
+      "name": "windows",
+      "url": "https://djconnect.dev/windows",
+      "file": "13-windows-1440x900.png"
+    },
+    {
+      "path": "/maccatalyst",
+      "name": "maccatalyst",
+      "url": "https://djconnect.dev/maccatalyst",
+      "file": "14-maccatalyst-1440x900.png"
+    },
+    {
       "path": "/raspberry-pi",
       "name": "raspberry-pi",
       "url": "https://djconnect.dev/raspberry-pi",
-      "file": "13-raspberry-pi-1440x900.png"
+      "file": "15-raspberry-pi-1440x900.png"
     },
     {
       "path": "/embedded",
       "name": "embedded",
       "url": "https://djconnect.dev/embedded",
-      "file": "14-embedded-1440x900.png"
+      "file": "16-embedded-1440x900.png"
     }
   ]
 }

@@ -868,7 +868,7 @@
       }
     }
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.66" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.67" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -1036,6 +1036,11 @@
             <p data-i18n="askDjActionsText">Vraag om muziek, kies een speaker, start een suggestie of bevestig een vervolgactie. Ask DJ maakt van elk antwoord meteen een volgende stap.</p>
           </article>
           <article class="card">
+            <div class="icon">📊</div>
+            <h3 data-i18n="askDjAnalysisTitle">Ask DJ Track Analysis</h3>
+            <p data-i18n="askDjAnalysisText">Laat Ask DJ uitleggen waarom een track werkt. Vraag “Analyseer deze track” voor een muzikale duiding van BPM, key, energiecurve, groove, structuur, instrumentatie, productie en mixbaarheid op basis van beschikbare context en optionele eigen analyseproviders.</p>
+          </article>
+          <article class="card">
             <div class="icon">🔔</div>
             <h3 data-i18n="askDjNotificationsTitle">Optionele meldingen</h3>
             <p data-i18n="askDjNotificationsText">Apple clients kunnen optionele pushmeldingen gebruiken als wake- of synchint voor Ask DJ via de DJConnect pushrelay. Push blijft beperkt tot Ask DJ-antwoorden of wachtende keuzes en bevat geen tokens, ruwe prompts, volledige history of lange DJ-antwoorden.</p>
@@ -1198,7 +1203,7 @@
     <p data-i18n="legalSpotify">Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.1.66</p>
+    <p class="site-version">DJConnect website v3.1.67</p>
   </footer>
   <script src="assets/voice-intents.js"></script>
   <script>
@@ -1246,6 +1251,8 @@
         askDjVoiceText: "iOS, macOS, Apple Watch en Windows kunnen voice/PTT gebruiken. Home Assistant STT transcribeert; TTS kan audio-antwoorden leveren. Replay verschijnt alleen als er audio beschikbaar is.",
         askDjActionsTitle: "Van vraag naar actie",
         askDjActionsText: "Vraag om muziek, kies een speaker, start een suggestie of bevestig een vervolgactie. Ask DJ maakt van elk antwoord meteen een volgende stap.",
+        askDjAnalysisTitle: "Ask DJ Track Analysis",
+        askDjAnalysisText: "Laat Ask DJ uitleggen waarom een track werkt. Vraag “Analyseer deze track” voor een muzikale duiding van BPM, key, energiecurve, groove, structuur, instrumentatie, productie en mixbaarheid op basis van beschikbare context en optionele eigen analyseproviders.",
         askDjNotificationsTitle: "Optionele meldingen",
         askDjNotificationsText: "Apple clients kunnen optionele pushmeldingen gebruiken als wake- of synchint voor Ask DJ via de DJConnect pushrelay. Push blijft beperkt tot Ask DJ-antwoorden of wachtende keuzes en bevat geen tokens, ruwe prompts, volledige history of lange DJ-antwoorden.",
         askDjPrivacyTitle: "Privacy compact gehouden",
@@ -1357,6 +1364,8 @@
         askDjVoiceText: "iOS, macOS, Apple Watch and Windows can use voice/PTT. Home Assistant STT transcribes; TTS can provide audio replies. Replay appears only when audio is available.",
         askDjActionsTitle: "From request to action",
         askDjActionsText: "Ask for music, choose a speaker, start a suggestion or confirm a follow-up action. Ask DJ turns every answer into the next step.",
+        askDjAnalysisTitle: "Ask DJ Track Analysis",
+        askDjAnalysisText: "Let Ask DJ explain why a track works. Ask “Give me a technical analysis of this song” for musical context around BPM, key, energy curve, groove, structure, instrumentation, production and mixability based on available context and optional providers you configure.",
         askDjNotificationsTitle: "Optional notifications",
         askDjNotificationsText: "Apple clients can use optional push notifications as wake or sync hints for Ask DJ through the DJConnect push relay. Push is limited to Ask DJ replies or waiting choices and contains no tokens, raw prompts, full history or long DJ replies.",
         askDjPrivacyTitle: "Privacy kept compact",
@@ -1494,6 +1503,6 @@
 
     applyLanguage(getInitialLanguage());
   </script>
-  <script src="assets/site-nav.js?v=3.1.66"></script>
+  <script src="assets/site-nav.js?v=3.1.67"></script>
 </body>
 </html>

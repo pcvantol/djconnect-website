@@ -1,0 +1,7 @@
+{
+  "version": "3.1.48",
+  "platform": "macos",
+  "language": "nl",
+  "name": "DJConnect macOS 3.1.48",
+  "body": "# DJConnect App 3.1.48\n\n### Toegevoegd\n\n- App-, status- en koppelvelden toegevoegd aan de lokale device-API, zodat Home Assistant iPhone- en Watch-sensoren met echte waarden kan tonen in plaats van onbekende placeholders.\n\n### Gewijzigd\n\n- De Apple Watch Now Playing-verversknop toont nu een busy state, voorkomt dubbele refreshes en schakelt transport- en volumeknoppen tijdelijk uit zolang de statusaanvraag loopt.\n- Ask DJ toont speaker-/uitgangsantwoorden nu als lijstregels met rechts een activeerknop, vergelijkbaar met playlist- en albumacties.\n- Lokale pairing kiest nu bruikbare LAN IPv4-adressen en verbergt onbruikbare Watch-fallbackadressen wanneer er geen bereikbaar lokaal netwerkadres beschikbaar is.\n- Backend-collecties worden pas opnieuw gethrottled nadat minstens een van devices, wachtrij of playlists succesvol is ververst.\n\n### Opgelost\n\n- Nederlandse What's New-publicatie gerepareerd door gelokaliseerde release-note bronbestanden voor deze release toe te voegen, zodat de public workflow voor `nl`-URL's niet meer terugvalt op Engelse inhoud.\n\n---\n\nPlatform: macOS\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nVoor normale macOS-distributie heeft de genotariseerde Developer ID-build de voorkeur wanneer die is bijgevoegd."
+}

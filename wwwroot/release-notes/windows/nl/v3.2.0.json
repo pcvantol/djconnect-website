@@ -1,0 +1,7 @@
+{
+  "version": "3.2.0",
+  "platform": "windows",
+  "language": "nl",
+  "name": "DJConnect Windows 3.2.0",
+  "body": "# DJConnect Windows 3.2.0\n\n- De Windows client is bijgewerkt naar het DJConnect `3.2.x` protocol.\n- Pairing gebeurt nu met de lokale Home Assistant URL en de code die de\n  DJConnect integration toont. Windows host geen lokale Client API meer en\n  adverteert geen mDNS voor pairing.\n- Na lokale pairing kan de app terugvallen van lokale Home Assistant naar een\n  ondersteunde remote Home Assistant URL.\n- Diagnostiek toont nu HA-verbindingsmodus, remote support, muziekbackend,\n  backend revision, target player en backend-capabilities.\n- Playback-acties worden backend-owned doorgestuurd, zodat Spotify Direct en\n  Music Assistant responses werken zonder Spotify-only aannames.\n\n---\n\nPlatform: Windows\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nWindows-artifacts zijn niet ondertekend en nog geen Store/MSIX-installer."
+}

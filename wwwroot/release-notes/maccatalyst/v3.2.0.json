@@ -1,0 +1,7 @@
+{
+  "version": "3.2.0",
+  "platform": "maccatalyst",
+  "language": "en",
+  "name": "DJConnect Mac Catalyst 3.2.0",
+  "body": "# DJConnect Windows 3.2.0\n\n- Upgraded the Windows client to the DJConnect `3.2.x` protocol.\n- Pairing now happens by entering the local Home Assistant URL and the code\n  shown by the DJConnect integration. Windows no longer hosts a local Client API\n  or advertises mDNS for pairing.\n- After local pairing, the app can fall back from local Home Assistant to a\n  supported remote Home Assistant URL.\n- Added diagnostics for HA connection mode, remote support, music backend,\n  backend revision, target player and backend capabilities.\n- Playback actions are forwarded as backend-owned actions so Spotify Direct and\n  Music Assistant responses can both work without Spotify-only assumptions.\n\n---\n\nPlatform: MacCatalyst\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nMac Catalyst artifacts are unsigned and not notarized."
+}

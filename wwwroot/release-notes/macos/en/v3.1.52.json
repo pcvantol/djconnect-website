@@ -1,0 +1,7 @@
+{
+  "version": "3.1.52",
+  "platform": "macos",
+  "language": "en",
+  "name": "DJConnect macOS 3.1.52",
+  "body": "### Changed\n\n- Reworked watchOS pairing to be fully companion-only: the Watch no longer hosts\n  a local Web API, no longer advertises Bonjour/mDNS, and no longer runs a\n  direct Home Assistant pairing poll.\n- Added the iPhone-mediated Watch proxy contract: the iPhone publishes the Watch\n  identity, handles Home Assistant local callbacks, and forwards commands, DJ\n  responses, pairing results, and forget requests to the Watch over\n  WatchConnectivity.\n- Updated Watch pairing UI to show only the Watch pairing code and iPhone\n  companion status, removing the Watch-side Home Assistant URL and Client adres\n  controls.\n- Updated Watch companion-only documentation across the API contract, handoff,\n  README, and chat bootstrap.\n\n\n---\n\nPlatform: macOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nFor normal macOS distribution, prefer the notarized Developer ID build when attached."
+}

@@ -1,0 +1,7 @@
+{
+  "version": "3.1.10",
+  "platform": "maccatalyst",
+  "language": "nl",
+  "name": "DJConnect Mac Catalyst 3.1.10",
+  "body": "# DJConnect Windows 3.1.10\n\n- Voegt Ask DJ technical track analysis support toe voor het nieuwe contract v2 response-formaat.\n- Toont server-provided analysis sections, optionele timeline-items, DJ tips en limitations in een compacte read-only kaart.\n- Houdt analyse voorzichtig: source/confidence blijft zichtbaar, oudere measured/inferred responses blijven werken en de app leidt geen BPM, timestamps, structuur-labels of tips af uit prose.\n- Voorkomt stale UI door artwork/media en playback-knoppen alleen te tonen wanneer de huidige response die expliciet meestuurt.\n\n---\n\nPlatform: MacCatalyst\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nMac Catalyst-artifacts zijn niet ondertekend en niet genotariseerd."
+}

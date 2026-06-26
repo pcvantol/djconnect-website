@@ -4,6 +4,16 @@ All notable changes to this website are grouped per release.
 
 ## Unreleased
 
+## DJConnect website v3.1.68 - 2026-06-26
+
+- Expanded the Ask DJ website copy with a Live Technical Track Analysis product
+  section covering natural prompts, read-only playback behavior, local-first
+  Home Assistant routing, provider-ready sources, confidence/source/limitations
+  transparency and renderable sections, timeline and DJ tips for clients.
+- Added a compact Live Technical Track Analysis highlight to the Features page
+  while keeping the existing Ask DJ Track Analysis wording compatible with
+  current tests and user-facing navigation.
+
 ## DJConnect website v3.1.67 - 2026-06-25
 
 - Synced website voice/Ask DJ intent examples with the Home Assistant

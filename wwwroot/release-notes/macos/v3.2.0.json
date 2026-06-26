@@ -1,0 +1,7 @@
+{
+  "version": "3.2.0",
+  "platform": "macos",
+  "language": "en",
+  "name": "DJConnect macOS 3.2.0",
+  "body": "# DJConnect App 3.2.0\n\n## Highlights\n\n- Updated the Apple clients to the DJConnect 3.2 protocol line.\n- iOS and macOS now use Home Assistant local first, remote fallback second, and offline state when neither route is reachable.\n- Apple clients no longer expose a client-hosted `/api/device/*` API, Bonjour `_djconnect._tcp` service, or Client address pairing UI.\n- Apple Watch now runs Home Assistant traffic through the paired iPhone for pairing, status, Ask DJ history, playback actions, voice, and push registration.\n- Added Music Assistant/Spotify Direct backend summary support with backend-aware action forwarding.\n\n## Notes\n\n- Pairing still starts locally through Home Assistant.\n- Watch users should open DJConnect on iPhone when the Watch says the iPhone is not reachable.\n\n---\n\nPlatform: macOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nFor normal macOS distribution, prefer the notarized Developer ID build when attached."
+}

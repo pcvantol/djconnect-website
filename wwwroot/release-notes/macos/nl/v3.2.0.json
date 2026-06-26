@@ -1,0 +1,7 @@
+{
+  "version": "3.2.0",
+  "platform": "macos",
+  "language": "nl",
+  "name": "DJConnect macOS 3.2.0",
+  "body": "# DJConnect App 3.2.0\n\n## Nieuw\n\n- De Apple clients zijn bijgewerkt naar de DJConnect 3.2-protocollijn.\n- iOS en macOS gebruiken nu eerst de lokale Home Assistant URL, daarna remote fallback, en tonen offline wanneer geen route bereikbaar is.\n- Apple clients publiceren geen eigen `/api/device/*` API, Bonjour `_djconnect._tcp` service of Client adres meer.\n- Apple Watch laat Home Assistant-verkeer via de gekoppelde iPhone lopen voor koppelen, status, Ask DJ history, playback-acties, voice en pushregistratie.\n- Music Assistant en Spotify Direct worden als Home Assistant-backends behandeld, met backend-summary en volledige action-payloads.\n\n## Let op\n\n- Koppelen start nog steeds lokaal via Home Assistant.\n- Zegt de Watch dat de iPhone niet bereikbaar is, open dan DJConnect op de gekoppelde iPhone.\n\n---\n\nPlatform: macOS\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nVoor normale macOS-distributie heeft de genotariseerde Developer ID-build de voorkeur wanneer die is bijgevoegd."
+}

@@ -71,7 +71,7 @@
     @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } .flow li { grid-template-columns:40px 1fr; } .flow li::before { width:40px; height:40px; } .style-grid { grid-template-columns:1fr; } }
 
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.68" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.0" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -158,7 +158,7 @@
         </div>
         <article class="card">
           <span class="pill" data-i18n="esphomePill">Assist satellite</span>
-          <p data-i18n="esphomeText">Denk aan ESPHome voice assistant devices zoals de Home Assistant Voice Preview Edition, M5 Atom Echo, ESP32-S3-BOX-3 en andere ESPHome-powered projecten. Het ESPHome device doet wake word, microfoonopname, STT-route en speaker-output via Home Assistant Assist. Kies DJConnect als Home Assistant conversation agent: DJConnect verwerkt het muziekverzoek, start Spotify playback via de DJConnect Home Assistant integration en geeft een DJ-response terug via je ingestelde Assist pipeline en TTS.</p>
+          <p data-i18n="esphomeText">Denk aan ESPHome voice assistant devices zoals de Home Assistant Voice Preview Edition, M5 Atom Echo en andere ESPHome-powered projecten. Het ESPHome device doet wake word, microfoonopname, STT-route en speaker-output via Home Assistant Assist. Kies DJConnect als Home Assistant conversation agent: DJConnect verwerkt het muziekverzoek via de actieve music backend en geeft een DJ-response terug via je ingestelde Assist pipeline en TTS.</p>
           <p class="note" data-i18n="esphomeSetup">Kies in de DJConnect setup voor “Assist Conversation Agent”. Dan heb je voor deze route geen aparte DJConnect hardware-client of koppelcode nodig.</p>
           <p class="note"><a class="subtle-link" href="https://esphome.io/projects/" target="_blank" rel="noopener" data-i18n="esphomeLink">Bekijk ESPHome voice assistant projecten op https://esphome.io/projects/</a></p>
         </article>
@@ -192,7 +192,7 @@
     <p>Copyright Peter van Tol 2026. Released under the MIT License.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: Spotify credentials blijven in Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.1.68</p>
+    <p class="site-version">DJConnect website v3.2.0</p>
   </footer>
   <script src="assets/voice-intents.js"></script>
   <script>
@@ -237,13 +237,13 @@
         esphomeTitle: "ESPHome voice assistants",
         esphomeLead: "DJConnect past native in het Home Assistant Assist ecosysteem en werkt ook met Assist satellites die op ESPHome draaien.",
         esphomePill: "Assist satellite",
-        esphomeText: "Denk aan ESPHome voice assistant devices zoals de Home Assistant Voice Preview Edition, M5 Atom Echo, ESP32-S3-BOX-3 en andere ESPHome-powered projecten. Het ESPHome device doet wake word, microfoonopname, STT-route en speaker-output via Home Assistant Assist. Kies DJConnect als Home Assistant conversation agent: DJConnect verwerkt het muziekverzoek, start Spotify playback via de DJConnect Home Assistant integration en geeft een DJ-response terug via je ingestelde Assist pipeline en TTS.",
+        esphomeText: "Denk aan ESPHome voice assistant devices zoals de Home Assistant Voice Preview Edition, M5 Atom Echo en andere ESPHome-powered projecten. Het ESPHome device doet wake word, microfoonopname, STT-route en speaker-output via Home Assistant Assist. Kies DJConnect als Home Assistant conversation agent: DJConnect verwerkt het muziekverzoek via de actieve music backend en geeft een DJ-response terug via je ingestelde Assist pipeline en TTS.",
         esphomeSetup: "Kies in de DJConnect setup voor “Assist Conversation Agent”. Dan heb je voor deze route geen aparte DJConnect hardware-client of koppelcode nodig.",
         esphomeLink: "Bekijk ESPHome voice assistant projecten op https://esphome.io/projects/",
         familiesTitle: "Intentfamilies",
         familiesLead: "Gebruik gewone zinnen. Statusvragen lezen alleen wat er speelt, playback-control voert direct commands uit en muziekfamilies zoeken daarna pas in Spotify.",
         askDjFamiliesTitle: "Ask DJ voorbeelden",
-        askDjFamiliesLead: "Ask DJ is conversationeel: sommige vragen geven tekst, bronnen of afbeeldingen terug, andere kunnen Play Now-acties tonen. Privacyvragen over DJ Memory zijn tekst-only en staan los van live Spotify playback of Spotify-profielverrijking.",
+        askDjFamiliesLead: "Ask DJ is conversationeel: sommige vragen geven tekst, bronnen of afbeeldingen terug, andere kunnen backend-aware Play Now-acties tonen. Privacyvragen over DJ Memory zijn tekst-only en staan los van live playback of profielverrijking.",
         askDjPlayNowNote: "Aanbevelingen starten niet automatisch. DJConnect toont Play Now wanneer er een concrete aanbeveling is; playback start pas na jouw tap. DJ Memory-samenvattingen tonen geen oude album art, mediakaarten, TTS replay of Play Now-knoppen.",
         askDjActionLabel: "Actie",
         askDjSystemLabel: "Systeem",
@@ -268,8 +268,8 @@
         playbackText: "Playback-bediening loopt via DJConnect backend commands en clientknoppen. Natuurlijke spraakdekking kan per release uitbreiden.",
         examplesLabel: "Voorbeelden",
         behaviorLabel: "Gedrag",
-        startsPlayback: "Start Spotify playback",
-        noPlayback: "Start geen Spotify playback",
+        startsPlayback: "Start playback",
+        noPlayback: "Start geen playback",
         commandLabel: "Backend command",
         tipText: "Tip: noem 'nummer', 'album' of 'playlist' als je gericht wilt zoeken.",
         legalPrivacy: "Privacy: Spotify credentials blijven in Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.",
@@ -316,13 +316,13 @@
         esphomeTitle: "ESPHome voice assistants",
         esphomeLead: "DJConnect fits natively into the Home Assistant Assist ecosystem and also works with Assist satellites powered by ESPHome.",
         esphomePill: "Assist satellite",
-        esphomeText: "Think of ESPHome voice assistant devices such as the Home Assistant Voice Preview Edition, M5 Atom Echo, ESP32-S3-BOX-3 and other ESPHome-powered projects. The ESPHome device handles wake word, microphone capture, the STT route and speaker output through Home Assistant Assist. Select DJConnect as the Home Assistant conversation agent: DJConnect handles the music request, starts Spotify playback through the DJConnect Home Assistant integration and returns a DJ response through your configured Assist pipeline and TTS.",
+        esphomeText: "Think of ESPHome voice assistant devices such as the Home Assistant Voice Preview Edition, M5 Atom Echo and other ESPHome-powered projects. The ESPHome device handles wake word, microphone capture, the STT route and speaker output through Home Assistant Assist. Select DJConnect as the Home Assistant conversation agent: DJConnect handles the music request through the active music backend and returns a DJ response through your configured Assist pipeline and TTS.",
         esphomeSetup: "Choose “Assist Conversation Agent” in the DJConnect setup. For this route, you do not need a separate DJConnect hardware client or pairing code.",
         esphomeLink: "View ESPHome voice assistant projects at https://esphome.io/projects/",
         familiesTitle: "Intent families",
         familiesLead: "Use normal sentences. Status questions only read what is playing, playback control runs direct commands and music families search Spotify after that.",
         askDjFamiliesTitle: "Ask DJ examples",
-        askDjFamiliesLead: "Ask DJ is conversational: some questions return text, sources or images, while others can show Play Now actions. Privacy questions about DJ Memory are text-only and separate from live Spotify playback or Spotify profile enrichment.",
+        askDjFamiliesLead: "Ask DJ is conversational: some questions return text, sources or images, while others can show backend-aware Play Now actions. Privacy questions about DJ Memory are text-only and separate from live playback or profile enrichment.",
         askDjPlayNowNote: "Recommendations do not start automatically. DJConnect shows Play Now when there is a concrete recommendation; playback starts only after your tap. DJ Memory summaries show no old album art, media cards, TTS replay or Play Now buttons.",
         askDjActionLabel: "Action",
         askDjSystemLabel: "System",
@@ -347,8 +347,8 @@
         playbackText: "Playback controls are supported through DJConnect backend commands and client controls. Natural-language coverage may grow per release.",
         examplesLabel: "Examples",
         behaviorLabel: "Behavior",
-        startsPlayback: "Starts Spotify playback",
-        noPlayback: "Does not start Spotify playback",
+        startsPlayback: "Starts playback",
+        noPlayback: "Does not start playback",
         commandLabel: "Backend command",
         tipText: "Tip: say 'song', 'album' or 'playlist' when you want a specific search type.",
         legalPrivacy: "Privacy: Spotify credentials stay in Home Assistant. This website does not receive or store account details.",
@@ -493,6 +493,6 @@
     applyLanguage(getInitialLanguage());
 
   </script>
-  <script src="assets/site-nav.js?v=3.1.68"></script>
+  <script src="assets/site-nav.js?v=3.2.0"></script>
 </body>
 </html>

@@ -12,7 +12,7 @@
 - Cloudflare Pages project: `djconnect`
 - Source directory: `wwwroot`
 - Release publish directory: `dist/wwwroot`
-- Current version: `3.1.68`
+- Current version: `3.2.0`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Platform overview page with CSS architecture diagram: `wwwroot/platform.html`
@@ -49,13 +49,14 @@
   Assistant card linked to `wwwroot/voice-assistant.html`.
 - Ask DJ is a major product feature on the homepage and Features page. Keep
   copy clear that it runs through Home Assistant with DJConnect integration
-  v3.1.69+, uses compact bounded server-side DJ Memory/history per Home
-  Assistant user, supports Apple Watch/iPhone/Mac/Windows continuity, can show Ja/Nee
-  follow-up controls, can use optional Apple push notifications only as
-  wake/sync hints through the central push relay for Ask DJ replies or waiting
-  choices, and starts recommendations only after an explicit `Play Now` tap.
-  Raspberry Pi Ask DJ is currently read-only history display unless a future Pi
-  release explicitly expands that scope.
+  3.2.x, uses compact bounded server-side DJ Memory/history per Home Assistant
+  user, supports Apple Watch/iPhone/Mac/Windows continuity, can show Ja/Nee
+  follow-up controls, uses backend-aware actions for Spotify Direct or Music
+  Assistant, can use optional Apple push notifications only as wake/attention
+  hints through Home Assistant sync, and starts recommendations only after an
+  explicit `Play Now` tap. ESP32 uses PTT/playback command flow without Ask DJ
+  chat history; Raspberry Pi remains local-only and read-only for history unless
+  a future Pi release explicitly expands that scope.
 - Ask DJ Track Analysis copy must stay clear that DJConnect does not directly
   analyze encrypted Spotify playback audio. Exact BPM, key, sections or
   timestamps are shown only when available from source data or a user-configured
@@ -100,13 +101,24 @@
 - The embedded page is now a compact product page: supported hardware, how it works and firmware downloads. Keep experience, setup, requirements and FAQ content off this page.
 - The embedded page should use the same site color language as the homepage: cyan/green primary CTA, subtle pink/green/cyan background accents and no dominant purple-blue page background.
 - The embedded page should point users to LilyGO product specs where relevant. Firmware download and setup links belong on the start page. Do not reintroduce pre-flashed copy.
-- The start page presents the current setup order: configure the Home Assistant voice assist pipeline, add DJConnect to Home Assistant through HACS, create a Spotify Developer app for the user's Home Assistant external callback URL, configure DJConnect in Home Assistant, download and pair the app/device, then use DJConnect with Spotify Connect.
-- Spotify OAuth is user-owned through Home Assistant. The user must register
+- The start page presents the current 3.2 setup order: configure the Home
+  Assistant voice assist pipeline, add DJConnect to Home Assistant through HACS,
+  choose Spotify Direct or Music Assistant as the music backend, configure only
+  the backend-specific fields, then pair the app/device locally.
+- Spotify Direct OAuth is user-owned through Home Assistant. The user must
+  register
   `https://<your-home-assistant-external-url>/api/djconnect/spotify/callback`
   in their own Spotify Developer app, copy the Client ID into the DJConnect
   config-flow and authorize Spotify through Home Assistant. Prefer Nabu Casa
   HTTPS external URLs. DJConnect uses PKCE, so a Spotify Client Secret is
-  preferably not required.
+  preferably not required. Music Assistant does not need a DJConnect Spotify
+  Client ID/OAuth; provider credentials stay in Music Assistant/Home Assistant.
+- Pairing/token bootstrap is local-only. iOS, macOS and Windows are
+  remote-capable after local pairing through the user's Home Assistant external
+  URL. ESP32 and Raspberry Pi remain local-only. watchOS uses the iPhone proxy.
+  Apple/Windows clients no longer host a local device API or require users to
+  copy a Client address to Home Assistant; apps call Home Assistant through
+  `/api/djconnect/...`.
 - The start page links to Home Assistant voice assistant documentation, the embedded firmware page and `pcvantol/djconnect-app-releases`.
 - The start page pairing switch has separate panels for ESP device, iOS app, macOS app, Windows app and Raspberry Pi app.
 - macOS, Windows, Mac Catalyst, iOS, Raspberry Pi and embedded pages label the homepage navigation route as `Home`; app pages should not show cross-links to other app/device pages in the top menu.
@@ -244,7 +256,7 @@ useful for higher GitHub API limits.
   the token-protected `/api/stats` contract and the release-script
   dependency/tool preflight.
 - `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. `npm run screenshots:live` captures Dutch live production screenshots at a laptop viewport into `screenshots/live-laptop/`. Neither is part of the default `npm test` run.
-- Current released version `3.1.68` loads localized static What's New JSON on
+- Current released version `3.2.0` loads localized static What's New JSON on
   download-page changelogs before falling back to GitHub release bodies.
   Version `3.1.64` adds dedicated Windows and Mac Catalyst client pages,
   homepage cards, download rendering and release-note paths. Version `3.1.63`
@@ -260,7 +272,9 @@ useful for higher GitHub API limits.
 - Canonical SEO domain is `https://djconnect.dev`; `djconnect.pages.dev` remains a Cloudflare fallback.
 - `https://www.djconnect.dev` should remain a 301 redirect to the apex domain, preserving path and query string.
 - Dynamic GitHub download/install blocks now rerender when the language toggle changes, so generated install text follows NL/EN.
-- The start-page client pairing panels no longer show extra Client API/discovery notes under iOS, macOS, Windows, Linux or ESP32.
+- The start-page client pairing panels no longer show extra Client API/discovery
+  notes under iOS, macOS, Windows, Linux or ESP32; app panels describe local
+  QR/code pairing and app-to-Home Assistant runtime.
 - Site footers now include a small translated privacy notice. Keep it aligned across homepage, setup, features, iOS, macOS, Linux/Raspberry Pi and ESP32 pages.
 - Raspberry Pi setup copy now says to paste pairing details in the Home Assistant integration.
 - Linux/Raspberry Pi and ESP32 firmware download embeds intentionally use `data-release-limit="1"` so only the latest release is shown.

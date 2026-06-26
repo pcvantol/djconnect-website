@@ -50,7 +50,7 @@
     @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } }
 
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.68" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.0" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -128,16 +128,13 @@
           </ul>
         </article>
         <article class="card">
-          <h3 data-i18n="macosMdnsTitle">macOS client wordt via mDNS gezien, maar niet automatisch ingevuld</h3>
-          <p data-i18n="macosMdnsText">Home Assistant gebruikt de geadverteerde local_url om de macOS client via HTTP te lezen.</p>
+          <h3 data-i18n="remotePairingTitle">Waarom kan ik de app niet remote pairen?</h3>
+          <p data-i18n="remotePairingText">Pairing/token bootstrap is lokaal. Remote gebruik begint pas nadat iOS, macOS of Windows lokaal met Home Assistant is gekoppeld.</p>
           <ul>
-            <li data-i18n="macosMdns1">Test vanaf de Home Assistant host of een ander LAN-apparaat, niet alleen vanaf dezelfde Mac.</li>
-            <li><code>curl -i http://&lt;mac-lan-ip&gt;:&lt;port&gt;/api/device/pairing-info</code></li>
-            <li><code>curl -i http://&lt;mac-lan-ip&gt;:&lt;port&gt;/api/device/info</code></li>
-            <li data-i18n="macosMdns2">Verwacht HTTP 200 met JSON. Bij Connection reset by peer blokkeert vaak de macOS firewall of beveiligingssoftware.</li>
-            <li data-i18n="macosMdns3">Sta inkomende lokale netwerkverbindingen toe voor DJConnect.app in macOS firewall, ESET, Little Snitch of LuLu.</li>
-            <li data-i18n="macosMdns4">Gebruik bij voorkeur een applicatie-gebaseerde allow-rule. Alleen een vaste poort toestaan is kwetsbaar, omdat de lokale API-poort kan wisselen na herstart.</li>
-            <li data-i18n="macosMdns5">DJConnect vraagt geen automatische firewall-exclusions aan; jij houdt controle over firewall en security-software.</li>
+            <li data-i18n="remotePairing1">Zet de app en Home Assistant tijdens pairing op hetzelfde lokale netwerk.</li>
+            <li data-i18n="remotePairing2">Gebruik daarna je Nabu Casa of externe HTTPS Home Assistant URL voor remote runtime.</li>
+            <li data-i18n="remotePairing3">Apple/Windows apps hebben geen Client adres naar Home Assistant meer nodig.</li>
+            <li data-i18n="remotePairing4">Apple Watch gebruikt de iPhone als Home Assistant transportproxy.</li>
           </ul>
         </article>
         <article class="card">
@@ -152,12 +149,21 @@
         </article>
         <article class="card">
           <h3 data-i18n="playbackTitle">Muziek start niet of op de verkeerde speaker</h3>
-          <p data-i18n="playbackText">Spotify playback gebruikt je Spotify Premium account en Spotify Connect devices.</p>
+          <p data-i18n="playbackText">Playback hangt af van je actieve music backend: Spotify Direct of Music Assistant.</p>
           <ul>
-            <li data-i18n="playback1">Controleer of Spotify Premium actief is.</li>
-            <li data-i18n="playback2">Open Spotify en controleer of de gewenste Connect speaker beschikbaar is.</li>
-            <li data-i18n="playback3">Autoriseer Spotify opnieuw als tokens of scopes zijn gewijzigd.</li>
-            <li data-i18n="playback4">Playback-control opdrachten zoals Stop muziek voeren direct backend commands uit.</li>
+            <li data-i18n="playback1">Bij Spotify Direct: controleer Spotify Premium, Client ID en OAuth/PKCE autorisatie.</li>
+            <li data-i18n="playback2">Bij Music Assistant: controleer of Music Assistant draait, providers werken en de gekozen player beschikbaar is.</li>
+            <li data-i18n="playback3">Recent/top/favorites zijn met Music Assistant capability-dependent en dus niet altijd beschikbaar.</li>
+            <li data-i18n="playback4">Als een oude Play Now actie verloopt, vraag Ask DJ opnieuw; de backend revision of target kan gewijzigd zijn.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3 data-i18n="localOnlyTitle">Waarom werkt ESP/Pi niet buiten huis?</h3>
+          <p data-i18n="localOnlyText">ESP32 en Raspberry Pi zijn local-only. Alleen iOS, macOS en Windows zijn remote-capable na lokale pairing.</p>
+          <ul>
+            <li data-i18n="localOnly1">ESP32 gebruikt de lokale /api/device/* device API.</li>
+            <li data-i18n="localOnly2">Raspberry Pi blijft bedoeld als vaste controller in je thuisnetwerk.</li>
+            <li data-i18n="localOnly3">ESP32-S3-BOX-3 staat niet meer in de supported device lijst.</li>
           </ul>
         </article>
         <article class="card">
@@ -181,7 +187,7 @@
     <p>Copyright Peter van Tol 2026. Released under the MIT License.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.1.68</p>
+    <p class="site-version">DJConnect website v3.2.0</p>
   </footer>
   <script>
     const translations = {
@@ -199,7 +205,7 @@
         quickTitle: "Snelle checks",
         quick1: "Home Assistant draait en is bereikbaar via HTTPS als Spotify autorisatie nodig is.",
         quick2: "DJConnect is na installatie of update opnieuw geladen door Home Assistant.",
-        quick3: "Je gebruikt Spotify Premium en een eigen Spotify Developer app.",
+        quick3: "Je hebt Spotify Direct of Music Assistant bewust gekozen als music backend.",
         quick4: "Client en Home Assistant zitten tijdens pairing op hetzelfde lokale netwerk.",
         setupCta: "Setup openen",
         supportCta: "Support",
@@ -221,13 +227,12 @@
         pairing2: "Controleer of je in Home Assistant het juiste clienttype kiest.",
         pairing3: "Kopieer de pairinggegevens opnieuw als je een oude code gebruikte.",
         pairing4: "Gebruik voor Assist Conversation Agent geen hardware-client of koppelcode.",
-        macosMdnsTitle: "macOS client wordt via mDNS gezien, maar niet automatisch ingevuld",
-        macosMdnsText: "Home Assistant gebruikt de geadverteerde local_url om de macOS client via HTTP te lezen.",
-        macosMdns1: "Test vanaf de Home Assistant host of een ander LAN-apparaat, niet alleen vanaf dezelfde Mac.",
-        macosMdns2: "Verwacht HTTP 200 met JSON. Bij Connection reset by peer blokkeert vaak de macOS firewall of beveiligingssoftware.",
-        macosMdns3: "Sta inkomende lokale netwerkverbindingen toe voor DJConnect.app in macOS firewall, ESET, Little Snitch of LuLu.",
-        macosMdns4: "Gebruik bij voorkeur een applicatie-gebaseerde allow-rule. Alleen een vaste poort toestaan is kwetsbaar, omdat de lokale API-poort kan wisselen na herstart.",
-        macosMdns5: "DJConnect vraagt geen automatische firewall-exclusions aan; jij houdt controle over firewall en security-software.",
+        remotePairingTitle: "Waarom kan ik de app niet remote pairen?",
+        remotePairingText: "Pairing/token bootstrap is lokaal. Remote gebruik begint pas nadat iOS, macOS of Windows lokaal met Home Assistant is gekoppeld.",
+        remotePairing1: "Zet de app en Home Assistant tijdens pairing op hetzelfde lokale netwerk.",
+        remotePairing2: "Gebruik daarna je Nabu Casa of externe HTTPS Home Assistant URL voor remote runtime.",
+        remotePairing3: "Apple/Windows apps hebben geen Client adres naar Home Assistant meer nodig.",
+        remotePairing4: "Apple Watch gebruikt de iPhone als Home Assistant transportproxy.",
         voiceTitle: "Voice Assistant reageert niet goed",
         voiceText: "DJConnect hangt aan je eigen Home Assistant Assist-configuratie.",
         voice1: "Test eerst of je Assist pipeline STT en TTS los van DJConnect werkt.",
@@ -235,11 +240,16 @@
         voice3: "AI- en Assist-antwoorden kunnen onjuist zijn en hangen af van je eigen configuratie.",
         voice4: "Gebruik de Spraak-pagina om ondersteunde voorbeeldzinnen te controleren.",
         playbackTitle: "Muziek start niet of op de verkeerde speaker",
-        playbackText: "Spotify playback gebruikt je Spotify Premium account en Spotify Connect devices.",
-        playback1: "Controleer of Spotify Premium actief is.",
-        playback2: "Open Spotify en controleer of de gewenste Connect speaker beschikbaar is.",
-        playback3: "Autoriseer Spotify opnieuw als tokens of scopes zijn gewijzigd.",
-        playback4: "Playback-control opdrachten zoals Stop muziek voeren direct backend commands uit.",
+        playbackText: "Playback hangt af van je actieve music backend: Spotify Direct of Music Assistant.",
+        playback1: "Bij Spotify Direct: controleer Spotify Premium, Client ID en OAuth/PKCE autorisatie.",
+        playback2: "Bij Music Assistant: controleer of Music Assistant draait, providers werken en de gekozen player beschikbaar is.",
+        playback3: "Recent/top/favorites zijn met Music Assistant capability-dependent en dus niet altijd beschikbaar.",
+        playback4: "Als een oude Play Now actie verloopt, vraag Ask DJ opnieuw; de backend revision of target kan gewijzigd zijn.",
+        localOnlyTitle: "Waarom werkt ESP/Pi niet buiten huis?",
+        localOnlyText: "ESP32 en Raspberry Pi zijn local-only. Alleen iOS, macOS en Windows zijn remote-capable na lokale pairing.",
+        localOnly1: "ESP32 gebruikt de lokale /api/device/* device API.",
+        localOnly2: "Raspberry Pi blijft bedoeld als vaste controller in je thuisnetwerk.",
+        localOnly3: "ESP32-S3-BOX-3 staat niet meer in de supported device lijst.",
         firmwareTitle: "Downloads, firmware of updates werken niet",
         firmwareText: "Downloads worden via GitHub releases en privacyvriendelijke redirects geladen.",
         firmware1: "Ververs de pagina als een releaseblok tijdelijk leeg blijft.",
@@ -265,7 +275,7 @@
         quickTitle: "Quick checks",
         quick1: "Home Assistant is running and reachable over HTTPS when Spotify authorization is needed.",
         quick2: "DJConnect has been reloaded by Home Assistant after installation or update.",
-        quick3: "You use Spotify Premium and your own Spotify Developer app.",
+        quick3: "You have intentionally chosen Spotify Direct or Music Assistant as music backend.",
         quick4: "Client and Home Assistant are on the same local network during pairing.",
         setupCta: "Open setup",
         supportCta: "Support",
@@ -287,13 +297,12 @@
         pairing2: "Check that you choose the right client type in Home Assistant.",
         pairing3: "Copy the pairing details again if you used an old code.",
         pairing4: "For Assist Conversation Agent, do not use a hardware client or pairing code.",
-        macosMdnsTitle: "macOS client is visible through mDNS but not prefilled automatically",
-        macosMdnsText: "Home Assistant uses the advertised local_url to read the macOS client over HTTP.",
-        macosMdns1: "Test from the Home Assistant host or another LAN device, not only from the same Mac.",
-        macosMdns2: "Expect HTTP 200 with JSON. If you get Connection reset by peer, macOS firewall or security software often blocks the request.",
-        macosMdns3: "Allow incoming local network connections for DJConnect.app in macOS firewall, ESET, Little Snitch or LuLu.",
-        macosMdns4: "Prefer an application-based allow rule. Allowing only one fixed port is brittle because the local API port can change after restart.",
-        macosMdns5: "DJConnect does not request automatic firewall exclusions; you stay in control of firewall and security software.",
+        remotePairingTitle: "Why can't I pair the app remotely?",
+        remotePairingText: "Pairing/token bootstrap is local. Remote use starts only after iOS, macOS or Windows has paired locally with Home Assistant.",
+        remotePairing1: "Keep the app and Home Assistant on the same local network during pairing.",
+        remotePairing2: "After that, use your Nabu Casa or external HTTPS Home Assistant URL for remote runtime.",
+        remotePairing3: "Apple/Windows apps no longer need a Client address copied to Home Assistant.",
+        remotePairing4: "Apple Watch uses the iPhone as the Home Assistant transport proxy.",
         voiceTitle: "Voice Assistant responds poorly",
         voiceText: "DJConnect depends on your own Home Assistant Assist configuration.",
         voice1: "First test whether your Assist pipeline STT and TTS work without DJConnect.",
@@ -301,11 +310,16 @@
         voice3: "AI and Assist responses can be wrong and depend on your own configuration.",
         voice4: "Use the Voice page to check supported example phrases.",
         playbackTitle: "Music does not start or starts on the wrong speaker",
-        playbackText: "Spotify playback uses your Spotify Premium account and Spotify Connect devices.",
-        playback1: "Check that Spotify Premium is active.",
-        playback2: "Open Spotify and check that the desired Connect speaker is available.",
-        playback3: "Authorize Spotify again if tokens or scopes changed.",
-        playback4: "Playback-control phrases such as Stop music call backend commands directly.",
+        playbackText: "Playback depends on your active music backend: Spotify Direct or Music Assistant.",
+        playback1: "With Spotify Direct: check Spotify Premium, Client ID and OAuth/PKCE authorization.",
+        playback2: "With Music Assistant: check that Music Assistant runs, providers work and the selected player is available.",
+        playback3: "Recent/top/favorites are capability-dependent with Music Assistant and may not be available.",
+        playback4: "If an old Play Now action expires, ask DJ again; the backend revision or target may have changed.",
+        localOnlyTitle: "Why does ESP/Pi not work outside home?",
+        localOnlyText: "ESP32 and Raspberry Pi are local-only. Only iOS, macOS and Windows are remote-capable after local pairing.",
+        localOnly1: "ESP32 uses the local /api/device/* device API.",
+        localOnly2: "Raspberry Pi remains intended as a fixed controller on your home network.",
+        localOnly3: "ESP32-S3-BOX-3 is no longer listed as a supported device.",
         firmwareTitle: "Downloads, firmware or updates fail",
         firmwareText: "Downloads are loaded through GitHub releases and privacy-friendly redirects.",
         firmware1: "Refresh the page if a release block stays empty temporarily.",
@@ -349,6 +363,6 @@
     applyLanguage(getInitialLanguage());
 
   </script>
-  <script src="assets/site-nav.js?v=3.1.68"></script>
+  <script src="assets/site-nav.js?v=3.2.0"></script>
 </body>
 </html>

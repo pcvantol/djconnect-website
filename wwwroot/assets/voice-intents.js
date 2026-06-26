@@ -14,8 +14,8 @@ window.DJCONNECT_VOICE_INTENTS = [
       "en": "What is playing?"
     },
     "text": {
-      "nl": "Leest de huidige Spotify playback-status en geeft een DJ-response. Dit start of wijzigt geen muziek.",
-      "en": "Reads the current Spotify playback status and returns a DJ response. This does not start or change music."
+      "nl": "Leest de huidige playback-status en geeft een DJ-response. Dit start of wijzigt geen muziek.",
+      "en": "Reads the current playback status and returns a DJ response. This does not start or change music."
     },
     "behavior": {
       "nl": "Geen Spotify search. Geen playback-start. Alleen status lezen en antwoord geven.",
@@ -174,8 +174,8 @@ window.DJCONNECT_VOICE_INTENTS = [
       "en": "Uses the default playlist URI configured in the DJConnect Home Assistant integration."
     },
     "behavior": {
-      "nl": "Start Spotify playback via de ingestelde standaard playlist.",
-      "en": "Starts Spotify playback through the configured default playlist."
+      "nl": "Start playback via de ingestelde standaard playlist.",
+      "en": "Starts playback through the configured default playlist."
     },
     "examples": {
       "nl": [
@@ -241,8 +241,8 @@ window.DJCONNECT_VOICE_INTENTS = [
       "en": "Resolves to track search with artist context when the phrase names both artist and song."
     },
     "behavior": {
-      "nl": "Start Spotify playback via gerichte track search met artiestcontext.",
-      "en": "Starts Spotify playback through targeted track search with artist context."
+      "nl": "Start playback via gerichte track search met artiestcontext.",
+      "en": "Starts playback through targeted track search with artist context."
     },
     "examples": {
       "nl": [
@@ -339,8 +339,8 @@ window.DJCONNECT_VOICE_INTENTS = [
       "en": "Generic requests without explicit song, album or playlist wording stay artist-first."
     },
     "behavior": {
-      "nl": "Zoekt en start Spotify playback voor de artiest.",
-      "en": "Searches and starts Spotify playback for the artist."
+      "nl": "Zoekt en start playback voor de artiest.",
+      "en": "Searches and starts playback for the artist."
     },
     "examples": {
       "nl": [
@@ -494,8 +494,8 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
       "en": "Review DJ Memory"
     },
     "text": {
-      "nl": "Privacyvraag over server-side DJ Memory. Render als tekst met bron djconnect_memory: geen oude album art, mediakaarten, TTS replay, Play Now en geen live Spotify playback of Spotify-profielverrijking.",
-      "en": "Privacy question about server-side DJ Memory. Render as text with djconnect_memory source: no old album art, media cards, TTS replay, Play Now, live Spotify playback or Spotify profile enrichment."
+      "nl": "Privacyvraag over server-side DJ Memory. Render als tekst met bron djconnect_memory: geen oude album art, mediakaarten, TTS replay, Play Now en geen live playback of profielverrijking.",
+      "en": "Privacy question about server-side DJ Memory. Render as text with djconnect_memory source: no old album art, media cards, TTS replay, Play Now, live playback or profile enrichment."
     },
     "examples": {
       "nl": [
@@ -1152,7 +1152,7 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "action": "none",
     "message_kind": "system",
     "origin": "spotify_playback_context",
-    "description": "Backend-generated text-only Ask DJ fact when Spotify playback moves to another artist/album combination. This has no user phrase and is included so website/client docs can explain the system bubble.",
+    "description": "Backend-generated text-only Ask DJ fact when playback moves to another artist/album combination. This has no user phrase and is included so website/client docs can explain the system bubble.",
     "nl": [
       "Automatisch DJ feitje bij nieuw album of nieuwe artiest"
     ],

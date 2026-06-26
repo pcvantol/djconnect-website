@@ -22,22 +22,30 @@ Static landing page for DJConnect, published through Cloudflare Pages.
 - `wwwroot/blog.html`: blog overview page for project notes and release/design stories.
 - `wwwroot/blog-djconnect-project.html`: first project blogpost about the DJConnect architecture and workflow.
 - `wwwroot/start.html`: Home Assistant setup flow for HACS installation, voice pipeline setup, DJConnect configuration, client downloads and pairing.
-- Spotify OAuth runs through the user's own Home Assistant installation. Users
-  must create their own Spotify Developer app, register
+- DJConnect 3.2 supports Spotify Direct or Music Assistant as active music
+  backend. Spotify Direct OAuth runs through the user's own Home Assistant
+  installation: users create their own Spotify Developer app, register
   `https://<your-home-assistant-external-url>/api/djconnect/spotify/callback`
   as redirect URI, copy the Client ID into the DJConnect setup and authorize
   Spotify through Home Assistant. Prefer the Nabu Casa HTTPS external URL.
   DJConnect uses PKCE, so a Spotify Client Secret is preferably not required.
+  Music Assistant does not require a DJConnect Spotify Client ID/OAuth; Music
+  Assistant provider credentials stay in Music Assistant/Home Assistant.
+- Pairing/token bootstrap is local-only. iOS, macOS and Windows are
+  remote-capable after local pairing. ESP32 and Raspberry Pi remain local-only,
+  watchOS uses the iPhone proxy, and Apple/Windows clients call Home Assistant
+  through `/api/djconnect/...` rather than hosting a local client API.
 - Ask DJ is a major product feature for iOS, macOS, Windows, Apple Watch and
   Raspberry Pi clients.
   Website copy should keep it clear that Ask DJ runs through Home Assistant and
-  DJConnect integration v3.1.69+, uses compact bounded server-side DJ
-  Memory/history, carries chat continuity across devices, can show Ja/Nee
-  follow-up controls, can use optional Apple push notifications only as
-  wake/sync hints through the central push relay and starts concrete
-  recommendations only after the user taps `Play Now`. Raspberry Pi Ask DJ is
-  currently read-only history display unless a future Pi release explicitly
-  expands that scope.
+  DJConnect integration 3.2.x, uses compact bounded server-side DJ
+  Memory/history, carries chat continuity across app clients, can show Ja/Nee
+  follow-up controls, uses backend-aware Spotify Direct or Music Assistant
+  actions, can use optional Apple push notifications only as wake/attention
+  hints through Home Assistant sync and starts concrete recommendations only
+  after the user taps `Play Now`. ESP32 uses PTT/playback command flow without
+  Ask DJ chat history; Raspberry Pi remains local-only and currently read-only
+  for history unless a future Pi release explicitly expands that scope.
   DJ Memory summary questions such as `Wat weet je nu over mij?` /
   `What do you know about me?` are privacy/info answers from server-side
   `djconnect_memory` only: render text and sources, not stale album art,
@@ -332,23 +340,26 @@ Use `./cleanup_old_releases.sh` manually only when you want cleanup outside the 
   `Spraak`, `Blog`, `Installeren`, `Support`, `Privacy` and the primary `Aan de slag`
   CTA. Do not add a `Hoe werkt het` self-link to the homepage top navigation.
 - Keep Ask DJ product copy user-facing, not API-reference style: mention Home
-  Assistant, server-side DJ Memory/history, Apple Watch/iPhone/Mac/Windows continuity,
-  explicit `Play Now`, Ja/Nee follow-ups, bounded history/trim behavior,
-  voice/PTT with Assist STT/TTS on iOS, macOS, Windows and Apple Watch,
-  Raspberry Pi read-only history display,
-  optional Apple push notifications as wake/sync hints through the central
-  push relay for Ask DJ replies or waiting choices only, and compact privacy
-  boundaries without implying Spotify affiliation.
+  Assistant, server-side DJ Memory/history, Apple Watch/iPhone/Mac/Windows
+  continuity, explicit `Play Now`, Ja/Nee follow-ups, bounded history/trim
+  behavior, backend-aware Spotify Direct or Music Assistant actions, voice/PTT
+  with Assist STT/TTS on iOS, macOS, Windows and Apple Watch, Raspberry Pi
+  local-only read-only history display, ESP PTT/playback command flow without
+  chat history, optional Apple push notifications as wake/attention hints only,
+  and compact privacy boundaries without implying Spotify affiliation.
 - Keep content-page navigation free of self-links. Features, Spraak, Blog,
   Support and Privacy should not show their own page as a menu option.
 - Keep the homepage `Kies je interface` cards aligned with the supported
   routes: macOS, Windows, Mac Catalyst, iPhone/iPad, Voice Assistant, Embedded
   device and Linux/Raspberry Pi.
 - Keep homepage hero device slides spacious: macOS, iPad/iPhone and LilyGO/ESP32 each get their own carousel slide.
-- Keep the start page aligned with the current setup order: Home Assistant voice pipeline, HACS, DJConnect configuration, client pairing and first use.
-- Keep the start page clear that Spotify OAuth requires the user's own Spotify
-  Developer app because redirect URIs must be registered for their own Home
-  Assistant external URL.
+- Keep the start page aligned with the current 3.2 setup order: Home Assistant
+  voice pipeline, HACS, music-backend choice, backend-specific DJConnect
+  configuration, local client/device pairing and first use.
+- Keep the start page clear that Spotify Direct requires Spotify Premium and
+  the user's own Spotify Developer app because redirect URIs must be registered
+  for their own Home Assistant external URL. Music Assistant does not need a
+  DJConnect Spotify Client ID/OAuth.
 - Keep the embedded page compact: supported hardware, how it works and firmware downloads. Detailed setup, requirements, FAQ and experience content belong off this page.
 - Keep macOS, Windows, Mac Catalyst, iOS, ESP32 and Raspberry Pi page navigation minimal: `Home`, `Platform`, language toggle and the page CTA.
 - Keep macOS and Raspberry Pi download menu labels singular: `Download`.

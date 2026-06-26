@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DJConnect Features</title>
-  <meta name="description" content="Overzicht van de belangrijkste DJConnect functies: muziek aanvragen, Spotify playback, Home Assistant, apps, ESP32 devices en mini-games." />
+  <meta name="description" content="Overzicht van de belangrijkste DJConnect functies: muziek aanvragen, Spotify Direct of Music Assistant playback, Home Assistant, apps, ESP32 devices en mini-games." />
   <link rel="canonical" href="https://djconnect.dev/features" />
   <link rel="icon" href="assets/djconnect/icon.svg" type="image/svg+xml" />
   <style>
@@ -59,7 +59,7 @@
     @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } }
 
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.1.68" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.0" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -86,7 +86,7 @@
       <div class="wrap hero-grid">
         <div>
           <h1 data-i18n="heroTitle">Features</h1>
-          <p class="lead" data-i18n="heroLead">DJConnect combineert muziek aanvragen, Spotify playback, Home Assistant automation en persoonlijke DJ-feedback in een workflow voor app en device.</p>
+          <p class="lead" data-i18n="heroLead">DJConnect combineert muziek aanvragen, Spotify Direct of Music Assistant playback, Home Assistant automation en persoonlijke DJ-feedback in een workflow voor app en device.</p>
           <a class="btn primary" href="start.html" data-i18n="heroCta">Start installatie</a>
           <a class="btn" href="platform.html" data-i18n="heroPlatformCta">Bekijk platform overview</a>
         </div>
@@ -125,7 +125,7 @@
           <article class="card"><div class="icon">🎙️</div><h3 data-i18n="musicTitle">Muziek aanvragen</h3><p data-i18n="musicText">Vraag een artiest aan met je stem of via de app. DJConnect vertaalt je verzoek naar een concrete muziekactie.</p></article>
           <article class="card"><div class="icon">💬</div><h3 data-i18n="askDjTitle">Slimme follow-ups</h3><p data-i18n="askDjText">Ask DJ geeft niet alleen antwoord, maar ook acties. Wissel direct van speaker, kies een aanbevolen track, bekijk album art of antwoord met een tik op een vervolgvraag.</p></article>
           <article class="card"><div class="icon">📊</div><h3 data-i18n="trackAnalysisTitle">Ask DJ Track Analysis</h3><p data-i18n="trackAnalysisText">Laat Ask DJ de huidige track technisch duiden: BPM en key waar brondata beschikbaar is, plus energiecurve, groove, intro, refrein, breakdowns, instrumentatie, productie en mixbaarheid wanneer context of confidence dat ondersteunt. Read-only: analyse verandert nooit je playback.</p></article>
-          <article class="card"><div class="icon">▶</div><h3 data-i18n="playbackTitle">Spotify playback</h3><p data-i18n="playbackText">Start, pauzeer en stuur Spotify playback naar je favoriete Spotify Connect speaker.</p></article>
+          <article class="card"><div class="icon">▶</div><h3 data-i18n="playbackTitle">Music backend playback</h3><p data-i18n="playbackText">Start, pauzeer en stuur playback naar je gekozen player via Spotify Direct of Music Assistant.</p></article>
           <article class="card"><div class="icon">🔊</div><h3 data-i18n="speakerTitle">Speaker keuze</h3><p data-i18n="speakerText">Kies bewust waar muziek wordt afgespeeld, zodat dezelfde aanvraag past bij je kamer, moment of device.</p></article>
           <article class="card"><div class="icon">🏠</div><h3 data-i18n="haTitle">Home Assistant hub</h3><p data-i18n="haText">Spotify autorisatie, inclusief je eigen Spotify Developer app en Client ID, voice assist, device-koppeling en clientconfiguratie lopen centraal via Home Assistant.</p></article>
           <article class="card"><div class="icon">✨</div><h3 data-i18n="announceTitle">DJ aankondigingen</h3><p data-i18n="announceText">Ontvang persoonlijke gesproken of zichtbare DJ-feedback. De stijl van de aankondiging kan via een eigen prompt worden aangepast.</p></article>
@@ -170,15 +170,15 @@
     <p>Copyright Peter van Tol 2026. Released under the MIT License.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.1.68</p>
+    <p class="site-version">DJConnect website v3.2.0</p>
   </footer>
-  <script src="assets/site-nav.js?v=3.1.68"></script>
+  <script src="assets/site-nav.js?v=3.2.0"></script>
 </body>
 <script>
   const translations = {
     nl: {
       title: "DJConnect Features",
-      metaDescription: "Overzicht van de belangrijkste DJConnect functies: muziek aanvragen, Spotify playback, Home Assistant, apps, Linux, ESP32 devices en mini-games.",
+      metaDescription: "Overzicht van de belangrijkste DJConnect functies: muziek aanvragen, Spotify Direct of Music Assistant playback, Home Assistant, apps, Linux, ESP32 devices en mini-games.",
       navLabel: "Navigatie",
       languageToggle: "Taalkeuze",
       navMenu: "Menu",
@@ -186,7 +186,7 @@
       navBlog: "Blog",
       navStart: "Aan de slag",
       heroTitle: "Features",
-      heroLead: "DJConnect combineert muziek aanvragen, Spotify playback, Home Assistant automation en persoonlijke DJ-feedback in een workflow voor app en device.",
+      heroLead: "DJConnect combineert muziek aanvragen, Spotify Direct of Music Assistant playback, Home Assistant automation en persoonlijke DJ-feedback in een workflow voor app en device.",
       heroCta: "Start installatie",
       heroPlatformCta: "Bekijk platform overview",
       featureMapLabel: "DJConnect feature overzicht",
@@ -217,8 +217,8 @@
       askDjText: "Ask DJ geeft niet alleen antwoord, maar ook acties. Wissel direct van speaker, kies een aanbevolen track, bekijk album art of antwoord met een tik op een vervolgvraag.",
       trackAnalysisTitle: "Ask DJ Track Analysis",
       trackAnalysisText: "Laat Ask DJ de huidige track technisch duiden: BPM en key waar brondata beschikbaar is, plus energiecurve, groove, intro, refrein, breakdowns, instrumentatie, productie en mixbaarheid wanneer context of confidence dat ondersteunt. Read-only: analyse verandert nooit je playback.",
-      playbackTitle: "Spotify playback",
-      playbackText: "Start, pauzeer en stuur Spotify playback naar je favoriete Spotify Connect speaker.",
+      playbackTitle: "Music backend playback",
+      playbackText: "Start, pauzeer en stuur playback naar je gekozen player via Spotify Direct of Music Assistant.",
       speakerTitle: "Speaker keuze",
       speakerText: "Kies bewust waar muziek wordt afgespeeld, zodat dezelfde aanvraag past bij je kamer, moment of device.",
       haTitle: "Home Assistant hub",
@@ -245,7 +245,7 @@
     },
     en: {
       title: "DJConnect Features",
-      metaDescription: "Overview of the main DJConnect features: music requests, Spotify playback, Home Assistant, apps, Linux, ESP32 devices and mini-games.",
+      metaDescription: "Overview of the main DJConnect features: music requests, Spotify Direct or Music Assistant playback, Home Assistant, apps, Linux, ESP32 devices and mini-games.",
       navLabel: "Navigation",
       languageToggle: "Language",
       navMenu: "Menu",
@@ -253,7 +253,7 @@
       navBlog: "Blog",
       navStart: "Get started",
       heroTitle: "Features",
-      heroLead: "DJConnect combines music requests, Spotify playback, Home Assistant automation and personal DJ feedback in one workflow for apps and devices.",
+      heroLead: "DJConnect combines music requests, Spotify Direct or Music Assistant playback, Home Assistant automation and personal DJ feedback in one workflow for apps and devices.",
       heroCta: "Start setup",
       heroPlatformCta: "View platform overview",
       featureMapLabel: "DJConnect feature overview",
@@ -284,8 +284,8 @@
       askDjText: "Ask DJ does more than answer: it gives you actions. Switch speakers, choose a recommended track, view album art or answer a follow-up question with one tap.",
       trackAnalysisTitle: "Ask DJ Track Analysis",
       trackAnalysisText: "Let Ask DJ technically explain the current track: BPM and key where source data is available, plus energy curve, groove, intro, chorus, breakdowns, instrumentation, production and mixability when context or confidence supports it. Read-only: analysis never changes playback.",
-      playbackTitle: "Spotify playback",
-      playbackText: "Start, pause and send Spotify playback to your favorite Spotify Connect speaker.",
+      playbackTitle: "Music backend playback",
+      playbackText: "Start, pause and send playback to your chosen player through Spotify Direct or Music Assistant.",
       speakerTitle: "Speaker choice",
       speakerText: "Choose where music plays, so the same request fits your room, moment or device.",
       haTitle: "Home Assistant hub",

@@ -4,6 +4,19 @@ All notable changes to this website are grouped per release.
 
 ## Unreleased
 
+## DJConnect website v3.2.0 - 2026-06-26
+
+- Updated public website copy for DJConnect 3.2 protocol positioning: Spotify
+  Direct or Music Assistant as active music backend, local pairing before remote
+  app use, ESP32/Raspberry Pi local-only scope, watchOS via iPhone proxy and
+  Home Assistant Assist/STT/TTS voice routing.
+- Added a music-backend comparison and compatibility matrix to the setup page,
+  including capability-dependent Music Assistant behavior and backend switching
+  guidance.
+- Removed current supported-device copy for ESP32-S3-BOX-3 and replaced old
+  Apple/Windows client-hosted local API guidance with app-to-Home Assistant
+  `/api/djconnect/...` wording.
+
 ## DJConnect website v3.1.68 - 2026-06-26
 
 - Expanded the Ask DJ website copy with a Live Technical Track Analysis product

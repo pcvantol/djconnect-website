@@ -7,12 +7,12 @@
   `Installeren`, `Support` and `Privacy`, with `Aan de slag` only as the
   primary CTA button. The homepage should not show a `Hoe werkt het` self-link.
 - Verify the homepage Ask DJ section explains chat, personal recommendations,
-  explicit `Play Now`, Watch/iPhone/Mac/Windows continuity, Home Assistant server-side
-  DJ Memory/history, Ja/Nee follow-ups, bounded history trim behavior,
-  voice/PTT with Assist STT/TTS, Raspberry Pi read-only history display,
-  optional Apple push notifications as wake/sync hints through the central push
-  relay for Ask DJ replies or waiting choices only, and compact privacy
-  boundaries.
+  explicit `Play Now`, Watch/iPhone/Mac/Windows continuity, Home Assistant
+  server-side DJ Memory/history, Ja/Nee follow-ups, bounded history trim
+  behavior, backend-aware Spotify Direct or Music Assistant actions, voice/PTT
+  with Assist STT/TTS, Raspberry Pi local-only read-only history display, ESP
+  PTT/playback command flow without Ask DJ chat history, optional Apple push
+  notifications as wake/attention hints only, and compact privacy boundaries.
 - Verify Ask DJ Track Analysis copy explains musical/technical track analysis,
   example prompts such as "Analyseer deze track", BPM/key only where source data
   is available, optional user-configured metadata or local analysis providers,
@@ -126,7 +126,9 @@
 - Open `wwwroot/embedded.html`.
 - Verify Dutch and English language toggles update visible text on start, embedded, iOS, macOS, Windows, Mac Catalyst, Features and Raspberry Pi pages.
 - Verify the embedded page lists LilyGO T-Embed CC1101 under supported hardware.
-- Verify ESP32-S3-BOX-3 is documented with ESPHome-powered voice assistant devices, alongside the Voice Preview Edition and M5 Atom Echo.
+- Verify ESP32-S3-BOX-3 is not listed as a supported device or supported
+  ESPHome voice assistant example; troubleshooting may mention that it is no
+  longer supported.
 - Verify the embedded ESP32 visual card has clear spacing and includes the LilyGO product specifications link.
 - Verify the embedded release block points to `pcvantol/djconnect-firmware` releases.
 - Verify iOS, macOS, Windows, Mac Catalyst, ESP32 firmware and Raspberry Pi/Linux release blocks show only the latest GitHub release.

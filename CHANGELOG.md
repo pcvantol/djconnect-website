@@ -4,6 +4,18 @@ All notable changes to this website are grouped per release.
 
 ## Unreleased
 
+## DJConnect website v3.2.1 - 2026-06-27
+
+- Expanded the How To Start page with the public 3.2.x backend-contract details
+  from the Home Assistant integration source, including compatibility rules,
+  HTTP `426 version_mismatch`, app/client identity prefixes and inbound-only
+  iOS/macOS/Windows pairing.
+- Clarified ESP32/Raspberry Pi local-device pairing, HA Assist STT/TTS,
+  Assist Conversation Agent-only setup, APNs privacy boundaries and the current
+  HACS/app/firmware/Linux release download sources.
+- Added regression coverage and README content-hygiene notes so the website
+  keeps the 3.2 contract visible in future setup-page edits.
+
 ## DJConnect website v3.2.0 - 2026-06-26
 
 - Updated public website copy for DJConnect 3.2 protocol positioning: Spotify

@@ -35,6 +35,15 @@ Static landing page for DJConnect, published through Cloudflare Pages.
   remote-capable after local pairing. ESP32 and Raspberry Pi remain local-only,
   watchOS uses the iPhone proxy, and Apple/Windows clients call Home Assistant
   through `/api/djconnect/...` rather than hosting a local client API.
+- The public How To Start copy must keep the `3.2.x` backend contract visible:
+  patch versions may differ, major/minor must match, HTTP `426`
+  `version_mismatch` means update the client or integration without clearing
+  pairing, and app/device identity uses mandatory `client_type` plus stable ID
+  prefixes (`djconnect-ios-*`, `djconnect-macos-*`,
+  `djconnect-windows-*`, `djconnect-raspberry-pi-*` and model-specific ESP32
+  IDs). iOS, macOS and Windows are inbound-only app clients that post local
+  pairing to `/api/djconnect/pair`; ESP32 and Raspberry Pi are local-device
+  clients using `_djconnect._tcp`, optional Client adres and `/api/device/*`.
 - Ask DJ is a major product feature for iOS, macOS, Windows, Apple Watch and
   Raspberry Pi clients.
   Website copy should keep it clear that Ask DJ runs through Home Assistant and
@@ -356,6 +365,15 @@ Use `./cleanup_old_releases.sh` manually only when you want cleanup outside the 
 - Keep the start page aligned with the current 3.2 setup order: Home Assistant
   voice pipeline, HACS, music-backend choice, backend-specific DJConnect
   configuration, local client/device pairing and first use.
+- Keep the start page compatibility matrix explicit about `3.2.x`,
+  `version_mismatch`, inbound-only iOS/macOS/Windows pairing, ESP32/Raspberry
+  Pi local-device pairing, Apple Watch via iPhone proxy, HA Assist STT/TTS and
+  Assist Conversation Agent-only entries with no client pairing UI.
+- Keep release/download links focused on the current public sources:
+  HACS/`pcvantol/djconnect`, app builds from
+  `pcvantol/djconnect-app-releases`, firmware from
+  `pcvantol/djconnect-firmware`, and Linux/Raspberry Pi builds from
+  `pcvantol/djconnect-pi-releases`.
 - Keep the start page clear that Spotify Direct requires Spotify Premium and
   the user's own Spotify Developer app because redirect URIs must be registered
   for their own Home Assistant external URL. Music Assistant does not need a

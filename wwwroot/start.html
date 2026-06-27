@@ -93,7 +93,7 @@
     @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } .switch-tabs { grid-template-columns:1fr; } }
 
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.0" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.1" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -221,17 +221,17 @@
       <div class="wrap table-wrap section-followup">
         <h3 data-i18n="compatTitle">Compatibility matrix</h3>
         <table class="comparison-table">
-          <thead><tr><th data-i18n="componentHeader">Component</th><th data-i18n="supportHeader">Support</th><th data-i18n="connectivityHeader">Connectivity</th></tr></thead>
+          <thead><tr><th data-i18n="componentHeader">Component</th><th data-i18n="supportHeader">Support</th><th data-i18n="connectivityHeader">Connectivity</th><th data-i18n="contractHeader">Contract</th></tr></thead>
           <tbody>
-            <tr><td>Home Assistant/HACS integration</td><td>3.2.x</td><td>Home Assistant</td></tr>
-            <tr><td>ESP32 LilyGO T-Embed S3</td><td data-i18n="protocol32">Protocol 3.2.x</td><td data-i18n="localOnly">Local-only</td></tr>
-            <tr><td>ESP32-S3-BOX-3</td><td data-i18n="notSupported">Not supported</td><td data-i18n="notSupported">Not supported</td></tr>
-            <tr><td>Raspberry Pi/Linux</td><td data-i18n="supported">Supported</td><td data-i18n="localOnly">Local-only</td></tr>
-            <tr><td>iOS</td><td data-i18n="localPairing">Local pairing</td><td data-i18n="remoteCapable">Remote-capable after local pairing</td></tr>
-            <tr><td>macOS</td><td data-i18n="localPairing">Local pairing</td><td data-i18n="remoteCapable">Remote-capable after local pairing</td></tr>
-            <tr><td>Windows</td><td data-i18n="localPairing">Local pairing</td><td data-i18n="remoteCapable">Remote-capable after local pairing</td></tr>
-            <tr><td>watchOS</td><td data-i18n="iphoneProxy">Via iPhone proxy</td><td data-i18n="iphoneProxy">Via iPhone proxy</td></tr>
-            <tr><td>HA Assist satellites</td><td data-i18n="conversationAgent">DJConnect conversation agent</td><td>Home Assistant Assist</td></tr>
+            <tr><td>Home Assistant/HACS integration</td><td>3.2.x</td><td>Home Assistant</td><td data-i18n="haContract">Patch versions may differ; major/minor must match. HTTP 426 version_mismatch means update the client or integration, not reset pairing.</td></tr>
+            <tr><td>ESP32 LilyGO T-Embed S3</td><td data-i18n="protocol32">Protocol 3.2.x</td><td data-i18n="localOnly">Local-only</td><td data-i18n="espContract">Local-device client with _djconnect._tcp, optional Client adres and /api/device/*.</td></tr>
+            <tr><td>ESP32-S3-BOX-3</td><td data-i18n="notSupported">Not supported</td><td data-i18n="notSupported">Not supported</td><td data-i18n="notSupported">Not supported</td></tr>
+            <tr><td>Raspberry Pi/Linux</td><td data-i18n="protocol32">Protocol 3.2.x</td><td data-i18n="localOnly">Local-only</td><td data-i18n="piContract">Local-device client with _djconnect._tcp, optional Client adres, /api/device/* and Pi restart/shutdown/display use cases.</td></tr>
+            <tr><td>iOS</td><td data-i18n="localPairing">Local pairing</td><td data-i18n="remoteCapable">Remote-capable after local pairing</td><td data-i18n="iosContract">Inbound-only app client: djconnect-ios-XXXXXXXXXXXX, client_type ios, posts to /api/djconnect/pair.</td></tr>
+            <tr><td>macOS</td><td data-i18n="localPairing">Local pairing</td><td data-i18n="remoteCapable">Remote-capable after local pairing</td><td data-i18n="macosContract">Inbound-only app client: djconnect-macos-XXXXXXXXXXXX, client_type macos, posts to /api/djconnect/pair.</td></tr>
+            <tr><td>Windows</td><td data-i18n="localPairing">Local pairing</td><td data-i18n="remoteCapable">Remote-capable after local pairing</td><td data-i18n="windowsContract">Inbound-only app client: djconnect-windows-XXXXXXXXXXXX, client_type windows, posts to /api/djconnect/pair.</td></tr>
+            <tr><td>watchOS</td><td data-i18n="iphoneProxy">Via iPhone proxy</td><td data-i18n="iphoneProxy">Via iPhone proxy</td><td data-i18n="watchContract">No separate Home Assistant pairing; the paired iPhone proxies Watch identity and sync.</td></tr>
+            <tr><td>HA Assist satellites</td><td data-i18n="conversationAgent">DJConnect conversation agent</td><td>Home Assistant Assist</td><td data-i18n="assistContract">No device token, firmware controls or client pairing UI; STT/TTS stay in the HA Assist pipeline.</td></tr>
           </tbody>
         </table>
       </div>
@@ -257,7 +257,7 @@
         <div class="card route-card">
           <span class="route-label">Automatisch</span>
           <h2 data-i18n="hacsTitle">2. Voeg toe aan Home Assistant</h2>
-          <p class="lead" data-i18n="hacsLead">Gebruik onderstaande Home Assistant Community Store knop om direct naar de DJConnect repository in HACS te gaan.</p>
+          <p class="lead" data-i18n="hacsLead">Gebruik onderstaande Home Assistant Community Store knop om direct naar de DJConnect repository in HACS te gaan. Installeer de 3.2.x integration, herstart Home Assistant en voeg daarna DJConnect toe via Devices & services.</p>
           <a class="btn primary" href="/go/hacs" target="_blank" rel="noopener" data-i18n="hacsButton">Open DJConnect in HACS</a>
         </div>
         <div class="card route-card">
@@ -313,7 +313,7 @@
     <section id="pairing">
       <div class="wrap">
         <h2 data-i18n="pairingTitle">6. Koppel app of device lokaal</h2>
-        <p class="lead" data-i18n="pairingLead">Pairing/token bootstrap gebeurt lokaal. iOS, macOS en Windows kunnen daarna remote werken via Home Assistant; ESP32 en Raspberry Pi blijven local-only.</p>
+        <p class="lead" data-i18n="pairingLead">Pairing/token bootstrap gebeurt lokaal. iOS, macOS en Windows zijn inbound-only app clients en kunnen daarna remote werken via Home Assistant; ESP32 en Raspberry Pi blijven local-device clients en local-only.</p>
       </div>
       <div class="wrap">
         <div class="client-switch">
@@ -337,7 +337,7 @@
               <ol class="steps">
                 <li><a class="btn primary" href="ios.html">Download iOS app</a></li>
                 <li data-i18n="appPairStep2">Open de DJConnect app op hetzelfde lokale netwerk als Home Assistant</li>
-                <li data-i18n="appPairStep3">Voer de pairing code lokaal in of scan de QR-code uit Home Assistant</li>
+                <li data-i18n="appPairStep3">Voer de pairing code lokaal in of scan de QR-code uit Home Assistant; de app post zelf naar /api/djconnect/pair</li>
                 <li data-i18n="appPairStep4">Geen Client adres kopiëren: de app belt Home Assistant zelf via /api/djconnect/...</li>
                 <li data-i18n="appPairStep5">Daarna kan de app lokaal of remote werken via je Home Assistant URL</li>
               </ol>
@@ -347,7 +347,7 @@
               <ol class="steps">
                 <li><a class="btn primary" href="macos.html">Download macOS app</a></li>
                 <li data-i18n="appPairStep2">Open de DJConnect app op hetzelfde lokale netwerk als Home Assistant</li>
-                <li data-i18n="appPairStep3">Voer de pairing code lokaal in of scan de QR-code uit Home Assistant</li>
+                <li data-i18n="appPairStep3">Voer de pairing code lokaal in of scan de QR-code uit Home Assistant; de app post zelf naar /api/djconnect/pair</li>
                 <li data-i18n="appPairStep4">Geen Client adres kopiëren: de app belt Home Assistant zelf via /api/djconnect/...</li>
                 <li data-i18n="appPairStep5">Daarna kan de app lokaal of remote werken via je Home Assistant URL</li>
               </ol>
@@ -358,7 +358,7 @@
                 <li><a class="btn primary" href="windows.html">Download Windows app</a></li>
                 <li data-i18n="windowsInstallStep">Installeer de DJConnect Windows desktop app zodra je build beschikbaar is</li>
                 <li data-i18n="appPairStep2">Open de DJConnect app op hetzelfde lokale netwerk als Home Assistant</li>
-                <li data-i18n="appPairStep3">Voer de pairing code lokaal in of scan de QR-code uit Home Assistant</li>
+                <li data-i18n="appPairStep3">Voer de pairing code lokaal in of scan de QR-code uit Home Assistant; de app post zelf naar /api/djconnect/pair</li>
                 <li data-i18n="appPairStep4">Geen Client adres kopiëren: de app belt Home Assistant zelf via /api/djconnect/...</li>
                 <li data-i18n="appPairStep5">Daarna kan de app lokaal of remote werken via je Home Assistant URL</li>
               </ol>
@@ -370,7 +370,7 @@
                 <li>Zet het DJConnect device aan en verbind het device met WiFi via captive portal of Home Assistant BLE WiFi provisioning</li>
                 <li>Open DJConnect integratie setup in Home Assistant</li>
                 <li>Voer de koppelcode in van het device</li>
-                <li data-i18n="espLocalOnlyStep">Het DJConnect ESP32 apparaat gebruikt alleen de lokale /api/device/* device API en blijft local-only</li>
+                <li data-i18n="espLocalOnlyStep">Het DJConnect ESP32 apparaat gebruikt _djconnect._tcp of Client adres, alleen de lokale /api/device/* device API en blijft local-only</li>
               </ol>
             </article>
             <article class="card client-panel" data-client-panel="assist">
@@ -387,14 +387,29 @@
               <h3 data-i18n="raspberryTitle">Raspberry Pi app</h3>
               <ol class="steps">
                 <li><a class="btn primary" href="raspberry-pi.html">Download Linux app</a></li>
-                <li>Installeer de DJConnect Raspberry Pi app via Github</li>
+                <li>Installeer de DJConnect Raspberry Pi app via GitHub</li>
                 <li>Open DJConnect integratie setup in Home Assistant</li>
                 <li data-i18n="raspberryPairStep">Kies client type Raspberry Pi app en koppel lokaal op hetzelfde netwerk</li>
-                <li data-i18n="raspberryLocalOnlyStep">Raspberry Pi gebruikt lokale runtime/device-connectiviteit en blijft local-only</li>
+                <li data-i18n="raspberryLocalOnlyStep">Raspberry Pi gebruikt _djconnect._tcp of Client adres, lokale /api/device/* runtime/device-connectiviteit en blijft local-only</li>
               </ol>
             </article>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section id="downloads">
+      <div class="wrap">
+        <h2 data-i18n="downloadsTitle">Release- en downloadlinks</h2>
+        <p class="lead" data-i18n="downloadsLead">Gebruik de platformpagina's hieronder voor de nieuwste publieke builds. De downloadkaarten lezen de actuele GitHub Releases en routeren downloadkliks privacyvriendelijk via djconnect.dev.</p>
+      </div>
+      <div class="wrap grid-3">
+        <article class="card"><h3>HACS</h3><p data-i18n="downloadHacsText">Home Assistant integration uit pcvantol/djconnect, category Integration, versie 3.2.x.</p><div class="download-actions"><a class="btn" href="/go/hacs" target="_blank" rel="noopener">HACS</a></div></article>
+        <article class="card"><h3>iOS / macOS / Windows</h3><p data-i18n="downloadAppsText">App builds komen uit pcvantol/djconnect-app-releases met aparte platformfilters voor iOS, macOS, Windows en Mac Catalyst.</p><div class="download-actions"><a class="btn" href="ios.html">iOS</a><a class="btn" href="macos.html">macOS</a><a class="btn" href="windows.html">Windows</a></div></article>
+        <article class="card"><h3>ESP32</h3><p data-i18n="downloadEspText">Firmware komt uit pcvantol/djconnect-firmware en blijft bedoeld voor ondersteunde local-device hardware.</p><div class="download-actions"><a class="btn" href="embedded.html">ESP32</a></div></article>
+        <article class="card"><h3>Raspberry Pi / Linux</h3><p data-i18n="downloadPiText">Linux/Raspberry Pi builds en install command komen uit pcvantol/djconnect-pi-releases.</p><div class="download-actions"><a class="btn" href="raspberry-pi.html">Linux</a></div></article>
+        <article class="card"><h3>APNs / Privacy</h3><p data-i18n="downloadPrivacyText">Apple push is optioneel en alleen een wake/sync hint. De relay ontvangt geen Spotify tokens, HA tokens, raw prompts, raw audio, volledige Ask DJ history of DJ Memory.</p><div class="download-actions"><a class="btn" href="privacy.html">Privacy</a></div></article>
+        <article class="card"><h3>Support</h3><p data-i18n="downloadSupportText">Gebruik support voor installatieproblemen, HACS updates, pairing, STT/TTS, backend capabilities of ontbrekende release assets.</p><div class="download-actions"><a class="btn" href="support.html">Support</a></div></article>
       </div>
     </section>
 
@@ -420,7 +435,7 @@
     <p data-i18n="legalSpotify">Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.2.0</p>
+    <p class="site-version">DJConnect website v3.2.1</p>
   </footer>
   <script>
     const translations = {
@@ -505,17 +520,26 @@
         componentHeader: "Component",
         supportHeader: "Support",
         connectivityHeader: "Connectiviteit",
+        contractHeader: "Contract",
         protocol32: "Protocol 3.2.x",
         localOnly: "Local-only",
         localPairing: "Lokale pairing",
         remoteCapable: "Remote-capable na lokale pairing",
         iphoneProxy: "Via iPhone proxy",
         conversationAgent: "DJConnect conversation agent",
+        haContract: "Patchversies mogen verschillen; major/minor moeten matchen. HTTP 426 version_mismatch betekent client of integration updaten, niet pairing resetten.",
+        espContract: "Local-device client met _djconnect._tcp, optioneel Client adres en /api/device/*.",
+        piContract: "Local-device client met _djconnect._tcp, optioneel Client adres, /api/device/* en Pi restart/shutdown/display use cases.",
+        iosContract: "Inbound-only app client: djconnect-ios-XXXXXXXXXXXX, client_type ios, post naar /api/djconnect/pair.",
+        macosContract: "Inbound-only app client: djconnect-macos-XXXXXXXXXXXX, client_type macos, post naar /api/djconnect/pair.",
+        windowsContract: "Inbound-only app client: djconnect-windows-XXXXXXXXXXXX, client_type windows, post naar /api/djconnect/pair.",
+        watchContract: "Geen losse Home Assistant pairing; de gekoppelde iPhone proxyt Watch identity en sync.",
+        assistContract: "Geen device token, firmware controls of client pairing UI; STT/TTS blijven in de HA Assist pipeline.",
         voiceTitle: "1. Configureer assist pipeline in Home Assistant",
         voiceLead: "DJConnect gebruikt je Home Assistant voice pipeline voor stembesturing en gesproken DJ aankondigingen.",
         voiceHelp: "Hulp bij Home Assistant voice assist",
         hacsTitle: "2. Voeg toe aan Home Assistant",
-        hacsLead: "Gebruik onderstaande Home Assistant Community Store knop om direct naar de DJConnect repository in HACS te gaan.",
+        hacsLead: "Gebruik onderstaande Home Assistant Community Store knop om direct naar de DJConnect repository in HACS te gaan. Installeer de 3.2.x integration, herstart Home Assistant en voeg daarna DJConnect toe via Devices & services.",
         hacsButton: "Open DJConnect in HACS",
         spotifyOauthTitle: "4. Alleen Spotify Direct: maak een Spotify Developer app",
         spotifyOauthLead: "Sla deze stap over als je Music Assistant gebruikt. Spotify Direct gebruikt je eigen Home Assistant installatie, Spotify Premium, een Spotify Developer app Client ID en OAuth/PKCE.",
@@ -534,7 +558,7 @@
         configureStep4: "Bij Music Assistant: selecteer je Music Assistant player; Spotify OAuth in DJConnect is dan niet nodig",
         configureStep5: "Configureer voice via je Home Assistant Assist pipeline, niet via directe externe STT/TTS APIs",
         pairingTitle: "6. Koppel app of device lokaal",
-        pairingLead: "Pairing/token bootstrap gebeurt lokaal. iOS, macOS en Windows kunnen daarna remote werken via Home Assistant; ESP32 en Raspberry Pi blijven local-only.",
+        pairingLead: "Pairing/token bootstrap gebeurt lokaal. iOS, macOS en Windows zijn inbound-only app clients en kunnen daarna remote werken via Home Assistant; ESP32 en Raspberry Pi blijven local-device clients en local-only.",
         clientTypeLabel: "Kies client type",
         assistTitle: "Voice Assistant",
         espTitle: "ESP device",
@@ -543,15 +567,23 @@
         windowsTitle: "Windows app",
         raspberryTitle: "Raspberry Pi app",
         appPairStep2: "Open de DJConnect app op hetzelfde lokale netwerk als Home Assistant",
-        appPairStep3: "Voer de pairing code lokaal in of scan de QR-code uit Home Assistant",
+        appPairStep3: "Voer de pairing code lokaal in of scan de QR-code uit Home Assistant; de app post zelf naar /api/djconnect/pair",
         appPairStep4: "Geen Client adres kopiëren: de app belt Home Assistant zelf via /api/djconnect/...",
         appPairStep5: "Daarna kan de app lokaal of remote werken via je Home Assistant URL",
         windowsInstallStep: "Installeer de DJConnect Windows desktop app zodra je build beschikbaar is",
-        espLocalOnlyStep: "Het DJConnect ESP32 apparaat gebruikt alleen de lokale /api/device/* device API en blijft local-only",
+        espLocalOnlyStep: "Het DJConnect ESP32 apparaat gebruikt _djconnect._tcp of Client adres, alleen de lokale /api/device/* device API en blijft local-only",
         assistSatelliteStep: "Gebruik je HA Assist satellite, Home Assistant Voice Preview Edition, M5 Atom Echo of ander ESPHome-powered voice project voor wake word, microfoon en speaker-output",
         assistNoPairingStep: "Geen client pairing, device token of Client adres nodig",
         raspberryPairStep: "Kies client type Raspberry Pi app en koppel lokaal op hetzelfde netwerk",
-        raspberryLocalOnlyStep: "Raspberry Pi gebruikt lokale runtime/device-connectiviteit en blijft local-only",
+        raspberryLocalOnlyStep: "Raspberry Pi gebruikt _djconnect._tcp of Client adres, lokale /api/device/* runtime/device-connectiviteit en blijft local-only",
+        downloadsTitle: "Release- en downloadlinks",
+        downloadsLead: "Gebruik de platformpagina's hieronder voor de nieuwste publieke builds. De downloadkaarten lezen de actuele GitHub Releases en routeren downloadkliks privacyvriendelijk via djconnect.dev.",
+        downloadHacsText: "Home Assistant integration uit pcvantol/djconnect, category Integration, versie 3.2.x.",
+        downloadAppsText: "App builds komen uit pcvantol/djconnect-app-releases met aparte platformfilters voor iOS, macOS, Windows en Mac Catalyst.",
+        downloadEspText: "Firmware komt uit pcvantol/djconnect-firmware en blijft bedoeld voor ondersteunde local-device hardware.",
+        downloadPiText: "Linux/Raspberry Pi builds en install command komen uit pcvantol/djconnect-pi-releases.",
+        downloadPrivacyText: "Apple push is optioneel en alleen een wake/sync hint. De relay ontvangt geen Spotify tokens, HA tokens, raw prompts, raw audio, volledige Ask DJ history of DJ Memory.",
+        downloadSupportText: "Gebruik support voor installatieproblemen, HACS updates, pairing, STT/TTS, backend capabilities of ontbrekende release assets.",
         readyTitle: "7. Klaar voor gebruik",
         readyLead: "Start muziek op je gekozen player of output en bedien daarna alles via DJConnect.",
         readyStep1: "Kies je player/output in Spotify Direct of Music Assistant",
@@ -643,17 +675,26 @@
         componentHeader: "Component",
         supportHeader: "Support",
         connectivityHeader: "Connectivity",
+        contractHeader: "Contract",
         protocol32: "Protocol 3.2.x",
         localOnly: "Local-only",
         localPairing: "Local pairing",
         remoteCapable: "Remote-capable after local pairing",
         iphoneProxy: "Via iPhone proxy",
         conversationAgent: "DJConnect conversation agent",
+        haContract: "Patch versions may differ; major/minor must match. HTTP 426 version_mismatch means update the client or integration, not reset pairing.",
+        espContract: "Local-device client with _djconnect._tcp, optional Client address and /api/device/*.",
+        piContract: "Local-device client with _djconnect._tcp, optional Client address, /api/device/* and Pi restart/shutdown/display use cases.",
+        iosContract: "Inbound-only app client: djconnect-ios-XXXXXXXXXXXX, client_type ios, posts to /api/djconnect/pair.",
+        macosContract: "Inbound-only app client: djconnect-macos-XXXXXXXXXXXX, client_type macos, posts to /api/djconnect/pair.",
+        windowsContract: "Inbound-only app client: djconnect-windows-XXXXXXXXXXXX, client_type windows, posts to /api/djconnect/pair.",
+        watchContract: "No separate Home Assistant pairing; the paired iPhone proxies Watch identity and sync.",
+        assistContract: "No device token, firmware controls or client pairing UI; STT/TTS stay in the HA Assist pipeline.",
         voiceTitle: "1. Configure assist pipeline in Home Assistant",
         voiceLead: "DJConnect uses your Home Assistant voice pipeline for voice control and spoken DJ announcements.",
         voiceHelp: "Help with Home Assistant voice assist",
         hacsTitle: "2. Add to Home Assistant",
-        hacsLead: "Use the Home Assistant Community Store button below to open the DJConnect repository in HACS directly.",
+        hacsLead: "Use the Home Assistant Community Store button below to open the DJConnect repository in HACS directly. Install the 3.2.x integration, restart Home Assistant and then add DJConnect through Devices & services.",
         hacsButton: "Open DJConnect in HACS",
         spotifyOauthTitle: "4. Spotify Direct only: create a Spotify Developer app",
         spotifyOauthLead: "Skip this step when you use Music Assistant. Spotify Direct uses your own Home Assistant installation, Spotify Premium, a Spotify Developer app Client ID and OAuth/PKCE.",
@@ -672,7 +713,7 @@
         configureStep4: "With Music Assistant: select your Music Assistant player; Spotify OAuth in DJConnect is not needed",
         configureStep5: "Configure voice through your Home Assistant Assist pipeline, not through direct external STT/TTS APIs",
         pairingTitle: "6. Pair app or device locally",
-        pairingLead: "Pairing/token bootstrap happens locally. iOS, macOS and Windows can then work remotely through Home Assistant; ESP32 and Raspberry Pi stay local-only.",
+        pairingLead: "Pairing/token bootstrap happens locally. iOS, macOS and Windows are inbound-only app clients and can then work remotely through Home Assistant; ESP32 and Raspberry Pi stay local-device clients and local-only.",
         clientTypeLabel: "Choose client type",
         assistTitle: "Voice Assistant",
         espTitle: "ESP device",
@@ -681,15 +722,23 @@
         windowsTitle: "Windows app",
         raspberryTitle: "Raspberry Pi app",
         appPairStep2: "Open the DJConnect app on the same local network as Home Assistant",
-        appPairStep3: "Enter the pairing code locally or scan the QR code from Home Assistant",
+        appPairStep3: "Enter the pairing code locally or scan the QR code from Home Assistant; the app posts to /api/djconnect/pair itself",
         appPairStep4: "No Client address copying: the app calls Home Assistant itself through /api/djconnect/...",
         appPairStep5: "After that, the app can work locally or remotely through your Home Assistant URL",
         windowsInstallStep: "Install the DJConnect Windows desktop app when your build is available",
-        espLocalOnlyStep: "The DJConnect ESP32 device uses only the local /api/device/* device API and stays local-only",
+        espLocalOnlyStep: "The DJConnect ESP32 device uses _djconnect._tcp or Client address, only the local /api/device/* device API and stays local-only",
         assistSatelliteStep: "Use your HA Assist satellite, Home Assistant Voice Preview Edition, M5 Atom Echo or another ESPHome-powered voice project for wake word, microphone and speaker output",
         assistNoPairingStep: "No client pairing, device token or Client address needed",
         raspberryPairStep: "Choose client type Raspberry Pi app and pair locally on the same network",
-        raspberryLocalOnlyStep: "Raspberry Pi uses local runtime/device connectivity and stays local-only",
+        raspberryLocalOnlyStep: "Raspberry Pi uses _djconnect._tcp or Client address, local /api/device/* runtime/device connectivity and stays local-only",
+        downloadsTitle: "Release and download links",
+        downloadsLead: "Use the platform pages below for the latest public builds. Download cards read current GitHub Releases and route download clicks through djconnect.dev in a privacy-friendly way.",
+        downloadHacsText: "Home Assistant integration from pcvantol/djconnect, category Integration, version 3.2.x.",
+        downloadAppsText: "App builds come from pcvantol/djconnect-app-releases with separate platform filters for iOS, macOS, Windows and Mac Catalyst.",
+        downloadEspText: "Firmware comes from pcvantol/djconnect-firmware and stays intended for supported local-device hardware.",
+        downloadPiText: "Linux/Raspberry Pi builds and install command come from pcvantol/djconnect-pi-releases.",
+        downloadPrivacyText: "Apple push is optional and only a wake/sync hint. The relay receives no Spotify tokens, HA tokens, raw prompts, raw audio, full Ask DJ history or DJ Memory.",
+        downloadSupportText: "Use support for setup issues, HACS updates, pairing, STT/TTS, backend capabilities or missing release assets.",
         readyTitle: "7. Ready to use",
         readyLead: "Start music on your chosen player or output, then control everything through DJConnect.",
         readyStep1: "Choose your player/output in Spotify Direct or Music Assistant",
@@ -726,6 +775,6 @@
     });
 
   </script>
-  <script src="assets/site-nav.js?v=3.2.0"></script>
+  <script src="assets/site-nav.js?v=3.2.1"></script>
 </body>
 </html>

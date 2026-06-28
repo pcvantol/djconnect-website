@@ -78,10 +78,11 @@ export const fetchLatestRelease = async (env, repo) => {
   return response.json();
 };
 
-export const jsonResponse = (body, status = 200) => new Response(JSON.stringify(body, null, 2), {
+export const jsonResponse = (body, status = 200, headers = {}) => new Response(JSON.stringify(body, null, 2), {
   status,
   headers: {
     "Content-Type": "application/json; charset=utf-8",
-    "Cache-Control": "no-store"
+    "Cache-Control": "no-store",
+    ...headers
   }
 });

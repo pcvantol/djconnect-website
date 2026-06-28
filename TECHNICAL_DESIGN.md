@@ -16,8 +16,9 @@ Primary source files:
 - Edge functions: `functions/**/*.js`
 - Data schema: `migrations/0001_create_click_counters.sql`
 - Tests: `tests/site.test.mjs`
-- Optional browser smoke and screenshot tests: `tests/smoke.playwright.mjs`, `tests/screenshots.spec.mjs`
+- Optional browser smoke and screenshot tests: `tests/smoke.spec.mjs`, `tests/screenshots.spec.mjs`
 - Operational helper scripts: `scripts/check-stats.mjs`
+- Shared site configuration: `scripts/site-config.mjs`
 - Release tooling: `release.sh`, `scripts/build-release.mjs`, `cleanup_old_releases.sh`
 - CI/CD: `.github/workflows/deploy-pages.yml`
 
@@ -41,6 +42,29 @@ Sources:
 - `wwwroot/macos.html`
 - `wwwroot/ios.html`
 - `wwwroot/raspberry-pi.html`
+
+### Shared Build and Test Configuration
+
+Small cross-cutting site facts live in `scripts/site-config.mjs`: the source
+directory, release output directory, public page registry, release-minified
+assets and version reader. Build tooling and tests import this module instead
+of maintaining separate hardcoded lists.
+
+Why:
+
+- Keeps the static-site architecture while reducing drift between build,
+  tests, sitemap expectations and release asset minification.
+- Lets `scripts/build-release.mjs` apply footer version and asset cache-busting
+  from the canonical `VERSION` file when producing `dist/wwwroot`.
+- Gives tests a single public-page registry for link, sitemap and translation
+  coverage.
+
+Sources:
+
+- `scripts/site-config.mjs`
+- `scripts/build-release.mjs`
+- `tests/helpers/site.mjs`
+- `tests/site-architecture.test.mjs`
 
 ### Progressive Enhancement for Dynamic Data
 

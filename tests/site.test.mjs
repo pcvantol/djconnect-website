@@ -1,99 +1,23 @@
-import { access, readFile } from "node:fs/promises";
 import { execFile } from "node:child_process";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { promisify } from "node:util";
 import vm from "node:vm";
+import {
+  releaseOutputDir,
+  sharedReleaseAssets,
+  sourceDir
+} from "../scripts/site-config.mjs";
+import {
+  assertLocalRefExists,
+  assertMissing,
+  assertTranslationsCoverPage,
+  extractRefs,
+  publicPages,
+  read
+} from "./helpers/site.mjs";
 
-const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
-const webRoot = new URL("../wwwroot/", import.meta.url);
 const exec = promisify(execFile);
-const publicPages = ["index", "start", "features", "platform", "voice-commands", "voice-assistant", "blog", "blog-djconnect-project", "support", "privacy", "ios", "testflight", "testflight-macos", "macos", "windows", "maccatalyst", "raspberry-pi", "embedded", "404"];
-
-const assertMissing = async (path) => {
-  await assert.rejects(
-    access(new URL(`../${path}`, import.meta.url)),
-    { code: "ENOENT" },
-    `${path} must not exist in this repo`
-  );
-};
-
-const extractDataKeys = (html) => {
-  const keys = new Set();
-  for (const match of html.matchAll(/data-i18n="([^"]+)"/g)) {
-    keys.add(match[1]);
-  }
-  for (const match of html.matchAll(/data-i18n-attr="([^"]+)"/g)) {
-    for (const mapping of match[1].split(",")) {
-      const [, key] = mapping.split(":").map((part) => part.trim());
-      if (key) keys.add(key);
-    }
-  }
-  return [...keys].sort();
-};
-
-const extractTranslationBlock = (html, language) => {
-  const marker = `${language}: {`;
-  const start = html.indexOf(marker);
-  assert.notEqual(start, -1, `Missing ${language} translation block`);
-
-  let depth = 0;
-  let blockStart = html.indexOf("{", start);
-  for (let index = blockStart; index < html.length; index += 1) {
-    const char = html[index];
-    if (char === "{") depth += 1;
-    if (char === "}") depth -= 1;
-    if (depth === 0) return html.slice(blockStart, index + 1);
-  }
-  throw new Error(`Could not parse ${language} translation block`);
-};
-
-const assertTranslationsCoverPage = (html, pageName) => {
-  const keys = extractDataKeys(html);
-  assert.ok(keys.length > 0, `${pageName} should have translatable text keys`);
-
-  for (const language of ["nl", "en"]) {
-    const block = extractTranslationBlock(html, language);
-    for (const key of ["title", "metaDescription", ...keys]) {
-      assert.match(block, new RegExp(`${key}:`), `${pageName} ${language} missing ${key}`);
-    }
-  }
-};
-
-const extractRefs = (html) => {
-  const refs = [];
-  for (const match of html.matchAll(/\s(?:href|src)="([^"]+)"/g)) {
-    refs.push(match[1]);
-  }
-  return refs;
-};
-
-const shouldSkipRef = (ref) => (
-  !ref ||
-  ref.startsWith("#") ||
-  ref.startsWith("http://") ||
-  ref.startsWith("https://") ||
-  ref.startsWith("mailto:") ||
-  ref.startsWith("tel:") ||
-  ref.startsWith("/go/") ||
-  ref.startsWith("/api/")
-);
-
-const assertLocalRefExists = async (page, ref) => {
-  if (shouldSkipRef(ref)) return;
-
-  const cleanRef = ref.split("#")[0].split("?")[0];
-  if (!cleanRef) return;
-
-  const base = new URL(`../wwwroot/${page}`, import.meta.url);
-  const target = new URL(cleanRef, base);
-
-  assert.ok(
-    target.href.startsWith(webRoot.href),
-    `${page} references local file outside wwwroot: ${ref}`
-  );
-  await access(target);
-};
 
 test("site version is consistent", async () => {
   const [version, packageJson, index, embedded] = await Promise.all([
@@ -1118,8 +1042,13 @@ test("TestFlight page explains beta route", async () => {
 });
 
 test("release proxy function is present", async () => {
-  const proxy = await read("functions/api/releases.js");
-  assert.match(proxy, /env\.GITHUB_TOKEN/);
+  const [proxy, analytics] = await Promise.all([
+    read("functions/api/releases.js"),
+    read("functions/_shared/analytics.js")
+  ]);
+  assert.match(proxy, /githubHeaders\(env\)/);
+  assert.match(proxy, /jsonResponse/);
+  assert.match(analytics, /env\.GITHUB_TOKEN/);
   assert.match(proxy, /api\.github\.com\/repos/);
 });
 
@@ -1463,11 +1392,14 @@ test("release build minifies shared assets before deploy", async () => {
   const scripts = JSON.parse(packageJson).scripts;
 
   assert.equal(scripts["build:release"], "node scripts/build-release.mjs");
-  assert.match(buildScript, /const outputDir = path\.resolve\("dist\/wwwroot"\)/);
-  assert.match(buildScript, /const sharedAssets = \[/);
-  assert.match(buildScript, /assets\/site-nav\.css/);
-  assert.match(buildScript, /assets\/downloads\.js/);
-  assert.match(buildScript, /assets\/voice-intents\.js/);
+  assert.equal(sourceDir, "wwwroot");
+  assert.equal(releaseOutputDir, "dist/wwwroot");
+  assert.ok(sharedReleaseAssets.includes("assets/site-nav.css"));
+  assert.ok(sharedReleaseAssets.includes("assets/downloads.js"));
+  assert.ok(sharedReleaseAssets.includes("assets/voice-intents.js"));
+  assert.match(buildScript, /const outputDir = path\.resolve\(releaseOutputDir\)/);
+  assert.match(buildScript, /sharedReleaseAssets/);
+  assert.match(buildScript, /readSiteVersion/);
   assert.match(buildScript, /minifyCss/);
   assert.match(buildScript, /minifyJs/);
   assert.doesNotMatch(buildScript, /stripJsComments/);
@@ -1497,8 +1429,9 @@ test("release build minifies shared assets before deploy", async () => {
     read("dist/wwwroot/assets/site-nav.min.js")
   ]);
 
-  assert.match(releaseIndex, /assets\/site-nav\.min\.css/);
-  assert.match(releaseIndex, /assets\/site-nav\.min\.js/);
+  assert.match(releaseIndex, /assets\/site-nav\.min\.css\?v=3\.2\.2/);
+  assert.match(releaseIndex, /assets\/site-nav\.min\.js\?v=3\.2\.2/);
+  assert.match(releaseIndex, /DJConnect website v3\.2\.2/);
   assert.doesNotMatch(releaseIndex, /assets\/site-nav\.css\?v=/);
   assert.doesNotMatch(releaseIndex, /assets\/site-nav\.js\?v=/);
   assert.ok(releaseNavCss.length < (await read("wwwroot/assets/site-nav.css")).length);

@@ -47,19 +47,25 @@ Static landing page for DJConnect, published through Cloudflare Pages.
 - Ask DJ is a major product feature for iOS, macOS, Windows, Apple Watch and
   Raspberry Pi clients.
   Website copy should keep it clear that Ask DJ runs through Home Assistant and
-  DJConnect integration 3.2.x, uses compact bounded server-side DJ
-  Memory/history, carries chat continuity across app clients, can show Ja/Nee
+  DJConnect integration 3.2.3 or newer, uses compact bounded server-side Music
+  DNA/history, carries chat continuity across app clients, can show Ja/Nee
   follow-up controls, uses backend-aware Spotify Direct or Music Assistant
   actions, can use optional Apple push notifications only as wake/attention
   hints through Home Assistant sync and starts concrete recommendations only
   after the user taps `Play Now`. ESP32 uses PTT/playback command flow without
   Ask DJ chat history; Raspberry Pi remains local-only and currently read-only
   for history unless a future Pi release explicitly expands that scope.
-  DJ Memory summary questions such as `Wat weet je nu over mij?` /
+  Music DNA summary questions such as `Wat weet je nu over mij?` /
   `What do you know about me?` are privacy/info answers from server-side
-  `djconnect_memory` only: render text and sources, not stale album art,
+  `djconnect_music_dna` only: render text and sources, not stale album art,
   media cards, TTS replay buttons or `Play Now` controls.
-  Ask DJ Track Analysis should be described as musical/technical explanation
+  Local app clients may optionally use Home Assistant's native `/api/websocket`
+  after normal local pairing and HA websocket auth for low-latency
+  `djconnect/command`, `djconnect/ask_dj/message` and
+  `djconnect/track_insight` calls when `djconnect/capabilities` advertises
+  them. HTTP remains the canonical fallback for remote access, pairing,
+  history sync/clear, voice uploads, image/TTS URLs and websocket failures.
+  Ask DJ Track Insight should be described as musical/technical explanation
   from playback context plus optional user-configured providers. Do not imply
   DJConnect directly analyzes encrypted Spotify playback audio; exact BPM, key,
   section or timestamp data requires an available source or local analysis
@@ -349,7 +355,7 @@ Use `./cleanup_old_releases.sh` manually only when you want cleanup outside the 
   `Spraak`, `Blog`, `Installeren`, `Support`, `Privacy` and the primary `Aan de slag`
   CTA. Do not add a `Hoe werkt het` self-link to the homepage top navigation.
 - Keep Ask DJ product copy user-facing, not API-reference style: mention Home
-  Assistant, server-side DJ Memory/history, Apple Watch/iPhone/Mac/Windows
+  Assistant, server-side Music DNA/history, Apple Watch/iPhone/Mac/Windows
   continuity, explicit `Play Now`, Ja/Nee follow-ups, bounded history/trim
   behavior, backend-aware Spotify Direct or Music Assistant actions, voice/PTT
   with Assist STT/TTS on iOS, macOS, Windows and Apple Watch, Raspberry Pi

@@ -457,30 +457,30 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     }
   },
   {
-    "id": "personal_memory_summary",
+    "id": "personal_music_dna_summary",
     "plays_music": false,
-    "action": "memory_summary",
-    "intent": "personal_memory_summary",
+    "action": "music_dna_summary",
+    "intent": "personal_music_dna_summary",
     "response_shape": {
       "text_only": true,
       "images": [],
       "playback_actions": [],
       "sources": [
-        "djconnect_memory"
+        "djconnect_music_dna"
       ]
     },
-    "description": "Ask what DJConnect currently remembers about the user. The response must be based on DJ Memory only, without live playback artwork, Spotify profile enrichment, TTS replay or Play Now actions.",
+    "description": "Ask what DJConnect currently remembers about the user. The response must be based on Music DNA only, without live playback artwork, Spotify profile enrichment or Play Now actions.",
     "nl": [
       "Wat weet je nu over mij?",
       "Wat weet je over mij?",
       "Wat weet DJConnect over mij?",
-      "Wat staat er in mijn DJ Memory?",
+      "Wat staat er in mijn Music DNA?",
       "Wat herinner je je over mij?"
     ],
     "en": [
       "What do you know about me?",
       "What does DJConnect know about me?",
-      "What is in my DJ Memory?",
+      "What is in my Music DNA?",
       "What do you remember about me?"
     ],
     "playsMusic": false,
@@ -490,25 +490,25 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
       "en": "Privacy"
     },
     "title": {
-      "nl": "DJ Memory bekijken",
-      "en": "Review DJ Memory"
+      "nl": "Music DNA bekijken",
+      "en": "Review Music DNA"
     },
     "text": {
-      "nl": "Privacyvraag over server-side DJ Memory. Render als tekst met bron djconnect_memory: geen oude album art, mediakaarten, TTS replay, Play Now en geen live playback of profielverrijking.",
-      "en": "Privacy question about server-side DJ Memory. Render as text with djconnect_memory source: no old album art, media cards, TTS replay, Play Now, live playback or profile enrichment."
+      "nl": "Privacyvraag over server-side Music DNA. Render als tekst met bron djconnect_music_dna: geen oude album art, mediakaarten, Play Now en geen live playback of profielverrijking.",
+      "en": "Privacy question about server-side Music DNA. Render as text with djconnect_music_dna source: no old album art, media cards, Play Now, live playback or profile enrichment."
     },
     "examples": {
       "nl": [
         "Wat weet je nu over mij?",
         "Wat weet je over mij?",
         "Wat weet DJConnect over mij?",
-        "Wat staat er in mijn DJ Memory?",
+        "Wat staat er in mijn Music DNA?",
         "Wat herinner je je over mij?"
       ],
       "en": [
         "What do you know about me?",
         "What does DJConnect know about me?",
-        "What is in my DJ Memory?",
+        "What is in my Music DNA?",
         "What do you remember about me?"
       ]
     }
@@ -525,7 +525,7 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "Actief"
       ]
     },
-    "description": "Ask which Spotify output devices are available or request speaker switching. DJConnect returns a text list plus output actions when devices are known.",
+    "description": "Ask which backend output devices or target players are available, or request speaker switching. DJConnect returns a text list plus backend-aware output actions when outputs are known.",
     "nl": [
       "Welke speakers zijn er?",
       "Welke apparaten kan ik gebruiken?",
@@ -699,6 +699,64 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     }
   },
   {
+    "id": "artist_item_list",
+    "plays_music": false,
+    "action": "none",
+    "intent": "artist_item_list",
+    "response_shape": {
+      "playback_actions_kind": [
+        "track",
+        "album",
+        "playlist"
+      ],
+      "button_labels": [
+        "Play Now"
+      ],
+      "images": "proxied when Spotify art is available"
+    },
+    "description": "Ask which tracks, albums or playlists exist for an artist. DJConnect parses the artist name and returns Play Now rows without starting playback.",
+    "nl": [
+      "Welke muziek heeft Scooter gemaakt?",
+      "Welke nummers heeft Radiohead gemaakt?",
+      "Geef me 5 nummers van Pearl Jam",
+      "Geef me albums van Radiohead",
+      "Toon playlists van Metallica"
+    ],
+    "en": [
+      "What music has Scooter made?",
+      "Which songs has Radiohead released?",
+      "Give me 5 songs by Pearl Jam",
+      "Show albums by Radiohead",
+      "Find playlists from Metallica"
+    ],
+    "playsMusic": false,
+    "messageKind": "user",
+    "pill": {
+      "nl": "Catalogus",
+      "en": "Catalog"
+    },
+    "title": {
+      "nl": "Tracks, albums of playlists",
+      "en": "Tracks, albums or playlists"
+    },
+    "examples": {
+      "nl": [
+        "Welke muziek heeft Scooter gemaakt?",
+        "Welke nummers heeft Radiohead gemaakt?",
+        "Geef me 5 nummers van Pearl Jam",
+        "Geef me albums van Radiohead",
+        "Toon playlists van Metallica"
+      ],
+      "en": [
+        "What music has Scooter made?",
+        "Which songs has Radiohead released?",
+        "Give me 5 songs by Pearl Jam",
+        "Show albums by Radiohead",
+        "Find playlists from Metallica"
+      ]
+    }
+  },
+  {
     "id": "similar_artists",
     "plays_music": false,
     "action": "none",
@@ -859,10 +917,68 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     }
   },
   {
+    "id": "current_track_versions",
+    "plays_music": false,
+    "action": "none",
+    "intent": "current_track_versions",
+    "response_shape": {
+      "playback_actions_kind": "track",
+      "button_labels": [
+        "Play Now"
+      ],
+      "images": "proxied per result when Spotify art is available"
+    },
+    "description": "Ask for live, acoustic or remix versions of the current track. DJConnect searches from the current track and artist, returns matching Play Now rows and does not start playback automatically.",
+    "nl": [
+      "Heb je een live versie?",
+      "Zoek een live versie van dit nummer",
+      "Heb je een akoestische versie?",
+      "Is er een unplugged versie?",
+      "Heb je remixes?",
+      "Zoek een remix van dit nummer"
+    ],
+    "en": [
+      "Do you have a live version?",
+      "Find a live version of this song",
+      "Do you have an acoustic version?",
+      "Is there an unplugged version?",
+      "Do you have remixes?",
+      "Find a remix of this track"
+    ],
+    "playsMusic": false,
+    "messageKind": "user",
+    "pill": {
+      "nl": "Versies",
+      "en": "Versions"
+    },
+    "title": {
+      "nl": "Live, akoestisch of remix",
+      "en": "Live, acoustic or remix"
+    },
+    "examples": {
+      "nl": [
+        "Heb je een live versie?",
+        "Zoek een live versie van dit nummer",
+        "Heb je een akoestische versie?",
+        "Is er een unplugged versie?",
+        "Heb je remixes?",
+        "Zoek een remix van dit nummer"
+      ],
+      "en": [
+        "Do you have a live version?",
+        "Find a live version of this song",
+        "Do you have an acoustic version?",
+        "Is there an unplugged version?",
+        "Do you have remixes?",
+        "Find a remix of this track"
+      ]
+    }
+  },
+  {
     "id": "personal_music_profile_analysis",
     "plays_music": false,
     "action": "profile_analysis",
-    "description": "Ask for a personal listening profile based on DJConnect Memory and Spotify recently played/top profile data.",
+    "description": "Ask for a personal listening profile based on Music DNA and Spotify recently played/top profile data.",
     "nl": [
       "Omschrijf eens waar ik zoal naar luisterde de afgelopen maand",
       "Wat zegt mijn muziek van de laatste twee weken over mijn stemming?",
@@ -897,6 +1013,59 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "What does my music from the last two weeks say about my mood?",
         "Which genres have I been listening to lately?",
         "Make a profile of my music taste this year"
+      ]
+    }
+  },
+  {
+    "id": "track_insight",
+    "plays_music": false,
+    "action": "track_insight",
+    "intent": "track_insight",
+    "intent_category": "informational",
+    "sources": [
+      "track_insight"
+    ],
+    "response_shape": {
+      "track_insight": true,
+      "analysis": true,
+      "visual_profile": true,
+      "playback_actions": "none"
+    },
+    "description": "Ask for Track Insight on the current track, returning normalized track metadata, concise analysis and deterministic visualization hints without changing playback.",
+    "nl": [
+      "Geef Track Insight voor dit nummer",
+      "Vertel me over deze track",
+      "Wat is de vibe van deze plaat?",
+      "Wat maakt dit nummer bijzonder?"
+    ],
+    "en": [
+      "Give me Track Insight for this song",
+      "Tell me about this track",
+      "What is the vibe of this song?",
+      "What makes this track special?"
+    ],
+    "playsMusic": false,
+    "messageKind": "user",
+    "pill": {
+      "nl": "Insight",
+      "en": "Insight"
+    },
+    "title": {
+      "nl": "Track Insight",
+      "en": "Track Insight"
+    },
+    "examples": {
+      "nl": [
+        "Geef Track Insight voor dit nummer",
+        "Vertel me over deze track",
+        "Wat is de vibe van deze plaat?",
+        "Wat maakt dit nummer bijzonder?"
+      ],
+      "en": [
+        "Give me Track Insight for this song",
+        "Tell me about this track",
+        "What is the vibe of this song?",
+        "What makes this track special?"
       ]
     }
   },
@@ -1014,12 +1183,18 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "id": "seed_playlist_mix",
     "plays_music": false,
     "action": "none",
-    "description": "Ask DJ to compose a playable mix from artist, track or genre seeds. The response returns a track_mix Play Now action and can later save the mix as a Spotify playlist.",
+    "description": "Ask DJ to compose a playable mix from artist, track or genre seeds. The response returns backend-aware Play Now actions; Spotify Direct can later save the mix as a Spotify playlist.",
     "nl": [
       "Stel een playlist samen op basis van Radiohead, Massive Attack en Portishead",
       "Maak een mix met Above & Beyond, Armin van Buuren en Ferry Corsten",
       "Ik wil een playlist obv tracks Reckoner, Teardrop en Angel",
       "Ik wil een playlist in genre ambient, techno en downtempo",
+      "Maak een 90s dance mix",
+      "Maak playlist obv huidig nummer",
+      "Ik wil meer van deze muziek horen",
+      "Heb je meer nummers die hierop lijken",
+      "Ik wil vergelijkbare tracks",
+      "Speel vergelijkbare nummers",
       "Sla deze mix op als Spotify playlist"
     ],
     "en": [
@@ -1027,6 +1202,12 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
       "Make a mix with Above & Beyond, Armin van Buuren and Ferry Corsten",
       "I want a playlist based on tracks Reckoner, Teardrop and Angel",
       "I want a playlist in genres ambient, techno and downtempo",
+      "Make a 90s dance mix",
+      "Create a playlist based on the current track",
+      "I want more of this music",
+      "Do you have more songs like this",
+      "I want similar tracks",
+      "Queue similar tracks",
       "Save this mix as a Spotify playlist"
     ],
     "playsMusic": false,
@@ -1045,6 +1226,12 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "Maak een mix met Above & Beyond, Armin van Buuren en Ferry Corsten",
         "Ik wil een playlist obv tracks Reckoner, Teardrop en Angel",
         "Ik wil een playlist in genre ambient, techno en downtempo",
+        "Maak een 90s dance mix",
+        "Maak playlist obv huidig nummer",
+        "Ik wil meer van deze muziek horen",
+        "Heb je meer nummers die hierop lijken",
+        "Ik wil vergelijkbare tracks",
+        "Speel vergelijkbare nummers",
         "Sla deze mix op als Spotify playlist"
       ],
       "en": [
@@ -1052,6 +1239,12 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "Make a mix with Above & Beyond, Armin van Buuren and Ferry Corsten",
         "I want a playlist based on tracks Reckoner, Teardrop and Angel",
         "I want a playlist in genres ambient, techno and downtempo",
+        "Make a 90s dance mix",
+        "Create a playlist based on the current track",
+        "I want more of this music",
+        "Do you have more songs like this",
+        "I want similar tracks",
+        "Queue similar tracks",
         "Save this mix as a Spotify playlist"
       ]
     }
@@ -1059,16 +1252,17 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
   {
     "id": "save_current_track",
     "plays_music": false,
-    "action": "save_current_track",
+    "action": "set_current_track_favorite",
     "intent": "playback_control",
     "response_shape": {
       "text_only": true,
       "images": [],
       "playback_actions": []
     },
-    "description": "Save the currently playing Spotify track to the user's Liked Songs/favorites. Now Playing cards can expose this as a control action labelled Zet in favorieten.",
+    "description": "Toggle the currently playing Spotify track in the user's Liked Songs/favorites. Now Playing cards can expose this as a control action with toggle state and client prompt.",
     "nl": [
       "Zet huidig nummer in favorieten",
+      "Haal huidig nummer uit favorieten",
       "Voeg dit nummer toe aan favorieten",
       "Bewaar deze track in favorieten",
       "Like dit nummer"
@@ -1095,8 +1289,9 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     },
     "examples": {
       "nl": [
-        "Zet huidig nummer in favorieten",
-        "Voeg dit nummer toe aan favorieten",
+      "Zet huidig nummer in favorieten",
+      "Haal huidig nummer uit favorieten",
+      "Voeg dit nummer toe aan favorieten",
         "Bewaar deze track in favorieten",
         "Like dit nummer"
       ],

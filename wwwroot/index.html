@@ -942,7 +942,7 @@
       }
     }
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.1" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.2" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -1074,7 +1074,7 @@
         <div class="ask-dj-panel">
           <article class="card ask-dj-card">
             <h3 data-i18n="askDjChatTitle">Meer dan Spotify command parsing</h3>
-            <p data-i18n="askDjChatText">Stel muziekvragen in natuurlijke taal. Ask DJ gebruikt actuele playbackcontext, DJConnect Memory en Spotify listening profile data waar beschikbaar om persoonlijk te antwoorden.</p>
+            <p data-i18n="askDjChatText">Stel muziekvragen in natuurlijke taal. Ask DJ gebruikt actuele playbackcontext, Music DNA en Spotify listening profile data waar beschikbaar om persoonlijk te antwoorden.</p>
             <div class="ask-dj-chips" aria-label="Ask DJ voorbeeldvragen" data-i18n-attr="aria-label:askDjExamplesLabel">
               <span data-i18n="askDjExample1">"Waarom koos je dit nummer?"</span>
               <span data-i18n="askDjExample2">"Welke muziek raad je mij aan?"</span>
@@ -1096,16 +1096,16 @@
         <div class="technical-analysis">
           <div class="technical-analysis-header">
             <div>
-              <h2 data-i18n="liveAnalysisTitle">Live Technical Track Analysis</h2>
+              <h2 data-i18n="liveAnalysisTitle">Track Insight</h2>
             </div>
             <p data-i18n="liveAnalysisLead">Vraag Ask DJ om de track die nu speelt technisch uit te leggen, alsof er een DJ-assistent naast je staat. Je krijgt bruikbare duiding zonder dat DJConnect doet alsof onbekende songdelen of meetdata zeker zijn.</p>
           </div>
           <div class="analysis-benefits">
-            <div class="analysis-benefit"><strong data-i18n="liveAnalysisBenefit1Title">Vraag natuurlijk</strong><span data-i18n="liveAnalysisBenefit1Text">Zeg “Analyseer dit nummer”, “Wat is de BPM en opbouw?” of “Give me a technical analysis of this song”.</span></div>
+            <div class="analysis-benefit"><strong data-i18n="liveAnalysisBenefit1Title">Vraag natuurlijk</strong><span data-i18n="liveAnalysisBenefit1Text">Zeg “Geef Track Insight voor dit nummer”, “Wat is de BPM en opbouw?” of “Give me Track Insight for this song”.</span></div>
             <div class="analysis-benefit"><strong data-i18n="liveAnalysisBenefit2Title">Read-only</strong><span data-i18n="liveAnalysisBenefit2Text">De analyse verandert je playback nooit; hij kijkt alleen mee met wat er nu speelt.</span></div>
             <div class="analysis-benefit"><strong data-i18n="liveAnalysisBenefit3Title">DJ-bruikbaar</strong><span data-i18n="liveAnalysisBenefit3Text">BPM, key, energie, groove, opbouw, klank, beperkingen en mix- of set-tips waar beschikbaar.</span></div>
             <div class="analysis-benefit"><strong data-i18n="liveAnalysisBenefit4Title">Client-ready</strong><span data-i18n="liveAnalysisBenefit4Text">Antwoorden kunnen als sections, timeline en DJ tips worden getoond op clients die dit ondersteunen.</span></div>
-            <div class="analysis-benefit"><strong data-i18n="liveAnalysisBenefit5Title">Local-first</strong><span data-i18n="liveAnalysisBenefit5Text">Ask DJ werkt via je eigen Home Assistant installatie; er is geen centrale DJConnect backend nodig voor trackanalyse.</span></div>
+            <div class="analysis-benefit"><strong data-i18n="liveAnalysisBenefit5Title">Local-first</strong><span data-i18n="liveAnalysisBenefit5Text">Ask DJ werkt via je eigen Home Assistant installatie; er is geen centrale DJConnect backend nodig voor Track Insight.</span></div>
             <div class="analysis-benefit"><strong data-i18n="liveAnalysisBenefit6Title">Provider-ready</strong><span data-i18n="liveAnalysisBenefit6Text">Gebouwd voor Spotify measured data, Home Assistant Conversation en lokale fallback, later uitbreidbaar met eigen analyzers of providers.</span></div>
           </div>
           <div class="ask-dj-panel">
@@ -1155,8 +1155,8 @@
           </article>
           <article class="card">
             <div class="icon">📊</div>
-            <h3 data-i18n="askDjAnalysisTitle">Ask DJ Track Analysis</h3>
-            <p data-i18n="askDjAnalysisText">Laat Ask DJ uitleggen waarom een track werkt. Vraag “Analyseer deze track” voor BPM, key, energiecurve, groove, structuur, instrumentatie, productie en mixbaarheid waar data of context dat ondersteunt; Live Technical Track Analysis toont ook bron, confidence en beperkingen.</p>
+            <h3 data-i18n="askDjAnalysisTitle">Ask DJ Track Insight</h3>
+            <p data-i18n="askDjAnalysisText">Laat Ask DJ uitleggen waarom een track werkt. Vraag “Geef Track Insight voor dit nummer” voor BPM, key, energiecurve, groove, structuur, instrumentatie, productie en mixbaarheid waar data of context dat ondersteunt; Track Insight toont ook bron, confidence en beperkingen.</p>
           </article>
           <article class="card">
             <div class="icon">🔔</div>
@@ -1166,7 +1166,7 @@
           <article class="card">
             <div class="icon">🔐</div>
             <h3 data-i18n="askDjPrivacyTitle">Privacy compact gehouden</h3>
-            <p data-i18n="askDjPrivacyText">Clients bewaren geen DJ Memory. Home Assistant bewaart compacte context/history, zonder Spotify OAuth tokens, bearer tokens, raw audio of volledige prompts. Ruwe voice-audio wordt standaard niet opgeslagen.</p>
+            <p data-i18n="askDjPrivacyText">Clients bewaren geen Music DNA. Home Assistant bewaart compacte context/history, zonder Spotify OAuth tokens, bearer tokens, raw audio of volledige prompts. Ruwe voice-audio wordt standaard niet opgeslagen.</p>
           </article>
           <article class="card">
             <div class="icon">🖥</div>
@@ -1321,7 +1321,7 @@
     <p data-i18n="legalSpotify">Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.2.1</p>
+    <p class="site-version">DJConnect website v3.2.2</p>
   </footer>
   <script src="assets/voice-intents.js"></script>
   <script>
@@ -1349,7 +1349,7 @@
         askDjTitle: "Ask DJ",
         askDjLead: "Ask DJ is je AI-DJ chat voor muziekvragen, persoonlijke aanbevelingen, backend-aware playback-acties en gesprekken die meegaan van Apple Watch naar iPhone, Mac en Windows.",
         askDjChatTitle: "Meer dan muziekcommands",
-        askDjChatText: "Stel muziekvragen in natuurlijke taal. Ask DJ gebruikt actuele playbackcontext, DJConnect Memory en backend capabilities; Spotify-profieldata wordt alleen gebruikt waar Spotify Direct die beschikbaar maakt.",
+        askDjChatText: "Stel muziekvragen in natuurlijke taal. Ask DJ gebruikt actuele playbackcontext, Music DNA en backend capabilities; Spotify-profieldata wordt alleen gebruikt waar Spotify Direct die beschikbaar maakt.",
         askDjExamplesLabel: "Ask DJ voorbeeldvragen",
         askDjExample1: "\"Waarom koos je dit nummer?\"",
         askDjExample2: "\"Welke muziek raad je mij aan?\"",
@@ -1361,10 +1361,10 @@
         askDjStep2: "Home Assistant haalt context, history en playbackstatus op.",
         askDjStep3: "DJConnect antwoordt met tekst, bronnen, afbeeldingen en optionele audio.",
         askDjStep4: "Bij concrete aanbevelingen kies je zelf Play Now; playback start pas na jouw tap.",
-        liveAnalysisTitle: "Live Technical Track Analysis",
+        liveAnalysisTitle: "Track Insight",
         liveAnalysisLead: "Vraag Ask DJ om de track die nu speelt technisch uit te leggen, alsof er een DJ-assistent naast je staat. Je krijgt bruikbare duiding zonder dat DJConnect doet alsof onbekende songdelen of meetdata zeker zijn.",
         liveAnalysisBenefit1Title: "Vraag natuurlijk",
-        liveAnalysisBenefit1Text: "Zeg “Analyseer dit nummer”, “Wat is de BPM en opbouw?” of “Give me a technical analysis of this song”.",
+        liveAnalysisBenefit1Text: "Zeg “Geef Track Insight voor dit nummer”, “Wat is de BPM en opbouw?” of “Give me Track Insight for this song”.",
         liveAnalysisBenefit2Title: "Read-only",
         liveAnalysisBenefit2Text: "De analyse verandert je playback nooit; hij kijkt alleen mee met wat er nu speelt.",
         liveAnalysisBenefit3Title: "DJ-bruikbaar",
@@ -1372,7 +1372,7 @@
         liveAnalysisBenefit4Title: "Client-ready",
         liveAnalysisBenefit4Text: "Antwoorden kunnen als sections, timeline en DJ tips worden getoond op clients die dit ondersteunen.",
         liveAnalysisBenefit5Title: "Local-first",
-        liveAnalysisBenefit5Text: "Ask DJ werkt via je eigen Home Assistant installatie; er is geen centrale DJConnect backend nodig voor trackanalyse.",
+        liveAnalysisBenefit5Text: "Ask DJ werkt via je eigen Home Assistant installatie; er is geen centrale DJConnect backend nodig voor Track Insight.",
         liveAnalysisBenefit6Title: "Provider-ready",
         liveAnalysisBenefit6Text: "Gebouwd voor beschikbare backenddata, Home Assistant Conversation en lokale fallback, later uitbreidbaar met eigen analyzers of providers.",
         liveAnalysisHowTitle: "Hoe het werkt",
@@ -1395,12 +1395,12 @@
         askDjVoiceText: "iOS, macOS, Apple Watch en Windows kunnen voice/PTT gebruiken. Home Assistant STT transcribeert; TTS kan audio-antwoorden leveren. Replay verschijnt alleen als er audio beschikbaar is.",
         askDjActionsTitle: "Van vraag naar actie",
         askDjActionsText: "Vraag om muziek, kies een player of output, start een suggestie of bevestig een vervolgactie. Ask DJ toont alleen acties die je actieve music backend ondersteunt.",
-        askDjAnalysisTitle: "Ask DJ Track Analysis",
-        askDjAnalysisText: "Laat Ask DJ uitleggen waarom een track werkt. Vraag “Analyseer deze track” voor BPM, key, energiecurve, groove, structuur, instrumentatie, productie en mixbaarheid waar data of context dat ondersteunt; Live Technical Track Analysis toont ook bron, confidence en beperkingen.",
+        askDjAnalysisTitle: "Ask DJ Track Insight",
+        askDjAnalysisText: "Laat Ask DJ uitleggen waarom een track werkt. Vraag “Geef Track Insight voor dit nummer” voor BPM, key, energiecurve, groove, structuur, instrumentatie, productie en mixbaarheid waar data of context dat ondersteunt; Track Insight toont ook bron, confidence en beperkingen.",
         askDjNotificationsTitle: "Optionele meldingen",
         askDjNotificationsText: "Apple clients kunnen optionele pushmeldingen gebruiken als wake- of attentionhint voor Ask DJ-sync. Push bevat geen tokens, volledige antwoorden, audio of history; de app haalt inhoud via Home Assistant op.",
         askDjPrivacyTitle: "Privacy compact gehouden",
-        askDjPrivacyText: "Clients bewaren geen DJ Memory. Home Assistant bewaart compacte context/history, zonder Spotify OAuth tokens, bearer tokens, raw audio of volledige prompts. Ruwe voice-audio wordt standaard niet opgeslagen.",
+        askDjPrivacyText: "Clients bewaren geen Music DNA. Home Assistant bewaart compacte context/history, zonder Spotify OAuth tokens, bearer tokens, raw audio of volledige prompts. Ruwe voice-audio wordt standaard niet opgeslagen.",
         askDjPiTitle: "Raspberry Pi leest mee",
         askDjPiText: "Op Raspberry Pi is Ask DJ gericht op local-only gebruik en read-only history display. Chat/history blijft bij app-clients; ESP gebruikt PTT/playback command flow zonder Ask DJ chat history.",
         askDjRequirementsTitle: "Wat je nodig hebt",
@@ -1488,7 +1488,7 @@
         askDjTitle: "Ask DJ",
         askDjLead: "Ask DJ is your AI DJ chat for music questions, personal recommendations, backend-aware playback actions and conversations that continue across Apple Watch, iPhone, Mac and Windows.",
         askDjChatTitle: "More than music commands",
-        askDjChatText: "Ask music questions in natural language. Ask DJ uses current playback context, DJConnect Memory and backend capabilities; Spotify profile data is used only where Spotify Direct makes it available.",
+        askDjChatText: "Ask music questions in natural language. Ask DJ uses current playback context, Music DNA and backend capabilities; Spotify profile data is used only where Spotify Direct makes it available.",
         askDjExamplesLabel: "Ask DJ example questions",
         askDjExample1: "\"Why did you choose this track?\"",
         askDjExample2: "\"What music would you recommend for me?\"",
@@ -1500,10 +1500,10 @@
         askDjStep2: "Home Assistant fetches context, history and playback status.",
         askDjStep3: "DJConnect replies with text, sources, images and optional audio.",
         askDjStep4: "For concrete recommendations you choose Play Now yourself; playback starts only after your tap.",
-        liveAnalysisTitle: "Live Technical Track Analysis",
+        liveAnalysisTitle: "Track Insight",
         liveAnalysisLead: "Ask DJ can technically explain the track that is playing now, like having a DJ assistant next to you. You get useful context without DJConnect pretending unknown song sections or measured data are certain.",
         liveAnalysisBenefit1Title: "Ask naturally",
-        liveAnalysisBenefit1Text: "Say “Analyseer dit nummer”, “Wat is de BPM en opbouw?” or “Give me a technical analysis of this song”.",
+        liveAnalysisBenefit1Text: "Say “Geef Track Insight voor dit nummer”, “Wat is de BPM en opbouw?” or “Give me Track Insight for this song”.",
         liveAnalysisBenefit2Title: "Read-only",
         liveAnalysisBenefit2Text: "Analysis never changes playback; it only looks at what is playing now.",
         liveAnalysisBenefit3Title: "Useful for DJing",
@@ -1511,11 +1511,11 @@
         liveAnalysisBenefit4Title: "Client-ready",
         liveAnalysisBenefit4Text: "Replies can be rendered as sections, timeline and DJ tips on clients that support it.",
         liveAnalysisBenefit5Title: "Local-first",
-        liveAnalysisBenefit5Text: "Ask DJ works through your own Home Assistant installation; no central DJConnect backend is needed for track analysis.",
+        liveAnalysisBenefit5Text: "Ask DJ works through your own Home Assistant installation; no central DJConnect backend is needed for Track Insight.",
         liveAnalysisBenefit6Title: "Provider-ready",
         liveAnalysisBenefit6Text: "Built for available backend data, Home Assistant Conversation and local fallback, expandable later with your own analyzers or providers.",
         liveAnalysisHowTitle: "How it works",
-        liveAnalysisStep1: "Ask DJ for a technical analysis of the current track.",
+        liveAnalysisStep1: "Ask DJ for Track Insight on the current track.",
         liveAnalysisStep2: "Home Assistant gathers playback context and available source data without raw audio or secrets in the analysis contract.",
         liveAnalysisStep3: "DJConnect returns a transparent answer with confidence, source, limitations, timeline and DJ tips.",
         liveAnalysisTrustTitle: "Clear about what is known",
@@ -1534,12 +1534,12 @@
         askDjVoiceText: "iOS, macOS, Apple Watch and Windows can use voice/PTT. Home Assistant STT transcribes; TTS can provide audio replies. Replay appears only when audio is available.",
         askDjActionsTitle: "From request to action",
         askDjActionsText: "Ask for music, choose a player or output, start a suggestion or confirm a follow-up action. Ask DJ shows only actions your active music backend supports.",
-        askDjAnalysisTitle: "Ask DJ Track Analysis",
-        askDjAnalysisText: "Let Ask DJ explain why a track works. Ask “Give me a technical analysis of this song” for BPM, key, energy curve, groove, structure, instrumentation, production and mixability where data or context supports it, based on available context and optional providers you configure.",
+        askDjAnalysisTitle: "Ask DJ Track Insight",
+        askDjAnalysisText: "Let Ask DJ explain why a track works. Ask “Give me Track Insight for this song” for BPM, key, energy curve, groove, structure, instrumentation, production and mixability where data or context supports it, based on available context and optional providers you configure.",
         askDjNotificationsTitle: "Optional notifications",
         askDjNotificationsText: "Apple clients can use optional push notifications as wake or attention hints for Ask DJ sync. Push contains no tokens, full replies, audio or history; the app fetches content through Home Assistant.",
         askDjPrivacyTitle: "Privacy kept compact",
-        askDjPrivacyText: "Clients do not store DJ Memory. Home Assistant stores compact context/history without Spotify OAuth tokens, bearer tokens, raw audio or full prompts. Raw voice audio is not stored by default.",
+        askDjPrivacyText: "Clients do not store Music DNA. Home Assistant stores compact context/history without Spotify OAuth tokens, bearer tokens, raw audio or full prompts. Raw voice audio is not stored by default.",
         askDjPiTitle: "Raspberry Pi follows along",
         askDjPiText: "On Raspberry Pi, Ask DJ is focused on local-only use and read-only history display. Chat/history stays with app clients; ESP uses the PTT/playback command flow without Ask DJ chat history.",
         askDjRequirementsTitle: "What you need",
@@ -1673,6 +1673,6 @@
 
     applyLanguage(getInitialLanguage());
   </script>
-  <script src="assets/site-nav.js?v=3.2.1"></script>
+  <script src="assets/site-nav.js?v=3.2.2"></script>
 </body>
 </html>

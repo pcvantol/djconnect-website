@@ -12,7 +12,7 @@
 - Cloudflare Pages project: `djconnect`
 - Source directory: `wwwroot`
 - Release publish directory: `dist/wwwroot`
-- Current version: `3.2.1`
+- Current version: `3.2.2`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Platform overview page with CSS architecture diagram: `wwwroot/platform.html`
@@ -49,7 +49,7 @@
   Assistant card linked to `wwwroot/voice-assistant.html`.
 - Ask DJ is a major product feature on the homepage and Features page. Keep
   copy clear that it runs through Home Assistant with DJConnect integration
-  3.2.x, uses compact bounded server-side DJ Memory/history per Home Assistant
+  3.2.x, uses compact bounded server-side Music DNA/history per Home Assistant
   user, supports Apple Watch/iPhone/Mac/Windows continuity, can show Ja/Nee
   follow-up controls, uses backend-aware actions for Spotify Direct or Music
   Assistant, can use optional Apple push notifications only as wake/attention
@@ -57,7 +57,7 @@
   explicit `Play Now` tap. ESP32 uses PTT/playback command flow without Ask DJ
   chat history; Raspberry Pi remains local-only and read-only for history unless
   a future Pi release explicitly expands that scope.
-- Ask DJ Track Analysis copy must stay clear that DJConnect does not directly
+- Ask DJ Track Insight copy must stay clear that DJConnect does not directly
   analyze encrypted Spotify playback audio. Exact BPM, key, sections or
   timestamps are shown only when available from source data or a user-configured
   local/provider analysis path; otherwise Ask DJ should label the answer as
@@ -78,8 +78,8 @@
   separately from deterministic voice commands so users understand which
   phrases are conversational Ask DJ requests rather than direct Spotify search
   commands.
-- The `personal_memory_summary` Ask DJ family is a privacy / DJ Memory info
-  question. It has `action: "memory_summary"`, source `djconnect_memory`, no
+- The `personal_music_dna_summary` Ask DJ family is a privacy / Music DNA info
+  question. It has `action: "music_dna_summary"`, source `djconnect_music_dna`, no
   images and no playback actions. Website/client guidance must keep it
   text-only and must not imply live Spotify playback, Spotify profile
   enrichment, stale artwork, TTS replay or `Play Now`.
@@ -119,6 +119,13 @@
   Apple/Windows clients no longer host a local device API or require users to
   copy a Client address to Home Assistant; apps call Home Assistant through
   `/api/djconnect/...`.
+- Local app clients may optionally use Home Assistant's native `/api/websocket`
+  as a low-latency fast path after normal local pairing and HA websocket auth.
+  Capability-detect with `djconnect/capabilities`, then use
+  `djconnect/command`, `djconnect/ask_dj/message` and
+  `djconnect/track_insight` only when advertised. HTTP remains canonical
+  fallback for remote access, pairing, history sync/clear, voice uploads,
+  image/TTS URLs and websocket timeout/error/disconnect.
 - The start page links to Home Assistant voice assistant documentation, the embedded firmware page and `pcvantol/djconnect-app-releases`.
 - The start page pairing switch has separate panels for ESP device, iOS app, macOS app, Windows app and Raspberry Pi app.
 - macOS, Windows, Mac Catalyst, iOS, Raspberry Pi and embedded pages label the homepage navigation route as `Home`; app pages should not show cross-links to other app/device pages in the top menu.
@@ -256,7 +263,7 @@ useful for higher GitHub API limits.
   the token-protected `/api/stats` contract and the release-script
   dependency/tool preflight.
 - `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. `npm run screenshots:live` captures Dutch live production screenshots at a laptop viewport into `screenshots/live-laptop/`. Neither is part of the default `npm test` run.
-- Current released version `3.2.1` loads localized static What's New JSON on
+- Current released version `3.2.2` loads localized static What's New JSON on
   download-page changelogs before falling back to GitHub release bodies.
   Version `3.1.64` adds dedicated Windows and Mac Catalyst client pages,
   homepage cards, download rendering and release-note paths. Version `3.1.63`

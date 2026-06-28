@@ -8,13 +8,13 @@
   primary CTA button. The homepage should not show a `Hoe werkt het` self-link.
 - Verify the homepage Ask DJ section explains chat, personal recommendations,
   explicit `Play Now`, Watch/iPhone/Mac/Windows continuity, Home Assistant
-  server-side DJ Memory/history, Ja/Nee follow-ups, bounded history trim
+  server-side Music DNA/history, Ja/Nee follow-ups, bounded history trim
   behavior, backend-aware Spotify Direct or Music Assistant actions, voice/PTT
   with Assist STT/TTS, Raspberry Pi local-only read-only history display, ESP
   PTT/playback command flow without Ask DJ chat history, optional Apple push
   notifications as wake/attention hints only, and compact privacy boundaries.
-- Verify Ask DJ Track Analysis copy explains musical/technical track analysis,
-  example prompts such as "Analyseer deze track", BPM/key only where source data
+- Verify Ask DJ Track Insight copy explains musical/technical Track Insight,
+  example prompts such as "Geef Track Insight voor dit nummer", BPM/key only where source data
   is available, optional user-configured metadata or local analysis providers,
   local-first Home Assistant operation and read-only playback behavior. It must
   not claim direct analysis of encrypted Spotify playback audio or guaranteed
@@ -26,7 +26,7 @@
 - Open `wwwroot/features.html` and verify Ask DJ, the core features and renamed
   bonus mini-games are visible: Paddle Rally, Meteor Run, Sky Dash and Maze
   Chase.
-- Verify the Features page includes Ask DJ Track Analysis with BPM/key source
+- Verify the Features page includes Ask DJ Track Insight with BPM/key source
   nuance, music structure, production/mixability copy and read-only behavior.
 - Verify the Features, Spraak, Blog, Support and Privacy pages keep their top
   navigation focused on relevant cross-links only and do not show self-links.
@@ -35,7 +35,7 @@
   and artist voice intent families.
 - Verify the Spraak page shows Ask DJ examples separately from deterministic
   voice commands, including conversational follow-ups, contextual play
-  follow-ups, DJ Memory summary privacy questions, album/artist questions,
+  follow-ups, Music DNA summary privacy questions, album/artist questions,
   concert agenda, next-track info, listening-profile analysis, recommendations
   with explicit `Play Now`, seeded mix/playlist requests, DJ announcements,
   ambient system facts and idle suggestions.

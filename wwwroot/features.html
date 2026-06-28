@@ -59,7 +59,7 @@
     @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } }
 
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.1" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.2" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -101,12 +101,12 @@
 
     <section>
       <div class="wrap analysis-band">
-        <h2 data-i18n="liveAnalysisTitle">Ask DJ Live Technical Track Analysis</h2>
-        <p class="lead" data-i18n="liveAnalysisLead">Vraag “Analyseer dit nummer” en Ask DJ legt de track die nu speelt technisch uit: BPM, key, energie, groove, opbouw, klank en DJ-tips waar de beschikbare data dat ondersteunt.</p>
+        <h2 data-i18n="liveAnalysisTitle">Ask DJ Track Insight</h2>
+        <p class="lead" data-i18n="liveAnalysisLead">Vraag “Geef Track Insight voor dit nummer” en Ask DJ legt de track die nu speelt technisch uit: BPM, key, energie, groove, opbouw, klank en DJ-tips waar de beschikbare data dat ondersteunt.</p>
         <div class="analysis-grid">
           <div class="analysis-item"><strong data-i18n="liveAnalysisItem1Title">Read-only</strong><span data-i18n="liveAnalysisItem1Text">Analyse kijkt mee met je huidige track en verandert playback nooit.</span></div>
           <div class="analysis-item"><strong data-i18n="liveAnalysisItem2Title">Eerlijk over data</strong><span data-i18n="liveAnalysisItem2Text">Geen verzonnen intro, couplet, refrein of drop wanneer exacte secties niet bekend zijn.</span></div>
-          <div class="analysis-item"><strong data-i18n="liveAnalysisItem3Title">Local-first</strong><span data-i18n="liveAnalysisItem3Text">Werkt via je eigen Home Assistant installatie, zonder centrale DJConnect backend voor trackanalyse.</span></div>
+          <div class="analysis-item"><strong data-i18n="liveAnalysisItem3Title">Local-first</strong><span data-i18n="liveAnalysisItem3Text">Werkt via je eigen Home Assistant installatie, zonder centrale DJConnect backend voor Track Insight.</span></div>
           <div class="analysis-item"><strong data-i18n="liveAnalysisItem4Title">Provider-ready</strong><span data-i18n="liveAnalysisItem4Text">Voor Spotify measured data, Home Assistant Conversation, lokale fallback en later eigen analyzers of providers.</span></div>
           <div class="analysis-item"><strong data-i18n="liveAnalysisItem5Title">Transparant</strong><span data-i18n="liveAnalysisItem5Text">Elke analyse kan confidence, source en limitations tonen.</span></div>
           <div class="analysis-item"><strong data-i18n="liveAnalysisItem6Title">Client-ready</strong><span data-i18n="liveAnalysisItem6Text">Sections, timeline en DJ tips zijn bedoeld als renderbare output voor apps en clients.</span></div>
@@ -124,7 +124,7 @@
         <div class="grid-3">
           <article class="card"><div class="icon">🎙️</div><h3 data-i18n="musicTitle">Muziek aanvragen</h3><p data-i18n="musicText">Vraag een artiest aan met je stem of via de app. DJConnect vertaalt je verzoek naar een concrete muziekactie.</p></article>
           <article class="card"><div class="icon">💬</div><h3 data-i18n="askDjTitle">Slimme follow-ups</h3><p data-i18n="askDjText">Ask DJ geeft niet alleen antwoord, maar ook acties. Wissel direct van speaker, kies een aanbevolen track, bekijk album art of antwoord met een tik op een vervolgvraag.</p></article>
-          <article class="card"><div class="icon">📊</div><h3 data-i18n="trackAnalysisTitle">Ask DJ Track Analysis</h3><p data-i18n="trackAnalysisText">Laat Ask DJ de huidige track technisch duiden: BPM en key waar brondata beschikbaar is, plus energiecurve, groove, intro, refrein, breakdowns, instrumentatie, productie en mixbaarheid wanneer context of confidence dat ondersteunt. Read-only: analyse verandert nooit je playback.</p></article>
+          <article class="card"><div class="icon">📊</div><h3 data-i18n="trackAnalysisTitle">Ask DJ Track Insight</h3><p data-i18n="trackAnalysisText">Laat Ask DJ de huidige track technisch duiden: BPM en key waar brondata beschikbaar is, plus energiecurve, groove, intro, refrein, breakdowns, instrumentatie, productie en mixbaarheid wanneer context of confidence dat ondersteunt. Read-only: analyse verandert nooit je playback.</p></article>
           <article class="card"><div class="icon">▶</div><h3 data-i18n="playbackTitle">Music backend playback</h3><p data-i18n="playbackText">Start, pauzeer en stuur playback naar je gekozen player via Spotify Direct of Music Assistant.</p></article>
           <article class="card"><div class="icon">🔊</div><h3 data-i18n="speakerTitle">Speaker keuze</h3><p data-i18n="speakerText">Kies bewust waar muziek wordt afgespeeld, zodat dezelfde aanvraag past bij je kamer, moment of device.</p></article>
           <article class="card"><div class="icon">🏠</div><h3 data-i18n="haTitle">Home Assistant hub</h3><p data-i18n="haText">Spotify autorisatie, inclusief je eigen Spotify Developer app en Client ID, voice assist, device-koppeling en clientconfiguratie lopen centraal via Home Assistant.</p></article>
@@ -170,9 +170,9 @@
     <p>Copyright Peter van Tol 2026. Released under the MIT License.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.2.1</p>
+    <p class="site-version">DJConnect website v3.2.2</p>
   </footer>
-  <script src="assets/site-nav.js?v=3.2.1"></script>
+  <script src="assets/site-nav.js?v=3.2.2"></script>
 </body>
 <script>
   const translations = {
@@ -194,14 +194,14 @@
       mapOutput: "Kies waar je muziek speelt",
       mapFeedback: "Krijg persoonlijke DJ aankondigingen",
       mapClients: "Gebruik dezelfde flow op Mac, Windows, iOS, Linux en ESP32",
-      liveAnalysisTitle: "Ask DJ Live Technical Track Analysis",
-      liveAnalysisLead: "Vraag “Analyseer dit nummer” en Ask DJ legt de track die nu speelt technisch uit: BPM, key, energie, groove, opbouw, klank en DJ-tips waar de beschikbare data dat ondersteunt.",
+      liveAnalysisTitle: "Ask DJ Track Insight",
+      liveAnalysisLead: "Vraag “Geef Track Insight voor dit nummer” en Ask DJ legt de track die nu speelt technisch uit: BPM, key, energie, groove, opbouw, klank en DJ-tips waar de beschikbare data dat ondersteunt.",
       liveAnalysisItem1Title: "Read-only",
       liveAnalysisItem1Text: "Analyse kijkt mee met je huidige track en verandert playback nooit.",
       liveAnalysisItem2Title: "Eerlijk over data",
       liveAnalysisItem2Text: "Geen verzonnen intro, couplet, refrein of drop wanneer exacte secties niet bekend zijn.",
       liveAnalysisItem3Title: "Local-first",
-      liveAnalysisItem3Text: "Werkt via je eigen Home Assistant installatie, zonder centrale DJConnect backend voor trackanalyse.",
+      liveAnalysisItem3Text: "Werkt via je eigen Home Assistant installatie, zonder centrale DJConnect backend voor Track Insight.",
       liveAnalysisItem4Title: "Provider-ready",
       liveAnalysisItem4Text: "Voor Spotify measured data, Home Assistant Conversation, lokale fallback en later eigen analyzers of providers.",
       liveAnalysisItem5Title: "Transparant",
@@ -215,7 +215,7 @@
       musicText: "Vraag een artiest aan met je stem of via de app. DJConnect vertaalt je verzoek naar een concrete muziekactie.",
       askDjTitle: "Slimme follow-ups",
       askDjText: "Ask DJ geeft niet alleen antwoord, maar ook acties. Wissel direct van speaker, kies een aanbevolen track, bekijk album art of antwoord met een tik op een vervolgvraag.",
-      trackAnalysisTitle: "Ask DJ Track Analysis",
+      trackAnalysisTitle: "Ask DJ Track Insight",
       trackAnalysisText: "Laat Ask DJ de huidige track technisch duiden: BPM en key waar brondata beschikbaar is, plus energiecurve, groove, intro, refrein, breakdowns, instrumentatie, productie en mixbaarheid wanneer context of confidence dat ondersteunt. Read-only: analyse verandert nooit je playback.",
       playbackTitle: "Music backend playback",
       playbackText: "Start, pauzeer en stuur playback naar je gekozen player via Spotify Direct of Music Assistant.",
@@ -261,14 +261,14 @@
       mapOutput: "Choose where your music plays",
       mapFeedback: "Receive personal DJ announcements",
       mapClients: "Use the same flow on Mac, Windows, iOS, Linux and ESP32",
-      liveAnalysisTitle: "Ask DJ Live Technical Track Analysis",
-      liveAnalysisLead: "Ask “Give me a technical analysis of this song” and Ask DJ explains the track playing now: BPM, key, energy, groove, arrangement, sound and DJ tips where the available data supports it.",
+      liveAnalysisTitle: "Ask DJ Track Insight",
+      liveAnalysisLead: "Ask “Give me Track Insight for this song” and Ask DJ explains the track playing now: BPM, key, energy, groove, arrangement, sound and DJ tips where the available data supports it.",
       liveAnalysisItem1Title: "Read-only",
       liveAnalysisItem1Text: "Analysis follows the current track and never changes playback.",
       liveAnalysisItem2Title: "Honest about data",
       liveAnalysisItem2Text: "No invented intro, verse, chorus or drop when exact sections are not known.",
       liveAnalysisItem3Title: "Local-first",
-      liveAnalysisItem3Text: "Works through your own Home Assistant installation, without a central DJConnect backend for track analysis.",
+      liveAnalysisItem3Text: "Works through your own Home Assistant installation, without a central DJConnect backend for Track Insight.",
       liveAnalysisItem4Title: "Provider-ready",
       liveAnalysisItem4Text: "For Spotify measured data, Home Assistant Conversation, local fallback and later your own analyzers or providers.",
       liveAnalysisItem5Title: "Transparent",
@@ -282,7 +282,7 @@
       musicText: "Ask for an artist by voice or through the app. DJConnect turns your request into a concrete music action.",
       askDjTitle: "Smart follow-ups",
       askDjText: "Ask DJ does more than answer: it gives you actions. Switch speakers, choose a recommended track, view album art or answer a follow-up question with one tap.",
-      trackAnalysisTitle: "Ask DJ Track Analysis",
+      trackAnalysisTitle: "Ask DJ Track Insight",
       trackAnalysisText: "Let Ask DJ technically explain the current track: BPM and key where source data is available, plus energy curve, groove, intro, chorus, breakdowns, instrumentation, production and mixability when context or confidence supports it. Read-only: analysis never changes playback.",
       playbackTitle: "Music backend playback",
       playbackText: "Start, pause and send playback to your chosen player through Spotify Direct or Music Assistant.",

@@ -4,6 +4,19 @@ All notable changes to this website are grouped per release.
 
 ## Unreleased
 
+## DJConnect website v3.2.2 - 2026-06-28
+
+- Synced website voice intent examples with the Home Assistant integration
+  `examples/voice_intents.json` and `VOICE_INTENT_DATA.md`, including Music
+  DNA summaries, Track Insight, artist item lists, current-track versions and
+  updated seed-mix/favorite action wording.
+- Updated public Ask DJ, privacy and app-page copy from DJ Memory terminology
+  to Music DNA and aligned Track Insight wording across homepage, Features,
+  Voice Commands and setup content.
+- Documented the optional local Home Assistant `/api/websocket` fast path for
+  paired app clients while keeping HTTP as the canonical fallback for remote
+  access, pairing, voice uploads, history sync and media URLs.
+
 ## DJConnect website v3.2.1 - 2026-06-27
 
 - Expanded the How To Start page with the public 3.2.x backend-contract details

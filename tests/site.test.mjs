@@ -254,9 +254,9 @@ test("homepage promotes Ask DJ as a major product feature", async () => {
   assert.match(index, /Play Now; playback start pas na jouw tap/);
   assert.match(index, /Van vraag naar actie/);
   assert.match(index, /Vraag om muziek, kies een player of output, start een suggestie of bevestig een vervolgactie/);
-  assert.match(index, /Ask DJ Track Analysis/);
+  assert.match(index, /Ask DJ Track Insight/);
   assert.match(index, /Laat Ask DJ uitleggen waarom een track werkt/);
-  assert.match(index, /Analyseer deze track/);
+  assert.match(index, /Geef Track Insight voor dit nummer/);
   assert.match(index, /BPM, key, energiecurve, groove, structuur, instrumentatie, productie en mixbaarheid/);
   assert.match(index, /optional providers you configure/);
   assert.match(index, /Continuity op Watch, iPhone, Mac en Windows/);
@@ -278,7 +278,7 @@ test("homepage promotes Ask DJ as a major product feature", async () => {
   assert.match(index, /ESP gebruikt PTT\/playback command flow zonder Ask DJ chat history/);
   assert.match(index, /iOS, macOS, Apple Watch en Windows kunnen voice\/PTT gebruiken/);
   assert.match(index, /Push contains no tokens, full replies, audio or history/);
-  assert.match(index, /Clients bewaren geen DJ Memory/);
+  assert.match(index, /Clients bewaren geen Music DNA/);
   assert.match(index, /zonder Spotify OAuth tokens, bearer tokens, raw audio of volledige prompts/);
   assert.match(index, /Ruwe voice-audio wordt standaard niet opgeslagen/);
   assert.match(index, /Spotify Premium en Client ID zijn alleen nodig voor Spotify Direct/);
@@ -429,6 +429,10 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /Bij Spotify Direct: vul je Client ID in en autoriseer Spotify via Home Assistant/);
   assert.match(start, /Bij Music Assistant: selecteer je Music Assistant player; Spotify OAuth in DJConnect is dan niet nodig/);
   assert.match(start, /niet via directe externe STT\/TTS APIs/);
+  assert.match(start, /Optioneel: lokale websocket fast path/);
+  assert.match(start, /Home Assistant \/api\/websocket gebruiken voor lage-latency commands/);
+  assert.match(start, /djconnect\/capabilities/);
+  assert.match(start, /HTTP blijft de fallback voor remote gebruik, pairing, voice uploads, history sync en media URLs/);
   assert.match(start, /id="client-ios" checked/);
   assert.match(start, /id="client-macos"/);
   assert.match(start, /id="client-windows"/);
@@ -463,7 +467,7 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /pcvantol\/djconnect-firmware/);
   assert.match(start, /pcvantol\/djconnect-pi-releases/);
   assert.match(start, /Apple push is optioneel en alleen een wake\/sync hint/);
-  assert.match(start, /geen Spotify tokens, HA tokens, raw prompts, raw audio, volledige Ask DJ history of DJ Memory/);
+  assert.match(start, /geen Spotify tokens, HA tokens, raw prompts, raw audio, volledige Ask DJ history of Music DNA/);
   assert.doesNotMatch(start, /Voor iOS is de Client API URL verplicht/);
   assert.doesNotMatch(start, /Voor macOS is de Client API URL verplicht/);
   assert.doesNotMatch(start, /De Linux app gebruikt dezelfde lokale Home Assistant koppeling/);
@@ -483,8 +487,8 @@ test("how-to-start page covers setup flow", async () => {
   assert.doesNotMatch(start, /Ververs HACS update informatie/);
   assert.match(start, /Spotify is a trademark of Spotify AB/);
   assert.match(start, /DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB/);
-  assert.match(start, /Optioneel: Track Analysis providers/);
-  assert.match(start, /Track Analysis werkt standaard met beschikbare playbackcontext/);
+  assert.match(start, /Optioneel: Track Insight providers/);
+  assert.match(start, /Track Insight werkt standaard met beschikbare playbackcontext/);
   assert.match(start, /API keys blijven in je eigen Home Assistant-installatie/);
   assert.match(start, /music metadata API or local audio-analysis add-on/);
   assertTranslationsCoverPage(start, "start page");
@@ -497,7 +501,7 @@ test("features page describes core functions and bonus games", async () => {
   assert.match(features, /Muziek aanvragen/);
   assert.match(features, /data-i18n="askDjTitle">Slimme follow-ups<\/h3>/);
   assert.match(features, /Ask DJ geeft niet alleen antwoord, maar ook acties/);
-  assert.match(features, /Ask DJ Track Analysis/);
+  assert.match(features, /Ask DJ Track Insight/);
   assert.match(features, /BPM en key waar brondata beschikbaar is/);
   assert.match(features, /energiecurve, groove, intro, refrein, breakdowns, instrumentatie, productie en mixbaarheid/);
   assert.match(features, /Read-only: analyse verandert nooit je playback/);
@@ -667,16 +671,19 @@ test("voice commands page documents intent families and DJ response styles", asy
   assert.deepEqual(actualAskDjIntentOrder, [
     "conversation_followup",
     "help",
-    "personal_memory_summary",
+    "personal_music_dna_summary",
     "speaker_outputs",
     "retry_previous_request",
     "contextual_play_followup",
     "album_discography",
+    "artist_item_list",
     "similar_artists",
     "artist_genre_style",
     "concert_agenda",
     "next_track_info",
+    "current_track_versions",
     "personal_music_profile_analysis",
+    "track_insight",
     "recently_played_history",
     "personal_music_recommendations",
     "seed_playlist_mix",
@@ -688,19 +695,19 @@ test("voice commands page documents intent families and DJ response styles", asy
   assert.match(intents, /Geeft niet/);
   assert.match(intents, /Wat kun je\?/);
   assert.match(intents, /Welke commando's kan ik gebruiken\?/);
-  assert.match(intents, /"id": "personal_memory_summary"/);
-  assert.match(intents, /"action": "memory_summary"/);
-  assert.match(intents, /"intent": "personal_memory_summary"/);
-  assert.match(intents, /"sources": \[\s*"djconnect_memory"\s*\]/);
+  assert.match(intents, /"id": "personal_music_dna_summary"/);
+  assert.match(intents, /"action": "music_dna_summary"/);
+  assert.match(intents, /"intent": "personal_music_dna_summary"/);
+  assert.match(intents, /"sources": \[\s*"djconnect_music_dna"\s*\]/);
   assert.match(intents, /"images": \[\]/);
   assert.match(intents, /"playback_actions": \[\]/);
   assert.match(intents, /Wat weet je nu over mij\?/);
   assert.match(intents, /Wat weet DJConnect over mij\?/);
-  assert.match(intents, /Wat staat er in mijn DJ Memory\?/);
+  assert.match(intents, /Wat staat er in mijn Music DNA\?/);
   assert.match(intents, /What does DJConnect know about me\?/);
-  assert.match(intents, /What is in my DJ Memory\?/);
-  assert.match(intents, /server-side DJ Memory/);
-  assert.match(intents, /no old album art, media cards, TTS replay, Play Now, live playback or profile enrichment/);
+  assert.match(intents, /What is in my Music DNA\?/);
+  assert.match(intents, /server-side Music DNA/);
+  assert.match(intents, /no old album art, media cards, Play Now, live playback or profile enrichment/);
   assert.match(intents, /Welke speakers zijn er\?/);
   assert.match(intents, /Wissel van speaker/);
   assert.match(intents, /Move music to the living room speaker/);
@@ -710,21 +717,33 @@ test("voice commands page documents intent families and DJ response styles", asy
   assert.match(intents, /Which artist do you mean\?/);
   assert.match(intents, /Welke albums hebben Radiohead uitgebracht\?/);
   assert.match(intents, /Geef me de albums van Guns N' Roses/);
+  assert.match(intents, /"id": "artist_item_list"/);
+  assert.match(intents, /Welke muziek heeft Scooter gemaakt\?/);
+  assert.match(intents, /Give me 5 songs by Pearl Jam/);
   assert.match(intents, /Welke artiesten maken vergelijkbare muziek als wat nu speelt\?/);
   assert.match(intents, /Wat voor muziek maakt Beastie Boys\?/);
   assert.match(intents, /Wanneer speelt Radiohead in Nederland\?/);
   assert.match(intents, /Wat wordt het volgende nummer\?/);
   assert.match(intents, /What will play next\?/);
+  assert.match(intents, /"id": "current_track_versions"/);
+  assert.match(intents, /Heb je een live versie\?/);
+  assert.match(intents, /Find a remix of this track/);
   assert.match(intents, /Omschrijf eens waar ik zoal naar luisterde de afgelopen maand/);
+  assert.match(intents, /"id": "track_insight"/);
+  assert.match(intents, /Geef Track Insight voor dit nummer/);
+  assert.match(intents, /What makes this track special\?/);
+  assert.match(intents, /"track_insight": true/);
   assert.match(intents, /Welke nummers heb ik afgelopen uur afgespeeld\?/);
   assert.match(intents, /Welke albums heb ik vandaag geluisterd\?/);
   assert.match(intents, /Which playlists did I play in the last hour\?/);
   assert.match(intents, /Ik voel me moe en geprikkeld, zet iets ontspannends klaar/);
   assert.match(intents, /Stel een playlist samen op basis van Radiohead, Massive Attack en Portishead/);
+  assert.match(intents, /Maak playlist obv huidig nummer/);
+  assert.match(intents, /Queue similar tracks/);
   assert.match(intents, /Save this mix as a Spotify playlist/);
   assert.match(intents, /"id": "save_current_track"/);
-  assert.match(intents, /"action": "save_current_track"/);
-  assert.match(intents, /Saves the currently playing Spotify track to Liked Songs\/favorites/);
+  assert.match(intents, /"action": "set_current_track_favorite"/);
+  assert.match(intents, /Toggle the currently playing Spotify track in the user's Liked Songs\/favorites/);
   assert.match(intents, /Geef me een leuke aankondiging voor wat nu speelt/);
   assert.match(intents, /Automatisch DJ feitje bij nieuw album of nieuwe artiest/);
   assert.match(intents, /Er speelt nu niets\. Zin in iets nieuws\?/);
@@ -736,10 +755,10 @@ test("voice commands page documents intent families and DJ response styles", asy
   assert.match(intents, /"playsMusic": false/);
   assert.match(intents, /Play Now (buttons|actions)/);
   assert.match(intents, /"messageKind": "system"/);
-  assert.match(voice, /DJ Memory-samenvattingen tonen geen oude album art, mediakaarten, TTS replay of Play Now-knoppen/);
-  assert.match(voice, /DJ Memory summaries show no old album art, media cards, TTS replay or Play Now buttons/);
-  assert.match(voice, /Privacyvragen over DJ Memory zijn tekst-only/);
-  assert.match(voice, /Privacy questions about DJ Memory are text-only/);
+  assert.match(voice, /Music DNA-samenvattingen tonen geen oude album art, mediakaarten, TTS replay of Play Now-knoppen/);
+  assert.match(voice, /Music DNA summaries show no old album art, media cards, TTS replay or Play Now buttons/);
+  assert.match(voice, /Privacyvragen over Music DNA zijn tekst-only/);
+  assert.match(voice, /Privacy questions about Music DNA are text-only/);
   assert.doesNotMatch(intents, /Zet shuffle aan/);
   assert.doesNotMatch(intents, /Turn shuffle on/);
   assert.match(voice, /Tip: noem 'nummer', 'album' of 'playlist'/);
@@ -828,7 +847,7 @@ test("privacy policy page covers App Store requirements", async () => {
   assert.match(privacy, /api\.djconnect\.dev/);
   assert.match(privacy, /push-routingmetadata en minimale auditgegevens/);
   assert.match(privacy, /Pushberichten zijn minimale wake\/attention hints/);
-  assert.match(privacy, /geen Spotify tokens, Home Assistant tokens, ruwe prompts, volledige DJ Memory\/history, audio of lange DJ-antwoorden/);
+  assert.match(privacy, /geen Spotify tokens, Home Assistant tokens, ruwe prompts, volledige Music DNA\/history, audio of lange DJ-antwoorden/);
   assert.match(privacy, /Push messages are minimal wake\/attention hints/);
   assert.match(privacy, /Voice en audio/);
   assert.match(privacy, /Home Assistant Assist pipeline/);
@@ -995,7 +1014,7 @@ test("Windows page shows Windows client release repo", async () => {
   assert.match(windows, /href="index\.html#apps" data-i18n="navPlatform">Platform<\/a>/);
   assert.match(windows, /data-i18n="heroTitle">DJConnect voor Windows<\/h1>/);
   assert.match(windows, /Windows Credential Manager/);
-  assert.match(windows, /Spotify OAuth, DJ Memory en backend playback blijven in Home Assistant/);
+  assert.match(windows, /Spotify OAuth, Music DNA en backend playback blijven in Home Assistant/);
   assert.match(windows, /Ask DJ op desktop/);
   assert.match(windows, /Home Assistant STT\/TTS/);
   assert.match(windows, /data-github-downloads/);

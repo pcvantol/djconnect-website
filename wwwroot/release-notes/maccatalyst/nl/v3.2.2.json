@@ -1,0 +1,7 @@
+{
+  "version": "3.2.2",
+  "platform": "maccatalyst",
+  "language": "nl",
+  "name": "DJConnect Mac Catalyst 3.2.2",
+  "body": "# DJConnect Windows 3.2.2\n\n- Brengt Ask DJ en Track Insight in lijn met het Home Assistant DJConnect\n  `3.2.2` contract.\n- Gebruikt overal Music DNA-terminologie en verwijdert legacy memory-tekst\n  en payloadvoorbeelden.\n- Voegt directe Track Insight toe vanuit Speelt Nu en toont genormaliseerde\n  `track_insight` resultaten, inclusief Music DNA Match, vibe hints en een\n  empty state wanneer er geen track speelt.\n- Stuurt Ask DJ Track Insight-intents naar dezelfde Track Insight-weergave\n  zonder zelf playbackknoppen of oude media te verzinnen.\n- Voegt een optionele lokale Home Assistant `/api/websocket` fast path toe voor\n  ondersteunde commands, Ask DJ-berichten en Track Insight, met HTTP als\n  canonieke fallback.\n- Legt de Windows Track Insight-platformroadmap vast voor eigen navigatie,\n  demo provider, Auto Track Insight en toekomstig visualizerwerk.\n\n---\n\nPlatform: MacCatalyst\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nMac Catalyst-artifacts zijn niet ondertekend en niet genotariseerd."
+}

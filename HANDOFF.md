@@ -12,7 +12,7 @@
 - Cloudflare Pages project: `djconnect`
 - Source directory: `wwwroot`
 - Release publish directory: `dist/wwwroot`
-- Current version: `3.2.2`
+- Current version: `3.2.3`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Platform overview page with CSS architecture diagram: `wwwroot/platform.html`
@@ -263,7 +263,7 @@ useful for higher GitHub API limits.
   the token-protected `/api/stats` contract and the release-script
   dependency/tool preflight.
 - `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. `npm run screenshots:live` captures Dutch live production screenshots at a laptop viewport into `screenshots/live-laptop/`. Neither is part of the default `npm test` run.
-- Current released version `3.2.2` loads localized static What's New JSON on
+- Current released version `3.2.3` loads localized static What's New JSON on
   download-page changelogs before falling back to GitHub release bodies.
   Version `3.1.64` adds dedicated Windows and Mac Catalyst client pages,
   homepage cards, download rendering and release-note paths. Version `3.1.63`

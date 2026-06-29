@@ -65,7 +65,7 @@
     @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } .pipeline { grid-template-columns:1fr; } }
 
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.2" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.3" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -129,10 +129,10 @@
             <div class="lane-title" data-i18n="hubTitle">Home Assistant</div>
             <div class="ha-core">
               <h3>Home Assistant</h3>
-              <p data-i18n="haText">Centrale plek voor accounts, apparaten, Assist en automatisering.</p>
+              <p data-i18n="haText">Centrale plek voor accounts, apparaten, Assist, Ask DJ en Music DNA opt-in.</p>
               <div class="integration">
                 <strong>DJConnect integration</strong>
-              <p data-i18n="integrationText">Koppelt clients, muziekverzoeken, DJ response stijlen, backend capabilities en playerkeuze.</p>
+              <p data-i18n="integrationText">Orkestreert Ask DJ, playback, Assist/STT/TTS en Music DNA; clients bewaren geen persistent Music DNA profiel.</p>
               </div>
               <div class="pipeline" aria-label="Assist pipeline opties" data-i18n-attr="aria-label:pipelineLabel">
                 <span data-i18n="pipelineLocal">Assist pipeline: local</span>
@@ -153,6 +153,7 @@
           <article class="card"><h3 data-i18n="legendAssistTitle">Assist bepaalt stem</h3><p data-i18n="legendAssistText">STT, taal, stem en TTS-engine beheer je in Home Assistant Assist.</p></article>
           <article class="card"><h3 data-i18n="legendSpotifyTitle">Backend speelt af</h3><p data-i18n="legendSpotifyText">DJConnect kiest de actie; Spotify Direct of Music Assistant verzorgt playback via de gekozen player.</p></article>
           <article class="card"><h3 data-i18n="legendFutureTitle">Remote en local</h3><p data-i18n="legendFutureText">Apps kunnen na lokale pairing remote werken via Home Assistant. ESP32 en Raspberry Pi blijven local-only.</p></article>
+          <article class="card"><h3 data-i18n="legendPrivacyTitle">Privacy-first AI</h3><p data-i18n="legendPrivacyText">Ask DJ works without Music DNA. Music DNA is opt-in, server-side in Home Assistant en altijd wisbaar.</p></article>
         </div>
       </div>
     </section>
@@ -162,7 +163,7 @@
     <p>Copyright Peter van Tol 2026. Released under the MIT License.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.2.2</p>
+    <p class="site-version">DJConnect website v3.2.3</p>
   </footer>
   <script>
     const translations = {
@@ -196,8 +197,8 @@
         voiceTitle: "Voice input",
         voiceText: "Push-to-talk, app of device microfoon",
         hubTitle: "Home Assistant",
-        haText: "Centrale plek voor accounts, apparaten, Assist en automatisering.",
-        integrationText: "Koppelt clients, muziekverzoeken, DJ response stijlen, backend capabilities en playerkeuze.",
+        haText: "Centrale plek voor accounts, apparaten, Assist, Ask DJ en Music DNA opt-in.",
+        integrationText: "Orkestreert Ask DJ, playback, Assist/STT/TTS en Music DNA; clients bewaren geen persistent Music DNA profiel.",
         pipelineLabel: "Assist pipeline opties",
         pipelineLocal: "Assist pipeline: local",
         pipelineCloud: "cloud",
@@ -216,6 +217,8 @@
         legendSpotifyText: "DJConnect kiest de actie; Spotify Direct of Music Assistant verzorgt playback via de gekozen player.",
         legendFutureTitle: "Remote en local",
         legendFutureText: "Apps kunnen na lokale pairing remote werken via Home Assistant. ESP32 en Raspberry Pi blijven local-only.",
+        legendPrivacyTitle: "Privacy-first AI",
+        legendPrivacyText: "Ask DJ works without Music DNA. Music DNA is opt-in, server-side in Home Assistant en altijd wisbaar.",
         legalPrivacy: "Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.",
         legalPrivacyLink: "Privacy Policy",
         legalSupport: "Support"
@@ -250,8 +253,8 @@
         voiceTitle: "Voice input",
         voiceText: "Push-to-talk, app or device microphone",
         hubTitle: "Home Assistant",
-        haText: "Central place for accounts, devices, Assist and automation.",
-        integrationText: "Connects clients, music requests, DJ response styles, backend capabilities and player choice.",
+        haText: "Central place for accounts, devices, Assist, Ask DJ and Music DNA opt-in.",
+        integrationText: "Orchestrates Ask DJ, playback, Assist/STT/TTS and Music DNA; clients do not store your persistent Music DNA profile.",
         pipelineLabel: "Assist pipeline options",
         pipelineLocal: "Assist pipeline: local",
         pipelineCloud: "cloud",
@@ -270,6 +273,8 @@
         legendSpotifyText: "DJConnect chooses the action; Spotify Direct or Music Assistant handles playback through the selected player.",
         legendFutureTitle: "Remote and local",
         legendFutureText: "Apps can work remotely through Home Assistant after local pairing. ESP32 and Raspberry Pi stay local-only.",
+        legendPrivacyTitle: "Privacy-first AI",
+        legendPrivacyText: "Ask DJ works without Music DNA. Music DNA is opt-in, server-side in Home Assistant and clearable at any time.",
         legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
         legalPrivacyLink: "Privacy Policy",
         legalSupport: "Support"
@@ -307,6 +312,6 @@
     applyLanguage(getInitialLanguage());
 
   </script>
-  <script src="assets/site-nav.js?v=3.2.2"></script>
+  <script src="assets/site-nav.js?v=3.2.3"></script>
 </body>
 </html>

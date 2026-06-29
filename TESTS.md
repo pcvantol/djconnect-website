@@ -6,13 +6,17 @@
 - Verify the homepage navigation shows `Features`, `Ask DJ`, `Spraak`, `Blog`,
   `Installeren`, `Support` and `Privacy`, with `Aan de slag` only as the
   primary CTA button. The homepage should not show a `Hoe werkt het` self-link.
-- Verify the homepage Ask DJ section explains chat, personal recommendations,
+- Verify the homepage Ask DJ section explains chat, optional personal recommendations,
   explicit `Play Now`, Watch/iPhone/Mac/Windows continuity, Home Assistant
-  server-side Music DNA/history, Ja/Nee follow-ups, bounded history trim
+  server-side Music DNA/history with explicit opt-in, Ja/Nee follow-ups, bounded history trim
   behavior, backend-aware Spotify Direct or Music Assistant actions, voice/PTT
   with Assist STT/TTS, Raspberry Pi local-only read-only history display, ESP
   PTT/playback command flow without Ask DJ chat history, optional Apple push
   notifications as wake/attention hints only, and compact privacy boundaries.
+  It must state that Ask DJ works without Music DNA, Music DNA is opt-in,
+  Music DNA can be cleared at any time, clients do not store the persistent
+  Music DNA profile, Spotify credentials stay in Home Assistant and DJConnect
+  is not affiliated with, endorsed by, or sponsored by Spotify AB.
 - Verify Ask DJ Track Insight copy explains musical/technical Track Insight,
   example prompts such as "Geef Track Insight voor dit nummer", BPM/key only where source data
   is available, optional user-configured metadata or local analysis providers,
@@ -66,7 +70,13 @@
   app/Home Assistant token storage, voice/audio processing, support email,
   optional Apple push notifications through the central push relay as Ask
   DJ-only wake/sync hints without tokens or full Ask DJ history, absence of
-  tracking cookies and the `support@djconnect.dev` privacy contact.
+  tracking cookies and the `support@djconnect.dev` privacy contact. It must
+  also explain that Ask DJ works normally without Music DNA, Music DNA is
+  explicit opt-in in Home Assistant, learned DNA can be cleared, clients do not
+  reconstruct a persistent profile from local Track Insight history, active
+  integration voice routes use Home Assistant Assist/STT/TTS rather than direct
+  external AI/STT/TTS APIs, and diagnostics contain no raw audio, full prompts,
+  Ask DJ history or Music DNA dumps.
 - Verify public page footers link to `wwwroot/support.html` rather than directly
   to GitHub Issues.
 - Verify public page footers link to `wwwroot/privacy.html` for App Store
@@ -101,6 +111,18 @@
 - Verify the Spotify OAuth steps mention the redirect path
   `/api/djconnect/spotify/callback`, Nabu Casa HTTPS external URL preference,
   PKCE and that a Client Secret is preferably not required.
+- Verify the start page explains the current pairing model in user-facing
+  language: pairing is local, Home Assistant and the client must be on the same
+  local network during pairing, app clients can then work remotely through an
+  external/Nabu Casa HTTPS URL, ESP32/Raspberry Pi remain local-device clients,
+  iPhone scans a Home Assistant-generated QR/deep-link payload, Apple Watch
+  pairs through iPhone proxy, and macOS/Windows use the local Home Assistant URL
+  plus the Home Assistant-generated pairing code.
+- Verify the developer pairing copy says app clients are inbound-only, Home
+  Assistant never calls back to a local app API, app clients post to
+  `POST /api/djconnect/pair`, app-client mDNS/local-API discovery is absent,
+  local-device clients may use `_djconnect._tcp` and local `/api/device/*`, and
+  ESP32/Raspberry Pi receive no `ha_remote_url`.
 - Verify the start page links to Home Assistant voice assistant documentation, the embedded firmware page and app releases.
 - Verify the ESP pairing flow says Home Assistant configures the device automatically and the device is ready for use.
 - Verify the pairing switch has separate full-width panels for ESP device, iOS app, macOS app, Windows app and Raspberry Pi app.

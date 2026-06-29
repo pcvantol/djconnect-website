@@ -31,10 +31,22 @@ Static landing page for DJConnect, published through Cloudflare Pages.
   DJConnect uses PKCE, so a Spotify Client Secret is preferably not required.
   Music Assistant does not require a DJConnect Spotify Client ID/OAuth; Music
   Assistant provider credentials stay in Music Assistant/Home Assistant.
-- Pairing/token bootstrap is local-only. iOS, macOS and Windows are
-  remote-capable after local pairing. ESP32 and Raspberry Pi remain local-only,
-  watchOS uses the iPhone proxy, and Apple/Windows clients call Home Assistant
-  through `/api/djconnect/...` rather than hosting a local client API.
+- Pairing/token bootstrap is deliberately local-only. During pairing, Home
+  Assistant and the DJConnect client must be on the same local network. After
+  successful pairing, iPhone, Apple Watch, macOS and Windows can work remotely
+  when Home Assistant has an external/Nabu Casa HTTPS URL: local pairing first,
+  remote use after. iPhone pairs by scanning a Home Assistant-generated
+  QR/deep-link payload. Apple Watch pairs through the iPhone proxy: Home
+  Assistant generates a separate Watch QR/deep-link payload, iPhone scans it,
+  and iPhone forwards the pairing details to the paired Watch. macOS and
+  Windows pair by entering the local Home Assistant URL plus the
+  Home Assistant-generated code. iPhone, Apple Watch, macOS and Windows are
+  inbound-only app clients: Home Assistant never calls back to a local app API,
+  clients post to `POST /api/djconnect/pair`, and there is no app-client
+  mDNS/local-API discovery or fallback. ESP32 and Raspberry Pi remain
+  local-device clients: they use local/two-way pairing, may be discovered via
+  `_djconnect._tcp`, use local `/api/device/*`, receive no `ha_remote_url`, and
+  stay local-only.
 - The public How To Start copy must keep the `3.2.x` backend contract visible:
   patch versions may differ, major/minor must match, HTTP `426`
   `version_mismatch` means update the client or integration without clearing
@@ -44,11 +56,15 @@ Static landing page for DJConnect, published through Cloudflare Pages.
   IDs). iOS, macOS and Windows are inbound-only app clients that post local
   pairing to `/api/djconnect/pair`; ESP32 and Raspberry Pi are local-device
   clients using `_djconnect._tcp`, optional Client adres and `/api/device/*`.
+  Keep public copy clear that local pairing avoids remote bootstrap exposure,
+  requires LAN presence plus a temporary QR/code, and avoids the extra expiry,
+  replay protection, rate limiting, phishing/error states and external URL
+  dependencies that remote pairing would require.
 - Ask DJ is a major product feature for iOS, macOS, Windows, Apple Watch and
   Raspberry Pi clients.
   Website copy should keep it clear that Ask DJ runs through Home Assistant and
   DJConnect integration 3.2.3 or newer, uses compact bounded server-side Music
-  DNA/history, carries chat continuity across app clients, can show Ja/Nee
+  DNA/history only after opt-in, carries chat continuity across app clients, can show Ja/Nee
   follow-up controls, uses backend-aware Spotify Direct or Music Assistant
   actions, can use optional Apple push notifications only as wake/attention
   hints through Home Assistant sync and starts concrete recommendations only
@@ -59,6 +75,13 @@ Static landing page for DJConnect, published through Cloudflare Pages.
   `What do you know about me?` are privacy/info answers from server-side
   `djconnect_music_dna` only: render text and sources, not stale album art,
   media cards, TTS replay buttons or `Play Now` controls.
+  Ask DJ works without Music DNA. Music DNA is opt-in; until enabled,
+  DJConnect does not build Music DNA knowledge from Ask DJ, listening profiles,
+  recent tracks, preferences or recommendations. Clients do not store your
+  persistent Music DNA profile. Spotify credentials stay in Home Assistant.
+  You can clear Music DNA at any time; if Music DNA remains enabled, DJConnect
+  starts learning again from an empty profile, and if it is turned off learned
+  DNA is cleared and future learning stops.
   Local app clients may optionally use Home Assistant's native `/api/websocket`
   after normal local pairing and HA websocket auth for low-latency
   `djconnect/command`, `djconnect/ask_dj/message` and
@@ -355,13 +378,17 @@ Use `./cleanup_old_releases.sh` manually only when you want cleanup outside the 
   `Spraak`, `Blog`, `Installeren`, `Support`, `Privacy` and the primary `Aan de slag`
   CTA. Do not add a `Hoe werkt het` self-link to the homepage top navigation.
 - Keep Ask DJ product copy user-facing, not API-reference style: mention Home
-  Assistant, server-side Music DNA/history, Apple Watch/iPhone/Mac/Windows
+  Assistant, optional server-side Music DNA/history, Apple Watch/iPhone/Mac/Windows
   continuity, explicit `Play Now`, Ja/Nee follow-ups, bounded history/trim
   behavior, backend-aware Spotify Direct or Music Assistant actions, voice/PTT
   with Assist STT/TTS on iOS, macOS, Windows and Apple Watch, Raspberry Pi
   local-only read-only history display, ESP PTT/playback command flow without
   chat history, optional Apple push notifications as wake/attention hints only,
-  and compact privacy boundaries without implying Spotify affiliation.
+  and compact privacy boundaries without implying Spotify affiliation. Include
+  the claims `Ask DJ works without Music DNA.`, `Music DNA is opt-in.`,
+  `You can clear Music DNA at any time.`, `Clients do not store your persistent
+  Music DNA profile.`, `Spotify credentials stay in Home Assistant.`, and
+  `DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.`
 - Keep content-page navigation free of self-links. Features, Spraak, Blog,
   Support and Privacy should not show their own page as a menu option.
 - Keep the homepage `Kies je interface` cards aligned with the supported
@@ -370,7 +397,8 @@ Use `./cleanup_old_releases.sh` manually only when you want cleanup outside the 
 - Keep homepage hero device slides spacious: macOS, iPad/iPhone and LilyGO/ESP32 each get their own carousel slide.
 - Keep the start page aligned with the current 3.2 setup order: Home Assistant
   voice pipeline, HACS, music-backend choice, backend-specific DJConnect
-  configuration, local client/device pairing and first use.
+  configuration, local client/device pairing and first use. Pairing copy should
+  emphasize `lokaal pairen, daarna remote gebruiken` for app clients.
 - Keep the start page compatibility matrix explicit about `3.2.x`,
   `version_mismatch`, inbound-only iOS/macOS/Windows pairing, ESP32/Raspberry
   Pi local-device pairing, Apple Watch via iPhone proxy, HA Assist STT/TTS and

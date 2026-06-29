@@ -93,7 +93,7 @@
     @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } .switch-tabs { grid-template-columns:1fr; } }
 
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.2" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.3" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -316,6 +316,20 @@
         <h2 data-i18n="pairingTitle">6. Koppel app of device lokaal</h2>
         <p class="lead" data-i18n="pairingLead">Pairing/token bootstrap gebeurt lokaal. iOS, macOS en Windows zijn inbound-only app clients en kunnen daarna remote werken via Home Assistant; ESP32 en Raspberry Pi blijven local-device clients en local-only.</p>
       </div>
+      <div class="wrap grid-3">
+        <article class="card">
+          <h3 data-i18n="pairingLocalTitle">Lokaal pairen, daarna remote gebruiken</h3>
+          <p data-i18n="pairingLocalText">Tijdens pairing zitten Home Assistant en de DJConnect client bewust op hetzelfde lokale netwerk. Na succesvolle pairing kunnen iPhone, Apple Watch, macOS en Windows remote werken als Home Assistant een externe/Nabu Casa HTTPS URL heeft.</p>
+        </article>
+        <article class="card">
+          <h3 data-i18n="pairingSaferTitle">Waarom lokaal?</h3>
+          <p data-i18n="pairingSaferText">Lokale pairing voorkomt remote exposure van bootstrap en vereist LAN-aanwezigheid plus een tijdelijke code of QR. Zo blijft de tokenflow eenvoudiger en veiliger.</p>
+        </article>
+        <article class="card">
+          <h3 data-i18n="pairingRemoteAvoidTitle">Waarom geen remote pairing?</h3>
+          <p data-i18n="pairingRemoteAvoidText">Remote pairing zou extra expiry, replay protection, rate limiting, phishing/error states en afhankelijkheid van je external URL vragen. DJConnect houdt pairing daarom lokaal en gebruikt remote pas na succesvolle koppeling.</p>
+        </article>
+      </div>
       <div class="wrap">
         <div class="client-switch">
           <input type="radio" name="client-route" id="client-ios" checked />
@@ -338,9 +352,10 @@
               <ol class="steps">
                 <li><a class="btn primary" href="ios.html">Download iOS app</a></li>
                 <li data-i18n="appPairStep2">Open de DJConnect app op hetzelfde lokale netwerk als Home Assistant</li>
-                <li data-i18n="appPairStep3">Voer de pairing code lokaal in of scan de QR-code uit Home Assistant; de app post zelf naar /api/djconnect/pair</li>
+                <li data-i18n="iosPairStep3">Scan de QR/deep-link payload die Home Assistant genereert</li>
                 <li data-i18n="appPairStep4">Geen Client adres kopiëren: de app belt Home Assistant zelf via /api/djconnect/...</li>
                 <li data-i18n="appPairStep5">Daarna kan de app lokaal of remote werken via je Home Assistant URL</li>
+                <li data-i18n="watchPairStep">Voor Apple Watch genereert Home Assistant een aparte Watch QR/deep-link payload. Scan die met iPhone; iPhone geeft de pairinggegevens door aan de gekoppelde Watch.</li>
               </ol>
             </article>
             <article class="card client-panel" data-client-panel="macos">
@@ -348,7 +363,7 @@
               <ol class="steps">
                 <li><a class="btn primary" href="macos.html">Download macOS app</a></li>
                 <li data-i18n="appPairStep2">Open de DJConnect app op hetzelfde lokale netwerk als Home Assistant</li>
-                <li data-i18n="appPairStep3">Voer de pairing code lokaal in of scan de QR-code uit Home Assistant; de app post zelf naar /api/djconnect/pair</li>
+                <li data-i18n="desktopPairStep3">Voer handmatig de lokale Home Assistant URL en de door Home Assistant gegenereerde koppelcode in</li>
                 <li data-i18n="appPairStep4">Geen Client adres kopiëren: de app belt Home Assistant zelf via /api/djconnect/...</li>
                 <li data-i18n="appPairStep5">Daarna kan de app lokaal of remote werken via je Home Assistant URL</li>
               </ol>
@@ -359,7 +374,7 @@
                 <li><a class="btn primary" href="windows.html">Download Windows app</a></li>
                 <li data-i18n="windowsInstallStep">Installeer de DJConnect Windows desktop app zodra je build beschikbaar is</li>
                 <li data-i18n="appPairStep2">Open de DJConnect app op hetzelfde lokale netwerk als Home Assistant</li>
-                <li data-i18n="appPairStep3">Voer de pairing code lokaal in of scan de QR-code uit Home Assistant; de app post zelf naar /api/djconnect/pair</li>
+                <li data-i18n="desktopPairStep3">Voer handmatig de lokale Home Assistant URL en de door Home Assistant gegenereerde koppelcode in</li>
                 <li data-i18n="appPairStep4">Geen Client adres kopiëren: de app belt Home Assistant zelf via /api/djconnect/...</li>
                 <li data-i18n="appPairStep5">Daarna kan de app lokaal of remote werken via je Home Assistant URL</li>
               </ol>
@@ -396,6 +411,16 @@
             </article>
           </div>
         </div>
+      </div>
+      <div class="wrap grid-2">
+        <article class="card">
+          <h3 data-i18n="appClientTechTitle">Technisch: app-clients zijn inbound-only</h3>
+          <p data-i18n="appClientTechText">iPhone, Apple Watch, macOS en Windows publiceren geen lokale app API voor Home Assistant. Home Assistant belt nooit terug naar de app; de client post zelf naar POST /api/djconnect/pair en gebruikt daarna Home Assistant routes. Er is geen app-client mDNS/local-API discovery of fallback.</p>
+        </article>
+        <article class="card">
+          <h3 data-i18n="deviceClientTechTitle">Technisch: local-device clients blijven lokaal</h3>
+          <p data-i18n="deviceClientTechText">ESP32 en Raspberry Pi gebruiken lokale/two-way pairing, mogen via mDNS _djconnect._tcp gevonden worden en gebruiken lokale /api/device/*. Zij krijgen geen ha_remote_url en blijven bedoeld voor gebruik op je lokale netwerk.</p>
+        </article>
       </div>
     </section>
 
@@ -436,7 +461,7 @@
     <p data-i18n="legalSpotify">Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.2.2</p>
+    <p class="site-version">DJConnect website v3.2.3</p>
   </footer>
   <script>
     const translations = {
@@ -561,7 +586,13 @@
         configureStep4: "Bij Music Assistant: selecteer je Music Assistant player; Spotify OAuth in DJConnect is dan niet nodig",
         configureStep5: "Configureer voice via je Home Assistant Assist pipeline, niet via directe externe STT/TTS APIs",
         pairingTitle: "6. Koppel app of device lokaal",
-        pairingLead: "Pairing/token bootstrap gebeurt lokaal. iOS, macOS en Windows zijn inbound-only app clients en kunnen daarna remote werken via Home Assistant; ESP32 en Raspberry Pi blijven local-device clients en local-only.",
+        pairingLead: "Pairing/token bootstrap gebeurt bewust lokaal, niet remote. Home Assistant en de DJConnect client zitten tijdens pairing op hetzelfde lokale netwerk; app-clients kunnen daarna remote werken via Home Assistant.",
+        pairingLocalTitle: "Lokaal pairen, daarna remote gebruiken",
+        pairingLocalText: "Tijdens pairing zitten Home Assistant en de DJConnect client bewust op hetzelfde lokale netwerk. Na succesvolle pairing kunnen iPhone, Apple Watch, macOS en Windows remote werken als Home Assistant een externe/Nabu Casa HTTPS URL heeft.",
+        pairingSaferTitle: "Waarom lokaal?",
+        pairingSaferText: "Lokale pairing voorkomt remote exposure van bootstrap en vereist LAN-aanwezigheid plus een tijdelijke code of QR. Zo blijft de tokenflow eenvoudiger en veiliger.",
+        pairingRemoteAvoidTitle: "Waarom geen remote pairing?",
+        pairingRemoteAvoidText: "Remote pairing zou extra expiry, replay protection, rate limiting, phishing/error states en afhankelijkheid van je external URL vragen. DJConnect houdt pairing daarom lokaal en gebruikt remote pas na succesvolle koppeling.",
         clientTypeLabel: "Kies client type",
         assistTitle: "Voice Assistant",
         espTitle: "ESP device",
@@ -571,14 +602,21 @@
         raspberryTitle: "Raspberry Pi app",
         appPairStep2: "Open de DJConnect app op hetzelfde lokale netwerk als Home Assistant",
         appPairStep3: "Voer de pairing code lokaal in of scan de QR-code uit Home Assistant; de app post zelf naar /api/djconnect/pair",
+        iosPairStep3: "Scan de QR/deep-link payload die Home Assistant genereert",
+        desktopPairStep3: "Voer handmatig de lokale Home Assistant URL en de door Home Assistant gegenereerde koppelcode in",
         appPairStep4: "Geen Client adres kopiëren: de app belt Home Assistant zelf via /api/djconnect/...",
         appPairStep5: "Daarna kan de app lokaal of remote werken via je Home Assistant URL",
+        watchPairStep: "Voor Apple Watch genereert Home Assistant een aparte Watch QR/deep-link payload. Scan die met iPhone; iPhone geeft de pairinggegevens door aan de gekoppelde Watch.",
         windowsInstallStep: "Installeer de DJConnect Windows desktop app zodra je build beschikbaar is",
         espLocalOnlyStep: "Het DJConnect ESP32 apparaat gebruikt _djconnect._tcp of Client adres, alleen de lokale /api/device/* device API en blijft local-only",
         assistSatelliteStep: "Gebruik je HA Assist satellite, Home Assistant Voice Preview Edition, M5 Atom Echo of ander ESPHome-powered voice project voor wake word, microfoon en speaker-output",
         assistNoPairingStep: "Geen client pairing, device token of Client adres nodig",
         raspberryPairStep: "Kies client type Raspberry Pi app en koppel lokaal op hetzelfde netwerk",
         raspberryLocalOnlyStep: "Raspberry Pi gebruikt _djconnect._tcp of Client adres, lokale /api/device/* runtime/device-connectiviteit en blijft local-only",
+        appClientTechTitle: "Technisch: app-clients zijn inbound-only",
+        appClientTechText: "iPhone, Apple Watch, macOS en Windows publiceren geen lokale app API voor Home Assistant. Home Assistant belt nooit terug naar de app; de client post zelf naar POST /api/djconnect/pair en gebruikt daarna Home Assistant routes. Er is geen app-client mDNS/local-API discovery of fallback.",
+        deviceClientTechTitle: "Technisch: local-device clients blijven lokaal",
+        deviceClientTechText: "ESP32 en Raspberry Pi gebruiken lokale/two-way pairing, mogen via mDNS _djconnect._tcp gevonden worden en gebruiken lokale /api/device/*. Zij krijgen geen ha_remote_url en blijven bedoeld voor gebruik op je lokale netwerk.",
         downloadsTitle: "Release- en downloadlinks",
         downloadsLead: "Gebruik de platformpagina's hieronder voor de nieuwste publieke builds. De downloadkaarten lezen de actuele GitHub Releases en routeren downloadkliks privacyvriendelijk via djconnect.dev.",
         downloadHacsText: "Home Assistant integration uit pcvantol/djconnect, category Integration, versie 3.2.x.",
@@ -718,7 +756,13 @@
         configureStep4: "With Music Assistant: select your Music Assistant player; Spotify OAuth in DJConnect is not needed",
         configureStep5: "Configure voice through your Home Assistant Assist pipeline, not through direct external STT/TTS APIs",
         pairingTitle: "6. Pair app or device locally",
-        pairingLead: "Pairing/token bootstrap happens locally. iOS, macOS and Windows are inbound-only app clients and can then work remotely through Home Assistant; ESP32 and Raspberry Pi stay local-device clients and local-only.",
+        pairingLead: "Pairing/token bootstrap intentionally happens locally, not remotely. Home Assistant and the DJConnect client are on the same local network during pairing; app clients can then work remotely through Home Assistant.",
+        pairingLocalTitle: "Pair locally, then use remotely",
+        pairingLocalText: "During pairing, Home Assistant and the DJConnect client are intentionally on the same local network. After successful pairing, iPhone, Apple Watch, macOS and Windows can work remotely when Home Assistant has an external/Nabu Casa HTTPS URL.",
+        pairingSaferTitle: "Why local?",
+        pairingSaferText: "Local pairing avoids remote bootstrap exposure and requires LAN presence plus a temporary code or QR. That keeps the token flow simpler and safer.",
+        pairingRemoteAvoidTitle: "Why no remote pairing?",
+        pairingRemoteAvoidText: "Remote pairing would require extra expiry, replay protection, rate limiting, phishing/error states and external URL dependencies. DJConnect keeps pairing local and uses remote access only after a successful pairing.",
         clientTypeLabel: "Choose client type",
         assistTitle: "Voice Assistant",
         espTitle: "ESP device",
@@ -728,14 +772,21 @@
         raspberryTitle: "Raspberry Pi app",
         appPairStep2: "Open the DJConnect app on the same local network as Home Assistant",
         appPairStep3: "Enter the pairing code locally or scan the QR code from Home Assistant; the app posts to /api/djconnect/pair itself",
+        iosPairStep3: "Scan the QR/deep-link payload generated by Home Assistant",
+        desktopPairStep3: "Manually enter the local Home Assistant URL and the Home Assistant-generated pairing code",
         appPairStep4: "No Client address copying: the app calls Home Assistant itself through /api/djconnect/...",
         appPairStep5: "After that, the app can work locally or remotely through your Home Assistant URL",
+        watchPairStep: "For Apple Watch, Home Assistant generates a separate Watch QR/deep-link payload. Scan it with iPhone; iPhone passes the pairing details to the paired Watch.",
         windowsInstallStep: "Install the DJConnect Windows desktop app when your build is available",
         espLocalOnlyStep: "The DJConnect ESP32 device uses _djconnect._tcp or Client address, only the local /api/device/* device API and stays local-only",
         assistSatelliteStep: "Use your HA Assist satellite, Home Assistant Voice Preview Edition, M5 Atom Echo or another ESPHome-powered voice project for wake word, microphone and speaker output",
         assistNoPairingStep: "No client pairing, device token or Client address needed",
         raspberryPairStep: "Choose client type Raspberry Pi app and pair locally on the same network",
         raspberryLocalOnlyStep: "Raspberry Pi uses _djconnect._tcp or Client address, local /api/device/* runtime/device connectivity and stays local-only",
+        appClientTechTitle: "Technical: app clients are inbound-only",
+        appClientTechText: "iPhone, Apple Watch, macOS and Windows do not publish a local app API for Home Assistant. Home Assistant never calls back into the app; the client posts to POST /api/djconnect/pair itself and then uses Home Assistant routes. There is no app-client mDNS/local-API discovery or fallback.",
+        deviceClientTechTitle: "Technical: local-device clients stay local",
+        deviceClientTechText: "ESP32 and Raspberry Pi use local/two-way pairing, may be discovered through mDNS _djconnect._tcp and use local /api/device/*. They receive no ha_remote_url and remain intended for use on your local network.",
         downloadsTitle: "Release and download links",
         downloadsLead: "Use the platform pages below for the latest public builds. Download cards read current GitHub Releases and route download clicks through djconnect.dev in a privacy-friendly way.",
         downloadHacsText: "Home Assistant integration from pcvantol/djconnect, category Integration, version 3.2.x.",
@@ -780,6 +831,6 @@
     });
 
   </script>
-  <script src="assets/site-nav.js?v=3.2.2"></script>
+  <script src="assets/site-nav.js?v=3.2.3"></script>
 </body>
 </html>

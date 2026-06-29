@@ -4,6 +4,18 @@ All notable changes to this website are grouped per release.
 
 ## Unreleased
 
+## DJConnect website v3.2.3 - 2026-06-29
+
+- Added privacy-first Ask DJ and Music DNA copy across the homepage, Features,
+  Platform and Privacy pages, including explicit opt-in, clear/delete behavior,
+  client storage boundaries and Spotify credential placement in Home Assistant.
+- Expanded the How To Start pairing explanation with local-first pairing,
+  app-client remote-after-local behavior, iPhone QR/deep-link pairing,
+  Apple Watch iPhone-proxy pairing, desktop manual pairing and local-device
+  ESP32/Raspberry Pi boundaries.
+- Updated README, TESTS and automated regression coverage for the pairing,
+  Music DNA and privacy copy contracts.
+
 ## DJConnect website v3.2.2 - 2026-06-28
 
 - Synced website voice intent examples with the Home Assistant integration

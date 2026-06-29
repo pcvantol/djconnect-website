@@ -942,7 +942,7 @@
       }
     }
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.2" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.3" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -1069,12 +1069,12 @@
       <div class="wrap">
         <div class="section-head">
           <div><h2 data-i18n="askDjTitle">Ask DJ</h2></div>
-          <p data-i18n="askDjLead">Ask DJ is je AI-DJ chat voor muziekvragen, persoonlijke aanbevelingen, playback-acties en gesprekken die meegaan van Apple Watch naar iPhone en Mac.</p>
+          <p data-i18n="askDjLead">Ask DJ is je AI-DJ chat voor muziekvragen, playback-acties, Track Insight en optionele persoonlijke aanbevelingen via Home Assistant.</p>
         </div>
         <div class="ask-dj-panel">
           <article class="card ask-dj-card">
             <h3 data-i18n="askDjChatTitle">Meer dan Spotify command parsing</h3>
-            <p data-i18n="askDjChatText">Stel muziekvragen in natuurlijke taal. Ask DJ gebruikt actuele playbackcontext, Music DNA en Spotify listening profile data waar beschikbaar om persoonlijk te antwoorden.</p>
+            <p data-i18n="askDjChatText">Stel muziekvragen in natuurlijke taal. Ask DJ werkt ook als Music DNA uit staat; met opt-in kan Home Assistant compacte Music DNA signalen gebruiken om persoonlijker te antwoorden.</p>
             <div class="ask-dj-chips" aria-label="Ask DJ voorbeeldvragen" data-i18n-attr="aria-label:askDjExamplesLabel">
               <span data-i18n="askDjExample1">"Waarom koos je dit nummer?"</span>
               <span data-i18n="askDjExample2">"Welke muziek raad je mij aan?"</span>
@@ -1091,6 +1091,23 @@
               <li data-i18n="askDjStep3">DJConnect antwoordt met tekst, bronnen, afbeeldingen en optionele audio.</li>
               <li data-i18n="askDjStep4">Bij concrete aanbevelingen kies je zelf Play Now; playback start pas na jouw tap.</li>
             </ol>
+          </article>
+        </div>
+        <div class="ask-dj-detail-grid">
+          <article class="card">
+            <div class="icon">🔓</div>
+            <h3 data-i18n="musicDnaOptionalTitle">Ask DJ zonder Music DNA</h3>
+            <p data-i18n="musicDnaOptionalText">Ask DJ works without Music DNA. Als je niet opt-in doet, werkt Ask DJ normaal voor vragen, playback, Track Insight en gewone antwoorden, maar DJConnect bouwt of gebruikt geen persoonlijk luisterprofiel.</p>
+          </article>
+          <article class="card">
+            <div class="icon">🧬</div>
+            <h3 data-i18n="musicDnaOptInTitle">Music DNA is opt-in</h3>
+            <p data-i18n="musicDnaOptInText">Music DNA is opt-in. Totdat je het inschakelt, bouwt DJConnect geen Music DNA kennis uit Ask DJ, luisterprofielen, recente tracks, voorkeuren of aanbevelingen.</p>
+          </article>
+          <article class="card">
+            <div class="icon">🧹</div>
+            <h3 data-i18n="musicDnaClearTitle">Altijd wisbaar</h3>
+            <p data-i18n="musicDnaClearText">You can clear Music DNA at any time. Als Music DNA aan blijft, begint DJConnect opnieuw vanaf een leeg profiel. Zet je het uit, dan wordt learned DNA gewist en stopt verdere opbouw.</p>
           </article>
         </div>
         <div class="technical-analysis">
@@ -1166,7 +1183,7 @@
           <article class="card">
             <div class="icon">🔐</div>
             <h3 data-i18n="askDjPrivacyTitle">Privacy compact gehouden</h3>
-            <p data-i18n="askDjPrivacyText">Clients bewaren geen Music DNA. Home Assistant bewaart compacte context/history, zonder Spotify OAuth tokens, bearer tokens, raw audio of volledige prompts. Ruwe voice-audio wordt standaard niet opgeslagen.</p>
+            <p data-i18n="askDjPrivacyText">Clients do not store your persistent Music DNA profile. Spotify credentials stay in Home Assistant. Music DNA mag geen OAuth tokens, bearer tokens, raw audio, volledige prompts of volledige chatgeschiedenis opslaan.</p>
           </article>
           <article class="card">
             <div class="icon">🖥</div>
@@ -1183,6 +1200,24 @@
             <h3 data-i18n="askDjRequirementsTitle">Wat je nodig hebt</h3>
             <p data-i18n="askDjRequirementsText">Home Assistant, HACS DJConnect integration, Spotify Premium, je eigen Spotify Developer app met Client ID en voor voice/audio een Assist pipeline met STT/TTS. Nabu Casa of een stabiele HTTPS external URL is aanbevolen.</p>
           </article>
+        </div>
+        <div class="ask-dj-panel">
+          <article class="card">
+            <h3 data-i18n="aiPrivacyTitle">AI privacy-first</h3>
+            <p data-i18n="aiPrivacyText">DJConnect is ontworpen als Home Assistant-first systeem. De Home Assistant integration orkestreert Ask DJ, playback, Assist/STT/TTS en Music DNA; DJConnect's active integration routes use Home Assistant Assist/STT/TTS and do not call direct external AI/STT/TTS APIs.</p>
+          </article>
+          <article class="card">
+            <h3 data-i18n="clientTransparencyTitle">Transparant in clients</h3>
+            <p data-i18n="clientTransparencyText">Het Music DNA scherm haalt structured profile data op uit Home Assistant. Als Music DNA uit staat, toont de client een opt-in of empty state; clients reconstrueren geen fake persistent profile uit lokale Track Insight history.</p>
+          </article>
+        </div>
+        <div class="ask-dj-detail-grid">
+          <article class="card"><h3 data-i18n="faqAskDjDnaQuestion">Does Ask DJ require Music DNA?</h3><p data-i18n="faqAskDjDnaAnswer">No. Ask DJ works without Music DNA. Zonder opt-in gebruikt Ask DJ geen opgeslagen persoonlijke Music DNA context.</p></article>
+          <article class="card"><h3 data-i18n="faqDnaStoredQuestion">Where is Music DNA stored?</h3><p data-i18n="faqDnaStoredAnswer">Music DNA is server-side in Home Assistant. Clients do not store your persistent Music DNA profile.</p></article>
+          <article class="card"><h3 data-i18n="faqDnaDeleteQuestion">Can I delete Music DNA?</h3><p data-i18n="faqDnaDeleteAnswer">You can clear Music DNA at any time. Als Music DNA aan blijft, begint DJConnect opnieuw vanaf een leeg profiel.</p></article>
+          <article class="card"><h3 data-i18n="faqSpotifyQuestion">Does DJConnect store Spotify credentials on devices?</h3><p data-i18n="faqSpotifyAnswer">No. Spotify credentials stay in Home Assistant. ESP32 bewaart geen Spotify credentials en krijgt geen Ask DJ chat history.</p></article>
+          <article class="card"><h3 data-i18n="faqCloudQuestion">Does DJConnect send raw audio or prompts to its own cloud?</h3><p data-i18n="faqCloudAnswer">No. Ruwe audio wordt standaard niet opgeslagen en diagnostics bevatten geen raw audio, full prompts, Ask DJ history of Music DNA dumps.</p></article>
+          <article class="card"><h3 data-i18n="faqSpotifyAffiliationQuestion">Is DJConnect affiliated with Spotify?</h3><p data-i18n="faqSpotifyAffiliationAnswer">DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.</p></article>
         </div>
       </div>
     </section>
@@ -1321,7 +1356,7 @@
     <p data-i18n="legalSpotify">Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.2.2</p>
+    <p class="site-version">DJConnect website v3.2.3</p>
   </footer>
   <script src="assets/voice-intents.js"></script>
   <script>
@@ -1347,9 +1382,9 @@
         examplesTitle: "Vraag muziek aan met je stem, zeg bijvoorbeeld:",
         examplesMore: "Bekijk meer spraakvoorbeelden",
         askDjTitle: "Ask DJ",
-        askDjLead: "Ask DJ is je AI-DJ chat voor muziekvragen, persoonlijke aanbevelingen, backend-aware playback-acties en gesprekken die meegaan van Apple Watch naar iPhone, Mac en Windows.",
+        askDjLead: "Ask DJ is je AI-DJ chat voor muziekvragen, playback-acties, Track Insight en optionele persoonlijke aanbevelingen via Home Assistant.",
         askDjChatTitle: "Meer dan muziekcommands",
-        askDjChatText: "Stel muziekvragen in natuurlijke taal. Ask DJ gebruikt actuele playbackcontext, Music DNA en backend capabilities; Spotify-profieldata wordt alleen gebruikt waar Spotify Direct die beschikbaar maakt.",
+        askDjChatText: "Stel muziekvragen in natuurlijke taal. Ask DJ werkt ook als Music DNA uit staat; met opt-in kan Home Assistant compacte Music DNA signalen gebruiken om persoonlijker te antwoorden.",
         askDjExamplesLabel: "Ask DJ voorbeeldvragen",
         askDjExample1: "\"Waarom koos je dit nummer?\"",
         askDjExample2: "\"Welke muziek raad je mij aan?\"",
@@ -1361,6 +1396,12 @@
         askDjStep2: "Home Assistant haalt context, history en playbackstatus op.",
         askDjStep3: "DJConnect antwoordt met tekst, bronnen, afbeeldingen en optionele audio.",
         askDjStep4: "Bij concrete aanbevelingen kies je zelf Play Now; playback start pas na jouw tap.",
+        musicDnaOptionalTitle: "Ask DJ zonder Music DNA",
+        musicDnaOptionalText: "Ask DJ works without Music DNA. Als je niet opt-in doet, werkt Ask DJ normaal voor vragen, playback, Track Insight en gewone antwoorden, maar DJConnect bouwt of gebruikt geen persoonlijk luisterprofiel.",
+        musicDnaOptInTitle: "Music DNA is opt-in",
+        musicDnaOptInText: "Music DNA is opt-in. Totdat je het inschakelt, bouwt DJConnect geen Music DNA kennis uit Ask DJ, luisterprofielen, recente tracks, voorkeuren of aanbevelingen.",
+        musicDnaClearTitle: "Altijd wisbaar",
+        musicDnaClearText: "You can clear Music DNA at any time. Als Music DNA aan blijft, begint DJConnect opnieuw vanaf een leeg profiel. Zet je het uit, dan wordt learned DNA gewist en stopt verdere opbouw.",
         liveAnalysisTitle: "Track Insight",
         liveAnalysisLead: "Vraag Ask DJ om de track die nu speelt technisch uit te leggen, alsof er een DJ-assistent naast je staat. Je krijgt bruikbare duiding zonder dat DJConnect doet alsof onbekende songdelen of meetdata zeker zijn.",
         liveAnalysisBenefit1Title: "Vraag natuurlijk",
@@ -1400,11 +1441,27 @@
         askDjNotificationsTitle: "Optionele meldingen",
         askDjNotificationsText: "Apple clients kunnen optionele pushmeldingen gebruiken als wake- of attentionhint voor Ask DJ-sync. Push bevat geen tokens, volledige antwoorden, audio of history; de app haalt inhoud via Home Assistant op.",
         askDjPrivacyTitle: "Privacy compact gehouden",
-        askDjPrivacyText: "Clients bewaren geen Music DNA. Home Assistant bewaart compacte context/history, zonder Spotify OAuth tokens, bearer tokens, raw audio of volledige prompts. Ruwe voice-audio wordt standaard niet opgeslagen.",
+        askDjPrivacyText: "Clients do not store your persistent Music DNA profile. Spotify credentials stay in Home Assistant. Music DNA mag geen OAuth tokens, bearer tokens, raw audio, volledige prompts of volledige chatgeschiedenis opslaan.",
         askDjPiTitle: "Raspberry Pi leest mee",
         askDjPiText: "Op Raspberry Pi is Ask DJ gericht op local-only gebruik en read-only history display. Chat/history blijft bij app-clients; ESP gebruikt PTT/playback command flow zonder Ask DJ chat history.",
         askDjRequirementsTitle: "Wat je nodig hebt",
         askDjRequirementsText: "Home Assistant, HACS DJConnect integration, een music backend, lokale pairing en voor voice/audio een Assist pipeline met STT/TTS. Spotify Premium en Client ID zijn alleen nodig voor Spotify Direct; Music Assistant gebruikt eigen providers.",
+        aiPrivacyTitle: "AI privacy-first",
+        aiPrivacyText: "DJConnect is ontworpen als Home Assistant-first systeem. De Home Assistant integration orkestreert Ask DJ, playback, Assist/STT/TTS en Music DNA; DJConnect's active integration routes use Home Assistant Assist/STT/TTS and do not call direct external AI/STT/TTS APIs.",
+        clientTransparencyTitle: "Transparant in clients",
+        clientTransparencyText: "Het Music DNA scherm haalt structured profile data op uit Home Assistant. Als Music DNA uit staat, toont de client een opt-in of empty state; clients reconstrueren geen fake persistent profile uit lokale Track Insight history.",
+        faqAskDjDnaQuestion: "Does Ask DJ require Music DNA?",
+        faqAskDjDnaAnswer: "No. Ask DJ works without Music DNA. Zonder opt-in gebruikt Ask DJ geen opgeslagen persoonlijke Music DNA context.",
+        faqDnaStoredQuestion: "Where is Music DNA stored?",
+        faqDnaStoredAnswer: "Music DNA is server-side in Home Assistant. Clients do not store your persistent Music DNA profile.",
+        faqDnaDeleteQuestion: "Can I delete Music DNA?",
+        faqDnaDeleteAnswer: "You can clear Music DNA at any time. Als Music DNA aan blijft, begint DJConnect opnieuw vanaf een leeg profiel.",
+        faqSpotifyQuestion: "Does DJConnect store Spotify credentials on devices?",
+        faqSpotifyAnswer: "No. Spotify credentials stay in Home Assistant. ESP32 bewaart geen Spotify credentials en krijgt geen Ask DJ chat history.",
+        faqCloudQuestion: "Does DJConnect send raw audio or prompts to its own cloud?",
+        faqCloudAnswer: "No. Ruwe audio wordt standaard niet opgeslagen en diagnostics bevatten geen raw audio, full prompts, Ask DJ history of Music DNA dumps.",
+        faqSpotifyAffiliationQuestion: "Is DJConnect affiliated with Spotify?",
+        faqSpotifyAffiliationAnswer: "DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.",
         stageLabel: "DJConnect platformoverzicht",
         stageCarouselLabel: "Platform opties",
         carouselPrev: "Vorige slide",
@@ -1486,9 +1543,9 @@
         examplesTitle: "Request music with your voice, for example:",
         examplesMore: "See more voice examples",
         askDjTitle: "Ask DJ",
-        askDjLead: "Ask DJ is your AI DJ chat for music questions, personal recommendations, backend-aware playback actions and conversations that continue across Apple Watch, iPhone, Mac and Windows.",
+        askDjLead: "Ask DJ is your AI DJ chat for music questions, playback actions, Track Insight and optional personal recommendations through Home Assistant.",
         askDjChatTitle: "More than music commands",
-        askDjChatText: "Ask music questions in natural language. Ask DJ uses current playback context, Music DNA and backend capabilities; Spotify profile data is used only where Spotify Direct makes it available.",
+        askDjChatText: "Ask music questions in natural language. Ask DJ works when Music DNA is off; with opt-in, Home Assistant can use compact Music DNA signals for more personal answers.",
         askDjExamplesLabel: "Ask DJ example questions",
         askDjExample1: "\"Why did you choose this track?\"",
         askDjExample2: "\"What music would you recommend for me?\"",
@@ -1500,6 +1557,12 @@
         askDjStep2: "Home Assistant fetches context, history and playback status.",
         askDjStep3: "DJConnect replies with text, sources, images and optional audio.",
         askDjStep4: "For concrete recommendations you choose Play Now yourself; playback starts only after your tap.",
+        musicDnaOptionalTitle: "Ask DJ without Music DNA",
+        musicDnaOptionalText: "Ask DJ works without Music DNA. If you do not opt in, Ask DJ still works normally for questions, playback, Track Insight and regular responses, but DJConnect will not build or use a personal listening profile.",
+        musicDnaOptInTitle: "Music DNA is opt-in",
+        musicDnaOptInText: "Music DNA is opt-in. Until you enable it, DJConnect does not build Music DNA knowledge from Ask DJ, listening profiles, recent tracks, preferences, or recommendations.",
+        musicDnaClearTitle: "Always clearable",
+        musicDnaClearText: "You can clear Music DNA at any time. If Music DNA remains enabled, DJConnect starts learning again from an empty profile. If you turn it off, learned DNA is cleared and future learning stops.",
         liveAnalysisTitle: "Track Insight",
         liveAnalysisLead: "Ask DJ can technically explain the track that is playing now, like having a DJ assistant next to you. You get useful context without DJConnect pretending unknown song sections or measured data are certain.",
         liveAnalysisBenefit1Title: "Ask naturally",
@@ -1539,11 +1602,27 @@
         askDjNotificationsTitle: "Optional notifications",
         askDjNotificationsText: "Apple clients can use optional push notifications as wake or attention hints for Ask DJ sync. Push contains no tokens, full replies, audio or history; the app fetches content through Home Assistant.",
         askDjPrivacyTitle: "Privacy kept compact",
-        askDjPrivacyText: "Clients do not store Music DNA. Home Assistant stores compact context/history without Spotify OAuth tokens, bearer tokens, raw audio or full prompts. Raw voice audio is not stored by default.",
+        askDjPrivacyText: "Clients do not store your persistent Music DNA profile. Spotify credentials stay in Home Assistant. Music DNA must not store OAuth tokens, bearer tokens, raw audio, full prompts or full chat history.",
         askDjPiTitle: "Raspberry Pi follows along",
         askDjPiText: "On Raspberry Pi, Ask DJ is focused on local-only use and read-only history display. Chat/history stays with app clients; ESP uses the PTT/playback command flow without Ask DJ chat history.",
         askDjRequirementsTitle: "What you need",
         askDjRequirementsText: "Home Assistant, HACS DJConnect integration, a music backend, local pairing and, for voice/audio, an Assist pipeline with STT/TTS. Spotify Premium and Client ID are only needed for Spotify Direct; Music Assistant uses its own providers.",
+        aiPrivacyTitle: "AI privacy-first",
+        aiPrivacyText: "DJConnect is designed as a Home Assistant-first system. The Home Assistant integration orchestrates Ask DJ, playback, Assist/STT/TTS and Music DNA; DJConnect's active integration routes use Home Assistant Assist/STT/TTS and do not call direct external AI/STT/TTS APIs.",
+        clientTransparencyTitle: "Transparent clients",
+        clientTransparencyText: "The Music DNA screen fetches structured profile data from Home Assistant. When Music DNA is disabled, the client shows an opt-in or empty state; clients do not reconstruct a fake persistent profile from local Track Insight history.",
+        faqAskDjDnaQuestion: "Does Ask DJ require Music DNA?",
+        faqAskDjDnaAnswer: "No. Ask DJ works without Music DNA. Without opt-in, Ask DJ does not use stored personal Music DNA context.",
+        faqDnaStoredQuestion: "Where is Music DNA stored?",
+        faqDnaStoredAnswer: "Music DNA is server-side in Home Assistant. Clients do not store your persistent Music DNA profile.",
+        faqDnaDeleteQuestion: "Can I delete Music DNA?",
+        faqDnaDeleteAnswer: "You can clear Music DNA at any time. If Music DNA remains enabled, DJConnect starts learning again from an empty profile.",
+        faqSpotifyQuestion: "Does DJConnect store Spotify credentials on devices?",
+        faqSpotifyAnswer: "No. Spotify credentials stay in Home Assistant. ESP32 stores no Spotify credentials and receives no Ask DJ chat history.",
+        faqCloudQuestion: "Does DJConnect send raw audio or prompts to its own cloud?",
+        faqCloudAnswer: "No. Raw audio is not stored by default and diagnostics contain no raw audio, full prompts, Ask DJ history or Music DNA dumps.",
+        faqSpotifyAffiliationQuestion: "Is DJConnect affiliated with Spotify?",
+        faqSpotifyAffiliationAnswer: "DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.",
         stageLabel: "DJConnect platform overview",
         stageCarouselLabel: "Platform options",
         carouselPrev: "Previous slide",
@@ -1673,6 +1752,6 @@
 
     applyLanguage(getInitialLanguage());
   </script>
-  <script src="assets/site-nav.js?v=3.2.2"></script>
+  <script src="assets/site-nav.js?v=3.2.3"></script>
 </body>
 </html>

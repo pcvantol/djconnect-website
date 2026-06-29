@@ -59,7 +59,7 @@
     @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } }
 
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.2" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.3" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -123,13 +123,14 @@
         </div>
         <div class="grid-3">
           <article class="card"><div class="icon">🎙️</div><h3 data-i18n="musicTitle">Muziek aanvragen</h3><p data-i18n="musicText">Vraag een artiest aan met je stem of via de app. DJConnect vertaalt je verzoek naar een concrete muziekactie.</p></article>
-          <article class="card"><div class="icon">💬</div><h3 data-i18n="askDjTitle">Slimme follow-ups</h3><p data-i18n="askDjText">Ask DJ geeft niet alleen antwoord, maar ook acties. Wissel direct van speaker, kies een aanbevolen track, bekijk album art of antwoord met een tik op een vervolgvraag.</p></article>
+          <article class="card"><div class="icon">💬</div><h3 data-i18n="askDjTitle">Slimme follow-ups</h3><p data-i18n="askDjText">Ask DJ geeft niet alleen antwoord, maar ook acties. Ask DJ works without Music DNA; met opt-in kan Home Assistant compacte Music DNA signalen gebruiken voor persoonlijkere aanbevelingen.</p></article>
+          <article class="card"><div class="icon">🧬</div><h3 data-i18n="musicDnaTitle">Music DNA is opt-in</h3><p data-i18n="musicDnaText">Music DNA is opt-in. Clients do not store your persistent Music DNA profile; het profiel staat server-side in Home Assistant en kan altijd worden gewist.</p></article>
           <article class="card"><div class="icon">📊</div><h3 data-i18n="trackAnalysisTitle">Ask DJ Track Insight</h3><p data-i18n="trackAnalysisText">Laat Ask DJ de huidige track technisch duiden: BPM en key waar brondata beschikbaar is, plus energiecurve, groove, intro, refrein, breakdowns, instrumentatie, productie en mixbaarheid wanneer context of confidence dat ondersteunt. Read-only: analyse verandert nooit je playback.</p></article>
           <article class="card"><div class="icon">▶</div><h3 data-i18n="playbackTitle">Music backend playback</h3><p data-i18n="playbackText">Start, pauzeer en stuur playback naar je gekozen player via Spotify Direct of Music Assistant.</p></article>
           <article class="card"><div class="icon">🔊</div><h3 data-i18n="speakerTitle">Speaker keuze</h3><p data-i18n="speakerText">Kies bewust waar muziek wordt afgespeeld, zodat dezelfde aanvraag past bij je kamer, moment of device.</p></article>
           <article class="card"><div class="icon">🏠</div><h3 data-i18n="haTitle">Home Assistant hub</h3><p data-i18n="haText">Spotify autorisatie, inclusief je eigen Spotify Developer app en Client ID, voice assist, device-koppeling en clientconfiguratie lopen centraal via Home Assistant.</p></article>
           <article class="card"><div class="icon">✨</div><h3 data-i18n="announceTitle">DJ aankondigingen</h3><p data-i18n="announceText">Ontvang persoonlijke gesproken of zichtbare DJ-feedback. De stijl van de aankondiging kan via een eigen prompt worden aangepast.</p></article>
-          <article class="card"><div class="icon">🔐</div><h3 data-i18n="secureTitle">Veilige koppeling</h3><p data-i18n="secureText">Account token en koppelgegevens blijven veilig bewaard in versleutelde opslag binnen de juiste omgeving.</p></article>
+          <article class="card"><div class="icon">🔐</div><h3 data-i18n="secureTitle">Veilige koppeling</h3><p data-i18n="secureText">Spotify credentials stay in Home Assistant. ESP32 bewaart geen Spotify credentials en krijgt geen Ask DJ chat history.</p></article>
         </div>
       </div>
     </section>
@@ -170,9 +171,9 @@
     <p>Copyright Peter van Tol 2026. Released under the MIT License.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.2.2</p>
+    <p class="site-version">DJConnect website v3.2.3</p>
   </footer>
-  <script src="assets/site-nav.js?v=3.2.2"></script>
+  <script src="assets/site-nav.js?v=3.2.3"></script>
 </body>
 <script>
   const translations = {
@@ -214,7 +215,9 @@
       musicTitle: "Muziek aanvragen",
       musicText: "Vraag een artiest aan met je stem of via de app. DJConnect vertaalt je verzoek naar een concrete muziekactie.",
       askDjTitle: "Slimme follow-ups",
-      askDjText: "Ask DJ geeft niet alleen antwoord, maar ook acties. Wissel direct van speaker, kies een aanbevolen track, bekijk album art of antwoord met een tik op een vervolgvraag.",
+      askDjText: "Ask DJ geeft niet alleen antwoord, maar ook acties. Ask DJ works without Music DNA; met opt-in kan Home Assistant compacte Music DNA signalen gebruiken voor persoonlijkere aanbevelingen.",
+      musicDnaTitle: "Music DNA is opt-in",
+      musicDnaText: "Music DNA is opt-in. Clients do not store your persistent Music DNA profile; het profiel staat server-side in Home Assistant en kan altijd worden gewist.",
       trackAnalysisTitle: "Ask DJ Track Insight",
       trackAnalysisText: "Laat Ask DJ de huidige track technisch duiden: BPM en key waar brondata beschikbaar is, plus energiecurve, groove, intro, refrein, breakdowns, instrumentatie, productie en mixbaarheid wanneer context of confidence dat ondersteunt. Read-only: analyse verandert nooit je playback.",
       playbackTitle: "Music backend playback",
@@ -226,7 +229,7 @@
       announceTitle: "DJ aankondigingen",
       announceText: "Ontvang persoonlijke gesproken of zichtbare DJ-feedback. De stijl van de aankondiging kan via een eigen prompt worden aangepast.",
       secureTitle: "Veilige koppeling",
-      secureText: "Account token en koppelgegevens blijven veilig bewaard in versleutelde opslag binnen de juiste omgeving.",
+      secureText: "Spotify credentials stay in Home Assistant. ESP32 bewaart geen Spotify credentials en krijgt geen Ask DJ chat history.",
       interfacesTitle: "Interfaces",
       interfacesLead: "DJConnect is gemaakt voor meerdere schermen en gebruikssituaties, met dezelfde logica onder water.",
       macosText: "Desktopbediening voor vaste controle over zoeken, output, playback en status.",
@@ -281,7 +284,9 @@
       musicTitle: "Music requests",
       musicText: "Ask for an artist by voice or through the app. DJConnect turns your request into a concrete music action.",
       askDjTitle: "Smart follow-ups",
-      askDjText: "Ask DJ does more than answer: it gives you actions. Switch speakers, choose a recommended track, view album art or answer a follow-up question with one tap.",
+      askDjText: "Ask DJ does more than answer: it gives you actions. Ask DJ works without Music DNA; with opt-in, Home Assistant can use compact Music DNA signals for more personal recommendations.",
+      musicDnaTitle: "Music DNA is opt-in",
+      musicDnaText: "Music DNA is opt-in. Clients do not store your persistent Music DNA profile; the profile is server-side in Home Assistant and can be cleared at any time.",
       trackAnalysisTitle: "Ask DJ Track Insight",
       trackAnalysisText: "Let Ask DJ technically explain the current track: BPM and key where source data is available, plus energy curve, groove, intro, chorus, breakdowns, instrumentation, production and mixability when context or confidence supports it. Read-only: analysis never changes playback.",
       playbackTitle: "Music backend playback",
@@ -293,7 +298,7 @@
       announceTitle: "DJ announcements",
       announceText: "Receive personal spoken or visible DJ feedback. The announcement style can be adjusted with your own prompt.",
       secureTitle: "Secure pairing",
-      secureText: "Account tokens and pairing details are kept safely in encrypted storage inside the right environment.",
+      secureText: "Spotify credentials stay in Home Assistant. ESP32 stores no Spotify credentials and receives no Ask DJ chat history.",
       interfacesTitle: "Interfaces",
       interfacesLead: "DJConnect is made for multiple screens and usage contexts, with the same logic underneath.",
       macosText: "Desktop control for fixed control over search, output, playback and status.",

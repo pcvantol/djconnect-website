@@ -106,6 +106,8 @@ Static landing page for DJConnect, published through Cloudflare Pages.
 - `wwwroot/404.html`: branded noindex not-found page with Home and Support recovery links.
 - `wwwroot/_headers`: Cloudflare Pages cache and security headers.
 - `wwwroot/assets/`: logo, favicon, product visuals and shared browser assets.
+- `wwwroot/assets/i18n.js`: shared i18n runtime and product/legal strings for
+  the supported public languages: English, Dutch, German, French and Spanish.
 - `wwwroot/assets/site-nav.css` and `wwwroot/assets/site-nav.js`: shared
   responsive navigation styling and hamburger-menu behavior included by all
   public pages with a top navigation.
@@ -156,6 +158,22 @@ Minimum Cloudflare token permissions:
 - `Account:Read`
 
 Use `./release.sh` for the standard release flow.
+
+## Multilingual Content
+
+All public website and docs pages must ship complete copy for `en`, `nl`, `de`,
+`fr` and `es` in the same pull request. Add page-local strings to the
+`translations` block, keep shared product/legal strings in
+`wwwroot/assets/i18n.js`, and run `npm run i18n:check` before review. Legal
+meaning must stay exact: keep MIT license notes and the Spotify trademark /
+non-affiliation disclaimer unchanged unless the maintainer explicitly approves
+new legal copy. Use placeholders in examples instead of real artist names
+unless a real name is essential and appropriate.
+
+Localized static routes live under `/en/`, `/de/`, `/fr/` and `/es/`; Dutch is
+the root default. Each public page must keep `hreflang` alternates in sync.
+Setup and troubleshooting copy must stay consistent with the HACS DJConnect
+integration requirements documented in `pcvantol/djconnect`.
 
 The release script refreshes declared npm dependencies when a lockfile exists,
 checks the active Wrangler major version, runs tests, verifies that the Dutch

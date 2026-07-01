@@ -31,6 +31,12 @@ Run the default test suite:
 npm test
 ```
 
+Check multilingual coverage only:
+
+```bash
+npm run i18n:check
+```
+
 Run optional browser smoke tests:
 
 ```bash
@@ -69,6 +75,15 @@ website repository.
 - Report vulnerabilities privately through `SECURITY.md`, not public issues.
 - Add or update tests for code, behavior or contract changes.
 - Update documentation, examples and screenshots for user-facing changes.
+- Update all public languages in the same pull request: `en`, `nl`, `de`,
+  `fr` and `es`. Keep page-local strings in each page's `translations` block
+  and shared product/legal strings in `wwwroot/assets/i18n.js`.
+- Preserve the exact legal meaning of MIT license notes and the Spotify
+  trademark/non-affiliation disclaimer.
+- Use placeholders instead of real artist names in examples unless the real
+  example is essential and legally/brand-wise appropriate.
+- Keep setup, HACS and troubleshooting instructions consistent with the
+  DJConnect Home Assistant integration requirements.
 - Keep secrets, tokens, passwords and private user data out of commits, logs
   and diagnostics.
 - Respect the Spotify trademark and non-affiliation notice: DJConnect is not

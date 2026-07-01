@@ -6,6 +6,12 @@
   <title>DJConnect Support</title>
   <meta name="description" content="Support voor DJConnect: mail support@djconnect.dev voor hulp met installatie, koppeling, apps en devices." />
   <link rel="canonical" href="https://djconnect.dev/support" />
+  <link rel="alternate" hreflang="en" href="https://djconnect.dev/en/support.html" />
+  <link rel="alternate" hreflang="nl" href="https://djconnect.dev/support.html" />
+  <link rel="alternate" hreflang="de" href="https://djconnect.dev/de/support.html" />
+  <link rel="alternate" hreflang="fr" href="https://djconnect.dev/fr/support.html" />
+  <link rel="alternate" hreflang="es" href="https://djconnect.dev/es/support.html" />
+  <link rel="alternate" hreflang="x-default" href="https://djconnect.dev/support.html" />
   <link rel="icon" href="assets/djconnect/icon.svg" type="image/svg+xml" />
   <style>
     :root { --bg:#0b0d12; --panel:rgba(255,255,255,0.075); --text:#f7f7fb; --muted:#b7bccb; --line:rgba(255,255,255,0.14); --cyan:#66e0ff; --green:#7ef7a7; --pink:#fb7185; --max:1180px; }
@@ -21,7 +27,7 @@
     .nav-links { display:flex; align-items:center; gap:18px; color:var(--muted); font-size:0.94rem; }
     .nav-links a:hover, .nav-links a[aria-current="page"] { color:var(--text); }
     .nav-controls { display:flex; align-items:center; gap:12px; }
-    .lang-toggle { display:inline-grid; grid-template-columns:repeat(2,1fr); min-width:86px; padding:3px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.06); }
+    .lang-toggle { display:inline-grid; grid-template-columns: repeat(5, 1fr); min-width: 190px; padding:3px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.06); }
     .lang-toggle button { min-height:34px; border:0; border-radius:999px; background:transparent; color:var(--muted); font:inherit; font-size:0.82rem; font-weight:850; cursor:pointer; }
     .lang-toggle button[aria-pressed="true"] { background:rgba(102,224,255,0.18); color:var(--text); }
     .btn { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:0 18px; border-radius:999px; border:1px solid var(--line); background:var(--panel); color:var(--text); font-weight:780; box-shadow:0 10px 30px rgba(0,0,0,0.15); }
@@ -47,7 +53,7 @@
     @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } }
 
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.3" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.4" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -62,8 +68,11 @@
       <div class="nav-controls">
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Menu" data-i18n-attr="aria-label:navMenu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg></button>
         <div class="lang-toggle" aria-label="Taalkeuze" data-i18n-attr="aria-label:languageToggle">
-          <button type="button" data-lang="nl" aria-pressed="true">NL</button>
           <button type="button" data-lang="en" aria-pressed="false">EN</button>
+          <button type="button" data-lang="nl" aria-pressed="true">NL</button>
+          <button type="button" data-lang="de" aria-pressed="false">DE</button>
+          <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+          <button type="button" data-lang="es" aria-pressed="false">ES</button>
         </div>
         <a class="btn primary" href="start.html" data-i18n="navStart">Aan de slag</a>
       </div>
@@ -108,70 +117,160 @@
     <p>Copyright Peter van Tol 2026. Released under the MIT License.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.2.3</p>
+    <p class="site-version">DJConnect website v3.2.4</p>
   </footer>
   <script>
     const translations = {
-      nl: {
-        title: "DJConnect Support",
-        metaDescription: "Support voor DJConnect: mail support@djconnect.dev voor hulp met installatie, koppeling, apps en devices.",
-        navLabel: "Navigatie",
-        languageToggle: "Taalkeuze",
-        navMenu: "Menu",
-        navHome: "Home",
-        navTroubleshooting: "Troubleshooting",
-        navSupport: "Support",
-        navStart: "Aan de slag",
-        heroTitle: "Support",
-        heroLead: "Loop je vast met installatie, lokale pairing, Spotify Direct, Music Assistant of een DJConnect device? Mail ons en beschrijf kort wat je probeert te doen.",
-        mailTitle: "Mail DJConnect support",
-        mailText: "Gebruik dit adres voor hulpvragen, bugmeldingen en vragen over de apps of devices.",
-        installTitle: "Installatie",
-        installText: "Vragen over HACS, de Home Assistant integratie, app downloads of firmware.",
-        pairingTitle: "Koppelen",
-        pairingText: "Hulp bij pairing tussen je client, DJConnect en Home Assistant.",
-        playbackTitle: "Muziekbediening",
-        playbackText: "Problemen met voice input, players, backend capabilities of DJ-aankondigingen.",
-        troubleshootingTitle: "Troubleshooting",
-        troubleshootingText: "Bekijk eerst de veelvoorkomende oplossingen voor Spotify OAuth, HACS, pairing, Voice Assistant, playback, downloads en macOS mDNS/firewall-problemen.",
-        troubleshootingButton: "Open troubleshooting",
-        troubleshootingLink: "Bekijk veelvoorkomende problemen en oplossingen",
-        githubText: "Technische issues mogen ook via GitHub Issues, vooral als je logs, foutmeldingen of reproduceerbare stappen wilt delen.",
-        githubLink: "Open GitHub Issues",
-        legalPrivacy: "Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.",
-        legalPrivacyLink: "Privacy Policy",
-        legalSupport: "Support"
-      },
-      en: {
-        title: "DJConnect Support",
-        metaDescription: "DJConnect support: email support@djconnect.dev for help with setup, pairing, apps and devices.",
-        navLabel: "Navigation",
-        languageToggle: "Language",
-        navMenu: "Menu",
-        navHome: "Home",
-        navTroubleshooting: "Troubleshooting",
-        navSupport: "Support",
-        navStart: "Get started",
-        heroTitle: "Support",
-        heroLead: "Need help with setup, local pairing, Spotify Direct, Music Assistant or a DJConnect device? Email us and briefly describe what you are trying to do.",
-        mailTitle: "Email DJConnect support",
-        mailText: "Use this address for support questions, bug reports and questions about the apps or devices.",
-        installTitle: "Setup",
-        installText: "Questions about HACS, the Home Assistant integration, app downloads or firmware.",
-        pairingTitle: "Pairing",
-        pairingText: "Help with pairing your client, DJConnect and Home Assistant.",
-        playbackTitle: "Music control",
-        playbackText: "Problems with voice input, players, backend capabilities or DJ announcements.",
-        troubleshootingTitle: "Troubleshooting",
-        troubleshootingText: "First check the common fixes for Spotify OAuth, HACS, pairing, Voice Assistant, playback, downloads and macOS mDNS/firewall issues.",
-        troubleshootingButton: "Open troubleshooting",
-        troubleshootingLink: "View common problems and fixes",
-        githubText: "Technical issues can also go through GitHub Issues, especially when you want to share logs, errors or reproducible steps.",
-        githubLink: "Open GitHub Issues",
-        legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
-        legalPrivacyLink: "Privacy Policy",
-        legalSupport: "Support"
-      }
+          nl: {
+                title: "DJConnect Support",
+                metaDescription: "Support voor DJConnect: mail support@djconnect.dev voor hulp met installatie, koppeling, apps en devices.",
+                navLabel: "Navigatie",
+                languageToggle: "Taalkeuze",
+                navMenu: "Menu",
+                navHome: "Home",
+                navTroubleshooting: "Troubleshooting",
+                navSupport: "Support",
+                navStart: "Aan de slag",
+                heroTitle: "Support",
+                heroLead: "Loop je vast met installatie, lokale pairing, Spotify Direct, Music Assistant of een DJConnect device? Mail ons en beschrijf kort wat je probeert te doen.",
+                mailTitle: "Mail DJConnect support",
+                mailText: "Gebruik dit adres voor hulpvragen, bugmeldingen en vragen over de apps of devices.",
+                installTitle: "Installatie",
+                installText: "Vragen over HACS, de Home Assistant integratie, app downloads of firmware.",
+                pairingTitle: "Koppelen",
+                pairingText: "Hulp bij pairing tussen je client, DJConnect en Home Assistant.",
+                playbackTitle: "Muziekbediening",
+                playbackText: "Problemen met voice input, players, backend capabilities of DJ-aankondigingen.",
+                troubleshootingTitle: "Troubleshooting",
+                troubleshootingText: "Bekijk eerst de veelvoorkomende oplossingen voor Spotify OAuth, HACS, pairing, Voice Assistant, playback, downloads en macOS mDNS/firewall-problemen.",
+                troubleshootingButton: "Open troubleshooting",
+                troubleshootingLink: "Bekijk veelvoorkomende problemen en oplossingen",
+                githubText: "Technische issues mogen ook via GitHub Issues, vooral als je logs, foutmeldingen of reproduceerbare stappen wilt delen.",
+                githubLink: "Open GitHub Issues",
+                legalPrivacy: "Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          },
+          en: {
+                title: "DJConnect Support",
+                metaDescription: "DJConnect support: email support@djconnect.dev for help with setup, pairing, apps and devices.",
+                navLabel: "Navigation",
+                languageToggle: "Language",
+                navMenu: "Menu",
+                navHome: "Home",
+                navTroubleshooting: "Troubleshooting",
+                navSupport: "Support",
+                navStart: "Get started",
+                heroTitle: "Support",
+                heroLead: "Need help with setup, local pairing, Spotify Direct, Music Assistant or a DJConnect device? Email us and briefly describe what you are trying to do.",
+                mailTitle: "Email DJConnect support",
+                mailText: "Use this address for support questions, bug reports and questions about the apps or devices.",
+                installTitle: "Setup",
+                installText: "Questions about HACS, the Home Assistant integration, app downloads or firmware.",
+                pairingTitle: "Pairing",
+                pairingText: "Help with pairing your client, DJConnect and Home Assistant.",
+                playbackTitle: "Music control",
+                playbackText: "Problems with voice input, players, backend capabilities or DJ announcements.",
+                troubleshootingTitle: "Troubleshooting",
+                troubleshootingText: "First check the common fixes for Spotify OAuth, HACS, pairing, Voice Assistant, playback, downloads and macOS mDNS/firewall issues.",
+                troubleshootingButton: "Open troubleshooting",
+                troubleshootingLink: "View common problems and fixes",
+                githubText: "Technical issues can also go through GitHub Issues, especially when you want to share logs, errors or reproducible steps.",
+                githubLink: "Open GitHub Issues",
+                legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          },
+          de: {
+                title: "DJConnect Support",
+                metaDescription: "DJConnect support: email support@djconnect.dev for help with setup, pairing, apps and devices.",
+                navLabel: "Navigation",
+                languageToggle: "Language",
+                navMenu: "Menu",
+                navHome: "Home",
+                navTroubleshooting: "Troubleshooting",
+                navSupport: "Support",
+                navStart: "Get started",
+                heroTitle: "Support",
+                heroLead: "Need help with setup, local pairing, Spotify Direct, Music Assistant or a DJConnect device? Email us and briefly describe what you are trying to do.",
+                mailTitle: "Email DJConnect support",
+                mailText: "Use this address for support questions, bug reports and questions about the apps or devices.",
+                installTitle: "Setup",
+                installText: "Questions about HACS, the Home Assistant integration, app downloads or firmware.",
+                pairingTitle: "Pairing",
+                pairingText: "Help with pairing your client, DJConnect and Home Assistant.",
+                playbackTitle: "Music control",
+                playbackText: "Problems with voice input, players, backend capabilities or DJ announcements.",
+                troubleshootingTitle: "Troubleshooting",
+                troubleshootingText: "First check the common fixes for Spotify OAuth, HACS, pairing, Voice Assistant, playback, downloads and macOS mDNS/firewall issues.",
+                troubleshootingButton: "Open troubleshooting",
+                troubleshootingLink: "View common problems and fixes",
+                githubText: "Technical issues can also go through GitHub Issues, especially when you want to share logs, errors or reproducible steps.",
+                githubLink: "Open GitHub Issues",
+                legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          },
+          fr: {
+                title: "DJConnect Support",
+                metaDescription: "DJConnect support: email support@djconnect.dev for help with setup, pairing, apps and devices.",
+                navLabel: "Navigation",
+                languageToggle: "Language",
+                navMenu: "Menu",
+                navHome: "Home",
+                navTroubleshooting: "Troubleshooting",
+                navSupport: "Support",
+                navStart: "Get started",
+                heroTitle: "Support",
+                heroLead: "Need help with setup, local pairing, Spotify Direct, Music Assistant or a DJConnect device? Email us and briefly describe what you are trying to do.",
+                mailTitle: "Email DJConnect support",
+                mailText: "Use this address for support questions, bug reports and questions about the apps or devices.",
+                installTitle: "Setup",
+                installText: "Questions about HACS, the Home Assistant integration, app downloads or firmware.",
+                pairingTitle: "Pairing",
+                pairingText: "Help with pairing your client, DJConnect and Home Assistant.",
+                playbackTitle: "Music control",
+                playbackText: "Problems with voice input, players, backend capabilities or DJ announcements.",
+                troubleshootingTitle: "Troubleshooting",
+                troubleshootingText: "First check the common fixes for Spotify OAuth, HACS, pairing, Voice Assistant, playback, downloads and macOS mDNS/firewall issues.",
+                troubleshootingButton: "Open troubleshooting",
+                troubleshootingLink: "View common problems and fixes",
+                githubText: "Technical issues can also go through GitHub Issues, especially when you want to share logs, errors or reproducible steps.",
+                githubLink: "Open GitHub Issues",
+                legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          },
+          es: {
+                title: "DJConnect Support",
+                metaDescription: "DJConnect support: email support@djconnect.dev for help with setup, pairing, apps and devices.",
+                navLabel: "Navigation",
+                languageToggle: "Language",
+                navMenu: "Menu",
+                navHome: "Home",
+                navTroubleshooting: "Troubleshooting",
+                navSupport: "Support",
+                navStart: "Get started",
+                heroTitle: "Support",
+                heroLead: "Need help with setup, local pairing, Spotify Direct, Music Assistant or a DJConnect device? Email us and briefly describe what you are trying to do.",
+                mailTitle: "Email DJConnect support",
+                mailText: "Use this address for support questions, bug reports and questions about the apps or devices.",
+                installTitle: "Setup",
+                installText: "Questions about HACS, the Home Assistant integration, app downloads or firmware.",
+                pairingTitle: "Pairing",
+                pairingText: "Help with pairing your client, DJConnect and Home Assistant.",
+                playbackTitle: "Music control",
+                playbackText: "Problems with voice input, players, backend capabilities or DJ announcements.",
+                troubleshootingTitle: "Troubleshooting",
+                troubleshootingText: "First check the common fixes for Spotify OAuth, HACS, pairing, Voice Assistant, playback, downloads and macOS mDNS/firewall issues.",
+                troubleshootingButton: "Open troubleshooting",
+                troubleshootingLink: "View common problems and fixes",
+                githubText: "Technical issues can also go through GitHub Issues, especially when you want to share logs, errors or reproducible steps.",
+                githubLink: "Open GitHub Issues",
+                legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          }
     };
     const getInitialLanguage = () => {
       const stored = localStorage.getItem("djconnect-language");
@@ -179,7 +278,7 @@
       return navigator.language && navigator.language.toLowerCase().startsWith("nl") ? "nl" : "en";
     };
     const applyLanguage = (lang) => {
-      const dictionary = translations[lang] || translations.nl;
+      const dictionary = { ...(window.DJCONNECT_I18N?.shared?.[lang] || {}), ...(translations[lang] || translations[window.DJCONNECT_I18N?.defaultLanguage || "nl"]) };
       document.documentElement.lang = lang;
       document.title = dictionary.title;
       document.querySelector('meta[name="description"]').setAttribute("content", dictionary.metaDescription);
@@ -203,7 +302,8 @@
     });
     applyLanguage(getInitialLanguage());
 
-  </script>
-  <script src="assets/site-nav.js?v=3.2.3"></script>
+  </script>  <script src="assets/i18n.js?v=3.2.4"></script>
+
+  <script src="assets/site-nav.js?v=3.2.4"></script>
 </body>
 </html>

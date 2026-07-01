@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DJConnect Spraakopdrachten</title>
+  <meta name="description" content="Voorbeelden van DJConnect spraakopdrachten voor artiesten, tracks, albums, playlists, favorieten en playback-bediening." />
+  <link rel="canonical" href="https://djconnect.dev/voice-commands" />
+  <link rel="alternate" hreflang="en" href="https://djconnect.dev/en/voice-commands.html" />
+  <link rel="alternate" hreflang="nl" href="https://djconnect.dev/voice-commands.html" />
+  <link rel="alternate" hreflang="de" href="https://djconnect.dev/de/voice-commands.html" />
+  <link rel="alternate" hreflang="fr" href="https://djconnect.dev/fr/voice-commands.html" />
+  <link rel="alternate" hreflang="es" href="https://djconnect.dev/es/voice-commands.html" />
+  <link rel="alternate" hreflang="x-default" href="https://djconnect.dev/voice-commands.html" />
+  <link rel="icon" href="../assets/djconnect/icon.svg" type="image/svg+xml" />
+  <style>
+    :root { --bg:#0b0d12; --panel:rgba(255,255,255,0.075); --panel-strong:rgba(255,255,255,0.12); --text:#f7f7fb; --muted:#b7bccb; --line:rgba(255,255,255,0.14); --cyan:#66e0ff; --green:#7ef7a7; --purple:#8b5cf6; --max:1180px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; background:var(--bg); }
+    body { margin:0; color:var(--text); font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height:1.55; background:radial-gradient(circle at 16% 10%, rgba(102,224,255,0.18), transparent 28rem), radial-gradient(circle at 86% 6%, rgba(139,92,246,0.14), transparent 27rem), radial-gradient(circle at 58% 72%, rgba(126,247,167,0.1), transparent 31rem), linear-gradient(180deg,#0b0d12 0%,#111827 54%,#090b10 100%); }
+    a { color:inherit; text-decoration:none; }
+    .wrap { width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
+    .nav { position:sticky; top:0; z-index:20; backdrop-filter:blur(18px); background:rgba(11,13,18,0.7); border-bottom:1px solid var(--line); }
+    .nav-inner { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:22px; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:850; font-size:1.13rem; }
+    .brand img { width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.18); box-shadow:0 0 34px rgba(102,224,255,0.25); }
+    .nav-links { display:flex; align-items:center; gap:18px; color:var(--muted); font-size:0.94rem; }
+    .nav-links a:hover, .nav-links a[aria-current="page"] { color:var(--text); }
+    .nav-controls { display:flex; align-items:center; gap:12px; }
+    .lang-toggle { display:inline-grid; grid-template-columns: repeat(5, 1fr); min-width: 190px; padding:3px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.06); }
+    .lang-toggle button { min-height:34px; border:0; border-radius:999px; background:transparent; color:var(--muted); font:inherit; font-size:0.82rem; font-weight:850; cursor:pointer; }
+    .lang-toggle button[aria-pressed="true"] { background:rgba(102,224,255,0.18); color:var(--text); }
+    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:0 18px; border-radius:999px; border:1px solid var(--line); background:var(--panel); color:var(--text); font-weight:780; box-shadow:0 10px 30px rgba(0,0,0,0.15); }
+    .btn.primary { border:0; color:#06110c; background:linear-gradient(135deg,var(--cyan),var(--green)); }
+    .hero { padding:82px 0 52px; }
+    .hero-grid { display:grid; grid-template-columns:1fr 0.88fr; gap:42px; align-items:end; }
+    h1,h2,h3 { margin:0; letter-spacing:-0.045em; line-height:1.05; }
+    h1 { font-size:clamp(3.1rem,7vw,6.1rem); max-width:10ch; }
+    h2 { font-size:clamp(2rem,4vw,3.6rem); margin-bottom:18px; }
+    h3 { font-size:1.25rem; margin-bottom:10px; }
+    .lead { color:var(--muted); font-size:clamp(1.08rem,2.1vw,1.32rem); margin:24px 0 0; max-width:760px; }
+    section { padding:62px 0; }
+    .card { border:1px solid var(--line); border-radius:22px; background:var(--panel); padding:24px; box-shadow:0 12px 36px rgba(0,0,0,0.16); }
+    .card p { color:var(--muted); margin:0; }
+    .pill { display:inline-flex; align-items:center; min-height:34px; padding:0 13px; border-radius:999px; background:rgba(102,224,255,0.13); border:1px solid var(--line); color:#aeefff; font-size:0.76rem; font-weight:900; letter-spacing:0.09em; text-transform:uppercase; margin-bottom:14px; }
+    .flow { display:grid; gap:10px; counter-reset:step; }
+    .flow li { list-style:none; counter-increment:step; display:grid; grid-template-columns:46px 1fr; gap:14px; align-items:center; border:1px solid var(--line); border-radius:16px; background:rgba(255,255,255,0.055); padding:12px; color:var(--muted); font-weight:720; }
+    .flow li::before { content:counter(step); width:46px; height:46px; display:grid; place-items:center; border-radius:14px; background:linear-gradient(135deg,var(--cyan),var(--green)); color:#06110c; font-weight:950; }
+    .section-head { display:grid; grid-template-columns:0.85fr 1.15fr; gap:28px; align-items:end; margin-bottom:24px; }
+    .section-head p { color:var(--muted); margin:0; font-size:1.1rem; }
+    .intent-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+    .ask-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .style-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+    .style-grid .card { padding:20px; }
+    .examples { margin-top:18px; }
+    .examples h4 { margin:0 0 8px; font-size:0.86rem; color:#aeefff; text-transform:uppercase; letter-spacing:0.08em; }
+    .examples ul { margin:0; padding:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+    .examples li { list-style:none; border:1px solid var(--line); border-radius:16px; background:rgba(255,255,255,0.055); color:var(--muted); padding:8px 12px; font-weight:700; overflow-wrap:anywhere; }
+    .note { margin-top:16px; color:var(--muted); border-left:3px solid var(--green); padding-left:14px; }
+    .meta-row { display:flex; flex-wrap:wrap; gap:8px; margin:14px 0 0; }
+    .meta-row span { border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.055); color:var(--muted); padding:6px 10px; font-size:0.78rem; font-weight:820; }
+    .meta-row span:first-child { color:#06110c; border:0; background:linear-gradient(135deg,var(--cyan),var(--green)); }
+    .command-list { margin-top:14px; display:grid; gap:8px; }
+    .command-list div { display:flex; justify-content:space-between; gap:12px; border:1px solid var(--line); border-radius:14px; background:rgba(255,255,255,0.055); color:var(--muted); padding:9px 11px; font-weight:760; }
+    .command-list code { color:#aeefff; font:inherit; white-space:nowrap; }
+    .subtle-link { color:#aeefff; border-bottom:1px solid rgba(174,239,255,0.45); }
+    .subtle-link:hover { color:var(--text); border-bottom-color:var(--text); }
+    .status { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+    .status span { border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.06); color:var(--muted); padding:8px 12px; font-weight:760; }
+    .status span:first-child { color:#06110c; border:0; background:linear-gradient(135deg,var(--cyan),var(--green)); }
+    .legal { color:var(--muted); font-size:0.86rem; padding:34px 0 44px; border-top:1px solid var(--line); }
+    .site-version { margin-top:14px; font-size:0.76rem; color:rgba(183,188,203,0.72); }
+    .privacy-notice { font-size:0.78rem; color:rgba(183,188,203,0.78); }
+    @media (max-width:1100px) { .style-grid,.ask-grid { grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:900px) { .hero-grid,.section-head,.intent-grid,.ask-grid { grid-template-columns:1fr; } .nav-inner { flex-wrap:wrap; padding:12px 0; } .nav-links { order:3; width:100%; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; } .nav-links::-webkit-scrollbar { display:none; } }
+    @media (max-width:720px) { .examples ul { grid-template-columns:1fr; } }
+    @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } .flow li { grid-template-columns:40px 1fr; } .flow li::before { width:40px; height:40px; } .style-grid { grid-template-columns:1fr; } }
+
+  </style>
+  <link rel="stylesheet" href="../assets/site-nav.css?v=3.2.4" />
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../index.html"><img src="../assets/djconnect/icon.svg" alt="" aria-hidden="true" /><span>DJConnect</span></a>
+      <div class="nav-links" id="primaryNav" aria-label="Navigatie" data-i18n-attr="aria-label:navLabel">
+        <a href="../features.html" data-i18n="navFeatures">Features</a>
+        <a href="../blog.html" data-i18n="navBlog">Blog</a>
+      </div>
+      <div class="nav-controls">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Menu" data-i18n-attr="aria-label:navMenu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg></button>
+        <div class="lang-toggle" aria-label="Taalkeuze" data-i18n-attr="aria-label:languageToggle">
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+          <button type="button" data-lang="nl" aria-pressed="true">NL</button>
+          <button type="button" data-lang="de" aria-pressed="false">DE</button>
+          <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+          <button type="button" data-lang="es" aria-pressed="false">ES</button>
+        </div>
+        <a class="btn primary" href="../start.html" data-i18n="navStart">Aan de slag</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="mainContent">
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="pill" data-i18n="heroLabel">Spraakopdrachten</span>
+          <h1 data-i18n="heroTitle">Wat kun je zeggen?</h1>
+          <p class="lead" data-i18n="heroLead">DJConnect luistert naar natuurlijke muziekopdrachten en korte status- of playbackvragen. Je hoeft geen exacte commando's te leren: noem een artiest, nummer, album of playlist, of vraag wat er nu draait.</p>
+        </div>
+        <div class="card">
+          <span class="pill" data-i18n="flowLabel">Intentvolgorde</span>
+          <ol class="flow">
+            <li data-i18n="flow1">Huidige track status</li>
+            <li data-i18n="flow2">Playback control</li>
+            <li data-i18n="flow3">Default playlist / favorieten</li>
+            <li data-i18n="flow4">Playlist</li>
+            <li data-i18n="flow5">Artiest + track</li>
+            <li data-i18n="flow6">Album</li>
+            <li data-i18n="flow7">Track / nummer</li>
+            <li data-i18n="flow8">Artist / artiest fallback</li>
+          </ol>
+        </div>
+      </div>
+    </header>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <h2 data-i18n="responseStylesTitle">DJ response stijlen</h2>
+          <p data-i18n="responseStylesLead">Na een muziekverzoek kan DJConnect op je DJConnect device een korte gesproken aankondiging teruggeven. In de Home Assistant integratie kies je de toon die bij jou past.</p>
+        </div>
+        <div class="style-grid">
+          <article class="card">
+            <span class="pill" data-i18n="neutralPill">Neutraal</span>
+            <h3 data-i18n="neutralTitle">Neutraal en zakelijk</h3>
+            <p data-i18n="neutralText">Korte, duidelijke aankondigingen zonder veel emotie of grapjes. Handig als je vooral functionele feedback wilt, zoals: “Ik zet Pearl Jam voor je klaar.”</p>
+          </article>
+          <article class="card">
+            <span class="pill" data-i18n="warmPill">Warm</span>
+            <h3 data-i18n="warmTitle">Warm en persoonlijk</h3>
+            <p data-i18n="warmText">Vriendelijker en menselijker van toon, alsof een rustige radio-DJ het nummer aankondigt. Fijn voor thuis en een wat gezelligere interactie.</p>
+          </article>
+          <article class="card">
+            <span class="pill" data-i18n="humorPill">Geestig</span>
+            <h3 data-i18n="humorTitle">Humoristisch en gevat</h3>
+            <p data-i18n="humorText">Luchtige, speelse aankondigingen met een kleine knipoog. Niet te lang en geen flauwe grappen, maar wel wat meer karakter.</p>
+          </article>
+          <article class="card">
+            <span class="pill" data-i18n="customPill">Vrij</span>
+            <h3 data-i18n="customTitle">Vrij in te vullen</h3>
+            <p data-i18n="customText">Schrijf zelf een prompt voor stijl, lengte en toon. Bijvoorbeeld energiek, minimalistisch, Nederlandstalig, Engelstalig of passend bij een specifieke setting.</p>
+          </article>
+        </div>
+        <p class="note" data-i18n="responseStylesNote">De gekozen stijl verandert alleen de DJ-aankondiging, niet de muziekkeuze. DJConnect gebruikt je ingestelde Home Assistant Assist pipeline voor spraakherkenning en gesproken antwoord. Stem, taal en TTS-engine beheer je in Home Assistant Assist; DJConnect houdt de eigen instellingen simpel.</p>
+        <p class="note" data-i18n="aiDisclaimer">AI- en Assist-antwoorden kunnen onjuist zijn. De werking en kwaliteit hangen af van je eigen Home Assistant installatie, Assist pipeline, STT/TTS-engine, taalinstellingen en DJConnect-configuratie.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <h2 data-i18n="esphomeTitle">ESPHome voice assistants</h2>
+          <p data-i18n="esphomeLead">DJConnect past native in het Home Assistant Assist ecosysteem en werkt ook met Assist satellites die op ESPHome draaien.</p>
+        </div>
+        <article class="card">
+          <span class="pill" data-i18n="esphomePill">Assist satellite</span>
+          <p data-i18n="esphomeText">Denk aan ESPHome voice assistant devices zoals de Home Assistant Voice Preview Edition, M5 Atom Echo en andere ESPHome-powered projecten. Het ESPHome device doet wake word, microfoonopname, STT-route en speaker-output via Home Assistant Assist. Kies DJConnect als Home Assistant conversation agent: DJConnect verwerkt het muziekverzoek via de actieve music backend en geeft een DJ-response terug via je ingestelde Assist pipeline en TTS.</p>
+          <p class="note" data-i18n="esphomeSetup">Kies in de DJConnect setup voor “Assist Conversation Agent”. Dan heb je voor deze route geen aparte DJConnect hardware-client of koppelcode nodig.</p>
+          <p class="note"><a class="subtle-link" href="https://esphome.io/projects/" target="_blank" rel="noopener" data-i18n="esphomeLink">Bekijk ESPHome voice assistant projecten op https://esphome.io/projects/</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <h2 data-i18n="familiesTitle">Intentfamilies</h2>
+          <p data-i18n="familiesLead">Gebruik gewone zinnen. Voeg alleen woorden zoals nummer, album of playlist toe wanneer je die media specifiek bedoelt.</p>
+        </div>
+        <div class="intent-grid" id="intentGrid"></div>
+        <p class="note" data-i18n="tipText">Tip: noem 'nummer', 'album' of 'playlist' als je gericht wilt zoeken.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <h2 data-i18n="askDjFamiliesTitle">Ask DJ voorbeelden</h2>
+          <p data-i18n="askDjFamiliesLead">Ask DJ is conversationeel: sommige vragen geven tekst, bronnen of afbeeldingen terug, andere kunnen Play Now-acties tonen. Ze staan los van de deterministische Spotify zoekcommando's hierboven.</p>
+        </div>
+        <div class="ask-grid" id="askDjGrid"></div>
+        <p class="note" data-i18n="askDjPlayNowNote">Aanbevelingen starten niet automatisch. DJConnect toont Play Now wanneer er een concrete aanbeveling is; playback start pas na jouw tap.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap legal">
+    <p>Copyright Peter van Tol 2026. Released under the MIT License.</p>
+    <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: Spotify credentials blijven in Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
+    <p><a href="../privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="../support.html" data-i18n="legalSupport">Support</a></p>
+    <p class="site-version">DJConnect website v3.2.4</p>
+  </footer>
+  <script src="../assets/voice-intents.js"></script>
+  <script>
+    const translations = {
+          nl: {
+                title: "DJConnect Spraakopdrachten",
+                metaDescription: "Voorbeelden van DJConnect spraakopdrachten voor artiesten, tracks, albums, playlists, favorieten en playback-bediening.",
+                navLabel: "Navigatie",
+                languageToggle: "Taalkeuze",
+                navMenu: "Menu",
+                navFeatures: "Features",
+                navBlog: "Blog",
+                navStart: "Aan de slag",
+                heroLabel: "Spraakopdrachten",
+                heroTitle: "Wat kun je zeggen?",
+                heroLead: "DJConnect luistert naar natuurlijke muziekopdrachten en korte status- of playbackvragen. Je hoeft geen exacte commando's te leren: noem een artiest, nummer, album of playlist, of vraag wat er nu draait.",
+                flowLabel: "Intentvolgorde",
+                flow1: "Huidige track status",
+                flow2: "Playback control",
+                flow3: "Default playlist / favorieten",
+                flow4: "Playlist",
+                flow5: "Artiest + track",
+                flow6: "Album",
+                flow7: "Track / nummer",
+                flow8: "Artist / artiest fallback",
+                responseStylesTitle: "DJ response stijlen",
+                responseStylesLead: "Na een muziekverzoek kan DJConnect op je DJConnect device een korte gesproken aankondiging teruggeven. In de Home Assistant integratie kies je de toon die bij jou past.",
+                neutralPill: "Neutraal",
+                neutralTitle: "Neutraal en zakelijk",
+                neutralText: "Korte, duidelijke aankondigingen zonder veel emotie of grapjes. Handig als je vooral functionele feedback wilt, zoals: “Ik zet Pearl Jam voor je klaar.”",
+                warmPill: "Warm",
+                warmTitle: "Warm en persoonlijk",
+                warmText: "Vriendelijker en menselijker van toon, alsof een rustige radio-DJ het nummer aankondigt. Fijn voor thuis en een wat gezelligere interactie.",
+                humorPill: "Geestig",
+                humorTitle: "Humoristisch en gevat",
+                humorText: "Luchtige, speelse aankondigingen met een kleine knipoog. Niet te lang en geen flauwe grappen, maar wel wat meer karakter.",
+                customPill: "Vrij",
+                customTitle: "Vrij in te vullen",
+                customText: "Schrijf zelf een prompt voor stijl, lengte en toon. Bijvoorbeeld energiek, minimalistisch, Nederlandstalig, Engelstalig of passend bij een specifieke setting.",
+                responseStylesNote: "De gekozen stijl verandert alleen de DJ-aankondiging, niet de muziekkeuze. DJConnect gebruikt je ingestelde Home Assistant Assist pipeline voor spraakherkenning en gesproken antwoord. Stem, taal en TTS-engine beheer je in Home Assistant Assist; DJConnect houdt de eigen instellingen simpel.",
+                aiDisclaimer: "AI- en Assist-antwoorden kunnen onjuist zijn. De werking en kwaliteit hangen af van je eigen Home Assistant installatie, Assist pipeline, STT/TTS-engine, taalinstellingen en DJConnect-configuratie.",
+                esphomeTitle: "ESPHome voice assistants",
+                esphomeLead: "DJConnect past native in het Home Assistant Assist ecosysteem en werkt ook met Assist satellites die op ESPHome draaien.",
+                esphomePill: "Assist satellite",
+                esphomeText: "Denk aan ESPHome voice assistant devices zoals de Home Assistant Voice Preview Edition, M5 Atom Echo en andere ESPHome-powered projecten. Het ESPHome device doet wake word, microfoonopname, STT-route en speaker-output via Home Assistant Assist. Kies DJConnect als Home Assistant conversation agent: DJConnect verwerkt het muziekverzoek via de actieve music backend en geeft een DJ-response terug via je ingestelde Assist pipeline en TTS.",
+                esphomeSetup: "Kies in de DJConnect setup voor “Assist Conversation Agent”. Dan heb je voor deze route geen aparte DJConnect hardware-client of koppelcode nodig.",
+                esphomeLink: "Bekijk ESPHome voice assistant projecten op https://esphome.io/projects/",
+                familiesTitle: "Intentfamilies",
+                familiesLead: "Gebruik gewone zinnen. Statusvragen lezen alleen wat er speelt, playback-control voert direct commands uit en muziekfamilies zoeken daarna pas in Spotify.",
+                askDjFamiliesTitle: "Ask DJ voorbeelden",
+                askDjFamiliesLead: "Ask DJ is conversationeel: sommige vragen geven tekst, bronnen of afbeeldingen terug, andere kunnen backend-aware Play Now-acties tonen. Privacyvragen over Music DNA zijn tekst-only en staan los van live playback of profielverrijking.",
+                askDjPlayNowNote: "Aanbevelingen starten niet automatisch. DJConnect toont Play Now wanneer er een concrete aanbeveling is; playback start pas na jouw tap. Music DNA-samenvattingen tonen geen oude album art, mediakaarten, TTS replay of Play Now-knoppen.",
+                askDjActionLabel: "Actie",
+                askDjSystemLabel: "Systeem",
+                askDjUserLabel: "Gebruiker",
+                artistPill: "Artiest",
+                artistTitle: "Artiest starten",
+                artistText: "Zonder expliciet “nummer”, “album” of “playlist” behandelt DJConnect dit als artiestverzoek.",
+                trackPill: "Track",
+                trackTitle: "Nummer / track zoeken",
+                trackText: "Gebruik woorden zoals nummer, liedje, track of song als je echt een specifieke track bedoelt.",
+                albumPill: "Album",
+                albumTitle: "Album starten",
+                albumText: "Gebruik album of plaat om album search te forceren.",
+                playlistPill: "Playlist",
+                playlistTitle: "Playlist starten",
+                playlistText: "Gebruik playlist of afspeellijst als je een playlistnaam bedoelt.",
+                defaultPill: "Standaard",
+                defaultTitle: "Standaard playlist / favorieten",
+                defaultText: "Deze gebruikt de standaard playlist URI die in de DJConnect Home Assistant integration is ingesteld.",
+                playbackPill: "Uitbreidbaar",
+                playbackTitle: "Playback control / queue",
+                playbackText: "Playback-bediening loopt via DJConnect backend commands en clientknoppen. Natuurlijke spraakdekking kan per release uitbreiden.",
+                examplesLabel: "Voorbeelden",
+                behaviorLabel: "Gedrag",
+                startsPlayback: "Start playback",
+                noPlayback: "Start geen playback",
+                commandLabel: "Backend command",
+                tipText: "Tip: noem 'nummer', 'album' of 'playlist' als je gericht wilt zoeken.",
+                legalPrivacy: "Privacy: Spotify credentials blijven in Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          },
+          en: {
+                title: "DJConnect Voice Commands",
+                metaDescription: "Examples of DJConnect voice commands for artists, tracks, albums, playlists, favorites and playback control.",
+                navLabel: "Navigation",
+                languageToggle: "Language",
+                navMenu: "Menu",
+                navFeatures: "Features",
+                navBlog: "Blog",
+                navStart: "Get started",
+                heroLabel: "Voice commands",
+                heroTitle: "What can you say?",
+                heroLead: "DJConnect listens for natural music requests and short status or playback questions. You do not need to learn exact commands: name an artist, song, album or playlist, or ask what is playing now.",
+                flowLabel: "Intent order",
+                flow1: "Current track status",
+                flow2: "Playback control",
+                flow3: "Default playlist / favorites",
+                flow4: "Playlist",
+                flow5: "Artist + track",
+                flow6: "Album",
+                flow7: "Track / song",
+                flow8: "Artist fallback",
+                responseStylesTitle: "DJ response styles",
+                responseStylesLead: "After a music request, DJConnect can speak a short DJ announcement on your DJConnect device. In the Home Assistant integration, you choose the tone that fits you.",
+                neutralPill: "Neutral",
+                neutralTitle: "Neutral and practical",
+                neutralText: "Short, clear announcements without much emotion or jokes. Useful when you mainly want functional feedback, such as: “I’ll get Pearl Jam ready for you.”",
+                warmPill: "Warm",
+                warmTitle: "Warm and personal",
+                warmText: "Friendlier and more human in tone, like a calm radio DJ announcing the song. Nice for home use and a cozier interaction.",
+                humorPill: "Witty",
+                humorTitle: "Humorous and witty",
+                humorText: "Light, playful announcements with a small wink. Not too long and no forced jokes, but with a little more character.",
+                customPill: "Custom",
+                customTitle: "Write your own",
+                customText: "Write your own prompt for style, length and tone. For example energetic, minimal, Dutch, English or suited to a specific setting.",
+                responseStylesNote: "The selected style only changes the DJ announcement, not the music choice. DJConnect uses your configured Home Assistant Assist pipeline for speech recognition and spoken response. Voice, language and TTS engine are managed in Home Assistant Assist; DJConnect keeps its own settings simple.",
+                aiDisclaimer: "AI and Assist responses can be incorrect. Behavior and quality depend on your own Home Assistant installation, Assist pipeline, STT/TTS engine, language settings and DJConnect configuration.",
+                esphomeTitle: "ESPHome voice assistants",
+                esphomeLead: "DJConnect fits natively into the Home Assistant Assist ecosystem and also works with Assist satellites powered by ESPHome.",
+                esphomePill: "Assist satellite",
+                esphomeText: "Think of ESPHome voice assistant devices such as the Home Assistant Voice Preview Edition, M5 Atom Echo and other ESPHome-powered projects. The ESPHome device handles wake word, microphone capture, the STT route and speaker output through Home Assistant Assist. Select DJConnect as the Home Assistant conversation agent: DJConnect handles the music request through the active music backend and returns a DJ response through your configured Assist pipeline and TTS.",
+                esphomeSetup: "Choose “Assist Conversation Agent” in the DJConnect setup. For this route, you do not need a separate DJConnect hardware client or pairing code.",
+                esphomeLink: "View ESPHome voice assistant projects at https://esphome.io/projects/",
+                familiesTitle: "Intent families",
+                familiesLead: "Use normal sentences. Status questions only read what is playing, playback control runs direct commands and music families search Spotify after that.",
+                askDjFamiliesTitle: "Ask DJ examples",
+                askDjFamiliesLead: "Ask DJ is conversational: some questions return text, sources or images, while others can show backend-aware Play Now actions. Privacy questions about Music DNA are text-only and separate from live playback or profile enrichment.",
+                askDjPlayNowNote: "Recommendations do not start automatically. DJConnect shows Play Now when there is a concrete recommendation; playback starts only after your tap. Music DNA summaries show no old album art, media cards, TTS replay or Play Now buttons.",
+                askDjActionLabel: "Action",
+                askDjSystemLabel: "System",
+                askDjUserLabel: "User",
+                artistPill: "Artist",
+                artistTitle: "Start an artist",
+                artistText: "Without explicit “song”, “album” or “playlist” wording, DJConnect treats this as an artist request.",
+                trackPill: "Track",
+                trackTitle: "Find a song / track",
+                trackText: "Use words like song or track when you really mean a specific track.",
+                albumPill: "Album",
+                albumTitle: "Start an album",
+                albumText: "Use album to force album search.",
+                playlistPill: "Playlist",
+                playlistTitle: "Start a playlist",
+                playlistText: "Use playlist when you mean a playlist name.",
+                defaultPill: "Default",
+                defaultTitle: "Default playlist / favorites",
+                defaultText: "This uses the default playlist URI configured in the DJConnect Home Assistant integration.",
+                playbackPill: "Expandable",
+                playbackTitle: "Playback control / queue",
+                playbackText: "Playback controls are supported through DJConnect backend commands and client controls. Natural-language coverage may grow per release.",
+                examplesLabel: "Examples",
+                behaviorLabel: "Behavior",
+                startsPlayback: "Starts playback",
+                noPlayback: "Does not start playback",
+                commandLabel: "Backend command",
+                tipText: "Tip: say 'song', 'album' or 'playlist' when you want a specific search type.",
+                legalPrivacy: "Privacy: Spotify credentials stay in Home Assistant. This website does not receive or store account details.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          },
+          de: {
+                title: "DJConnect Voice Commands",
+                metaDescription: "Examples of DJConnect voice commands for artists, tracks, albums, playlists, favorites and playback control.",
+                navLabel: "Navigation",
+                languageToggle: "Language",
+                navMenu: "Menu",
+                navFeatures: "Features",
+                navBlog: "Blog",
+                navStart: "Get started",
+                heroLabel: "Voice commands",
+                heroTitle: "What can you say?",
+                heroLead: "DJConnect listens for natural music requests and short status or playback questions. You do not need to learn exact commands: name an artist, song, album or playlist, or ask what is playing now.",
+                flowLabel: "Intent order",
+                flow1: "Current track status",
+                flow2: "Playback control",
+                flow3: "Default playlist / favorites",
+                flow4: "Playlist",
+                flow5: "Artist + track",
+                flow6: "Album",
+                flow7: "Track / song",
+                flow8: "Artist fallback",
+                responseStylesTitle: "DJ response styles",
+                responseStylesLead: "After a music request, DJConnect can speak a short DJ announcement on your DJConnect device. In the Home Assistant integration, you choose the tone that fits you.",
+                neutralPill: "Neutral",
+                neutralTitle: "Neutral and practical",
+                neutralText: "Short, clear announcements without much emotion or jokes. Useful when you mainly want functional feedback, such as: “I’ll get Pearl Jam ready for you.”",
+                warmPill: "Warm",
+                warmTitle: "Warm and personal",
+                warmText: "Friendlier and more human in tone, like a calm radio DJ announcing the song. Nice for home use and a cozier interaction.",
+                humorPill: "Witty",
+                humorTitle: "Humorous and witty",
+                humorText: "Light, playful announcements with a small wink. Not too long and no forced jokes, but with a little more character.",
+                customPill: "Custom",
+                customTitle: "Write your own",
+                customText: "Write your own prompt for style, length and tone. For example energetic, minimal, Dutch, English or suited to a specific setting.",
+                responseStylesNote: "The selected style only changes the DJ announcement, not the music choice. DJConnect uses your configured Home Assistant Assist pipeline for speech recognition and spoken response. Voice, language and TTS engine are managed in Home Assistant Assist; DJConnect keeps its own settings simple.",
+                aiDisclaimer: "AI and Assist responses can be incorrect. Behavior and quality depend on your own Home Assistant installation, Assist pipeline, STT/TTS engine, language settings and DJConnect configuration.",
+                esphomeTitle: "ESPHome voice assistants",
+                esphomeLead: "DJConnect fits natively into the Home Assistant Assist ecosystem and also works with Assist satellites powered by ESPHome.",
+                esphomePill: "Assist satellite",
+                esphomeText: "Think of ESPHome voice assistant devices such as the Home Assistant Voice Preview Edition, M5 Atom Echo and other ESPHome-powered projects. The ESPHome device handles wake word, microphone capture, the STT route and speaker output through Home Assistant Assist. Select DJConnect as the Home Assistant conversation agent: DJConnect handles the music request through the active music backend and returns a DJ response through your configured Assist pipeline and TTS.",
+                esphomeSetup: "Choose “Assist Conversation Agent” in the DJConnect setup. For this route, you do not need a separate DJConnect hardware client or pairing code.",
+                esphomeLink: "View ESPHome voice assistant projects at https://esphome.io/projects/",
+                familiesTitle: "Intent families",
+                familiesLead: "Use normal sentences. Status questions only read what is playing, playback control runs direct commands and music families search Spotify after that.",
+                askDjFamiliesTitle: "Ask DJ examples",
+                askDjFamiliesLead: "Ask DJ is conversational: some questions return text, sources or images, while others can show backend-aware Play Now actions. Privacy questions about Music DNA are text-only and separate from live playback or profile enrichment.",
+                askDjPlayNowNote: "Recommendations do not start automatically. DJConnect shows Play Now when there is a concrete recommendation; playback starts only after your tap. Music DNA summaries show no old album art, media cards, TTS replay or Play Now buttons.",
+                askDjActionLabel: "Action",
+                askDjSystemLabel: "System",
+                askDjUserLabel: "User",
+                artistPill: "Artist",
+                artistTitle: "Start an artist",
+                artistText: "Without explicit “song”, “album” or “playlist” wording, DJConnect treats this as an artist request.",
+                trackPill: "Track",
+                trackTitle: "Find a song / track",
+                trackText: "Use words like song or track when you really mean a specific track.",
+                albumPill: "Album",
+                albumTitle: "Start an album",
+                albumText: "Use album to force album search.",
+                playlistPill: "Playlist",
+                playlistTitle: "Start a playlist",
+                playlistText: "Use playlist when you mean a playlist name.",
+                defaultPill: "Default",
+                defaultTitle: "Default playlist / favorites",
+                defaultText: "This uses the default playlist URI configured in the DJConnect Home Assistant integration.",
+                playbackPill: "Expandable",
+                playbackTitle: "Playback control / queue",
+                playbackText: "Playback controls are supported through DJConnect backend commands and client controls. Natural-language coverage may grow per release.",
+                examplesLabel: "Examples",
+                behaviorLabel: "Behavior",
+                startsPlayback: "Starts playback",
+                noPlayback: "Does not start playback",
+                commandLabel: "Backend command",
+                tipText: "Tip: say 'song', 'album' or 'playlist' when you want a specific search type.",
+                legalPrivacy: "Privacy: Spotify credentials stay in Home Assistant. This website does not receive or store account details.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          },
+          fr: {
+                title: "DJConnect Voice Commands",
+                metaDescription: "Examples of DJConnect voice commands for artists, tracks, albums, playlists, favorites and playback control.",
+                navLabel: "Navigation",
+                languageToggle: "Language",
+                navMenu: "Menu",
+                navFeatures: "Features",
+                navBlog: "Blog",
+                navStart: "Get started",
+                heroLabel: "Voice commands",
+                heroTitle: "What can you say?",
+                heroLead: "DJConnect listens for natural music requests and short status or playback questions. You do not need to learn exact commands: name an artist, song, album or playlist, or ask what is playing now.",
+                flowLabel: "Intent order",
+                flow1: "Current track status",
+                flow2: "Playback control",
+                flow3: "Default playlist / favorites",
+                flow4: "Playlist",
+                flow5: "Artist + track",
+                flow6: "Album",
+                flow7: "Track / song",
+                flow8: "Artist fallback",
+                responseStylesTitle: "DJ response styles",
+                responseStylesLead: "After a music request, DJConnect can speak a short DJ announcement on your DJConnect device. In the Home Assistant integration, you choose the tone that fits you.",
+                neutralPill: "Neutral",
+                neutralTitle: "Neutral and practical",
+                neutralText: "Short, clear announcements without much emotion or jokes. Useful when you mainly want functional feedback, such as: “I’ll get Pearl Jam ready for you.”",
+                warmPill: "Warm",
+                warmTitle: "Warm and personal",
+                warmText: "Friendlier and more human in tone, like a calm radio DJ announcing the song. Nice for home use and a cozier interaction.",
+                humorPill: "Witty",
+                humorTitle: "Humorous and witty",
+                humorText: "Light, playful announcements with a small wink. Not too long and no forced jokes, but with a little more character.",
+                customPill: "Custom",
+                customTitle: "Write your own",
+                customText: "Write your own prompt for style, length and tone. For example energetic, minimal, Dutch, English or suited to a specific setting.",
+                responseStylesNote: "The selected style only changes the DJ announcement, not the music choice. DJConnect uses your configured Home Assistant Assist pipeline for speech recognition and spoken response. Voice, language and TTS engine are managed in Home Assistant Assist; DJConnect keeps its own settings simple.",
+                aiDisclaimer: "AI and Assist responses can be incorrect. Behavior and quality depend on your own Home Assistant installation, Assist pipeline, STT/TTS engine, language settings and DJConnect configuration.",
+                esphomeTitle: "ESPHome voice assistants",
+                esphomeLead: "DJConnect fits natively into the Home Assistant Assist ecosystem and also works with Assist satellites powered by ESPHome.",
+                esphomePill: "Assist satellite",
+                esphomeText: "Think of ESPHome voice assistant devices such as the Home Assistant Voice Preview Edition, M5 Atom Echo and other ESPHome-powered projects. The ESPHome device handles wake word, microphone capture, the STT route and speaker output through Home Assistant Assist. Select DJConnect as the Home Assistant conversation agent: DJConnect handles the music request through the active music backend and returns a DJ response through your configured Assist pipeline and TTS.",
+                esphomeSetup: "Choose “Assist Conversation Agent” in the DJConnect setup. For this route, you do not need a separate DJConnect hardware client or pairing code.",
+                esphomeLink: "View ESPHome voice assistant projects at https://esphome.io/projects/",
+                familiesTitle: "Intent families",
+                familiesLead: "Use normal sentences. Status questions only read what is playing, playback control runs direct commands and music families search Spotify after that.",
+                askDjFamiliesTitle: "Ask DJ examples",
+                askDjFamiliesLead: "Ask DJ is conversational: some questions return text, sources or images, while others can show backend-aware Play Now actions. Privacy questions about Music DNA are text-only and separate from live playback or profile enrichment.",
+                askDjPlayNowNote: "Recommendations do not start automatically. DJConnect shows Play Now when there is a concrete recommendation; playback starts only after your tap. Music DNA summaries show no old album art, media cards, TTS replay or Play Now buttons.",
+                askDjActionLabel: "Action",
+                askDjSystemLabel: "System",
+                askDjUserLabel: "User",
+                artistPill: "Artist",
+                artistTitle: "Start an artist",
+                artistText: "Without explicit “song”, “album” or “playlist” wording, DJConnect treats this as an artist request.",
+                trackPill: "Track",
+                trackTitle: "Find a song / track",
+                trackText: "Use words like song or track when you really mean a specific track.",
+                albumPill: "Album",
+                albumTitle: "Start an album",
+                albumText: "Use album to force album search.",
+                playlistPill: "Playlist",
+                playlistTitle: "Start a playlist",
+                playlistText: "Use playlist when you mean a playlist name.",
+                defaultPill: "Default",
+                defaultTitle: "Default playlist / favorites",
+                defaultText: "This uses the default playlist URI configured in the DJConnect Home Assistant integration.",
+                playbackPill: "Expandable",
+                playbackTitle: "Playback control / queue",
+                playbackText: "Playback controls are supported through DJConnect backend commands and client controls. Natural-language coverage may grow per release.",
+                examplesLabel: "Examples",
+                behaviorLabel: "Behavior",
+                startsPlayback: "Starts playback",
+                noPlayback: "Does not start playback",
+                commandLabel: "Backend command",
+                tipText: "Tip: say 'song', 'album' or 'playlist' when you want a specific search type.",
+                legalPrivacy: "Privacy: Spotify credentials stay in Home Assistant. This website does not receive or store account details.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          },
+          es: {
+                title: "DJConnect Voice Commands",
+                metaDescription: "Examples of DJConnect voice commands for artists, tracks, albums, playlists, favorites and playback control.",
+                navLabel: "Navigation",
+                languageToggle: "Language",
+                navMenu: "Menu",
+                navFeatures: "Features",
+                navBlog: "Blog",
+                navStart: "Get started",
+                heroLabel: "Voice commands",
+                heroTitle: "What can you say?",
+                heroLead: "DJConnect listens for natural music requests and short status or playback questions. You do not need to learn exact commands: name an artist, song, album or playlist, or ask what is playing now.",
+                flowLabel: "Intent order",
+                flow1: "Current track status",
+                flow2: "Playback control",
+                flow3: "Default playlist / favorites",
+                flow4: "Playlist",
+                flow5: "Artist + track",
+                flow6: "Album",
+                flow7: "Track / song",
+                flow8: "Artist fallback",
+                responseStylesTitle: "DJ response styles",
+                responseStylesLead: "After a music request, DJConnect can speak a short DJ announcement on your DJConnect device. In the Home Assistant integration, you choose the tone that fits you.",
+                neutralPill: "Neutral",
+                neutralTitle: "Neutral and practical",
+                neutralText: "Short, clear announcements without much emotion or jokes. Useful when you mainly want functional feedback, such as: “I’ll get Pearl Jam ready for you.”",
+                warmPill: "Warm",
+                warmTitle: "Warm and personal",
+                warmText: "Friendlier and more human in tone, like a calm radio DJ announcing the song. Nice for home use and a cozier interaction.",
+                humorPill: "Witty",
+                humorTitle: "Humorous and witty",
+                humorText: "Light, playful announcements with a small wink. Not too long and no forced jokes, but with a little more character.",
+                customPill: "Custom",
+                customTitle: "Write your own",
+                customText: "Write your own prompt for style, length and tone. For example energetic, minimal, Dutch, English or suited to a specific setting.",
+                responseStylesNote: "The selected style only changes the DJ announcement, not the music choice. DJConnect uses your configured Home Assistant Assist pipeline for speech recognition and spoken response. Voice, language and TTS engine are managed in Home Assistant Assist; DJConnect keeps its own settings simple.",
+                aiDisclaimer: "AI and Assist responses can be incorrect. Behavior and quality depend on your own Home Assistant installation, Assist pipeline, STT/TTS engine, language settings and DJConnect configuration.",
+                esphomeTitle: "ESPHome voice assistants",
+                esphomeLead: "DJConnect fits natively into the Home Assistant Assist ecosystem and also works with Assist satellites powered by ESPHome.",
+                esphomePill: "Assist satellite",
+                esphomeText: "Think of ESPHome voice assistant devices such as the Home Assistant Voice Preview Edition, M5 Atom Echo and other ESPHome-powered projects. The ESPHome device handles wake word, microphone capture, the STT route and speaker output through Home Assistant Assist. Select DJConnect as the Home Assistant conversation agent: DJConnect handles the music request through the active music backend and returns a DJ response through your configured Assist pipeline and TTS.",
+                esphomeSetup: "Choose “Assist Conversation Agent” in the DJConnect setup. For this route, you do not need a separate DJConnect hardware client or pairing code.",
+                esphomeLink: "View ESPHome voice assistant projects at https://esphome.io/projects/",
+                familiesTitle: "Intent families",
+                familiesLead: "Use normal sentences. Status questions only read what is playing, playback control runs direct commands and music families search Spotify after that.",
+                askDjFamiliesTitle: "Ask DJ examples",
+                askDjFamiliesLead: "Ask DJ is conversational: some questions return text, sources or images, while others can show backend-aware Play Now actions. Privacy questions about Music DNA are text-only and separate from live playback or profile enrichment.",
+                askDjPlayNowNote: "Recommendations do not start automatically. DJConnect shows Play Now when there is a concrete recommendation; playback starts only after your tap. Music DNA summaries show no old album art, media cards, TTS replay or Play Now buttons.",
+                askDjActionLabel: "Action",
+                askDjSystemLabel: "System",
+                askDjUserLabel: "User",
+                artistPill: "Artist",
+                artistTitle: "Start an artist",
+                artistText: "Without explicit “song”, “album” or “playlist” wording, DJConnect treats this as an artist request.",
+                trackPill: "Track",
+                trackTitle: "Find a song / track",
+                trackText: "Use words like song or track when you really mean a specific track.",
+                albumPill: "Album",
+                albumTitle: "Start an album",
+                albumText: "Use album to force album search.",
+                playlistPill: "Playlist",
+                playlistTitle: "Start a playlist",
+                playlistText: "Use playlist when you mean a playlist name.",
+                defaultPill: "Default",
+                defaultTitle: "Default playlist / favorites",
+                defaultText: "This uses the default playlist URI configured in the DJConnect Home Assistant integration.",
+                playbackPill: "Expandable",
+                playbackTitle: "Playback control / queue",
+                playbackText: "Playback controls are supported through DJConnect backend commands and client controls. Natural-language coverage may grow per release.",
+                examplesLabel: "Examples",
+                behaviorLabel: "Behavior",
+                startsPlayback: "Starts playback",
+                noPlayback: "Does not start playback",
+                commandLabel: "Backend command",
+                tipText: "Tip: say 'song', 'album' or 'playlist' when you want a specific search type.",
+                legalPrivacy: "Privacy: Spotify credentials stay in Home Assistant. This website does not receive or store account details.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          }
+    };
+    const intentFamilies = window.DJCONNECT_VOICE_INTENTS || [];
+    const askDjFamilies = window.DJCONNECT_ASK_DJ_INTENTS || [];
+    const renderIntentFamilies = (lang, dictionary) => {
+      const grid = document.querySelector("#intentGrid");
+      if (!grid) return;
+      grid.replaceChildren();
+      intentFamilies.forEach((family) => {
+        const card = document.createElement("article");
+        card.className = "card";
+
+        const pill = document.createElement("span");
+        pill.className = "pill";
+        pill.textContent = family.pill[lang];
+
+        const title = document.createElement("h3");
+        title.textContent = family.title[lang];
+
+        const text = document.createElement("p");
+        text.textContent = family.text[lang];
+
+        const metadata = document.createElement("div");
+        metadata.className = "meta-row";
+        const playback = document.createElement("span");
+        playback.textContent = family.playsMusic ? dictionary.startsPlayback : dictionary.noPlayback;
+        const spotifyType = document.createElement("span");
+        spotifyType.textContent = family.spotifyType;
+        metadata.append(playback, spotifyType);
+
+        const behavior = document.createElement("p");
+        behavior.className = "note";
+        behavior.textContent = `${dictionary.behaviorLabel}: ${family.behavior[lang]}`;
+
+        const examples = document.createElement("div");
+        examples.className = "examples";
+        const label = document.createElement("h4");
+        label.textContent = dictionary.examplesLabel;
+        const list = document.createElement("ul");
+        family.examples[lang].forEach((example) => {
+          const item = document.createElement("li");
+          item.textContent = example;
+          list.append(item);
+        });
+        examples.append(label, list);
+
+        if (family.commands) {
+          const commandList = document.createElement("div");
+          commandList.className = "command-list";
+          family.commands.forEach((command) => {
+            const row = document.createElement("div");
+            const phrase = document.createElement("span");
+            phrase.textContent = command.phrase[lang];
+            const backendCommand = document.createElement("code");
+            backendCommand.textContent = command.command;
+            row.append(phrase, backendCommand);
+            commandList.append(row);
+          });
+          card.append(pill, title, text, metadata, behavior, examples, commandList);
+        } else {
+          card.append(pill, title, text, metadata, behavior, examples);
+        }
+        grid.append(card);
+      });
+    };
+    const renderAskDjFamilies = (lang, dictionary) => {
+      const grid = document.querySelector("#askDjGrid");
+      if (!grid) return;
+      grid.replaceChildren();
+      askDjFamilies.forEach((family) => {
+        const card = document.createElement("article");
+        card.className = "card";
+
+        const pill = document.createElement("span");
+        pill.className = "pill";
+        pill.textContent = family.pill[lang];
+
+        const title = document.createElement("h3");
+        title.textContent = family.title[lang];
+
+        const text = document.createElement("p");
+        text.textContent = family.text?.[lang] || family.description;
+
+        const metadata = document.createElement("div");
+        metadata.className = "meta-row";
+        const action = document.createElement("span");
+        action.textContent = `${dictionary.askDjActionLabel}: ${family.action || "none"}`;
+        const kind = document.createElement("span");
+        kind.textContent = family.messageKind === "system" ? dictionary.askDjSystemLabel : dictionary.askDjUserLabel;
+        metadata.append(action, kind);
+
+        const examples = document.createElement("div");
+        examples.className = "examples";
+        const label = document.createElement("h4");
+        label.textContent = dictionary.examplesLabel;
+        const list = document.createElement("ul");
+        family.examples[lang].forEach((example) => {
+          const item = document.createElement("li");
+          item.textContent = example;
+          list.append(item);
+        });
+        examples.append(label, list);
+        card.append(pill, title, text, metadata, examples);
+        grid.append(card);
+      });
+    };
+    const getInitialLanguage = () => {
+      const stored = localStorage.getItem("djconnect-language");
+      if (stored === "nl" || stored === "en") return stored;
+      return navigator.language && navigator.language.toLowerCase().startsWith("nl") ? "nl" : "en";
+    };
+    const applyLanguage = (lang) => {
+      const dictionary = { ...(window.DJCONNECT_I18N?.shared?.[lang] || {}), ...(translations[lang] || translations[window.DJCONNECT_I18N?.defaultLanguage || "nl"]) };
+      document.documentElement.lang = lang;
+      document.title = dictionary.title;
+      document.querySelector('meta[name="description"]').setAttribute("content", dictionary.metaDescription);
+      document.querySelectorAll("[data-i18n]").forEach((node) => {
+        const value = dictionary[node.dataset.i18n];
+        if (value) node.textContent = value;
+      });
+      document.querySelectorAll("[data-i18n-attr]").forEach((node) => {
+        node.dataset.i18nAttr.split(",").forEach((mapping) => {
+          const [attr, key] = mapping.split(":").map((part) => part.trim());
+          if (attr && key && dictionary[key]) node.setAttribute(attr, dictionary[key]);
+        });
+      });
+      document.querySelectorAll("[data-lang]").forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.lang === lang));
+      });
+      renderIntentFamilies(lang, dictionary);
+      renderAskDjFamilies(lang, dictionary);
+      localStorage.setItem("djconnect-language", lang);
+    };
+    document.querySelectorAll("[data-lang]").forEach((button) => {
+      button.addEventListener("click", () => applyLanguage(button.dataset.lang));
+    });
+    applyLanguage(getInitialLanguage());
+
+  </script>  <script src="../assets/i18n.js?v=3.2.4"></script>
+
+  <script src="../assets/site-nav.js?v=3.2.4"></script>
+</body>
+</html>

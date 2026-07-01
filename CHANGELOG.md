@@ -4,6 +4,19 @@ All notable changes to this website are grouped per release.
 
 ## Unreleased
 
+## DJConnect website v3.2.4 - 2026-07-01
+
+- Added public multilingual support for English, Dutch, German, French and
+  Spanish across the static website pages, docs routes, language switchers and
+  `hreflang` alternates.
+- Centralized shared product, pairing, requirement, MIT license, privacy and
+  Spotify trademark/non-affiliation strings in the shared i18n runtime.
+- Added build-time i18n validation for missing translation keys, missing
+  language controls and broken localized routes, and documented the requirement
+  that future public copy updates include all supported languages in the same
+  pull request.
+- Replaced public voice-intent artist examples with neutral placeholders.
+
 ## DJConnect website v3.2.3 - 2026-06-29
 
 - Added privacy-first Ask DJ and Music DNA copy across the homepage, Features,

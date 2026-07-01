@@ -1,0 +1,1356 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DJConnect Aan de slag</title>
+  <meta name="description" content="Aan de slag met DJConnect 3.2: kies Spotify Direct of Music Assistant, installeer via HACS en pair je app of local device met Home Assistant." />
+  <link rel="canonical" href="https://djconnect.dev/start" />
+  <link rel="alternate" hreflang="en" href="https://djconnect.dev/en/start.html" />
+  <link rel="alternate" hreflang="nl" href="https://djconnect.dev/start.html" />
+  <link rel="alternate" hreflang="de" href="https://djconnect.dev/de/start.html" />
+  <link rel="alternate" hreflang="fr" href="https://djconnect.dev/fr/start.html" />
+  <link rel="alternate" hreflang="es" href="https://djconnect.dev/es/start.html" />
+  <link rel="alternate" hreflang="x-default" href="https://djconnect.dev/start.html" />
+  <link rel="icon" href="../assets/djconnect/icon.svg" type="image/svg+xml" />
+  <style>
+    :root { --bg:#0b0d12; --panel:rgba(255,255,255,0.075); --panel-strong:rgba(255,255,255,0.12); --text:#f7f7fb; --muted:#b7bccb; --line:rgba(255,255,255,0.14); --cyan:#66e0ff; --green:#7ef7a7; --purple:#8b5cf6; --pink:#fb7185; --shadow:0 24px 70px rgba(0,0,0,0.35); --max:1180px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; background:var(--bg); }
+    body { margin:0; color:var(--text); font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height:1.55; background:radial-gradient(circle at 16% 10%, rgba(102,224,255,0.18), transparent 28rem), radial-gradient(circle at 86% 6%, rgba(251,113,133,0.14), transparent 27rem), radial-gradient(circle at 58% 72%, rgba(126,247,167,0.1), transparent 31rem), linear-gradient(180deg,#0b0d12 0%,#111827 54%,#090b10 100%); }
+    a { color:inherit; text-decoration:none; }
+    code { border:1px solid var(--line); border-radius:8px; background:rgba(255,255,255,0.09); color:#d9fbe5; padding:2px 7px; overflow-wrap:anywhere; }
+    .wrap { width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
+    .nav { position:sticky; top:0; z-index:20; backdrop-filter:blur(18px); background:rgba(11,13,18,0.7); border-bottom:1px solid var(--line); }
+    .nav-inner { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:22px; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:850; font-size:1.13rem; }
+    .brand img { width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.18); box-shadow:0 0 34px rgba(102,224,255,0.25); }
+    .nav-links { display:flex; align-items:center; gap:18px; color:var(--muted); font-size:0.94rem; }
+    .nav-links a:hover { color:var(--text); }
+    .nav-controls { display:flex; align-items:center; gap:12px; }
+    .lang-toggle { display:inline-grid; grid-template-columns: repeat(5, 1fr); min-width: 190px; padding:3px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.06); }
+    .lang-toggle button { min-height:34px; border:0; border-radius:999px; background:transparent; color:var(--muted); font:inherit; font-size:0.82rem; font-weight:850; cursor:pointer; }
+    .lang-toggle button[aria-pressed="true"] { background:rgba(102,224,255,0.18); color:var(--text); }
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:46px; padding:0 18px; border-radius:999px; border:1px solid var(--line); background:var(--panel); color:var(--text); font-weight:780; box-shadow:0 10px 30px rgba(0,0,0,0.15); transition:transform 160ms ease, background 160ms ease, border-color 160ms ease; }
+    .btn:hover { transform:translateY(-2px); background:var(--panel-strong); border-color:rgba(255,255,255,0.28); }
+    .btn.primary { border:0; color:#06110c; background:linear-gradient(135deg,var(--cyan),var(--green)); }
+    .hero { padding:82px 0 52px; }
+    .hero-grid { display:grid; grid-template-columns:1.02fr 0.98fr; gap:48px; align-items:center; }
+    h1,h2,h3 { margin:0; letter-spacing:-0.045em; line-height:1.05; }
+    h1 { font-size:clamp(3.1rem,7vw,6.2rem); max-width:12ch; }
+    h2 { font-size:clamp(2rem,4.6vw,4.1rem); margin-bottom:18px; }
+    h3 { font-size:1.2rem; margin-bottom:10px; }
+    .lead { color:var(--muted); font-size:clamp(1.08rem,2.2vw,1.33rem); margin:24px 0 30px; }
+    section { padding:72px 0; }
+    .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:start; }
+    .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .section-followup { margin-top:40px; }
+    section .wrap + .wrap { margin-top:40px; }
+    .card { border:1px solid var(--line); border-radius:22px; background:var(--panel); padding:24px; box-shadow:0 12px 36px rgba(0,0,0,0.16); }
+    .card p,.muted { color:var(--muted); margin:0; }
+    .hero-steps { display:grid; gap:14px; margin:0; padding:0; counter-reset:heroSteps; }
+    .hero-steps li { list-style:none; counter-increment:heroSteps; display:flex; align-items:center; gap:14px; color:var(--muted); font-size:1.08rem; font-weight:760; }
+    .hero-steps li::before { content:counter(heroSteps); flex:0 0 42px; width:42px; height:42px; display:grid; place-items:center; border-radius:999px; background:linear-gradient(135deg,var(--cyan),var(--green)); color:#06110c; font-weight:950; box-shadow:0 14px 28px rgba(102,224,255,0.18); }
+    .hero-done { display:flex; align-items:center; gap:14px; margin-top:18px; color:var(--text); font-size:1.08rem; font-weight:820; }
+    .hero-done::before { content:"♪"; flex:0 0 42px; width:42px; height:42px; display:grid; place-items:center; border-radius:999px; background:linear-gradient(135deg,var(--purple),#c084fc); color:var(--text); font-weight:950; }
+    .download-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+    .route-card { min-height:100%; }
+    .route-label { display:inline-flex; margin-bottom:14px; padding:6px 10px; border-radius:999px; background:rgba(102,224,255,0.14); color:#9becff; font-size:0.78rem; font-weight:850; text-transform:uppercase; letter-spacing:0.06em; }
+    .route-card .btn { margin-top:22px; }
+    .checklist { display:grid; gap:12px; margin:0; padding:0; }
+    .checklist li { list-style:none; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,0.055); padding:14px 16px; color:var(--muted); }
+    .checklist li::before { content:"♪"; color:var(--green); font-weight:900; margin-right:10px; }
+    .steps { counter-reset:steps; display:grid; gap:14px; margin:0; padding:0; }
+    .steps li { list-style:none; counter-increment:steps; display:flex; gap:14px; align-items:flex-start; border:1px solid var(--line); border-radius:20px; background:rgba(255,255,255,0.055); padding:16px; color:var(--muted); overflow-wrap:anywhere; }
+    .steps li::before { content:counter(steps); flex:0 0 48px; width:48px; height:48px; display:grid; place-items:center; border-radius:16px; background:var(--cyan); color:#07110b; font-weight:950; }
+    .comparison-table { width:100%; border-collapse:separate; border-spacing:0; overflow:hidden; border:1px solid var(--line); border-radius:22px; background:rgba(255,255,255,0.045); }
+    .comparison-table th, .comparison-table td { padding:14px 16px; text-align:left; vertical-align:top; border-bottom:1px solid var(--line); color:var(--muted); }
+    .comparison-table th { color:var(--text); background:rgba(255,255,255,0.07); font-size:0.94rem; }
+    .comparison-table tr:last-child td { border-bottom:0; }
+    .comparison-table strong { color:var(--text); }
+    .table-wrap { overflow-x:auto; border-radius:22px; }
+    .client-switch { display:grid; gap:18px; }
+    .client-switch input { position:absolute; opacity:0; pointer-events:none; }
+    .switch-tabs { display:grid; grid-template-columns:repeat(6,1fr); gap:10px; padding:6px; border:1px solid var(--line); border-radius:24px; background:rgba(255,255,255,0.055); }
+    .switch-tabs label { display:flex; align-items:center; justify-content:center; min-height:52px; border:1px solid transparent; border-radius:18px; color:var(--muted); font-weight:900; cursor:pointer; transition:background 160ms ease, color 160ms ease, border-color 160ms ease, transform 160ms ease; }
+    .switch-tabs label:hover { color:var(--text); background:rgba(255,255,255,0.07); }
+    #client-esp:checked ~ .switch-tabs label[for="client-esp"],
+    #client-assist:checked ~ .switch-tabs label[for="client-assist"],
+    #client-ios:checked ~ .switch-tabs label[for="client-ios"],
+    #client-macos:checked ~ .switch-tabs label[for="client-macos"],
+    #client-windows:checked ~ .switch-tabs label[for="client-windows"],
+    #client-raspberry:checked ~ .switch-tabs label[for="client-raspberry"] { color:#06110c; border-color:transparent; background:linear-gradient(135deg,var(--cyan),var(--green)); transform:translateY(-1px); }
+    .client-panels { display:grid; }
+    .client-panel { grid-area:1 / 1; visibility:hidden; opacity:0; transform:translateY(8px); pointer-events:none; transition:opacity 180ms ease, transform 180ms ease, visibility 180ms ease; }
+    #client-esp:checked ~ .client-panels [data-client-panel="esp"],
+    #client-assist:checked ~ .client-panels [data-client-panel="assist"],
+    #client-ios:checked ~ .client-panels [data-client-panel="ios"],
+    #client-macos:checked ~ .client-panels [data-client-panel="macos"],
+    #client-windows:checked ~ .client-panels [data-client-panel="windows"],
+    #client-raspberry:checked ~ .client-panels [data-client-panel="raspberry"] { visibility:visible; opacity:1; transform:translateY(0); pointer-events:auto; }
+    .client-panel .steps { margin-top:18px; }
+    .client-panel .steps .btn { margin-top:2px; }
+    .client-panel .muted { margin-top:14px; font-size:1.02rem; }
+    .note { border-left:3px solid var(--green); padding:14px 16px; background:rgba(126,247,167,0.09); border-radius:14px; color:var(--muted); }
+    .legal { color:var(--muted); font-size:0.86rem; padding:34px 0 44px; border-top:1px solid var(--line); }
+    .site-version { margin-top:14px; font-size:0.76rem; color:rgba(183,188,203,0.72); }
+    .privacy-notice { font-size:0.78rem; color:rgba(183,188,203,0.78); }
+    @media (max-width:980px) { .hero-grid,.grid-2,.grid-3 { grid-template-columns:1fr; } .nav-inner { flex-wrap:wrap; padding:12px 0; } .nav-links { order:3; width:100%; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; } .nav-links::-webkit-scrollbar { display:none; } }
+    @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } .switch-tabs { grid-template-columns:1fr; } }
+
+  </style>
+  <link rel="stylesheet" href="../assets/site-nav.css?v=3.2.4" />
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../index.html"><img src="../assets/djconnect/icon.svg" alt="" aria-hidden="true" /><span>DJConnect</span></a>
+      <div class="nav-links" id="primaryNav" aria-label="Navigatie" data-i18n-attr="aria-label:navLabel">
+        <a href="../index.html" data-i18n="navHome">Home</a>
+        <a href="#hacs" data-i18n="navInstall">Installeren</a>
+        <a href="#pairing" data-i18n="navDownload">Download</a>
+      </div>
+      <div class="nav-controls">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Menu" data-i18n-attr="aria-label:navMenu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg></button>
+        <div class="lang-toggle" aria-label="Taalkeuze" data-i18n-attr="aria-label:languageToggle">
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+          <button type="button" data-lang="nl" aria-pressed="true">NL</button>
+          <button type="button" data-lang="de" aria-pressed="false">DE</button>
+          <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+          <button type="button" data-lang="es" aria-pressed="false">ES</button>
+        </div>
+        <a class="btn primary" href="#spotify" data-i18n="navStart">Start installatie</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="mainContent">
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <h1 data-i18n="heroTitle">DJConnect. Muziekbediening met karakter.</h1>
+          <p class="lead" data-i18n="heroLead">DJConnect brengt spraak, muziekbediening en een persoonlijke DJ-reactie samen. De kern blijft hetzelfde op elk device: vraag muziek, kies waar het speelt en krijg directe feedback terug.</p>
+        </div>
+        <div class="card">
+          <h2 data-i18n="overviewTitle">Wat ga je doen?</h2>
+          <ol class="hero-steps">
+            <li data-i18n="overviewStep1">Integreer DJConnect in Home Assistant</li>
+            <li data-i18n="overviewStep2">Kies Spotify Direct of Music Assistant</li>
+            <li data-i18n="overviewStep3">Koppel lokaal, gebruik apps daarna ook remote</li>
+          </ol>
+          <div class="hero-done" data-i18n="overviewDone">Geniet van je eigen muziek, met je persoonlijke DJ</div>
+        </div>
+      </div>
+    </header>
+
+    <section id="requirements">
+      <div class="wrap grid-2">
+        <div>
+          <h2 data-i18n="requirementsTitle">Vereisten</h2>
+          <p class="lead" data-i18n="requirementsLead">Deze checklist voorkomt de meeste installatieproblemen.</p>
+        </div>
+        <ul class="checklist">
+          <li>Home Assistant installatie</li>
+          <li>HACS geïnstalleerd in Home Assistant</li>
+          <li data-i18n="requirementsBackend">Een muziekbackend: Spotify Direct of Music Assistant</li>
+          <li>Home Assistant Assist pipeline met werkende STT en TTS</li>
+          <li>DJConnect device, DJConnect app of Assist Conversation Agent route</li>
+          <li data-i18n="requirementsLocalPairing">Home Assistant en DJConnect client op hetzelfde lokale netwerk tijdens pairing; remote pairing wordt niet ondersteund</li>
+          <li data-i18n="requirementsEspWifi">Voor ESP hardware: 2.4 GHz WiFi tijdens provisioning en lokaal gebruik</li>
+          <li data-i18n="requirementsSpotifyOauth">Alleen voor Spotify Direct: Spotify Premium en je eigen Spotify Developer app met Client ID</li>
+          <li data-i18n="requirementsMusicAssistant">Alleen voor Music Assistant: Music Assistant geinstalleerd, providers geconfigureerd en een player geselecteerd</li>
+          <li data-i18n="requirementsExternalUrl">Optioneel voor remote iOS/macOS/Windows: een externe HTTPS Home Assistant URL, bij voorkeur Nabu Casa</li>
+        </ul>
+      </div>
+      <div class="wrap grid-3 section-followup">
+        <article class="card"><h3 data-i18n="backendTitle">Music backend kiezen</h3><p data-i18n="backendText">DJConnect 3.2 werkt met Spotify Direct of Music Assistant. Home Assistant meldt aan clients welke backend actief is en welke acties beschikbaar zijn.</p></article>
+        <article class="card"><h3 data-i18n="credentialsTitle">Credentials blijven in Home Assistant</h3><p data-i18n="credentialsText">DJConnect devices en apps krijgen geen Spotify refresh token of playback credentials.</p></article>
+        <article class="card"><h3 data-i18n="remoteTitle">Remote na lokale pairing</h3><p data-i18n="remoteText">iOS, macOS en Windows kunnen na lokale pairing via je externe Home Assistant URL werken. ESP32 en Raspberry Pi blijven local-only.</p></article>
+        <article class="card"><h3 data-i18n="trackAnalysisProviderTitle">Optioneel: Track Insight providers</h3><p data-i18n="trackAnalysisProviderText">Track Insight werkt standaard met beschikbare playbackcontext. Voor diepere analyse kun je later eigen providers configureren, zoals een muziekmetadata-API of lokale audio-analyse add-on. API keys blijven in je eigen Home Assistant-installatie.</p></article>
+      </div>
+    </section>
+
+    <section id="backend">
+      <div class="wrap">
+        <h2 data-i18n="backendCompareTitle">3. Kies je music backend</h2>
+        <p class="lead" data-i18n="backendCompareLead">Kies voor setup of DJConnect direct met Spotify werkt, of dat Music Assistant de centrale muzieklaag in Home Assistant is.</p>
+      </div>
+      <div class="wrap table-wrap">
+        <table class="comparison-table">
+          <thead><tr><th data-i18n="requirementHeader">Requirement</th><th>Spotify Direct</th><th>Music Assistant</th></tr></thead>
+          <tbody>
+            <tr><td>Home Assistant</td><td data-i18n="required">Required</td><td data-i18n="required">Required</td></tr>
+            <tr><td>HACS DJConnect integration</td><td data-i18n="required">Required</td><td data-i18n="required">Required</td></tr>
+            <tr><td>Spotify Premium</td><td data-i18n="required">Required</td><td data-i18n="maSpotifyPremium">Only if your Music Assistant Spotify provider needs it</td></tr>
+            <tr><td>Spotify Developer app / Client ID in DJConnect</td><td data-i18n="required">Required</td><td data-i18n="notRequired">Not required</td></tr>
+            <tr><td>DJConnect Spotify OAuth/PKCE</td><td data-i18n="required">Required</td><td data-i18n="notUsed">Not used</td></tr>
+            <tr><td>Music Assistant installed in HA</td><td data-i18n="notRequired">Not required</td><td data-i18n="required">Required</td></tr>
+            <tr><td>Music Assistant providers configured</td><td data-i18n="notRequired">Not required</td><td data-i18n="requiredInMa">Required in Music Assistant</td></tr>
+            <tr><td>Music Assistant player selected</td><td data-i18n="notRequired">Not required</td><td data-i18n="required">Required</td></tr>
+            <tr><td>HA Assist STT/TTS for voice</td><td data-i18n="requiredForVoice">Required for voice/PTT</td><td data-i18n="requiredForVoice">Required for voice/PTT</td></tr>
+            <tr><td>Nabu Casa/external HTTPS URL</td><td data-i18n="externalOptional">Optional, for remote iOS/macOS/Windows</td><td data-i18n="externalOptional">Optional, for remote iOS/macOS/Windows</td></tr>
+            <tr><td>Local pairing</td><td data-i18n="required">Required</td><td data-i18n="required">Required</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="wrap table-wrap section-followup">
+        <table class="comparison-table">
+          <thead><tr><th data-i18n="featureHeader">Feature</th><th>Spotify Direct</th><th>Music Assistant</th></tr></thead>
+          <tbody>
+            <tr><td>Play/pause/next/previous</td><td data-i18n="supported">Supported</td><td data-i18n="maPlayerSupports">Supported if selected MA player supports it</td></tr>
+            <tr><td>Volume control</td><td data-i18n="spotifyVolume">Supported if Spotify Connect output supports volume</td><td data-i18n="maVolume">Supported if MA player supports volume</td></tr>
+            <tr><td>Output/player selection</td><td>Spotify Connect devices</td><td>Music Assistant players</td></tr>
+            <tr><td>Queue view</td><td data-i18n="spotifyQueue">Supported via Spotify queue</td><td data-i18n="maQueue">Supported if MA exposes queue/player queue</td></tr>
+            <tr><td>Playlists</td><td>Spotify playlists</td><td data-i18n="maPlaylists">MA library/provider playlists if available</td></tr>
+            <tr><td>Search by artist/track/album</td><td>Spotify catalog</td><td data-i18n="maSearch">MA library/providers if available</td></tr>
+            <tr><td>Ask DJ Play Now actions</td><td>Spotify URI actions</td><td data-i18n="maActions">MA item/player actions</td></tr>
+            <tr><td>Current track / now playing</td><td data-i18n="supported">Supported</td><td data-i18n="supported">Supported</td></tr>
+            <tr><td>Album art/images</td><td data-i18n="supported">Supported</td><td data-i18n="maImages">Supported if MA/provider exposes images</td></tr>
+            <tr><td>Favorites / liked songs</td><td>Spotify Liked Songs</td><td data-i18n="capabilityDependent">Capability-dependent</td></tr>
+            <tr><td>Recently played</td><td>Spotify recently played</td><td data-i18n="capabilityDependent">Capability-dependent</td></tr>
+            <tr><td>Top artists/tracks profile</td><td>Spotify Web API</td><td data-i18n="maProfile">Usually not available unless MA/backend exposes equivalent</td></tr>
+            <tr><td>Personal music profile analysis</td><td data-i18n="spotifyProfile">Rich Spotify profile data</td><td data-i18n="maProfileLimited">Limited to MA/Music DNA data available</td></tr>
+            <tr><td>Personal recommendations</td><td data-i18n="spotifyRecommendations">Spotify-backed where available</td><td data-i18n="capabilityDependent">Capability-dependent</td></tr>
+            <tr><td>Local music files</td><td data-i18n="notSupported">Not supported</td><td data-i18n="maLocalFiles">Supported if configured in Music Assistant</td></tr>
+            <tr><td>Tidal/Plex/Jellyfin/other providers</td><td data-i18n="notSupported">Not supported</td><td data-i18n="maOtherProviders">Supported if configured in Music Assistant</td></tr>
+            <tr><td>Multi-room/grouping</td><td data-i18n="spotifyGrouping">Spotify Connect limited</td><td data-i18n="maGrouping">Music Assistant/player dependent</td></tr>
+            <tr><td>Backend switching later</td><td data-i18n="optionsFlow">Supported via HA options-flow</td><td data-i18n="optionsFlow">Supported via HA options-flow</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="wrap grid-3 section-followup">
+        <article class="card"><h3 data-i18n="chooseSpotifyTitle">Kies Spotify Direct als...</h3><p data-i18n="chooseSpotifyText">je vooral Spotify gebruikt, de simpelste DJConnect muzieksetup wilt, Spotify-profieldata zoals recent/top/liked songs belangrijk vindt en geen Music Assistant draait.</p></article>
+        <article class="card"><h3 data-i18n="chooseMaTitle">Kies Music Assistant als...</h3><p data-i18n="chooseMaText">Music Assistant al je centrale muziekhub is, je meerdere providers of lokale muziek gebruikt, of geen Spotify Developer app voor DJConnect wilt maken.</p></article>
+        <article class="card"><h3 data-i18n="capabilityTitle">Capabilities sturen de UI</h3><p data-i18n="capabilityText">DJConnect vraagt Home Assistant welke backend actief is. Clients tonen acties die de backend ondersteunt en geven een vriendelijke melding als iets niet beschikbaar is.</p></article>
+        <article class="card"><h3 data-i18n="switchingTitle">Later wisselen kan</h3><p data-i18n="switchingText">Je kunt de backend later wijzigen in de Home Assistant options-flow. Pairing, Ask DJ history en Music DNA blijven intact; oude backend-specifieke Play Now acties kunnen verlopen.</p></article>
+        <article class="card"><h3 data-i18n="aboutDiagnosticsTitle">About en diagnostics</h3><p data-i18n="aboutDiagnosticsText">DJConnect 3.2 clients tonen de actieve music backend, target player, connection mode en belangrijkste capabilities in About/Diagnostics.</p></article>
+        <article class="card"><h3 data-i18n="backendExampleTitle">Voorbeeld</h3><p data-i18n="backendExampleText">Top artists is beschikbaar met Spotify Direct. Met Music Assistant hangt dit af van gelijkwaardige profieldata in jouw Music Assistant setup.</p></article>
+        <article class="card"><h3 data-i18n="websocketTitle">Optioneel: lokale websocket fast path</h3><p data-i18n="websocketText">Na lokale app-pairing kunnen iOS, macOS en Windows lokaal Home Assistant /api/websocket gebruiken voor lage-latency commands wanneer djconnect/capabilities dit meldt. HTTP blijft de fallback voor remote gebruik, pairing, voice uploads, history sync en media URLs.</p></article>
+      </div>
+      <div class="wrap table-wrap section-followup">
+        <h3 data-i18n="compatTitle">Compatibility matrix</h3>
+        <table class="comparison-table">
+          <thead><tr><th data-i18n="componentHeader">Component</th><th data-i18n="supportHeader">Support</th><th data-i18n="connectivityHeader">Connectivity</th><th data-i18n="contractHeader">Contract</th></tr></thead>
+          <tbody>
+            <tr><td>Home Assistant/HACS integration</td><td>3.2.x</td><td>Home Assistant</td><td data-i18n="haContract">Patch versions may differ; major/minor must match. HTTP 426 version_mismatch means update the client or integration, not reset pairing.</td></tr>
+            <tr><td>ESP32 LilyGO T-Embed S3</td><td data-i18n="protocol32">Protocol 3.2.x</td><td data-i18n="localOnly">Local-only</td><td data-i18n="espContract">Local-device client with _djconnect._tcp, optional Client adres and /api/device/*.</td></tr>
+            <tr><td>ESP32-S3-BOX-3</td><td data-i18n="notSupported">Not supported</td><td data-i18n="notSupported">Not supported</td><td data-i18n="notSupported">Not supported</td></tr>
+            <tr><td>Raspberry Pi/Linux</td><td data-i18n="protocol32">Protocol 3.2.x</td><td data-i18n="localOnly">Local-only</td><td data-i18n="piContract">Local-device client with _djconnect._tcp, optional Client adres, /api/device/* and Pi restart/shutdown/display use cases.</td></tr>
+            <tr><td>iOS</td><td data-i18n="localPairing">Local pairing</td><td data-i18n="remoteCapable">Remote-capable after local pairing</td><td data-i18n="iosContract">Inbound-only app client: djconnect-ios-XXXXXXXXXXXX, client_type ios, posts to /api/djconnect/pair.</td></tr>
+            <tr><td>macOS</td><td data-i18n="localPairing">Local pairing</td><td data-i18n="remoteCapable">Remote-capable after local pairing</td><td data-i18n="macosContract">Inbound-only app client: djconnect-macos-XXXXXXXXXXXX, client_type macos, posts to /api/djconnect/pair.</td></tr>
+            <tr><td>Windows</td><td data-i18n="localPairing">Local pairing</td><td data-i18n="remoteCapable">Remote-capable after local pairing</td><td data-i18n="windowsContract">Inbound-only app client: djconnect-windows-XXXXXXXXXXXX, client_type windows, posts to /api/djconnect/pair.</td></tr>
+            <tr><td>watchOS</td><td data-i18n="iphoneProxy">Via iPhone proxy</td><td data-i18n="iphoneProxy">Via iPhone proxy</td><td data-i18n="watchContract">No separate Home Assistant pairing; the paired iPhone proxies Watch identity and sync.</td></tr>
+            <tr><td>HA Assist satellites</td><td data-i18n="conversationAgent">DJConnect conversation agent</td><td>Home Assistant Assist</td><td data-i18n="assistContract">No device token, firmware controls or client pairing UI; STT/TTS stay in the HA Assist pipeline.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="spotify">
+      <div class="wrap grid-2">
+        <div>
+          <h2 data-i18n="voiceTitle">1. Configureer assist pipeline in Home Assistant</h2>
+          <p class="lead" data-i18n="voiceLead">DJConnect gebruikt je Home Assistant voice pipeline voor stembesturing en gesproken DJ aankondigingen.</p>
+          <a class="btn" href="https://www.home-assistant.io/voice_control/voice_remote_cloud_assistant/" target="_blank" rel="noopener" data-i18n="voiceHelp">Hulp bij Home Assistant voice assist</a>
+        </div>
+        <ol class="steps">
+          <li>Maak of controleer je voice assist pipeline binnen Home Assistant</li>
+          <li>Controleer spraakherkenning en gesproken output</li>
+          <li>Gebruik deze pipeline straks in DJConnect</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="hacs">
+      <div class="wrap grid-2">
+        <div class="card route-card">
+          <span class="route-label">Automatisch</span>
+          <h2 data-i18n="hacsTitle">2. Voeg toe aan Home Assistant</h2>
+          <p class="lead" data-i18n="hacsLead">Gebruik onderstaande Home Assistant Community Store knop om direct naar de DJConnect repository in HACS te gaan. Installeer de DJConnect integration v3.2.3 of nieuwer, herstart Home Assistant en voeg daarna DJConnect toe via Devices & services.</p>
+          <a class="btn primary" href="/go/hacs" target="_blank" rel="noopener" data-i18n="hacsButton">Open DJConnect in HACS</a>
+        </div>
+        <div class="card route-card">
+          <span class="route-label">Handmatig</span>
+          <h3>Voeg de repository zelf toe</h3>
+          <ol class="steps">
+            <li>Open Home Assistant</li>
+            <li>Open HACS</li>
+            <li>Ga naar <strong>Integrations</strong></li>
+            <li>Voeg custom repository toe <code>https://github.com/pcvantol/djconnect</code></li>
+            <li>Kies category <strong>Integration</strong></li>
+            <li>Zoek en installeer <strong>DJConnect</strong></li>
+            <li>Herstart Home Assistant</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="spotify-oauth">
+      <div class="wrap grid-2">
+        <div>
+          <h2 data-i18n="spotifyOauthTitle">4. Alleen Spotify Direct: maak een Spotify Developer app</h2>
+          <p class="lead" data-i18n="spotifyOauthLead">Sla deze stap over als je Music Assistant gebruikt. Spotify Direct gebruikt je eigen Home Assistant installatie, Spotify Premium, een Spotify Developer app Client ID en OAuth/PKCE.</p>
+          <p class="note"><span data-i18n="spotifyOauthNotePrefix">Gebruik bij voorkeur je Nabu Casa HTTPS external URL. De callback is</span> <code>https://&lt;your-home-assistant-external-url&gt;/api/djconnect/spotify/callback</code>. <span data-i18n="spotifyOauthNoteSuffix">DJConnect gebruikt PKCE; een Spotify Client Secret is bij voorkeur niet nodig.</span></p>
+        </div>
+        <ol class="steps">
+          <li data-i18n="spotifyStep1">Open het Spotify Developer Dashboard.</li>
+          <li data-i18n="spotifyStep2">Maak een nieuwe app aan.</li>
+          <li><span data-i18n="spotifyStep3">Voeg je Home Assistant redirect URI toe:</span> <code>https://&lt;your-home-assistant-external-url&gt;/api/djconnect/spotify/callback</code>.</li>
+          <li data-i18n="spotifyStep4">Kopieer de Spotify Client ID.</li>
+          <li data-i18n="spotifyStep5">Vul de Client ID in tijdens de DJConnect setup/config-flow.</li>
+          <li data-i18n="spotifyStep6">Autoriseer Spotify via Home Assistant.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="assist">
+      <div class="wrap grid-2">
+        <div>
+          <h2 data-i18n="configureTitle">5. Configureer DJConnect</h2>
+          <p class="lead" data-i18n="configureLead">Voeg DJConnect toe als Home Assistant integratie, kies je music backend en configureer alleen de velden die bij die backend horen.</p>
+        </div>
+        <ol class="steps">
+          <li>Open Home Assistant <strong>Settings -> Devices & services -> Add integration -> DJConnect</strong></li>
+          <li data-i18n="configureStep2">Kies Spotify Direct of Music Assistant als music backend</li>
+          <li data-i18n="configureStep3">Bij Spotify Direct: vul je Client ID in en autoriseer Spotify via Home Assistant</li>
+          <li data-i18n="configureStep4">Bij Music Assistant: selecteer je Music Assistant player; Spotify OAuth in DJConnect is dan niet nodig</li>
+          <li data-i18n="configureStep5">Configureer voice via je Home Assistant Assist pipeline, niet via directe externe STT/TTS APIs</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="pairing">
+      <div class="wrap">
+        <h2 data-i18n="pairingTitle">6. Koppel app of device lokaal</h2>
+        <p class="lead" data-i18n="pairingLead">Pairing/token bootstrap gebeurt lokaal. iOS, macOS en Windows zijn inbound-only app clients en kunnen daarna remote werken via Home Assistant; ESP32 en Raspberry Pi blijven local-device clients en local-only.</p>
+      </div>
+      <div class="wrap grid-3">
+        <article class="card">
+          <h3 data-i18n="pairingLocalTitle">Lokaal pairen, daarna remote gebruiken</h3>
+          <p data-i18n="pairingLocalText">Tijdens pairing zitten Home Assistant en de DJConnect client bewust op hetzelfde lokale netwerk. Na succesvolle pairing kunnen iPhone, Apple Watch, macOS en Windows remote werken als Home Assistant een externe/Nabu Casa HTTPS URL heeft.</p>
+        </article>
+        <article class="card">
+          <h3 data-i18n="pairingSaferTitle">Waarom lokaal?</h3>
+          <p data-i18n="pairingSaferText">Lokale pairing voorkomt remote exposure van bootstrap en vereist LAN-aanwezigheid plus een tijdelijke code of QR. Zo blijft de tokenflow eenvoudiger en veiliger.</p>
+        </article>
+        <article class="card">
+          <h3 data-i18n="pairingRemoteAvoidTitle">Waarom geen remote pairing?</h3>
+          <p data-i18n="pairingRemoteAvoidText">Remote pairing zou extra expiry, replay protection, rate limiting, phishing/error states en afhankelijkheid van je external URL vragen. DJConnect houdt pairing daarom lokaal en gebruikt remote pas na succesvolle koppeling.</p>
+        </article>
+      </div>
+      <div class="wrap">
+        <div class="client-switch">
+          <input type="radio" name="client-route" id="client-ios" checked />
+          <input type="radio" name="client-route" id="client-macos" />
+          <input type="radio" name="client-route" id="client-windows" />
+          <input type="radio" name="client-route" id="client-assist" />
+          <input type="radio" name="client-route" id="client-esp" />
+          <input type="radio" name="client-route" id="client-raspberry" />
+          <div class="switch-tabs" role="tablist" aria-label="Kies client type" data-i18n-attr="aria-label:clientTypeLabel">
+            <label for="client-ios" role="tab">iOS</label>
+            <label for="client-macos" role="tab">macOS</label>
+            <label for="client-windows" role="tab">Windows</label>
+            <label for="client-assist" role="tab">Voice Assistant</label>
+            <label for="client-raspberry" role="tab">Linux</label>
+            <label for="client-esp" role="tab">ESP32</label>
+          </div>
+          <div class="client-panels">
+            <article class="card client-panel" data-client-panel="ios">
+              <h3 data-i18n="iosTitle">iOS app</h3>
+              <ol class="steps">
+                <li><a class="btn primary" href="../ios.html">Download iOS app</a></li>
+                <li data-i18n="appPairStep2">Open de DJConnect app op hetzelfde lokale netwerk als Home Assistant</li>
+                <li data-i18n="iosPairStep3">Scan de QR/deep-link payload die Home Assistant genereert</li>
+                <li data-i18n="appPairStep4">Geen Client adres kopiëren: de app belt Home Assistant zelf via /api/djconnect/...</li>
+                <li data-i18n="appPairStep5">Daarna kan de app lokaal of remote werken via je Home Assistant URL</li>
+                <li data-i18n="watchPairStep">Voor Apple Watch genereert Home Assistant een aparte Watch QR/deep-link payload. Scan die met iPhone; iPhone geeft de pairinggegevens door aan de gekoppelde Watch.</li>
+              </ol>
+            </article>
+            <article class="card client-panel" data-client-panel="macos">
+              <h3 data-i18n="macosTitle">macOS app</h3>
+              <ol class="steps">
+                <li><a class="btn primary" href="../macos.html">Download macOS app</a></li>
+                <li data-i18n="appPairStep2">Open de DJConnect app op hetzelfde lokale netwerk als Home Assistant</li>
+                <li data-i18n="desktopPairStep3">Voer handmatig de lokale Home Assistant URL en de door Home Assistant gegenereerde koppelcode in</li>
+                <li data-i18n="appPairStep4">Geen Client adres kopiëren: de app belt Home Assistant zelf via /api/djconnect/...</li>
+                <li data-i18n="appPairStep5">Daarna kan de app lokaal of remote werken via je Home Assistant URL</li>
+              </ol>
+            </article>
+            <article class="card client-panel" data-client-panel="windows">
+              <h3 data-i18n="windowsTitle">Windows app</h3>
+              <ol class="steps">
+                <li><a class="btn primary" href="../windows.html">Download Windows app</a></li>
+                <li data-i18n="windowsInstallStep">Installeer de DJConnect Windows desktop app zodra je build beschikbaar is</li>
+                <li data-i18n="appPairStep2">Open de DJConnect app op hetzelfde lokale netwerk als Home Assistant</li>
+                <li data-i18n="desktopPairStep3">Voer handmatig de lokale Home Assistant URL en de door Home Assistant gegenereerde koppelcode in</li>
+                <li data-i18n="appPairStep4">Geen Client adres kopiëren: de app belt Home Assistant zelf via /api/djconnect/...</li>
+                <li data-i18n="appPairStep5">Daarna kan de app lokaal of remote werken via je Home Assistant URL</li>
+              </ol>
+            </article>
+            <article class="card client-panel" data-client-panel="esp">
+              <h3 data-i18n="espTitle">ESP device</h3>
+              <ol class="steps">
+                <li><a class="btn primary" href="../embedded.html">Download ESP firmware</a></li>
+                <li>Zet het DJConnect device aan en verbind het device met WiFi via captive portal of Home Assistant BLE WiFi provisioning</li>
+                <li>Open DJConnect integratie setup in Home Assistant</li>
+                <li>Voer de koppelcode in van het device</li>
+                <li data-i18n="espLocalOnlyStep">Het DJConnect ESP32 apparaat gebruikt _djconnect._tcp of Client adres, alleen de lokale /api/device/* device API en blijft local-only</li>
+              </ol>
+            </article>
+            <article class="card client-panel" data-client-panel="assist">
+              <h3 data-i18n="assistTitle">Voice Assistant</h3>
+              <ol class="steps">
+                <li><a class="btn primary" href="../voice-assistant.html">Bekijk Voice Assistant uitleg</a></li>
+                <li>Kies in de DJConnect setup voor <strong>Assist Conversation Agent</strong></li>
+                <li>Selecteer DJConnect als conversation agent in je Home Assistant Assist configuratie</li>
+                <li data-i18n="assistSatelliteStep">Gebruik je HA Assist satellite, Home Assistant Voice Preview Edition, M5 Atom Echo of ander ESPHome-powered voice project voor wake word, microfoon en speaker-output</li>
+                <li data-i18n="assistNoPairingStep">Geen client pairing, device token of Client adres nodig</li>
+              </ol>
+            </article>
+            <article class="card client-panel" data-client-panel="raspberry">
+              <h3 data-i18n="raspberryTitle">Raspberry Pi app</h3>
+              <ol class="steps">
+                <li><a class="btn primary" href="../raspberry-pi.html">Download Linux app</a></li>
+                <li>Installeer de DJConnect Raspberry Pi app via GitHub</li>
+                <li>Open DJConnect integratie setup in Home Assistant</li>
+                <li data-i18n="raspberryPairStep">Kies client type Raspberry Pi app en koppel lokaal op hetzelfde netwerk</li>
+                <li data-i18n="raspberryLocalOnlyStep">Raspberry Pi gebruikt _djconnect._tcp of Client adres, lokale /api/device/* runtime/device-connectiviteit en blijft local-only</li>
+              </ol>
+            </article>
+          </div>
+        </div>
+      </div>
+      <div class="wrap grid-2">
+        <article class="card">
+          <h3 data-i18n="appClientTechTitle">Technisch: app-clients zijn inbound-only</h3>
+          <p data-i18n="appClientTechText">iPhone, Apple Watch, macOS en Windows publiceren geen lokale app API voor Home Assistant. Home Assistant belt nooit terug naar de app; de client post zelf naar POST /api/djconnect/pair en gebruikt daarna Home Assistant routes. Er is geen app-client mDNS/local-API discovery of fallback.</p>
+        </article>
+        <article class="card">
+          <h3 data-i18n="deviceClientTechTitle">Technisch: local-device clients blijven lokaal</h3>
+          <p data-i18n="deviceClientTechText">ESP32 en Raspberry Pi gebruiken lokale/two-way pairing, mogen via mDNS _djconnect._tcp gevonden worden en gebruiken lokale /api/device/*. Zij krijgen geen ha_remote_url en blijven bedoeld voor gebruik op je lokale netwerk.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="downloads">
+      <div class="wrap">
+        <h2 data-i18n="downloadsTitle">Release- en downloadlinks</h2>
+        <p class="lead" data-i18n="downloadsLead">Gebruik de platformpagina's hieronder voor de nieuwste publieke builds. De downloadkaarten lezen de actuele GitHub Releases en routeren downloadkliks privacyvriendelijk via djconnect.dev.</p>
+      </div>
+      <div class="wrap grid-3">
+        <article class="card"><h3>HACS</h3><p data-i18n="downloadHacsText">Home Assistant integration uit pcvantol/djconnect, category Integration, versie 3.2.x.</p><div class="download-actions"><a class="btn" href="/go/hacs" target="_blank" rel="noopener">HACS</a></div></article>
+        <article class="card"><h3>iOS / macOS / Windows</h3><p data-i18n="downloadAppsText">App builds komen uit pcvantol/djconnect-app-releases met aparte platformfilters voor iOS, macOS, Windows en Mac Catalyst.</p><div class="download-actions"><a class="btn" href="../ios.html">iOS</a><a class="btn" href="../macos.html">macOS</a><a class="btn" href="../windows.html">Windows</a></div></article>
+        <article class="card"><h3>ESP32</h3><p data-i18n="downloadEspText">Firmware komt uit pcvantol/djconnect-firmware en blijft bedoeld voor ondersteunde local-device hardware.</p><div class="download-actions"><a class="btn" href="../embedded.html">ESP32</a></div></article>
+        <article class="card"><h3>Raspberry Pi / Linux</h3><p data-i18n="downloadPiText">Linux/Raspberry Pi builds en install command komen uit pcvantol/djconnect-pi-releases.</p><div class="download-actions"><a class="btn" href="../raspberry-pi.html">Linux</a></div></article>
+        <article class="card"><h3>APNs / Privacy</h3><p data-i18n="downloadPrivacyText">Apple push is optioneel en alleen een wake/sync hint. De relay ontvangt geen Spotify tokens, HA tokens, raw prompts, raw audio, volledige Ask DJ history of Music DNA.</p><div class="download-actions"><a class="btn" href="../privacy.html">Privacy</a></div></article>
+        <article class="card"><h3>Support</h3><p data-i18n="downloadSupportText">Gebruik support voor installatieproblemen, HACS updates, pairing, STT/TTS, backend capabilities of ontbrekende release assets.</p><div class="download-actions"><a class="btn" href="../support.html">Support</a></div></article>
+      </div>
+    </section>
+
+    <section id="check">
+      <div class="wrap grid-2">
+        <div>
+          <h2 data-i18n="readyTitle">7. Klaar voor gebruik</h2>
+          <p class="lead" data-i18n="readyLead">Start muziek op je gekozen player of output en bedien daarna alles via DJConnect.</p>
+        </div>
+        <ol class="steps">
+          <li data-i18n="readyStep1">Kies je player/output in Spotify Direct of Music Assistant</li>
+          <li>Bedien je muziek via DJConnect</li>
+          <li>Vraag de volgende artiest aan met je stem</li>
+          <li data-i18n="readyStep4">Bekijk in About/Diagnostics je connection mode, actieve backend, target player en capabilities</li>
+        </ol>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="wrap legal">
+    <p data-i18n="legalCopyright">Copyright Peter van Tol 2026. Released under the MIT License.</p>
+    <p data-i18n="legalSpotify">Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.</p>
+    <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
+    <p><a href="../privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="../support.html" data-i18n="legalSupport">Support</a></p>
+    <p class="site-version">DJConnect website v3.2.4</p>
+  </footer>
+  <script>
+    const translations = {
+          nl: {
+                title: "DJConnect Aan de slag",
+                metaDescription: "Aan de slag met DJConnect 3.2: kies Spotify Direct of Music Assistant, installeer via HACS en pair je app of local device met Home Assistant.",
+                navLabel: "Navigatie",
+                languageToggle: "Taalkeuze",
+                navMenu: "Menu",
+                navHome: "Home",
+                navInstall: "Installeren",
+                navDownload: "Download",
+                navStart: "Start installatie",
+                heroTitle: "DJConnect. Muziekbediening met karakter.",
+                heroLead: "DJConnect brengt spraak, muziekbediening en een persoonlijke DJ-reactie samen. De kern blijft hetzelfde op elk device: vraag muziek, kies waar het speelt en krijg directe feedback terug.",
+                overviewTitle: "Wat ga je doen?",
+                overviewStep1: "Integreer DJConnect in Home Assistant",
+                overviewStep2: "Kies Spotify Direct of Music Assistant",
+                overviewStep3: "Koppel lokaal, gebruik apps daarna ook remote",
+                overviewDone: "Geniet van je eigen muziek, met je persoonlijke DJ",
+                requirementsTitle: "Vereisten",
+                requirementsLead: "Deze checklist voorkomt de meeste installatieproblemen.",
+                requirementsBackend: "Een muziekbackend: Spotify Direct of Music Assistant",
+                requirementsLocalPairing: "Home Assistant en DJConnect client op hetzelfde lokale netwerk tijdens pairing; remote pairing wordt niet ondersteund",
+                requirementsEspWifi: "Voor ESP hardware: 2.4 GHz WiFi tijdens provisioning en lokaal gebruik",
+                requirementsSpotifyOauth: "Alleen voor Spotify Direct: Spotify Premium en je eigen Spotify Developer app met Client ID",
+                requirementsMusicAssistant: "Alleen voor Music Assistant: Music Assistant geinstalleerd, providers geconfigureerd en een player geselecteerd",
+                requirementsExternalUrl: "Optioneel voor remote iOS/macOS/Windows: een externe HTTPS Home Assistant URL, bij voorkeur Nabu Casa",
+                backendTitle: "Music backend kiezen",
+                backendText: "DJConnect 3.2 werkt met Spotify Direct of Music Assistant. Home Assistant meldt aan clients welke backend actief is en welke acties beschikbaar zijn.",
+                credentialsTitle: "Credentials blijven in Home Assistant",
+                credentialsText: "DJConnect devices en apps krijgen geen Spotify refresh token of playback credentials.",
+                remoteTitle: "Remote na lokale pairing",
+                remoteText: "iOS, macOS en Windows kunnen na lokale pairing via je externe Home Assistant URL werken. ESP32 en Raspberry Pi blijven local-only.",
+                trackAnalysisProviderTitle: "Optioneel: Track Insight providers",
+                trackAnalysisProviderText: "Track Insight werkt standaard met beschikbare playbackcontext. Voor diepere analyse kun je later eigen providers configureren, zoals een muziekmetadata-API of lokale audio-analyse add-on. API keys blijven in je eigen Home Assistant-installatie.",
+                backendCompareTitle: "3. Kies je music backend",
+                backendCompareLead: "Kies voor setup of DJConnect direct met Spotify werkt, of dat Music Assistant de centrale muzieklaag in Home Assistant is.",
+                requirementHeader: "Vereiste",
+                required: "Vereist",
+                maSpotifyPremium: "Alleen als je Music Assistant Spotify-provider dit nodig heeft",
+                notRequired: "Niet vereist",
+                notUsed: "Niet gebruikt",
+                requiredInMa: "Vereist in Music Assistant",
+                requiredForVoice: "Vereist voor voice/PTT",
+                externalOptional: "Optioneel, voor remote iOS/macOS/Windows",
+                featureHeader: "Feature",
+                supported: "Supported",
+                maPlayerSupports: "Supported als de gekozen MA-player dit ondersteunt",
+                spotifyVolume: "Supported als de Spotify Connect output volume ondersteunt",
+                maVolume: "Supported als de MA-player volume ondersteunt",
+                spotifyQueue: "Supported via Spotify queue",
+                maQueue: "Supported als MA queue/player queue beschikbaar maakt",
+                maPlaylists: "MA library/provider playlists als beschikbaar",
+                maSearch: "MA library/providers als beschikbaar",
+                maActions: "MA item/player actions",
+                maImages: "Supported als MA/provider images beschikbaar maakt",
+                capabilityDependent: "Capability-dependent",
+                maProfile: "Meestal niet beschikbaar tenzij MA/backend gelijkwaardige data exposeert",
+                spotifyProfile: "Rijke Spotify-profieldata",
+                maProfileLimited: "Beperkt tot beschikbare MA/Music DNA data",
+                spotifyRecommendations: "Spotify-backed waar beschikbaar",
+                notSupported: "Not supported",
+                maLocalFiles: "Supported als geconfigureerd in Music Assistant",
+                maOtherProviders: "Supported als geconfigureerd in Music Assistant",
+                spotifyGrouping: "Spotify Connect beperkt",
+                maGrouping: "Music Assistant/player afhankelijk",
+                optionsFlow: "Supported via HA options-flow",
+                chooseSpotifyTitle: "Kies Spotify Direct als...",
+                chooseSpotifyText: "je vooral Spotify gebruikt, de simpelste DJConnect muzieksetup wilt, Spotify-profieldata zoals recent/top/liked songs belangrijk vindt en geen Music Assistant draait.",
+                chooseMaTitle: "Kies Music Assistant als...",
+                chooseMaText: "Music Assistant al je centrale muziekhub is, je meerdere providers of lokale muziek gebruikt, of geen Spotify Developer app voor DJConnect wilt maken.",
+                capabilityTitle: "Capabilities sturen de UI",
+                capabilityText: "DJConnect vraagt Home Assistant welke backend actief is. Clients tonen acties die de backend ondersteunt en geven een vriendelijke melding als iets niet beschikbaar is.",
+                switchingTitle: "Later wisselen kan",
+                switchingText: "Je kunt de backend later wijzigen in de Home Assistant options-flow. Pairing, Ask DJ history en Music DNA blijven intact; oude backend-specifieke Play Now acties kunnen verlopen.",
+                aboutDiagnosticsTitle: "About en diagnostics",
+                aboutDiagnosticsText: "DJConnect 3.2 clients tonen de actieve music backend, target player, connection mode en belangrijkste capabilities in About/Diagnostics.",
+                backendExampleTitle: "Voorbeeld",
+                backendExampleText: "Top artists is beschikbaar met Spotify Direct. Met Music Assistant hangt dit af van gelijkwaardige profieldata in jouw Music Assistant setup.",
+                websocketTitle: "Optioneel: lokale websocket fast path",
+                websocketText: "Na lokale app-pairing kunnen iOS, macOS en Windows lokaal Home Assistant /api/websocket gebruiken voor lage-latency commands wanneer djconnect/capabilities dit meldt. HTTP blijft de fallback voor remote gebruik, pairing, voice uploads, history sync en media URLs.",
+                compatTitle: "Compatibility matrix",
+                componentHeader: "Component",
+                supportHeader: "Support",
+                connectivityHeader: "Connectiviteit",
+                contractHeader: "Contract",
+                protocol32: "Protocol 3.2.x",
+                localOnly: "Local-only",
+                localPairing: "Lokale pairing",
+                remoteCapable: "Remote-capable na lokale pairing",
+                iphoneProxy: "Via iPhone proxy",
+                conversationAgent: "DJConnect conversation agent",
+                haContract: "Patchversies mogen verschillen; major/minor moeten matchen. HTTP 426 version_mismatch betekent client of integration updaten, niet pairing resetten.",
+                espContract: "Local-device client met _djconnect._tcp, optioneel Client adres en /api/device/*.",
+                piContract: "Local-device client met _djconnect._tcp, optioneel Client adres, /api/device/* en Pi restart/shutdown/display use cases.",
+                iosContract: "Inbound-only app client: djconnect-ios-XXXXXXXXXXXX, client_type ios, post naar /api/djconnect/pair.",
+                macosContract: "Inbound-only app client: djconnect-macos-XXXXXXXXXXXX, client_type macos, post naar /api/djconnect/pair.",
+                windowsContract: "Inbound-only app client: djconnect-windows-XXXXXXXXXXXX, client_type windows, post naar /api/djconnect/pair.",
+                watchContract: "Geen losse Home Assistant pairing; de gekoppelde iPhone proxyt Watch identity en sync.",
+                assistContract: "Geen device token, firmware controls of client pairing UI; STT/TTS blijven in de HA Assist pipeline.",
+                voiceTitle: "1. Configureer assist pipeline in Home Assistant",
+                voiceLead: "DJConnect gebruikt je Home Assistant voice pipeline voor stembesturing en gesproken DJ aankondigingen.",
+                voiceHelp: "Hulp bij Home Assistant voice assist",
+                hacsTitle: "2. Voeg toe aan Home Assistant",
+                hacsLead: "Gebruik onderstaande Home Assistant Community Store knop om direct naar de DJConnect repository in HACS te gaan. Installeer de DJConnect integration v3.2.3 of nieuwer, herstart Home Assistant en voeg daarna DJConnect toe via Devices & services.",
+                hacsButton: "Open DJConnect in HACS",
+                spotifyOauthTitle: "4. Alleen Spotify Direct: maak een Spotify Developer app",
+                spotifyOauthLead: "Sla deze stap over als je Music Assistant gebruikt. Spotify Direct gebruikt je eigen Home Assistant installatie, Spotify Premium, een Spotify Developer app Client ID en OAuth/PKCE.",
+                spotifyOauthNotePrefix: "Gebruik bij voorkeur je Nabu Casa HTTPS external URL. De callback is",
+                spotifyOauthNoteSuffix: "DJConnect gebruikt PKCE; een Spotify Client Secret is bij voorkeur niet nodig.",
+                spotifyStep1: "Open het Spotify Developer Dashboard.",
+                spotifyStep2: "Maak een nieuwe app aan.",
+                spotifyStep3: "Voeg je Home Assistant redirect URI toe:",
+                spotifyStep4: "Kopieer de Spotify Client ID.",
+                spotifyStep5: "Vul de Client ID in tijdens de DJConnect setup/config-flow.",
+                spotifyStep6: "Autoriseer Spotify via Home Assistant.",
+                configureTitle: "5. Configureer DJConnect",
+                configureLead: "Voeg DJConnect toe als Home Assistant integratie, kies je music backend en configureer alleen de velden die bij die backend horen.",
+                configureStep2: "Kies Spotify Direct of Music Assistant als music backend",
+                configureStep3: "Bij Spotify Direct: vul je Client ID in en autoriseer Spotify via Home Assistant",
+                configureStep4: "Bij Music Assistant: selecteer je Music Assistant player; Spotify OAuth in DJConnect is dan niet nodig",
+                configureStep5: "Configureer voice via je Home Assistant Assist pipeline, niet via directe externe STT/TTS APIs",
+                pairingTitle: "6. Koppel app of device lokaal",
+                pairingLead: "Pairing/token bootstrap gebeurt bewust lokaal, niet remote. Home Assistant en de DJConnect client zitten tijdens pairing op hetzelfde lokale netwerk; app-clients kunnen daarna remote werken via Home Assistant.",
+                pairingLocalTitle: "Lokaal pairen, daarna remote gebruiken",
+                pairingLocalText: "Tijdens pairing zitten Home Assistant en de DJConnect client bewust op hetzelfde lokale netwerk. Na succesvolle pairing kunnen iPhone, Apple Watch, macOS en Windows remote werken als Home Assistant een externe/Nabu Casa HTTPS URL heeft.",
+                pairingSaferTitle: "Waarom lokaal?",
+                pairingSaferText: "Lokale pairing voorkomt remote exposure van bootstrap en vereist LAN-aanwezigheid plus een tijdelijke code of QR. Zo blijft de tokenflow eenvoudiger en veiliger.",
+                pairingRemoteAvoidTitle: "Waarom geen remote pairing?",
+                pairingRemoteAvoidText: "Remote pairing zou extra expiry, replay protection, rate limiting, phishing/error states en afhankelijkheid van je external URL vragen. DJConnect houdt pairing daarom lokaal en gebruikt remote pas na succesvolle koppeling.",
+                clientTypeLabel: "Kies client type",
+                assistTitle: "Voice Assistant",
+                espTitle: "ESP device",
+                iosTitle: "iOS app",
+                macosTitle: "macOS app",
+                windowsTitle: "Windows app",
+                raspberryTitle: "Raspberry Pi app",
+                appPairStep2: "Open de DJConnect app op hetzelfde lokale netwerk als Home Assistant",
+                appPairStep3: "Voer de pairing code lokaal in of scan de QR-code uit Home Assistant; de app post zelf naar /api/djconnect/pair",
+                iosPairStep3: "Scan de QR/deep-link payload die Home Assistant genereert",
+                desktopPairStep3: "Voer handmatig de lokale Home Assistant URL en de door Home Assistant gegenereerde koppelcode in",
+                appPairStep4: "Geen Client adres kopiëren: de app belt Home Assistant zelf via /api/djconnect/...",
+                appPairStep5: "Daarna kan de app lokaal of remote werken via je Home Assistant URL",
+                watchPairStep: "Voor Apple Watch genereert Home Assistant een aparte Watch QR/deep-link payload. Scan die met iPhone; iPhone geeft de pairinggegevens door aan de gekoppelde Watch.",
+                windowsInstallStep: "Installeer de DJConnect Windows desktop app zodra je build beschikbaar is",
+                espLocalOnlyStep: "Het DJConnect ESP32 apparaat gebruikt _djconnect._tcp of Client adres, alleen de lokale /api/device/* device API en blijft local-only",
+                assistSatelliteStep: "Gebruik je HA Assist satellite, Home Assistant Voice Preview Edition, M5 Atom Echo of ander ESPHome-powered voice project voor wake word, microfoon en speaker-output",
+                assistNoPairingStep: "Geen client pairing, device token of Client adres nodig",
+                raspberryPairStep: "Kies client type Raspberry Pi app en koppel lokaal op hetzelfde netwerk",
+                raspberryLocalOnlyStep: "Raspberry Pi gebruikt _djconnect._tcp of Client adres, lokale /api/device/* runtime/device-connectiviteit en blijft local-only",
+                appClientTechTitle: "Technisch: app-clients zijn inbound-only",
+                appClientTechText: "iPhone, Apple Watch, macOS en Windows publiceren geen lokale app API voor Home Assistant. Home Assistant belt nooit terug naar de app; de client post zelf naar POST /api/djconnect/pair en gebruikt daarna Home Assistant routes. Er is geen app-client mDNS/local-API discovery of fallback.",
+                deviceClientTechTitle: "Technisch: local-device clients blijven lokaal",
+                deviceClientTechText: "ESP32 en Raspberry Pi gebruiken lokale/two-way pairing, mogen via mDNS _djconnect._tcp gevonden worden en gebruiken lokale /api/device/*. Zij krijgen geen ha_remote_url en blijven bedoeld voor gebruik op je lokale netwerk.",
+                downloadsTitle: "Release- en downloadlinks",
+                downloadsLead: "Gebruik de platformpagina's hieronder voor de nieuwste publieke builds. De downloadkaarten lezen de actuele GitHub Releases en routeren downloadkliks privacyvriendelijk via djconnect.dev.",
+                downloadHacsText: "Home Assistant integration uit pcvantol/djconnect, category Integration, versie 3.2.x.",
+                downloadAppsText: "App builds komen uit pcvantol/djconnect-app-releases met aparte platformfilters voor iOS, macOS, Windows en Mac Catalyst.",
+                downloadEspText: "Firmware komt uit pcvantol/djconnect-firmware en blijft bedoeld voor ondersteunde local-device hardware.",
+                downloadPiText: "Linux/Raspberry Pi builds en install command komen uit pcvantol/djconnect-pi-releases.",
+                downloadPrivacyText: "Apple push is optioneel en alleen een wake/sync hint. De relay ontvangt geen Spotify tokens, HA tokens, raw prompts, raw audio, volledige Ask DJ history of Music DNA.",
+                downloadSupportText: "Gebruik support voor installatieproblemen, HACS updates, pairing, STT/TTS, backend capabilities of ontbrekende release assets.",
+                readyTitle: "7. Klaar voor gebruik",
+                readyLead: "Start muziek op je gekozen player of output en bedien daarna alles via DJConnect.",
+                readyStep1: "Kies je player/output in Spotify Direct of Music Assistant",
+                readyStep4: "Bekijk in About/Diagnostics je connection mode, actieve backend, target player en capabilities",
+                legalCopyright: "Copyright Peter van Tol 2026. Released under the MIT License.",
+                legalSpotify: "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.",
+                legalPrivacy: "Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          },
+          en: {
+                title: "DJConnect Get started",
+                metaDescription: "Get started with DJConnect 3.2: choose Spotify Direct or Music Assistant, install through HACS and pair your app or local device with Home Assistant.",
+                navLabel: "Navigation",
+                languageToggle: "Language",
+                navMenu: "Menu",
+                navHome: "Home",
+                navInstall: "Install",
+                navDownload: "Download",
+                navStart: "Start setup",
+                heroTitle: "DJConnect. Music control with character.",
+                heroLead: "DJConnect brings voice, music control and a personal DJ response together. The core stays the same on every device: request music, choose where it plays and get direct feedback.",
+                overviewTitle: "What will you do?",
+                overviewStep1: "Integrate DJConnect in Home Assistant",
+                overviewStep2: "Choose Spotify Direct or Music Assistant",
+                overviewStep3: "Pair locally, then use apps remotely too",
+                overviewDone: "Enjoy your own music, with your personal DJ",
+                requirementsTitle: "Requirements",
+                requirementsLead: "This checklist prevents most setup issues.",
+                requirementsBackend: "A music backend: Spotify Direct or Music Assistant",
+                requirementsLocalPairing: "Home Assistant and the DJConnect client on the same local network during pairing; remote pairing is not supported",
+                requirementsEspWifi: "For ESP hardware: 2.4 GHz WiFi during provisioning and local use",
+                requirementsSpotifyOauth: "Only for Spotify Direct: Spotify Premium and your own Spotify Developer app with Client ID",
+                requirementsMusicAssistant: "Only for Music Assistant: Music Assistant installed, providers configured and a player selected",
+                requirementsExternalUrl: "Optional for remote iOS/macOS/Windows: an external HTTPS Home Assistant URL, preferably Nabu Casa",
+                backendTitle: "Choose a music backend",
+                backendText: "DJConnect 3.2 works with Spotify Direct or Music Assistant. Home Assistant tells clients which backend is active and which actions are available.",
+                credentialsTitle: "Credentials stay in Home Assistant",
+                credentialsText: "DJConnect devices and apps do not receive a Spotify refresh token or playback credentials.",
+                remoteTitle: "Remote after local pairing",
+                remoteText: "iOS, macOS and Windows can work through your external Home Assistant URL after local pairing. ESP32 and Raspberry Pi stay local-only.",
+                trackAnalysisProviderTitle: "Optional: Track Insight providers",
+                trackAnalysisProviderText: "Track Insight works by default with available playback context. For deeper analysis, you can later configure your own providers, such as a music metadata API or local audio-analysis add-on. API keys stay in your own Home Assistant installation.",
+                backendCompareTitle: "3. Choose your music backend",
+                backendCompareLead: "Before setup, choose whether DJConnect talks directly to Spotify or whether Music Assistant is the central music layer in Home Assistant.",
+                requirementHeader: "Requirement",
+                required: "Required",
+                maSpotifyPremium: "Only if your Music Assistant Spotify provider needs it",
+                notRequired: "Not required",
+                notUsed: "Not used",
+                requiredInMa: "Required in Music Assistant",
+                requiredForVoice: "Required for voice/PTT",
+                externalOptional: "Optional, for remote iOS/macOS/Windows",
+                featureHeader: "Feature",
+                supported: "Supported",
+                maPlayerSupports: "Supported if selected MA player supports it",
+                spotifyVolume: "Supported if Spotify Connect output supports volume",
+                maVolume: "Supported if MA player supports volume",
+                spotifyQueue: "Supported via Spotify queue",
+                maQueue: "Supported if MA exposes queue/player queue",
+                maPlaylists: "MA library/provider playlists if available",
+                maSearch: "MA library/providers if available",
+                maActions: "MA item/player actions",
+                maImages: "Supported if MA/provider exposes images",
+                capabilityDependent: "Capability-dependent",
+                maProfile: "Usually not available unless MA/backend exposes equivalent",
+                spotifyProfile: "Rich Spotify profile data",
+                maProfileLimited: "Limited to MA/Music DNA data available",
+                spotifyRecommendations: "Spotify-backed where available",
+                notSupported: "Not supported",
+                maLocalFiles: "Supported if configured in Music Assistant",
+                maOtherProviders: "Supported if configured in Music Assistant",
+                spotifyGrouping: "Spotify Connect limited",
+                maGrouping: "Music Assistant/player dependent",
+                optionsFlow: "Supported via HA options-flow",
+                chooseSpotifyTitle: "Choose Spotify Direct if...",
+                chooseSpotifyText: "you mainly use Spotify, want the simplest DJConnect music setup, care about Spotify profile data such as recent/top/liked songs and do not run Music Assistant.",
+                chooseMaTitle: "Choose Music Assistant if...",
+                chooseMaText: "Music Assistant is already your central music hub, you use multiple providers or local music, or you do not want to create a Spotify Developer app for DJConnect.",
+                capabilityTitle: "Capabilities drive the UI",
+                capabilityText: "DJConnect asks Home Assistant which backend is active. Clients show actions the backend supports and display a friendly message when something is unavailable.",
+                switchingTitle: "You can switch later",
+                switchingText: "You can change backend later in the Home Assistant options flow. Pairing, Ask DJ history and Music DNA stay intact; old backend-specific Play Now actions may expire.",
+                aboutDiagnosticsTitle: "About and diagnostics",
+                aboutDiagnosticsText: "DJConnect 3.2 clients show the active music backend, target player, connection mode and key capabilities in About/Diagnostics.",
+                backendExampleTitle: "Example",
+                backendExampleText: "Top artists is available with Spotify Direct. With Music Assistant, this depends on equivalent profile data in your Music Assistant setup.",
+                websocketTitle: "Optional: local websocket fast path",
+                websocketText: "After local app pairing, iOS, macOS and Windows can locally use Home Assistant /api/websocket for low-latency commands when djconnect/capabilities advertises it. HTTP remains the fallback for remote use, pairing, voice uploads, history sync and media URLs.",
+                compatTitle: "Compatibility matrix",
+                componentHeader: "Component",
+                supportHeader: "Support",
+                connectivityHeader: "Connectivity",
+                contractHeader: "Contract",
+                protocol32: "Protocol 3.2.x",
+                localOnly: "Local-only",
+                localPairing: "Local pairing",
+                remoteCapable: "Remote-capable after local pairing",
+                iphoneProxy: "Via iPhone proxy",
+                conversationAgent: "DJConnect conversation agent",
+                haContract: "Patch versions may differ; major/minor must match. HTTP 426 version_mismatch means update the client or integration, not reset pairing.",
+                espContract: "Local-device client with _djconnect._tcp, optional Client address and /api/device/*.",
+                piContract: "Local-device client with _djconnect._tcp, optional Client address, /api/device/* and Pi restart/shutdown/display use cases.",
+                iosContract: "Inbound-only app client: djconnect-ios-XXXXXXXXXXXX, client_type ios, posts to /api/djconnect/pair.",
+                macosContract: "Inbound-only app client: djconnect-macos-XXXXXXXXXXXX, client_type macos, posts to /api/djconnect/pair.",
+                windowsContract: "Inbound-only app client: djconnect-windows-XXXXXXXXXXXX, client_type windows, posts to /api/djconnect/pair.",
+                watchContract: "No separate Home Assistant pairing; the paired iPhone proxies Watch identity and sync.",
+                assistContract: "No device token, firmware controls or client pairing UI; STT/TTS stay in the HA Assist pipeline.",
+                voiceTitle: "1. Configure assist pipeline in Home Assistant",
+                voiceLead: "DJConnect uses your Home Assistant voice pipeline for voice control and spoken DJ announcements.",
+                voiceHelp: "Help with Home Assistant voice assist",
+                hacsTitle: "2. Add to Home Assistant",
+                hacsLead: "Use the Home Assistant Community Store button below to open the DJConnect repository in HACS directly. Install DJConnect integration v3.2.3 or newer, restart Home Assistant and then add DJConnect through Devices & services.",
+                hacsButton: "Open DJConnect in HACS",
+                spotifyOauthTitle: "4. Spotify Direct only: create a Spotify Developer app",
+                spotifyOauthLead: "Skip this step when you use Music Assistant. Spotify Direct uses your own Home Assistant installation, Spotify Premium, a Spotify Developer app Client ID and OAuth/PKCE.",
+                spotifyOauthNotePrefix: "Prefer your Nabu Casa HTTPS external URL. The callback is",
+                spotifyOauthNoteSuffix: "DJConnect uses PKCE; a Spotify Client Secret is preferably not required.",
+                spotifyStep1: "Open the Spotify Developer Dashboard.",
+                spotifyStep2: "Create a new app.",
+                spotifyStep3: "Add your Home Assistant redirect URI:",
+                spotifyStep4: "Copy the Spotify Client ID.",
+                spotifyStep5: "Enter the Client ID during the DJConnect setup/config flow.",
+                spotifyStep6: "Authorize Spotify through Home Assistant.",
+                configureTitle: "5. Configure DJConnect",
+                configureLead: "Add DJConnect as a Home Assistant integration, choose your music backend and configure only the fields that belong to that backend.",
+                configureStep2: "Choose Spotify Direct or Music Assistant as music backend",
+                configureStep3: "With Spotify Direct: enter your Client ID and authorize Spotify through Home Assistant",
+                configureStep4: "With Music Assistant: select your Music Assistant player; Spotify OAuth in DJConnect is not needed",
+                configureStep5: "Configure voice through your Home Assistant Assist pipeline, not through direct external STT/TTS APIs",
+                pairingTitle: "6. Pair app or device locally",
+                pairingLead: "Pairing/token bootstrap intentionally happens locally, not remotely. Home Assistant and the DJConnect client are on the same local network during pairing; app clients can then work remotely through Home Assistant.",
+                pairingLocalTitle: "Pair locally, then use remotely",
+                pairingLocalText: "During pairing, Home Assistant and the DJConnect client are intentionally on the same local network. After successful pairing, iPhone, Apple Watch, macOS and Windows can work remotely when Home Assistant has an external/Nabu Casa HTTPS URL.",
+                pairingSaferTitle: "Why local?",
+                pairingSaferText: "Local pairing avoids remote bootstrap exposure and requires LAN presence plus a temporary code or QR. That keeps the token flow simpler and safer.",
+                pairingRemoteAvoidTitle: "Why no remote pairing?",
+                pairingRemoteAvoidText: "Remote pairing would require extra expiry, replay protection, rate limiting, phishing/error states and external URL dependencies. DJConnect keeps pairing local and uses remote access only after a successful pairing.",
+                clientTypeLabel: "Choose client type",
+                assistTitle: "Voice Assistant",
+                espTitle: "ESP device",
+                iosTitle: "iOS app",
+                macosTitle: "macOS app",
+                windowsTitle: "Windows app",
+                raspberryTitle: "Raspberry Pi app",
+                appPairStep2: "Open the DJConnect app on the same local network as Home Assistant",
+                appPairStep3: "Enter the pairing code locally or scan the QR code from Home Assistant; the app posts to /api/djconnect/pair itself",
+                iosPairStep3: "Scan the QR/deep-link payload generated by Home Assistant",
+                desktopPairStep3: "Manually enter the local Home Assistant URL and the Home Assistant-generated pairing code",
+                appPairStep4: "No Client address copying: the app calls Home Assistant itself through /api/djconnect/...",
+                appPairStep5: "After that, the app can work locally or remotely through your Home Assistant URL",
+                watchPairStep: "For Apple Watch, Home Assistant generates a separate Watch QR/deep-link payload. Scan it with iPhone; iPhone passes the pairing details to the paired Watch.",
+                windowsInstallStep: "Install the DJConnect Windows desktop app when your build is available",
+                espLocalOnlyStep: "The DJConnect ESP32 device uses _djconnect._tcp or Client address, only the local /api/device/* device API and stays local-only",
+                assistSatelliteStep: "Use your HA Assist satellite, Home Assistant Voice Preview Edition, M5 Atom Echo or another ESPHome-powered voice project for wake word, microphone and speaker output",
+                assistNoPairingStep: "No client pairing, device token or Client address needed",
+                raspberryPairStep: "Choose client type Raspberry Pi app and pair locally on the same network",
+                raspberryLocalOnlyStep: "Raspberry Pi uses _djconnect._tcp or Client address, local /api/device/* runtime/device connectivity and stays local-only",
+                appClientTechTitle: "Technical: app clients are inbound-only",
+                appClientTechText: "iPhone, Apple Watch, macOS and Windows do not publish a local app API for Home Assistant. Home Assistant never calls back into the app; the client posts to POST /api/djconnect/pair itself and then uses Home Assistant routes. There is no app-client mDNS/local-API discovery or fallback.",
+                deviceClientTechTitle: "Technical: local-device clients stay local",
+                deviceClientTechText: "ESP32 and Raspberry Pi use local/two-way pairing, may be discovered through mDNS _djconnect._tcp and use local /api/device/*. They receive no ha_remote_url and remain intended for use on your local network.",
+                downloadsTitle: "Release and download links",
+                downloadsLead: "Use the platform pages below for the latest public builds. Download cards read current GitHub Releases and route download clicks through djconnect.dev in a privacy-friendly way.",
+                downloadHacsText: "Home Assistant integration from pcvantol/djconnect, category Integration, version 3.2.x.",
+                downloadAppsText: "App builds come from pcvantol/djconnect-app-releases with separate platform filters for iOS, macOS, Windows and Mac Catalyst.",
+                downloadEspText: "Firmware comes from pcvantol/djconnect-firmware and stays intended for supported local-device hardware.",
+                downloadPiText: "Linux/Raspberry Pi builds and install command come from pcvantol/djconnect-pi-releases.",
+                downloadPrivacyText: "Apple push is optional and only a wake/sync hint. The relay receives no Spotify tokens, HA tokens, raw prompts, raw audio, full Ask DJ history or Music DNA.",
+                downloadSupportText: "Use support for setup issues, HACS updates, pairing, STT/TTS, backend capabilities or missing release assets.",
+                readyTitle: "7. Ready to use",
+                readyLead: "Start music on your chosen player or output, then control everything through DJConnect.",
+                readyStep1: "Choose your player/output in Spotify Direct or Music Assistant",
+                readyStep4: "Check About/Diagnostics for your connection mode, active backend, target player and capabilities",
+                legalCopyright: "Copyright Peter van Tol 2026. Released under the MIT License.",
+                legalSpotify: "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.",
+                legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          },
+          de: {
+                title: "DJConnect Get started",
+                metaDescription: "Get started with DJConnect 3.2: choose Spotify Direct or Music Assistant, install through HACS and pair your app or local device with Home Assistant.",
+                navLabel: "Navigation",
+                languageToggle: "Language",
+                navMenu: "Menu",
+                navHome: "Home",
+                navInstall: "Install",
+                navDownload: "Download",
+                navStart: "Start setup",
+                heroTitle: "DJConnect. Music control with character.",
+                heroLead: "DJConnect brings voice, music control and a personal DJ response together. The core stays the same on every device: request music, choose where it plays and get direct feedback.",
+                overviewTitle: "What will you do?",
+                overviewStep1: "Integrate DJConnect in Home Assistant",
+                overviewStep2: "Choose Spotify Direct or Music Assistant",
+                overviewStep3: "Pair locally, then use apps remotely too",
+                overviewDone: "Enjoy your own music, with your personal DJ",
+                requirementsTitle: "Requirements",
+                requirementsLead: "This checklist prevents most setup issues.",
+                requirementsBackend: "A music backend: Spotify Direct or Music Assistant",
+                requirementsLocalPairing: "Home Assistant and the DJConnect client on the same local network during pairing; remote pairing is not supported",
+                requirementsEspWifi: "For ESP hardware: 2.4 GHz WiFi during provisioning and local use",
+                requirementsSpotifyOauth: "Only for Spotify Direct: Spotify Premium and your own Spotify Developer app with Client ID",
+                requirementsMusicAssistant: "Only for Music Assistant: Music Assistant installed, providers configured and a player selected",
+                requirementsExternalUrl: "Optional for remote iOS/macOS/Windows: an external HTTPS Home Assistant URL, preferably Nabu Casa",
+                backendTitle: "Choose a music backend",
+                backendText: "DJConnect 3.2 works with Spotify Direct or Music Assistant. Home Assistant tells clients which backend is active and which actions are available.",
+                credentialsTitle: "Credentials stay in Home Assistant",
+                credentialsText: "DJConnect devices and apps do not receive a Spotify refresh token or playback credentials.",
+                remoteTitle: "Remote after local pairing",
+                remoteText: "iOS, macOS and Windows can work through your external Home Assistant URL after local pairing. ESP32 and Raspberry Pi stay local-only.",
+                trackAnalysisProviderTitle: "Optional: Track Insight providers",
+                trackAnalysisProviderText: "Track Insight works by default with available playback context. For deeper analysis, you can later configure your own providers, such as a music metadata API or local audio-analysis add-on. API keys stay in your own Home Assistant installation.",
+                backendCompareTitle: "3. Choose your music backend",
+                backendCompareLead: "Before setup, choose whether DJConnect talks directly to Spotify or whether Music Assistant is the central music layer in Home Assistant.",
+                requirementHeader: "Requirement",
+                required: "Required",
+                maSpotifyPremium: "Only if your Music Assistant Spotify provider needs it",
+                notRequired: "Not required",
+                notUsed: "Not used",
+                requiredInMa: "Required in Music Assistant",
+                requiredForVoice: "Required for voice/PTT",
+                externalOptional: "Optional, for remote iOS/macOS/Windows",
+                featureHeader: "Feature",
+                supported: "Supported",
+                maPlayerSupports: "Supported if selected MA player supports it",
+                spotifyVolume: "Supported if Spotify Connect output supports volume",
+                maVolume: "Supported if MA player supports volume",
+                spotifyQueue: "Supported via Spotify queue",
+                maQueue: "Supported if MA exposes queue/player queue",
+                maPlaylists: "MA library/provider playlists if available",
+                maSearch: "MA library/providers if available",
+                maActions: "MA item/player actions",
+                maImages: "Supported if MA/provider exposes images",
+                capabilityDependent: "Capability-dependent",
+                maProfile: "Usually not available unless MA/backend exposes equivalent",
+                spotifyProfile: "Rich Spotify profile data",
+                maProfileLimited: "Limited to MA/Music DNA data available",
+                spotifyRecommendations: "Spotify-backed where available",
+                notSupported: "Not supported",
+                maLocalFiles: "Supported if configured in Music Assistant",
+                maOtherProviders: "Supported if configured in Music Assistant",
+                spotifyGrouping: "Spotify Connect limited",
+                maGrouping: "Music Assistant/player dependent",
+                optionsFlow: "Supported via HA options-flow",
+                chooseSpotifyTitle: "Choose Spotify Direct if...",
+                chooseSpotifyText: "you mainly use Spotify, want the simplest DJConnect music setup, care about Spotify profile data such as recent/top/liked songs and do not run Music Assistant.",
+                chooseMaTitle: "Choose Music Assistant if...",
+                chooseMaText: "Music Assistant is already your central music hub, you use multiple providers or local music, or you do not want to create a Spotify Developer app for DJConnect.",
+                capabilityTitle: "Capabilities drive the UI",
+                capabilityText: "DJConnect asks Home Assistant which backend is active. Clients show actions the backend supports and display a friendly message when something is unavailable.",
+                switchingTitle: "You can switch later",
+                switchingText: "You can change backend later in the Home Assistant options flow. Pairing, Ask DJ history and Music DNA stay intact; old backend-specific Play Now actions may expire.",
+                aboutDiagnosticsTitle: "About and diagnostics",
+                aboutDiagnosticsText: "DJConnect 3.2 clients show the active music backend, target player, connection mode and key capabilities in About/Diagnostics.",
+                backendExampleTitle: "Example",
+                backendExampleText: "Top artists is available with Spotify Direct. With Music Assistant, this depends on equivalent profile data in your Music Assistant setup.",
+                websocketTitle: "Optional: local websocket fast path",
+                websocketText: "After local app pairing, iOS, macOS and Windows can locally use Home Assistant /api/websocket for low-latency commands when djconnect/capabilities advertises it. HTTP remains the fallback for remote use, pairing, voice uploads, history sync and media URLs.",
+                compatTitle: "Compatibility matrix",
+                componentHeader: "Component",
+                supportHeader: "Support",
+                connectivityHeader: "Connectivity",
+                contractHeader: "Contract",
+                protocol32: "Protocol 3.2.x",
+                localOnly: "Local-only",
+                localPairing: "Local pairing",
+                remoteCapable: "Remote-capable after local pairing",
+                iphoneProxy: "Via iPhone proxy",
+                conversationAgent: "DJConnect conversation agent",
+                haContract: "Patch versions may differ; major/minor must match. HTTP 426 version_mismatch means update the client or integration, not reset pairing.",
+                espContract: "Local-device client with _djconnect._tcp, optional Client address and /api/device/*.",
+                piContract: "Local-device client with _djconnect._tcp, optional Client address, /api/device/* and Pi restart/shutdown/display use cases.",
+                iosContract: "Inbound-only app client: djconnect-ios-XXXXXXXXXXXX, client_type ios, posts to /api/djconnect/pair.",
+                macosContract: "Inbound-only app client: djconnect-macos-XXXXXXXXXXXX, client_type macos, posts to /api/djconnect/pair.",
+                windowsContract: "Inbound-only app client: djconnect-windows-XXXXXXXXXXXX, client_type windows, posts to /api/djconnect/pair.",
+                watchContract: "No separate Home Assistant pairing; the paired iPhone proxies Watch identity and sync.",
+                assistContract: "No device token, firmware controls or client pairing UI; STT/TTS stay in the HA Assist pipeline.",
+                voiceTitle: "1. Configure assist pipeline in Home Assistant",
+                voiceLead: "DJConnect uses your Home Assistant voice pipeline for voice control and spoken DJ announcements.",
+                voiceHelp: "Help with Home Assistant voice assist",
+                hacsTitle: "2. Add to Home Assistant",
+                hacsLead: "Use the Home Assistant Community Store button below to open the DJConnect repository in HACS directly. Install DJConnect integration v3.2.3 or newer, restart Home Assistant and then add DJConnect through Devices & services.",
+                hacsButton: "Open DJConnect in HACS",
+                spotifyOauthTitle: "4. Spotify Direct only: create a Spotify Developer app",
+                spotifyOauthLead: "Skip this step when you use Music Assistant. Spotify Direct uses your own Home Assistant installation, Spotify Premium, a Spotify Developer app Client ID and OAuth/PKCE.",
+                spotifyOauthNotePrefix: "Prefer your Nabu Casa HTTPS external URL. The callback is",
+                spotifyOauthNoteSuffix: "DJConnect uses PKCE; a Spotify Client Secret is preferably not required.",
+                spotifyStep1: "Open the Spotify Developer Dashboard.",
+                spotifyStep2: "Create a new app.",
+                spotifyStep3: "Add your Home Assistant redirect URI:",
+                spotifyStep4: "Copy the Spotify Client ID.",
+                spotifyStep5: "Enter the Client ID during the DJConnect setup/config flow.",
+                spotifyStep6: "Authorize Spotify through Home Assistant.",
+                configureTitle: "5. Configure DJConnect",
+                configureLead: "Add DJConnect as a Home Assistant integration, choose your music backend and configure only the fields that belong to that backend.",
+                configureStep2: "Choose Spotify Direct or Music Assistant as music backend",
+                configureStep3: "With Spotify Direct: enter your Client ID and authorize Spotify through Home Assistant",
+                configureStep4: "With Music Assistant: select your Music Assistant player; Spotify OAuth in DJConnect is not needed",
+                configureStep5: "Configure voice through your Home Assistant Assist pipeline, not through direct external STT/TTS APIs",
+                pairingTitle: "6. Pair app or device locally",
+                pairingLead: "Pairing/token bootstrap intentionally happens locally, not remotely. Home Assistant and the DJConnect client are on the same local network during pairing; app clients can then work remotely through Home Assistant.",
+                pairingLocalTitle: "Pair locally, then use remotely",
+                pairingLocalText: "During pairing, Home Assistant and the DJConnect client are intentionally on the same local network. After successful pairing, iPhone, Apple Watch, macOS and Windows can work remotely when Home Assistant has an external/Nabu Casa HTTPS URL.",
+                pairingSaferTitle: "Why local?",
+                pairingSaferText: "Local pairing avoids remote bootstrap exposure and requires LAN presence plus a temporary code or QR. That keeps the token flow simpler and safer.",
+                pairingRemoteAvoidTitle: "Why no remote pairing?",
+                pairingRemoteAvoidText: "Remote pairing would require extra expiry, replay protection, rate limiting, phishing/error states and external URL dependencies. DJConnect keeps pairing local and uses remote access only after a successful pairing.",
+                clientTypeLabel: "Choose client type",
+                assistTitle: "Voice Assistant",
+                espTitle: "ESP device",
+                iosTitle: "iOS app",
+                macosTitle: "macOS app",
+                windowsTitle: "Windows app",
+                raspberryTitle: "Raspberry Pi app",
+                appPairStep2: "Open the DJConnect app on the same local network as Home Assistant",
+                appPairStep3: "Enter the pairing code locally or scan the QR code from Home Assistant; the app posts to /api/djconnect/pair itself",
+                iosPairStep3: "Scan the QR/deep-link payload generated by Home Assistant",
+                desktopPairStep3: "Manually enter the local Home Assistant URL and the Home Assistant-generated pairing code",
+                appPairStep4: "No Client address copying: the app calls Home Assistant itself through /api/djconnect/...",
+                appPairStep5: "After that, the app can work locally or remotely through your Home Assistant URL",
+                watchPairStep: "For Apple Watch, Home Assistant generates a separate Watch QR/deep-link payload. Scan it with iPhone; iPhone passes the pairing details to the paired Watch.",
+                windowsInstallStep: "Install the DJConnect Windows desktop app when your build is available",
+                espLocalOnlyStep: "The DJConnect ESP32 device uses _djconnect._tcp or Client address, only the local /api/device/* device API and stays local-only",
+                assistSatelliteStep: "Use your HA Assist satellite, Home Assistant Voice Preview Edition, M5 Atom Echo or another ESPHome-powered voice project for wake word, microphone and speaker output",
+                assistNoPairingStep: "No client pairing, device token or Client address needed",
+                raspberryPairStep: "Choose client type Raspberry Pi app and pair locally on the same network",
+                raspberryLocalOnlyStep: "Raspberry Pi uses _djconnect._tcp or Client address, local /api/device/* runtime/device connectivity and stays local-only",
+                appClientTechTitle: "Technical: app clients are inbound-only",
+                appClientTechText: "iPhone, Apple Watch, macOS and Windows do not publish a local app API for Home Assistant. Home Assistant never calls back into the app; the client posts to POST /api/djconnect/pair itself and then uses Home Assistant routes. There is no app-client mDNS/local-API discovery or fallback.",
+                deviceClientTechTitle: "Technical: local-device clients stay local",
+                deviceClientTechText: "ESP32 and Raspberry Pi use local/two-way pairing, may be discovered through mDNS _djconnect._tcp and use local /api/device/*. They receive no ha_remote_url and remain intended for use on your local network.",
+                downloadsTitle: "Release and download links",
+                downloadsLead: "Use the platform pages below for the latest public builds. Download cards read current GitHub Releases and route download clicks through djconnect.dev in a privacy-friendly way.",
+                downloadHacsText: "Home Assistant integration from pcvantol/djconnect, category Integration, version 3.2.x.",
+                downloadAppsText: "App builds come from pcvantol/djconnect-app-releases with separate platform filters for iOS, macOS, Windows and Mac Catalyst.",
+                downloadEspText: "Firmware comes from pcvantol/djconnect-firmware and stays intended for supported local-device hardware.",
+                downloadPiText: "Linux/Raspberry Pi builds and install command come from pcvantol/djconnect-pi-releases.",
+                downloadPrivacyText: "Apple push is optional and only a wake/sync hint. The relay receives no Spotify tokens, HA tokens, raw prompts, raw audio, full Ask DJ history or Music DNA.",
+                downloadSupportText: "Use support for setup issues, HACS updates, pairing, STT/TTS, backend capabilities or missing release assets.",
+                readyTitle: "7. Ready to use",
+                readyLead: "Start music on your chosen player or output, then control everything through DJConnect.",
+                readyStep1: "Choose your player/output in Spotify Direct or Music Assistant",
+                readyStep4: "Check About/Diagnostics for your connection mode, active backend, target player and capabilities",
+                legalCopyright: "Copyright Peter van Tol 2026. Released under the MIT License.",
+                legalSpotify: "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.",
+                legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          },
+          fr: {
+                title: "DJConnect Get started",
+                metaDescription: "Get started with DJConnect 3.2: choose Spotify Direct or Music Assistant, install through HACS and pair your app or local device with Home Assistant.",
+                navLabel: "Navigation",
+                languageToggle: "Language",
+                navMenu: "Menu",
+                navHome: "Home",
+                navInstall: "Install",
+                navDownload: "Download",
+                navStart: "Start setup",
+                heroTitle: "DJConnect. Music control with character.",
+                heroLead: "DJConnect brings voice, music control and a personal DJ response together. The core stays the same on every device: request music, choose where it plays and get direct feedback.",
+                overviewTitle: "What will you do?",
+                overviewStep1: "Integrate DJConnect in Home Assistant",
+                overviewStep2: "Choose Spotify Direct or Music Assistant",
+                overviewStep3: "Pair locally, then use apps remotely too",
+                overviewDone: "Enjoy your own music, with your personal DJ",
+                requirementsTitle: "Requirements",
+                requirementsLead: "This checklist prevents most setup issues.",
+                requirementsBackend: "A music backend: Spotify Direct or Music Assistant",
+                requirementsLocalPairing: "Home Assistant and the DJConnect client on the same local network during pairing; remote pairing is not supported",
+                requirementsEspWifi: "For ESP hardware: 2.4 GHz WiFi during provisioning and local use",
+                requirementsSpotifyOauth: "Only for Spotify Direct: Spotify Premium and your own Spotify Developer app with Client ID",
+                requirementsMusicAssistant: "Only for Music Assistant: Music Assistant installed, providers configured and a player selected",
+                requirementsExternalUrl: "Optional for remote iOS/macOS/Windows: an external HTTPS Home Assistant URL, preferably Nabu Casa",
+                backendTitle: "Choose a music backend",
+                backendText: "DJConnect 3.2 works with Spotify Direct or Music Assistant. Home Assistant tells clients which backend is active and which actions are available.",
+                credentialsTitle: "Credentials stay in Home Assistant",
+                credentialsText: "DJConnect devices and apps do not receive a Spotify refresh token or playback credentials.",
+                remoteTitle: "Remote after local pairing",
+                remoteText: "iOS, macOS and Windows can work through your external Home Assistant URL after local pairing. ESP32 and Raspberry Pi stay local-only.",
+                trackAnalysisProviderTitle: "Optional: Track Insight providers",
+                trackAnalysisProviderText: "Track Insight works by default with available playback context. For deeper analysis, you can later configure your own providers, such as a music metadata API or local audio-analysis add-on. API keys stay in your own Home Assistant installation.",
+                backendCompareTitle: "3. Choose your music backend",
+                backendCompareLead: "Before setup, choose whether DJConnect talks directly to Spotify or whether Music Assistant is the central music layer in Home Assistant.",
+                requirementHeader: "Requirement",
+                required: "Required",
+                maSpotifyPremium: "Only if your Music Assistant Spotify provider needs it",
+                notRequired: "Not required",
+                notUsed: "Not used",
+                requiredInMa: "Required in Music Assistant",
+                requiredForVoice: "Required for voice/PTT",
+                externalOptional: "Optional, for remote iOS/macOS/Windows",
+                featureHeader: "Feature",
+                supported: "Supported",
+                maPlayerSupports: "Supported if selected MA player supports it",
+                spotifyVolume: "Supported if Spotify Connect output supports volume",
+                maVolume: "Supported if MA player supports volume",
+                spotifyQueue: "Supported via Spotify queue",
+                maQueue: "Supported if MA exposes queue/player queue",
+                maPlaylists: "MA library/provider playlists if available",
+                maSearch: "MA library/providers if available",
+                maActions: "MA item/player actions",
+                maImages: "Supported if MA/provider exposes images",
+                capabilityDependent: "Capability-dependent",
+                maProfile: "Usually not available unless MA/backend exposes equivalent",
+                spotifyProfile: "Rich Spotify profile data",
+                maProfileLimited: "Limited to MA/Music DNA data available",
+                spotifyRecommendations: "Spotify-backed where available",
+                notSupported: "Not supported",
+                maLocalFiles: "Supported if configured in Music Assistant",
+                maOtherProviders: "Supported if configured in Music Assistant",
+                spotifyGrouping: "Spotify Connect limited",
+                maGrouping: "Music Assistant/player dependent",
+                optionsFlow: "Supported via HA options-flow",
+                chooseSpotifyTitle: "Choose Spotify Direct if...",
+                chooseSpotifyText: "you mainly use Spotify, want the simplest DJConnect music setup, care about Spotify profile data such as recent/top/liked songs and do not run Music Assistant.",
+                chooseMaTitle: "Choose Music Assistant if...",
+                chooseMaText: "Music Assistant is already your central music hub, you use multiple providers or local music, or you do not want to create a Spotify Developer app for DJConnect.",
+                capabilityTitle: "Capabilities drive the UI",
+                capabilityText: "DJConnect asks Home Assistant which backend is active. Clients show actions the backend supports and display a friendly message when something is unavailable.",
+                switchingTitle: "You can switch later",
+                switchingText: "You can change backend later in the Home Assistant options flow. Pairing, Ask DJ history and Music DNA stay intact; old backend-specific Play Now actions may expire.",
+                aboutDiagnosticsTitle: "About and diagnostics",
+                aboutDiagnosticsText: "DJConnect 3.2 clients show the active music backend, target player, connection mode and key capabilities in About/Diagnostics.",
+                backendExampleTitle: "Example",
+                backendExampleText: "Top artists is available with Spotify Direct. With Music Assistant, this depends on equivalent profile data in your Music Assistant setup.",
+                websocketTitle: "Optional: local websocket fast path",
+                websocketText: "After local app pairing, iOS, macOS and Windows can locally use Home Assistant /api/websocket for low-latency commands when djconnect/capabilities advertises it. HTTP remains the fallback for remote use, pairing, voice uploads, history sync and media URLs.",
+                compatTitle: "Compatibility matrix",
+                componentHeader: "Component",
+                supportHeader: "Support",
+                connectivityHeader: "Connectivity",
+                contractHeader: "Contract",
+                protocol32: "Protocol 3.2.x",
+                localOnly: "Local-only",
+                localPairing: "Local pairing",
+                remoteCapable: "Remote-capable after local pairing",
+                iphoneProxy: "Via iPhone proxy",
+                conversationAgent: "DJConnect conversation agent",
+                haContract: "Patch versions may differ; major/minor must match. HTTP 426 version_mismatch means update the client or integration, not reset pairing.",
+                espContract: "Local-device client with _djconnect._tcp, optional Client address and /api/device/*.",
+                piContract: "Local-device client with _djconnect._tcp, optional Client address, /api/device/* and Pi restart/shutdown/display use cases.",
+                iosContract: "Inbound-only app client: djconnect-ios-XXXXXXXXXXXX, client_type ios, posts to /api/djconnect/pair.",
+                macosContract: "Inbound-only app client: djconnect-macos-XXXXXXXXXXXX, client_type macos, posts to /api/djconnect/pair.",
+                windowsContract: "Inbound-only app client: djconnect-windows-XXXXXXXXXXXX, client_type windows, posts to /api/djconnect/pair.",
+                watchContract: "No separate Home Assistant pairing; the paired iPhone proxies Watch identity and sync.",
+                assistContract: "No device token, firmware controls or client pairing UI; STT/TTS stay in the HA Assist pipeline.",
+                voiceTitle: "1. Configure assist pipeline in Home Assistant",
+                voiceLead: "DJConnect uses your Home Assistant voice pipeline for voice control and spoken DJ announcements.",
+                voiceHelp: "Help with Home Assistant voice assist",
+                hacsTitle: "2. Add to Home Assistant",
+                hacsLead: "Use the Home Assistant Community Store button below to open the DJConnect repository in HACS directly. Install DJConnect integration v3.2.3 or newer, restart Home Assistant and then add DJConnect through Devices & services.",
+                hacsButton: "Open DJConnect in HACS",
+                spotifyOauthTitle: "4. Spotify Direct only: create a Spotify Developer app",
+                spotifyOauthLead: "Skip this step when you use Music Assistant. Spotify Direct uses your own Home Assistant installation, Spotify Premium, a Spotify Developer app Client ID and OAuth/PKCE.",
+                spotifyOauthNotePrefix: "Prefer your Nabu Casa HTTPS external URL. The callback is",
+                spotifyOauthNoteSuffix: "DJConnect uses PKCE; a Spotify Client Secret is preferably not required.",
+                spotifyStep1: "Open the Spotify Developer Dashboard.",
+                spotifyStep2: "Create a new app.",
+                spotifyStep3: "Add your Home Assistant redirect URI:",
+                spotifyStep4: "Copy the Spotify Client ID.",
+                spotifyStep5: "Enter the Client ID during the DJConnect setup/config flow.",
+                spotifyStep6: "Authorize Spotify through Home Assistant.",
+                configureTitle: "5. Configure DJConnect",
+                configureLead: "Add DJConnect as a Home Assistant integration, choose your music backend and configure only the fields that belong to that backend.",
+                configureStep2: "Choose Spotify Direct or Music Assistant as music backend",
+                configureStep3: "With Spotify Direct: enter your Client ID and authorize Spotify through Home Assistant",
+                configureStep4: "With Music Assistant: select your Music Assistant player; Spotify OAuth in DJConnect is not needed",
+                configureStep5: "Configure voice through your Home Assistant Assist pipeline, not through direct external STT/TTS APIs",
+                pairingTitle: "6. Pair app or device locally",
+                pairingLead: "Pairing/token bootstrap intentionally happens locally, not remotely. Home Assistant and the DJConnect client are on the same local network during pairing; app clients can then work remotely through Home Assistant.",
+                pairingLocalTitle: "Pair locally, then use remotely",
+                pairingLocalText: "During pairing, Home Assistant and the DJConnect client are intentionally on the same local network. After successful pairing, iPhone, Apple Watch, macOS and Windows can work remotely when Home Assistant has an external/Nabu Casa HTTPS URL.",
+                pairingSaferTitle: "Why local?",
+                pairingSaferText: "Local pairing avoids remote bootstrap exposure and requires LAN presence plus a temporary code or QR. That keeps the token flow simpler and safer.",
+                pairingRemoteAvoidTitle: "Why no remote pairing?",
+                pairingRemoteAvoidText: "Remote pairing would require extra expiry, replay protection, rate limiting, phishing/error states and external URL dependencies. DJConnect keeps pairing local and uses remote access only after a successful pairing.",
+                clientTypeLabel: "Choose client type",
+                assistTitle: "Voice Assistant",
+                espTitle: "ESP device",
+                iosTitle: "iOS app",
+                macosTitle: "macOS app",
+                windowsTitle: "Windows app",
+                raspberryTitle: "Raspberry Pi app",
+                appPairStep2: "Open the DJConnect app on the same local network as Home Assistant",
+                appPairStep3: "Enter the pairing code locally or scan the QR code from Home Assistant; the app posts to /api/djconnect/pair itself",
+                iosPairStep3: "Scan the QR/deep-link payload generated by Home Assistant",
+                desktopPairStep3: "Manually enter the local Home Assistant URL and the Home Assistant-generated pairing code",
+                appPairStep4: "No Client address copying: the app calls Home Assistant itself through /api/djconnect/...",
+                appPairStep5: "After that, the app can work locally or remotely through your Home Assistant URL",
+                watchPairStep: "For Apple Watch, Home Assistant generates a separate Watch QR/deep-link payload. Scan it with iPhone; iPhone passes the pairing details to the paired Watch.",
+                windowsInstallStep: "Install the DJConnect Windows desktop app when your build is available",
+                espLocalOnlyStep: "The DJConnect ESP32 device uses _djconnect._tcp or Client address, only the local /api/device/* device API and stays local-only",
+                assistSatelliteStep: "Use your HA Assist satellite, Home Assistant Voice Preview Edition, M5 Atom Echo or another ESPHome-powered voice project for wake word, microphone and speaker output",
+                assistNoPairingStep: "No client pairing, device token or Client address needed",
+                raspberryPairStep: "Choose client type Raspberry Pi app and pair locally on the same network",
+                raspberryLocalOnlyStep: "Raspberry Pi uses _djconnect._tcp or Client address, local /api/device/* runtime/device connectivity and stays local-only",
+                appClientTechTitle: "Technical: app clients are inbound-only",
+                appClientTechText: "iPhone, Apple Watch, macOS and Windows do not publish a local app API for Home Assistant. Home Assistant never calls back into the app; the client posts to POST /api/djconnect/pair itself and then uses Home Assistant routes. There is no app-client mDNS/local-API discovery or fallback.",
+                deviceClientTechTitle: "Technical: local-device clients stay local",
+                deviceClientTechText: "ESP32 and Raspberry Pi use local/two-way pairing, may be discovered through mDNS _djconnect._tcp and use local /api/device/*. They receive no ha_remote_url and remain intended for use on your local network.",
+                downloadsTitle: "Release and download links",
+                downloadsLead: "Use the platform pages below for the latest public builds. Download cards read current GitHub Releases and route download clicks through djconnect.dev in a privacy-friendly way.",
+                downloadHacsText: "Home Assistant integration from pcvantol/djconnect, category Integration, version 3.2.x.",
+                downloadAppsText: "App builds come from pcvantol/djconnect-app-releases with separate platform filters for iOS, macOS, Windows and Mac Catalyst.",
+                downloadEspText: "Firmware comes from pcvantol/djconnect-firmware and stays intended for supported local-device hardware.",
+                downloadPiText: "Linux/Raspberry Pi builds and install command come from pcvantol/djconnect-pi-releases.",
+                downloadPrivacyText: "Apple push is optional and only a wake/sync hint. The relay receives no Spotify tokens, HA tokens, raw prompts, raw audio, full Ask DJ history or Music DNA.",
+                downloadSupportText: "Use support for setup issues, HACS updates, pairing, STT/TTS, backend capabilities or missing release assets.",
+                readyTitle: "7. Ready to use",
+                readyLead: "Start music on your chosen player or output, then control everything through DJConnect.",
+                readyStep1: "Choose your player/output in Spotify Direct or Music Assistant",
+                readyStep4: "Check About/Diagnostics for your connection mode, active backend, target player and capabilities",
+                legalCopyright: "Copyright Peter van Tol 2026. Released under the MIT License.",
+                legalSpotify: "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.",
+                legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          },
+          es: {
+                title: "DJConnect Get started",
+                metaDescription: "Get started with DJConnect 3.2: choose Spotify Direct or Music Assistant, install through HACS and pair your app or local device with Home Assistant.",
+                navLabel: "Navigation",
+                languageToggle: "Language",
+                navMenu: "Menu",
+                navHome: "Home",
+                navInstall: "Install",
+                navDownload: "Download",
+                navStart: "Start setup",
+                heroTitle: "DJConnect. Music control with character.",
+                heroLead: "DJConnect brings voice, music control and a personal DJ response together. The core stays the same on every device: request music, choose where it plays and get direct feedback.",
+                overviewTitle: "What will you do?",
+                overviewStep1: "Integrate DJConnect in Home Assistant",
+                overviewStep2: "Choose Spotify Direct or Music Assistant",
+                overviewStep3: "Pair locally, then use apps remotely too",
+                overviewDone: "Enjoy your own music, with your personal DJ",
+                requirementsTitle: "Requirements",
+                requirementsLead: "This checklist prevents most setup issues.",
+                requirementsBackend: "A music backend: Spotify Direct or Music Assistant",
+                requirementsLocalPairing: "Home Assistant and the DJConnect client on the same local network during pairing; remote pairing is not supported",
+                requirementsEspWifi: "For ESP hardware: 2.4 GHz WiFi during provisioning and local use",
+                requirementsSpotifyOauth: "Only for Spotify Direct: Spotify Premium and your own Spotify Developer app with Client ID",
+                requirementsMusicAssistant: "Only for Music Assistant: Music Assistant installed, providers configured and a player selected",
+                requirementsExternalUrl: "Optional for remote iOS/macOS/Windows: an external HTTPS Home Assistant URL, preferably Nabu Casa",
+                backendTitle: "Choose a music backend",
+                backendText: "DJConnect 3.2 works with Spotify Direct or Music Assistant. Home Assistant tells clients which backend is active and which actions are available.",
+                credentialsTitle: "Credentials stay in Home Assistant",
+                credentialsText: "DJConnect devices and apps do not receive a Spotify refresh token or playback credentials.",
+                remoteTitle: "Remote after local pairing",
+                remoteText: "iOS, macOS and Windows can work through your external Home Assistant URL after local pairing. ESP32 and Raspberry Pi stay local-only.",
+                trackAnalysisProviderTitle: "Optional: Track Insight providers",
+                trackAnalysisProviderText: "Track Insight works by default with available playback context. For deeper analysis, you can later configure your own providers, such as a music metadata API or local audio-analysis add-on. API keys stay in your own Home Assistant installation.",
+                backendCompareTitle: "3. Choose your music backend",
+                backendCompareLead: "Before setup, choose whether DJConnect talks directly to Spotify or whether Music Assistant is the central music layer in Home Assistant.",
+                requirementHeader: "Requirement",
+                required: "Required",
+                maSpotifyPremium: "Only if your Music Assistant Spotify provider needs it",
+                notRequired: "Not required",
+                notUsed: "Not used",
+                requiredInMa: "Required in Music Assistant",
+                requiredForVoice: "Required for voice/PTT",
+                externalOptional: "Optional, for remote iOS/macOS/Windows",
+                featureHeader: "Feature",
+                supported: "Supported",
+                maPlayerSupports: "Supported if selected MA player supports it",
+                spotifyVolume: "Supported if Spotify Connect output supports volume",
+                maVolume: "Supported if MA player supports volume",
+                spotifyQueue: "Supported via Spotify queue",
+                maQueue: "Supported if MA exposes queue/player queue",
+                maPlaylists: "MA library/provider playlists if available",
+                maSearch: "MA library/providers if available",
+                maActions: "MA item/player actions",
+                maImages: "Supported if MA/provider exposes images",
+                capabilityDependent: "Capability-dependent",
+                maProfile: "Usually not available unless MA/backend exposes equivalent",
+                spotifyProfile: "Rich Spotify profile data",
+                maProfileLimited: "Limited to MA/Music DNA data available",
+                spotifyRecommendations: "Spotify-backed where available",
+                notSupported: "Not supported",
+                maLocalFiles: "Supported if configured in Music Assistant",
+                maOtherProviders: "Supported if configured in Music Assistant",
+                spotifyGrouping: "Spotify Connect limited",
+                maGrouping: "Music Assistant/player dependent",
+                optionsFlow: "Supported via HA options-flow",
+                chooseSpotifyTitle: "Choose Spotify Direct if...",
+                chooseSpotifyText: "you mainly use Spotify, want the simplest DJConnect music setup, care about Spotify profile data such as recent/top/liked songs and do not run Music Assistant.",
+                chooseMaTitle: "Choose Music Assistant if...",
+                chooseMaText: "Music Assistant is already your central music hub, you use multiple providers or local music, or you do not want to create a Spotify Developer app for DJConnect.",
+                capabilityTitle: "Capabilities drive the UI",
+                capabilityText: "DJConnect asks Home Assistant which backend is active. Clients show actions the backend supports and display a friendly message when something is unavailable.",
+                switchingTitle: "You can switch later",
+                switchingText: "You can change backend later in the Home Assistant options flow. Pairing, Ask DJ history and Music DNA stay intact; old backend-specific Play Now actions may expire.",
+                aboutDiagnosticsTitle: "About and diagnostics",
+                aboutDiagnosticsText: "DJConnect 3.2 clients show the active music backend, target player, connection mode and key capabilities in About/Diagnostics.",
+                backendExampleTitle: "Example",
+                backendExampleText: "Top artists is available with Spotify Direct. With Music Assistant, this depends on equivalent profile data in your Music Assistant setup.",
+                websocketTitle: "Optional: local websocket fast path",
+                websocketText: "After local app pairing, iOS, macOS and Windows can locally use Home Assistant /api/websocket for low-latency commands when djconnect/capabilities advertises it. HTTP remains the fallback for remote use, pairing, voice uploads, history sync and media URLs.",
+                compatTitle: "Compatibility matrix",
+                componentHeader: "Component",
+                supportHeader: "Support",
+                connectivityHeader: "Connectivity",
+                contractHeader: "Contract",
+                protocol32: "Protocol 3.2.x",
+                localOnly: "Local-only",
+                localPairing: "Local pairing",
+                remoteCapable: "Remote-capable after local pairing",
+                iphoneProxy: "Via iPhone proxy",
+                conversationAgent: "DJConnect conversation agent",
+                haContract: "Patch versions may differ; major/minor must match. HTTP 426 version_mismatch means update the client or integration, not reset pairing.",
+                espContract: "Local-device client with _djconnect._tcp, optional Client address and /api/device/*.",
+                piContract: "Local-device client with _djconnect._tcp, optional Client address, /api/device/* and Pi restart/shutdown/display use cases.",
+                iosContract: "Inbound-only app client: djconnect-ios-XXXXXXXXXXXX, client_type ios, posts to /api/djconnect/pair.",
+                macosContract: "Inbound-only app client: djconnect-macos-XXXXXXXXXXXX, client_type macos, posts to /api/djconnect/pair.",
+                windowsContract: "Inbound-only app client: djconnect-windows-XXXXXXXXXXXX, client_type windows, posts to /api/djconnect/pair.",
+                watchContract: "No separate Home Assistant pairing; the paired iPhone proxies Watch identity and sync.",
+                assistContract: "No device token, firmware controls or client pairing UI; STT/TTS stay in the HA Assist pipeline.",
+                voiceTitle: "1. Configure assist pipeline in Home Assistant",
+                voiceLead: "DJConnect uses your Home Assistant voice pipeline for voice control and spoken DJ announcements.",
+                voiceHelp: "Help with Home Assistant voice assist",
+                hacsTitle: "2. Add to Home Assistant",
+                hacsLead: "Use the Home Assistant Community Store button below to open the DJConnect repository in HACS directly. Install DJConnect integration v3.2.3 or newer, restart Home Assistant and then add DJConnect through Devices & services.",
+                hacsButton: "Open DJConnect in HACS",
+                spotifyOauthTitle: "4. Spotify Direct only: create a Spotify Developer app",
+                spotifyOauthLead: "Skip this step when you use Music Assistant. Spotify Direct uses your own Home Assistant installation, Spotify Premium, a Spotify Developer app Client ID and OAuth/PKCE.",
+                spotifyOauthNotePrefix: "Prefer your Nabu Casa HTTPS external URL. The callback is",
+                spotifyOauthNoteSuffix: "DJConnect uses PKCE; a Spotify Client Secret is preferably not required.",
+                spotifyStep1: "Open the Spotify Developer Dashboard.",
+                spotifyStep2: "Create a new app.",
+                spotifyStep3: "Add your Home Assistant redirect URI:",
+                spotifyStep4: "Copy the Spotify Client ID.",
+                spotifyStep5: "Enter the Client ID during the DJConnect setup/config flow.",
+                spotifyStep6: "Authorize Spotify through Home Assistant.",
+                configureTitle: "5. Configure DJConnect",
+                configureLead: "Add DJConnect as a Home Assistant integration, choose your music backend and configure only the fields that belong to that backend.",
+                configureStep2: "Choose Spotify Direct or Music Assistant as music backend",
+                configureStep3: "With Spotify Direct: enter your Client ID and authorize Spotify through Home Assistant",
+                configureStep4: "With Music Assistant: select your Music Assistant player; Spotify OAuth in DJConnect is not needed",
+                configureStep5: "Configure voice through your Home Assistant Assist pipeline, not through direct external STT/TTS APIs",
+                pairingTitle: "6. Pair app or device locally",
+                pairingLead: "Pairing/token bootstrap intentionally happens locally, not remotely. Home Assistant and the DJConnect client are on the same local network during pairing; app clients can then work remotely through Home Assistant.",
+                pairingLocalTitle: "Pair locally, then use remotely",
+                pairingLocalText: "During pairing, Home Assistant and the DJConnect client are intentionally on the same local network. After successful pairing, iPhone, Apple Watch, macOS and Windows can work remotely when Home Assistant has an external/Nabu Casa HTTPS URL.",
+                pairingSaferTitle: "Why local?",
+                pairingSaferText: "Local pairing avoids remote bootstrap exposure and requires LAN presence plus a temporary code or QR. That keeps the token flow simpler and safer.",
+                pairingRemoteAvoidTitle: "Why no remote pairing?",
+                pairingRemoteAvoidText: "Remote pairing would require extra expiry, replay protection, rate limiting, phishing/error states and external URL dependencies. DJConnect keeps pairing local and uses remote access only after a successful pairing.",
+                clientTypeLabel: "Choose client type",
+                assistTitle: "Voice Assistant",
+                espTitle: "ESP device",
+                iosTitle: "iOS app",
+                macosTitle: "macOS app",
+                windowsTitle: "Windows app",
+                raspberryTitle: "Raspberry Pi app",
+                appPairStep2: "Open the DJConnect app on the same local network as Home Assistant",
+                appPairStep3: "Enter the pairing code locally or scan the QR code from Home Assistant; the app posts to /api/djconnect/pair itself",
+                iosPairStep3: "Scan the QR/deep-link payload generated by Home Assistant",
+                desktopPairStep3: "Manually enter the local Home Assistant URL and the Home Assistant-generated pairing code",
+                appPairStep4: "No Client address copying: the app calls Home Assistant itself through /api/djconnect/...",
+                appPairStep5: "After that, the app can work locally or remotely through your Home Assistant URL",
+                watchPairStep: "For Apple Watch, Home Assistant generates a separate Watch QR/deep-link payload. Scan it with iPhone; iPhone passes the pairing details to the paired Watch.",
+                windowsInstallStep: "Install the DJConnect Windows desktop app when your build is available",
+                espLocalOnlyStep: "The DJConnect ESP32 device uses _djconnect._tcp or Client address, only the local /api/device/* device API and stays local-only",
+                assistSatelliteStep: "Use your HA Assist satellite, Home Assistant Voice Preview Edition, M5 Atom Echo or another ESPHome-powered voice project for wake word, microphone and speaker output",
+                assistNoPairingStep: "No client pairing, device token or Client address needed",
+                raspberryPairStep: "Choose client type Raspberry Pi app and pair locally on the same network",
+                raspberryLocalOnlyStep: "Raspberry Pi uses _djconnect._tcp or Client address, local /api/device/* runtime/device connectivity and stays local-only",
+                appClientTechTitle: "Technical: app clients are inbound-only",
+                appClientTechText: "iPhone, Apple Watch, macOS and Windows do not publish a local app API for Home Assistant. Home Assistant never calls back into the app; the client posts to POST /api/djconnect/pair itself and then uses Home Assistant routes. There is no app-client mDNS/local-API discovery or fallback.",
+                deviceClientTechTitle: "Technical: local-device clients stay local",
+                deviceClientTechText: "ESP32 and Raspberry Pi use local/two-way pairing, may be discovered through mDNS _djconnect._tcp and use local /api/device/*. They receive no ha_remote_url and remain intended for use on your local network.",
+                downloadsTitle: "Release and download links",
+                downloadsLead: "Use the platform pages below for the latest public builds. Download cards read current GitHub Releases and route download clicks through djconnect.dev in a privacy-friendly way.",
+                downloadHacsText: "Home Assistant integration from pcvantol/djconnect, category Integration, version 3.2.x.",
+                downloadAppsText: "App builds come from pcvantol/djconnect-app-releases with separate platform filters for iOS, macOS, Windows and Mac Catalyst.",
+                downloadEspText: "Firmware comes from pcvantol/djconnect-firmware and stays intended for supported local-device hardware.",
+                downloadPiText: "Linux/Raspberry Pi builds and install command come from pcvantol/djconnect-pi-releases.",
+                downloadPrivacyText: "Apple push is optional and only a wake/sync hint. The relay receives no Spotify tokens, HA tokens, raw prompts, raw audio, full Ask DJ history or Music DNA.",
+                downloadSupportText: "Use support for setup issues, HACS updates, pairing, STT/TTS, backend capabilities or missing release assets.",
+                readyTitle: "7. Ready to use",
+                readyLead: "Start music on your chosen player or output, then control everything through DJConnect.",
+                readyStep1: "Choose your player/output in Spotify Direct or Music Assistant",
+                readyStep4: "Check About/Diagnostics for your connection mode, active backend, target player and capabilities",
+                legalCopyright: "Copyright Peter van Tol 2026. Released under the MIT License.",
+                legalSpotify: "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.",
+                legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          }
+    };
+    const applyLanguage = (language) => {
+      const copy = { ...(window.DJCONNECT_I18N?.shared?.[language] || {}), ...(translations[language] || translations[window.DJCONNECT_I18N?.defaultLanguage || "nl"]) };
+      document.documentElement.lang = language;
+      document.title = copy.title;
+      const meta = document.querySelector('meta[name="description"]');
+      if (meta) meta.setAttribute("content", copy.metaDescription);
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.getAttribute("data-i18n");
+        if (copy[key]) element.textContent = copy[key];
+      });
+      document.querySelectorAll("[data-i18n-attr]").forEach((element) => {
+        element.getAttribute("data-i18n-attr").split(",").forEach((mapping) => {
+          const [attribute, key] = mapping.split(":").map((part) => part.trim());
+          if (attribute && key && copy[key]) element.setAttribute(attribute, copy[key]);
+        });
+      });
+      document.querySelectorAll("[data-lang]").forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.lang === language));
+      });
+    };
+    document.querySelectorAll("[data-lang]").forEach((button) => {
+      button.addEventListener("click", () => applyLanguage(button.dataset.lang));
+    });
+
+  </script>  <script src="../assets/i18n.js?v=3.2.4"></script>
+
+  <script src="../assets/site-nav.js?v=3.2.4"></script>
+</body>
+</html>

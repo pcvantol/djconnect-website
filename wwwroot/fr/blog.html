@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DJConnect Blog</title>
+  <meta name="description" content="Blog over DJConnect: ontwerpkeuzes, releases, Home Assistant, apps en embedded devices." />
+  <link rel="canonical" href="https://djconnect.dev/blog" />
+  <link rel="alternate" hreflang="en" href="https://djconnect.dev/en/blog.html" />
+  <link rel="alternate" hreflang="nl" href="https://djconnect.dev/blog.html" />
+  <link rel="alternate" hreflang="de" href="https://djconnect.dev/de/blog.html" />
+  <link rel="alternate" hreflang="fr" href="https://djconnect.dev/fr/blog.html" />
+  <link rel="alternate" hreflang="es" href="https://djconnect.dev/es/blog.html" />
+  <link rel="alternate" hreflang="x-default" href="https://djconnect.dev/blog.html" />
+  <link rel="icon" href="../assets/djconnect/icon.svg" type="image/svg+xml" />
+  <style>
+    :root { --bg:#0b0d12; --panel:rgba(255,255,255,0.075); --text:#f7f7fb; --muted:#b7bccb; --line:rgba(255,255,255,0.14); --cyan:#66e0ff; --green:#7ef7a7; --purple:#8b5cf6; --max:1180px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; background:var(--bg); }
+    body { margin:0; color:var(--text); font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height:1.55; background:radial-gradient(circle at 16% 10%, rgba(102,224,255,0.18), transparent 28rem), radial-gradient(circle at 86% 6%, rgba(139,92,246,0.14), transparent 27rem), radial-gradient(circle at 58% 72%, rgba(126,247,167,0.1), transparent 31rem), linear-gradient(180deg,#0b0d12 0%,#111827 54%,#090b10 100%); }
+    a { color:inherit; text-decoration:none; }
+    .wrap { width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
+    .nav { position:sticky; top:0; z-index:20; backdrop-filter:blur(18px); background:rgba(11,13,18,0.7); border-bottom:1px solid var(--line); }
+    .nav-inner { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:22px; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:850; font-size:1.13rem; }
+    .brand img { width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.18); box-shadow:0 0 34px rgba(102,224,255,0.25); }
+    .nav-links { display:flex; align-items:center; gap:18px; color:var(--muted); font-size:0.94rem; }
+    .nav-links a:hover, .nav-links a[aria-current="page"] { color:var(--text); }
+    .nav-controls { display:flex; align-items:center; gap:12px; }
+    .lang-toggle { display:inline-grid; grid-template-columns: repeat(5, 1fr); min-width: 190px; padding:3px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.06); }
+    .lang-toggle button { min-height:34px; border:0; border-radius:999px; background:transparent; color:var(--muted); font:inherit; font-size:0.82rem; font-weight:850; cursor:pointer; }
+    .lang-toggle button[aria-pressed="true"] { background:rgba(102,224,255,0.18); color:var(--text); }
+    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:0 18px; border-radius:999px; border:1px solid var(--line); background:var(--panel); color:var(--text); font-weight:780; box-shadow:0 10px 30px rgba(0,0,0,0.15); }
+    .btn.primary { border:0; color:#06110c; background:linear-gradient(135deg,var(--cyan),var(--green)); }
+    .hero { padding:82px 0 48px; }
+    h1,h2 { margin:0; letter-spacing:-0.045em; line-height:1.05; }
+    h1 { font-size:clamp(3.2rem,7vw,6.2rem); }
+    h2 { font-size:clamp(1.8rem,3.5vw,3.4rem); margin-bottom:18px; }
+    .lead { color:var(--muted); font-size:clamp(1.08rem,2.2vw,1.34rem); margin:24px 0 0; max-width:760px; }
+    section { padding:46px 0 82px; }
+    .post-card { display:grid; grid-template-columns:1fr auto; gap:24px; align-items:end; border:1px solid var(--line); border-radius:22px; background:linear-gradient(135deg, rgba(102,224,255,0.1), rgba(139,92,246,0.12)), var(--panel); padding:30px; box-shadow:0 12px 36px rgba(0,0,0,0.16); }
+    .post-card p { color:var(--muted); margin:0; font-size:1.08rem; max-width:760px; }
+    .meta { color:rgba(183,188,203,0.78); font-size:0.9rem; font-weight:760; margin-bottom:14px; }
+    .legal { color:var(--muted); font-size:0.86rem; padding:34px 0 44px; border-top:1px solid var(--line); }
+    .site-version { margin-top:14px; font-size:0.76rem; color:rgba(183,188,203,0.72); }
+    .privacy-notice { font-size:0.78rem; color:rgba(183,188,203,0.78); }
+    @media (max-width:900px) { .nav-inner { flex-wrap:wrap; padding:12px 0; } .nav-links { order:3; width:100%; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; } .nav-links::-webkit-scrollbar { display:none; } .post-card { grid-template-columns:1fr; } }
+    @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } }
+
+  </style>
+  <link rel="stylesheet" href="../assets/site-nav.css?v=3.2.4" />
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../index.html"><img src="../assets/djconnect/icon.svg" alt="" aria-hidden="true" /><span>DJConnect</span></a>
+      <div class="nav-links" id="primaryNav" aria-label="Navigatie" data-i18n-attr="aria-label:navLabel">
+        <a href="../features.html" data-i18n="navFeatures">Features</a>
+        <a href="../voice-commands.html" data-i18n="navVoice">Spraak</a>
+      </div>
+      <div class="nav-controls">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Menu" data-i18n-attr="aria-label:navMenu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg></button>
+        <div class="lang-toggle" aria-label="Taalkeuze" data-i18n-attr="aria-label:languageToggle">
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+          <button type="button" data-lang="nl" aria-pressed="true">NL</button>
+          <button type="button" data-lang="de" aria-pressed="false">DE</button>
+          <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+          <button type="button" data-lang="es" aria-pressed="false">ES</button>
+        </div>
+        <a class="btn primary" href="../start.html" data-i18n="navStart">Aan de slag</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="mainContent">
+    <header class="hero">
+      <div class="wrap">
+        <h1 data-i18n="heroTitle">Blog</h1>
+        <p class="lead" data-i18n="heroLead">Achter de schermen bij DJConnect: ontwerpkeuzes, releases en de route naar muziekbediening met karakter.</p>
+      </div>
+    </header>
+
+    <section>
+      <div class="wrap">
+        <article class="post-card">
+          <div>
+            <div class="meta" data-i18n="postMeta">15 juni 2026 · Project</div>
+            <h2 data-i18n="postTitle">DJConnect: muziekbediening met karakter</h2>
+            <p data-i18n="postExcerpt">Waarom DJConnect bestaat, hoe Home Assistant de veilige basis vormt en hoe macOS, Windows, iOS, Linux en ESP32 dezelfde muziekworkflow delen.</p>
+          </div>
+          <a class="btn primary" href="../blog-djconnect-project.html" data-i18n="postCta">Lees blogpost</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap legal">
+    <p>Copyright Peter van Tol 2026. Released under the MIT License.</p>
+    <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
+    <p><a href="../privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="../support.html" data-i18n="legalSupport">Support</a></p>
+    <p class="site-version">DJConnect website v3.2.4</p>
+  </footer>
+  <script>
+    const translations = {
+          nl: {
+                title: "DJConnect Blog",
+                metaDescription: "Blog over DJConnect: ontwerpkeuzes, releases, Home Assistant, apps en embedded devices.",
+                navLabel: "Navigatie",
+                languageToggle: "Taalkeuze",
+                navMenu: "Menu",
+                navFeatures: "Features",
+                navVoice: "Spraak",
+                navStart: "Aan de slag",
+                heroTitle: "Blog",
+                heroLead: "Achter de schermen bij DJConnect: ontwerpkeuzes, releases en de route naar muziekbediening met karakter.",
+                postMeta: "15 juni 2026 · Project",
+                postTitle: "DJConnect: muziekbediening met karakter",
+                postExcerpt: "Waarom DJConnect bestaat, hoe Home Assistant de veilige basis vormt en hoe macOS, Windows, iOS, Linux en ESP32 dezelfde muziekworkflow delen.",
+                postCta: "Lees blogpost",
+                legalPrivacy: "Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          },
+          en: {
+                title: "DJConnect Blog",
+                metaDescription: "Blog about DJConnect: design choices, releases, Home Assistant, apps and embedded devices.",
+                navLabel: "Navigation",
+                languageToggle: "Language",
+                navMenu: "Menu",
+                navFeatures: "Features",
+                navVoice: "Voice",
+                navStart: "Get started",
+                heroTitle: "Blog",
+                heroLead: "Behind the scenes of DJConnect: design choices, releases and the route toward music control with character.",
+                postMeta: "June 15, 2026 · Project",
+                postTitle: "DJConnect: music control with character",
+                postExcerpt: "Why DJConnect exists, how Home Assistant forms the secure base and how macOS, Windows, iOS, Linux and ESP32 share the same music workflow.",
+                postCta: "Read blog post",
+                legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          },
+          de: {
+                title: "DJConnect Blog",
+                metaDescription: "Blog about DJConnect: design choices, releases, Home Assistant, apps and embedded devices.",
+                navLabel: "Navigation",
+                languageToggle: "Language",
+                navMenu: "Menu",
+                navFeatures: "Features",
+                navVoice: "Voice",
+                navStart: "Get started",
+                heroTitle: "Blog",
+                heroLead: "Behind the scenes of DJConnect: design choices, releases and the route toward music control with character.",
+                postMeta: "June 15, 2026 · Project",
+                postTitle: "DJConnect: music control with character",
+                postExcerpt: "Why DJConnect exists, how Home Assistant forms the secure base and how macOS, Windows, iOS, Linux and ESP32 share the same music workflow.",
+                postCta: "Read blog post",
+                legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          },
+          fr: {
+                title: "DJConnect Blog",
+                metaDescription: "Blog about DJConnect: design choices, releases, Home Assistant, apps and embedded devices.",
+                navLabel: "Navigation",
+                languageToggle: "Language",
+                navMenu: "Menu",
+                navFeatures: "Features",
+                navVoice: "Voice",
+                navStart: "Get started",
+                heroTitle: "Blog",
+                heroLead: "Behind the scenes of DJConnect: design choices, releases and the route toward music control with character.",
+                postMeta: "June 15, 2026 · Project",
+                postTitle: "DJConnect: music control with character",
+                postExcerpt: "Why DJConnect exists, how Home Assistant forms the secure base and how macOS, Windows, iOS, Linux and ESP32 share the same music workflow.",
+                postCta: "Read blog post",
+                legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          },
+          es: {
+                title: "DJConnect Blog",
+                metaDescription: "Blog about DJConnect: design choices, releases, Home Assistant, apps and embedded devices.",
+                navLabel: "Navigation",
+                languageToggle: "Language",
+                navMenu: "Menu",
+                navFeatures: "Features",
+                navVoice: "Voice",
+                navStart: "Get started",
+                heroTitle: "Blog",
+                heroLead: "Behind the scenes of DJConnect: design choices, releases and the route toward music control with character.",
+                postMeta: "June 15, 2026 · Project",
+                postTitle: "DJConnect: music control with character",
+                postExcerpt: "Why DJConnect exists, how Home Assistant forms the secure base and how macOS, Windows, iOS, Linux and ESP32 share the same music workflow.",
+                postCta: "Read blog post",
+                legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          }
+    };
+    const getInitialLanguage = () => {
+      const stored = localStorage.getItem("djconnect-language");
+      if (stored === "nl" || stored === "en") return stored;
+      return navigator.language && navigator.language.toLowerCase().startsWith("nl") ? "nl" : "en";
+    };
+    const applyLanguage = (lang) => {
+      const dictionary = { ...(window.DJCONNECT_I18N?.shared?.[lang] || {}), ...(translations[lang] || translations[window.DJCONNECT_I18N?.defaultLanguage || "nl"]) };
+      document.documentElement.lang = lang;
+      document.title = dictionary.title;
+      document.querySelector('meta[name="description"]').setAttribute("content", dictionary.metaDescription);
+      document.querySelectorAll("[data-i18n]").forEach((node) => {
+        const value = dictionary[node.dataset.i18n];
+        if (value) node.textContent = value;
+      });
+      document.querySelectorAll("[data-i18n-attr]").forEach((node) => {
+        node.dataset.i18nAttr.split(",").forEach((mapping) => {
+          const [attr, key] = mapping.split(":").map((part) => part.trim());
+          if (attr && key && dictionary[key]) node.setAttribute(attr, dictionary[key]);
+        });
+      });
+      document.querySelectorAll("[data-lang]").forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.lang === lang));
+      });
+      localStorage.setItem("djconnect-language", lang);
+    };
+    document.querySelectorAll("[data-lang]").forEach((button) => {
+      button.addEventListener("click", () => applyLanguage(button.dataset.lang));
+    });
+    applyLanguage(getInitialLanguage());
+
+  </script>  <script src="../assets/i18n.js?v=3.2.4"></script>
+
+  <script src="../assets/site-nav.js?v=3.2.4"></script>
+</body>
+</html>

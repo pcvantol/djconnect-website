@@ -6,6 +6,12 @@
   <title>Join DJConnect TestFlight beta</title>
   <meta name="description" content="Join de DJConnect TestFlight beta voor iPhone en iPad. Installeer TestFlight, open de invite link, koppel met Home Assistant en stuur feedback." />
   <link rel="canonical" href="https://djconnect.dev/testflight" />
+  <link rel="alternate" hreflang="en" href="https://djconnect.dev/en/testflight.html" />
+  <link rel="alternate" hreflang="nl" href="https://djconnect.dev/testflight.html" />
+  <link rel="alternate" hreflang="de" href="https://djconnect.dev/de/testflight.html" />
+  <link rel="alternate" hreflang="fr" href="https://djconnect.dev/fr/testflight.html" />
+  <link rel="alternate" hreflang="es" href="https://djconnect.dev/es/testflight.html" />
+  <link rel="alternate" hreflang="x-default" href="https://djconnect.dev/testflight.html" />
   <link rel="icon" href="assets/djconnect/icon.svg" type="image/svg+xml" />
   <style>
     :root { --bg:#0b0d12; --panel:rgba(255,255,255,0.075); --text:#f7f7fb; --muted:#b7bccb; --line:rgba(255,255,255,0.14); --cyan:#66e0ff; --green:#7ef7a7; --max:1080px; }
@@ -19,7 +25,7 @@
     .brand img { width:36px; height:36px; border-radius:50%; }
     .nav-links { display:flex; gap:18px; color:var(--muted); font-size:0.94rem; }
     .nav-controls { display:flex; align-items:center; gap:12px; }
-    .lang-toggle { display:inline-grid; grid-template-columns:repeat(2,1fr); min-width:86px; padding:3px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.06); }
+    .lang-toggle { display:inline-grid; grid-template-columns: repeat(5, 1fr); min-width: 190px; padding:3px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.06); }
     .lang-toggle button { min-height:34px; border:0; border-radius:999px; background:transparent; color:var(--muted); font:inherit; font-size:0.82rem; font-weight:850; cursor:pointer; }
     .lang-toggle button[aria-pressed="true"] { background:rgba(102,224,255,0.18); color:var(--text); }
     .btn { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:0 18px; border-radius:999px; border:1px solid var(--line); background:rgba(255,255,255,0.08); font-weight:800; }
@@ -45,7 +51,7 @@
     @media (max-width:860px) { .hero-grid,.grid-2 { grid-template-columns:1fr; } .nav-inner { flex-wrap:wrap; padding:12px 0; } .nav-links { order:3; width:100%; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; } .nav-links::-webkit-scrollbar { display:none; } }
 
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.3" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.4" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -60,8 +66,11 @@
       <div class="nav-controls">
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Menu" data-i18n-attr="aria-label:navMenu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg></button>
         <div class="lang-toggle" aria-label="Taalkeuze" data-i18n-attr="aria-label:languageToggle">
-          <button type="button" data-lang="nl" aria-pressed="true">NL</button>
           <button type="button" data-lang="en" aria-pressed="false">EN</button>
+          <button type="button" data-lang="nl" aria-pressed="true">NL</button>
+          <button type="button" data-lang="de" aria-pressed="false">DE</button>
+          <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+          <button type="button" data-lang="es" aria-pressed="false">ES</button>
         </div>
         <a class="btn primary" href="#join" data-i18n="navJoin">Join beta</a>
       </div>
@@ -113,73 +122,163 @@
     <p>Copyright Peter van Tol 2026. Released under the MIT License.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.2.3</p>
+    <p class="site-version">DJConnect website v3.2.4</p>
   </footer>
   <script>
     const translations = {
-      nl: {
-        title: "Join DJConnect TestFlight beta",
-        metaDescription: "Join de DJConnect TestFlight beta voor iPhone en iPad. Installeer TestFlight, open de invite link, koppel met Home Assistant en stuur feedback.",
-        navLabel: "Navigatie",
-        languageToggle: "Taalkeuze",
-        navMenu: "Menu",
-        navHome: "Home",
-        navIos: "iOS",
-        navSupport: "Support",
-        navJoin: "Join beta",
-        heroTitle: "Join TestFlight beta",
-        heroLead: "Test DJConnect voor iPhone en iPad voordat de App Store release klaar is. Plekken kunnen beperkt zijn en TestFlight beta's verlopen automatisch.",
-        inviteCta: "TestFlight invite link volgt",
-        noticeTitle: "Beta-notitie",
-        noticeText: "TestFlight builds zijn bedoeld voor vroege validatie. Functionaliteit, beschikbaarheid en buildduur kunnen wijzigen.",
-        requirementsTitle: "Vereisten",
-        requirementsLead: "Je hebt een iPhone of iPad, Apple's TestFlight app en een werkende DJConnect Home Assistant setup met Spotify Direct of Music Assistant nodig.",
-        step1: "Installeer TestFlight vanuit de App Store.",
-        step2: "Open de invite link zodra die beschikbaar is. Plekken kunnen beperkt zijn.",
-        step3: "Installeer DJConnect beta in TestFlight. Beta's verlopen na een beperkte periode.",
-        step4: "Koppel lokaal met Home Assistant via de DJConnect integratie. Gebruik Spotify Direct of Music Assistant als actieve music backend.",
-        step5: "Stuur feedback naar support@djconnect.dev met je device, iOS-versie en korte beschrijving.",
-        feedbackTitle: "Feedback en support",
-        feedbackText: "Gebruik de beta vooral om pairing, playback, voice prompts en dagelijkse bediening te testen. Mail feedback of supportvragen naar",
-        limitsTitle: "Beperkte plekken",
-        limitsText: "Apple TestFlight kan een maximum aantal testers hanteren en beta-builds zijn tijdelijk beschikbaar. Als de invite vol of verlopen is, probeer het later opnieuw of mail support.",
-        legalPrivacy: "Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.",
-        legalPrivacyLink: "Privacy Policy",
-        legalSupport: "Support"
-      },
-      en: {
-        title: "Join DJConnect TestFlight beta",
-        metaDescription: "Join the DJConnect TestFlight beta for iPhone and iPad. Install TestFlight, open the invite link, pair with Home Assistant and send feedback.",
-        navLabel: "Navigation",
-        languageToggle: "Language",
-        navMenu: "Menu",
-        navHome: "Home",
-        navIos: "iOS",
-        navSupport: "Support",
-        navJoin: "Join beta",
-        heroTitle: "Join TestFlight beta",
-        heroLead: "Test DJConnect for iPhone and iPad before the App Store release is ready. Places may be limited and TestFlight betas expire automatically.",
-        inviteCta: "TestFlight invite link coming",
-        noticeTitle: "Beta note",
-        noticeText: "TestFlight builds are intended for early validation. Functionality, availability and build lifetime may change.",
-        requirementsTitle: "Requirements",
-        requirementsLead: "You need an iPhone or iPad, Apple's TestFlight app and a working DJConnect Home Assistant setup with Spotify Direct or Music Assistant.",
-        step1: "Install TestFlight from the App Store.",
-        step2: "Open the invite link when it is available. Places may be limited.",
-        step3: "Install the DJConnect beta in TestFlight. Betas expire after a limited period.",
-        step4: "Pair locally with Home Assistant through the DJConnect integration. Use Spotify Direct or Music Assistant as the active music backend.",
-        step5: "Send feedback to support@djconnect.dev with your device, iOS version and a short description.",
-        feedbackTitle: "Feedback and support",
-        feedbackText: "Use the beta to test pairing, playback, voice prompts and daily control. Email feedback or support questions to",
-        limitsTitle: "Limited places",
-        limitsText: "Apple TestFlight may cap the number of testers and beta builds are available temporarily. If the invite is full or expired, try again later or email support.",
-        legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
-        legalPrivacyLink: "Privacy Policy",
-        legalSupport: "Support"
-      }
+          nl: {
+                title: "Join DJConnect TestFlight beta",
+                metaDescription: "Join de DJConnect TestFlight beta voor iPhone en iPad. Installeer TestFlight, open de invite link, koppel met Home Assistant en stuur feedback.",
+                navLabel: "Navigatie",
+                languageToggle: "Taalkeuze",
+                navMenu: "Menu",
+                navHome: "Home",
+                navIos: "iOS",
+                navSupport: "Support",
+                navJoin: "Join beta",
+                heroTitle: "Join TestFlight beta",
+                heroLead: "Test DJConnect voor iPhone en iPad voordat de App Store release klaar is. Plekken kunnen beperkt zijn en TestFlight beta's verlopen automatisch.",
+                inviteCta: "TestFlight invite link volgt",
+                noticeTitle: "Beta-notitie",
+                noticeText: "TestFlight builds zijn bedoeld voor vroege validatie. Functionaliteit, beschikbaarheid en buildduur kunnen wijzigen.",
+                requirementsTitle: "Vereisten",
+                requirementsLead: "Je hebt een iPhone of iPad, Apple's TestFlight app en een werkende DJConnect Home Assistant setup met Spotify Direct of Music Assistant nodig.",
+                step1: "Installeer TestFlight vanuit de App Store.",
+                step2: "Open de invite link zodra die beschikbaar is. Plekken kunnen beperkt zijn.",
+                step3: "Installeer DJConnect beta in TestFlight. Beta's verlopen na een beperkte periode.",
+                step4: "Koppel lokaal met Home Assistant via de DJConnect integratie. Gebruik Spotify Direct of Music Assistant als actieve music backend.",
+                step5: "Stuur feedback naar support@djconnect.dev met je device, iOS-versie en korte beschrijving.",
+                feedbackTitle: "Feedback en support",
+                feedbackText: "Gebruik de beta vooral om pairing, playback, voice prompts en dagelijkse bediening te testen. Mail feedback of supportvragen naar",
+                limitsTitle: "Beperkte plekken",
+                limitsText: "Apple TestFlight kan een maximum aantal testers hanteren en beta-builds zijn tijdelijk beschikbaar. Als de invite vol of verlopen is, probeer het later opnieuw of mail support.",
+                legalPrivacy: "Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          },
+          en: {
+                title: "Join DJConnect TestFlight beta",
+                metaDescription: "Join the DJConnect TestFlight beta for iPhone and iPad. Install TestFlight, open the invite link, pair with Home Assistant and send feedback.",
+                navLabel: "Navigation",
+                languageToggle: "Language",
+                navMenu: "Menu",
+                navHome: "Home",
+                navIos: "iOS",
+                navSupport: "Support",
+                navJoin: "Join beta",
+                heroTitle: "Join TestFlight beta",
+                heroLead: "Test DJConnect for iPhone and iPad before the App Store release is ready. Places may be limited and TestFlight betas expire automatically.",
+                inviteCta: "TestFlight invite link coming",
+                noticeTitle: "Beta note",
+                noticeText: "TestFlight builds are intended for early validation. Functionality, availability and build lifetime may change.",
+                requirementsTitle: "Requirements",
+                requirementsLead: "You need an iPhone or iPad, Apple's TestFlight app and a working DJConnect Home Assistant setup with Spotify Direct or Music Assistant.",
+                step1: "Install TestFlight from the App Store.",
+                step2: "Open the invite link when it is available. Places may be limited.",
+                step3: "Install the DJConnect beta in TestFlight. Betas expire after a limited period.",
+                step4: "Pair locally with Home Assistant through the DJConnect integration. Use Spotify Direct or Music Assistant as the active music backend.",
+                step5: "Send feedback to support@djconnect.dev with your device, iOS version and a short description.",
+                feedbackTitle: "Feedback and support",
+                feedbackText: "Use the beta to test pairing, playback, voice prompts and daily control. Email feedback or support questions to",
+                limitsTitle: "Limited places",
+                limitsText: "Apple TestFlight may cap the number of testers and beta builds are available temporarily. If the invite is full or expired, try again later or email support.",
+                legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          },
+          de: {
+                title: "Join DJConnect TestFlight beta",
+                metaDescription: "Join the DJConnect TestFlight beta for iPhone and iPad. Install TestFlight, open the invite link, pair with Home Assistant and send feedback.",
+                navLabel: "Navigation",
+                languageToggle: "Language",
+                navMenu: "Menu",
+                navHome: "Home",
+                navIos: "iOS",
+                navSupport: "Support",
+                navJoin: "Join beta",
+                heroTitle: "Join TestFlight beta",
+                heroLead: "Test DJConnect for iPhone and iPad before the App Store release is ready. Places may be limited and TestFlight betas expire automatically.",
+                inviteCta: "TestFlight invite link coming",
+                noticeTitle: "Beta note",
+                noticeText: "TestFlight builds are intended for early validation. Functionality, availability and build lifetime may change.",
+                requirementsTitle: "Requirements",
+                requirementsLead: "You need an iPhone or iPad, Apple's TestFlight app and a working DJConnect Home Assistant setup with Spotify Direct or Music Assistant.",
+                step1: "Install TestFlight from the App Store.",
+                step2: "Open the invite link when it is available. Places may be limited.",
+                step3: "Install the DJConnect beta in TestFlight. Betas expire after a limited period.",
+                step4: "Pair locally with Home Assistant through the DJConnect integration. Use Spotify Direct or Music Assistant as the active music backend.",
+                step5: "Send feedback to support@djconnect.dev with your device, iOS version and a short description.",
+                feedbackTitle: "Feedback and support",
+                feedbackText: "Use the beta to test pairing, playback, voice prompts and daily control. Email feedback or support questions to",
+                limitsTitle: "Limited places",
+                limitsText: "Apple TestFlight may cap the number of testers and beta builds are available temporarily. If the invite is full or expired, try again later or email support.",
+                legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          },
+          fr: {
+                title: "Join DJConnect TestFlight beta",
+                metaDescription: "Join the DJConnect TestFlight beta for iPhone and iPad. Install TestFlight, open the invite link, pair with Home Assistant and send feedback.",
+                navLabel: "Navigation",
+                languageToggle: "Language",
+                navMenu: "Menu",
+                navHome: "Home",
+                navIos: "iOS",
+                navSupport: "Support",
+                navJoin: "Join beta",
+                heroTitle: "Join TestFlight beta",
+                heroLead: "Test DJConnect for iPhone and iPad before the App Store release is ready. Places may be limited and TestFlight betas expire automatically.",
+                inviteCta: "TestFlight invite link coming",
+                noticeTitle: "Beta note",
+                noticeText: "TestFlight builds are intended for early validation. Functionality, availability and build lifetime may change.",
+                requirementsTitle: "Requirements",
+                requirementsLead: "You need an iPhone or iPad, Apple's TestFlight app and a working DJConnect Home Assistant setup with Spotify Direct or Music Assistant.",
+                step1: "Install TestFlight from the App Store.",
+                step2: "Open the invite link when it is available. Places may be limited.",
+                step3: "Install the DJConnect beta in TestFlight. Betas expire after a limited period.",
+                step4: "Pair locally with Home Assistant through the DJConnect integration. Use Spotify Direct or Music Assistant as the active music backend.",
+                step5: "Send feedback to support@djconnect.dev with your device, iOS version and a short description.",
+                feedbackTitle: "Feedback and support",
+                feedbackText: "Use the beta to test pairing, playback, voice prompts and daily control. Email feedback or support questions to",
+                limitsTitle: "Limited places",
+                limitsText: "Apple TestFlight may cap the number of testers and beta builds are available temporarily. If the invite is full or expired, try again later or email support.",
+                legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          },
+          es: {
+                title: "Join DJConnect TestFlight beta",
+                metaDescription: "Join the DJConnect TestFlight beta for iPhone and iPad. Install TestFlight, open the invite link, pair with Home Assistant and send feedback.",
+                navLabel: "Navigation",
+                languageToggle: "Language",
+                navMenu: "Menu",
+                navHome: "Home",
+                navIos: "iOS",
+                navSupport: "Support",
+                navJoin: "Join beta",
+                heroTitle: "Join TestFlight beta",
+                heroLead: "Test DJConnect for iPhone and iPad before the App Store release is ready. Places may be limited and TestFlight betas expire automatically.",
+                inviteCta: "TestFlight invite link coming",
+                noticeTitle: "Beta note",
+                noticeText: "TestFlight builds are intended for early validation. Functionality, availability and build lifetime may change.",
+                requirementsTitle: "Requirements",
+                requirementsLead: "You need an iPhone or iPad, Apple's TestFlight app and a working DJConnect Home Assistant setup with Spotify Direct or Music Assistant.",
+                step1: "Install TestFlight from the App Store.",
+                step2: "Open the invite link when it is available. Places may be limited.",
+                step3: "Install the DJConnect beta in TestFlight. Betas expire after a limited period.",
+                step4: "Pair locally with Home Assistant through the DJConnect integration. Use Spotify Direct or Music Assistant as the active music backend.",
+                step5: "Send feedback to support@djconnect.dev with your device, iOS version and a short description.",
+                feedbackTitle: "Feedback and support",
+                feedbackText: "Use the beta to test pairing, playback, voice prompts and daily control. Email feedback or support questions to",
+                limitsTitle: "Limited places",
+                limitsText: "Apple TestFlight may cap the number of testers and beta builds are available temporarily. If the invite is full or expired, try again later or email support.",
+                legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          }
     };
     const applyLanguage = (language) => {
-      const dictionary = translations[language] || translations.nl;
+      const dictionary = { ...(window.DJCONNECT_I18N?.shared?.[language] || {}), ...(translations[language] || translations[window.DJCONNECT_I18N?.defaultLanguage || "nl"]) };
       document.documentElement.lang = language;
       document.title = dictionary.title;
       document.querySelector('meta[name="description"]').setAttribute("content", dictionary.metaDescription);
@@ -200,8 +299,9 @@
     document.querySelectorAll("[data-lang]").forEach((button) => {
       button.addEventListener("click", () => applyLanguage(button.dataset.lang));
     });
-    applyLanguage(localStorage.getItem("djconnect-language") || "nl");
-  </script>
-  <script src="assets/site-nav.js?v=3.2.3"></script>
+    applyLanguage(window.DJCONNECT_I18N?.initialLanguage || "nl");
+  </script>  <script src="assets/i18n.js?v=3.2.4"></script>
+
+  <script src="assets/site-nav.js?v=3.2.4"></script>
 </body>
 </html>

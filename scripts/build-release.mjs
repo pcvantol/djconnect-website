@@ -43,7 +43,7 @@ const minifyAsset = async (relativePath) => {
   };
 };
 
-const versionedAssetPattern = /(assets\/(?:site-nav|downloads|releases|admin|voice-intents)\.(?:css|js))(?:\?v=\d+\.\d+\.\d+)?/gu;
+const versionedAssetPattern = /(assets\/(?:i18n|site-nav|downloads|releases|admin|voice-intents)\.(?:css|js))(?:\?v=\d+\.\d+\.\d+)?/gu;
 const siteVersionPattern = /DJConnect website v\d+\.\d+\.\d+/gu;
 
 const applySiteMetadata = (html, siteVersion) => html

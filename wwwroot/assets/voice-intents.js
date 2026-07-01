@@ -283,13 +283,13 @@ window.DJCONNECT_VOICE_INTENTS = [
       "nl": [
         "Speel album Nevermind",
         "Speel album Ten van Pearl Jam",
-        "Zet de plaat OK Computer van Radiohead op",
+        "Zet de plaat Voorbeeldalbum van Voorbeeldartiest op",
         "Draai album Rumours van Fleetwood Mac"
       ],
       "en": [
         "Play album Nevermind",
         "Play the album Ten by Pearl Jam",
-        "Put on album OK Computer by Radiohead"
+        "Put on album Example Album by Example Artist"
       ]
     }
   },
@@ -662,14 +662,14 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "action": "none",
     "description": "Ask for an artist's albums. DJConnect can return a chronological album list with proxied album covers and Play Now actions per album.",
     "nl": [
-      "Welke albums hebben Radiohead uitgebracht?",
+      "Welke albums hebben Voorbeeldartiest uitgebracht?",
       "Welke albums bracht deze artiest uit?",
       "Welke albums zijn er van Prince?",
       "Albums van Suzan en Freek",
       "Geef me de albums van Guns N' Roses"
     ],
     "en": [
-      "Which albums has Radiohead released?",
+      "Which albums has Example Artist released?",
       "Which albums did this artist release?",
       "Albums by Prince"
     ],
@@ -685,14 +685,14 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     },
     "examples": {
       "nl": [
-        "Welke albums hebben Radiohead uitgebracht?",
+        "Welke albums hebben Voorbeeldartiest uitgebracht?",
         "Welke albums bracht deze artiest uit?",
         "Welke albums zijn er van Prince?",
         "Albums van Suzan en Freek",
         "Geef me de albums van Guns N' Roses"
       ],
       "en": [
-        "Which albums has Radiohead released?",
+        "Which albums has Example Artist released?",
         "Which albums did this artist release?",
         "Albums by Prince"
       ]
@@ -717,16 +717,16 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "description": "Ask which tracks, albums or playlists exist for an artist. DJConnect parses the artist name and returns Play Now rows without starting playback.",
     "nl": [
       "Welke muziek heeft Scooter gemaakt?",
-      "Welke nummers heeft Radiohead gemaakt?",
+      "Welke nummers heeft Voorbeeldartiest gemaakt?",
       "Geef me 5 nummers van Pearl Jam",
-      "Geef me albums van Radiohead",
+      "Geef me albums van Voorbeeldartiest",
       "Toon playlists van Metallica"
     ],
     "en": [
       "What music has Scooter made?",
-      "Which songs has Radiohead released?",
+      "Which songs has Example Artist released?",
       "Give me 5 songs by Pearl Jam",
-      "Show albums by Radiohead",
+      "Show albums by Example Artist",
       "Find playlists from Metallica"
     ],
     "playsMusic": false,
@@ -742,16 +742,16 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "examples": {
       "nl": [
         "Welke muziek heeft Scooter gemaakt?",
-        "Welke nummers heeft Radiohead gemaakt?",
+        "Welke nummers heeft Voorbeeldartiest gemaakt?",
         "Geef me 5 nummers van Pearl Jam",
-        "Geef me albums van Radiohead",
+        "Geef me albums van Voorbeeldartiest",
         "Toon playlists van Metallica"
       ],
       "en": [
         "What music has Scooter made?",
-        "Which songs has Radiohead released?",
+        "Which songs has Example Artist released?",
         "Give me 5 songs by Pearl Jam",
-        "Show albums by Radiohead",
+        "Show albums by Example Artist",
         "Find playlists from Metallica"
       ]
     }
@@ -762,13 +762,13 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "action": "none",
     "description": "Ask for artists with similar music, using an explicit artist, current playback artist or recent conversation artist.",
     "nl": [
-      "Welke artiesten maken vergelijkbare muziek als Radiohead?",
+      "Welke artiesten maken vergelijkbare muziek als Voorbeeldartiest?",
       "Welke artiesten maken vergelijkbare muziek als wat nu speelt?",
       "Welke artiesten lijken op deze artiest?",
       "Vergelijkbare artiesten als de artiest waar het in de conversatie over gaat"
     ],
     "en": [
-      "Which artists make similar music to Radiohead?",
+      "Which artists make similar music to Example Artist?",
       "Which artists are similar to what is playing now?",
       "Similar artists to this artist"
     ],
@@ -784,13 +784,13 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     },
     "examples": {
       "nl": [
-        "Welke artiesten maken vergelijkbare muziek als Radiohead?",
+        "Welke artiesten maken vergelijkbare muziek als Voorbeeldartiest?",
         "Welke artiesten maken vergelijkbare muziek als wat nu speelt?",
         "Welke artiesten lijken op deze artiest?",
         "Vergelijkbare artiesten als de artiest waar het in de conversatie over gaat"
       ],
       "en": [
-        "Which artists make similar music to Radiohead?",
+        "Which artists make similar music to Example Artist?",
         "Which artists are similar to what is playing now?",
         "Similar artists to this artist"
       ]
@@ -805,7 +805,7 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
       "Wat voor muziek maakt Beastie Boys?",
       "Wat voor muziek maakt deze artiest?",
       "Welk genre maakt Muse?",
-      "Wat is het genre van Radiohead?"
+      "Wat is het genre van Voorbeeldartiest?"
     ],
     "en": [
       "What kind of music does Beastie Boys make?",
@@ -827,7 +827,7 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "Wat voor muziek maakt Beastie Boys?",
         "Wat voor muziek maakt deze artiest?",
         "Welk genre maakt Muse?",
-        "Wat is het genre van Radiohead?"
+        "Wat is het genre van Voorbeeldartiest?"
       ],
       "en": [
         "What kind of music does Beastie Boys make?",
@@ -842,13 +842,13 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "action": "none",
     "description": "Ask for upcoming concerts. DJConnect can return date, location and clickable source links when web agenda data is available.",
     "nl": [
-      "Wanneer speelt Radiohead in Nederland?",
+      "Wanneer speelt Voorbeeldartiest in Nederland?",
       "Heeft deze artiest binnenkort concerten?",
       "Concerten van The National",
       "Tourdata voor Muse"
     ],
     "en": [
-      "When does Radiohead play in the Netherlands?",
+      "When does Example Artist play in the Netherlands?",
       "Does this artist have upcoming concerts?",
       "Concerts for The National",
       "Tour dates for Muse"
@@ -865,13 +865,13 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     },
     "examples": {
       "nl": [
-        "Wanneer speelt Radiohead in Nederland?",
+        "Wanneer speelt Voorbeeldartiest in Nederland?",
         "Heeft deze artiest binnenkort concerten?",
         "Concerten van The National",
         "Tourdata voor Muse"
       ],
       "en": [
-        "When does Radiohead play in the Netherlands?",
+        "When does Example Artist play in the Netherlands?",
         "Does this artist have upcoming concerts?",
         "Concerts for The National",
         "Tour dates for Muse"
@@ -1144,13 +1144,13 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "description": "Ask for recommendations. DJConnect can return Play Now actions but does not start playback until the user taps Play Now.",
     "nl": [
       "Speel wat anders",
-      "Doe maar wat leuks van Radiohead",
+      "Doe maar wat leuks van Voorbeeldartiest",
       "Zet een leuke playlist op met rustige muziek",
       "Ik voel me moe en geprikkeld, zet iets ontspannends klaar"
     ],
     "en": [
       "Play something different",
-      "Give me something fun by Radiohead",
+      "Give me something fun by Example Artist",
       "Find a nice playlist with calm music",
       "I feel tired and overstimulated, suggest something relaxing"
     ],
@@ -1167,13 +1167,13 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "examples": {
       "nl": [
         "Speel wat anders",
-        "Doe maar wat leuks van Radiohead",
+        "Doe maar wat leuks van Voorbeeldartiest",
         "Zet een leuke playlist op met rustige muziek",
         "Ik voel me moe en geprikkeld, zet iets ontspannends klaar"
       ],
       "en": [
         "Play something different",
-        "Give me something fun by Radiohead",
+        "Give me something fun by Example Artist",
         "Find a nice playlist with calm music",
         "I feel tired and overstimulated, suggest something relaxing"
       ]
@@ -1185,7 +1185,7 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "action": "none",
     "description": "Ask DJ to compose a playable mix from artist, track or genre seeds. The response returns backend-aware Play Now actions; Spotify Direct can later save the mix as a Spotify playlist.",
     "nl": [
-      "Stel een playlist samen op basis van Radiohead, Massive Attack en Portishead",
+      "Stel een playlist samen op basis van Voorbeeldartiest, Artiest A en Artiest B",
       "Maak een mix met Above & Beyond, Armin van Buuren en Ferry Corsten",
       "Ik wil een playlist obv tracks Reckoner, Teardrop en Angel",
       "Ik wil een playlist in genre ambient, techno en downtempo",
@@ -1198,7 +1198,7 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
       "Sla deze mix op als Spotify playlist"
     ],
     "en": [
-      "Create a playlist based on Radiohead, Massive Attack and Portishead",
+      "Create a playlist based on Example Artist, Artist A and Artist B",
       "Make a mix with Above & Beyond, Armin van Buuren and Ferry Corsten",
       "I want a playlist based on tracks Reckoner, Teardrop and Angel",
       "I want a playlist in genres ambient, techno and downtempo",
@@ -1222,7 +1222,7 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     },
     "examples": {
       "nl": [
-        "Stel een playlist samen op basis van Radiohead, Massive Attack en Portishead",
+        "Stel een playlist samen op basis van Voorbeeldartiest, Artiest A en Artiest B",
         "Maak een mix met Above & Beyond, Armin van Buuren en Ferry Corsten",
         "Ik wil een playlist obv tracks Reckoner, Teardrop en Angel",
         "Ik wil een playlist in genre ambient, techno en downtempo",
@@ -1235,7 +1235,7 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "Sla deze mix op als Spotify playlist"
       ],
       "en": [
-        "Create a playlist based on Radiohead, Massive Attack and Portishead",
+        "Create a playlist based on Example Artist, Artist A and Artist B",
         "Make a mix with Above & Beyond, Armin van Buuren and Ferry Corsten",
         "I want a playlist based on tracks Reckoner, Teardrop and Angel",
         "I want a playlist in genres ambient, techno and downtempo",

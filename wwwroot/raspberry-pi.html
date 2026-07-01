@@ -6,6 +6,12 @@
   <title>DJConnect voor Raspberry Pi</title>
   <meta name="description" content="DJConnect voor Raspberry Pi: vaste DJConnect app op een klein scherm of dedicated muziekcontroller." />
   <link rel="canonical" href="https://djconnect.dev/raspberry-pi" />
+  <link rel="alternate" hreflang="en" href="https://djconnect.dev/en/raspberry-pi.html" />
+  <link rel="alternate" hreflang="nl" href="https://djconnect.dev/raspberry-pi.html" />
+  <link rel="alternate" hreflang="de" href="https://djconnect.dev/de/raspberry-pi.html" />
+  <link rel="alternate" hreflang="fr" href="https://djconnect.dev/fr/raspberry-pi.html" />
+  <link rel="alternate" hreflang="es" href="https://djconnect.dev/es/raspberry-pi.html" />
+  <link rel="alternate" hreflang="x-default" href="https://djconnect.dev/raspberry-pi.html" />
   <link rel="icon" href="assets/djconnect/icon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="assets/downloads.css" />
   <style>
@@ -20,7 +26,7 @@
     .brand img { width:36px; height:36px; border-radius:50%; }
     .nav-links { display:flex; gap:18px; color:var(--muted); font-size:0.94rem; }
     .nav-controls { display:flex; align-items:center; gap:12px; }
-    .lang-toggle { display:inline-grid; grid-template-columns:repeat(2,1fr); min-width:86px; padding:3px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.06); }
+    .lang-toggle { display:inline-grid; grid-template-columns: repeat(5, 1fr); min-width: 190px; padding:3px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.06); }
     .lang-toggle button { min-height:34px; border:0; border-radius:999px; background:transparent; color:var(--muted); font:inherit; font-size:0.82rem; font-weight:850; cursor:pointer; }
     .lang-toggle button[aria-pressed="true"] { background:rgba(102,224,255,0.18); color:var(--text); }
     .btn { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:0 18px; border-radius:999px; border:1px solid var(--line); background:rgba(255,255,255,0.08); font-weight:800; }
@@ -185,7 +191,7 @@
     @media (max-width:860px) { .hero-grid,.grid-2 { grid-template-columns:1fr; } .nav-inner { flex-wrap:wrap; padding:12px 0; } .nav-links { order:3; width:100%; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; } .nav-links::-webkit-scrollbar { display:none; } }
 
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.3" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.4" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -199,8 +205,11 @@
       <div class="nav-controls">
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Menu" data-i18n-attr="aria-label:navMenu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg></button>
         <div class="lang-toggle" aria-label="Taalkeuze" data-i18n-attr="aria-label:languageToggle">
-          <button type="button" data-lang="nl" aria-pressed="true">NL</button>
           <button type="button" data-lang="en" aria-pressed="false">EN</button>
+          <button type="button" data-lang="nl" aria-pressed="true">NL</button>
+          <button type="button" data-lang="de" aria-pressed="false">DE</button>
+          <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+          <button type="button" data-lang="es" aria-pressed="false">ES</button>
         </div>
         <a class="btn primary" href="#downloads" data-i18n="navDownloads">Download</a>
       </div>
@@ -315,100 +324,229 @@ sudo ./scripts/bootstrap_raspberry_pi_os.sh</code></pre>
     <p>Copyright Peter van Tol 2026. Released under the MIT License.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.2.3</p>
+    <p class="site-version">DJConnect website v3.2.4</p>
   </footer>
-  <script src="assets/downloads.js?v=3.2.3"></script>
+  <script src="assets/downloads.js?v=3.2.4"></script>
   <script>
     const translations = {
-      nl: {
-        title: "DJConnect voor Raspberry Pi",
-        metaDescription: "DJConnect voor Raspberry Pi: vaste DJConnect app op een klein scherm of dedicated muziekcontroller.",
-        navLabel: "Navigatie",
-        languageToggle: "Taalkeuze",
-        navMenu: "Menu",
-        navHome: "Home",
-        navPlatform: "Platform",
-        navDownloads: "Download",
-        heroTitle: "DJConnect voor Raspberry Pi",
-        heroLead: "Een vaste DJConnect app op Raspberry Pi: een klein scherm of dedicated muziekcontroller die lokaal met Home Assistant koppelt.",
-        heroSecondary: "Download",
-        mockLabel: "Linux app",
-        fixedTitle: "Vaste client",
-        fixedText: "Gebruik Raspberry Pi als always-on DJConnect client voor bediening op een vast punt in huis.",
-        hardwareTitle: "Ondersteunde hardware",
-        hardwareLead: "De Pi client is bedoeld voor een vaste DJConnect setup met klein touchscreen.",
-        hardwareLabel: "Ondersteunde Raspberry Pi hardware",
-        hardwareBundleTitle: "Raspberry Pi Zero 2 W + Pimoroni HyperPixel 4.0 Square",
-        hardwareBundleText: "Een compacte Linux client met GPIO-header en vierkant touchscreen voor vaste muziekbediening.",
-        hardwarePiLink: "Raspberry Pi Zero 2 W",
-        hardwareDisplayLink: "Pimoroni HyperPixel 4.0 Square",
-        setupTitle: "Van kale Pi naar DJConnect",
-        setupLead: "Bereid eerst Raspberry Pi OS voor. De bootstrap hoort bij de Pi-repo en zet de minimale runtime klaar; de publieke app-install staat daarna onder Download.",
-        setupStepsLabel: "Raspberry Pi setup stappen",
-        setupStep1Title: "Flash Raspberry Pi OS Lite 64-bit",
-        setupStep1Text: "Gebruik Raspberry Pi Imager en kies een 64-bit Lite image als basis.",
-        setupStep2Title: "Configureer eerste boot",
-        setupStep2Text: "Stel in Imager alvast hostname, WiFi, SSH en locale in voordat je de Pi start.",
-        setupStep3Title: "Log in via SSH",
-        setupStep3Text: "Start de Pi, log in en installeer Git zodat je de bootstrap uit de Pi-repo kunt ophalen.",
-        setupStep4Title: "Haal de Pi-repo op",
-        setupStep4Text: "Gebruik de source checkout alleen voor OS-bootstrap. De app zelf installeer je later uit de publieke release-bundel.",
-        setupStep5Title: "Draai de OS-bootstrap",
-        setupStep5Text: "De bootstrap vergroot het bestandssysteem, zet swap, tijdsync, SSH, updates, minimale X11/Qt runtime en HyperPixel setup klaar.",
-        bootstrapCommandTitle: "Bootstrap commando",
-        copyBootstrap: "Kopieer bootstrap-commando",
-        copiedBootstrap: "Gekopieerd",
-        releaseTitle: "Laatste versie",
-        legalPrivacy: "Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.",
-        legalPrivacyLink: "Privacy Policy",
-        legalSupport: "Support"
-      },
-      en: {
-        title: "DJConnect for Raspberry Pi",
-        metaDescription: "DJConnect for Raspberry Pi: fixed DJConnect app on a small screen or dedicated music controller.",
-        navLabel: "Navigation",
-        languageToggle: "Language",
-        navMenu: "Menu",
-        navHome: "Home",
-        navPlatform: "Platform",
-        navDownloads: "Download",
-        heroTitle: "DJConnect for Raspberry Pi",
-        heroLead: "A fixed DJConnect app on Raspberry Pi: a small screen or dedicated music controller that pairs locally with Home Assistant.",
-        heroSecondary: "Download",
-        mockLabel: "Linux app",
-        fixedTitle: "Fixed client",
-        fixedText: "Use Raspberry Pi as an always-on DJConnect client for control at a fixed spot in your home.",
-        hardwareTitle: "Supported hardware",
-        hardwareLead: "The Pi client is intended for a fixed DJConnect setup with a small touchscreen.",
-        hardwareLabel: "Supported Raspberry Pi hardware",
-        hardwareBundleTitle: "Raspberry Pi Zero 2 W + Pimoroni HyperPixel 4.0 Square",
-        hardwareBundleText: "A compact Linux client with GPIO header and square touchscreen for fixed music control.",
-        hardwarePiLink: "Raspberry Pi Zero 2 W",
-        hardwareDisplayLink: "Pimoroni HyperPixel 4.0 Square",
-        setupTitle: "From fresh Pi to DJConnect",
-        setupLead: "Prepare Raspberry Pi OS first. The bootstrap belongs to the Pi repo and prepares the minimal runtime; the public app install follows under Download.",
-        setupStepsLabel: "Raspberry Pi setup steps",
-        setupStep1Title: "Flash Raspberry Pi OS Lite 64-bit",
-        setupStep1Text: "Use Raspberry Pi Imager and choose a 64-bit Lite image as the base.",
-        setupStep2Title: "Configure first boot",
-        setupStep2Text: "Set hostname, WiFi, SSH and locale in Imager before starting the Pi.",
-        setupStep3Title: "Log in over SSH",
-        setupStep3Text: "Boot the Pi, log in and install Git so you can fetch the bootstrap from the Pi repo.",
-        setupStep4Title: "Fetch the Pi repo",
-        setupStep4Text: "Use the source checkout only for OS bootstrap. Install the app itself later from the public release bundle.",
-        setupStep5Title: "Run the OS bootstrap",
-        setupStep5Text: "The bootstrap expands the filesystem, sets up swap, time sync, SSH, updates, minimal X11/Qt runtime and HyperPixel setup.",
-        bootstrapCommandTitle: "Bootstrap command",
-        copyBootstrap: "Copy bootstrap command",
-        copiedBootstrap: "Copied",
-        releaseTitle: "Latest version",
-        legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
-        legalPrivacyLink: "Privacy Policy",
-        legalSupport: "Support"
-      }
+          nl: {
+                title: "DJConnect voor Raspberry Pi",
+                metaDescription: "DJConnect voor Raspberry Pi: vaste DJConnect app op een klein scherm of dedicated muziekcontroller.",
+                navLabel: "Navigatie",
+                languageToggle: "Taalkeuze",
+                navMenu: "Menu",
+                navHome: "Home",
+                navPlatform: "Platform",
+                navDownloads: "Download",
+                heroTitle: "DJConnect voor Raspberry Pi",
+                heroLead: "Een vaste DJConnect app op Raspberry Pi: een klein scherm of dedicated muziekcontroller die lokaal met Home Assistant koppelt.",
+                heroSecondary: "Download",
+                mockLabel: "Linux app",
+                fixedTitle: "Vaste client",
+                fixedText: "Gebruik Raspberry Pi als always-on DJConnect client voor bediening op een vast punt in huis.",
+                hardwareTitle: "Ondersteunde hardware",
+                hardwareLead: "De Pi client is bedoeld voor een vaste DJConnect setup met klein touchscreen.",
+                hardwareLabel: "Ondersteunde Raspberry Pi hardware",
+                hardwareBundleTitle: "Raspberry Pi Zero 2 W + Pimoroni HyperPixel 4.0 Square",
+                hardwareBundleText: "Een compacte Linux client met GPIO-header en vierkant touchscreen voor vaste muziekbediening.",
+                hardwarePiLink: "Raspberry Pi Zero 2 W",
+                hardwareDisplayLink: "Pimoroni HyperPixel 4.0 Square",
+                setupTitle: "Van kale Pi naar DJConnect",
+                setupLead: "Bereid eerst Raspberry Pi OS voor. De bootstrap hoort bij de Pi-repo en zet de minimale runtime klaar; de publieke app-install staat daarna onder Download.",
+                setupStepsLabel: "Raspberry Pi setup stappen",
+                setupStep1Title: "Flash Raspberry Pi OS Lite 64-bit",
+                setupStep1Text: "Gebruik Raspberry Pi Imager en kies een 64-bit Lite image als basis.",
+                setupStep2Title: "Configureer eerste boot",
+                setupStep2Text: "Stel in Imager alvast hostname, WiFi, SSH en locale in voordat je de Pi start.",
+                setupStep3Title: "Log in via SSH",
+                setupStep3Text: "Start de Pi, log in en installeer Git zodat je de bootstrap uit de Pi-repo kunt ophalen.",
+                setupStep4Title: "Haal de Pi-repo op",
+                setupStep4Text: "Gebruik de source checkout alleen voor OS-bootstrap. De app zelf installeer je later uit de publieke release-bundel.",
+                setupStep5Title: "Draai de OS-bootstrap",
+                setupStep5Text: "De bootstrap vergroot het bestandssysteem, zet swap, tijdsync, SSH, updates, minimale X11/Qt runtime en HyperPixel setup klaar.",
+                bootstrapCommandTitle: "Bootstrap commando",
+                copyBootstrap: "Kopieer bootstrap-commando",
+                copiedBootstrap: "Gekopieerd",
+                releaseTitle: "Laatste versie",
+                legalPrivacy: "Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          },
+          en: {
+                title: "DJConnect for Raspberry Pi",
+                metaDescription: "DJConnect for Raspberry Pi: fixed DJConnect app on a small screen or dedicated music controller.",
+                navLabel: "Navigation",
+                languageToggle: "Language",
+                navMenu: "Menu",
+                navHome: "Home",
+                navPlatform: "Platform",
+                navDownloads: "Download",
+                heroTitle: "DJConnect for Raspberry Pi",
+                heroLead: "A fixed DJConnect app on Raspberry Pi: a small screen or dedicated music controller that pairs locally with Home Assistant.",
+                heroSecondary: "Download",
+                mockLabel: "Linux app",
+                fixedTitle: "Fixed client",
+                fixedText: "Use Raspberry Pi as an always-on DJConnect client for control at a fixed spot in your home.",
+                hardwareTitle: "Supported hardware",
+                hardwareLead: "The Pi client is intended for a fixed DJConnect setup with a small touchscreen.",
+                hardwareLabel: "Supported Raspberry Pi hardware",
+                hardwareBundleTitle: "Raspberry Pi Zero 2 W + Pimoroni HyperPixel 4.0 Square",
+                hardwareBundleText: "A compact Linux client with GPIO header and square touchscreen for fixed music control.",
+                hardwarePiLink: "Raspberry Pi Zero 2 W",
+                hardwareDisplayLink: "Pimoroni HyperPixel 4.0 Square",
+                setupTitle: "From fresh Pi to DJConnect",
+                setupLead: "Prepare Raspberry Pi OS first. The bootstrap belongs to the Pi repo and prepares the minimal runtime; the public app install follows under Download.",
+                setupStepsLabel: "Raspberry Pi setup steps",
+                setupStep1Title: "Flash Raspberry Pi OS Lite 64-bit",
+                setupStep1Text: "Use Raspberry Pi Imager and choose a 64-bit Lite image as the base.",
+                setupStep2Title: "Configure first boot",
+                setupStep2Text: "Set hostname, WiFi, SSH and locale in Imager before starting the Pi.",
+                setupStep3Title: "Log in over SSH",
+                setupStep3Text: "Boot the Pi, log in and install Git so you can fetch the bootstrap from the Pi repo.",
+                setupStep4Title: "Fetch the Pi repo",
+                setupStep4Text: "Use the source checkout only for OS bootstrap. Install the app itself later from the public release bundle.",
+                setupStep5Title: "Run the OS bootstrap",
+                setupStep5Text: "The bootstrap expands the filesystem, sets up swap, time sync, SSH, updates, minimal X11/Qt runtime and HyperPixel setup.",
+                bootstrapCommandTitle: "Bootstrap command",
+                copyBootstrap: "Copy bootstrap command",
+                copiedBootstrap: "Copied",
+                releaseTitle: "Latest version",
+                legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          },
+          de: {
+                title: "DJConnect for Raspberry Pi",
+                metaDescription: "DJConnect for Raspberry Pi: fixed DJConnect app on a small screen or dedicated music controller.",
+                navLabel: "Navigation",
+                languageToggle: "Language",
+                navMenu: "Menu",
+                navHome: "Home",
+                navPlatform: "Platform",
+                navDownloads: "Download",
+                heroTitle: "DJConnect for Raspberry Pi",
+                heroLead: "A fixed DJConnect app on Raspberry Pi: a small screen or dedicated music controller that pairs locally with Home Assistant.",
+                heroSecondary: "Download",
+                mockLabel: "Linux app",
+                fixedTitle: "Fixed client",
+                fixedText: "Use Raspberry Pi as an always-on DJConnect client for control at a fixed spot in your home.",
+                hardwareTitle: "Supported hardware",
+                hardwareLead: "The Pi client is intended for a fixed DJConnect setup with a small touchscreen.",
+                hardwareLabel: "Supported Raspberry Pi hardware",
+                hardwareBundleTitle: "Raspberry Pi Zero 2 W + Pimoroni HyperPixel 4.0 Square",
+                hardwareBundleText: "A compact Linux client with GPIO header and square touchscreen for fixed music control.",
+                hardwarePiLink: "Raspberry Pi Zero 2 W",
+                hardwareDisplayLink: "Pimoroni HyperPixel 4.0 Square",
+                setupTitle: "From fresh Pi to DJConnect",
+                setupLead: "Prepare Raspberry Pi OS first. The bootstrap belongs to the Pi repo and prepares the minimal runtime; the public app install follows under Download.",
+                setupStepsLabel: "Raspberry Pi setup steps",
+                setupStep1Title: "Flash Raspberry Pi OS Lite 64-bit",
+                setupStep1Text: "Use Raspberry Pi Imager and choose a 64-bit Lite image as the base.",
+                setupStep2Title: "Configure first boot",
+                setupStep2Text: "Set hostname, WiFi, SSH and locale in Imager before starting the Pi.",
+                setupStep3Title: "Log in over SSH",
+                setupStep3Text: "Boot the Pi, log in and install Git so you can fetch the bootstrap from the Pi repo.",
+                setupStep4Title: "Fetch the Pi repo",
+                setupStep4Text: "Use the source checkout only for OS bootstrap. Install the app itself later from the public release bundle.",
+                setupStep5Title: "Run the OS bootstrap",
+                setupStep5Text: "The bootstrap expands the filesystem, sets up swap, time sync, SSH, updates, minimal X11/Qt runtime and HyperPixel setup.",
+                bootstrapCommandTitle: "Bootstrap command",
+                copyBootstrap: "Copy bootstrap command",
+                copiedBootstrap: "Copied",
+                releaseTitle: "Latest version",
+                legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          },
+          fr: {
+                title: "DJConnect for Raspberry Pi",
+                metaDescription: "DJConnect for Raspberry Pi: fixed DJConnect app on a small screen or dedicated music controller.",
+                navLabel: "Navigation",
+                languageToggle: "Language",
+                navMenu: "Menu",
+                navHome: "Home",
+                navPlatform: "Platform",
+                navDownloads: "Download",
+                heroTitle: "DJConnect for Raspberry Pi",
+                heroLead: "A fixed DJConnect app on Raspberry Pi: a small screen or dedicated music controller that pairs locally with Home Assistant.",
+                heroSecondary: "Download",
+                mockLabel: "Linux app",
+                fixedTitle: "Fixed client",
+                fixedText: "Use Raspberry Pi as an always-on DJConnect client for control at a fixed spot in your home.",
+                hardwareTitle: "Supported hardware",
+                hardwareLead: "The Pi client is intended for a fixed DJConnect setup with a small touchscreen.",
+                hardwareLabel: "Supported Raspberry Pi hardware",
+                hardwareBundleTitle: "Raspberry Pi Zero 2 W + Pimoroni HyperPixel 4.0 Square",
+                hardwareBundleText: "A compact Linux client with GPIO header and square touchscreen for fixed music control.",
+                hardwarePiLink: "Raspberry Pi Zero 2 W",
+                hardwareDisplayLink: "Pimoroni HyperPixel 4.0 Square",
+                setupTitle: "From fresh Pi to DJConnect",
+                setupLead: "Prepare Raspberry Pi OS first. The bootstrap belongs to the Pi repo and prepares the minimal runtime; the public app install follows under Download.",
+                setupStepsLabel: "Raspberry Pi setup steps",
+                setupStep1Title: "Flash Raspberry Pi OS Lite 64-bit",
+                setupStep1Text: "Use Raspberry Pi Imager and choose a 64-bit Lite image as the base.",
+                setupStep2Title: "Configure first boot",
+                setupStep2Text: "Set hostname, WiFi, SSH and locale in Imager before starting the Pi.",
+                setupStep3Title: "Log in over SSH",
+                setupStep3Text: "Boot the Pi, log in and install Git so you can fetch the bootstrap from the Pi repo.",
+                setupStep4Title: "Fetch the Pi repo",
+                setupStep4Text: "Use the source checkout only for OS bootstrap. Install the app itself later from the public release bundle.",
+                setupStep5Title: "Run the OS bootstrap",
+                setupStep5Text: "The bootstrap expands the filesystem, sets up swap, time sync, SSH, updates, minimal X11/Qt runtime and HyperPixel setup.",
+                bootstrapCommandTitle: "Bootstrap command",
+                copyBootstrap: "Copy bootstrap command",
+                copiedBootstrap: "Copied",
+                releaseTitle: "Latest version",
+                legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          },
+          es: {
+                title: "DJConnect for Raspberry Pi",
+                metaDescription: "DJConnect for Raspberry Pi: fixed DJConnect app on a small screen or dedicated music controller.",
+                navLabel: "Navigation",
+                languageToggle: "Language",
+                navMenu: "Menu",
+                navHome: "Home",
+                navPlatform: "Platform",
+                navDownloads: "Download",
+                heroTitle: "DJConnect for Raspberry Pi",
+                heroLead: "A fixed DJConnect app on Raspberry Pi: a small screen or dedicated music controller that pairs locally with Home Assistant.",
+                heroSecondary: "Download",
+                mockLabel: "Linux app",
+                fixedTitle: "Fixed client",
+                fixedText: "Use Raspberry Pi as an always-on DJConnect client for control at a fixed spot in your home.",
+                hardwareTitle: "Supported hardware",
+                hardwareLead: "The Pi client is intended for a fixed DJConnect setup with a small touchscreen.",
+                hardwareLabel: "Supported Raspberry Pi hardware",
+                hardwareBundleTitle: "Raspberry Pi Zero 2 W + Pimoroni HyperPixel 4.0 Square",
+                hardwareBundleText: "A compact Linux client with GPIO header and square touchscreen for fixed music control.",
+                hardwarePiLink: "Raspberry Pi Zero 2 W",
+                hardwareDisplayLink: "Pimoroni HyperPixel 4.0 Square",
+                setupTitle: "From fresh Pi to DJConnect",
+                setupLead: "Prepare Raspberry Pi OS first. The bootstrap belongs to the Pi repo and prepares the minimal runtime; the public app install follows under Download.",
+                setupStepsLabel: "Raspberry Pi setup steps",
+                setupStep1Title: "Flash Raspberry Pi OS Lite 64-bit",
+                setupStep1Text: "Use Raspberry Pi Imager and choose a 64-bit Lite image as the base.",
+                setupStep2Title: "Configure first boot",
+                setupStep2Text: "Set hostname, WiFi, SSH and locale in Imager before starting the Pi.",
+                setupStep3Title: "Log in over SSH",
+                setupStep3Text: "Boot the Pi, log in and install Git so you can fetch the bootstrap from the Pi repo.",
+                setupStep4Title: "Fetch the Pi repo",
+                setupStep4Text: "Use the source checkout only for OS bootstrap. Install the app itself later from the public release bundle.",
+                setupStep5Title: "Run the OS bootstrap",
+                setupStep5Text: "The bootstrap expands the filesystem, sets up swap, time sync, SSH, updates, minimal X11/Qt runtime and HyperPixel setup.",
+                bootstrapCommandTitle: "Bootstrap command",
+                copyBootstrap: "Copy bootstrap command",
+                copiedBootstrap: "Copied",
+                releaseTitle: "Latest version",
+                legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          }
     };
     const applyLanguage = (language) => {
-      const dictionary = translations[language] || translations.nl;
+      const dictionary = { ...(window.DJCONNECT_I18N?.shared?.[language] || {}), ...(translations[language] || translations[window.DJCONNECT_I18N?.defaultLanguage || "nl"]) };
       document.documentElement.lang = language;
       document.title = dictionary.title;
       document.querySelector('meta[name="description"]').setAttribute("content", dictionary.metaDescription);
@@ -429,8 +567,9 @@ sudo ./scripts/bootstrap_raspberry_pi_os.sh</code></pre>
     document.querySelectorAll("[data-lang]").forEach((button) => {
       button.addEventListener("click", () => applyLanguage(button.dataset.lang));
     });
-    applyLanguage(localStorage.getItem("djconnect-language") || "nl");
-  </script>
-  <script src="assets/site-nav.js?v=3.2.3"></script>
+    applyLanguage(window.DJCONNECT_I18N?.initialLanguage || "nl");
+  </script>  <script src="assets/i18n.js?v=3.2.4"></script>
+
+  <script src="assets/site-nav.js?v=3.2.4"></script>
 </body>
 </html>

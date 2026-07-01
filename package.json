@@ -1,11 +1,12 @@
 {
   "name": "djconnect-website",
-  "version": "3.2.3",
+  "version": "3.2.4",
   "private": true,
   "scripts": {
     "build": "npm run build:release",
     "build:release": "node scripts/build-release.mjs",
-    "test": "node --test",
+    "test": "npm run i18n:check && node --test",
+    "i18n:check": "node scripts/validate-i18n.mjs",
     "stats:check": "node scripts/check-stats.mjs",
     "screenshots": "SCREENSHOT_LANG=nl npx playwright test tests/screenshots.spec.mjs",
     "screenshots:live": "SCREENSHOT_LANG=nl SCREENSHOT_BASE_URL=https://djconnect.dev npx playwright test tests/screenshots.spec.mjs",

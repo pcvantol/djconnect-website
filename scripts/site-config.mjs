@@ -4,6 +4,7 @@ export const sourceDir = "wwwroot";
 export const releaseOutputDir = "dist/wwwroot";
 
 export const sharedReleaseAssets = [
+  "assets/i18n.js",
   "assets/site-nav.css",
   "assets/site-nav.js",
   "assets/downloads.css",
@@ -37,6 +38,10 @@ export const publicPages = [
   "embedded",
   "404"
 ];
+
+export const supportedLanguages = ["en", "nl", "de", "fr", "es"];
+
+export const defaultLanguage = "nl";
 
 export const readSiteVersion = async () => (
   await readFile("VERSION", "utf8")

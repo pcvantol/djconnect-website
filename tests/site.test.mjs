@@ -6,7 +6,8 @@ import vm from "node:vm";
 import {
   releaseOutputDir,
   sharedReleaseAssets,
-  sourceDir
+  sourceDir,
+  supportedLanguages
 } from "../scripts/site-config.mjs";
 import {
   assertLocalRefExists,
@@ -34,6 +35,35 @@ test("site version is consistent", async () => {
   assert.equal(packageData.license, "MIT");
   assert.match(index, new RegExp(`DJConnect website v${cleanVersion}`));
   assert.match(embedded, new RegExp(`DJConnect website v${cleanVersion}`));
+});
+
+test("public pages expose five-language i18n routes and shared legal strings", async () => {
+  const [index, i18nRuntime, readme, contributing] = await Promise.all([
+    read("wwwroot/index.html"),
+    read("wwwroot/assets/i18n.js"),
+    read("README.md"),
+    read("CONTRIBUTING.md")
+  ]);
+
+  assert.deepEqual(supportedLanguages, ["en", "nl", "de", "fr", "es"]);
+  assert.ok(sharedReleaseAssets.includes("assets/i18n.js"));
+  assert.match(index, /assets\/i18n\.js/);
+
+  for (const language of supportedLanguages) {
+    assert.match(index, new RegExp(`data-lang="${language}"`));
+    assert.match(index, new RegExp(`hreflang="${language}"`));
+    if (language !== "nl") {
+      await assertLocalRefExists("index.html", `${language}/index.html`);
+      await assertLocalRefExists("start.html", `${language}/start.html`);
+    }
+  }
+
+  assert.match(index, /hreflang="x-default"/);
+  assert.match(i18nRuntime, /Spotify is a trademark of Spotify AB\. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB\./);
+  assert.match(i18nRuntime, /Copyright Peter van Tol 2026\. Released under the MIT License\./);
+  assert.match(i18nRuntime, /HACS DJConnect/);
+  assert.match(readme, /All public website and docs pages must ship complete copy for `en`, `nl`, `de`,\n`fr` and `es`/);
+  assert.match(contributing, /Update all public languages in the same pull request/);
 });
 
 test("screenshot tooling is available for live page review", async () => {
@@ -610,7 +640,7 @@ test("voice commands page documents intent families and DJ response styles", asy
   assert.match(intents, /Play Lithium by Nirvana/);
   assert.match(intents, /Play artist Nirvana with song Lithium/);
   assert.match(intents, /Speel album Nevermind/);
-  assert.match(intents, /Zet de plaat OK Computer van Radiohead op/);
+  assert.match(intents, /Zet de plaat Voorbeeldalbum van Voorbeeldartiest op/);
   assert.match(intents, /Play album Nevermind/);
   assert.match(intents, /Speel playlist DJConnect/);
   assert.match(intents, /Start mijn afspeellijst Roadtrip/);
@@ -666,14 +696,14 @@ test("voice commands page documents intent families and DJ response styles", asy
   assert.match(intents, /Do that again/);
   assert.match(intents, /Speel maar af/);
   assert.match(intents, /Which artist do you mean\?/);
-  assert.match(intents, /Welke albums hebben Radiohead uitgebracht\?/);
+  assert.match(intents, /Welke albums hebben Voorbeeldartiest uitgebracht\?/);
   assert.match(intents, /Geef me de albums van Guns N' Roses/);
   assert.match(intents, /"id": "artist_item_list"/);
   assert.match(intents, /Welke muziek heeft Scooter gemaakt\?/);
   assert.match(intents, /Give me 5 songs by Pearl Jam/);
   assert.match(intents, /Welke artiesten maken vergelijkbare muziek als wat nu speelt\?/);
   assert.match(intents, /Wat voor muziek maakt Beastie Boys\?/);
-  assert.match(intents, /Wanneer speelt Radiohead in Nederland\?/);
+  assert.match(intents, /Wanneer speelt Voorbeeldartiest in Nederland\?/);
   assert.match(intents, /Wat wordt het volgende nummer\?/);
   assert.match(intents, /What will play next\?/);
   assert.match(intents, /"id": "current_track_versions"/);
@@ -688,7 +718,7 @@ test("voice commands page documents intent families and DJ response styles", asy
   assert.match(intents, /Welke albums heb ik vandaag geluisterd\?/);
   assert.match(intents, /Which playlists did I play in the last hour\?/);
   assert.match(intents, /Ik voel me moe en geprikkeld, zet iets ontspannends klaar/);
-  assert.match(intents, /Stel een playlist samen op basis van Radiohead, Massive Attack en Portishead/);
+  assert.match(intents, /Stel een playlist samen op basis van Voorbeeldartiest, Artiest A en Artiest B/);
   assert.match(intents, /Maak playlist obv huidig nummer/);
   assert.match(intents, /Queue similar tracks/);
   assert.match(intents, /Save this mix as a Spotify playlist/);
@@ -1459,21 +1489,23 @@ test("release build minifies shared assets before deploy", async () => {
   assert.doesNotMatch(deployWorkflow, /pages deploy wwwroot/);
 
   await exec("npm", ["run", "build:release"], { cwd: new URL("../", import.meta.url) });
+  const version = (await read("VERSION")).trim();
   const [releaseIndex, releaseNavCss, releaseNavJs] = await Promise.all([
     read("dist/wwwroot/index.html"),
     read("dist/wwwroot/assets/site-nav.min.css"),
     read("dist/wwwroot/assets/site-nav.min.js")
   ]);
 
-  assert.match(releaseIndex, /assets\/site-nav\.min\.css\?v=3\.2\.3/);
-  assert.match(releaseIndex, /assets\/site-nav\.min\.js\?v=3\.2\.3/);
-  assert.match(releaseIndex, /DJConnect website v3\.2\.3/);
+  assert.match(releaseIndex, new RegExp(`assets/site-nav\\.min\\.css\\?v=${version.replaceAll(".", "\\.")}`));
+  assert.match(releaseIndex, new RegExp(`assets/site-nav\\.min\\.js\\?v=${version.replaceAll(".", "\\.")}`));
+  assert.match(releaseIndex, new RegExp(`assets/i18n\\.min\\.js\\?v=${version.replaceAll(".", "\\.")}`));
+  assert.match(releaseIndex, new RegExp(`DJConnect website v${version.replaceAll(".", "\\.")}`));
   assert.doesNotMatch(releaseIndex, /assets\/site-nav\.css\?v=/);
   assert.doesNotMatch(releaseIndex, /assets\/site-nav\.js\?v=/);
   assert.ok(releaseNavCss.length < (await read("wwwroot/assets/site-nav.css")).length);
   assert.ok(releaseNavJs.length <= (await read("wwwroot/assets/site-nav.js")).length);
 
-  for (const script of ["site-nav", "downloads", "releases", "voice-intents"]) {
+  for (const script of ["i18n", "site-nav", "downloads", "releases", "voice-intents"]) {
     await exec("node", ["--check", `dist/wwwroot/assets/${script}.min.js`], { cwd: new URL("../", import.meta.url) });
   }
 

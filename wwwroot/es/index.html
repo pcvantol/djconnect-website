@@ -1,0 +1,2246 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DJConnect. Muziekbediening met karakter</title>
+  <meta name="description" content="DJConnect verbindt voice, Home Assistant en muziekbediening op macOS, Windows, iOS, Raspberry Pi en embedded ESP32-devices." />
+  <link rel="canonical" href="https://djconnect.dev/" />
+  <link rel="alternate" hreflang="en" href="https://djconnect.dev/en/" />
+  <link rel="alternate" hreflang="nl" href="https://djconnect.dev/" />
+  <link rel="alternate" hreflang="de" href="https://djconnect.dev/de/" />
+  <link rel="alternate" hreflang="fr" href="https://djconnect.dev/fr/" />
+  <link rel="alternate" hreflang="es" href="https://djconnect.dev/es/" />
+  <link rel="alternate" hreflang="x-default" href="https://djconnect.dev/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="DJConnect" />
+  <meta property="og:title" content="DJConnect. Muziekbediening met karakter." />
+  <meta property="og:description" content="Vraag muziek, kies waar het speelt en krijg persoonlijke DJ-feedback op macOS, Windows, iOS, Linux en ESP32." />
+  <meta property="og:url" content="https://djconnect.dev/" />
+  <meta property="og:image" content="https://djconnect.dev/assets/djconnect/social-card.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="DJConnect. Muziekbediening met karakter." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="DJConnect. Muziekbediening met karakter." />
+  <meta name="twitter:description" content="Vraag muziek, kies waar het speelt en krijg persoonlijke DJ-feedback op macOS, Windows, iOS, Linux en ESP32." />
+  <meta name="twitter:image" content="https://djconnect.dev/assets/djconnect/social-card.png" />
+  <link rel="icon" href="../assets/djconnect/icon.svg" type="image/svg+xml" />
+  <link rel="icon" href="../assets/djconnect/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="../assets/djconnect/favicon-16.png" sizes="16x16" type="image/png" />
+  <link rel="apple-touch-icon" href="../assets/djconnect/apple-touch-icon.png" />
+  <link rel="manifest" href="../assets/djconnect/site.webmanifest" />
+  <link rel="stylesheet" href="../assets/releases.css" />
+  <style>
+    :root {
+      --bg: #0b0d12;
+      --panel: rgba(255, 255, 255, 0.075);
+      --panel-strong: rgba(255, 255, 255, 0.12);
+      --text: #f7f7fb;
+      --muted: #b7bccb;
+      --line: rgba(255, 255, 255, 0.14);
+      --cyan: #66e0ff;
+      --green: #7ef7a7;
+      --purple: #8b5cf6;
+      --pink: #fb7185;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; background: var(--bg); }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+      background:
+        radial-gradient(circle at 16% 10%, rgba(102, 224, 255, 0.18), transparent 28rem),
+        radial-gradient(circle at 86% 6%, rgba(251, 113, 133, 0.14), transparent 27rem),
+        radial-gradient(circle at 58% 72%, rgba(126, 247, 167, 0.1), transparent 31rem),
+        linear-gradient(180deg, #0b0d12 0%, #111827 54%, #090b10 100%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(11, 13, 18, 0.7);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 850;
+      font-size: 1.13rem;
+    }
+
+    .brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: 0 0 34px rgba(102, 224, 255, 0.25);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .lang-toggle {
+      display: inline-grid;
+      grid-template-columns: repeat(2, 1fr);
+      min-width: 86px;
+      padding: 3px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+    }
+
+    .lang-toggle button {
+      min-height: 34px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .lang-toggle button[aria-pressed="true"] {
+      background: rgba(102, 224, 255, 0.18);
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--text);
+      font-weight: 780;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      background: var(--panel-strong);
+      border-color: rgba(255,255,255,0.28);
+    }
+
+    .btn.primary {
+      border: 0;
+      color: #06110c;
+      background: linear-gradient(135deg, var(--cyan), var(--green));
+    }
+
+    .hero { padding: 82px 0 52px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.02fr 0.98fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 99px;
+      background: var(--green);
+      box-shadow: 0 0 20px var(--green);
+    }
+
+    h1, h2, h3 { margin: 0; letter-spacing: -0.045em; line-height: 1.05; }
+    h1 { font-size: clamp(3.1rem, 7vw, 6.2rem); max-width: 12ch; }
+    h2 { font-size: clamp(2rem, 4.6vw, 4.1rem); max-width: 15ch; margin-bottom: 18px; }
+    h3 { font-size: 1.2rem; margin-bottom: 10px; }
+
+    .lead {
+      color: var(--muted);
+      font-size: clamp(1.08rem, 2.2vw, 1.33rem);
+      max-width: 680px;
+      margin: 24px 0 30px;
+    }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+
+    .examples-band {
+      padding: 0 0 58px;
+    }
+
+    .example-card h2 {
+      font-size: clamp(1.4rem, 2.2vw, 2rem);
+      margin-bottom: 18px;
+      max-width: none;
+    }
+
+    .commands {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .commands span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: rgba(255,255,255,0.07);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .commands span::before {
+      content: "♪";
+      color: var(--cyan);
+      font-weight: 900;
+    }
+
+    .examples-more {
+      display: inline-flex;
+      margin-top: 16px;
+      color: var(--cyan);
+      font-weight: 850;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .platform-stage {
+      position: relative;
+      min-height: 560px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04)),
+        radial-gradient(circle at 50% 8%, rgba(102, 224, 255, 0.22), transparent 18rem);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 18px;
+    }
+
+    .signal-field {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.9;
+    }
+
+    .signal-ring {
+      fill: none;
+      stroke-width: 1.4;
+      transform-origin: 50% 50%;
+      animation: signalPulse 5.8s ease-in-out infinite;
+    }
+
+    .signal-ring:nth-of-type(2) { animation-delay: 1.3s; }
+    .signal-ring:nth-of-type(3) { animation-delay: 2.6s; }
+
+    .signal-wave {
+      fill: none;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-dasharray: 14 18;
+      animation: waveTravel 6.8s linear infinite;
+    }
+
+    .signal-dot {
+      transform-origin: center;
+      animation: dotFloat 4.5s ease-in-out infinite;
+    }
+
+    .signal-dot:nth-of-type(5) { animation-delay: 0.8s; }
+    .signal-dot:nth-of-type(6) { animation-delay: 1.6s; }
+    .signal-dot:nth-of-type(7) { animation-delay: 2.4s; }
+
+    .stage-top,
+    .device-stack {
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes signalPulse {
+      0%, 100% { opacity: 0.18; transform: scale(0.96); }
+      50% { opacity: 0.55; transform: scale(1.05); }
+    }
+
+    @keyframes waveTravel {
+      from { stroke-dashoffset: 0; }
+      to { stroke-dashoffset: -128; }
+    }
+
+    @keyframes dotFloat {
+      0%, 100% { opacity: 0.28; transform: translateY(0) scale(0.92); }
+      50% { opacity: 0.92; transform: translateY(-12px) scale(1.08); }
+    }
+
+    .stage-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      color: var(--muted);
+      font-size: clamp(1.45rem, 2.8vw, 2.25rem);
+      font-weight: 900;
+      line-height: 1.08;
+    }
+
+    .stage-pill {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 11px;
+      color: var(--green);
+      background: rgba(126,247,167,0.11);
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .device-stack {
+      min-height: 450px;
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-padding: 0;
+      padding: 0 0 16px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(102, 224, 255, 0.55) rgba(255,255,255,0.08);
+    }
+
+    .carousel-button {
+      position: absolute;
+      top: 54%;
+      z-index: 4;
+      width: 48px;
+      height: 48px;
+      border: 1px solid rgba(255,255,255,0.28);
+      border-radius: 50%;
+      background: rgba(8, 11, 17, 0.82);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      box-shadow: 0 14px 34px rgba(0,0,0,0.34);
+      backdrop-filter: blur(14px);
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .carousel-button:hover,
+    .carousel-button:focus-visible {
+      transform: translateY(-1px);
+      border-color: rgba(102,224,255,0.72);
+      background: rgba(18, 25, 37, 0.92);
+      outline: none;
+    }
+
+    .carousel-button svg {
+      width: 22px;
+      height: 22px;
+      stroke-width: 2.8;
+    }
+
+    .carousel-button.prev { left: 18px; }
+    .carousel-button.next { right: 18px; }
+
+    .device-stack::-webkit-scrollbar { height: 8px; }
+    .device-stack::-webkit-scrollbar-track { background: rgba(255,255,255,0.08); border-radius: 999px; }
+    .device-stack::-webkit-scrollbar-thumb { background: rgba(102, 224, 255, 0.55); border-radius: 999px; }
+
+    .device-slide {
+      position: relative;
+      flex: 0 0 100%;
+      min-height: 430px;
+      scroll-snap-align: start;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 24px;
+      background: rgba(5, 7, 11, 0.22);
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .device-slide-label {
+      position: absolute;
+      top: 22px;
+      left: 22px;
+      right: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      min-height: 46px;
+      padding: 8px 18px;
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+      font-size: 0.88rem;
+      font-weight: 850;
+      line-height: 1.18;
+      text-align: center;
+    }
+
+    .device-slide-ios {
+      grid-template-columns: 1fr;
+      gap: 0;
+      align-items: center;
+      justify-items: center;
+    }
+
+    .macbook-frame,
+    .ipad {
+      border: 1px solid rgba(255,255,255,0.22);
+      background: linear-gradient(145deg, #273244, #050608 72%);
+      box-shadow: 0 32px 72px rgba(0,0,0,0.42), inset 0 1px 0 rgba(255,255,255,0.16);
+    }
+
+    .macbook {
+      width: min(92%, 520px);
+    }
+
+    .macbook-frame {
+      border-radius: 18px;
+      padding: 14px;
+    }
+
+    .macbook-base {
+      width: 108%;
+      height: 20px;
+      margin-left: -4%;
+      border-radius: 0 0 26px 26px;
+      background: linear-gradient(180deg, #cbd5e1, #64748b);
+      box-shadow: 0 22px 34px rgba(0,0,0,0.34);
+    }
+
+    .screen {
+      aspect-ratio: 1.58;
+      border-radius: 10px;
+      background:
+        radial-gradient(circle at 28% 26%, rgba(102, 224, 255, 0.27), transparent 9rem),
+        linear-gradient(180deg, #111827, #05070b);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 16px;
+      display: grid;
+      align-content: space-between;
+    }
+
+    .window-dots { display: flex; gap: 6px; margin-bottom: 16px; }
+    .window-dots span { width: 9px; height: 9px; border-radius: 50%; background: var(--pink); }
+    .window-dots span:nth-child(2) { background: #ffcf5c; }
+    .window-dots span:nth-child(3) { background: var(--green); }
+
+    .bars { display: flex; gap: 7px; align-items: end; height: 92px; margin-top: 14px; }
+    .bars span {
+      flex: 1;
+      min-height: 22px;
+      border-radius: 999px 999px 8px 8px;
+      background: linear-gradient(180deg, var(--cyan), var(--purple));
+    }
+    .bars span:nth-child(1) { height: 44%; }
+    .bars span:nth-child(2) { height: 72%; }
+    .bars span:nth-child(3) { height: 55%; }
+    .bars span:nth-child(4) { height: 88%; }
+    .bars span:nth-child(5) { height: 62%; }
+
+    .music-symbols {
+      display: grid;
+      place-items: center;
+      margin-top: 18px;
+    }
+
+    .play-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 22px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(102,224,255,0.96), rgba(139,92,246,0.9));
+      box-shadow: 0 18px 36px rgba(0,0,0,0.26);
+    }
+
+    .play-icon::before {
+      content: "";
+      width: 0;
+      height: 0;
+      border-top: 16px solid transparent;
+      border-bottom: 16px solid transparent;
+      border-left: 24px solid #06110c;
+      margin-left: 5px;
+    }
+
+    .ipad {
+      justify-self: center;
+      width: min(88%, 520px);
+      aspect-ratio: 1.48;
+      border-radius: 32px;
+      padding: 16px;
+      transform: none;
+      position: relative;
+      z-index: 2;
+    }
+
+    .ipad::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 13px;
+      width: 34%;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.24);
+      transform: translateX(-50%);
+    }
+
+    .mini-ui {
+      height: 100%;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #111827, #05070b);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 18px;
+      display: grid;
+      align-content: space-between;
+    }
+
+    .device-slide-ios .mini-ui {
+      grid-template-rows: 1fr auto;
+      align-items: center;
+      justify-items: center;
+    }
+
+    .device-slide-ios .line-set {
+      width: 78%;
+      justify-self: center;
+    }
+
+    .cover {
+      width: 88px;
+      height: 88px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+    }
+
+    .voice-cover {
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+
+    .voice-cover::before {
+      content: "";
+      width: 28px;
+      height: 46px;
+      border-radius: 999px;
+      background: #06110c;
+      box-shadow: 0 0 0 9px rgba(6,17,12,0.14);
+    }
+
+    .voice-cover::after {
+      content: "";
+      position: absolute;
+      width: 58px;
+      height: 58px;
+      border: 5px solid rgba(6,17,12,0.82);
+      border-top-color: transparent;
+      border-left-color: transparent;
+      border-radius: 50%;
+      transform: rotate(45deg);
+    }
+
+    .line-set { display: grid; gap: 7px; }
+    .line-set span { height: 8px; border-radius: 999px; background: rgba(255,255,255,0.24); }
+    .line-set span:nth-child(2) { width: 68%; }
+
+    .embedded {
+      width: min(84%, 430px);
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .embedded img {
+      width: 100%;
+      filter: drop-shadow(0 26px 50px rgba(0,0,0,0.42));
+    }
+
+    section { padding: 72px 0; }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 28px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0;
+      font-size: 1.04rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--panel);
+      padding: 24px;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.16);
+    }
+
+    .card p, .muted { color: var(--muted); margin: 0; }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid var(--line);
+      font-size: 1.45rem;
+    }
+
+    .ha-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      min-height: 48px;
+      padding: 8px 12px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(3, 169, 244, 0.12);
+      color: var(--text);
+      font-weight: 850;
+    }
+
+    .ha-badge img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+    }
+
+    .platform-card {
+      min-height: 310px;
+      display: grid;
+      align-content: space-between;
+    }
+
+    .platform-card .topline {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 22px;
+    }
+
+    .tag {
+      display: inline-flex;
+      white-space: nowrap;
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: rgba(102, 224, 255, 0.14);
+      color: #9becff;
+      font-size: 0.78rem;
+      font-weight: 850;
+    }
+
+    .platform-card .btn { margin-top: 26px; width: fit-content; }
+
+    .download-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+    }
+
+    .store-link {
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      padding: 0 16px;
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+      font-weight: 820;
+    }
+
+    .store-link.primary {
+      border: 0;
+      color: #06110c;
+      background: linear-gradient(135deg, var(--cyan), var(--green));
+    }
+
+    .store-link[aria-disabled="true"] {
+      opacity: 0.64;
+      cursor: not-allowed;
+    }
+
+    .callout {
+      border-radius: 28px;
+      padding: 34px;
+      background:
+        linear-gradient(135deg, rgba(126,247,167,0.22), rgba(102,224,255,0.12)),
+        rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.18);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    .ask-dj-panel {
+      display: grid;
+      grid-template-columns: 1.04fr 0.96fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .ask-dj-card {
+      min-height: 100%;
+      background:
+        radial-gradient(circle at 18% 8%, rgba(102,224,255,0.18), transparent 16rem),
+        rgba(255,255,255,0.075);
+    }
+
+    .ask-dj-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .ask-dj-chips span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: rgba(255,255,255,0.08);
+      color: var(--muted);
+      font-weight: 750;
+    }
+
+    .ask-dj-flow {
+      counter-reset: ask-dj-step;
+      display: grid;
+      gap: 12px;
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .ask-dj-flow li {
+      counter-increment: ask-dj-step;
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 12px;
+      align-items: start;
+      color: var(--muted);
+    }
+
+    .ask-dj-flow li::before {
+      content: counter(ask-dj-step);
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--cyan), var(--green));
+      color: #06110c;
+      font-weight: 900;
+    }
+
+    .technical-analysis {
+      margin-top: 22px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 30px;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(126,247,167,0.16), transparent 18rem),
+        linear-gradient(135deg, rgba(102,224,255,0.11), rgba(255,255,255,0.055));
+      box-shadow: var(--shadow);
+    }
+
+    .technical-analysis-header {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 22px;
+    }
+
+    .technical-analysis-header p,
+    .analysis-trust p,
+    .analysis-dev-note p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .analysis-benefits {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .analysis-benefit {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      background: rgba(255,255,255,0.065);
+    }
+
+    .analysis-benefit strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .analysis-benefit span {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .analysis-bottom {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 18px;
+      align-items: start;
+      margin-top: 18px;
+    }
+
+    .analysis-trust,
+    .analysis-dev-note {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      background: rgba(255,255,255,0.055);
+    }
+
+    .analysis-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .ask-dj-detail-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+  .legal {
+      color: var(--muted);
+      font-size: 0.86rem;
+      padding: 34px 0 44px;
+      border-top: 1px solid var(--line);
+    }
+
+    .site-version {
+      margin-top: 14px;
+      font-size: 0.76rem;
+      color: rgba(183, 188, 203, 0.72);
+    }
+    .privacy-notice {
+      font-size: 0.78rem;
+      color: rgba(183, 188, 203, 0.78);
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid, .section-head, .callout, .ask-dj-panel, .technical-analysis-header, .analysis-bottom { grid-template-columns: 1fr; }
+      .grid-3, .ask-dj-detail-grid, .analysis-benefits { grid-template-columns: 1fr; }
+      .nav-inner { flex-wrap: wrap; padding: 12px 0; }
+      .nav-controls { margin-left: auto; }
+      .nav-links::-webkit-scrollbar { display: none; }
+      .platform-stage { min-height: 520px; }
+    }
+
+    @media (max-width: 620px) {
+      .wrap { width: min(100% - 24px, var(--max)); }
+      .nav-controls { gap: 8px; }
+      .nav-controls .btn.primary { padding: 0 14px; }
+      .hero { padding-top: 48px; }
+      .platform-stage { min-height: 470px; padding: 18px; }
+      .examples-band { padding-bottom: 42px; }
+      .commands span { white-space: normal; }
+      .stage-top { align-items: start; flex-direction: column; }
+      .device-stack { min-height: 390px; gap: 12px; }
+      .device-slide { min-height: 370px; padding: 16px; }
+      .device-slide-label { top: 14px; left: 14px; }
+      .carousel-button {
+        width: 42px;
+        height: 42px;
+        top: 55%;
+      }
+      .carousel-button.prev { left: 10px; }
+      .carousel-button.next { right: 10px; }
+      .macbook { width: min(100%, 360px); }
+      .ipad { width: min(100%, 320px); }
+      .cover { width: 68px; height: 68px; border-radius: 20px; }
+      .voice-cover::before { width: 22px; height: 36px; }
+      .voice-cover::after { width: 46px; height: 46px; border-width: 4px; }
+      .embedded { width: min(100%, 310px); }
+      .platform-card .topline { flex-direction: column; }
+      .nav-controls .btn { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .signal-ring,
+      .signal-wave,
+      .signal-dot {
+        animation: none;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="../assets/site-nav.css?v=3.2.4" />
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../index.html" aria-label="DJConnect home">
+        <img src="../assets/djconnect/icon.svg" alt="" aria-hidden="true" />
+        <span>DJConnect</span>
+      </a>
+      <div class="nav-links" id="primaryNav" aria-label="Navigatie" data-i18n-attr="aria-label:navLabel">
+        <a href="../features.html" data-i18n="navFeatures">Features</a>
+        <a href="#ask-dj" data-i18n="navAskDj">Ask DJ</a>
+        <a href="../voice-commands.html" data-i18n="navVoice">Spraak</a>
+        <a href="../blog.html" data-i18n="navBlog">Blog</a>
+        <a href="#apps" data-i18n="navApps">Installeren</a>
+        <a href="../support.html" data-i18n="navSupport">Support</a>
+        <a href="../privacy.html" data-i18n="navPrivacy">Privacy</a>
+      </div>
+      <div class="nav-controls">
+        <div class="lang-toggle" aria-label="Taalkeuze" data-i18n-attr="aria-label:languageToggle">
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+          <button type="button" data-lang="nl" aria-pressed="true">NL</button>
+          <button type="button" data-lang="de" aria-pressed="false">DE</button>
+          <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+          <button type="button" data-lang="es" aria-pressed="false">ES</button>
+        </div>
+        <a class="btn primary" href="../start.html" data-i18n="navChoose">Aan de slag</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Menu" data-i18n-attr="aria-label:navMenu">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round">
+            <path d="M4 7h16" />
+            <path d="M4 12h16" />
+            <path d="M4 17h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="mainContent">
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <h1 data-i18n="heroTitle">DJConnect. Muziekbediening met karakter.</h1>
+          <p class="lead" data-i18n="heroLead">DJConnect brengt spraak, muziekbediening en een persoonlijke DJ-reactie samen. De kern blijft hetzelfde op elk device: vraag muziek, kies waar het speelt en krijg directe feedback terug.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="../start.html" data-i18n="heroPrimary">Aan de slag</a>
+          </div>
+        </div>
+
+        <div class="platform-stage" aria-label="DJConnect platformoverzicht" data-i18n-attr="aria-label:stageLabel">
+          <svg class="signal-field" viewBox="0 0 640 560" aria-hidden="true" focusable="false">
+            <defs>
+              <radialGradient id="signalGlow" cx="50%" cy="48%" r="62%">
+                <stop offset="0%" stop-color="#66e0ff" stop-opacity="0.34" />
+                <stop offset="54%" stop-color="#7ef7a7" stop-opacity="0.16" />
+                <stop offset="100%" stop-color="#fb7185" stop-opacity="0" />
+              </radialGradient>
+              <linearGradient id="signalStroke" x1="70" y1="90" x2="570" y2="470">
+                <stop offset="0%" stop-color="#66e0ff" />
+                <stop offset="52%" stop-color="#7ef7a7" />
+                <stop offset="100%" stop-color="#fb7185" />
+              </linearGradient>
+            </defs>
+            <rect width="640" height="560" fill="url(#signalGlow)" opacity="0.42" />
+            <circle class="signal-ring" cx="320" cy="288" r="145" stroke="url(#signalStroke)" />
+            <circle class="signal-ring" cx="320" cy="288" r="205" stroke="url(#signalStroke)" />
+            <circle class="signal-ring" cx="320" cy="288" r="265" stroke="url(#signalStroke)" />
+            <path class="signal-wave" d="M82 310 C142 252 194 364 254 306 S374 250 434 306 S520 356 574 292" stroke="url(#signalStroke)" />
+            <circle class="signal-dot" cx="118" cy="154" r="5" fill="#66e0ff" />
+            <circle class="signal-dot" cx="522" cy="176" r="6" fill="#7ef7a7" />
+            <circle class="signal-dot" cx="486" cy="438" r="5" fill="#fb7185" />
+          </svg>
+          <div class="stage-top">
+            <span data-i18n="stageText">DJConnect in een oogopslag</span>
+          </div>
+          <button class="carousel-button prev" type="button" data-carousel-direction="-1" aria-label="Vorige slide" data-i18n-attr="aria-label:carouselPrev">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+          </button>
+          <div class="device-stack" aria-label="Platform opties" data-i18n-attr="aria-label:stageCarouselLabel">
+            <article class="device-slide device-slide-mac">
+              <span class="device-slide-label" data-i18n="stageScreenText">Speel muziek & bedien op afstand</span>
+              <div class="macbook" aria-hidden="true">
+                <div class="macbook-frame">
+                  <div class="screen">
+                    <div>
+                      <div class="window-dots"><span></span><span></span><span></span></div>
+                    </div>
+                    <div class="music-symbols">
+                      <span class="play-icon" aria-hidden="true"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="macbook-base"></div>
+              </div>
+            </article>
+            <article class="device-slide device-slide-ios">
+              <span class="device-slide-label" data-i18n="iosSlideLabel">Vraag je volgende hit aan</span>
+              <div class="ipad" aria-hidden="true"><div class="mini-ui"><div class="cover voice-cover"></div><div class="line-set"><span></span><span></span></div></div></div>
+            </article>
+            <article class="device-slide device-slide-embedded">
+              <span class="device-slide-label" data-i18n="embeddedSlideLabel">Luister naar persoonlijke DJ aankondiging</span>
+              <div class="embedded" aria-hidden="true"><img src="../assets/lilygo-t-embed-djconnect.svg" alt="" aria-hidden="true" /></div>
+            </article>
+          </div>
+          <button class="carousel-button next" type="button" data-carousel-direction="1" aria-label="Volgende slide" data-i18n-attr="aria-label:carouselNext">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="examples-band" aria-label="Vraag muziek aan met je stem, zeg bijvoorbeeld:" data-i18n-attr="aria-label:examplesLabel">
+      <div class="wrap">
+        <div class="card example-card">
+          <h2 data-i18n="examplesTitle">Vraag muziek aan met je stem, zeg bijvoorbeeld:</h2>
+          <div class="commands" id="homepageVoiceExamples"></div>
+          <a class="examples-more" href="../voice-commands.html" data-i18n="examplesMore">Bekijk meer spraakvoorbeelden</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="ask-dj">
+      <div class="wrap">
+        <div class="section-head">
+          <div><h2 data-i18n="askDjTitle">Ask DJ</h2></div>
+          <p data-i18n="askDjLead">Ask DJ is je AI-DJ chat voor muziekvragen, playback-acties, Track Insight en optionele persoonlijke aanbevelingen via Home Assistant.</p>
+        </div>
+        <div class="ask-dj-panel">
+          <article class="card ask-dj-card">
+            <h3 data-i18n="askDjChatTitle">Meer dan Spotify command parsing</h3>
+            <p data-i18n="askDjChatText">Stel muziekvragen in natuurlijke taal. Ask DJ werkt ook als Music DNA uit staat; met opt-in kan Home Assistant compacte Music DNA signalen gebruiken om persoonlijker te antwoorden.</p>
+            <div class="ask-dj-chips" aria-label="Ask DJ voorbeeldvragen" data-i18n-attr="aria-label:askDjExamplesLabel">
+              <span data-i18n="askDjExample1">"Waarom koos je dit nummer?"</span>
+              <span data-i18n="askDjExample2">"Welke muziek raad je mij aan?"</span>
+              <span data-i18n="askDjExample3">"Omschrijf eens waar ik de afgelopen maand naar luisterde."</span>
+              <span data-i18n="askDjExample4">"Volgende nummer."</span>
+              <span data-i18n="askDjExample5">"Zet iets rustigers op."</span>
+            </div>
+          </article>
+          <article class="card">
+            <h3 data-i18n="askDjFlowTitle">Hoe het werkt</h3>
+            <ol class="ask-dj-flow">
+              <li data-i18n="askDjStep1">Vraag iets aan Ask DJ via chat of push-to-talk.</li>
+              <li data-i18n="askDjStep2">Home Assistant haalt context, history en playbackstatus op.</li>
+              <li data-i18n="askDjStep3">DJConnect antwoordt met tekst, bronnen, afbeeldingen en optionele audio.</li>
+              <li data-i18n="askDjStep4">Bij concrete aanbevelingen kies je zelf Play Now; playback start pas na jouw tap.</li>
+            </ol>
+          </article>
+        </div>
+        <div class="ask-dj-detail-grid">
+          <article class="card">
+            <div class="icon">🔓</div>
+            <h3 data-i18n="musicDnaOptionalTitle">Ask DJ zonder Music DNA</h3>
+            <p data-i18n="musicDnaOptionalText">Ask DJ works without Music DNA. Als je niet opt-in doet, werkt Ask DJ normaal voor vragen, playback, Track Insight en gewone antwoorden, maar DJConnect bouwt of gebruikt geen persoonlijk luisterprofiel.</p>
+          </article>
+          <article class="card">
+            <div class="icon">🧬</div>
+            <h3 data-i18n="musicDnaOptInTitle">Music DNA is opt-in</h3>
+            <p data-i18n="musicDnaOptInText">Music DNA is opt-in. Totdat je het inschakelt, bouwt DJConnect geen Music DNA kennis uit Ask DJ, luisterprofielen, recente tracks, voorkeuren of aanbevelingen.</p>
+          </article>
+          <article class="card">
+            <div class="icon">🧹</div>
+            <h3 data-i18n="musicDnaClearTitle">Altijd wisbaar</h3>
+            <p data-i18n="musicDnaClearText">You can clear Music DNA at any time. Als Music DNA aan blijft, begint DJConnect opnieuw vanaf een leeg profiel. Zet je het uit, dan wordt learned DNA gewist en stopt verdere opbouw.</p>
+          </article>
+        </div>
+        <div class="technical-analysis">
+          <div class="technical-analysis-header">
+            <div>
+              <h2 data-i18n="liveAnalysisTitle">Track Insight</h2>
+            </div>
+            <p data-i18n="liveAnalysisLead">Vraag Ask DJ om de track die nu speelt technisch uit te leggen, alsof er een DJ-assistent naast je staat. Je krijgt bruikbare duiding zonder dat DJConnect doet alsof onbekende songdelen of meetdata zeker zijn.</p>
+          </div>
+          <div class="analysis-benefits">
+            <div class="analysis-benefit"><strong data-i18n="liveAnalysisBenefit1Title">Vraag natuurlijk</strong><span data-i18n="liveAnalysisBenefit1Text">Zeg “Geef Track Insight voor dit nummer”, “Wat is de BPM en opbouw?” of “Give me Track Insight for this song”.</span></div>
+            <div class="analysis-benefit"><strong data-i18n="liveAnalysisBenefit2Title">Read-only</strong><span data-i18n="liveAnalysisBenefit2Text">De analyse verandert je playback nooit; hij kijkt alleen mee met wat er nu speelt.</span></div>
+            <div class="analysis-benefit"><strong data-i18n="liveAnalysisBenefit3Title">DJ-bruikbaar</strong><span data-i18n="liveAnalysisBenefit3Text">BPM, key, energie, groove, opbouw, klank, beperkingen en mix- of set-tips waar beschikbaar.</span></div>
+            <div class="analysis-benefit"><strong data-i18n="liveAnalysisBenefit4Title">Client-ready</strong><span data-i18n="liveAnalysisBenefit4Text">Antwoorden kunnen als sections, timeline en DJ tips worden getoond op clients die dit ondersteunen.</span></div>
+            <div class="analysis-benefit"><strong data-i18n="liveAnalysisBenefit5Title">Local-first</strong><span data-i18n="liveAnalysisBenefit5Text">Ask DJ werkt via je eigen Home Assistant installatie; er is geen centrale DJConnect backend nodig voor Track Insight.</span></div>
+            <div class="analysis-benefit"><strong data-i18n="liveAnalysisBenefit6Title">Provider-ready</strong><span data-i18n="liveAnalysisBenefit6Text">Gebouwd voor Spotify measured data, Home Assistant Conversation en lokale fallback, later uitbreidbaar met eigen analyzers of providers.</span></div>
+          </div>
+          <div class="ask-dj-panel">
+            <article class="card">
+              <h3 data-i18n="liveAnalysisHowTitle">Hoe het werkt</h3>
+              <ol class="ask-dj-flow">
+                <li data-i18n="liveAnalysisStep1">Je vraagt Ask DJ om technische analyse van de huidige track.</li>
+                <li data-i18n="liveAnalysisStep2">Home Assistant verzamelt playbackcontext en beschikbare brondata, zonder raw audio of secrets in het analysecontract.</li>
+                <li data-i18n="liveAnalysisStep3">DJConnect geeft een transparant antwoord met confidence, source, limitations, timeline en DJ tips.</li>
+              </ol>
+            </article>
+            <article class="card">
+              <h3 data-i18n="liveAnalysisTrustTitle">Transparant over wat bekend is</h3>
+              <p data-i18n="liveAnalysisTrustText">Als exacte BPM, key, waveform of secties niet beschikbaar zijn, zegt DJConnect dat eerlijk. Het verzint geen intro, couplet, refrein of drop alsof die gemeten zijn.</p>
+            </article>
+          </div>
+          <div class="analysis-bottom">
+            <div class="analysis-trust">
+              <h3 data-i18n="liveAnalysisPrivacyTitle">Privacy-first analyse</h3>
+              <p data-i18n="liveAnalysisPrivacyText">Trackanalyse blijft local-first via Home Assistant. Analysecontracten en logs horen geen raw audio, Spotify OAuth tokens, Home Assistant tokens, secrets of volledige prompts te bevatten.</p>
+            </div>
+            <div class="analysis-dev-note">
+              <h3 data-i18n="liveAnalysisDeveloperTitle">Voor clients en makers</h3>
+              <p data-i18n="liveAnalysisDeveloperText">De output is bedoeld om direct renderbaar te zijn: compacte sections, een timeline met bron/confidence en concrete DJ tips. Zo kunnen iOS, macOS, Windows en toekomstige clients dezelfde analyse netjes tonen.</p>
+              <div class="analysis-actions">
+                <a class="btn primary" href="../start.html" data-i18n="liveAnalysisPrimaryCta">Installeer DJConnect</a>
+                <a class="btn" href="#ask-dj" data-i18n="liveAnalysisSecondaryCta">Probeer Ask DJ</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ask-dj-detail-grid">
+          <article class="card">
+            <div class="icon">⌚</div>
+            <h3 data-i18n="askDjContinuityTitle">Continuity op Watch, iPhone en Mac</h3>
+            <p data-i18n="askDjContinuityText">Ask DJ history wordt server-side per Home Assistant gebruiker bewaard en is begrensd. Als de limiet is bereikt, trimt Home Assistant oudste berichten en blijven clients via trim metadata netjes in sync.</p>
+          </article>
+          <article class="card">
+            <div class="icon">🎤</div>
+            <h3 data-i18n="askDjVoiceTitle">Voice en audio</h3>
+            <p data-i18n="askDjVoiceText">iOS, macOS en Apple Watch kunnen voice/PTT gebruiken. Home Assistant STT transcribeert; TTS kan audio-antwoorden leveren. Replay verschijnt alleen als er audio beschikbaar is.</p>
+          </article>
+          <article class="card">
+            <div class="icon">↪</div>
+            <h3 data-i18n="askDjActionsTitle">Van vraag naar actie</h3>
+            <p data-i18n="askDjActionsText">Vraag om muziek, kies een speaker, start een suggestie of bevestig een vervolgactie. Ask DJ maakt van elk antwoord meteen een volgende stap.</p>
+          </article>
+          <article class="card">
+            <div class="icon">📊</div>
+            <h3 data-i18n="askDjAnalysisTitle">Ask DJ Track Insight</h3>
+            <p data-i18n="askDjAnalysisText">Laat Ask DJ uitleggen waarom een track werkt. Vraag “Geef Track Insight voor dit nummer” voor BPM, key, energiecurve, groove, structuur, instrumentatie, productie en mixbaarheid waar data of context dat ondersteunt; Track Insight toont ook bron, confidence en beperkingen.</p>
+          </article>
+          <article class="card">
+            <div class="icon">🔔</div>
+            <h3 data-i18n="askDjNotificationsTitle">Optionele meldingen</h3>
+            <p data-i18n="askDjNotificationsText">Apple clients kunnen optionele pushmeldingen gebruiken als wake- of synchint voor Ask DJ via de DJConnect pushrelay. Push blijft beperkt tot Ask DJ-antwoorden of wachtende keuzes en bevat geen tokens, ruwe prompts, volledige history of lange DJ-antwoorden.</p>
+          </article>
+          <article class="card">
+            <div class="icon">🔐</div>
+            <h3 data-i18n="askDjPrivacyTitle">Privacy compact gehouden</h3>
+            <p data-i18n="askDjPrivacyText">Clients do not store your persistent Music DNA profile. Spotify credentials stay in Home Assistant. Music DNA mag geen OAuth tokens, bearer tokens, raw audio, volledige prompts of volledige chatgeschiedenis opslaan.</p>
+          </article>
+          <article class="card">
+            <div class="icon">🖥</div>
+            <h3 data-i18n="askDjPiTitle">Raspberry Pi leest mee</h3>
+            <p data-i18n="askDjPiText">Op Raspberry Pi is Ask DJ gericht op read-only history display. Chatten, voice/PTT en audio-antwoorden blijven voor Apple clients, tenzij een toekomstige Pi-versie die scope expliciet uitbreidt.</p>
+          </article>
+          <article class="card">
+            <div class="icon">☑</div>
+            <h3 data-i18n="askDjFollowupTitle">Follow-ups met Ja/Nee</h3>
+            <p data-i18n="askDjFollowupText">Soms stelt Ask DJ een vervolgvraag, bijvoorbeeld na “Goedemorgen” of “Wil je dit nu afspelen?”. Clients kunnen dan duidelijke Ja/Nee-controls tonen.</p>
+          </article>
+          <article class="card">
+            <div class="icon">✅</div>
+            <h3 data-i18n="askDjRequirementsTitle">Wat je nodig hebt</h3>
+            <p data-i18n="askDjRequirementsText">Home Assistant, HACS DJConnect integration, Spotify Premium, je eigen Spotify Developer app met Client ID en voor voice/audio een Assist pipeline met STT/TTS. Nabu Casa of een stabiele HTTPS external URL is aanbevolen.</p>
+          </article>
+        </div>
+        <div class="ask-dj-panel">
+          <article class="card">
+            <h3 data-i18n="aiPrivacyTitle">AI privacy-first</h3>
+            <p data-i18n="aiPrivacyText">DJConnect is ontworpen als Home Assistant-first systeem. De Home Assistant integration orkestreert Ask DJ, playback, Assist/STT/TTS en Music DNA; DJConnect's active integration routes use Home Assistant Assist/STT/TTS and do not call direct external AI/STT/TTS APIs.</p>
+          </article>
+          <article class="card">
+            <h3 data-i18n="clientTransparencyTitle">Transparant in clients</h3>
+            <p data-i18n="clientTransparencyText">Het Music DNA scherm haalt structured profile data op uit Home Assistant. Als Music DNA uit staat, toont de client een opt-in of empty state; clients reconstrueren geen fake persistent profile uit lokale Track Insight history.</p>
+          </article>
+        </div>
+        <div class="ask-dj-detail-grid">
+          <article class="card"><h3 data-i18n="faqAskDjDnaQuestion">Does Ask DJ require Music DNA?</h3><p data-i18n="faqAskDjDnaAnswer">No. Ask DJ works without Music DNA. Zonder opt-in gebruikt Ask DJ geen opgeslagen persoonlijke Music DNA context.</p></article>
+          <article class="card"><h3 data-i18n="faqDnaStoredQuestion">Where is Music DNA stored?</h3><p data-i18n="faqDnaStoredAnswer">Music DNA is server-side in Home Assistant. Clients do not store your persistent Music DNA profile.</p></article>
+          <article class="card"><h3 data-i18n="faqDnaDeleteQuestion">Can I delete Music DNA?</h3><p data-i18n="faqDnaDeleteAnswer">You can clear Music DNA at any time. Als Music DNA aan blijft, begint DJConnect opnieuw vanaf een leeg profiel.</p></article>
+          <article class="card"><h3 data-i18n="faqSpotifyQuestion">Does DJConnect store Spotify credentials on devices?</h3><p data-i18n="faqSpotifyAnswer">No. Spotify credentials stay in Home Assistant. ESP32 bewaart geen Spotify credentials en krijgt geen Ask DJ chat history.</p></article>
+          <article class="card"><h3 data-i18n="faqCloudQuestion">Does DJConnect send raw audio or prompts to its own cloud?</h3><p data-i18n="faqCloudAnswer">No. Ruwe audio wordt standaard niet opgeslagen en diagnostics bevatten geen raw audio, full prompts, Ask DJ history of Music DNA dumps.</p></article>
+          <article class="card"><h3 data-i18n="faqSpotifyAffiliationQuestion">Is DJConnect affiliated with Spotify?</h3><p data-i18n="faqSpotifyAffiliationAnswer">DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="platform">
+      <div class="wrap">
+        <div class="section-head">
+          <div><h2 data-i18n="platformTitle">De kern van DJConnect</h2></div>
+          <p data-i18n="platformLead">DJConnect brengt je muziekwens, speaker keuze en persoonlijke DJ-feedback samen in één vloeiende ervaring.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <div class="icon">🎙️</div>
+            <h3 data-i18n="platformVoiceTitle">Vraag muziek natuurlijk</h3>
+            <p data-i18n="platformVoiceText">Zeg welke artiest je wilt horen. DJConnect start concreet de muziek op je favoriete speakers.</p>
+          </article>
+          <article class="card">
+            <div class="icon">🎚️</div>
+            <h3 data-i18n="platformPlaybackTitle">Bedien je playback</h3>
+            <p data-i18n="platformPlaybackText">Kies je uitvoerapparaat, start of pauzeer muziek en houd grip op wat er nu speelt of hierna komt.</p>
+          </article>
+          <article class="card">
+            <div class="icon">✨</div>
+            <h3 data-i18n="platformFeedbackTitle">Krijg DJ-feedback</h3>
+            <p data-i18n="platformFeedbackText">DJConnect reageert kort en persoonlijk, zodat de ervaring meer voelt als een DJ dan als een afstandsbediening.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="essentials">
+      <div class="wrap">
+        <div class="section-head">
+          <div><h2 data-i18n="essentialsTitle">Powered by Home Assistant, beschikbaar voor meerdere apparaten</h2></div>
+          <p data-i18n="essentialsLead">Gemaakt met liefde, voor je Mac, iPhone, iPad, Raspberry Pi en ESP32 device.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <div class="ha-badge">
+              <img src="https://brands.home-assistant.io/_/homeassistant/icon.png" alt="" aria-hidden="true" />
+              <span>Works with Home Assistant</span>
+            </div>
+            <h3 data-i18n="essentialsHaTitle">Home Assistant als basis</h3>
+            <p data-i18n="essentialsHaText">Spotify integratie, voice assist en app koppeling lopen centraal via je smart-home.</p>
+          </article>
+          <article class="card">
+            <div class="icon">🔐</div>
+            <h3 data-i18n="essentialsSecureTitle">Veilige koppeling</h3>
+            <p data-i18n="essentialsSecureText">Account token & koppelgegevens worden veilig bewaard in versleutelde opslag.</p>
+          </article>
+          <article class="card">
+            <div class="icon">🔄</div>
+            <h3 data-i18n="essentialsWorkflowTitle">Meerdere interfaces</h3>
+            <p data-i18n="essentialsWorkflowText">Gebruik DJConnect op je favoriete Apple scherm of embedded device.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="apps">
+      <div class="wrap">
+        <div class="section-head">
+          <div><h2 data-i18n="appsTitle">Kies je interface</h2></div>
+          <p data-i18n="appsLead">Begin bij het platform dat past bij hoe je muziek bedient.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card platform-card">
+            <div>
+              <div class="topline"><h3>macOS</h3><span class="tag">Desktop</span></div>
+              <p data-i18n="macText">Voor vaste bediening op je Mac: zoeken, output kiezen en de DJConnect-status in beeld houden.</p>
+            </div>
+            <div class="download-actions" aria-label="macOS downloads" data-i18n-attr="aria-label:macDownloadsLabel">
+              <a class="store-link primary" href="#" aria-disabled="true" data-store-link="macos">Mac App Store</a>
+              <a class="store-link" href="../macos.html" data-i18n="macMore">Meer over macOS</a>
+            </div>
+          </article>
+          <article class="card platform-card">
+            <div>
+              <div class="topline"><h3>Windows</h3><span class="tag">Desktop</span></div>
+              <p data-i18n="windowsText">Voor desktopbediening op Windows: Ask DJ, playback-acties en outputkeuze via je Home Assistant integratie.</p>
+            </div>
+            <div class="download-actions" aria-label="Windows downloads" data-i18n-attr="aria-label:windowsDownloadsLabel">
+              <a class="store-link primary" href="../windows.html#downloads" data-i18n="windowsDownloadsCta">Windows builds</a>
+              <a class="store-link" href="../windows.html" data-i18n="windowsMore">Meer over Windows</a>
+            </div>
+          </article>
+          <article class="card platform-card">
+            <div>
+              <div class="topline"><h3>Mac Catalyst</h3><span class="tag" data-i18n="macCatalystTag">Validatie</span></div>
+              <p data-i18n="macCatalystText">Unsigned Mac Catalyst build voor diagnostics en interne validatie naast de Windows client.</p>
+            </div>
+            <div class="download-actions" aria-label="Mac Catalyst downloads" data-i18n-attr="aria-label:macCatalystDownloadsLabel">
+              <a class="store-link primary" href="../maccatalyst.html#downloads" data-i18n="macCatalystDownloadsCta">Mac Catalyst builds</a>
+              <a class="store-link" href="../maccatalyst.html" data-i18n="macCatalystMore">Meer over Mac Catalyst</a>
+            </div>
+          </article>
+          <article class="card platform-card">
+            <div>
+              <div class="topline"><h3 data-i18n="iosTitle">iPhone en iPad</h3><span class="tag" data-i18n="iosTag">Mobiel</span></div>
+              <p data-i18n="iosText">Voor snelle bediening dichtbij: bank, keuken, studio of overal waar je je telefoon al gebruikt.</p>
+            </div>
+            <div class="download-actions" aria-label="iOS downloads" data-i18n-attr="aria-label:iosDownloadsLabel">
+              <a class="store-link primary" href="#" aria-disabled="true" data-store-link="ios">App Store</a>
+              <a class="store-link" href="../ios.html" data-i18n="iosMore">Meer over iOS</a>
+            </div>
+          </article>
+          <article class="card platform-card">
+            <div>
+              <div class="topline"><h3 data-i18n="voiceAssistantTitle">Voice Assistant</h3><span class="tag" data-i18n="voiceAssistantTag">Assist</span></div>
+              <p data-i18n="voiceAssistantText">Gebruik DJConnect via Home Assistant Assist en ondersteunde voice satellites, zonder aparte DJConnect hardware-client.</p>
+            </div>
+            <a class="btn" href="../voice-assistant.html" data-i18n="voiceAssistantMore">Meer over Voice Assistant</a>
+          </article>
+          <article class="card platform-card">
+            <div>
+              <div class="topline"><h3 data-i18n="embeddedTitle">Embedded device</h3><span class="tag">ESP32</span></div>
+              <p data-i18n="embeddedText">De fysieke DJConnect-ervaring met LilyGO T-Embed, push-to-talk, displayfeedback en OTA-updates.</p>
+            </div>
+            <a class="btn" href="../embedded.html" data-i18n="embeddedCta">Meer over ESP32</a>
+          </article>
+          <article class="card platform-card">
+            <div>
+              <div class="topline"><h3 data-i18n="raspberryTitle">Linux</h3><span class="tag" data-i18n="raspberryTag">Raspberry Pi</span></div>
+              <p data-i18n="raspberryText">Voor een vaste DJConnect app op Linux: ideaal als klein scherm of dedicated muziekcontroller.</p>
+            </div>
+            <a class="btn" href="../raspberry-pi.html" data-i18n="raspberryMore">Meer over Linux</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="wrap legal">
+    <p data-i18n="legalCopyright">Copyright Peter van Tol 2026. Released under the MIT License. DJConnect firmware and apps may be distributed separately.</p>
+    <p data-i18n="legalSpotify">Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility.</p>
+    <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
+    <p><a href="../privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="../support.html" data-i18n="legalSupport">Support</a></p>
+    <p class="site-version">DJConnect website v3.2.4</p>
+  </footer>
+  <script src="../assets/voice-intents.js"></script>
+  <script>
+    const translations = {
+          nl: {
+                title: "DJConnect. Muziekbediening met karakter",
+                metaDescription: "DJConnect 3.2 verbindt fysieke muziekbediening, Ask DJ, Home Assistant en Spotify Direct of Music Assistant op apps en local devices.",
+                navLabel: "Navigatie",
+                languageToggle: "Taalkeuze",
+                navFeatures: "Features",
+                navAskDj: "Ask DJ",
+                navVoice: "Spraak",
+                navBlog: "Blog",
+                navApps: "Installeren",
+                navSupport: "Support",
+                navPrivacy: "Privacy",
+                navMenu: "Menu",
+                navChoose: "Aan de slag",
+                heroTitle: "DJConnect. Muziekbediening met karakter.",
+                heroLead: "DJConnect brengt fysieke controls, Ask DJ en Home Assistant samen voor Spotify Direct of Music Assistant. ESP32 en Raspberry Pi blijven local-first; iOS, macOS en Windows kunnen na lokale pairing ook remote werken.",
+                heroPrimary: "Aan de slag",
+                examplesLabel: "Vraag muziek aan met je stem, zeg bijvoorbeeld:",
+                examplesTitle: "Vraag muziek aan met je stem, zeg bijvoorbeeld:",
+                examplesMore: "Bekijk meer spraakvoorbeelden",
+                askDjTitle: "Ask DJ",
+                askDjLead: "Ask DJ is je AI-DJ chat voor muziekvragen, playback-acties, Track Insight en optionele persoonlijke aanbevelingen via Home Assistant.",
+                askDjChatTitle: "Meer dan muziekcommands",
+                askDjChatText: "Stel muziekvragen in natuurlijke taal. Ask DJ werkt ook als Music DNA uit staat; met opt-in kan Home Assistant compacte Music DNA signalen gebruiken om persoonlijker te antwoorden.",
+                askDjExamplesLabel: "Ask DJ voorbeeldvragen",
+                askDjExample1: "\"Waarom koos je dit nummer?\"",
+                askDjExample2: "\"Welke muziek raad je mij aan?\"",
+                askDjExample3: "\"Omschrijf eens waar ik de afgelopen maand naar luisterde.\"",
+                askDjExample4: "\"Volgende nummer.\"",
+                askDjExample5: "\"Zet iets rustigers op.\"",
+                askDjFlowTitle: "Hoe het werkt",
+                askDjStep1: "Vraag iets aan Ask DJ via chat of push-to-talk.",
+                askDjStep2: "Home Assistant haalt context, history en playbackstatus op.",
+                askDjStep3: "DJConnect antwoordt met tekst, bronnen, afbeeldingen en optionele audio.",
+                askDjStep4: "Bij concrete aanbevelingen kies je zelf Play Now; playback start pas na jouw tap.",
+                musicDnaOptionalTitle: "Ask DJ zonder Music DNA",
+                musicDnaOptionalText: "Ask DJ works without Music DNA. Als je niet opt-in doet, werkt Ask DJ normaal voor vragen, playback, Track Insight en gewone antwoorden, maar DJConnect bouwt of gebruikt geen persoonlijk luisterprofiel.",
+                musicDnaOptInTitle: "Music DNA is opt-in",
+                musicDnaOptInText: "Music DNA is opt-in. Totdat je het inschakelt, bouwt DJConnect geen Music DNA kennis uit Ask DJ, luisterprofielen, recente tracks, voorkeuren of aanbevelingen.",
+                musicDnaClearTitle: "Altijd wisbaar",
+                musicDnaClearText: "You can clear Music DNA at any time. Als Music DNA aan blijft, begint DJConnect opnieuw vanaf een leeg profiel. Zet je het uit, dan wordt learned DNA gewist en stopt verdere opbouw.",
+                liveAnalysisTitle: "Track Insight",
+                liveAnalysisLead: "Vraag Ask DJ om de track die nu speelt technisch uit te leggen, alsof er een DJ-assistent naast je staat. Je krijgt bruikbare duiding zonder dat DJConnect doet alsof onbekende songdelen of meetdata zeker zijn.",
+                liveAnalysisBenefit1Title: "Vraag natuurlijk",
+                liveAnalysisBenefit1Text: "Zeg “Geef Track Insight voor dit nummer”, “Wat is de BPM en opbouw?” of “Give me Track Insight for this song”.",
+                liveAnalysisBenefit2Title: "Read-only",
+                liveAnalysisBenefit2Text: "De analyse verandert je playback nooit; hij kijkt alleen mee met wat er nu speelt.",
+                liveAnalysisBenefit3Title: "DJ-bruikbaar",
+                liveAnalysisBenefit3Text: "BPM, key, energie, groove, opbouw, klank, beperkingen en mix- of set-tips waar beschikbaar.",
+                liveAnalysisBenefit4Title: "Client-ready",
+                liveAnalysisBenefit4Text: "Antwoorden kunnen als sections, timeline en DJ tips worden getoond op clients die dit ondersteunen.",
+                liveAnalysisBenefit5Title: "Local-first",
+                liveAnalysisBenefit5Text: "Ask DJ werkt via je eigen Home Assistant installatie; er is geen centrale DJConnect backend nodig voor Track Insight.",
+                liveAnalysisBenefit6Title: "Provider-ready",
+                liveAnalysisBenefit6Text: "Gebouwd voor beschikbare backenddata, Home Assistant Conversation en lokale fallback, later uitbreidbaar met eigen analyzers of providers.",
+                liveAnalysisHowTitle: "Hoe het werkt",
+                liveAnalysisStep1: "Je vraagt Ask DJ om technische analyse van de huidige track.",
+                liveAnalysisStep2: "Home Assistant verzamelt playbackcontext en beschikbare brondata, zonder raw audio of secrets in het analysecontract.",
+                liveAnalysisStep3: "DJConnect geeft een transparant antwoord met confidence, source, limitations, timeline en DJ tips.",
+                liveAnalysisTrustTitle: "Transparant over wat bekend is",
+                liveAnalysisTrustText: "Als exacte BPM, key, waveform of secties niet beschikbaar zijn, zegt DJConnect dat eerlijk. Het verzint geen intro, couplet, refrein of drop alsof die gemeten zijn.",
+                liveAnalysisPrivacyTitle: "Privacy-first analyse",
+                liveAnalysisPrivacyText: "Trackanalyse blijft local-first via Home Assistant. Analysecontracten en logs horen geen raw audio, Spotify OAuth tokens, Home Assistant tokens, secrets of volledige prompts te bevatten.",
+                liveAnalysisDeveloperTitle: "Voor clients en makers",
+                liveAnalysisDeveloperText: "De output is bedoeld om direct renderbaar te zijn: compacte sections, een timeline met bron/confidence en concrete DJ tips. Zo kunnen iOS, macOS, Windows en toekomstige clients dezelfde analyse netjes tonen.",
+                liveAnalysisPrimaryCta: "Installeer DJConnect",
+                liveAnalysisSecondaryCta: "Probeer Ask DJ",
+                askDjContinuityTitle: "Continuity op Watch, iPhone, Mac en Windows",
+                askDjContinuityText: "Ask DJ history wordt server-side per Home Assistant gebruiker bewaard en is begrensd. Als de limiet is bereikt, trimt Home Assistant oudste berichten en blijven clients via trim metadata netjes in sync.",
+                askDjFollowupTitle: "Follow-ups met Ja/Nee",
+                askDjFollowupText: "Soms stelt Ask DJ een vervolgvraag, bijvoorbeeld na “Goedemorgen” of “Wil je dit nu afspelen?”. Clients kunnen dan duidelijke Ja/Nee-controls tonen.",
+                askDjVoiceTitle: "Voice en audio",
+                askDjVoiceText: "iOS, macOS, Apple Watch en Windows kunnen voice/PTT gebruiken. Home Assistant STT transcribeert; TTS kan audio-antwoorden leveren. Replay verschijnt alleen als er audio beschikbaar is.",
+                askDjActionsTitle: "Van vraag naar actie",
+                askDjActionsText: "Vraag om muziek, kies een player of output, start een suggestie of bevestig een vervolgactie. Ask DJ toont alleen acties die je actieve music backend ondersteunt.",
+                askDjAnalysisTitle: "Ask DJ Track Insight",
+                askDjAnalysisText: "Laat Ask DJ uitleggen waarom een track werkt. Vraag “Geef Track Insight voor dit nummer” voor BPM, key, energiecurve, groove, structuur, instrumentatie, productie en mixbaarheid waar data of context dat ondersteunt; Track Insight toont ook bron, confidence en beperkingen.",
+                askDjNotificationsTitle: "Optionele meldingen",
+                askDjNotificationsText: "Apple clients kunnen optionele pushmeldingen gebruiken als wake- of attentionhint voor Ask DJ-sync. Push bevat geen tokens, volledige antwoorden, audio of history; de app haalt inhoud via Home Assistant op.",
+                askDjPrivacyTitle: "Privacy compact gehouden",
+                askDjPrivacyText: "Clients do not store your persistent Music DNA profile. Spotify credentials stay in Home Assistant. Music DNA mag geen OAuth tokens, bearer tokens, raw audio, volledige prompts of volledige chatgeschiedenis opslaan.",
+                askDjPiTitle: "Raspberry Pi leest mee",
+                askDjPiText: "Op Raspberry Pi is Ask DJ gericht op local-only gebruik en read-only history display. Chat/history blijft bij app-clients; ESP gebruikt PTT/playback command flow zonder Ask DJ chat history.",
+                askDjRequirementsTitle: "Wat je nodig hebt",
+                askDjRequirementsText: "Home Assistant, HACS DJConnect integration, een music backend, lokale pairing en voor voice/audio een Assist pipeline met STT/TTS. Spotify Premium en Client ID zijn alleen nodig voor Spotify Direct; Music Assistant gebruikt eigen providers.",
+                aiPrivacyTitle: "AI privacy-first",
+                aiPrivacyText: "DJConnect is ontworpen als Home Assistant-first systeem. De Home Assistant integration orkestreert Ask DJ, playback, Assist/STT/TTS en Music DNA; DJConnect's active integration routes use Home Assistant Assist/STT/TTS and do not call direct external AI/STT/TTS APIs.",
+                clientTransparencyTitle: "Transparant in clients",
+                clientTransparencyText: "Het Music DNA scherm haalt structured profile data op uit Home Assistant. Als Music DNA uit staat, toont de client een opt-in of empty state; clients reconstrueren geen fake persistent profile uit lokale Track Insight history.",
+                faqAskDjDnaQuestion: "Does Ask DJ require Music DNA?",
+                faqAskDjDnaAnswer: "No. Ask DJ works without Music DNA. Zonder opt-in gebruikt Ask DJ geen opgeslagen persoonlijke Music DNA context.",
+                faqDnaStoredQuestion: "Where is Music DNA stored?",
+                faqDnaStoredAnswer: "Music DNA is server-side in Home Assistant. Clients do not store your persistent Music DNA profile.",
+                faqDnaDeleteQuestion: "Can I delete Music DNA?",
+                faqDnaDeleteAnswer: "You can clear Music DNA at any time. Als Music DNA aan blijft, begint DJConnect opnieuw vanaf een leeg profiel.",
+                faqSpotifyQuestion: "Does DJConnect store Spotify credentials on devices?",
+                faqSpotifyAnswer: "No. Spotify credentials stay in Home Assistant. ESP32 bewaart geen Spotify credentials en krijgt geen Ask DJ chat history.",
+                faqCloudQuestion: "Does DJConnect send raw audio or prompts to its own cloud?",
+                faqCloudAnswer: "No. Ruwe audio wordt standaard niet opgeslagen en diagnostics bevatten geen raw audio, full prompts, Ask DJ history of Music DNA dumps.",
+                faqSpotifyAffiliationQuestion: "Is DJConnect affiliated with Spotify?",
+                faqSpotifyAffiliationAnswer: "DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.",
+                stageLabel: "DJConnect platformoverzicht",
+                stageCarouselLabel: "Platform opties",
+                carouselPrev: "Vorige slide",
+                carouselNext: "Volgende slide",
+                iosSlideLabel: "Vraag je volgende hit aan",
+                embeddedSlideLabel: "Luister naar persoonlijke DJ aankondiging",
+                stageText: "DJConnect in een oogopslag",
+                stageScreenText: "Local-first, apps remote-capable",
+                platformTitle: "De kern van DJConnect",
+                platformLead: "DJConnect brengt je muziekwens, playerkeuze, fysieke controls en persoonlijke DJ-feedback samen in één Home Assistant-ervaring.",
+                platformVoiceTitle: "Vraag muziek natuurlijk",
+                platformVoiceText: "Zeg welke artiest je wilt horen. DJConnect routeert via Home Assistant Assist en je actieve music backend.",
+                platformPlaybackTitle: "Bedien je playback",
+                platformPlaybackText: "Kies je player of output, start of pauzeer muziek en houd grip op wat er nu speelt of hierna komt.",
+                platformFeedbackTitle: "Krijg DJ-feedback",
+                platformFeedbackText: "DJConnect reageert kort en persoonlijk, zodat de ervaring meer voelt als een DJ dan als een afstandsbediening.",
+                essentialsTitle: "Powered by Home Assistant, beschikbaar voor meerdere apparaten",
+                essentialsLead: "Gemaakt met liefde, voor je Mac, Windows desktop, iPhone, iPad, Raspberry Pi en ESP32 device.",
+                essentialsHaTitle: "Home Assistant als basis",
+                essentialsHaText: "Music backend, voice assist, pairing en Ask DJ history lopen centraal via je smart-home.",
+                essentialsSecureTitle: "Veilige koppeling",
+                essentialsSecureText: "Geen DJConnect cloud-account nodig voor core gebruik. Pairing gebeurt lokaal; app clients bewaren alleen hun eigen koppelstatus.",
+                essentialsWorkflowTitle: "Meerdere interfaces",
+                essentialsWorkflowText: "Gebruik remote-capable apps op desktop/mobiel en local-only ESP32 of Raspberry Pi hardware in huis.",
+                appsTitle: "Kies je interface",
+                appsLead: "Begin bij het platform dat past bij hoe je muziek bedient.",
+                macText: "Voor vaste of remote-capable bediening op je Mac na lokale pairing: zoeken, output kiezen en DJConnect-status in beeld houden.",
+                macDownloadsLabel: "macOS downloads",
+                macMore: "Meer over macOS",
+                windowsText: "Voor local of remote desktopbediening op Windows: Ask DJ, backend-aware playback-acties en outputkeuze via Home Assistant.",
+                windowsDownloadsLabel: "Windows downloads",
+                windowsDownloadsCta: "Windows builds",
+                windowsMore: "Meer over Windows",
+                macCatalystTag: "Validatie",
+                macCatalystText: "Unsigned Mac Catalyst build voor diagnostics en interne validatie naast de Windows client.",
+                macCatalystDownloadsLabel: "Mac Catalyst downloads",
+                macCatalystDownloadsCta: "Mac Catalyst builds",
+                macCatalystMore: "Meer over Mac Catalyst",
+                iosTitle: "iPhone en iPad",
+                iosTag: "Mobiel",
+                iosText: "Voor snelle bediening dichtbij of remote na lokale pairing: bank, keuken, studio of onderweg via je Home Assistant URL.",
+                iosDownloadsLabel: "iOS downloads",
+                iosMore: "Meer over iOS",
+                voiceAssistantTitle: "Voice Assistant",
+                voiceAssistantTag: "Assist",
+                voiceAssistantText: "Gebruik DJConnect via Home Assistant Assist en ondersteunde voice satellites, zonder aparte DJConnect hardware-client.",
+                voiceAssistantMore: "Meer over Voice Assistant",
+                embeddedTitle: "Embedded device",
+                embeddedText: "De local-only fysieke DJConnect-ervaring met LilyGO T-Embed, push-to-talk, displayfeedback en OTA-updates.",
+                embeddedCta: "Meer over ESP32",
+                raspberryTitle: "Linux",
+                raspberryTag: "Raspberry Pi",
+                raspberryText: "Voor een vaste local-only DJConnect app op Linux: ideaal als klein scherm of dedicated muziekcontroller.",
+                raspberryMore: "Meer over Linux",
+                legalCopyright: "Copyright Peter van Tol 2026. Released under the MIT License. DJConnect firmware and apps may be distributed separately.",
+                legalSpotify: "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility.",
+                legalPrivacy: "Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          },
+          en: {
+                title: "DJConnect. A personal music platform for every device",
+                metaDescription: "DJConnect 3.2 connects physical music control, Ask DJ, Home Assistant and Spotify Direct or Music Assistant across apps and local devices.",
+                navLabel: "Navigation",
+                languageToggle: "Language",
+                navFeatures: "Features",
+                navAskDj: "Ask DJ",
+                navVoice: "Voice",
+                navBlog: "Blog",
+                navApps: "Install",
+                navSupport: "Support",
+                navPrivacy: "Privacy",
+                navMenu: "Menu",
+                navChoose: "How to start",
+                heroTitle: "DJConnect. Music control with character.",
+                heroLead: "DJConnect brings physical controls, Ask DJ and Home Assistant together for Spotify Direct or Music Assistant. ESP32 and Raspberry Pi stay local-first; iOS, macOS and Windows can work remotely after local pairing.",
+                heroPrimary: "How to start",
+                examplesLabel: "Request music with your voice, for example:",
+                examplesTitle: "Request music with your voice, for example:",
+                examplesMore: "See more voice examples",
+                askDjTitle: "Ask DJ",
+                askDjLead: "Ask DJ is your AI DJ chat for music questions, playback actions, Track Insight and optional personal recommendations through Home Assistant.",
+                askDjChatTitle: "More than music commands",
+                askDjChatText: "Ask music questions in natural language. Ask DJ works when Music DNA is off; with opt-in, Home Assistant can use compact Music DNA signals for more personal answers.",
+                askDjExamplesLabel: "Ask DJ example questions",
+                askDjExample1: "\"Why did you choose this track?\"",
+                askDjExample2: "\"What music would you recommend for me?\"",
+                askDjExample3: "\"Describe what I listened to over the past month.\"",
+                askDjExample4: "\"Next track.\"",
+                askDjExample5: "\"Put on something calmer.\"",
+                askDjFlowTitle: "How it works",
+                askDjStep1: "Ask DJ something through chat or push-to-talk.",
+                askDjStep2: "Home Assistant fetches context, history and playback status.",
+                askDjStep3: "DJConnect replies with text, sources, images and optional audio.",
+                askDjStep4: "For concrete recommendations you choose Play Now yourself; playback starts only after your tap.",
+                musicDnaOptionalTitle: "Ask DJ without Music DNA",
+                musicDnaOptionalText: "Ask DJ works without Music DNA. If you do not opt in, Ask DJ still works normally for questions, playback, Track Insight and regular responses, but DJConnect will not build or use a personal listening profile.",
+                musicDnaOptInTitle: "Music DNA is opt-in",
+                musicDnaOptInText: "Music DNA is opt-in. Until you enable it, DJConnect does not build Music DNA knowledge from Ask DJ, listening profiles, recent tracks, preferences, or recommendations.",
+                musicDnaClearTitle: "Always clearable",
+                musicDnaClearText: "You can clear Music DNA at any time. If Music DNA remains enabled, DJConnect starts learning again from an empty profile. If you turn it off, learned DNA is cleared and future learning stops.",
+                liveAnalysisTitle: "Track Insight",
+                liveAnalysisLead: "Ask DJ can technically explain the track that is playing now, like having a DJ assistant next to you. You get useful context without DJConnect pretending unknown song sections or measured data are certain.",
+                liveAnalysisBenefit1Title: "Ask naturally",
+                liveAnalysisBenefit1Text: "Say “Geef Track Insight voor dit nummer”, “Wat is de BPM en opbouw?” or “Give me Track Insight for this song”.",
+                liveAnalysisBenefit2Title: "Read-only",
+                liveAnalysisBenefit2Text: "Analysis never changes playback; it only looks at what is playing now.",
+                liveAnalysisBenefit3Title: "Useful for DJing",
+                liveAnalysisBenefit3Text: "BPM, key, energy, groove, arrangement, sound, limitations and mix or set tips where available.",
+                liveAnalysisBenefit4Title: "Client-ready",
+                liveAnalysisBenefit4Text: "Replies can be rendered as sections, timeline and DJ tips on clients that support it.",
+                liveAnalysisBenefit5Title: "Local-first",
+                liveAnalysisBenefit5Text: "Ask DJ works through your own Home Assistant installation; no central DJConnect backend is needed for Track Insight.",
+                liveAnalysisBenefit6Title: "Provider-ready",
+                liveAnalysisBenefit6Text: "Built for available backend data, Home Assistant Conversation and local fallback, expandable later with your own analyzers or providers.",
+                liveAnalysisHowTitle: "How it works",
+                liveAnalysisStep1: "Ask DJ for Track Insight on the current track.",
+                liveAnalysisStep2: "Home Assistant gathers playback context and available source data without raw audio or secrets in the analysis contract.",
+                liveAnalysisStep3: "DJConnect returns a transparent answer with confidence, source, limitations, timeline and DJ tips.",
+                liveAnalysisTrustTitle: "Clear about what is known",
+                liveAnalysisTrustText: "If exact BPM, key, waveform or sections are not available, DJConnect says so. It does not invent an intro, verse, chorus or drop as if they were measured.",
+                liveAnalysisPrivacyTitle: "Privacy-first analysis",
+                liveAnalysisPrivacyText: "Track analysis stays local-first through Home Assistant. Analysis contracts and logs should not contain raw audio, Spotify OAuth tokens, Home Assistant tokens, secrets or full prompts.",
+                liveAnalysisDeveloperTitle: "For clients and makers",
+                liveAnalysisDeveloperText: "The output is designed to be directly renderable: compact sections, a timeline with source/confidence and concrete DJ tips. iOS, macOS, Windows and future clients can show the same analysis cleanly.",
+                liveAnalysisPrimaryCta: "Install DJConnect",
+                liveAnalysisSecondaryCta: "Try Ask DJ",
+                askDjContinuityTitle: "Continuity on Watch, iPhone, Mac and Windows",
+                askDjContinuityText: "Ask DJ history is stored server-side per Home Assistant user and is bounded. When the limit is reached, Home Assistant trims oldest messages and clients stay in sync through trim metadata.",
+                askDjFollowupTitle: "Follow-ups with Yes/No",
+                askDjFollowupText: "Ask DJ can ask a follow-up question, for example after “Good morning” or “Do you want to play this now?”. Clients can then show clear Yes/No controls.",
+                askDjVoiceTitle: "Voice and audio",
+                askDjVoiceText: "iOS, macOS, Apple Watch and Windows can use voice/PTT. Home Assistant STT transcribes; TTS can provide audio replies. Replay appears only when audio is available.",
+                askDjActionsTitle: "From request to action",
+                askDjActionsText: "Ask for music, choose a player or output, start a suggestion or confirm a follow-up action. Ask DJ shows only actions your active music backend supports.",
+                askDjAnalysisTitle: "Ask DJ Track Insight",
+                askDjAnalysisText: "Let Ask DJ explain why a track works. Ask “Give me Track Insight for this song” for BPM, key, energy curve, groove, structure, instrumentation, production and mixability where data or context supports it, based on available context and optional providers you configure.",
+                askDjNotificationsTitle: "Optional notifications",
+                askDjNotificationsText: "Apple clients can use optional push notifications as wake or attention hints for Ask DJ sync. Push contains no tokens, full replies, audio or history; the app fetches content through Home Assistant.",
+                askDjPrivacyTitle: "Privacy kept compact",
+                askDjPrivacyText: "Clients do not store your persistent Music DNA profile. Spotify credentials stay in Home Assistant. Music DNA must not store OAuth tokens, bearer tokens, raw audio, full prompts or full chat history.",
+                askDjPiTitle: "Raspberry Pi follows along",
+                askDjPiText: "On Raspberry Pi, Ask DJ is focused on local-only use and read-only history display. Chat/history stays with app clients; ESP uses the PTT/playback command flow without Ask DJ chat history.",
+                askDjRequirementsTitle: "What you need",
+                askDjRequirementsText: "Home Assistant, HACS DJConnect integration, a music backend, local pairing and, for voice/audio, an Assist pipeline with STT/TTS. Spotify Premium and Client ID are only needed for Spotify Direct; Music Assistant uses its own providers.",
+                aiPrivacyTitle: "AI privacy-first",
+                aiPrivacyText: "DJConnect is designed as a Home Assistant-first system. The Home Assistant integration orchestrates Ask DJ, playback, Assist/STT/TTS and Music DNA; DJConnect's active integration routes use Home Assistant Assist/STT/TTS and do not call direct external AI/STT/TTS APIs.",
+                clientTransparencyTitle: "Transparent clients",
+                clientTransparencyText: "The Music DNA screen fetches structured profile data from Home Assistant. When Music DNA is disabled, the client shows an opt-in or empty state; clients do not reconstruct a fake persistent profile from local Track Insight history.",
+                faqAskDjDnaQuestion: "Does Ask DJ require Music DNA?",
+                faqAskDjDnaAnswer: "No. Ask DJ works without Music DNA. Without opt-in, Ask DJ does not use stored personal Music DNA context.",
+                faqDnaStoredQuestion: "Where is Music DNA stored?",
+                faqDnaStoredAnswer: "Music DNA is server-side in Home Assistant. Clients do not store your persistent Music DNA profile.",
+                faqDnaDeleteQuestion: "Can I delete Music DNA?",
+                faqDnaDeleteAnswer: "You can clear Music DNA at any time. If Music DNA remains enabled, DJConnect starts learning again from an empty profile.",
+                faqSpotifyQuestion: "Does DJConnect store Spotify credentials on devices?",
+                faqSpotifyAnswer: "No. Spotify credentials stay in Home Assistant. ESP32 stores no Spotify credentials and receives no Ask DJ chat history.",
+                faqCloudQuestion: "Does DJConnect send raw audio or prompts to its own cloud?",
+                faqCloudAnswer: "No. Raw audio is not stored by default and diagnostics contain no raw audio, full prompts, Ask DJ history or Music DNA dumps.",
+                faqSpotifyAffiliationQuestion: "Is DJConnect affiliated with Spotify?",
+                faqSpotifyAffiliationAnswer: "DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.",
+                stageLabel: "DJConnect platform overview",
+                stageCarouselLabel: "Platform options",
+                carouselPrev: "Previous slide",
+                carouselNext: "Next slide",
+                iosSlideLabel: "With voice activation",
+                embeddedSlideLabel: "Listen to personal DJ announcements",
+                stageText: "DJConnect. At a glance",
+                stageScreenText: "Local-first, apps remote-capable",
+                platformTitle: "The core of DJConnect",
+                platformLead: "DJConnect brings your music request, player choice, physical controls and personal DJ feedback together in one Home Assistant experience.",
+                platformVoiceTitle: "Ask for music naturally",
+                platformVoiceText: "Say which artist you want to hear. DJConnect routes through Home Assistant Assist and your active music backend.",
+                platformPlaybackTitle: "Control playback",
+                platformPlaybackText: "Choose your player or output, start or pause music and keep control of what is playing now or coming next.",
+                platformFeedbackTitle: "Get DJ feedback",
+                platformFeedbackText: "DJConnect responds briefly and personally, so the experience feels more like a DJ than a remote control.",
+                essentialsTitle: "Powered by Home Assistant, available for multiple devices",
+                essentialsLead: "Made with care for your Mac, Windows desktop, iPhone, iPad, Raspberry Pi and ESP32 device.",
+                essentialsHaTitle: "Home Assistant as the base",
+                essentialsHaText: "Music backend, voice assist, pairing and Ask DJ history run centrally through your smart home.",
+                essentialsSecureTitle: "Secure pairing",
+                essentialsSecureText: "No DJConnect cloud account is needed for core use. Pairing happens locally; app clients keep only their own pairing state.",
+                essentialsWorkflowTitle: "Multiple interfaces",
+                essentialsWorkflowText: "Use remote-capable apps on desktop/mobile and local-only ESP32 or Raspberry Pi hardware at home.",
+                appsTitle: "Choose your interface",
+                appsLead: "Start with the platform that fits how you control music.",
+                macText: "For fixed or remote-capable control on your Mac after local pairing: search, choose output and keep DJConnect status in view.",
+                macDownloadsLabel: "macOS downloads",
+                macMore: "More about macOS",
+                windowsText: "For local or remote desktop control on Windows: Ask DJ, backend-aware playback actions and output choice through Home Assistant.",
+                windowsDownloadsLabel: "Windows downloads",
+                windowsDownloadsCta: "Windows builds",
+                windowsMore: "More about Windows",
+                macCatalystTag: "Validation",
+                macCatalystText: "Unsigned Mac Catalyst build for diagnostics and internal validation alongside the Windows client.",
+                macCatalystDownloadsLabel: "Mac Catalyst downloads",
+                macCatalystDownloadsCta: "Mac Catalyst builds",
+                macCatalystMore: "More about Mac Catalyst",
+                iosTitle: "iPhone and iPad",
+                iosTag: "Mobile",
+                iosText: "For fast control nearby or remotely after local pairing: couch, kitchen, studio or away through your Home Assistant URL.",
+                iosDownloadsLabel: "iOS downloads",
+                iosMore: "More about iOS",
+                voiceAssistantTitle: "Voice Assistant",
+                voiceAssistantTag: "Assist",
+                voiceAssistantText: "Use DJConnect through Home Assistant Assist and supported voice satellites, without a separate DJConnect hardware client.",
+                voiceAssistantMore: "More about Voice Assistant",
+                embeddedTitle: "Embedded device",
+                embeddedText: "The local-only physical DJConnect experience with LilyGO T-Embed, push-to-talk, display feedback and OTA updates.",
+                embeddedCta: "More about ESP32",
+                raspberryTitle: "Linux",
+                raspberryTag: "Raspberry Pi",
+                raspberryText: "For a fixed local-only DJConnect app on Linux: ideal as a small screen or dedicated music controller.",
+                raspberryMore: "More about Linux",
+                legalCopyright: "Copyright Peter van Tol 2026. Released under the MIT License. DJConnect firmware and apps may be distributed separately.",
+                legalSpotify: "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility.",
+                legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          },
+          de: {
+                title: "DJConnect. A personal music platform for every device",
+                metaDescription: "DJConnect 3.2 connects physical music control, Ask DJ, Home Assistant and Spotify Direct or Music Assistant across apps and local devices.",
+                navLabel: "Navigation",
+                languageToggle: "Language",
+                navFeatures: "Features",
+                navAskDj: "Ask DJ",
+                navVoice: "Voice",
+                navBlog: "Blog",
+                navApps: "Install",
+                navSupport: "Support",
+                navPrivacy: "Privacy",
+                navMenu: "Menu",
+                navChoose: "How to start",
+                heroTitle: "DJConnect. Music control with character.",
+                heroLead: "DJConnect brings physical controls, Ask DJ and Home Assistant together for Spotify Direct or Music Assistant. ESP32 and Raspberry Pi stay local-first; iOS, macOS and Windows can work remotely after local pairing.",
+                heroPrimary: "How to start",
+                examplesLabel: "Request music with your voice, for example:",
+                examplesTitle: "Request music with your voice, for example:",
+                examplesMore: "See more voice examples",
+                askDjTitle: "Ask DJ",
+                askDjLead: "Ask DJ is your AI DJ chat for music questions, playback actions, Track Insight and optional personal recommendations through Home Assistant.",
+                askDjChatTitle: "More than music commands",
+                askDjChatText: "Ask music questions in natural language. Ask DJ works when Music DNA is off; with opt-in, Home Assistant can use compact Music DNA signals for more personal answers.",
+                askDjExamplesLabel: "Ask DJ example questions",
+                askDjExample1: "\"Why did you choose this track?\"",
+                askDjExample2: "\"What music would you recommend for me?\"",
+                askDjExample3: "\"Describe what I listened to over the past month.\"",
+                askDjExample4: "\"Next track.\"",
+                askDjExample5: "\"Put on something calmer.\"",
+                askDjFlowTitle: "How it works",
+                askDjStep1: "Ask DJ something through chat or push-to-talk.",
+                askDjStep2: "Home Assistant fetches context, history and playback status.",
+                askDjStep3: "DJConnect replies with text, sources, images and optional audio.",
+                askDjStep4: "For concrete recommendations you choose Play Now yourself; playback starts only after your tap.",
+                musicDnaOptionalTitle: "Ask DJ without Music DNA",
+                musicDnaOptionalText: "Ask DJ works without Music DNA. If you do not opt in, Ask DJ still works normally for questions, playback, Track Insight and regular responses, but DJConnect will not build or use a personal listening profile.",
+                musicDnaOptInTitle: "Music DNA is opt-in",
+                musicDnaOptInText: "Music DNA is opt-in. Until you enable it, DJConnect does not build Music DNA knowledge from Ask DJ, listening profiles, recent tracks, preferences, or recommendations.",
+                musicDnaClearTitle: "Always clearable",
+                musicDnaClearText: "You can clear Music DNA at any time. If Music DNA remains enabled, DJConnect starts learning again from an empty profile. If you turn it off, learned DNA is cleared and future learning stops.",
+                liveAnalysisTitle: "Track Insight",
+                liveAnalysisLead: "Ask DJ can technically explain the track that is playing now, like having a DJ assistant next to you. You get useful context without DJConnect pretending unknown song sections or measured data are certain.",
+                liveAnalysisBenefit1Title: "Ask naturally",
+                liveAnalysisBenefit1Text: "Say “Geef Track Insight voor dit nummer”, “Wat is de BPM en opbouw?” or “Give me Track Insight for this song”.",
+                liveAnalysisBenefit2Title: "Read-only",
+                liveAnalysisBenefit2Text: "Analysis never changes playback; it only looks at what is playing now.",
+                liveAnalysisBenefit3Title: "Useful for DJing",
+                liveAnalysisBenefit3Text: "BPM, key, energy, groove, arrangement, sound, limitations and mix or set tips where available.",
+                liveAnalysisBenefit4Title: "Client-ready",
+                liveAnalysisBenefit4Text: "Replies can be rendered as sections, timeline and DJ tips on clients that support it.",
+                liveAnalysisBenefit5Title: "Local-first",
+                liveAnalysisBenefit5Text: "Ask DJ works through your own Home Assistant installation; no central DJConnect backend is needed for Track Insight.",
+                liveAnalysisBenefit6Title: "Provider-ready",
+                liveAnalysisBenefit6Text: "Built for available backend data, Home Assistant Conversation and local fallback, expandable later with your own analyzers or providers.",
+                liveAnalysisHowTitle: "How it works",
+                liveAnalysisStep1: "Ask DJ for Track Insight on the current track.",
+                liveAnalysisStep2: "Home Assistant gathers playback context and available source data without raw audio or secrets in the analysis contract.",
+                liveAnalysisStep3: "DJConnect returns a transparent answer with confidence, source, limitations, timeline and DJ tips.",
+                liveAnalysisTrustTitle: "Clear about what is known",
+                liveAnalysisTrustText: "If exact BPM, key, waveform or sections are not available, DJConnect says so. It does not invent an intro, verse, chorus or drop as if they were measured.",
+                liveAnalysisPrivacyTitle: "Privacy-first analysis",
+                liveAnalysisPrivacyText: "Track analysis stays local-first through Home Assistant. Analysis contracts and logs should not contain raw audio, Spotify OAuth tokens, Home Assistant tokens, secrets or full prompts.",
+                liveAnalysisDeveloperTitle: "For clients and makers",
+                liveAnalysisDeveloperText: "The output is designed to be directly renderable: compact sections, a timeline with source/confidence and concrete DJ tips. iOS, macOS, Windows and future clients can show the same analysis cleanly.",
+                liveAnalysisPrimaryCta: "Install DJConnect",
+                liveAnalysisSecondaryCta: "Try Ask DJ",
+                askDjContinuityTitle: "Continuity on Watch, iPhone, Mac and Windows",
+                askDjContinuityText: "Ask DJ history is stored server-side per Home Assistant user and is bounded. When the limit is reached, Home Assistant trims oldest messages and clients stay in sync through trim metadata.",
+                askDjFollowupTitle: "Follow-ups with Yes/No",
+                askDjFollowupText: "Ask DJ can ask a follow-up question, for example after “Good morning” or “Do you want to play this now?”. Clients can then show clear Yes/No controls.",
+                askDjVoiceTitle: "Voice and audio",
+                askDjVoiceText: "iOS, macOS, Apple Watch and Windows can use voice/PTT. Home Assistant STT transcribes; TTS can provide audio replies. Replay appears only when audio is available.",
+                askDjActionsTitle: "From request to action",
+                askDjActionsText: "Ask for music, choose a player or output, start a suggestion or confirm a follow-up action. Ask DJ shows only actions your active music backend supports.",
+                askDjAnalysisTitle: "Ask DJ Track Insight",
+                askDjAnalysisText: "Let Ask DJ explain why a track works. Ask “Give me Track Insight for this song” for BPM, key, energy curve, groove, structure, instrumentation, production and mixability where data or context supports it, based on available context and optional providers you configure.",
+                askDjNotificationsTitle: "Optional notifications",
+                askDjNotificationsText: "Apple clients can use optional push notifications as wake or attention hints for Ask DJ sync. Push contains no tokens, full replies, audio or history; the app fetches content through Home Assistant.",
+                askDjPrivacyTitle: "Privacy kept compact",
+                askDjPrivacyText: "Clients do not store your persistent Music DNA profile. Spotify credentials stay in Home Assistant. Music DNA must not store OAuth tokens, bearer tokens, raw audio, full prompts or full chat history.",
+                askDjPiTitle: "Raspberry Pi follows along",
+                askDjPiText: "On Raspberry Pi, Ask DJ is focused on local-only use and read-only history display. Chat/history stays with app clients; ESP uses the PTT/playback command flow without Ask DJ chat history.",
+                askDjRequirementsTitle: "What you need",
+                askDjRequirementsText: "Home Assistant, HACS DJConnect integration, a music backend, local pairing and, for voice/audio, an Assist pipeline with STT/TTS. Spotify Premium and Client ID are only needed for Spotify Direct; Music Assistant uses its own providers.",
+                aiPrivacyTitle: "AI privacy-first",
+                aiPrivacyText: "DJConnect is designed as a Home Assistant-first system. The Home Assistant integration orchestrates Ask DJ, playback, Assist/STT/TTS and Music DNA; DJConnect's active integration routes use Home Assistant Assist/STT/TTS and do not call direct external AI/STT/TTS APIs.",
+                clientTransparencyTitle: "Transparent clients",
+                clientTransparencyText: "The Music DNA screen fetches structured profile data from Home Assistant. When Music DNA is disabled, the client shows an opt-in or empty state; clients do not reconstruct a fake persistent profile from local Track Insight history.",
+                faqAskDjDnaQuestion: "Does Ask DJ require Music DNA?",
+                faqAskDjDnaAnswer: "No. Ask DJ works without Music DNA. Without opt-in, Ask DJ does not use stored personal Music DNA context.",
+                faqDnaStoredQuestion: "Where is Music DNA stored?",
+                faqDnaStoredAnswer: "Music DNA is server-side in Home Assistant. Clients do not store your persistent Music DNA profile.",
+                faqDnaDeleteQuestion: "Can I delete Music DNA?",
+                faqDnaDeleteAnswer: "You can clear Music DNA at any time. If Music DNA remains enabled, DJConnect starts learning again from an empty profile.",
+                faqSpotifyQuestion: "Does DJConnect store Spotify credentials on devices?",
+                faqSpotifyAnswer: "No. Spotify credentials stay in Home Assistant. ESP32 stores no Spotify credentials and receives no Ask DJ chat history.",
+                faqCloudQuestion: "Does DJConnect send raw audio or prompts to its own cloud?",
+                faqCloudAnswer: "No. Raw audio is not stored by default and diagnostics contain no raw audio, full prompts, Ask DJ history or Music DNA dumps.",
+                faqSpotifyAffiliationQuestion: "Is DJConnect affiliated with Spotify?",
+                faqSpotifyAffiliationAnswer: "DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.",
+                stageLabel: "DJConnect platform overview",
+                stageCarouselLabel: "Platform options",
+                carouselPrev: "Previous slide",
+                carouselNext: "Next slide",
+                iosSlideLabel: "With voice activation",
+                embeddedSlideLabel: "Listen to personal DJ announcements",
+                stageText: "DJConnect. At a glance",
+                stageScreenText: "Local-first, apps remote-capable",
+                platformTitle: "The core of DJConnect",
+                platformLead: "DJConnect brings your music request, player choice, physical controls and personal DJ feedback together in one Home Assistant experience.",
+                platformVoiceTitle: "Ask for music naturally",
+                platformVoiceText: "Say which artist you want to hear. DJConnect routes through Home Assistant Assist and your active music backend.",
+                platformPlaybackTitle: "Control playback",
+                platformPlaybackText: "Choose your player or output, start or pause music and keep control of what is playing now or coming next.",
+                platformFeedbackTitle: "Get DJ feedback",
+                platformFeedbackText: "DJConnect responds briefly and personally, so the experience feels more like a DJ than a remote control.",
+                essentialsTitle: "Powered by Home Assistant, available for multiple devices",
+                essentialsLead: "Made with care for your Mac, Windows desktop, iPhone, iPad, Raspberry Pi and ESP32 device.",
+                essentialsHaTitle: "Home Assistant as the base",
+                essentialsHaText: "Music backend, voice assist, pairing and Ask DJ history run centrally through your smart home.",
+                essentialsSecureTitle: "Secure pairing",
+                essentialsSecureText: "No DJConnect cloud account is needed for core use. Pairing happens locally; app clients keep only their own pairing state.",
+                essentialsWorkflowTitle: "Multiple interfaces",
+                essentialsWorkflowText: "Use remote-capable apps on desktop/mobile and local-only ESP32 or Raspberry Pi hardware at home.",
+                appsTitle: "Choose your interface",
+                appsLead: "Start with the platform that fits how you control music.",
+                macText: "For fixed or remote-capable control on your Mac after local pairing: search, choose output and keep DJConnect status in view.",
+                macDownloadsLabel: "macOS downloads",
+                macMore: "More about macOS",
+                windowsText: "For local or remote desktop control on Windows: Ask DJ, backend-aware playback actions and output choice through Home Assistant.",
+                windowsDownloadsLabel: "Windows downloads",
+                windowsDownloadsCta: "Windows builds",
+                windowsMore: "More about Windows",
+                macCatalystTag: "Validation",
+                macCatalystText: "Unsigned Mac Catalyst build for diagnostics and internal validation alongside the Windows client.",
+                macCatalystDownloadsLabel: "Mac Catalyst downloads",
+                macCatalystDownloadsCta: "Mac Catalyst builds",
+                macCatalystMore: "More about Mac Catalyst",
+                iosTitle: "iPhone and iPad",
+                iosTag: "Mobile",
+                iosText: "For fast control nearby or remotely after local pairing: couch, kitchen, studio or away through your Home Assistant URL.",
+                iosDownloadsLabel: "iOS downloads",
+                iosMore: "More about iOS",
+                voiceAssistantTitle: "Voice Assistant",
+                voiceAssistantTag: "Assist",
+                voiceAssistantText: "Use DJConnect through Home Assistant Assist and supported voice satellites, without a separate DJConnect hardware client.",
+                voiceAssistantMore: "More about Voice Assistant",
+                embeddedTitle: "Embedded device",
+                embeddedText: "The local-only physical DJConnect experience with LilyGO T-Embed, push-to-talk, display feedback and OTA updates.",
+                embeddedCta: "More about ESP32",
+                raspberryTitle: "Linux",
+                raspberryTag: "Raspberry Pi",
+                raspberryText: "For a fixed local-only DJConnect app on Linux: ideal as a small screen or dedicated music controller.",
+                raspberryMore: "More about Linux",
+                legalCopyright: "Copyright Peter van Tol 2026. Released under the MIT License. DJConnect firmware and apps may be distributed separately.",
+                legalSpotify: "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility.",
+                legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          },
+          fr: {
+                title: "DJConnect. A personal music platform for every device",
+                metaDescription: "DJConnect 3.2 connects physical music control, Ask DJ, Home Assistant and Spotify Direct or Music Assistant across apps and local devices.",
+                navLabel: "Navigation",
+                languageToggle: "Language",
+                navFeatures: "Features",
+                navAskDj: "Ask DJ",
+                navVoice: "Voice",
+                navBlog: "Blog",
+                navApps: "Install",
+                navSupport: "Support",
+                navPrivacy: "Privacy",
+                navMenu: "Menu",
+                navChoose: "How to start",
+                heroTitle: "DJConnect. Music control with character.",
+                heroLead: "DJConnect brings physical controls, Ask DJ and Home Assistant together for Spotify Direct or Music Assistant. ESP32 and Raspberry Pi stay local-first; iOS, macOS and Windows can work remotely after local pairing.",
+                heroPrimary: "How to start",
+                examplesLabel: "Request music with your voice, for example:",
+                examplesTitle: "Request music with your voice, for example:",
+                examplesMore: "See more voice examples",
+                askDjTitle: "Ask DJ",
+                askDjLead: "Ask DJ is your AI DJ chat for music questions, playback actions, Track Insight and optional personal recommendations through Home Assistant.",
+                askDjChatTitle: "More than music commands",
+                askDjChatText: "Ask music questions in natural language. Ask DJ works when Music DNA is off; with opt-in, Home Assistant can use compact Music DNA signals for more personal answers.",
+                askDjExamplesLabel: "Ask DJ example questions",
+                askDjExample1: "\"Why did you choose this track?\"",
+                askDjExample2: "\"What music would you recommend for me?\"",
+                askDjExample3: "\"Describe what I listened to over the past month.\"",
+                askDjExample4: "\"Next track.\"",
+                askDjExample5: "\"Put on something calmer.\"",
+                askDjFlowTitle: "How it works",
+                askDjStep1: "Ask DJ something through chat or push-to-talk.",
+                askDjStep2: "Home Assistant fetches context, history and playback status.",
+                askDjStep3: "DJConnect replies with text, sources, images and optional audio.",
+                askDjStep4: "For concrete recommendations you choose Play Now yourself; playback starts only after your tap.",
+                musicDnaOptionalTitle: "Ask DJ without Music DNA",
+                musicDnaOptionalText: "Ask DJ works without Music DNA. If you do not opt in, Ask DJ still works normally for questions, playback, Track Insight and regular responses, but DJConnect will not build or use a personal listening profile.",
+                musicDnaOptInTitle: "Music DNA is opt-in",
+                musicDnaOptInText: "Music DNA is opt-in. Until you enable it, DJConnect does not build Music DNA knowledge from Ask DJ, listening profiles, recent tracks, preferences, or recommendations.",
+                musicDnaClearTitle: "Always clearable",
+                musicDnaClearText: "You can clear Music DNA at any time. If Music DNA remains enabled, DJConnect starts learning again from an empty profile. If you turn it off, learned DNA is cleared and future learning stops.",
+                liveAnalysisTitle: "Track Insight",
+                liveAnalysisLead: "Ask DJ can technically explain the track that is playing now, like having a DJ assistant next to you. You get useful context without DJConnect pretending unknown song sections or measured data are certain.",
+                liveAnalysisBenefit1Title: "Ask naturally",
+                liveAnalysisBenefit1Text: "Say “Geef Track Insight voor dit nummer”, “Wat is de BPM en opbouw?” or “Give me Track Insight for this song”.",
+                liveAnalysisBenefit2Title: "Read-only",
+                liveAnalysisBenefit2Text: "Analysis never changes playback; it only looks at what is playing now.",
+                liveAnalysisBenefit3Title: "Useful for DJing",
+                liveAnalysisBenefit3Text: "BPM, key, energy, groove, arrangement, sound, limitations and mix or set tips where available.",
+                liveAnalysisBenefit4Title: "Client-ready",
+                liveAnalysisBenefit4Text: "Replies can be rendered as sections, timeline and DJ tips on clients that support it.",
+                liveAnalysisBenefit5Title: "Local-first",
+                liveAnalysisBenefit5Text: "Ask DJ works through your own Home Assistant installation; no central DJConnect backend is needed for Track Insight.",
+                liveAnalysisBenefit6Title: "Provider-ready",
+                liveAnalysisBenefit6Text: "Built for available backend data, Home Assistant Conversation and local fallback, expandable later with your own analyzers or providers.",
+                liveAnalysisHowTitle: "How it works",
+                liveAnalysisStep1: "Ask DJ for Track Insight on the current track.",
+                liveAnalysisStep2: "Home Assistant gathers playback context and available source data without raw audio or secrets in the analysis contract.",
+                liveAnalysisStep3: "DJConnect returns a transparent answer with confidence, source, limitations, timeline and DJ tips.",
+                liveAnalysisTrustTitle: "Clear about what is known",
+                liveAnalysisTrustText: "If exact BPM, key, waveform or sections are not available, DJConnect says so. It does not invent an intro, verse, chorus or drop as if they were measured.",
+                liveAnalysisPrivacyTitle: "Privacy-first analysis",
+                liveAnalysisPrivacyText: "Track analysis stays local-first through Home Assistant. Analysis contracts and logs should not contain raw audio, Spotify OAuth tokens, Home Assistant tokens, secrets or full prompts.",
+                liveAnalysisDeveloperTitle: "For clients and makers",
+                liveAnalysisDeveloperText: "The output is designed to be directly renderable: compact sections, a timeline with source/confidence and concrete DJ tips. iOS, macOS, Windows and future clients can show the same analysis cleanly.",
+                liveAnalysisPrimaryCta: "Install DJConnect",
+                liveAnalysisSecondaryCta: "Try Ask DJ",
+                askDjContinuityTitle: "Continuity on Watch, iPhone, Mac and Windows",
+                askDjContinuityText: "Ask DJ history is stored server-side per Home Assistant user and is bounded. When the limit is reached, Home Assistant trims oldest messages and clients stay in sync through trim metadata.",
+                askDjFollowupTitle: "Follow-ups with Yes/No",
+                askDjFollowupText: "Ask DJ can ask a follow-up question, for example after “Good morning” or “Do you want to play this now?”. Clients can then show clear Yes/No controls.",
+                askDjVoiceTitle: "Voice and audio",
+                askDjVoiceText: "iOS, macOS, Apple Watch and Windows can use voice/PTT. Home Assistant STT transcribes; TTS can provide audio replies. Replay appears only when audio is available.",
+                askDjActionsTitle: "From request to action",
+                askDjActionsText: "Ask for music, choose a player or output, start a suggestion or confirm a follow-up action. Ask DJ shows only actions your active music backend supports.",
+                askDjAnalysisTitle: "Ask DJ Track Insight",
+                askDjAnalysisText: "Let Ask DJ explain why a track works. Ask “Give me Track Insight for this song” for BPM, key, energy curve, groove, structure, instrumentation, production and mixability where data or context supports it, based on available context and optional providers you configure.",
+                askDjNotificationsTitle: "Optional notifications",
+                askDjNotificationsText: "Apple clients can use optional push notifications as wake or attention hints for Ask DJ sync. Push contains no tokens, full replies, audio or history; the app fetches content through Home Assistant.",
+                askDjPrivacyTitle: "Privacy kept compact",
+                askDjPrivacyText: "Clients do not store your persistent Music DNA profile. Spotify credentials stay in Home Assistant. Music DNA must not store OAuth tokens, bearer tokens, raw audio, full prompts or full chat history.",
+                askDjPiTitle: "Raspberry Pi follows along",
+                askDjPiText: "On Raspberry Pi, Ask DJ is focused on local-only use and read-only history display. Chat/history stays with app clients; ESP uses the PTT/playback command flow without Ask DJ chat history.",
+                askDjRequirementsTitle: "What you need",
+                askDjRequirementsText: "Home Assistant, HACS DJConnect integration, a music backend, local pairing and, for voice/audio, an Assist pipeline with STT/TTS. Spotify Premium and Client ID are only needed for Spotify Direct; Music Assistant uses its own providers.",
+                aiPrivacyTitle: "AI privacy-first",
+                aiPrivacyText: "DJConnect is designed as a Home Assistant-first system. The Home Assistant integration orchestrates Ask DJ, playback, Assist/STT/TTS and Music DNA; DJConnect's active integration routes use Home Assistant Assist/STT/TTS and do not call direct external AI/STT/TTS APIs.",
+                clientTransparencyTitle: "Transparent clients",
+                clientTransparencyText: "The Music DNA screen fetches structured profile data from Home Assistant. When Music DNA is disabled, the client shows an opt-in or empty state; clients do not reconstruct a fake persistent profile from local Track Insight history.",
+                faqAskDjDnaQuestion: "Does Ask DJ require Music DNA?",
+                faqAskDjDnaAnswer: "No. Ask DJ works without Music DNA. Without opt-in, Ask DJ does not use stored personal Music DNA context.",
+                faqDnaStoredQuestion: "Where is Music DNA stored?",
+                faqDnaStoredAnswer: "Music DNA is server-side in Home Assistant. Clients do not store your persistent Music DNA profile.",
+                faqDnaDeleteQuestion: "Can I delete Music DNA?",
+                faqDnaDeleteAnswer: "You can clear Music DNA at any time. If Music DNA remains enabled, DJConnect starts learning again from an empty profile.",
+                faqSpotifyQuestion: "Does DJConnect store Spotify credentials on devices?",
+                faqSpotifyAnswer: "No. Spotify credentials stay in Home Assistant. ESP32 stores no Spotify credentials and receives no Ask DJ chat history.",
+                faqCloudQuestion: "Does DJConnect send raw audio or prompts to its own cloud?",
+                faqCloudAnswer: "No. Raw audio is not stored by default and diagnostics contain no raw audio, full prompts, Ask DJ history or Music DNA dumps.",
+                faqSpotifyAffiliationQuestion: "Is DJConnect affiliated with Spotify?",
+                faqSpotifyAffiliationAnswer: "DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.",
+                stageLabel: "DJConnect platform overview",
+                stageCarouselLabel: "Platform options",
+                carouselPrev: "Previous slide",
+                carouselNext: "Next slide",
+                iosSlideLabel: "With voice activation",
+                embeddedSlideLabel: "Listen to personal DJ announcements",
+                stageText: "DJConnect. At a glance",
+                stageScreenText: "Local-first, apps remote-capable",
+                platformTitle: "The core of DJConnect",
+                platformLead: "DJConnect brings your music request, player choice, physical controls and personal DJ feedback together in one Home Assistant experience.",
+                platformVoiceTitle: "Ask for music naturally",
+                platformVoiceText: "Say which artist you want to hear. DJConnect routes through Home Assistant Assist and your active music backend.",
+                platformPlaybackTitle: "Control playback",
+                platformPlaybackText: "Choose your player or output, start or pause music and keep control of what is playing now or coming next.",
+                platformFeedbackTitle: "Get DJ feedback",
+                platformFeedbackText: "DJConnect responds briefly and personally, so the experience feels more like a DJ than a remote control.",
+                essentialsTitle: "Powered by Home Assistant, available for multiple devices",
+                essentialsLead: "Made with care for your Mac, Windows desktop, iPhone, iPad, Raspberry Pi and ESP32 device.",
+                essentialsHaTitle: "Home Assistant as the base",
+                essentialsHaText: "Music backend, voice assist, pairing and Ask DJ history run centrally through your smart home.",
+                essentialsSecureTitle: "Secure pairing",
+                essentialsSecureText: "No DJConnect cloud account is needed for core use. Pairing happens locally; app clients keep only their own pairing state.",
+                essentialsWorkflowTitle: "Multiple interfaces",
+                essentialsWorkflowText: "Use remote-capable apps on desktop/mobile and local-only ESP32 or Raspberry Pi hardware at home.",
+                appsTitle: "Choose your interface",
+                appsLead: "Start with the platform that fits how you control music.",
+                macText: "For fixed or remote-capable control on your Mac after local pairing: search, choose output and keep DJConnect status in view.",
+                macDownloadsLabel: "macOS downloads",
+                macMore: "More about macOS",
+                windowsText: "For local or remote desktop control on Windows: Ask DJ, backend-aware playback actions and output choice through Home Assistant.",
+                windowsDownloadsLabel: "Windows downloads",
+                windowsDownloadsCta: "Windows builds",
+                windowsMore: "More about Windows",
+                macCatalystTag: "Validation",
+                macCatalystText: "Unsigned Mac Catalyst build for diagnostics and internal validation alongside the Windows client.",
+                macCatalystDownloadsLabel: "Mac Catalyst downloads",
+                macCatalystDownloadsCta: "Mac Catalyst builds",
+                macCatalystMore: "More about Mac Catalyst",
+                iosTitle: "iPhone and iPad",
+                iosTag: "Mobile",
+                iosText: "For fast control nearby or remotely after local pairing: couch, kitchen, studio or away through your Home Assistant URL.",
+                iosDownloadsLabel: "iOS downloads",
+                iosMore: "More about iOS",
+                voiceAssistantTitle: "Voice Assistant",
+                voiceAssistantTag: "Assist",
+                voiceAssistantText: "Use DJConnect through Home Assistant Assist and supported voice satellites, without a separate DJConnect hardware client.",
+                voiceAssistantMore: "More about Voice Assistant",
+                embeddedTitle: "Embedded device",
+                embeddedText: "The local-only physical DJConnect experience with LilyGO T-Embed, push-to-talk, display feedback and OTA updates.",
+                embeddedCta: "More about ESP32",
+                raspberryTitle: "Linux",
+                raspberryTag: "Raspberry Pi",
+                raspberryText: "For a fixed local-only DJConnect app on Linux: ideal as a small screen or dedicated music controller.",
+                raspberryMore: "More about Linux",
+                legalCopyright: "Copyright Peter van Tol 2026. Released under the MIT License. DJConnect firmware and apps may be distributed separately.",
+                legalSpotify: "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility.",
+                legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          },
+          es: {
+                title: "DJConnect. A personal music platform for every device",
+                metaDescription: "DJConnect 3.2 connects physical music control, Ask DJ, Home Assistant and Spotify Direct or Music Assistant across apps and local devices.",
+                navLabel: "Navigation",
+                languageToggle: "Language",
+                navFeatures: "Features",
+                navAskDj: "Ask DJ",
+                navVoice: "Voice",
+                navBlog: "Blog",
+                navApps: "Install",
+                navSupport: "Support",
+                navPrivacy: "Privacy",
+                navMenu: "Menu",
+                navChoose: "How to start",
+                heroTitle: "DJConnect. Music control with character.",
+                heroLead: "DJConnect brings physical controls, Ask DJ and Home Assistant together for Spotify Direct or Music Assistant. ESP32 and Raspberry Pi stay local-first; iOS, macOS and Windows can work remotely after local pairing.",
+                heroPrimary: "How to start",
+                examplesLabel: "Request music with your voice, for example:",
+                examplesTitle: "Request music with your voice, for example:",
+                examplesMore: "See more voice examples",
+                askDjTitle: "Ask DJ",
+                askDjLead: "Ask DJ is your AI DJ chat for music questions, playback actions, Track Insight and optional personal recommendations through Home Assistant.",
+                askDjChatTitle: "More than music commands",
+                askDjChatText: "Ask music questions in natural language. Ask DJ works when Music DNA is off; with opt-in, Home Assistant can use compact Music DNA signals for more personal answers.",
+                askDjExamplesLabel: "Ask DJ example questions",
+                askDjExample1: "\"Why did you choose this track?\"",
+                askDjExample2: "\"What music would you recommend for me?\"",
+                askDjExample3: "\"Describe what I listened to over the past month.\"",
+                askDjExample4: "\"Next track.\"",
+                askDjExample5: "\"Put on something calmer.\"",
+                askDjFlowTitle: "How it works",
+                askDjStep1: "Ask DJ something through chat or push-to-talk.",
+                askDjStep2: "Home Assistant fetches context, history and playback status.",
+                askDjStep3: "DJConnect replies with text, sources, images and optional audio.",
+                askDjStep4: "For concrete recommendations you choose Play Now yourself; playback starts only after your tap.",
+                musicDnaOptionalTitle: "Ask DJ without Music DNA",
+                musicDnaOptionalText: "Ask DJ works without Music DNA. If you do not opt in, Ask DJ still works normally for questions, playback, Track Insight and regular responses, but DJConnect will not build or use a personal listening profile.",
+                musicDnaOptInTitle: "Music DNA is opt-in",
+                musicDnaOptInText: "Music DNA is opt-in. Until you enable it, DJConnect does not build Music DNA knowledge from Ask DJ, listening profiles, recent tracks, preferences, or recommendations.",
+                musicDnaClearTitle: "Always clearable",
+                musicDnaClearText: "You can clear Music DNA at any time. If Music DNA remains enabled, DJConnect starts learning again from an empty profile. If you turn it off, learned DNA is cleared and future learning stops.",
+                liveAnalysisTitle: "Track Insight",
+                liveAnalysisLead: "Ask DJ can technically explain the track that is playing now, like having a DJ assistant next to you. You get useful context without DJConnect pretending unknown song sections or measured data are certain.",
+                liveAnalysisBenefit1Title: "Ask naturally",
+                liveAnalysisBenefit1Text: "Say “Geef Track Insight voor dit nummer”, “Wat is de BPM en opbouw?” or “Give me Track Insight for this song”.",
+                liveAnalysisBenefit2Title: "Read-only",
+                liveAnalysisBenefit2Text: "Analysis never changes playback; it only looks at what is playing now.",
+                liveAnalysisBenefit3Title: "Useful for DJing",
+                liveAnalysisBenefit3Text: "BPM, key, energy, groove, arrangement, sound, limitations and mix or set tips where available.",
+                liveAnalysisBenefit4Title: "Client-ready",
+                liveAnalysisBenefit4Text: "Replies can be rendered as sections, timeline and DJ tips on clients that support it.",
+                liveAnalysisBenefit5Title: "Local-first",
+                liveAnalysisBenefit5Text: "Ask DJ works through your own Home Assistant installation; no central DJConnect backend is needed for Track Insight.",
+                liveAnalysisBenefit6Title: "Provider-ready",
+                liveAnalysisBenefit6Text: "Built for available backend data, Home Assistant Conversation and local fallback, expandable later with your own analyzers or providers.",
+                liveAnalysisHowTitle: "How it works",
+                liveAnalysisStep1: "Ask DJ for Track Insight on the current track.",
+                liveAnalysisStep2: "Home Assistant gathers playback context and available source data without raw audio or secrets in the analysis contract.",
+                liveAnalysisStep3: "DJConnect returns a transparent answer with confidence, source, limitations, timeline and DJ tips.",
+                liveAnalysisTrustTitle: "Clear about what is known",
+                liveAnalysisTrustText: "If exact BPM, key, waveform or sections are not available, DJConnect says so. It does not invent an intro, verse, chorus or drop as if they were measured.",
+                liveAnalysisPrivacyTitle: "Privacy-first analysis",
+                liveAnalysisPrivacyText: "Track analysis stays local-first through Home Assistant. Analysis contracts and logs should not contain raw audio, Spotify OAuth tokens, Home Assistant tokens, secrets or full prompts.",
+                liveAnalysisDeveloperTitle: "For clients and makers",
+                liveAnalysisDeveloperText: "The output is designed to be directly renderable: compact sections, a timeline with source/confidence and concrete DJ tips. iOS, macOS, Windows and future clients can show the same analysis cleanly.",
+                liveAnalysisPrimaryCta: "Install DJConnect",
+                liveAnalysisSecondaryCta: "Try Ask DJ",
+                askDjContinuityTitle: "Continuity on Watch, iPhone, Mac and Windows",
+                askDjContinuityText: "Ask DJ history is stored server-side per Home Assistant user and is bounded. When the limit is reached, Home Assistant trims oldest messages and clients stay in sync through trim metadata.",
+                askDjFollowupTitle: "Follow-ups with Yes/No",
+                askDjFollowupText: "Ask DJ can ask a follow-up question, for example after “Good morning” or “Do you want to play this now?”. Clients can then show clear Yes/No controls.",
+                askDjVoiceTitle: "Voice and audio",
+                askDjVoiceText: "iOS, macOS, Apple Watch and Windows can use voice/PTT. Home Assistant STT transcribes; TTS can provide audio replies. Replay appears only when audio is available.",
+                askDjActionsTitle: "From request to action",
+                askDjActionsText: "Ask for music, choose a player or output, start a suggestion or confirm a follow-up action. Ask DJ shows only actions your active music backend supports.",
+                askDjAnalysisTitle: "Ask DJ Track Insight",
+                askDjAnalysisText: "Let Ask DJ explain why a track works. Ask “Give me Track Insight for this song” for BPM, key, energy curve, groove, structure, instrumentation, production and mixability where data or context supports it, based on available context and optional providers you configure.",
+                askDjNotificationsTitle: "Optional notifications",
+                askDjNotificationsText: "Apple clients can use optional push notifications as wake or attention hints for Ask DJ sync. Push contains no tokens, full replies, audio or history; the app fetches content through Home Assistant.",
+                askDjPrivacyTitle: "Privacy kept compact",
+                askDjPrivacyText: "Clients do not store your persistent Music DNA profile. Spotify credentials stay in Home Assistant. Music DNA must not store OAuth tokens, bearer tokens, raw audio, full prompts or full chat history.",
+                askDjPiTitle: "Raspberry Pi follows along",
+                askDjPiText: "On Raspberry Pi, Ask DJ is focused on local-only use and read-only history display. Chat/history stays with app clients; ESP uses the PTT/playback command flow without Ask DJ chat history.",
+                askDjRequirementsTitle: "What you need",
+                askDjRequirementsText: "Home Assistant, HACS DJConnect integration, a music backend, local pairing and, for voice/audio, an Assist pipeline with STT/TTS. Spotify Premium and Client ID are only needed for Spotify Direct; Music Assistant uses its own providers.",
+                aiPrivacyTitle: "AI privacy-first",
+                aiPrivacyText: "DJConnect is designed as a Home Assistant-first system. The Home Assistant integration orchestrates Ask DJ, playback, Assist/STT/TTS and Music DNA; DJConnect's active integration routes use Home Assistant Assist/STT/TTS and do not call direct external AI/STT/TTS APIs.",
+                clientTransparencyTitle: "Transparent clients",
+                clientTransparencyText: "The Music DNA screen fetches structured profile data from Home Assistant. When Music DNA is disabled, the client shows an opt-in or empty state; clients do not reconstruct a fake persistent profile from local Track Insight history.",
+                faqAskDjDnaQuestion: "Does Ask DJ require Music DNA?",
+                faqAskDjDnaAnswer: "No. Ask DJ works without Music DNA. Without opt-in, Ask DJ does not use stored personal Music DNA context.",
+                faqDnaStoredQuestion: "Where is Music DNA stored?",
+                faqDnaStoredAnswer: "Music DNA is server-side in Home Assistant. Clients do not store your persistent Music DNA profile.",
+                faqDnaDeleteQuestion: "Can I delete Music DNA?",
+                faqDnaDeleteAnswer: "You can clear Music DNA at any time. If Music DNA remains enabled, DJConnect starts learning again from an empty profile.",
+                faqSpotifyQuestion: "Does DJConnect store Spotify credentials on devices?",
+                faqSpotifyAnswer: "No. Spotify credentials stay in Home Assistant. ESP32 stores no Spotify credentials and receives no Ask DJ chat history.",
+                faqCloudQuestion: "Does DJConnect send raw audio or prompts to its own cloud?",
+                faqCloudAnswer: "No. Raw audio is not stored by default and diagnostics contain no raw audio, full prompts, Ask DJ history or Music DNA dumps.",
+                faqSpotifyAffiliationQuestion: "Is DJConnect affiliated with Spotify?",
+                faqSpotifyAffiliationAnswer: "DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.",
+                stageLabel: "DJConnect platform overview",
+                stageCarouselLabel: "Platform options",
+                carouselPrev: "Previous slide",
+                carouselNext: "Next slide",
+                iosSlideLabel: "With voice activation",
+                embeddedSlideLabel: "Listen to personal DJ announcements",
+                stageText: "DJConnect. At a glance",
+                stageScreenText: "Local-first, apps remote-capable",
+                platformTitle: "The core of DJConnect",
+                platformLead: "DJConnect brings your music request, player choice, physical controls and personal DJ feedback together in one Home Assistant experience.",
+                platformVoiceTitle: "Ask for music naturally",
+                platformVoiceText: "Say which artist you want to hear. DJConnect routes through Home Assistant Assist and your active music backend.",
+                platformPlaybackTitle: "Control playback",
+                platformPlaybackText: "Choose your player or output, start or pause music and keep control of what is playing now or coming next.",
+                platformFeedbackTitle: "Get DJ feedback",
+                platformFeedbackText: "DJConnect responds briefly and personally, so the experience feels more like a DJ than a remote control.",
+                essentialsTitle: "Powered by Home Assistant, available for multiple devices",
+                essentialsLead: "Made with care for your Mac, Windows desktop, iPhone, iPad, Raspberry Pi and ESP32 device.",
+                essentialsHaTitle: "Home Assistant as the base",
+                essentialsHaText: "Music backend, voice assist, pairing and Ask DJ history run centrally through your smart home.",
+                essentialsSecureTitle: "Secure pairing",
+                essentialsSecureText: "No DJConnect cloud account is needed for core use. Pairing happens locally; app clients keep only their own pairing state.",
+                essentialsWorkflowTitle: "Multiple interfaces",
+                essentialsWorkflowText: "Use remote-capable apps on desktop/mobile and local-only ESP32 or Raspberry Pi hardware at home.",
+                appsTitle: "Choose your interface",
+                appsLead: "Start with the platform that fits how you control music.",
+                macText: "For fixed or remote-capable control on your Mac after local pairing: search, choose output and keep DJConnect status in view.",
+                macDownloadsLabel: "macOS downloads",
+                macMore: "More about macOS",
+                windowsText: "For local or remote desktop control on Windows: Ask DJ, backend-aware playback actions and output choice through Home Assistant.",
+                windowsDownloadsLabel: "Windows downloads",
+                windowsDownloadsCta: "Windows builds",
+                windowsMore: "More about Windows",
+                macCatalystTag: "Validation",
+                macCatalystText: "Unsigned Mac Catalyst build for diagnostics and internal validation alongside the Windows client.",
+                macCatalystDownloadsLabel: "Mac Catalyst downloads",
+                macCatalystDownloadsCta: "Mac Catalyst builds",
+                macCatalystMore: "More about Mac Catalyst",
+                iosTitle: "iPhone and iPad",
+                iosTag: "Mobile",
+                iosText: "For fast control nearby or remotely after local pairing: couch, kitchen, studio or away through your Home Assistant URL.",
+                iosDownloadsLabel: "iOS downloads",
+                iosMore: "More about iOS",
+                voiceAssistantTitle: "Voice Assistant",
+                voiceAssistantTag: "Assist",
+                voiceAssistantText: "Use DJConnect through Home Assistant Assist and supported voice satellites, without a separate DJConnect hardware client.",
+                voiceAssistantMore: "More about Voice Assistant",
+                embeddedTitle: "Embedded device",
+                embeddedText: "The local-only physical DJConnect experience with LilyGO T-Embed, push-to-talk, display feedback and OTA updates.",
+                embeddedCta: "More about ESP32",
+                raspberryTitle: "Linux",
+                raspberryTag: "Raspberry Pi",
+                raspberryText: "For a fixed local-only DJConnect app on Linux: ideal as a small screen or dedicated music controller.",
+                raspberryMore: "More about Linux",
+                legalCopyright: "Copyright Peter van Tol 2026. Released under the MIT License. DJConnect firmware and apps may be distributed separately.",
+                legalSpotify: "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility.",
+                legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
+                legalPrivacyLink: "Privacy Policy",
+                legalSupport: "Support"
+          }
+    };
+
+    const renderHomepageVoiceExamples = (language) => {
+      const target = document.querySelector("#homepageVoiceExamples");
+      const intentFamilies = window.DJCONNECT_VOICE_INTENTS || [];
+      if (!target || !intentFamilies.length) return;
+
+      const families = intentFamilies.filter((family) => family.id !== "playback");
+      const daySeed = Math.floor(Date.now() / 86400000);
+      const selected = families.slice(0, 4).map((family, index) => {
+        const examples = family.examples[language] || family.examples.nl || [];
+        return examples[(daySeed + index * 2) % examples.length];
+      });
+
+      target.replaceChildren();
+      selected.forEach((example) => {
+        const chip = document.createElement("span");
+        chip.textContent = `"${example}"`;
+        target.append(chip);
+      });
+    };
+
+    const getInitialLanguage = () => window.DJCONNECT_I18N?.initialLanguage || "nl";
+
+    const applyLanguage = (language) => {
+      const copy = { ...(window.DJCONNECT_I18N?.shared?.[language] || {}), ...(translations[language] || translations[window.DJCONNECT_I18N?.defaultLanguage || "nl"]) };
+      document.documentElement.lang = language;
+      document.title = copy.title;
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) metaDescription.setAttribute("content", copy.metaDescription);
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.getAttribute("data-i18n");
+        if (copy[key]) element.textContent = copy[key];
+      });
+      document.querySelectorAll("[data-i18n-attr]").forEach((element) => {
+        element.getAttribute("data-i18n-attr").split(",").forEach((mapping) => {
+          const [attribute, key] = mapping.split(":").map((part) => part.trim());
+          if (attribute && key && copy[key]) element.setAttribute(attribute, copy[key]);
+        });
+      });
+      document.querySelectorAll("[data-lang]").forEach((button) => {
+        button.setAttribute("aria-pressed", button.getAttribute("data-lang") === language ? "true" : "false");
+      });
+      renderHomepageVoiceExamples(language);
+      localStorage.setItem("djconnect-language", language);
+    };
+
+    document.querySelectorAll("[data-lang]").forEach((button) => {
+      button.addEventListener("click", () => applyLanguage(button.getAttribute("data-lang")));
+    });
+
+    document.querySelectorAll("[data-carousel-direction]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const stage = button.closest(".platform-stage");
+        const stack = stage ? stage.querySelector(".device-stack") : null;
+        const direction = Number(button.getAttribute("data-carousel-direction"));
+        const slide = stack ? stack.querySelector(".device-slide") : null;
+        if (!stack || !slide || !direction) return;
+        const gap = parseFloat(getComputedStyle(stack).columnGap || getComputedStyle(stack).gap) || 0;
+        stack.scrollBy({ left: direction * (slide.offsetWidth + gap), behavior: "smooth" });
+      });
+    });
+
+    applyLanguage(getInitialLanguage());
+  </script>  <script src="../assets/i18n.js?v=3.2.4"></script>
+
+  <script src="../assets/site-nav.js?v=3.2.4"></script>
+</body>
+</html>

@@ -12,7 +12,7 @@
 - Cloudflare Pages project: `djconnect`
 - Source directory: `wwwroot`
 - Release publish directory: `dist/wwwroot`
-- Current version: `3.2.3`
+- Current version: `3.2.4`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Platform overview page with CSS architecture diagram: `wwwroot/platform.html`
@@ -35,6 +35,16 @@
 
 - The site source is static HTML/CSS/JavaScript in `wwwroot`; the release cycle
   builds a minified deploy copy in `dist/wwwroot`.
+- Public website content is multilingual for `en`, `nl`, `de`, `fr` and `es`.
+  Dutch remains the root default; localized static routes live under `/en/`,
+  `/de/`, `/fr/` and `/es/`. Keep page-local translation blocks, `hreflang`
+  alternates and language switcher buttons complete in the same PR, and run
+  `npm run i18n:check`.
+- Shared product/legal strings live in `wwwroot/assets/i18n.js`. Preserve the
+  exact legal meaning of MIT license notes and Spotify trademark /
+  non-affiliation copy, use placeholders instead of real artist names in
+  examples unless essential, and keep setup copy aligned with HACS integration
+  requirements.
 - The homepage is platform-independent and routes users to setup and downloads.
 - The homepage navigation intentionally contains cross-page routes only:
   `Features`, `Ask DJ`, `Spraak`, `Blog`, `Installeren`, `Support` and
@@ -263,7 +273,7 @@ useful for higher GitHub API limits.
   the token-protected `/api/stats` contract and the release-script
   dependency/tool preflight.
 - `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. `npm run screenshots:live` captures Dutch live production screenshots at a laptop viewport into `screenshots/live-laptop/`. Neither is part of the default `npm test` run.
-- Current released version `3.2.3` loads localized static What's New JSON on
+- Current released version `3.2.4` loads localized static What's New JSON on
   download-page changelogs before falling back to GitHub release bodies.
   Version `3.1.64` adds dedicated Windows and Mac Catalyst client pages,
   homepage cards, download rendering and release-note paths. Version `3.1.63`

@@ -44,6 +44,12 @@
   with explicit `Play Now`, seeded mix/playlist requests, DJ announcements,
   ambient system facts and idle suggestions.
 - Verify the voice commands page shows only the selected NL or EN example phrases when the language toggle changes.
+- Verify every public page offers `EN`, `NL`, `DE`, `FR` and `ES` language
+  controls, has matching `hreflang` alternates, and that `npm run i18n:check`
+  passes without missing translation keys or broken localized routes.
+- Verify shared product/legal strings come from `wwwroot/assets/i18n.js`,
+  including taglines, pairing wording, requirements, client names, MIT license
+  notes and the Spotify trademark/non-affiliation disclaimer.
 - Verify the voice commands page mirrors the canonical HA repo
   `examples/voice_intents.json` examples: current-track questions read status
   only, playback-control phrases map directly to backend commands, generic

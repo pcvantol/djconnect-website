@@ -4,6 +4,13 @@ All notable changes to this website are grouped per release.
 
 ## Unreleased
 
+## DJConnect website v3.2.5 - 2026-07-01
+
+- Fixed the public multilingual runtime load order so localized routes such as
+  `/en/`, `/de/`, `/fr/` and `/es/` initialize with the shared i18n settings
+  before page-local translation scripts run.
+- Adjusted language switcher layout for the five supported languages.
+
 ## DJConnect website v3.2.4 - 2026-07-01
 
 - Added public multilingual support for English, Dutch, German, French and

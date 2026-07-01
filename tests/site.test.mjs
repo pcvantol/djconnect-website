@@ -66,6 +66,23 @@ test("public pages expose five-language i18n routes and shared legal strings", a
   assert.match(contributing, /Update all public languages in the same pull request/);
 });
 
+test("shared i18n runtime loads before page translation scripts", async () => {
+  for (const page of publicPages) {
+    const html = await read(`wwwroot/${page}.html`);
+    const i18nIndex = html.indexOf("assets/i18n.js");
+    const translationsIndex = html.indexOf("const translations =");
+    assert.notEqual(i18nIndex, -1, `${page} should load shared i18n runtime`);
+    assert.notEqual(translationsIndex, -1, `${page} should have page translations`);
+    assert.ok(i18nIndex < translationsIndex, `${page} should load i18n before translations execute`);
+    assert.match(html, /grid-template-columns:\s*repeat\(5,\s*1fr\)|grid-template-columns:repeat\(5,1fr\)/, `${page} should size the five-language switcher`);
+
+    for (const language of supportedLanguages.filter((item) => item !== "nl")) {
+      const localized = await read(`wwwroot/${language}/${page === "index" ? "index" : page}.html`);
+      assert.ok(localized.indexOf("assets/i18n.js") < localized.indexOf("const translations ="), `${language}/${page} should load i18n before translations execute`);
+    }
+  }
+});
+
 test("screenshot tooling is available for live page review", async () => {
   const [packageJson, screenshotTest, testsDoc, readme] = await Promise.all([
     read("package.json"),

@@ -68,8 +68,10 @@
   Assistant, can use optional Apple push notifications only as wake/attention
   hints through Home Assistant sync, and starts recommendations only after an
   explicit `Play Now` tap. ESP32 uses PTT/playback command flow without Ask DJ
-  chat history; Raspberry Pi remains local-only and read-only for history unless
-  a future Pi release explicitly expands that scope.
+  chat history; Raspberry Pi remains local-only with Ask DJ readonly_actions: history/status
+  display plus Home Assistant-provided structured action buttons, without Pi
+  voice, free text, TTS or local audio unless a future Pi capability explicitly
+  expands that scope.
 - Ask DJ Track Insight copy must stay clear that DJConnect does not directly
   analyze encrypted Spotify playback audio. Exact BPM, key, sections or
   timestamps are shown only when available from source data or a user-configured
@@ -285,7 +287,7 @@ useful for higher GitHub API limits.
   new Windows desktop client contract. Version `3.1.61` adds the operator APNs
   registration overview and privacy-focused tests/docs. Version `3.1.60` syncs Ask DJ website copy with the
   canonical Home Assistant integration `v3.1.69+` contract, including
-  Raspberry Pi read-only history display, central push relay wording, refreshed
+  Raspberry Pi readonly_actions history/status display, central push relay wording, refreshed
   Ask DJ conversational examples and PR CI validation. Version `3.1.52` synced
   the earlier `v3.1.65+` Ask DJ contract, including Ja/Nee follow-ups and
   bounded server-side history trim metadata.

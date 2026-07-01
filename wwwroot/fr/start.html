@@ -236,7 +236,7 @@
             <tr><td>Home Assistant/HACS integration</td><td>3.2.x</td><td>Home Assistant</td><td data-i18n="haContract">Patch versions may differ; major/minor must match. HTTP 426 version_mismatch means update the client or integration, not reset pairing.</td></tr>
             <tr><td>ESP32 LilyGO T-Embed S3</td><td data-i18n="protocol32">Protocol 3.2.x</td><td data-i18n="localOnly">Local-only</td><td data-i18n="espContract">Local-device client with _djconnect._tcp, optional Client adres and /api/device/*.</td></tr>
             <tr><td>ESP32-S3-BOX-3</td><td data-i18n="notSupported">Not supported</td><td data-i18n="notSupported">Not supported</td><td data-i18n="notSupported">Not supported</td></tr>
-            <tr><td>Raspberry Pi/Linux</td><td data-i18n="protocol32">Protocol 3.2.x</td><td data-i18n="localOnly">Local-only</td><td data-i18n="piContract">Local-device client with _djconnect._tcp, optional Client adres, /api/device/* and Pi restart/shutdown/display use cases.</td></tr>
+            <tr><td>Raspberry Pi/Linux</td><td data-i18n="protocol32">Protocol 3.2.x</td><td data-i18n="localOnly">Local-only</td><td data-i18n="piContract">Local-device client with _djconnect._tcp, optional Client adres, /api/device/*, Pi restart/shutdown/display use cases and Ask DJ readonly_actions only.</td></tr>
             <tr><td>iOS</td><td data-i18n="localPairing">Local pairing</td><td data-i18n="remoteCapable">Remote-capable after local pairing</td><td data-i18n="iosContract">Inbound-only app client: djconnect-ios-XXXXXXXXXXXX, client_type ios, posts to /api/djconnect/pair.</td></tr>
             <tr><td>macOS</td><td data-i18n="localPairing">Local pairing</td><td data-i18n="remoteCapable">Remote-capable after local pairing</td><td data-i18n="macosContract">Inbound-only app client: djconnect-macos-XXXXXXXXXXXX, client_type macos, posts to /api/djconnect/pair.</td></tr>
             <tr><td>Windows</td><td data-i18n="localPairing">Local pairing</td><td data-i18n="remoteCapable">Remote-capable after local pairing</td><td data-i18n="windowsContract">Inbound-only app client: djconnect-windows-XXXXXXXXXXXX, client_type windows, posts to /api/djconnect/pair.</td></tr>
@@ -267,7 +267,7 @@
         <div class="card route-card">
           <span class="route-label">Automatisch</span>
           <h2 data-i18n="hacsTitle">2. Voeg toe aan Home Assistant</h2>
-          <p class="lead" data-i18n="hacsLead">Gebruik onderstaande Home Assistant Community Store knop om direct naar de DJConnect repository in HACS te gaan. Installeer de DJConnect integration v3.2.3 of nieuwer, herstart Home Assistant en voeg daarna DJConnect toe via Devices & services.</p>
+          <p class="lead" data-i18n="hacsLead">Gebruik onderstaande Home Assistant Community Store knop om direct naar de DJConnect repository in HACS te gaan. Installeer de DJConnect integration v3.2.5 of nieuwer, herstart Home Assistant en voeg daarna DJConnect toe via Devices & services.</p>
           <a class="btn primary" href="/go/hacs" target="_blank" rel="noopener" data-i18n="hacsButton">Open DJConnect in HACS</a>
         </div>
         <div class="card route-card">
@@ -569,7 +569,7 @@
                 conversationAgent: "DJConnect conversation agent",
                 haContract: "Patchversies mogen verschillen; major/minor moeten matchen. HTTP 426 version_mismatch betekent client of integration updaten, niet pairing resetten.",
                 espContract: "Local-device client met _djconnect._tcp, optioneel Client adres en /api/device/*.",
-                piContract: "Local-device client met _djconnect._tcp, optioneel Client adres, /api/device/* en Pi restart/shutdown/display use cases.",
+                piContract: "Local-device client met _djconnect._tcp, optioneel Client adres, /api/device/*, Pi restart/shutdown/display use cases en alleen Ask DJ readonly_actions.",
                 iosContract: "Inbound-only app client: djconnect-ios-XXXXXXXXXXXX, client_type ios, post naar /api/djconnect/pair.",
                 macosContract: "Inbound-only app client: djconnect-macos-XXXXXXXXXXXX, client_type macos, post naar /api/djconnect/pair.",
                 windowsContract: "Inbound-only app client: djconnect-windows-XXXXXXXXXXXX, client_type windows, post naar /api/djconnect/pair.",
@@ -579,7 +579,7 @@
                 voiceLead: "DJConnect gebruikt je Home Assistant voice pipeline voor stembesturing en gesproken DJ aankondigingen.",
                 voiceHelp: "Hulp bij Home Assistant voice assist",
                 hacsTitle: "2. Voeg toe aan Home Assistant",
-                hacsLead: "Gebruik onderstaande Home Assistant Community Store knop om direct naar de DJConnect repository in HACS te gaan. Installeer de DJConnect integration v3.2.3 of nieuwer, herstart Home Assistant en voeg daarna DJConnect toe via Devices & services.",
+                hacsLead: "Gebruik onderstaande Home Assistant Community Store knop om direct naar de DJConnect repository in HACS te gaan. Installeer de DJConnect integration v3.2.5 of nieuwer, herstart Home Assistant en voeg daarna DJConnect toe via Devices & services.",
                 hacsButton: "Open DJConnect in HACS",
                 spotifyOauthTitle: "4. Alleen Spotify Direct: maak een Spotify Developer app",
                 spotifyOauthLead: "Sla deze stap over als je Music Assistant gebruikt. Spotify Direct gebruikt je eigen Home Assistant installatie, Spotify Premium, een Spotify Developer app Client ID en OAuth/PKCE.",
@@ -739,7 +739,7 @@
                 conversationAgent: "DJConnect conversation agent",
                 haContract: "Patch versions may differ; major/minor must match. HTTP 426 version_mismatch means update the client or integration, not reset pairing.",
                 espContract: "Local-device client with _djconnect._tcp, optional Client address and /api/device/*.",
-                piContract: "Local-device client with _djconnect._tcp, optional Client address, /api/device/* and Pi restart/shutdown/display use cases.",
+                piContract: "Local-device client with _djconnect._tcp, optional Client address, /api/device/*, Pi restart/shutdown/display use cases and Ask DJ readonly_actions only.",
                 iosContract: "Inbound-only app client: djconnect-ios-XXXXXXXXXXXX, client_type ios, posts to /api/djconnect/pair.",
                 macosContract: "Inbound-only app client: djconnect-macos-XXXXXXXXXXXX, client_type macos, posts to /api/djconnect/pair.",
                 windowsContract: "Inbound-only app client: djconnect-windows-XXXXXXXXXXXX, client_type windows, posts to /api/djconnect/pair.",
@@ -749,7 +749,7 @@
                 voiceLead: "DJConnect uses your Home Assistant voice pipeline for voice control and spoken DJ announcements.",
                 voiceHelp: "Help with Home Assistant voice assist",
                 hacsTitle: "2. Add to Home Assistant",
-                hacsLead: "Use the Home Assistant Community Store button below to open the DJConnect repository in HACS directly. Install DJConnect integration v3.2.3 or newer, restart Home Assistant and then add DJConnect through Devices & services.",
+                hacsLead: "Use the Home Assistant Community Store button below to open the DJConnect repository in HACS directly. Install DJConnect integration v3.2.5 or newer, restart Home Assistant and then add DJConnect through Devices & services.",
                 hacsButton: "Open DJConnect in HACS",
                 spotifyOauthTitle: "4. Spotify Direct only: create a Spotify Developer app",
                 spotifyOauthLead: "Skip this step when you use Music Assistant. Spotify Direct uses your own Home Assistant installation, Spotify Premium, a Spotify Developer app Client ID and OAuth/PKCE.",
@@ -909,7 +909,7 @@
                 conversationAgent: "DJConnect conversation agent",
                 haContract: "Patch versions may differ; major/minor must match. HTTP 426 version_mismatch means update the client or integration, not reset pairing.",
                 espContract: "Local-device client with _djconnect._tcp, optional Client address and /api/device/*.",
-                piContract: "Local-device client with _djconnect._tcp, optional Client address, /api/device/* and Pi restart/shutdown/display use cases.",
+                piContract: "Local-device client with _djconnect._tcp, optional Client address, /api/device/*, Pi restart/shutdown/display use cases and Ask DJ readonly_actions only.",
                 iosContract: "Inbound-only app client: djconnect-ios-XXXXXXXXXXXX, client_type ios, posts to /api/djconnect/pair.",
                 macosContract: "Inbound-only app client: djconnect-macos-XXXXXXXXXXXX, client_type macos, posts to /api/djconnect/pair.",
                 windowsContract: "Inbound-only app client: djconnect-windows-XXXXXXXXXXXX, client_type windows, posts to /api/djconnect/pair.",
@@ -919,7 +919,7 @@
                 voiceLead: "DJConnect uses your Home Assistant voice pipeline for voice control and spoken DJ announcements.",
                 voiceHelp: "Help with Home Assistant voice assist",
                 hacsTitle: "2. Add to Home Assistant",
-                hacsLead: "Use the Home Assistant Community Store button below to open the DJConnect repository in HACS directly. Install DJConnect integration v3.2.3 or newer, restart Home Assistant and then add DJConnect through Devices & services.",
+                hacsLead: "Use the Home Assistant Community Store button below to open the DJConnect repository in HACS directly. Install DJConnect integration v3.2.5 or newer, restart Home Assistant and then add DJConnect through Devices & services.",
                 hacsButton: "Open DJConnect in HACS",
                 spotifyOauthTitle: "4. Spotify Direct only: create a Spotify Developer app",
                 spotifyOauthLead: "Skip this step when you use Music Assistant. Spotify Direct uses your own Home Assistant installation, Spotify Premium, a Spotify Developer app Client ID and OAuth/PKCE.",
@@ -1079,7 +1079,7 @@
                 conversationAgent: "DJConnect conversation agent",
                 haContract: "Patch versions may differ; major/minor must match. HTTP 426 version_mismatch means update the client or integration, not reset pairing.",
                 espContract: "Local-device client with _djconnect._tcp, optional Client address and /api/device/*.",
-                piContract: "Local-device client with _djconnect._tcp, optional Client address, /api/device/* and Pi restart/shutdown/display use cases.",
+                piContract: "Local-device client with _djconnect._tcp, optional Client address, /api/device/*, Pi restart/shutdown/display use cases and Ask DJ readonly_actions only.",
                 iosContract: "Inbound-only app client: djconnect-ios-XXXXXXXXXXXX, client_type ios, posts to /api/djconnect/pair.",
                 macosContract: "Inbound-only app client: djconnect-macos-XXXXXXXXXXXX, client_type macos, posts to /api/djconnect/pair.",
                 windowsContract: "Inbound-only app client: djconnect-windows-XXXXXXXXXXXX, client_type windows, posts to /api/djconnect/pair.",
@@ -1089,7 +1089,7 @@
                 voiceLead: "DJConnect uses your Home Assistant voice pipeline for voice control and spoken DJ announcements.",
                 voiceHelp: "Help with Home Assistant voice assist",
                 hacsTitle: "2. Add to Home Assistant",
-                hacsLead: "Use the Home Assistant Community Store button below to open the DJConnect repository in HACS directly. Install DJConnect integration v3.2.3 or newer, restart Home Assistant and then add DJConnect through Devices & services.",
+                hacsLead: "Use the Home Assistant Community Store button below to open the DJConnect repository in HACS directly. Install DJConnect integration v3.2.5 or newer, restart Home Assistant and then add DJConnect through Devices & services.",
                 hacsButton: "Open DJConnect in HACS",
                 spotifyOauthTitle: "4. Spotify Direct only: create a Spotify Developer app",
                 spotifyOauthLead: "Skip this step when you use Music Assistant. Spotify Direct uses your own Home Assistant installation, Spotify Premium, a Spotify Developer app Client ID and OAuth/PKCE.",
@@ -1249,7 +1249,7 @@
                 conversationAgent: "DJConnect conversation agent",
                 haContract: "Patch versions may differ; major/minor must match. HTTP 426 version_mismatch means update the client or integration, not reset pairing.",
                 espContract: "Local-device client with _djconnect._tcp, optional Client address and /api/device/*.",
-                piContract: "Local-device client with _djconnect._tcp, optional Client address, /api/device/* and Pi restart/shutdown/display use cases.",
+                piContract: "Local-device client with _djconnect._tcp, optional Client address, /api/device/*, Pi restart/shutdown/display use cases and Ask DJ readonly_actions only.",
                 iosContract: "Inbound-only app client: djconnect-ios-XXXXXXXXXXXX, client_type ios, posts to /api/djconnect/pair.",
                 macosContract: "Inbound-only app client: djconnect-macos-XXXXXXXXXXXX, client_type macos, posts to /api/djconnect/pair.",
                 windowsContract: "Inbound-only app client: djconnect-windows-XXXXXXXXXXXX, client_type windows, posts to /api/djconnect/pair.",
@@ -1259,7 +1259,7 @@
                 voiceLead: "DJConnect uses your Home Assistant voice pipeline for voice control and spoken DJ announcements.",
                 voiceHelp: "Help with Home Assistant voice assist",
                 hacsTitle: "2. Add to Home Assistant",
-                hacsLead: "Use the Home Assistant Community Store button below to open the DJConnect repository in HACS directly. Install DJConnect integration v3.2.3 or newer, restart Home Assistant and then add DJConnect through Devices & services.",
+                hacsLead: "Use the Home Assistant Community Store button below to open the DJConnect repository in HACS directly. Install DJConnect integration v3.2.5 or newer, restart Home Assistant and then add DJConnect through Devices & services.",
                 hacsButton: "Open DJConnect in HACS",
                 spotifyOauthTitle: "4. Spotify Direct only: create a Spotify Developer app",
                 spotifyOauthLead: "Skip this step when you use Music Assistant. Spotify Direct uses your own Home Assistant installation, Spotify Premium, a Spotify Developer app Client ID and OAuth/PKCE.",

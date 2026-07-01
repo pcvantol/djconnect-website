@@ -246,7 +246,8 @@ test("homepage promotes Ask DJ as a major product feature", async () => {
   assert.match(index, /pushmeldingen gebruiken als wake- of attentionhint voor Ask DJ-sync/);
   assert.match(index, /Push bevat geen tokens, volledige antwoorden, audio of history/);
   assert.match(index, /Raspberry Pi leest mee/);
-  assert.match(index, /read-only history display/);
+  assert.match(index, /readonly_actions: history\/status tonen/);
+  assert.match(index, /Geen Pi voice, vrije tekst, TTS of lokale audio/);
   assert.match(index, /ESP gebruikt PTT\/playback command flow zonder Ask DJ chat history/);
   assert.match(index, /iOS, macOS, Apple Watch en Windows kunnen voice\/PTT gebruiken/);
   assert.match(index, /Push contains no tokens, full replies, audio or history/);
@@ -261,7 +262,7 @@ test("homepage promotes Ask DJ as a major product feature", async () => {
   assert.match(index, /Spotify Premium en Client ID zijn alleen nodig voor Spotify Direct/);
   assert.match(index, /Music Assistant gebruikt eigen providers/);
   assert.doesNotMatch(index, /HACS DJConnect integration v3\.1\.69\+/);
-  assert.match(index, /Home Assistant, HACS DJConnect integration, een music backend, lokale pairing/);
+  assert.match(index, /Home Assistant, HACS DJConnect integration v3\.2\.5 of nieuwer, een music backend, lokale pairing/);
   assert.match(index, /For concrete recommendations you choose Play Now yourself; playback starts only after your tap/);
   assert.match(index, /Spotify is a trademark of Spotify AB/);
   assert.match(index, /DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB/);

@@ -1196,7 +1196,7 @@
           <article class="card">
             <div class="icon">🖥</div>
             <h3 data-i18n="askDjPiTitle">Raspberry Pi leest mee</h3>
-            <p data-i18n="askDjPiText">Op Raspberry Pi is Ask DJ gericht op read-only history display. Chatten, voice/PTT en audio-antwoorden blijven voor Apple clients, tenzij een toekomstige Pi-versie die scope expliciet uitbreidt.</p>
+            <p data-i18n="askDjPiText">Op Raspberry Pi gebruikt Ask DJ readonly_actions: history/status tonen plus door Home Assistant geleverde actieknoppen. Geen Pi voice, vrije tekst, TTS of lokale audio.</p>
           </article>
           <article class="card">
             <div class="icon">☑</div>
@@ -1206,7 +1206,7 @@
           <article class="card">
             <div class="icon">✅</div>
             <h3 data-i18n="askDjRequirementsTitle">Wat je nodig hebt</h3>
-            <p data-i18n="askDjRequirementsText">Home Assistant, HACS DJConnect integration, Spotify Premium, je eigen Spotify Developer app met Client ID en voor voice/audio een Assist pipeline met STT/TTS. Nabu Casa of een stabiele HTTPS external URL is aanbevolen.</p>
+            <p data-i18n="askDjRequirementsText">Home Assistant, HACS DJConnect integration v3.2.5 of nieuwer, een music backend, lokale pairing en voor voice/audio een Assist pipeline met STT/TTS. Spotify Premium en Client ID zijn alleen nodig voor Spotify Direct; Music Assistant gebruikt eigen providers.</p>
           </article>
         </div>
         <div class="ask-dj-panel">
@@ -1453,9 +1453,9 @@
                 askDjPrivacyTitle: "Privacy compact gehouden",
                 askDjPrivacyText: "Clients do not store your persistent Music DNA profile. Spotify credentials stay in Home Assistant. Music DNA mag geen OAuth tokens, bearer tokens, raw audio, volledige prompts of volledige chatgeschiedenis opslaan.",
                 askDjPiTitle: "Raspberry Pi leest mee",
-                askDjPiText: "Op Raspberry Pi is Ask DJ gericht op local-only gebruik en read-only history display. Chat/history blijft bij app-clients; ESP gebruikt PTT/playback command flow zonder Ask DJ chat history.",
+                askDjPiText: "Op Raspberry Pi gebruikt Ask DJ readonly_actions: history/status tonen plus door Home Assistant geleverde actieknoppen. Geen Pi voice, vrije tekst, TTS of lokale audio; ESP gebruikt PTT/playback command flow zonder Ask DJ chat history.",
                 askDjRequirementsTitle: "Wat je nodig hebt",
-                askDjRequirementsText: "Home Assistant, HACS DJConnect integration, een music backend, lokale pairing en voor voice/audio een Assist pipeline met STT/TTS. Spotify Premium en Client ID zijn alleen nodig voor Spotify Direct; Music Assistant gebruikt eigen providers.",
+                askDjRequirementsText: "Home Assistant, HACS DJConnect integration v3.2.5 of nieuwer, een music backend, lokale pairing en voor voice/audio een Assist pipeline met STT/TTS. Spotify Premium en Client ID zijn alleen nodig voor Spotify Direct; Music Assistant gebruikt eigen providers.",
                 aiPrivacyTitle: "AI privacy-first",
                 aiPrivacyText: "DJConnect is ontworpen als Home Assistant-first systeem. De Home Assistant integration orkestreert Ask DJ, playback, Assist/STT/TTS en Music DNA; DJConnect's active integration routes use Home Assistant Assist/STT/TTS and do not call direct external AI/STT/TTS APIs.",
                 clientTransparencyTitle: "Transparant in clients",
@@ -1614,9 +1614,9 @@
                 askDjPrivacyTitle: "Privacy kept compact",
                 askDjPrivacyText: "Clients do not store your persistent Music DNA profile. Spotify credentials stay in Home Assistant. Music DNA must not store OAuth tokens, bearer tokens, raw audio, full prompts or full chat history.",
                 askDjPiTitle: "Raspberry Pi follows along",
-                askDjPiText: "On Raspberry Pi, Ask DJ is focused on local-only use and read-only history display. Chat/history stays with app clients; ESP uses the PTT/playback command flow without Ask DJ chat history.",
+                askDjPiText: "On Raspberry Pi, Ask DJ uses readonly_actions: history/status display plus Home Assistant-provided structured action buttons. No Pi voice, free text, TTS or local audio; ESP uses the PTT/playback command flow without Ask DJ chat history.",
                 askDjRequirementsTitle: "What you need",
-                askDjRequirementsText: "Home Assistant, HACS DJConnect integration, a music backend, local pairing and, for voice/audio, an Assist pipeline with STT/TTS. Spotify Premium and Client ID are only needed for Spotify Direct; Music Assistant uses its own providers.",
+                askDjRequirementsText: "Home Assistant, HACS DJConnect integration v3.2.5 or newer, a music backend, local pairing and, for voice/audio, an Assist pipeline with STT/TTS. Spotify Premium and Client ID are only needed for Spotify Direct; Music Assistant uses its own providers.",
                 aiPrivacyTitle: "AI privacy-first",
                 aiPrivacyText: "DJConnect is designed as a Home Assistant-first system. The Home Assistant integration orchestrates Ask DJ, playback, Assist/STT/TTS and Music DNA; DJConnect's active integration routes use Home Assistant Assist/STT/TTS and do not call direct external AI/STT/TTS APIs.",
                 clientTransparencyTitle: "Transparent clients",
@@ -1775,9 +1775,9 @@
                 askDjPrivacyTitle: "Privacy kept compact",
                 askDjPrivacyText: "Clients do not store your persistent Music DNA profile. Spotify credentials stay in Home Assistant. Music DNA must not store OAuth tokens, bearer tokens, raw audio, full prompts or full chat history.",
                 askDjPiTitle: "Raspberry Pi follows along",
-                askDjPiText: "On Raspberry Pi, Ask DJ is focused on local-only use and read-only history display. Chat/history stays with app clients; ESP uses the PTT/playback command flow without Ask DJ chat history.",
+                askDjPiText: "On Raspberry Pi, Ask DJ uses readonly_actions: history/status display plus Home Assistant-provided structured action buttons. No Pi voice, free text, TTS or local audio; ESP uses the PTT/playback command flow without Ask DJ chat history.",
                 askDjRequirementsTitle: "What you need",
-                askDjRequirementsText: "Home Assistant, HACS DJConnect integration, a music backend, local pairing and, for voice/audio, an Assist pipeline with STT/TTS. Spotify Premium and Client ID are only needed for Spotify Direct; Music Assistant uses its own providers.",
+                askDjRequirementsText: "Home Assistant, HACS DJConnect integration v3.2.5 or newer, a music backend, local pairing and, for voice/audio, an Assist pipeline with STT/TTS. Spotify Premium and Client ID are only needed for Spotify Direct; Music Assistant uses its own providers.",
                 aiPrivacyTitle: "AI privacy-first",
                 aiPrivacyText: "DJConnect is designed as a Home Assistant-first system. The Home Assistant integration orchestrates Ask DJ, playback, Assist/STT/TTS and Music DNA; DJConnect's active integration routes use Home Assistant Assist/STT/TTS and do not call direct external AI/STT/TTS APIs.",
                 clientTransparencyTitle: "Transparent clients",
@@ -1936,9 +1936,9 @@
                 askDjPrivacyTitle: "Privacy kept compact",
                 askDjPrivacyText: "Clients do not store your persistent Music DNA profile. Spotify credentials stay in Home Assistant. Music DNA must not store OAuth tokens, bearer tokens, raw audio, full prompts or full chat history.",
                 askDjPiTitle: "Raspberry Pi follows along",
-                askDjPiText: "On Raspberry Pi, Ask DJ is focused on local-only use and read-only history display. Chat/history stays with app clients; ESP uses the PTT/playback command flow without Ask DJ chat history.",
+                askDjPiText: "On Raspberry Pi, Ask DJ uses readonly_actions: history/status display plus Home Assistant-provided structured action buttons. No Pi voice, free text, TTS or local audio; ESP uses the PTT/playback command flow without Ask DJ chat history.",
                 askDjRequirementsTitle: "What you need",
-                askDjRequirementsText: "Home Assistant, HACS DJConnect integration, a music backend, local pairing and, for voice/audio, an Assist pipeline with STT/TTS. Spotify Premium and Client ID are only needed for Spotify Direct; Music Assistant uses its own providers.",
+                askDjRequirementsText: "Home Assistant, HACS DJConnect integration v3.2.5 or newer, a music backend, local pairing and, for voice/audio, an Assist pipeline with STT/TTS. Spotify Premium and Client ID are only needed for Spotify Direct; Music Assistant uses its own providers.",
                 aiPrivacyTitle: "AI privacy-first",
                 aiPrivacyText: "DJConnect is designed as a Home Assistant-first system. The Home Assistant integration orchestrates Ask DJ, playback, Assist/STT/TTS and Music DNA; DJConnect's active integration routes use Home Assistant Assist/STT/TTS and do not call direct external AI/STT/TTS APIs.",
                 clientTransparencyTitle: "Transparent clients",
@@ -2097,9 +2097,9 @@
                 askDjPrivacyTitle: "Privacy kept compact",
                 askDjPrivacyText: "Clients do not store your persistent Music DNA profile. Spotify credentials stay in Home Assistant. Music DNA must not store OAuth tokens, bearer tokens, raw audio, full prompts or full chat history.",
                 askDjPiTitle: "Raspberry Pi follows along",
-                askDjPiText: "On Raspberry Pi, Ask DJ is focused on local-only use and read-only history display. Chat/history stays with app clients; ESP uses the PTT/playback command flow without Ask DJ chat history.",
+                askDjPiText: "On Raspberry Pi, Ask DJ uses readonly_actions: history/status display plus Home Assistant-provided structured action buttons. No Pi voice, free text, TTS or local audio; ESP uses the PTT/playback command flow without Ask DJ chat history.",
                 askDjRequirementsTitle: "What you need",
-                askDjRequirementsText: "Home Assistant, HACS DJConnect integration, a music backend, local pairing and, for voice/audio, an Assist pipeline with STT/TTS. Spotify Premium and Client ID are only needed for Spotify Direct; Music Assistant uses its own providers.",
+                askDjRequirementsText: "Home Assistant, HACS DJConnect integration v3.2.5 or newer, a music backend, local pairing and, for voice/audio, an Assist pipeline with STT/TTS. Spotify Premium and Client ID are only needed for Spotify Direct; Music Assistant uses its own providers.",
                 aiPrivacyTitle: "AI privacy-first",
                 aiPrivacyText: "DJConnect is designed as a Home Assistant-first system. The Home Assistant integration orchestrates Ask DJ, playback, Assist/STT/TTS and Music DNA; DJConnect's active integration routes use Home Assistant Assist/STT/TTS and do not call direct external AI/STT/TTS APIs.",
                 clientTransparencyTitle: "Transparent clients",

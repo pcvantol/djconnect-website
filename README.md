@@ -63,7 +63,7 @@ Static landing page for DJConnect, published through Cloudflare Pages.
 - Ask DJ is a major product feature for iOS, macOS, Windows, Apple Watch and
   Raspberry Pi clients.
   Website copy should keep it clear that Ask DJ runs through Home Assistant and
-  DJConnect integration 3.2.3 or newer, uses compact bounded server-side Music
+  DJConnect integration 3.2.5 or newer, uses compact bounded server-side Music
   DNA/history only after opt-in, carries chat continuity across app clients, can show Ja/Nee
   follow-up controls, uses backend-aware Spotify Direct or Music Assistant
   actions, can use optional Apple push notifications only as wake/attention
@@ -404,7 +404,7 @@ Use `./cleanup_old_releases.sh` manually only when you want cleanup outside the 
   continuity, explicit `Play Now`, Ja/Nee follow-ups, bounded history/trim
   behavior, backend-aware Spotify Direct or Music Assistant actions, voice/PTT
   with Assist STT/TTS on iOS, macOS, Windows and Apple Watch, Raspberry Pi
-  local-only read-only history display, ESP PTT/playback command flow without
+  local-only Ask DJ readonly_actions history/status display without Pi voice, free text, TTS or local audio, ESP PTT/playback command flow without
   chat history, optional Apple push notifications as wake/attention hints only,
   and compact privacy boundaries without implying Spotify affiliation. Include
   the claims `Ask DJ works without Music DNA.`, `Music DNA is opt-in.`,

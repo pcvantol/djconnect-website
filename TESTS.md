@@ -10,7 +10,7 @@
   explicit `Play Now`, Watch/iPhone/Mac/Windows continuity, Home Assistant
   server-side Music DNA/history with explicit opt-in, Ja/Nee follow-ups, bounded history trim
   behavior, backend-aware Spotify Direct or Music Assistant actions, voice/PTT
-  with Assist STT/TTS, Raspberry Pi local-only read-only history display, ESP
+  with Assist STT/TTS, Raspberry Pi local-only readonly_actions history/status display, ESP
   PTT/playback command flow without Ask DJ chat history, optional Apple push
   notifications as wake/attention hints only, and compact privacy boundaries.
   It must state that Ask DJ works without Music DNA, Music DNA is opt-in,

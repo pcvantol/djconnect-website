@@ -4,6 +4,18 @@ All notable changes to this website are grouped per release.
 
 ## Unreleased
 
+## DJConnect website v3.2.6 - 2026-07-01
+
+- Reduced i18n release technical debt by generating localized sitemap entries
+  from the public page registry and supported-language list.
+- Hardened the release build with a lock, staging directory and recursive
+  localized HTML rewriting so root and language routes get the same minified
+  assets.
+- Made GitHub Actions workflow-run cleanup non-blocking when the GitHub API
+  rejects deletion after a successful release.
+- Added regression coverage for i18n script load order, localized sitemap
+  coverage and localized release output.
+
 ## DJConnect website v3.2.5 - 2026-07-01
 
 - Fixed the public multilingual runtime load order so localized routes such as

@@ -4,6 +4,8 @@ All notable changes to this website are grouped per release.
 
 ## Unreleased
 
+## DJConnect website v3.2.7 - 2026-07-01
+
 - Synced website/docs copy with the canonical cross-repo prompt after Home
   Assistant integration `v3.2.5`, including the public HACS minimum version and
   Raspberry Pi Ask DJ `readonly_actions` scope.

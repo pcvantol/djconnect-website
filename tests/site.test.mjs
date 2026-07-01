@@ -1466,11 +1466,12 @@ test("release script performs standard cleanup after release", async () => {
 });
 
 test("release build minifies shared assets before deploy", async () => {
-  const [packageJson, releaseScript, buildScript, deployWorkflow] = await Promise.all([
+  const [packageJson, releaseScript, buildScript, deployWorkflow, cleanupScript] = await Promise.all([
     read("package.json"),
     read("release.sh"),
     read("scripts/build-release.mjs"),
-    read(".github/workflows/deploy-pages.yml")
+    read(".github/workflows/deploy-pages.yml"),
+    read("cleanup_old_releases.sh")
   ]);
   const scripts = JSON.parse(packageJson).scripts;
 
@@ -1491,6 +1492,7 @@ test("release build minifies shared assets before deploy", async () => {
   assert.match(releaseScript, /npm run build:release/);
   assert.match(releaseScript, /assets\/site-nav\.min\.css/);
   assert.match(releaseScript, /pages deploy "\$RELEASE_PUBLISH_DIR"/);
+  assert.match(cleanupScript, /Warning: could not delete workflow run/);
   assert.match(deployWorkflow, /pull_request:/);
   assert.match(deployWorkflow, /name: Test website/);
   assert.match(deployWorkflow, /cache: npm/);
@@ -1532,6 +1534,11 @@ test("release build minifies shared assets before deploy", async () => {
       assert.doesNotThrow(() => new vm.Script(match[1]), `${page} should not contain invalid inline JavaScript`);
     }
   }
+
+  const releaseGermanIndex = await read("dist/wwwroot/de/index.html");
+  assert.match(releaseGermanIndex, /assets\/i18n\.min\.js\?v=/);
+  assert.match(releaseGermanIndex, /assets\/site-nav\.min\.js\?v=/);
+  assert.doesNotMatch(releaseGermanIndex, /assets\/i18n\.js\?v=/);
 });
 
 test("production headers set cache and security defaults", async () => {

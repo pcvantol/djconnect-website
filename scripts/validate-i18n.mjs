@@ -36,6 +36,12 @@ const routeFor = (page, language) => {
   return `${prefix}${pagePath}`;
 };
 
+const sitemapUrlFor = (page, language) => {
+  const pagePath = page === "index" ? "" : page;
+  const prefix = language === defaultLanguage ? "" : `${language}/`;
+  return `https://djconnect.dev/${prefix}${pagePath}`;
+};
+
 const assertLocalizedRoute = async (page, language) => {
   if (language === defaultLanguage) return;
   const route = routeFor(page, language);
@@ -66,5 +72,15 @@ await Promise.all([
   access(path.join(sourceDir, "assets/i18n.js")),
   ...publicPages.map(validatePage)
 ]);
+
+const sitemap = await read("sitemap.xml");
+for (const page of publicPages.filter((name) => name !== "404")) {
+  for (const language of supportedLanguages) {
+    const url = sitemapUrlFor(page, language);
+    if (!sitemap.includes(`<loc>${url}</loc>`)) {
+      throw new Error(`sitemap.xml missing localized route: ${url}`);
+    }
+  }
+}
 
 console.log(`Validated ${publicPages.length} public pages for ${supportedLanguages.join(", ")} i18n coverage.`);

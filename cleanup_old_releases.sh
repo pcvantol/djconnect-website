@@ -143,7 +143,9 @@ for INDEX in "${!RUN_IDS[@]}"; do
   fi
 
   echo "Deleting workflow run ${RUN_IDS[$INDEX]}"
-  gh run delete "${RUN_IDS[$INDEX]}"
+  if ! gh run delete "${RUN_IDS[$INDEX]}"; then
+    echo "Warning: could not delete workflow run ${RUN_IDS[$INDEX]}; continuing because release publication is complete."
+  fi
 done
 
 if [[ "$RUN_DELETED" == "false" ]]; then

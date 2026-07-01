@@ -34,12 +34,15 @@
 ## Important Notes
 
 - The site source is static HTML/CSS/JavaScript in `wwwroot`; the release cycle
-  builds a minified deploy copy in `dist/wwwroot`.
+  builds a minified deploy copy in `dist/wwwroot`. The release build rewrites
+  root and localized HTML recursively and uses a temporary staging directory
+  before replacing the publish output.
 - Public website content is multilingual for `en`, `nl`, `de`, `fr` and `es`.
   Dutch remains the root default; localized static routes live under `/en/`,
   `/de/`, `/fr/` and `/es/`. Keep page-local translation blocks, `hreflang`
   alternates and language switcher buttons complete in the same PR, and run
-  `npm run i18n:check`.
+  `npm run i18n:check`. Regenerate `wwwroot/sitemap.xml` with
+  `npm run sitemap:build` when public routes or supported languages change.
 - Shared product/legal strings live in `wwwroot/assets/i18n.js`. Preserve the
   exact legal meaning of MIT license notes and Spotify trademark /
   non-affiliation copy, use placeholders instead of real artist names in

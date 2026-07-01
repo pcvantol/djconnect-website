@@ -22,7 +22,12 @@ test("site config centralizes release build inputs", async () => {
   assert.ok(sharedReleaseAssets.includes("assets/voice-intents.js"));
   assert.match(buildScript, /from "\.\/site-config\.mjs"/);
   assert.match(buildScript, /readSiteVersion/);
+  assert.match(buildScript, /stagingDir/);
+  assert.match(buildScript, /lockDir/);
+  assert.match(buildScript, /acquireBuildLock/);
+  assert.match(buildScript, /rewriteInDirectory/);
   assert.match(JSON.parse(packageJson).scripts["build:release"], /scripts\/build-release\.mjs/);
+  assert.match(JSON.parse(packageJson).scripts["sitemap:build"], /scripts\/build-sitemap\.mjs/);
 });
 
 test("public page registry covers every static HTML page", async () => {
@@ -53,7 +58,10 @@ test("public page registry covers every static HTML page", async () => {
   ].sort());
 
   for (const page of publicPages.filter((name) => name !== "404")) {
-    const route = page === "index" ? "https://djconnect.dev/" : `https://djconnect.dev/${page}`;
-    assert.match(sitemap, new RegExp(route.replaceAll(".", "\\.")));
+    for (const language of ["en", "nl", "de", "fr", "es"]) {
+      const prefix = language === "nl" ? "" : `${language}/`;
+      const route = page === "index" ? `https://djconnect.dev/${prefix}` : `https://djconnect.dev/${prefix}${page}`;
+      assert.match(sitemap, new RegExp(route.replaceAll(".", "\\.")));
+    }
   }
 });

@@ -111,6 +111,8 @@ Static landing page for DJConnect, published through Cloudflare Pages.
 - `wwwroot/assets/site-nav.css` and `wwwroot/assets/site-nav.js`: shared
   responsive navigation styling and hamburger-menu behavior included by all
   public pages with a top navigation.
+- `scripts/build-sitemap.mjs`: generates `wwwroot/sitemap.xml` from the public
+  page registry and supported language list.
 - `functions/api/releases.js`: Cloudflare Pages Function proxy for GitHub release data.
 - `functions/go/`: privacy-friendly redirect endpoints for HACS and downloadable assets.
 - `functions/api/stats.js`: token-protected aggregate stats endpoint that combines redirect clicks with GitHub asset `download_count` totals.
@@ -172,6 +174,8 @@ unless a real name is essential and appropriate.
 
 Localized static routes live under `/en/`, `/de/`, `/fr/` and `/es/`; Dutch is
 the root default. Each public page must keep `hreflang` alternates in sync.
+Regenerate `wwwroot/sitemap.xml` with `npm run sitemap:build` whenever public
+pages or supported languages change.
 Setup and troubleshooting copy must stay consistent with the HACS DJConnect
 integration requirements documented in `pcvantol/djconnect`.
 

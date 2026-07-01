@@ -47,6 +47,9 @@
 - Verify every public page offers `EN`, `NL`, `DE`, `FR` and `ES` language
   controls, has matching `hreflang` alternates, and that `npm run i18n:check`
   passes without missing translation keys or broken localized routes.
+- Verify `npm run sitemap:build` keeps `wwwroot/sitemap.xml` generated from the
+  public page registry and includes every public route for `en`, `nl`, `de`,
+  `fr` and `es`.
 - Verify shared product/legal strings come from `wwwroot/assets/i18n.js`,
   including taglines, pairing wording, requirements, client names, MIT license
   notes and the Spotify trademark/non-affiliation disclaimer.
@@ -208,7 +211,8 @@
 - Verify `wwwroot/404.html` exists, is marked `noindex` and links users back to
   Home and Support without being included in `sitemap.xml`.
 - Verify `npm run build:release` creates `dist/wwwroot` with minified shared
-  assets and that deployment commands use that release output.
+  assets for root and localized routes, and that deployment commands use that
+  release output.
 - Verify `https://www.djconnect.dev` redirects permanently to `https://djconnect.dev`, preserving path and query string.
 - Verify the embedded page uses the shared site color styling: cyan/green CTA and the same subtle cyan/pink/green background family as the homepage.
 - Verify iOS, macOS, Windows and Mac Catalyst do not show website repository release embeds, iOS/macOS/Windows/Mac Catalyst use `pcvantol/djconnect-app-releases`, ESP32 uses `pcvantol/djconnect-firmware` downloadable assets and Raspberry Pi uses `pcvantol/djconnect-pi-releases`.

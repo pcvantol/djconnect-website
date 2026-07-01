@@ -1,79 +1,383 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://djconnect.dev/en/</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
     <loc>https://djconnect.dev/</loc>
-    <lastmod>2026-06-13</lastmod>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/de/</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/fr/</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/es/</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/en/start</loc>
+    <lastmod>2026-07-01</lastmod>
   </url>
   <url>
     <loc>https://djconnect.dev/start</loc>
-    <lastmod>2026-06-13</lastmod>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/de/start</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/fr/start</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/es/start</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/en/features</loc>
+    <lastmod>2026-07-01</lastmod>
   </url>
   <url>
     <loc>https://djconnect.dev/features</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/de/features</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/fr/features</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/es/features</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/en/platform</loc>
+    <lastmod>2026-07-01</lastmod>
   </url>
   <url>
     <loc>https://djconnect.dev/platform</loc>
-    <lastmod>2026-06-17</lastmod>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/de/platform</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/fr/platform</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/es/platform</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/en/voice-commands</loc>
+    <lastmod>2026-07-01</lastmod>
   </url>
   <url>
     <loc>https://djconnect.dev/voice-commands</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/de/voice-commands</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/fr/voice-commands</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/es/voice-commands</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/en/voice-assistant</loc>
+    <lastmod>2026-07-01</lastmod>
   </url>
   <url>
     <loc>https://djconnect.dev/voice-assistant</loc>
-    <lastmod>2026-06-18</lastmod>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/de/voice-assistant</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/fr/voice-assistant</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/es/voice-assistant</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/en/blog</loc>
+    <lastmod>2026-07-01</lastmod>
   </url>
   <url>
     <loc>https://djconnect.dev/blog</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/de/blog</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/fr/blog</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/es/blog</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/en/blog-djconnect-project</loc>
+    <lastmod>2026-07-01</lastmod>
   </url>
   <url>
     <loc>https://djconnect.dev/blog-djconnect-project</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/de/blog-djconnect-project</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/fr/blog-djconnect-project</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/es/blog-djconnect-project</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/en/support</loc>
+    <lastmod>2026-07-01</lastmod>
   </url>
   <url>
     <loc>https://djconnect.dev/support</loc>
-    <lastmod>2026-06-18</lastmod>
+    <lastmod>2026-07-01</lastmod>
   </url>
   <url>
-    <loc>https://djconnect.dev/troubleshooting</loc>
-    <lastmod>2026-06-18</lastmod>
+    <loc>https://djconnect.dev/de/support</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/fr/support</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/es/support</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/en/privacy</loc>
+    <lastmod>2026-07-01</lastmod>
   </url>
   <url>
     <loc>https://djconnect.dev/privacy</loc>
-    <lastmod>2026-06-18</lastmod>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/de/privacy</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/fr/privacy</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/es/privacy</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/en/troubleshooting</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/troubleshooting</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/de/troubleshooting</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/fr/troubleshooting</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/es/troubleshooting</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/en/ios</loc>
+    <lastmod>2026-07-01</lastmod>
   </url>
   <url>
     <loc>https://djconnect.dev/ios</loc>
-    <lastmod>2026-06-13</lastmod>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/de/ios</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/fr/ios</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/es/ios</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/en/testflight</loc>
+    <lastmod>2026-07-01</lastmod>
   </url>
   <url>
     <loc>https://djconnect.dev/testflight</loc>
-    <lastmod>2026-06-18</lastmod>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/de/testflight</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/fr/testflight</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/es/testflight</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/en/testflight-macos</loc>
+    <lastmod>2026-07-01</lastmod>
   </url>
   <url>
     <loc>https://djconnect.dev/testflight-macos</loc>
-    <lastmod>2026-06-18</lastmod>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/de/testflight-macos</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/fr/testflight-macos</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/es/testflight-macos</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/en/macos</loc>
+    <lastmod>2026-07-01</lastmod>
   </url>
   <url>
     <loc>https://djconnect.dev/macos</loc>
-    <lastmod>2026-06-24</lastmod>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/de/macos</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/fr/macos</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/es/macos</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/en/windows</loc>
+    <lastmod>2026-07-01</lastmod>
   </url>
   <url>
     <loc>https://djconnect.dev/windows</loc>
-    <lastmod>2026-06-24</lastmod>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/de/windows</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/fr/windows</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/es/windows</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/en/maccatalyst</loc>
+    <lastmod>2026-07-01</lastmod>
   </url>
   <url>
     <loc>https://djconnect.dev/maccatalyst</loc>
-    <lastmod>2026-06-24</lastmod>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/de/maccatalyst</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/fr/maccatalyst</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/es/maccatalyst</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/en/raspberry-pi</loc>
+    <lastmod>2026-07-01</lastmod>
   </url>
   <url>
     <loc>https://djconnect.dev/raspberry-pi</loc>
-    <lastmod>2026-06-13</lastmod>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/de/raspberry-pi</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/fr/raspberry-pi</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/es/raspberry-pi</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/en/embedded</loc>
+    <lastmod>2026-07-01</lastmod>
   </url>
   <url>
     <loc>https://djconnect.dev/embedded</loc>
-    <lastmod>2026-06-13</lastmod>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/de/embedded</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/fr/embedded</loc>
+    <lastmod>2026-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://djconnect.dev/es/embedded</loc>
+    <lastmod>2026-07-01</lastmod>
   </url>
 </urlset>

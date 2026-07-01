@@ -1,4 +1,4 @@
-import { cp, mkdir, readFile, readdir, rm, stat, writeFile } from "node:fs/promises";
+import { cp, mkdir, readFile, readdir, rename, rm, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 import {
@@ -10,6 +10,8 @@ import {
 
 const sourceDir = path.resolve(configuredSourceDir);
 const outputDir = path.resolve(releaseOutputDir);
+const stagingDir = path.resolve(`${releaseOutputDir}.tmp-${process.pid}`);
+const lockDir = path.resolve(`${releaseOutputDir}.lock`);
 
 const minifyJs = (input) => input
   .split("\n")
@@ -51,12 +53,17 @@ const applySiteMetadata = (html, siteVersion) => html
   .replace(siteVersionPattern, `DJConnect website v${siteVersion}`);
 
 const rewriteHtmlReferences = async (assetMap, siteVersion) => {
-  const entries = await readdir(outputDir);
+  const rewriteInDirectory = async (directory) => {
+    const entries = await readdir(directory, { withFileTypes: true });
 
-  await Promise.all(entries
-    .filter((entry) => entry.endsWith(".html"))
-    .map(async (entry) => {
-      const file = path.join(outputDir, entry);
+    await Promise.all(entries.map(async (entry) => {
+      const file = path.join(directory, entry.name);
+      if (entry.isDirectory()) {
+        await rewriteInDirectory(file);
+        return;
+      }
+      if (!entry.name.endsWith(".html")) return;
+
       let html = await readFile(file, "utf8");
 
       for (const [original, minified] of assetMap) {
@@ -66,6 +73,9 @@ const rewriteHtmlReferences = async (assetMap, siteVersion) => {
       html = applySiteMetadata(html, siteVersion);
       await writeFile(file, `${minifyHtml(html)}\n`);
     }));
+  };
+
+  await rewriteInDirectory(outputDir);
 };
 
 const assertSharedAssetsExist = async () => {
@@ -75,14 +85,34 @@ const assertSharedAssetsExist = async () => {
   }));
 };
 
-await assertSharedAssetsExist();
-const siteVersion = await readSiteVersion();
-await rm(outputDir, { recursive: true, force: true });
-await mkdir(path.dirname(outputDir), { recursive: true });
-await cp(sourceDir, outputDir, { recursive: true });
+const acquireBuildLock = async () => {
+  try {
+    await mkdir(lockDir, { recursive: false });
+  } catch (error) {
+    if (error.code === "EEXIST") {
+      throw new Error(`Release build already running: ${path.relative(process.cwd(), lockDir)}`);
+    }
+    throw error;
+  }
+};
 
-const generatedAssets = await Promise.all(sharedReleaseAssets.map(minifyAsset));
-const assetMap = new Map(generatedAssets.map(({ original, minified }) => [original, minified]));
-await rewriteHtmlReferences(assetMap, siteVersion);
+await acquireBuildLock();
 
-console.log(`Built minified release site: ${path.relative(process.cwd(), outputDir)}`);
+try {
+  await assertSharedAssetsExist();
+  const siteVersion = await readSiteVersion();
+  await rm(stagingDir, { recursive: true, force: true });
+  await mkdir(path.dirname(outputDir), { recursive: true });
+  await cp(sourceDir, stagingDir, { recursive: true });
+  await rm(outputDir, { recursive: true, force: true });
+  await rename(stagingDir, outputDir);
+
+  const generatedAssets = await Promise.all(sharedReleaseAssets.map(minifyAsset));
+  const assetMap = new Map(generatedAssets.map(({ original, minified }) => [original, minified]));
+  await rewriteHtmlReferences(assetMap, siteVersion);
+
+  console.log(`Built minified release site: ${path.relative(process.cwd(), outputDir)}`);
+} finally {
+  await rm(stagingDir, { recursive: true, force: true });
+  await rm(lockDir, { recursive: true, force: true });
+}

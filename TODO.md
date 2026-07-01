@@ -30,4 +30,4 @@ Cross-repo contract changes are tracked only in
 
 - Document the expected ESP32 firmware pairing flow with screenshots.
 - Add firmware flashing screenshots from `pcvantol/djconnect-firmware` when the public firmware flow is stable.
-- Expand Playwright smoke tests for actual language switching, rendered latest download cards and mobile navigation behavior in CI.
+- Expand Playwright smoke tests for rendered latest download cards and mobile navigation behavior in CI.

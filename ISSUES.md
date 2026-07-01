@@ -15,6 +15,9 @@ Use GitHub Issues for active tracking. This file captures known repository-level
   `/operator`, `/operator.html` and `/api/operator/*`; Pages middleware now
   fails these routes closed until the Access JWT settings are present.
 - The Home Assistant badge uses the official Home Assistant brand logo; confirm formal "Works with Home Assistant" certification requirements before presenting it as a certification mark.
+- German, French and Spanish public copy is structurally complete but still
+  needs native-speaker quality review before treating it as polished marketing
+  translation.
 
 ## Resolved
 
@@ -37,3 +40,10 @@ Use GitHub Issues for active tracking. This file captures known repository-level
   `test:smoke` suite before building/deploying the release site.
 - Operator routes have fail-closed Pages middleware that verifies Cloudflare
   Access JWTs before serving `/operator` or `/api/operator/*`.
+- Public route i18n now has build-time validation for missing keys, broken
+  localized routes, script load order and generated localized sitemap coverage.
+- The release build rewrites localized HTML recursively and uses a build lock
+  plus staging directory before replacing `dist/wwwroot`.
+- Release cleanup now treats GitHub Actions workflow-run deletion failures as
+  warnings, so a GitHub API `403` does not mark an already-published release as
+  failed.

@@ -3,8 +3,9 @@
   "version": "3.2.5",
   "private": true,
   "scripts": {
-    "build": "npm run build:release",
+    "build": "npm run sitemap:build && npm run build:release",
     "build:release": "node scripts/build-release.mjs",
+    "sitemap:build": "node scripts/build-sitemap.mjs",
     "test": "npm run i18n:check && node --test",
     "i18n:check": "node scripts/validate-i18n.mjs",
     "stats:check": "node scripts/check-stats.mjs",

@@ -281,11 +281,13 @@ Before every release, check whether the test suite needs to grow. Add or update 
 
 `release.sh` also enforces the core documentation-file presence, verifies that
 `CHANGELOG.md` and `HANDOFF.md` mention the current website version, includes
-`CHAT_BOOTSTRAP.md` in the release documentation set, refreshes declared
-npm dependencies when a lockfile exists, records the active `npx wrangler@4`
-version and builds the minified release output in `dist/wwwroot`. When a
-third-party library, framework or release tool is upgraded, update
-`TECHNICAL_DESIGN.md` and any third-party notices before publishing.
+`CHAT_BOOTSTRAP.md` in the release documentation set, runs
+`npm run deps:update`, records active npm, Wrangler and Playwright tool
+versions, fails if package metadata changes without a commit and builds the
+minified release output in `dist/wwwroot`. CI runs `npm run deps:check` so
+dependency drift is caught before merge. When a third-party library, framework
+or release tool is upgraded, update `TECHNICAL_DESIGN.md` and any third-party
+notices before publishing.
 
 Cross-repo contract changes must update the only canonical sync prompt in
 `pcvantol/djconnect/SYNC_PROMPTS.md`. Product roadmap changes must update

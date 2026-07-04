@@ -252,12 +252,12 @@
 7. Run `./release.sh --skip-deploy` when the token is only available in GitHub Actions.
 8. Verify the GitHub Release, the `Deploy Cloudflare Pages` workflow run and https://djconnect.dev.
 
-The workflow runs `npm ci`, `npm test` and `npm run build:release` on pull requests and pushes to `main`. Pushes to `main` and manual workflow dispatches deploy `dist/wwwroot` to Cloudflare Pages after the test job succeeds, with `CLOUDFLARE_ACCOUNT_ID` set explicitly.
+The workflow runs `npm ci`, `npm run deps:check`, `npm test` and `npm run build:release` on pull requests and pushes to `main`. Pushes to `main` and manual workflow dispatches deploy `dist/wwwroot` to Cloudflare Pages after the test job succeeds, with `CLOUDFLARE_ACCOUNT_ID` set explicitly.
 The release script verifies the Dutch screenshot manifest, verifies the core documentation files exist, checks `CHANGELOG.md` and `HANDOFF.md` against the current `VERSION`, builds a minified release copy in `dist/wwwroot`, removes older GitHub Releases, matching local/remote tags and older GitHub Actions workflow runs by default. It keeps the newly released tag and only the newest workflow run. Override workflow-run retention with `KEEP_WORKFLOW_RUNS=N` when needed.
-Before tests, the release script refreshes declared npm dependencies when a
-lockfile exists and records the active `npx wrangler@4` version in the release
-output. If any third-party library, framework or release tool changes version,
-update the dependency inventory and third-party notice details in
+Before tests, the release script runs `npm run deps:update`, records active npm,
+Wrangler and Playwright versions, and stops if package metadata changed without
+a commit. If any third-party library, framework or release tool changes
+version, update the dependency inventory and third-party notice details in
 `TECHNICAL_DESIGN.md` and any dedicated notices document before publishing.
 
 Set the token only in the current shell when needed:

@@ -63,16 +63,12 @@ if [[ "$SKIP_DEPLOY" != "true" && -z "${CLOUDFLARE_API_TOKEN:-}" ]]; then
 fi
 
 echo "Running tests..."
-if node -e 'const p=require("./package.json"); process.exit((p.dependencies || p.devDependencies || p.optionalDependencies) ? 0 : 1)'; then
-  NPM_UPDATE_ARGS=()
-  if [[ -f package-lock.json ]]; then
-    NPM_UPDATE_ARGS+=(--package-lock-only)
-  fi
-  npm update "${NPM_UPDATE_ARGS[@]}"
-else
-  echo "No declared npm dependencies to update."
+npm run deps:update
+if [[ -n "$(git status --porcelain -- package.json package-lock.json)" ]]; then
+  echo "Dependency refresh changed package metadata. Commit the updated dependency files before releasing."
+  git status --short -- package.json package-lock.json
+  exit 1
 fi
-npx wrangler@4 --version
 npm test
 
 echo "Checking release files..."

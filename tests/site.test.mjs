@@ -1860,13 +1860,26 @@ test("release script checks documentation before tagging", async () => {
 });
 
 test("release script performs dependency and release-tool preflight", async () => {
-  const releaseScript = await read("release.sh");
+  const [releaseScript, packageJson, refreshScript, validateWorkflow, deployWorkflow] = await Promise.all([
+    read("release.sh"),
+    read("package.json"),
+    read("scripts/refresh-dependencies.mjs"),
+    read(".github/workflows/validate.yml"),
+    read(".github/workflows/deploy-pages.yml")
+  ]);
 
-  assert.match(releaseScript, /p\.dependencies \|\| p\.devDependencies \|\| p\.optionalDependencies/);
-  assert.match(releaseScript, /package-lock\.json/);
-  assert.match(releaseScript, /npm update "\$\{NPM_UPDATE_ARGS\[@\]\}"/);
-  assert.match(releaseScript, /No declared npm dependencies to update/);
-  assert.match(releaseScript, /npx wrangler@4 --version/);
+  assert.match(packageJson, /"deps:update": "node scripts\/refresh-dependencies\.mjs update"/);
+  assert.match(packageJson, /"deps:check": "node scripts\/refresh-dependencies\.mjs check"/);
+  assert.match(releaseScript, /npm run deps:update/);
+  assert.match(releaseScript, /git status --porcelain -- package\.json package-lock\.json/);
+  assert.match(releaseScript, /Dependency refresh changed package metadata/);
+  assert.match(refreshScript, /npm", \["--version"\]/);
+  assert.match(refreshScript, /npx", \["wrangler@4", "--version"\]/);
+  assert.match(refreshScript, /npx", \["playwright", "--version"\]/);
+  assert.match(refreshScript, /npm", updateArgs/);
+  assert.match(refreshScript, /package-lock\.json would change after npm update/);
+  assert.match(validateWorkflow, /Check third-party packages and tools[\s\S]*npm run deps:check/);
+  assert.match(deployWorkflow, /Check third-party packages and tools[\s\S]*npm run deps:check/);
 });
 
 test("technical design document records architecture, style and dependency inventory", async () => {

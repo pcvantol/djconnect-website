@@ -254,13 +254,18 @@ Sources:
 ### Release Script Owns Publishing Hygiene
 
 `release.sh` is the canonical release path. It checks branch cleanliness,
-version consistency, refreshes declared npm dependencies when a lockfile exists,
-records the active `npx wrangler@4` version, runs tests, checks release files,
-verifies documentation presence, checks current changelog/handoff version
-references, builds a minified release copy in `dist/wwwroot`, creates and
-pushes the tag, creates the GitHub Release, deploys the minified output to
-Cloudflare Pages and runs cleanup. `cleanup_old_releases.sh` removes older
-releases, tags and workflow runs.
+version consistency, runs `npm run deps:update`, records active npm, Wrangler
+and Playwright versions, fails if package metadata changed without a commit,
+runs tests, checks release files, verifies documentation presence, checks
+current changelog/handoff version references, builds a minified release copy in
+`dist/wwwroot`, creates and pushes the tag, creates the GitHub Release, deploys
+the minified output to Cloudflare Pages and runs cleanup.
+`cleanup_old_releases.sh` removes older releases, tags and workflow runs.
+
+CI runs `npm run deps:check` after `npm ci` in the Validate workflow and in the
+Deploy workflow test job. The check performs the same package-lock refresh in a
+non-mutating mode and fails when dependency metadata would change, forcing the
+update to be committed before release or merge.
 
 The GitHub Actions workflow runs `npm ci`, `npm test` and
 `npm run build:release` for pull requests and pushes to `main`. The deploy job

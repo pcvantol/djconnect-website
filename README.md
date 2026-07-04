@@ -226,14 +226,15 @@ pages or supported languages change.
 Setup and troubleshooting copy must stay consistent with the HACS DJConnect
 integration requirements documented in `pcvantol/djconnect`.
 
-The release script refreshes declared npm dependencies when a lockfile exists,
-checks the active Wrangler major version, runs tests, verifies that the Dutch
-release screenshot manifest exists, checks core documentation files, builds a
-minified release copy in `dist/wwwroot`, pushes `main`, creates a `vX.Y.Z` tag,
-creates a GitHub Release, deploys the minified release copy to Cloudflare Pages
-and then automatically removes older GitHub Releases, matching
-local/remote tags and older GitHub Actions workflow runs. By default, only the
-newest workflow run remains.
+The release script runs `npm run deps:update`, which refreshes declared npm
+dependencies, logs the active npm, Wrangler and Playwright tool versions, and
+stops the release if package metadata changes and still needs to be committed.
+It then runs tests, verifies that the Dutch release screenshot manifest exists,
+checks core documentation files, builds a minified release copy in
+`dist/wwwroot`, pushes `main`, creates a `vX.Y.Z` tag, creates a GitHub Release,
+deploys the minified release copy to Cloudflare Pages and then automatically
+removes older GitHub Releases, matching local/remote tags and older GitHub
+Actions workflow runs. By default, only the newest workflow run remains.
 
 Before every release, update or consciously re-check all repository documentation files:
 
@@ -254,6 +255,9 @@ repo must not keep local copies of either file.
 When third-party libraries, frameworks or release tools are updated or upgraded,
 also update the dependency inventory and third-party notice details in
 `TECHNICAL_DESIGN.md` and any dedicated notices document before publishing.
+CI runs `npm run deps:check` after `npm ci`; if `npm update --package-lock-only`
+would change the lockfile, update with `npm run deps:update` and commit the
+result before merging or releasing.
 
 `CHANGELOG.md` gets a separate entry per release and `HANDOFF.md` must mention the current `VERSION`.
 

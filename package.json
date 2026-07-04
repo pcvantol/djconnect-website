@@ -5,6 +5,8 @@
   "scripts": {
     "build": "npm run sitemap:build && npm run build:release",
     "build:release": "node scripts/build-release.mjs",
+    "deps:update": "node scripts/refresh-dependencies.mjs update",
+    "deps:check": "node scripts/refresh-dependencies.mjs check",
     "sitemap:build": "node scripts/build-sitemap.mjs",
     "test": "npm run i18n:check && node --test",
     "i18n:check": "node scripts/validate-i18n.mjs",

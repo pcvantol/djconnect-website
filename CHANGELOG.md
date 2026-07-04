@@ -4,6 +4,16 @@ All notable changes to this website are grouped per release.
 
 ## Unreleased
 
+## DJConnect website v3.2.9 - 2026-07-04
+
+- Centralized all public page translation copy in `wwwroot/assets/page-translations.js`
+  so website text is easier to find, review and extend across English, Dutch,
+  German, French and Spanish.
+- Updated all public language routes to load page copy from the centralized
+  resource instead of duplicating inline translation blocks per HTML file.
+- Extended i18n validation, release-build handling and regression tests for the
+  centralized translation resource, including localized homepage render checks.
+
 ## DJConnect website v3.2.8 - 2026-07-04
 
 - Synced public website and docs with the current Home Assistant integration

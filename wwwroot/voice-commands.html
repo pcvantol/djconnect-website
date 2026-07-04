@@ -77,7 +77,7 @@
     @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } .flow li { grid-template-columns:40px 1fr; } .flow li::before { width:40px; height:40px; } .style-grid { grid-template-columns:1fr; } }
 
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.9" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.10" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -201,16 +201,18 @@
     <p>Copyright Peter van Tol 2026. Released under the MIT License.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: Spotify credentials blijven in Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.2.9</p>
+    <p class="site-version">DJConnect website v3.2.10</p>
   </footer>
 
   <script src="assets/voice-intents.js"></script>
-  <script src="assets/i18n.js?v=3.2.9"></script>
-  <script src="assets/page-translations.js?v=3.2.9"></script>
+  <script src="assets/i18n.js?v=3.2.10"></script>
+  <script src="assets/page-translations.js?v=3.2.10"></script>
   <script>
     const translations = window.DJCONNECT_PAGE_TRANSLATIONS?.["voice-commands"] || {};
     const intentFamilies = window.DJCONNECT_VOICE_INTENTS || [];
     const askDjFamilies = window.DJCONNECT_ASK_DJ_INTENTS || [];
+    const localized = (value, lang) => value?.[lang] || value?.en || value?.nl || "";
+    const localizedList = (value, lang) => value?.[lang] || value?.en || value?.nl || [];
     const renderIntentFamilies = (lang, dictionary) => {
       const grid = document.querySelector("#intentGrid");
       if (!grid) return;
@@ -221,13 +223,13 @@
 
         const pill = document.createElement("span");
         pill.className = "pill";
-        pill.textContent = family.pill[lang];
+        pill.textContent = localized(family.pill, lang);
 
         const title = document.createElement("h3");
-        title.textContent = family.title[lang];
+        title.textContent = localized(family.title, lang);
 
         const text = document.createElement("p");
-        text.textContent = family.text[lang];
+        text.textContent = localized(family.text, lang);
 
         const metadata = document.createElement("div");
         metadata.className = "meta-row";
@@ -239,14 +241,14 @@
 
         const behavior = document.createElement("p");
         behavior.className = "note";
-        behavior.textContent = `${dictionary.behaviorLabel}: ${family.behavior[lang]}`;
+        behavior.textContent = `${dictionary.behaviorLabel}: ${localized(family.behavior, lang)}`;
 
         const examples = document.createElement("div");
         examples.className = "examples";
         const label = document.createElement("h4");
         label.textContent = dictionary.examplesLabel;
         const list = document.createElement("ul");
-        family.examples[lang].forEach((example) => {
+        localizedList(family.examples, lang).forEach((example) => {
           const item = document.createElement("li");
           item.textContent = example;
           list.append(item);
@@ -259,7 +261,7 @@
           family.commands.forEach((command) => {
             const row = document.createElement("div");
             const phrase = document.createElement("span");
-            phrase.textContent = command.phrase[lang];
+            phrase.textContent = localized(command.phrase, lang);
             const backendCommand = document.createElement("code");
             backendCommand.textContent = command.command;
             row.append(phrase, backendCommand);
@@ -282,13 +284,13 @@
 
         const pill = document.createElement("span");
         pill.className = "pill";
-        pill.textContent = family.pill[lang];
+        pill.textContent = localized(family.pill, lang);
 
         const title = document.createElement("h3");
-        title.textContent = family.title[lang];
+        title.textContent = localized(family.title, lang);
 
         const text = document.createElement("p");
-        text.textContent = family.text?.[lang] || family.description;
+        text.textContent = localized(family.text, lang) || family.description;
 
         const metadata = document.createElement("div");
         metadata.className = "meta-row";
@@ -303,7 +305,7 @@
         const label = document.createElement("h4");
         label.textContent = dictionary.examplesLabel;
         const list = document.createElement("ul");
-        family.examples[lang].forEach((example) => {
+        localizedList(family.examples, lang).forEach((example) => {
           const item = document.createElement("li");
           item.textContent = example;
           list.append(item);
@@ -313,11 +315,7 @@
         grid.append(card);
       });
     };
-    const getInitialLanguage = () => {
-      const stored = localStorage.getItem("djconnect-language");
-      if (stored === "nl" || stored === "en") return stored;
-      return navigator.language && navigator.language.toLowerCase().startsWith("nl") ? "nl" : "en";
-    };
+    const getInitialLanguage = () => window.DJCONNECT_I18N?.initialLanguage || "nl";
     const applyLanguage = (lang) => {
       const dictionary = { ...(window.DJCONNECT_I18N?.shared?.[lang] || {}), ...(translations[lang] || translations[window.DJCONNECT_I18N?.defaultLanguage || "nl"]) };
       document.documentElement.lang = lang;
@@ -347,6 +345,6 @@
 
   </script>
 
-  <script src="assets/site-nav.js?v=3.2.9"></script>
+  <script src="assets/site-nav.js?v=3.2.10"></script>
 </body>
 </html>

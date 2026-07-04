@@ -4,6 +4,16 @@ All notable changes to this website are grouped per release.
 
 ## Unreleased
 
+## DJConnect website v3.2.10 - 2026-07-04
+
+- Fixed global language selection so one selector click is persisted across
+  pages and wins over language-specific routes on later navigation.
+- Changed first-visit language selection to prefer the browser/OS language
+  when no explicit URL or stored selector preference exists.
+- Completed German, French and Spanish copy for the Voice Commands page and
+  dynamic voice/Ask DJ intent cards, including safe fallbacks for future intent
+  entries.
+
 ## DJConnect website v3.2.9 - 2026-07-04
 
 - Centralized all public page translation copy in `wwwroot/assets/page-translations.js`

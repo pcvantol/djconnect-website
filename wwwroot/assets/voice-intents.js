@@ -7,19 +7,31 @@ window.DJCONNECT_VOICE_INTENTS = [
     "playsMusic": false,
     "pill": {
       "nl": "Status",
-      "en": "Status"
+      "en": "Status",
+      "de": "Status",
+      "fr": "Statut",
+      "es": "Estado"
     },
     "title": {
       "nl": "Wat draait er nu?",
-      "en": "What is playing?"
+      "en": "What is playing?",
+      "de": "Was laeuft gerade?",
+      "fr": "Que joue-t-on maintenant ?",
+      "es": "Que esta sonando?"
     },
     "text": {
       "nl": "Leest de huidige playback-status en geeft een DJ-response. Dit start of wijzigt geen muziek.",
-      "en": "Reads the current playback status and returns a DJ response. This does not start or change music."
+      "en": "Reads the current playback status and returns a DJ response. This does not start or change music.",
+      "de": "Liest den aktuellen Wiedergabestatus und gibt eine DJ-Antwort. Das startet oder aendert keine Musik.",
+      "fr": "Lit le statut de lecture actuel et renvoie une reponse DJ. Cela ne demarre ni ne modifie la musique.",
+      "es": "Lee el estado de reproduccion actual y devuelve una respuesta de DJ. No inicia ni cambia musica."
     },
     "behavior": {
       "nl": "Geen Spotify search. Geen playback-start. Alleen status lezen en antwoord geven.",
-      "en": "No Spotify search. No playback start. Only read status and answer."
+      "en": "No Spotify search. No playback start. Only read status and answer.",
+      "de": "Keine Spotify-Suche. Kein Wiedergabestart. Nur Status lesen und antworten.",
+      "fr": "Pas de recherche Spotify. Pas de demarrage de lecture. Lecture du statut et reponse seulement.",
+      "es": "Sin busqueda en Spotify. Sin iniciar reproduccion. Solo lee el estado y responde."
     },
     "examples": {
       "nl": [
@@ -34,6 +46,24 @@ window.DJCONNECT_VOICE_INTENTS = [
         "What track is playing now?",
         "What's playing?",
         "Which song is this?"
+      ],
+      "de": [
+        "Welcher Song laeuft gerade?",
+        "Welcher Track spielt jetzt?",
+        "Was laeuft?",
+        "Welches Lied ist das?"
+      ],
+      "fr": [
+        "Quelle chanson passe ?",
+        "Quel morceau joue maintenant ?",
+        "Qu est-ce qui passe ?",
+        "C est quelle chanson ?"
+      ],
+      "es": [
+        "Que cancion esta sonando?",
+        "Que tema suena ahora?",
+        "Que esta sonando?",
+        "Que cancion es esta?"
       ]
     }
   },
@@ -43,115 +73,179 @@ window.DJCONNECT_VOICE_INTENTS = [
     "playsMusic": false,
     "pill": {
       "nl": "Bediening",
-      "en": "Control"
+      "en": "Control",
+      "de": "Steuerung",
+      "fr": "Controle",
+      "es": "Control"
     },
     "title": {
       "nl": "Playback direct bedienen",
-      "en": "Direct playback control"
+      "en": "Direct playback control",
+      "de": "Wiedergabe direkt steuern",
+      "fr": "Controler directement la lecture",
+      "es": "Control directo de reproduccion"
     },
     "text": {
       "nl": "Roept direct backend commands aan. DJConnect voert geen Spotify search uit en behandelt deze zinnen niet als muziekzoekopdracht.",
-      "en": "Calls backend commands directly. DJConnect does not run Spotify search or treat these phrases as music search requests."
+      "en": "Calls backend commands directly. DJConnect does not run Spotify search or treat these phrases as music search requests.",
+      "de": "Fuehrt direkte Backend-Befehle aus. DJConnect startet keine Spotify-Suche und behandelt diese Saetze nicht als Musiksuche.",
+      "fr": "Appelle directement les commandes backend. DJConnect ne lance pas de recherche Spotify et ne traite pas ces phrases comme des recherches musicales.",
+      "es": "Ejecuta comandos directos del backend. DJConnect no realiza una busqueda en Spotify ni trata estas frases como busquedas de musica."
     },
     "behavior": {
       "nl": "Geen Spotify search. Direct command uitvoeren en daarna een DJ-response geven.",
-      "en": "No Spotify search. Run the command directly and then return a DJ response."
+      "en": "No Spotify search. Run the command directly and then return a DJ response.",
+      "de": "Keine Spotify-Suche. Befehl direkt ausfuehren und danach eine DJ-Antwort geben.",
+      "fr": "Pas de recherche Spotify. Executer la commande directement puis donner une reponse DJ.",
+      "es": "Sin busqueda en Spotify. Ejecuta el comando directamente y luego devuelve una respuesta de DJ."
     },
     "examples": {
-          "nl": [
-                "Stop muziek",
-                "Stop de muziek",
-                "Pauzeer muziek",
-                "Start muziek",
-                "Start de muziek",
-                "Hervat muziek",
-                "Zet harder",
-                "Zet de muziek harder",
-                "Volume omhoog",
-                "Zet zachter",
-                "Zet de muziek zachter",
-                "Volume omlaag",
-                "Volgende nummer",
-                "Volgend nummer",
-                "Volgende track",
-                "Vorig nummer",
-                "Vorige track",
-                "Vorig liedje",
-                "Zet huidig nummer in favorieten",
-                "Voeg dit nummer toe aan favorieten",
-                "Bewaar deze track in favorieten",
-                "Like dit nummer",
-                "Zet deze song in mijn liked songs"
-          ],
-          "en": [
-                "Stop music",
-                "Pause music",
-                "Start music",
-                "Play music",
-                "Resume music",
-                "Turn it up",
-                "Volume up",
-                "Louder",
-                "Turn it down",
-                "Volume down",
-                "Quieter",
-                "Next song",
-                "Next track",
-                "Skip",
-                "Previous song",
-                "Previous track",
-                "Save this track to liked songs",
-                "Add this song to favorites",
-                "Like this track"
-          ]
+      "nl": [
+        "Stop muziek",
+        "Stop de muziek",
+        "Pauzeer muziek",
+        "Start muziek",
+        "Start de muziek",
+        "Hervat muziek",
+        "Zet harder",
+        "Zet de muziek harder",
+        "Volume omhoog",
+        "Zet zachter",
+        "Zet de muziek zachter",
+        "Volume omlaag",
+        "Volgende nummer",
+        "Volgend nummer",
+        "Volgende track",
+        "Vorig nummer",
+        "Vorige track",
+        "Vorig liedje",
+        "Zet huidig nummer in favorieten",
+        "Voeg dit nummer toe aan favorieten",
+        "Bewaar deze track in favorieten",
+        "Like dit nummer",
+        "Zet deze song in mijn liked songs"
+      ],
+      "en": [
+        "Stop music",
+        "Pause music",
+        "Start music",
+        "Play music",
+        "Resume music",
+        "Turn it up",
+        "Volume up",
+        "Louder",
+        "Turn it down",
+        "Volume down",
+        "Quieter",
+        "Next song",
+        "Next track",
+        "Skip",
+        "Previous song",
+        "Previous track",
+        "Save this track to liked songs",
+        "Add this song to favorites",
+        "Like this track"
+      ],
+      "de": [
+        "Musik stoppen",
+        "Musik pausieren",
+        "Musik starten",
+        "Mach lauter",
+        "Lautstaerke hoch",
+        "Mach leiser",
+        "Naechster Song",
+        "Vorheriger Song",
+        "Diesen Track speichern"
+      ],
+      "fr": [
+        "Arrete la musique",
+        "Mets la musique en pause",
+        "Lance la musique",
+        "Monte le volume",
+        "Baisse le volume",
+        "Morceau suivant",
+        "Morceau precedent",
+        "Ajoute ce titre aux favoris"
+      ],
+      "es": [
+        "Para la musica",
+        "Pausa la musica",
+        "Inicia la musica",
+        "Sube el volumen",
+        "Baja el volumen",
+        "Siguiente cancion",
+        "Cancion anterior",
+        "Guarda este tema en favoritos"
+      ]
     },
     "commands": [
       {
         "phrase": {
           "nl": "Stop muziek",
-          "en": "Stop music"
+          "en": "Stop music",
+          "de": "Musik stoppen",
+          "fr": "Arrete la musique",
+          "es": "Para la musica"
         },
         "command": "pause"
       },
       {
         "phrase": {
           "nl": "Start muziek",
-          "en": "Start music"
+          "en": "Start music",
+          "de": "Musik starten",
+          "fr": "Lance la musique",
+          "es": "Inicia la musica"
         },
         "command": "play/resume"
       },
       {
         "phrase": {
           "nl": "Zet harder",
-          "en": "Turn it up"
+          "en": "Turn it up",
+          "de": "Mach lauter",
+          "fr": "Monte le volume",
+          "es": "Sube el volumen"
         },
         "command": "volume +10"
       },
       {
         "phrase": {
           "nl": "Zet zachter",
-          "en": "Turn it down"
+          "en": "Turn it down",
+          "de": "Mach leiser",
+          "fr": "Baisse le volume",
+          "es": "Baja el volumen"
         },
         "command": "volume -10"
       },
       {
         "phrase": {
           "nl": "Volgende nummer",
-          "en": "Next song"
+          "en": "Next song",
+          "de": "Naechster Song",
+          "fr": "Morceau suivant",
+          "es": "Siguiente cancion"
         },
         "command": "next"
       },
       {
         "phrase": {
           "nl": "Vorig nummer",
-          "en": "Previous song"
+          "en": "Previous song",
+          "de": "Vorheriger Song",
+          "fr": "Morceau precedent",
+          "es": "Cancion anterior"
         },
         "command": "previous"
       },
       {
         "phrase": {
           "nl": "Zet huidig nummer in favorieten",
-          "en": "Save this track to liked songs"
+          "en": "Save this track to liked songs",
+          "de": "Diesen Track speichern",
+          "fr": "Ajoute ce titre aux favoris",
+          "es": "Guarda este tema en favoritos"
         },
         "command": "save_current_track"
       }
@@ -163,19 +257,31 @@ window.DJCONNECT_VOICE_INTENTS = [
     "playsMusic": true,
     "pill": {
       "nl": "Standaard",
-      "en": "Default"
+      "en": "Default",
+      "de": "Standard",
+      "fr": "Defaut",
+      "es": "Predeterminada"
     },
     "title": {
       "nl": "Standaard playlist / favorieten",
-      "en": "Default playlist / favorites"
+      "en": "Default playlist / favorites",
+      "de": "Standard-Playlist / Favoriten",
+      "fr": "Playlist par defaut / favoris",
+      "es": "Playlist predeterminada / favoritos"
     },
     "text": {
       "nl": "Gebruikt de standaard playlist URI die in de DJConnect Home Assistant integration is ingesteld.",
-      "en": "Uses the default playlist URI configured in the DJConnect Home Assistant integration."
+      "en": "Uses the default playlist URI configured in the DJConnect Home Assistant integration.",
+      "de": "Verwendet die Standard-Playlist-URI, die in der DJConnect Home Assistant Integration eingestellt ist.",
+      "fr": "Utilise l URI de playlist par defaut configuree dans l integration Home Assistant DJConnect.",
+      "es": "Usa la URI de playlist predeterminada configurada en la integracion DJConnect de Home Assistant."
     },
     "behavior": {
       "nl": "Start playback via de ingestelde standaard playlist.",
-      "en": "Starts playback through the configured default playlist."
+      "en": "Starts playback through the configured default playlist.",
+      "de": "Startet die Wiedergabe ueber die konfigurierte Standard-Playlist.",
+      "fr": "Demarre la lecture via la playlist par defaut configuree.",
+      "es": "Inicia la reproduccion mediante la playlist predeterminada configurada."
     },
     "examples": {
       "nl": [
@@ -187,6 +293,21 @@ window.DJCONNECT_VOICE_INTENTS = [
         "Play my default playlist",
         "Start liked songs",
         "Play favorites"
+      ],
+      "de": [
+        "Spiele meine Standard-Playlist",
+        "Starte Favoriten",
+        "Spiel meine Lieblingssongs"
+      ],
+      "fr": [
+        "Lance ma playlist par defaut",
+        "Lance les favoris",
+        "Mets mes titres aimes"
+      ],
+      "es": [
+        "Reproduce mi playlist predeterminada",
+        "Inicia favoritos",
+        "Pon canciones favoritas"
       ]
     }
   },
@@ -196,19 +317,31 @@ window.DJCONNECT_VOICE_INTENTS = [
     "playsMusic": true,
     "pill": {
       "nl": "Playlist",
-      "en": "Playlist"
+      "en": "Playlist",
+      "de": "Playlist",
+      "fr": "Playlist",
+      "es": "Playlist"
     },
     "title": {
       "nl": "Playlist starten",
-      "en": "Start a playlist"
+      "en": "Start a playlist",
+      "de": "Playlist starten",
+      "fr": "Lancer une playlist",
+      "es": "Iniciar una playlist"
     },
     "text": {
       "nl": "Gebruik playlist of afspeellijst als je een playlistnaam bedoelt.",
-      "en": "Use playlist when you mean a playlist name."
+      "en": "Use playlist when you mean a playlist name.",
+      "de": "Verwende Playlist, wenn du einen Playlistnamen meinst.",
+      "fr": "Utilise playlist quand tu veux designer un nom de playlist.",
+      "es": "Usa playlist cuando te refieres al nombre de una playlist."
     },
     "behavior": {
       "nl": "Zoekt en start een Spotify playlist.",
-      "en": "Searches for and starts a Spotify playlist."
+      "en": "Searches for and starts a Spotify playlist.",
+      "de": "Sucht und startet eine Spotify-Playlist.",
+      "fr": "Recherche et lance une playlist Spotify.",
+      "es": "Busca e inicia una playlist de Spotify."
     },
     "examples": {
       "nl": [
@@ -221,6 +354,21 @@ window.DJCONNECT_VOICE_INTENTS = [
         "Play playlist DJConnect",
         "Start my playlist Roadtrip",
         "Put on Chill playlist"
+      ],
+      "de": [
+        "Spiele Playlist DJConnect",
+        "Starte meine Playlist Roadtrip",
+        "Mach die Chill-Playlist an"
+      ],
+      "fr": [
+        "Lance la playlist DJConnect",
+        "Lance ma playlist Roadtrip",
+        "Mets la playlist Chill"
+      ],
+      "es": [
+        "Reproduce playlist DJConnect",
+        "Inicia mi playlist Roadtrip",
+        "Pon la playlist Chill"
       ]
     }
   },
@@ -230,19 +378,31 @@ window.DJCONNECT_VOICE_INTENTS = [
     "playsMusic": true,
     "pill": {
       "nl": "Artiest + track",
-      "en": "Artist + track"
+      "en": "Artist + track",
+      "de": "Kuenstler + Track",
+      "fr": "Artiste + titre",
+      "es": "Artista + tema"
     },
     "title": {
       "nl": "Nummer met artiestcontext",
-      "en": "Song with artist context"
+      "en": "Song with artist context",
+      "de": "Song mit Kuenstlerkontext",
+      "fr": "Titre avec contexte artiste",
+      "es": "Cancion con contexto de artista"
     },
     "text": {
       "nl": "Resolvet naar track search met artiestcontext wanneer de zin zowel artiest als nummer noemt.",
-      "en": "Resolves to track search with artist context when the phrase names both artist and song."
+      "en": "Resolves to track search with artist context when the phrase names both artist and song.",
+      "de": "Wird zur Track-Suche mit Kuenstlerkontext, wenn der Satz sowohl Kuenstler als auch Song nennt.",
+      "fr": "Declenche une recherche de titre avec contexte artiste quand la phrase nomme a la fois artiste et chanson.",
+      "es": "Resuelve a busqueda de tema con contexto de artista cuando la frase nombra artista y cancion."
     },
     "behavior": {
       "nl": "Start playback via gerichte track search met artiestcontext.",
-      "en": "Starts playback through targeted track search with artist context."
+      "en": "Starts playback through targeted track search with artist context.",
+      "de": "Startet Wiedergabe ueber gezielte Track-Suche mit Kuenstlerkontext.",
+      "fr": "Demarre la lecture via une recherche de titre ciblee avec contexte artiste.",
+      "es": "Inicia reproduccion con busqueda de tema dirigida y contexto de artista."
     },
     "examples": {
       "nl": [
@@ -256,6 +416,21 @@ window.DJCONNECT_VOICE_INTENTS = [
         "Play Moonlit Signal by Neon Harbor",
         "Play the track Night Glass by Echo Vale",
         "Play artist Neon Harbor with song Moonlit Signal"
+      ],
+      "de": [
+        "Spiel Moonlit Signal von Neon Harbor",
+        "Spiel den Track Night Glass von Echo Vale",
+        "Spiel Kuenstler Neon Harbor mit Song Moonlit Signal"
+      ],
+      "fr": [
+        "Joue Moonlit Signal de Neon Harbor",
+        "Joue le titre Night Glass de Echo Vale",
+        "Joue l artiste Neon Harbor avec le titre Moonlit Signal"
+      ],
+      "es": [
+        "Reproduce Moonlit Signal de Neon Harbor",
+        "Reproduce el tema Night Glass de Echo Vale",
+        "Reproduce artista Neon Harbor con cancion Moonlit Signal"
       ]
     }
   },
@@ -265,19 +440,31 @@ window.DJCONNECT_VOICE_INTENTS = [
     "playsMusic": true,
     "pill": {
       "nl": "Album",
-      "en": "Album"
+      "en": "Album",
+      "de": "Album",
+      "fr": "Album",
+      "es": "Album"
     },
     "title": {
       "nl": "Album starten",
-      "en": "Start an album"
+      "en": "Start an album",
+      "de": "Album starten",
+      "fr": "Lancer un album",
+      "es": "Iniciar un album"
     },
     "text": {
       "nl": "Gebruik album of plaat om album search te forceren, ook wanneer de zin van/by bevat.",
-      "en": "Use album to force album search, even when the phrase contains van/by."
+      "en": "Use album to force album search, even when the phrase contains van/by.",
+      "de": "Verwende Album, um Albumsuche zu erzwingen, auch wenn der Satz von/by enthaelt.",
+      "fr": "Utilise album pour forcer la recherche d album, meme si la phrase contient de/by.",
+      "es": "Usa album para forzar busqueda de album, incluso si la frase contiene de/by."
     },
     "behavior": {
       "nl": "Zoekt en start een Spotify album.",
-      "en": "Searches for and starts a Spotify album."
+      "en": "Searches for and starts a Spotify album.",
+      "de": "Sucht und startet ein Spotify-Album.",
+      "fr": "Recherche et lance un album Spotify.",
+      "es": "Busca e inicia un album de Spotify."
     },
     "examples": {
       "nl": [
@@ -290,6 +477,21 @@ window.DJCONNECT_VOICE_INTENTS = [
         "Play album Velvet Weather",
         "Play the album First Light by Echo Vale",
         "Put on album Example Album by Example Artist"
+      ],
+      "de": [
+        "Spiel Album Velvet Weather",
+        "Spiel das Album First Light von Echo Vale",
+        "Mach Album Beispielalbum von Beispielkuenstler an"
+      ],
+      "fr": [
+        "Joue album Velvet Weather",
+        "Joue l album First Light de Echo Vale",
+        "Mets l album Exemple Album de Exemple Artiste"
+      ],
+      "es": [
+        "Reproduce album Velvet Weather",
+        "Reproduce el album First Light de Echo Vale",
+        "Pon album Album Ejemplo de Artista Ejemplo"
       ]
     }
   },
@@ -299,19 +501,31 @@ window.DJCONNECT_VOICE_INTENTS = [
     "playsMusic": true,
     "pill": {
       "nl": "Track",
-      "en": "Track"
+      "en": "Track",
+      "de": "Track",
+      "fr": "Titre",
+      "es": "Tema"
     },
     "title": {
       "nl": "Nummer / track zoeken",
-      "en": "Find a song / track"
+      "en": "Find a song / track",
+      "de": "Song / Track suchen",
+      "fr": "Trouver une chanson / un titre",
+      "es": "Buscar cancion / tema"
     },
     "text": {
       "nl": "Gebruik woorden zoals nummer, liedje, track of song als je echt een specifieke track bedoelt.",
-      "en": "Use words like song or track when you really mean a specific track."
+      "en": "Use words like song or track when you really mean a specific track.",
+      "de": "Verwende Woerter wie Song oder Track, wenn du wirklich einen bestimmten Track meinst.",
+      "fr": "Utilise des mots comme chanson ou titre quand tu veux vraiment un titre precis.",
+      "es": "Usa palabras como cancion o tema cuando quieres un tema especifico."
     },
     "behavior": {
       "nl": "Zoekt en start een Spotify track.",
-      "en": "Searches for and starts a Spotify track."
+      "en": "Searches for and starts a Spotify track.",
+      "de": "Sucht und startet einen Spotify-Track.",
+      "fr": "Recherche et lance un titre Spotify.",
+      "es": "Busca e inicia un tema de Spotify."
     },
     "examples": {
       "nl": [
@@ -319,6 +533,18 @@ window.DJCONNECT_VOICE_INTENTS = [
       ],
       "en": [
         "Play song Moonlit Signal"
+      ],
+      "de": [
+        "Spiel Song Moonlit Signal",
+        "Spiel Track Night Glass"
+      ],
+      "fr": [
+        "Joue la chanson Moonlit Signal",
+        "Joue le titre Night Glass"
+      ],
+      "es": [
+        "Reproduce cancion Moonlit Signal",
+        "Reproduce tema Night Glass"
       ]
     }
   },
@@ -328,19 +554,31 @@ window.DJCONNECT_VOICE_INTENTS = [
     "playsMusic": true,
     "pill": {
       "nl": "Artiest",
-      "en": "Artist"
+      "en": "Artist",
+      "de": "Kuenstler",
+      "fr": "Artiste",
+      "es": "Artista"
     },
     "title": {
       "nl": "Artiest starten",
-      "en": "Start an artist"
+      "en": "Start an artist",
+      "de": "Kuenstler starten",
+      "fr": "Lancer un artiste",
+      "es": "Iniciar artista"
     },
     "text": {
       "nl": "Generieke verzoeken zonder expliciet nummer, album of playlist blijven artist-first.",
-      "en": "Generic requests without explicit song, album or playlist wording stay artist-first."
+      "en": "Generic requests without explicit song, album or playlist wording stay artist-first.",
+      "de": "Allgemeine Anfragen ohne ausdruecklich Song, Album oder Playlist bleiben kuenstlerorientiert.",
+      "fr": "Les demandes generales sans chanson, album ou playlist explicite restent centrees sur l artiste.",
+      "es": "Las peticiones genericas sin cancion, album o playlist explicitos se tratan primero como artista."
     },
     "behavior": {
       "nl": "Zoekt en start playback voor de artiest.",
-      "en": "Searches and starts playback for the artist."
+      "en": "Searches and starts playback for the artist.",
+      "de": "Sucht den Kuenstler und startet die Wiedergabe.",
+      "fr": "Recherche et demarre la lecture pour l artiste.",
+      "es": "Busca e inicia reproduccion del artista."
     },
     "examples": {
       "nl": [
@@ -358,6 +596,24 @@ window.DJCONNECT_VOICE_INTENTS = [
         "Put on Velvet Atlas",
         "I want Echo Vale",
         "I feel like Neon Harbor"
+      ],
+      "de": [
+        "Spiel Neon Harbor",
+        "Starte Silver Circuit",
+        "Mach Velvet Atlas an",
+        "Ich habe Lust auf Neon Harbor"
+      ],
+      "fr": [
+        "Joue Neon Harbor",
+        "Lance Silver Circuit",
+        "Mets Velvet Atlas",
+        "J ai envie de Neon Harbor"
+      ],
+      "es": [
+        "Reproduce Neon Harbor",
+        "Inicia Silver Circuit",
+        "Pon Velvet Atlas",
+        "Me apetece Neon Harbor"
       ]
     }
   }
@@ -387,11 +643,17 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "messageKind": "user",
     "pill": {
       "nl": "Gesprek",
-      "en": "Chat"
+      "en": "Chat",
+      "de": "Chat",
+      "fr": "Conversation",
+      "es": "Chat"
     },
     "title": {
       "nl": "Korte reactie",
-      "en": "Short reply"
+      "en": "Short reply",
+      "de": "Kurze Antwort",
+      "fr": "Reponse courte",
+      "es": "Respuesta corta"
     },
     "examples": {
       "nl": [
@@ -407,6 +669,27 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "Never mind",
         "That's fine",
         "Too bad"
+      ],
+      "de": [
+        "Kein Problem",
+        "Danke",
+        "Lass gut sein",
+        "Passt schon",
+        "Schade"
+      ],
+      "fr": [
+        "Pas de souci",
+        "Merci",
+        "Laisse tomber",
+        "Tres bien",
+        "Dommage"
+      ],
+      "es": [
+        "No pasa nada",
+        "Gracias",
+        "Dejalo",
+        "Esta bien",
+        "Que pena"
       ]
     }
   },
@@ -436,11 +719,17 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "messageKind": "user",
     "pill": {
       "nl": "Help",
-      "en": "Help"
+      "en": "Help",
+      "de": "Hilfe",
+      "fr": "Aide",
+      "es": "Ayuda"
     },
     "title": {
       "nl": "Wat kan Ask DJ?",
-      "en": "What can Ask DJ do?"
+      "en": "What can Ask DJ do?",
+      "de": "Was kann Ask DJ?",
+      "fr": "Que peut faire Ask DJ ?",
+      "es": "Que puede hacer Ask DJ?"
     },
     "examples": {
       "nl": [
@@ -453,6 +742,21 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "Help",
         "What can you do?",
         "Which commands can I use?"
+      ],
+      "de": [
+        "Hilfe",
+        "Was kannst du?",
+        "Welche Befehle kann ich nutzen?"
+      ],
+      "fr": [
+        "Aide",
+        "Que peux-tu faire ?",
+        "Quelles commandes puis-je utiliser ?"
+      ],
+      "es": [
+        "Ayuda",
+        "Que puedes hacer?",
+        "Que comandos puedo usar?"
       ]
     }
   },
@@ -487,15 +791,24 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "messageKind": "user",
     "pill": {
       "nl": "Privacy",
-      "en": "Privacy"
+      "en": "Privacy",
+      "de": "Datenschutz",
+      "fr": "Confidentialite",
+      "es": "Privacidad"
     },
     "title": {
       "nl": "Music DNA bekijken",
-      "en": "Review Music DNA"
+      "en": "Review Music DNA",
+      "de": "Music DNA ansehen",
+      "fr": "Consulter Music DNA",
+      "es": "Revisar Music DNA"
     },
     "text": {
       "nl": "Privacyvraag over server-side Music DNA. Render als tekst met bron djconnect_music_dna: geen oude album art, mediakaarten, Play Now en geen live playback of profielverrijking.",
-      "en": "Privacy question about server-side Music DNA. Render as text with djconnect_music_dna source: no old album art, media cards, Play Now, live playback or profile enrichment."
+      "en": "Privacy question about server-side Music DNA. Render as text with djconnect_music_dna source: no old album art, media cards, Play Now, live playback or profile enrichment.",
+      "de": "Datenschutzfrage zu serverseitigem Music DNA. Als Text mit Quelle djconnect_music_dna rendern: keine alte Albumgrafik, Medienkarten, Play Now, Live-Wiedergabe oder Profilanreicherung.",
+      "fr": "Question de confidentialite sur Music DNA cote serveur. A rendre en texte avec la source djconnect_music_dna : pas d ancienne pochette, cartes media, Play Now, lecture live ou enrichissement de profil.",
+      "es": "Pregunta de privacidad sobre Music DNA del servidor. Renderiza como texto con fuente djconnect_music_dna: sin arte antiguo, tarjetas multimedia, Play Now, reproduccion en vivo ni enriquecimiento de perfil."
     },
     "examples": {
       "nl": [
@@ -510,6 +823,21 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "What does DJConnect know about me?",
         "What is in my Music DNA?",
         "What do you remember about me?"
+      ],
+      "de": [
+        "Was weisst du ueber mich?",
+        "Was steht in meinem Music DNA?",
+        "Woran erinnerst du dich ueber mich?"
+      ],
+      "fr": [
+        "Que sais-tu de moi ?",
+        "Que contient mon Music DNA ?",
+        "De quoi te souviens-tu sur moi ?"
+      ],
+      "es": [
+        "Que sabes de mi?",
+        "Que hay en mi Music DNA?",
+        "Que recuerdas de mi?"
       ]
     }
   },
@@ -542,11 +870,17 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "messageKind": "user",
     "pill": {
       "nl": "Speakers",
-      "en": "Speakers"
+      "en": "Speakers",
+      "de": "Lautsprecher",
+      "fr": "Enceintes",
+      "es": "Altavoces"
     },
     "title": {
       "nl": "Speaker kiezen",
-      "en": "Choose a speaker"
+      "en": "Choose a speaker",
+      "de": "Lautsprecher waehlen",
+      "fr": "Choisir une enceinte",
+      "es": "Elegir altavoz"
     },
     "examples": {
       "nl": [
@@ -560,6 +894,21 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "Which devices can I use?",
         "Switch speaker",
         "Move music to the living room speaker"
+      ],
+      "de": [
+        "Welche Lautsprecher gibt es?",
+        "Welche Geraete kann ich nutzen?",
+        "Wechsle den Lautsprecher"
+      ],
+      "fr": [
+        "Quelles enceintes sont disponibles ?",
+        "Quels appareils puis-je utiliser ?",
+        "Change d enceinte"
+      ],
+      "es": [
+        "Que altavoces hay?",
+        "Que dispositivos puedo usar?",
+        "Cambia de altavoz"
       ]
     }
   },
@@ -585,11 +934,17 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "messageKind": "user",
     "pill": {
       "nl": "Opnieuw",
-      "en": "Retry"
+      "en": "Retry",
+      "de": "Erneut",
+      "fr": "Reessayer",
+      "es": "Reintentar"
     },
     "title": {
       "nl": "Vorige vraag opnieuw proberen",
-      "en": "Retry previous request"
+      "en": "Retry previous request",
+      "de": "Letzte Anfrage wiederholen",
+      "fr": "Relancer la demande precedente",
+      "es": "Repetir peticion anterior"
     },
     "examples": {
       "nl": [
@@ -603,6 +958,18 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "Retry",
         "One more time",
         "Do that again"
+      ],
+      "de": [
+        "Nochmal versuchen",
+        "Versuch es erneut"
+      ],
+      "fr": [
+        "Reessaie",
+        "Essaie encore"
+      ],
+      "es": [
+        "Intentalo otra vez",
+        "Prueba de nuevo"
       ]
     }
   },
@@ -631,11 +998,17 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "messageKind": "user",
     "pill": {
       "nl": "Context",
-      "en": "Context"
+      "en": "Context",
+      "de": "Play Now",
+      "fr": "Play Now",
+      "es": "Play Now"
     },
     "title": {
       "nl": "Play Now follow-up",
-      "en": "Play Now follow-up"
+      "en": "Play Now follow-up",
+      "de": "Vorschlag abspielen",
+      "fr": "Lire une suggestion",
+      "es": "Reproducir sugerencia"
     },
     "examples": {
       "nl": [
@@ -653,6 +1026,18 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "Play that",
         "Play this",
         "Which artist do you mean?"
+      ],
+      "de": [
+        "Ja, spiel das",
+        "Spiel diese Empfehlung"
+      ],
+      "fr": [
+        "Oui, joue ca",
+        "Joue cette recommandation"
+      ],
+      "es": [
+        "Si, reproduce eso",
+        "Reproduce esa recomendacion"
       ]
     }
   },
@@ -677,11 +1062,17 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "messageKind": "user",
     "pill": {
       "nl": "Albums",
-      "en": "Albums"
+      "en": "Albums",
+      "de": "Alben",
+      "fr": "Albums",
+      "es": "Albumes"
     },
     "title": {
       "nl": "Albums van een artiest",
-      "en": "Artist albums"
+      "en": "Artist albums",
+      "de": "Alben eines Kuenstlers",
+      "fr": "Albums d un artiste",
+      "es": "Albumes de un artista"
     },
     "examples": {
       "nl": [
@@ -695,6 +1086,18 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "Which albums has Example Artist released?",
         "Which albums did this artist release?",
         "Albums by Orion Vale"
+      ],
+      "de": [
+        "Welche Alben hat Neon Harbor?",
+        "Zeig Alben von Echo Vale"
+      ],
+      "fr": [
+        "Quels albums a Neon Harbor ?",
+        "Montre les albums de Echo Vale"
+      ],
+      "es": [
+        "Que albumes tiene Neon Harbor?",
+        "Muestra albumes de Echo Vale"
       ]
     }
   },
@@ -733,11 +1136,17 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "messageKind": "user",
     "pill": {
       "nl": "Catalogus",
-      "en": "Catalog"
+      "en": "Catalog",
+      "de": "Liste",
+      "fr": "Liste",
+      "es": "Lista"
     },
     "title": {
       "nl": "Tracks, albums of playlists",
-      "en": "Tracks, albums or playlists"
+      "en": "Tracks, albums or playlists",
+      "de": "Songs oder Alben auflisten",
+      "fr": "Lister titres ou albums",
+      "es": "Listar canciones o albumes"
     },
     "examples": {
       "nl": [
@@ -753,6 +1162,18 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "Give me 5 songs by Echo Vale",
         "Show albums by Example Artist",
         "Find playlists from Silver Circuit"
+      ],
+      "de": [
+        "Zeig Songs von Neon Harbor",
+        "Welche Tracks gibt es?"
+      ],
+      "fr": [
+        "Montre des titres de Neon Harbor",
+        "Quels morceaux existent ?"
+      ],
+      "es": [
+        "Muestra canciones de Neon Harbor",
+        "Que temas hay?"
       ]
     }
   },
@@ -776,11 +1197,17 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "messageKind": "user",
     "pill": {
       "nl": "Vergelijkbaar",
-      "en": "Similar"
+      "en": "Similar",
+      "de": "Aehnlich",
+      "fr": "Similaire",
+      "es": "Similar"
     },
     "title": {
       "nl": "Vergelijkbare artiesten",
-      "en": "Similar artists"
+      "en": "Similar artists",
+      "de": "Aehnliche Kuenstler",
+      "fr": "Artistes similaires",
+      "es": "Artistas similares"
     },
     "examples": {
       "nl": [
@@ -793,6 +1220,18 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "Which artists make similar music to Example Artist?",
         "Which artists are similar to what is playing now?",
         "Similar artists to this artist"
+      ],
+      "de": [
+        "Welche Kuenstler sind aehnlich?",
+        "Gib mir aehnliche Musik"
+      ],
+      "fr": [
+        "Quels artistes sont similaires ?",
+        "Donne-moi de la musique similaire"
+      ],
+      "es": [
+        "Que artistas son similares?",
+        "Dame musica parecida"
       ]
     }
   },
@@ -816,11 +1255,17 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "messageKind": "user",
     "pill": {
       "nl": "Stijl",
-      "en": "Style"
+      "en": "Style",
+      "de": "Stil",
+      "fr": "Style",
+      "es": "Estilo"
     },
     "title": {
       "nl": "Genre en stijl",
-      "en": "Genre and style"
+      "en": "Genre and style",
+      "de": "Genre und Stil erklaeren",
+      "fr": "Expliquer genre et style",
+      "es": "Explicar genero y estilo"
     },
     "examples": {
       "nl": [
@@ -833,6 +1278,18 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "What kind of music does Beastie Boys make?",
         "What kind of music does this artist make?",
         "What genre is Luna Circuit?"
+      ],
+      "de": [
+        "Welches Genre ist Neon Harbor?",
+        "Beschreibe den Stil"
+      ],
+      "fr": [
+        "Quel est le genre de Neon Harbor ?",
+        "Decris le style"
+      ],
+      "es": [
+        "Que genero es Neon Harbor?",
+        "Describe el estilo"
       ]
     }
   },
@@ -857,11 +1314,17 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "messageKind": "user",
     "pill": {
       "nl": "Concerten",
-      "en": "Concerts"
+      "en": "Concerts",
+      "de": "Konzerte",
+      "fr": "Concerts",
+      "es": "Conciertos"
     },
     "title": {
       "nl": "Concertagenda",
-      "en": "Concert calendar"
+      "en": "Concert calendar",
+      "de": "Konzertfragen",
+      "fr": "Questions de concert",
+      "es": "Preguntas de conciertos"
     },
     "examples": {
       "nl": [
@@ -875,6 +1338,18 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "Does this artist have upcoming concerts?",
         "Concerts for The National",
         "Tour dates for Luna Circuit"
+      ],
+      "de": [
+        "Gibt es Konzerte?",
+        "Wann spielt Neon Harbor?"
+      ],
+      "fr": [
+        "Y a-t-il des concerts ?",
+        "Quand joue Neon Harbor ?"
+      ],
+      "es": [
+        "Hay conciertos?",
+        "Cuando toca Neon Harbor?"
       ]
     }
   },
@@ -897,11 +1372,17 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "messageKind": "user",
     "pill": {
       "nl": "Wachtrij",
-      "en": "Queue"
+      "en": "Queue",
+      "de": "Naechster",
+      "fr": "Suivant",
+      "es": "Siguiente"
     },
     "title": {
       "nl": "Volgende track",
-      "en": "Next track"
+      "en": "Next track",
+      "de": "Naechsten Track erklaeren",
+      "fr": "Expliquer le titre suivant",
+      "es": "Explicar siguiente tema"
     },
     "examples": {
       "nl": [
@@ -913,6 +1394,18 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "What is the next song?",
         "Which track is up next?",
         "What will play next?"
+      ],
+      "de": [
+        "Was kommt als naechstes?",
+        "Erzaehl mir vom naechsten Track"
+      ],
+      "fr": [
+        "Qu est-ce qui vient ensuite ?",
+        "Parle-moi du titre suivant"
+      ],
+      "es": [
+        "Que viene despues?",
+        "Cuentame del siguiente tema"
       ]
     }
   },
@@ -949,11 +1442,17 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "messageKind": "user",
     "pill": {
       "nl": "Versies",
-      "en": "Versions"
+      "en": "Versions",
+      "de": "Versionen",
+      "fr": "Versions",
+      "es": "Versiones"
     },
     "title": {
       "nl": "Live, akoestisch of remix",
-      "en": "Live, acoustic or remix"
+      "en": "Live, acoustic or remix",
+      "de": "Versionen des aktuellen Tracks",
+      "fr": "Versions du titre actuel",
+      "es": "Versiones del tema actual"
     },
     "examples": {
       "nl": [
@@ -971,6 +1470,18 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "Is there an unplugged version?",
         "Do you have remixes?",
         "Find a remix of this track"
+      ],
+      "de": [
+        "Gibt es andere Versionen?",
+        "Welche Version ist das?"
+      ],
+      "fr": [
+        "Existe-t-il d autres versions ?",
+        "Quelle version est-ce ?"
+      ],
+      "es": [
+        "Hay otras versiones?",
+        "Que version es esta?"
       ]
     }
   },
@@ -995,11 +1506,17 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "messageKind": "user",
     "pill": {
       "nl": "Profiel",
-      "en": "Profile"
+      "en": "Profile",
+      "de": "Profil",
+      "fr": "Profil",
+      "es": "Perfil"
     },
     "title": {
       "nl": "Luisterprofiel analyseren",
-      "en": "Analyze listening profile"
+      "en": "Analyze listening profile",
+      "de": "Musikprofil analysieren",
+      "fr": "Analyser le profil musical",
+      "es": "Analizar perfil musical"
     },
     "examples": {
       "nl": [
@@ -1013,6 +1530,18 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "What does my music from the last two weeks say about my mood?",
         "Which genres have I been listening to lately?",
         "Make a profile of my music taste this year"
+      ],
+      "de": [
+        "Beschreibe meinen Musikgeschmack",
+        "Was hoere ich gerne?"
+      ],
+      "fr": [
+        "Decris mes gouts musicaux",
+        "Qu est-ce que j aime ecouter ?"
+      ],
+      "es": [
+        "Describe mi gusto musical",
+        "Que me gusta escuchar?"
       ]
     }
   },
@@ -1048,11 +1577,17 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "messageKind": "user",
     "pill": {
       "nl": "Insight",
-      "en": "Insight"
+      "en": "Insight",
+      "de": "Insight",
+      "fr": "Insight",
+      "es": "Insight"
     },
     "title": {
       "nl": "Track Insight",
-      "en": "Track Insight"
+      "en": "Track Insight",
+      "de": "Track Insight",
+      "fr": "Track Insight",
+      "es": "Track Insight"
     },
     "examples": {
       "nl": [
@@ -1066,6 +1601,18 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "Tell me about this track",
         "What is the vibe of this song?",
         "What makes this track special?"
+      ],
+      "de": [
+        "Gib Track Insight fuer diesen Song",
+        "Welche Stimmung hat dieser Track?"
+      ],
+      "fr": [
+        "Donne Track Insight pour ce morceau",
+        "Quelle ambiance a ce titre ?"
+      ],
+      "es": [
+        "Dame Track Insight de esta cancion",
+        "Que ambiente tiene este tema?"
       ]
     }
   },
@@ -1112,11 +1659,17 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "messageKind": "user",
     "pill": {
       "nl": "Recent",
-      "en": "Recent"
+      "en": "Recent",
+      "de": "Verlauf",
+      "fr": "Historique",
+      "es": "Historial"
     },
     "title": {
       "nl": "Recent geluisterd",
-      "en": "Recently played"
+      "en": "Recently played",
+      "de": "Kuerzlich gehoert",
+      "fr": "Ecoute recente",
+      "es": "Escuchado recientemente"
     },
     "examples": {
       "nl": [
@@ -1134,6 +1687,18 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "Which artists did I just hear?",
         "Which playlists did I play in the last hour?",
         "What did I listen to today?"
+      ],
+      "de": [
+        "Was habe ich zuletzt gehoert?",
+        "Zeig meinen Hoerverlauf"
+      ],
+      "fr": [
+        "Qu ai-je ecoute recemment ?",
+        "Montre mon historique"
+      ],
+      "es": [
+        "Que escuche recientemente?",
+        "Muestra mi historial"
       ]
     }
   },
@@ -1158,11 +1723,17 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "messageKind": "user",
     "pill": {
       "nl": "Aanbeveling",
-      "en": "Recommendation"
+      "en": "Recommendation",
+      "de": "Empfehlungen",
+      "fr": "Recommandations",
+      "es": "Recomendaciones"
     },
     "title": {
       "nl": "Persoonlijke aanbevelingen",
-      "en": "Personal recommendations"
+      "en": "Personal recommendations",
+      "de": "Persoenliche Empfehlungen",
+      "fr": "Recommandations personnelles",
+      "es": "Recomendaciones personales"
     },
     "examples": {
       "nl": [
@@ -1176,6 +1747,18 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "Give me something fun by Example Artist",
         "Find a nice playlist with calm music",
         "I feel tired and overstimulated, suggest something relaxing"
+      ],
+      "de": [
+        "Welche Musik empfiehlst du mir?",
+        "Empfiehl mir etwas"
+      ],
+      "fr": [
+        "Quelle musique me recommandes-tu ?",
+        "Recommande-moi quelque chose"
+      ],
+      "es": [
+        "Que musica me recomiendas?",
+        "Recomiendame algo"
       ]
     }
   },
@@ -1214,11 +1797,17 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "messageKind": "user",
     "pill": {
       "nl": "Mix",
-      "en": "Mix"
+      "en": "Mix",
+      "de": "Mix",
+      "fr": "Mix",
+      "es": "Mix"
     },
     "title": {
       "nl": "Mix of playlist samenstellen",
-      "en": "Build a mix or playlist"
+      "en": "Build a mix or playlist",
+      "de": "Seed-Mix bauen",
+      "fr": "Creer un mix de depart",
+      "es": "Crear mix semilla"
     },
     "examples": {
       "nl": [
@@ -1246,6 +1835,18 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "I want similar tracks",
         "Queue similar tracks",
         "Save this mix as a Spotify playlist"
+      ],
+      "de": [
+        "Mach einen Mix daraus",
+        "Erstelle einen Mix mit diesem Vibe"
+      ],
+      "fr": [
+        "Fais un mix avec ca",
+        "Cree un mix avec cette ambiance"
+      ],
+      "es": [
+        "Haz un mix con eso",
+        "Crea un mix con este ambiente"
       ]
     }
   },
@@ -1277,11 +1878,17 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "messageKind": "user",
     "pill": {
       "nl": "Favoriet",
-      "en": "Favorite"
+      "en": "Favorite",
+      "de": "Speichern",
+      "fr": "Sauver",
+      "es": "Guardar"
     },
     "title": {
       "nl": "Huidig nummer opslaan",
-      "en": "Save current track"
+      "en": "Save current track",
+      "de": "Aktuellen Track speichern",
+      "fr": "Sauver le titre actuel",
+      "es": "Guardar tema actual"
     },
     "text": {
       "nl": "Slaat de huidige Spotify-track op in Liked Songs/favorieten. Geen Spotify search, geen media card en geen extra artwork.",
@@ -1289,9 +1896,9 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     },
     "examples": {
       "nl": [
-      "Zet huidig nummer in favorieten",
-      "Haal huidig nummer uit favorieten",
-      "Voeg dit nummer toe aan favorieten",
+        "Zet huidig nummer in favorieten",
+        "Haal huidig nummer uit favorieten",
+        "Voeg dit nummer toe aan favorieten",
         "Bewaar deze track in favorieten",
         "Like dit nummer"
       ],
@@ -1300,6 +1907,18 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "Add this song to favorites",
         "Like this track",
         "Save the current song"
+      ],
+      "de": [
+        "Speichere diesen Track",
+        "Fuege ihn zu Favoriten hinzu"
+      ],
+      "fr": [
+        "Sauve ce titre",
+        "Ajoute-le aux favoris"
+      ],
+      "es": [
+        "Guarda este tema",
+        "Anadelo a favoritos"
       ]
     }
   },
@@ -1322,11 +1941,17 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "messageKind": "user",
     "pill": {
       "nl": "DJ intro",
-      "en": "DJ intro"
+      "en": "DJ intro",
+      "de": "Ansage",
+      "fr": "Annonce",
+      "es": "Anuncio"
     },
     "title": {
       "nl": "DJ-aankondiging",
-      "en": "DJ announcement"
+      "en": "DJ announcement",
+      "de": "DJ-Ansage",
+      "fr": "Annonce DJ",
+      "es": "Anuncio DJ"
     },
     "examples": {
       "nl": [
@@ -1338,6 +1963,18 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "Give me a fun announcement for what is playing now",
         "Make a DJ intro for this song",
         "Tell me something fun about the next track"
+      ],
+      "de": [
+        "Mach eine DJ-Ansage",
+        "Sag etwas ueber diesen Track"
+      ],
+      "fr": [
+        "Fais une annonce DJ",
+        "Dis quelque chose sur ce titre"
+      ],
+      "es": [
+        "Haz un anuncio de DJ",
+        "Di algo sobre este tema"
       ]
     }
   },
@@ -1358,11 +1995,17 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "messageKind": "system",
     "pill": {
       "nl": "Systeem",
-      "en": "System"
+      "en": "System",
+      "de": "Fakt",
+      "fr": "Info",
+      "es": "Dato"
     },
     "title": {
       "nl": "Automatisch feitje",
-      "en": "Automatic fact"
+      "en": "Automatic fact",
+      "de": "Musikfakt",
+      "fr": "Info musicale",
+      "es": "Dato musical"
     },
     "examples": {
       "nl": [
@@ -1370,6 +2013,18 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
       ],
       "en": [
         "Automatic DJ fact when a new album or artist starts"
+      ],
+      "de": [
+        "Erzaehl mir etwas ueber die Musik",
+        "Gib mir einen Fakt"
+      ],
+      "fr": [
+        "Raconte-moi quelque chose sur la musique",
+        "Donne-moi une info"
+      ],
+      "es": [
+        "Cuentame algo sobre la musica",
+        "Dame un dato"
       ]
     }
   },
@@ -1390,11 +2045,17 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "messageKind": "system",
     "pill": {
       "nl": "Suggestie",
-      "en": "Suggestion"
+      "en": "Suggestion",
+      "de": "Vorschlag",
+      "fr": "Suggestion",
+      "es": "Sugerencia"
     },
     "title": {
       "nl": "Idle suggestie",
-      "en": "Idle suggestion"
+      "en": "Idle suggestion",
+      "de": "Hoervorschlag",
+      "fr": "Suggestion d ecoute",
+      "es": "Sugerencia de escucha"
     },
     "examples": {
       "nl": [
@@ -1402,6 +2063,18 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
       ],
       "en": [
         "Nothing is playing right now. Want something new?"
+      ],
+      "de": [
+        "Was soll ich hoeren?",
+        "Schlag etwas vor"
+      ],
+      "fr": [
+        "Que devrais-je ecouter ?",
+        "Propose quelque chose"
+      ],
+      "es": [
+        "Que deberia escuchar?",
+        "Sugiere algo"
       ]
     }
   }

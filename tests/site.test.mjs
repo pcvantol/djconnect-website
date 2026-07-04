@@ -161,7 +161,8 @@ test("localized start routes apply the requested setup language", async () => {
   ]);
 
   assert.match(i18nRuntime, /pathLanguage = window\.location\.pathname/);
-  assert.match(i18nRuntime, /urlLanguage \|\| pathLanguage \|\| localStorage\.getItem/);
+  assert.match(i18nRuntime, /firstSupportedLanguage\(urlLanguage, storedLanguage, pathLanguage, browserLanguage, defaultLanguage\)/);
+  assert.match(i18nRuntime, /navigator\.languages/);
   assert.match(start, /applyLanguage\(window\.DJCONNECT_I18N\?\.initialLanguage \|\| "nl"\)/);
 
   const expectedCopy = {
@@ -175,6 +176,21 @@ test("localized start routes apply the requested setup language", async () => {
     assert.equal(pageTranslations.start[language].pairingTitle, title);
     assert.notEqual(pageTranslations.start[language].pairingTitle, "6. Pair app or device locally");
     assert.match(localized, /applyLanguage\(window\.DJCONNECT_I18N\?\.initialLanguage \|\| "nl"\)/);
+  }
+});
+
+test("language selection persists globally and falls back to OS language", async () => {
+  const i18nRuntime = await read("wwwroot/assets/i18n.js");
+
+  assert.match(i18nRuntime, /const storedLanguage = localStorage\.getItem\("djconnect-language"\)/);
+  assert.match(i18nRuntime, /const browserLanguage = \[/);
+  assert.match(i18nRuntime, /firstSupportedLanguage\(urlLanguage, storedLanguage, pathLanguage, browserLanguage, defaultLanguage\)/);
+  assert.doesNotMatch(i18nRuntime, /urlLanguage \|\| pathLanguage \|\| localStorage/);
+  assert.doesNotMatch(i18nRuntime, /stored === "nl" \|\| stored === "en"/);
+
+  for (const page of publicPages) {
+    const html = await read(`wwwroot/${page}.html`);
+    assert.doesNotMatch(html, /stored === "nl" \|\| stored === "en"/, `${page} should not restrict stored language to nl/en`);
   }
 });
 
@@ -736,6 +752,21 @@ test("voice commands page documents intent families and DJ response styles", asy
   assert.doesNotMatch(voice, /data-examples-lang=/);
   assert.match(intents, /window\.DJCONNECT_VOICE_INTENTS = \[/);
   assert.match(intents, /window\.DJCONNECT_ASK_DJ_INTENTS = \[/);
+  for (const language of supportedLanguages) {
+    assert.match(intents, new RegExp(`"${language}":`), `voice intent data should include ${language}`);
+  }
+  assert.match(intents, /"de": "Was laeuft gerade\?"/);
+  assert.match(intents, /"de": "Wiedergabe direkt steuern"/);
+  assert.match(intents, /"fr": "Que joue-t-on maintenant \?"/);
+  assert.match(intents, /"es": "Que esta sonando\?"/);
+  assert.doesNotMatch(voice, /stored === "nl" \|\| stored === "en"/);
+  assert.match(voice, /const localized = \(value, lang\)/);
+  assert.match(voice, /const localizedList = \(value, lang\)/);
+  const pageTranslations = await readPageTranslations();
+  assert.equal(pageTranslations["voice-commands"].de.heroTitle, "Was kannst du sagen?");
+  assert.equal(pageTranslations["voice-commands"].de.flow1, "Aktueller Trackstatus");
+  assert.equal(pageTranslations["voice-commands"].de.navStart, "Loslegen");
+  assert.notEqual(pageTranslations["voice-commands"].de.heroTitle, "What can you say?");
   const expectedIntentOrder = [
     "current_track",
     "playback_control",

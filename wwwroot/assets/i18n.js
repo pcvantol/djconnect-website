@@ -80,13 +80,25 @@
     }
   };
 
-  const normalizeLanguage = (language) => (
-    supportedLanguages.includes(language) ? language : defaultLanguage
+  const normalizeLanguage = (language, fallback = defaultLanguage) => (
+    supportedLanguages.includes(language) ? language : fallback
+  );
+
+  const firstSupportedLanguage = (...languages) => (
+    languages.find((language) => supportedLanguages.includes(language)) || defaultLanguage
   );
 
   const urlLanguage = new URLSearchParams(window.location.search).get("lang");
   const pathLanguage = window.location.pathname.split("/").filter(Boolean)[0];
-  const initialLanguage = normalizeLanguage(urlLanguage || pathLanguage || localStorage.getItem("djconnect-language") || defaultLanguage);
+  const storedLanguage = localStorage.getItem("djconnect-language");
+  const browserLanguage = [
+    ...(navigator.languages || []),
+    navigator.language
+  ]
+    .filter(Boolean)
+    .map((language) => language.toLowerCase().split("-")[0])
+    .find((language) => supportedLanguages.includes(language));
+  const initialLanguage = firstSupportedLanguage(urlLanguage, storedLanguage, pathLanguage, browserLanguage, defaultLanguage);
   localStorage.setItem("djconnect-language", initialLanguage);
 
   window.DJCONNECT_I18N = {
@@ -94,6 +106,7 @@
     defaultLanguage,
     shared,
     initialLanguage,
-    normalizeLanguage
+    normalizeLanguage,
+    firstSupportedLanguage
   };
 })();

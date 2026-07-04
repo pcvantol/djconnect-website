@@ -125,14 +125,17 @@ prompts, issues, logs and diagnostics.
 
 ## Cloudflare Pages
 
-GitHub Actions runs `npm ci`, `npm test` and `npm run build:release` on pull
-requests and pushes to `main`. Production deployment runs only for pushes to
-`main` and manual workflow dispatches after the test job succeeds.
+GitHub Actions runs `npm ci`, `npm run deps:check`, `npm test` and
+`npm run build:release` on pull requests and pushes to `main`. Pull requests
+only validate, build and test the site. Production deployment runs only for
+pushes to `main` after the test job succeeds, then checks
+`https://djconnect.dev` for the expected footer version.
 
-Required GitHub Actions secret:
+Required GitHub Actions secrets:
 
 ```text
 CLOUDFLARE_API_TOKEN
+CLOUDFLARE_ACCOUNT_ID
 ```
 
 Minimum Cloudflare token permissions:
@@ -140,14 +143,16 @@ Minimum Cloudflare token permissions:
 - `Cloudflare Pages:Edit`
 - `Account:Read`
 
-The Cloudflare Pages project publishes `wwwroot` for project `djconnect`.
+The Cloudflare Pages project publishes the release output `dist/wwwroot` for
+project `djconnect`.
 
 Direct deploys are normally only needed for recovery or deploy-only passes:
 
 ```bash
 export CLOUDFLARE_API_TOKEN='your-cloudflare-pages-token'
-export CLOUDFLARE_ACCOUNT_ID='efe77cadf8317a53832fca0848e3ae51'
-npx wrangler@4 pages deploy wwwroot --project-name djconnect --branch main
+export CLOUDFLARE_ACCOUNT_ID='your-cloudflare-account-id'
+npm run build:release
+npx wrangler@4 pages deploy dist/wwwroot --project-name djconnect --branch main
 ```
 
 ## Release Flow

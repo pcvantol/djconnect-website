@@ -182,15 +182,15 @@ The production site is deployed to Cloudflare Pages:
 - Project name: `djconnect`
 - Source directory: `wwwroot`
 - Release publish directory: `dist/wwwroot`
-- Cloudflare account ID: `efe77cadf8317a53832fca0848e3ae51`
 
 GitHub Actions runs the automated website tests and release build on pull
-requests and pushes to `main`. Pushes to `main` and manual workflow dispatches
-also deploy `dist/wwwroot` to Cloudflare Pages after the test job succeeds. The
-repository must have an Actions secret named `CLOUDFLARE_API_TOKEN` with
-permission to deploy Cloudflare Pages. The workflow sets
-`CLOUDFLARE_ACCOUNT_ID` explicitly so Wrangler does not need to discover
-account memberships during CI.
+requests and pushes to `main`. Pull requests only validate, build and test the
+site. A push to `main` deploys the validated `dist/wwwroot` artifact to
+Cloudflare Pages after the test job succeeds, then checks
+`https://djconnect.dev` for the expected footer version. The repository must
+have Actions secrets for both `CLOUDFLARE_API_TOKEN` and
+`CLOUDFLARE_ACCOUNT_ID`; Cloudflare tokens and account identifiers must not be
+committed.
 
 Configure it in GitHub:
 
@@ -198,6 +198,9 @@ Configure it in GitHub:
 Settings -> Secrets and variables -> Actions -> New repository secret
 Name: CLOUDFLARE_API_TOKEN
 Value: Cloudflare API token
+
+Name: CLOUDFLARE_ACCOUNT_ID
+Value: Cloudflare account ID
 ```
 
 Minimum Cloudflare token permissions:
@@ -274,7 +277,9 @@ export CLOUDFLARE_API_TOKEN='your-cloudflare-pages-token'
 ./release.sh
 ```
 
-If `CLOUDFLARE_API_TOKEN` is only configured as a GitHub Actions secret, run the release without direct local deploy and let the push trigger the workflow:
+If Cloudflare credentials are only configured as GitHub Actions secrets, run
+the release without direct local deploy and let the push to `main` trigger the
+workflow:
 
 ```bash
 ./release.sh --skip-deploy
@@ -291,7 +296,7 @@ If the version tag and GitHub Release already exist and only the Pages deploymen
 ```bash
 npm run build:release
 export CLOUDFLARE_API_TOKEN='your-cloudflare-pages-token'
-export CLOUDFLARE_ACCOUNT_ID='efe77cadf8317a53832fca0848e3ae51'
+export CLOUDFLARE_ACCOUNT_ID='your-cloudflare-account-id'
 npx wrangler@4 pages deploy dist/wwwroot --project-name djconnect --branch main
 ```
 

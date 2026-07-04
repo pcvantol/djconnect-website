@@ -248,11 +248,11 @@
 3. Update or consciously re-check all repository documentation files before release: `README.md`, `HANDOFF.md`, `TESTS.md`, `TODO.md`, `ISSUES.md`, `CHANGELOG.md`, `VOICE_INTENT_DATA_PROMPT.md`, `TECHNICAL_DESIGN.md` and `CHAT_BOOTSTRAP.md`.
 4. For cross-repo contract changes, update `pcvantol/djconnect/SYNC_PROMPTS.md` in the Home Assistant integration repo. For roadmap changes, update `pcvantol/djconnect/PRODUCT_ROADMAP.md`. Keep no local copies of either file in this website repo.
 5. Check whether test coverage needs to be expanded for the release change. Add tests for changed routes, copy, rendering contracts, analytics, release scripts or deployment behavior.
-6. Ensure the GitHub Actions repository secret `CLOUDFLARE_API_TOKEN` exists.
-7. Run `./release.sh --skip-deploy` when the token is only available in GitHub Actions.
+6. Ensure the GitHub Actions repository secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` exist.
+7. Run `./release.sh --skip-deploy` when Cloudflare credentials are only available in GitHub Actions.
 8. Verify the GitHub Release, the `Deploy Cloudflare Pages` workflow run and https://djconnect.dev.
 
-The workflow runs `npm ci`, `npm run deps:check`, `npm test` and `npm run build:release` on pull requests and pushes to `main`. Pushes to `main` and manual workflow dispatches deploy `dist/wwwroot` to Cloudflare Pages after the test job succeeds, with `CLOUDFLARE_ACCOUNT_ID` set explicitly.
+The workflow runs `npm ci`, `npm run deps:check`, `npm test` and `npm run build:release` on pull requests and pushes to `main`. Pull requests only validate, build and test the site. Pushes to `main` deploy the validated `dist/wwwroot` artifact to Cloudflare Pages after the test job succeeds, using `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` from GitHub Actions secrets, then check https://djconnect.dev for the expected footer version.
 The release script verifies the Dutch screenshot manifest, verifies the core documentation files exist, checks `CHANGELOG.md` and `HANDOFF.md` against the current `VERSION`, builds a minified release copy in `dist/wwwroot`, removes older GitHub Releases, matching local/remote tags and older GitHub Actions workflow runs by default. It keeps the newly released tag and only the newest workflow run. Override workflow-run retention with `KEEP_WORKFLOW_RUNS=N` when needed.
 Before tests, the release script runs `npm run deps:update`, records active npm,
 Wrangler and Playwright versions, and stops if package metadata changed without
@@ -264,7 +264,7 @@ Set the token only in the current shell when needed:
 
 ```bash
 export CLOUDFLARE_API_TOKEN='your-cloudflare-pages-token'
-export CLOUDFLARE_ACCOUNT_ID='efe77cadf8317a53832fca0848e3ae51'
+export CLOUDFLARE_ACCOUNT_ID='your-cloudflare-account-id'
 ```
 
 If `./release.sh` was already used with `--skip-deploy` and the tag/release already exists, do not rerun the full release script. Rebuild and deploy the minified release output directly:

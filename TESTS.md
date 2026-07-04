@@ -298,6 +298,7 @@ For a full release with a new tag:
 
 ```bash
 export CLOUDFLARE_API_TOKEN='your-cloudflare-pages-token'
+export CLOUDFLARE_ACCOUNT_ID='your-cloudflare-account-id'
 ./release.sh
 ```
 
@@ -307,8 +308,9 @@ For a deploy-only pass after a tag/release already exists:
 
 ```bash
 export CLOUDFLARE_API_TOKEN='your-cloudflare-pages-token'
+export CLOUDFLARE_ACCOUNT_ID='your-cloudflare-account-id'
 npm run build:release
-npx wrangler pages deploy dist/wwwroot --project-name djconnect --branch main
+npx wrangler@4 pages deploy dist/wwwroot --project-name djconnect --branch main
 ```
 
 After deployment:

@@ -4,6 +4,11 @@ All notable changes to this website are grouped per release.
 
 ## Unreleased
 
+- Restricted the Cloudflare Pages deploy job to successful pushes on `main`,
+  moved Cloudflare account auth to GitHub Actions secrets, published the
+  validated `dist/wwwroot` artifact and added a production footer-version
+  smoke check after deploy.
+
 ## DJConnect website v3.2.13 - 2026-07-04
 
 - Documented VibeCast as a premium-ready first-class Apple client feature across

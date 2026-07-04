@@ -267,11 +267,13 @@ Deploy workflow test job. The check performs the same package-lock refresh in a
 non-mutating mode and fails when dependency metadata would change, forcing the
 update to be committed before release or merge.
 
-The GitHub Actions workflow runs `npm ci`, `npm test` and
-`npm run build:release` for pull requests and pushes to `main`. The deploy job
-depends on that test job and is skipped for pull requests, so
-`./release.sh --skip-deploy` and direct CI deploys publish the same minified
-site structure as local releases only after automated checks pass.
+The GitHub Actions workflow runs `npm ci`, `npm run deps:check`, `npm test`
+and `npm run build:release` for pull requests and pushes to `main`. Pull
+requests only validate, build and test the site. The deploy job depends on that
+test job and runs only for pushes to `main`, so `./release.sh --skip-deploy`
+and direct CI deploys publish the same minified site structure as local releases
+only after automated checks pass. The deploy job reads Cloudflare auth from
+GitHub Actions secrets and checks https://djconnect.dev after publishing.
 
 Why:
 
@@ -453,7 +455,7 @@ Source:
 - GitHub Actions workflow is minimal and explicit.
 - Node version is pinned to major `20`.
 - Actions are pinned to major versions.
-- Cloudflare account id is set in workflow env; token is read from repository secrets.
+- Cloudflare account ID and API token are read from GitHub Actions secrets.
 
 Source:
 

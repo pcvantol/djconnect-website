@@ -246,16 +246,16 @@ window.DJCONNECT_VOICE_INTENTS = [
     },
     "examples": {
       "nl": [
-        "Speel nummer Lithium van Nirvana",
-        "Speel Lithium van Nirvana",
-        "Zet het liedje Black van Pearl Jam op",
-        "Draai track Nothing Else Matters van Metallica",
-        "Speel artiest Nirvana met nummer Lithium"
+        "Speel nummer Moonlit Signal van Neon Harbor",
+        "Speel Moonlit Signal van Neon Harbor",
+        "Zet het liedje Night Glass van Echo Vale op",
+        "Draai track Static Sunrise van Silver Circuit",
+        "Speel artiest Neon Harbor met nummer Moonlit Signal"
       ],
       "en": [
-        "Play Lithium by Nirvana",
-        "Play the track Black by Pearl Jam",
-        "Play artist Nirvana with song Lithium"
+        "Play Moonlit Signal by Neon Harbor",
+        "Play the track Night Glass by Echo Vale",
+        "Play artist Neon Harbor with song Moonlit Signal"
       ]
     }
   },
@@ -281,14 +281,14 @@ window.DJCONNECT_VOICE_INTENTS = [
     },
     "examples": {
       "nl": [
-        "Speel album Nevermind",
-        "Speel album Ten van Pearl Jam",
+        "Speel album Velvet Weather",
+        "Speel album First Light van Echo Vale",
         "Zet de plaat Voorbeeldalbum van Voorbeeldartiest op",
-        "Draai album Rumours van Fleetwood Mac"
+        "Draai album Harbor Lights van Maple Signal"
       ],
       "en": [
-        "Play album Nevermind",
-        "Play the album Ten by Pearl Jam",
+        "Play album Velvet Weather",
+        "Play the album First Light by Echo Vale",
         "Put on album Example Album by Example Artist"
       ]
     }
@@ -315,10 +315,10 @@ window.DJCONNECT_VOICE_INTENTS = [
     },
     "examples": {
       "nl": [
-        "Speel nummer Lithium"
+        "Speel nummer Moonlit Signal"
       ],
       "en": [
-        "Play song Lithium"
+        "Play song Moonlit Signal"
       ]
     }
   },
@@ -344,20 +344,20 @@ window.DJCONNECT_VOICE_INTENTS = [
     },
     "examples": {
       "nl": [
-        "Speel Nirvana",
-        "Start Metallica",
-        "Zet London Grammar op",
-        "Draai Pearl Jam",
-        "Ik heb wel zin in Nirvana",
-        "Ik wil Metallica horen",
-        "Nirvana wil ik wel horen"
+        "Speel Neon Harbor",
+        "Start Silver Circuit",
+        "Zet Velvet Atlas op",
+        "Draai Echo Vale",
+        "Ik heb wel zin in Neon Harbor",
+        "Ik wil Silver Circuit horen",
+        "Neon Harbor wil ik wel horen"
       ],
       "en": [
-        "Play Nirvana",
-        "Start Metallica",
-        "Put on London Grammar",
-        "I want Pearl Jam",
-        "I feel like Nirvana"
+        "Play Neon Harbor",
+        "Start Silver Circuit",
+        "Put on Velvet Atlas",
+        "I want Echo Vale",
+        "I feel like Neon Harbor"
       ]
     }
   }
@@ -664,14 +664,14 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "nl": [
       "Welke albums hebben Voorbeeldartiest uitgebracht?",
       "Welke albums bracht deze artiest uit?",
-      "Welke albums zijn er van Prince?",
+      "Welke albums zijn er van Orion Vale?",
       "Albums van Suzan en Freek",
       "Geef me de albums van Guns N' Roses"
     ],
     "en": [
       "Which albums has Example Artist released?",
       "Which albums did this artist release?",
-      "Albums by Prince"
+      "Albums by Orion Vale"
     ],
     "playsMusic": false,
     "messageKind": "user",
@@ -687,14 +687,14 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
       "nl": [
         "Welke albums hebben Voorbeeldartiest uitgebracht?",
         "Welke albums bracht deze artiest uit?",
-        "Welke albums zijn er van Prince?",
+        "Welke albums zijn er van Orion Vale?",
         "Albums van Suzan en Freek",
         "Geef me de albums van Guns N' Roses"
       ],
       "en": [
         "Which albums has Example Artist released?",
         "Which albums did this artist release?",
-        "Albums by Prince"
+        "Albums by Orion Vale"
       ]
     }
   },
@@ -718,16 +718,16 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "nl": [
       "Welke muziek heeft Scooter gemaakt?",
       "Welke nummers heeft Voorbeeldartiest gemaakt?",
-      "Geef me 5 nummers van Pearl Jam",
+      "Geef me 5 nummers van Echo Vale",
       "Geef me albums van Voorbeeldartiest",
-      "Toon playlists van Metallica"
+      "Toon playlists van Silver Circuit"
     ],
     "en": [
       "What music has Scooter made?",
       "Which songs has Example Artist released?",
-      "Give me 5 songs by Pearl Jam",
+      "Give me 5 songs by Echo Vale",
       "Show albums by Example Artist",
-      "Find playlists from Metallica"
+      "Find playlists from Silver Circuit"
     ],
     "playsMusic": false,
     "messageKind": "user",
@@ -743,16 +743,16 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
       "nl": [
         "Welke muziek heeft Scooter gemaakt?",
         "Welke nummers heeft Voorbeeldartiest gemaakt?",
-        "Geef me 5 nummers van Pearl Jam",
+        "Geef me 5 nummers van Echo Vale",
         "Geef me albums van Voorbeeldartiest",
-        "Toon playlists van Metallica"
+        "Toon playlists van Silver Circuit"
       ],
       "en": [
         "What music has Scooter made?",
         "Which songs has Example Artist released?",
-        "Give me 5 songs by Pearl Jam",
+        "Give me 5 songs by Echo Vale",
         "Show albums by Example Artist",
-        "Find playlists from Metallica"
+        "Find playlists from Silver Circuit"
       ]
     }
   },
@@ -804,13 +804,13 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     "nl": [
       "Wat voor muziek maakt Beastie Boys?",
       "Wat voor muziek maakt deze artiest?",
-      "Welk genre maakt Muse?",
+      "Welk genre maakt Luna Circuit?",
       "Wat is het genre van Voorbeeldartiest?"
     ],
     "en": [
       "What kind of music does Beastie Boys make?",
       "What kind of music does this artist make?",
-      "What genre is Muse?"
+      "What genre is Luna Circuit?"
     ],
     "playsMusic": false,
     "messageKind": "user",
@@ -826,13 +826,13 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
       "nl": [
         "Wat voor muziek maakt Beastie Boys?",
         "Wat voor muziek maakt deze artiest?",
-        "Welk genre maakt Muse?",
+        "Welk genre maakt Luna Circuit?",
         "Wat is het genre van Voorbeeldartiest?"
       ],
       "en": [
         "What kind of music does Beastie Boys make?",
         "What kind of music does this artist make?",
-        "What genre is Muse?"
+        "What genre is Luna Circuit?"
       ]
     }
   },
@@ -845,13 +845,13 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
       "Wanneer speelt Voorbeeldartiest in Nederland?",
       "Heeft deze artiest binnenkort concerten?",
       "Concerten van The National",
-      "Tourdata voor Muse"
+      "Tourdata voor Luna Circuit"
     ],
     "en": [
       "When does Example Artist play in the Netherlands?",
       "Does this artist have upcoming concerts?",
       "Concerts for The National",
-      "Tour dates for Muse"
+      "Tour dates for Luna Circuit"
     ],
     "playsMusic": false,
     "messageKind": "user",
@@ -868,13 +868,13 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "Wanneer speelt Voorbeeldartiest in Nederland?",
         "Heeft deze artiest binnenkort concerten?",
         "Concerten van The National",
-        "Tourdata voor Muse"
+        "Tourdata voor Luna Circuit"
       ],
       "en": [
         "When does Example Artist play in the Netherlands?",
         "Does this artist have upcoming concerts?",
         "Concerts for The National",
-        "Tour dates for Muse"
+        "Tour dates for Luna Circuit"
       ]
     }
   },

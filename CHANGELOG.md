@@ -493,13 +493,13 @@ All notable changes to this website are grouped per release.
 - Updated the voice page hero, artist-first explanation, interpretation order,
   tip text and intent examples to match the current DJConnect voice/PTT
   contract.
-- Added the expanded Lithium, artist, album, playlist, default playlist and
+- Added the expanded Moonlit Signal, artist, album, playlist, default playlist and
   playback-control example sets in both Dutch and English.
 - Added `VOICE_INTENT_DATA_PROMPT.md` so future Home Assistant integration
   updates can provide structured voice intent data without website/layout
   instructions.
 - Extended tests to verify the data-driven voice intent examples and the
-  required Dutch/English Lithium phrases.
+  required Dutch/English Moonlit Signal phrases.
 
 ## DJConnect website v3.1.26 - 2026-06-15
 

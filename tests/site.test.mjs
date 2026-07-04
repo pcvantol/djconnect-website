@@ -66,6 +66,53 @@ test("public pages expose five-language i18n routes and shared legal strings", a
   assert.match(contributing, /Update all public languages in the same pull request/);
 });
 
+test("public examples use fictional artist names only", async () => {
+  const forbiddenNames = [
+    "Nirvana",
+    "Metallica",
+    "London Grammar",
+    "Pearl Jam",
+    "Peter Gabriel",
+    "Radiohead",
+    "Taylor Swift",
+    "The Beatles",
+    "Beyonce",
+    "Beyoncé",
+    "Drake",
+    "Coldplay",
+    "Daft Punk",
+    "Fleetwood Mac",
+    "Adele",
+    "Prince",
+    "Madonna",
+    "Queen",
+    "Kendrick",
+    "SZA",
+    "Billie Eilish",
+    "Arctic Monkeys",
+    "Muse",
+    "Oasis",
+    "U2",
+    "ABBA",
+    "David Bowie"
+  ];
+
+  const files = [
+    ...publicPages.map((page) => `wwwroot/${page}.html`),
+    ...supportedLanguages
+      .filter((language) => language !== "nl")
+      .flatMap((language) => publicPages.map((page) => `wwwroot/${language}/${page}.html`)),
+    "wwwroot/assets/voice-intents.js"
+  ];
+
+  for (const file of files) {
+    const text = await read(file);
+    for (const name of forbiddenNames) {
+      assert.doesNotMatch(text, new RegExp(name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")), `${file} should not mention real artist name ${name}`);
+    }
+  }
+});
+
 test("shared i18n runtime loads before page translation scripts", async () => {
   for (const page of publicPages) {
     const html = await read(`wwwroot/${page}.html`);
@@ -606,7 +653,7 @@ test("voice commands page documents intent families and DJ response styles", asy
   assert.match(voice, /Warm en persoonlijk/);
   assert.match(voice, /Humoristisch en gevat/);
   assert.match(voice, /Vrij in te vullen/);
-  assert.match(voice, /Ik zet Pearl Jam voor je klaar/);
+  assert.match(voice, /Ik zet Echo Vale voor je klaar/);
   assert.match(voice, /De gekozen stijl verandert alleen de DJ-aankondiging, niet de muziekkeuze/);
   assert.match(voice, /AI- en Assist-antwoorden kunnen onjuist zijn/);
   assert.match(voice, /hangen af van je eigen Home Assistant installatie/);
@@ -678,17 +725,17 @@ test("voice commands page documents intent families and DJ response styles", asy
   assert.match(intents, /Voeg dit nummer toe aan favorieten/);
   assert.match(intents, /Save this track to liked songs/);
   assert.match(intents, /Like this track/);
-  assert.match(intents, /Speel Nirvana/);
-  assert.match(intents, /Start Metallica/);
-  assert.match(intents, /Play Nirvana/);
-  assert.match(intents, /Speel nummer Lithium/);
-  assert.match(intents, /Speel artiest Nirvana met nummer Lithium/);
-  assert.match(intents, /Play song Lithium/);
-  assert.match(intents, /Play Lithium by Nirvana/);
-  assert.match(intents, /Play artist Nirvana with song Lithium/);
-  assert.match(intents, /Speel album Nevermind/);
+  assert.match(intents, /Speel Neon Harbor/);
+  assert.match(intents, /Start Silver Circuit/);
+  assert.match(intents, /Play Neon Harbor/);
+  assert.match(intents, /Speel nummer Moonlit Signal/);
+  assert.match(intents, /Speel artiest Neon Harbor met nummer Moonlit Signal/);
+  assert.match(intents, /Play song Moonlit Signal/);
+  assert.match(intents, /Play Moonlit Signal by Neon Harbor/);
+  assert.match(intents, /Play artist Neon Harbor with song Moonlit Signal/);
+  assert.match(intents, /Speel album Velvet Weather/);
   assert.match(intents, /Zet de plaat Voorbeeldalbum van Voorbeeldartiest op/);
-  assert.match(intents, /Play album Nevermind/);
+  assert.match(intents, /Play album Velvet Weather/);
   assert.match(intents, /Speel playlist DJConnect/);
   assert.match(intents, /Start mijn afspeellijst Roadtrip/);
   assert.match(intents, /Play playlist DJConnect/);
@@ -747,7 +794,7 @@ test("voice commands page documents intent families and DJ response styles", asy
   assert.match(intents, /Geef me de albums van Guns N' Roses/);
   assert.match(intents, /"id": "artist_item_list"/);
   assert.match(intents, /Welke muziek heeft Scooter gemaakt\?/);
-  assert.match(intents, /Give me 5 songs by Pearl Jam/);
+  assert.match(intents, /Give me 5 songs by Echo Vale/);
   assert.match(intents, /Welke artiesten maken vergelijkbare muziek als wat nu speelt\?/);
   assert.match(intents, /Wat voor muziek maakt Beastie Boys\?/);
   assert.match(intents, /Wanneer speelt Voorbeeldartiest in Nederland\?/);

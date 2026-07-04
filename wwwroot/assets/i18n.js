@@ -85,7 +85,8 @@
   );
 
   const urlLanguage = new URLSearchParams(window.location.search).get("lang");
-  const initialLanguage = normalizeLanguage(urlLanguage || localStorage.getItem("djconnect-language") || defaultLanguage);
+  const pathLanguage = window.location.pathname.split("/").filter(Boolean)[0];
+  const initialLanguage = normalizeLanguage(urlLanguage || pathLanguage || localStorage.getItem("djconnect-language") || defaultLanguage);
   localStorage.setItem("djconnect-language", initialLanguage);
 
   window.DJCONNECT_I18N = {

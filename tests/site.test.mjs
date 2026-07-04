@@ -83,6 +83,30 @@ test("shared i18n runtime loads before page translation scripts", async () => {
   }
 });
 
+test("localized start routes apply the requested setup language", async () => {
+  const [i18nRuntime, start] = await Promise.all([
+    read("wwwroot/assets/i18n.js"),
+    read("wwwroot/start.html")
+  ]);
+
+  assert.match(i18nRuntime, /pathLanguage = window\.location\.pathname/);
+  assert.match(i18nRuntime, /urlLanguage \|\| pathLanguage \|\| localStorage\.getItem/);
+  assert.match(start, /applyLanguage\(window\.DJCONNECT_I18N\?\.initialLanguage \|\| "nl"\)/);
+
+  const expectedCopy = {
+    de: "6. App oder Geraet lokal koppeln",
+    fr: "6. Associer l'app ou l'appareil localement",
+    es: "6. Empareja la app o el dispositivo localmente"
+  };
+
+  for (const [language, title] of Object.entries(expectedCopy)) {
+    const localized = await read(`wwwroot/${language}/start.html`);
+    assert.match(localized, new RegExp(`${language}: \\{[\\s\\S]*pairingTitle: "${title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"`));
+    assert.doesNotMatch(localized, new RegExp(`${language}: \\{[\\s\\S]*pairingTitle: "6\\. Pair app or device locally"`));
+    assert.match(localized, /applyLanguage\(window\.DJCONNECT_I18N\?\.initialLanguage \|\| "nl"\)/);
+  }
+});
+
 test("screenshot tooling is available for live page review", async () => {
   const [packageJson, screenshotTest, testsDoc, readme] = await Promise.all([
     read("package.json"),

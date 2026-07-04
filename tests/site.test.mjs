@@ -1770,8 +1770,12 @@ test("release build minifies shared assets before deploy", async () => {
   assert.match(deployWorkflow, /npm run test:smoke/);
   assert.match(deployWorkflow, /npm run build:release/);
   assert.match(deployWorkflow, /needs: test/);
-  assert.match(deployWorkflow, /if: github\.event_name != 'pull_request'/);
+  assert.match(deployWorkflow, /actions\/upload-artifact@v4/);
+  assert.match(deployWorkflow, /actions\/download-artifact@v4/);
+  assert.match(deployWorkflow, /if: github\.event_name == 'push' && github\.ref == 'refs\/heads\/main'/);
+  assert.match(deployWorkflow, /CLOUDFLARE_ACCOUNT_ID: \$\{\{ secrets\.CLOUDFLARE_ACCOUNT_ID \}\}/);
   assert.match(deployWorkflow, /pages deploy dist\/wwwroot --project-name djconnect --branch main/);
+  assert.match(deployWorkflow, /curl --fail --silent --show-error --location https:\/\/djconnect\.dev/);
   assert.doesNotMatch(deployWorkflow, /pages deploy wwwroot/);
 
   await exec("npm", ["run", "build:release"], { cwd: new URL("../", import.meta.url) });

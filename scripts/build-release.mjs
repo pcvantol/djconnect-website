@@ -87,6 +87,7 @@ const assertSharedAssetsExist = async () => {
 
 const acquireBuildLock = async () => {
   try {
+    await mkdir(path.dirname(lockDir), { recursive: true });
     await mkdir(lockDir, { recursive: false });
   } catch (error) {
     if (error.code === "EEXIST") {

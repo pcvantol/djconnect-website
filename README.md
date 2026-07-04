@@ -77,7 +77,9 @@ Static landing page for DJConnect, published through Cloudflare Pages.
   media cards, TTS replay buttons or `Play Now` controls.
   Ask DJ works without Music DNA. Music DNA is an opt-in, server-side Home
   Assistant listening profile built from compact signals such as successful
-  playback/Play Now choices, recent playback metadata, available artists and
+  playback/Play Now choices, preferences, listening rhythm, favorite artists,
+  albums and tracks, playtime aggregates, mood mix, repeat magnets, taste
+  anchors, explicit positives, recent playback metadata, available artists and
   genres, Track Insight energy/genre analysis, realtime client mood samples and
   compact Spotify profile/recently-played/top-data when the backend fetches it.
   Clients render Music DNA cards and send context; they do not store or compute
@@ -87,6 +89,14 @@ Static landing page for DJConnect, published through Cloudflare Pages.
   setting; if Music DNA remains enabled, DJConnect starts learning again from an
   empty profile, and if it is turned off learned DNA is cleared and future
   learning stops.
+  Ontdek / Music Discovery is the premium recommendations surface built on
+  Music DNA. It only works after explicit Music DNA consent and is generated
+  server-side by Home Assistant. It can show daily or refreshed recommendations
+  for tracks, albums, artists and playlists, with artwork, `Play Now` actions
+  and a reason explaining why each item fits the user's Music DNA. A `Play Now`
+  tap from Ontdek is fed back as an explicit positive signal. iOS, macOS,
+  Apple Watch, Raspberry Pi and Windows clients use the same backend contract
+  and differ only in presentation; they do not store Music DNA locally.
   Local app clients may optionally use Home Assistant's native `/api/websocket`
   after normal local pairing and HA websocket auth for low-latency
   `djconnect/command`, `djconnect/ask_dj/message` and
@@ -448,6 +458,12 @@ Use `./cleanup_old_releases.sh` manually only when you want cleanup outside the 
   `You can clear Music DNA at any time.`, `Clients do not store your persistent
   Music DNA profile.`, `Spotify credentials stay in Home Assistant.`, and
   `DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.`
+- Keep Music DNA and Ontdek copy aligned across the website, TESTS, HANDOFF and
+  TECHNICAL_DESIGN. Ontdek must stay consent-gated, server-side via Home
+  Assistant, driven primarily by Music DNA, and capable of showing tracks,
+  albums, artists and playlists with artwork, `Play Now` and a recommendation
+  reason. Clients must remain renderers only and must not be described as
+  storing a persistent Music DNA profile locally.
 - Keep content-page navigation free of self-links. Features, Spraak, Blog,
   Support and Privacy should not show their own page as a menu option.
 - Keep the homepage `Kies je interface` cards aligned with the supported

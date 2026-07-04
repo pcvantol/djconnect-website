@@ -21,6 +21,11 @@
   Music DNA can be cleared at any time, clients do not store the persistent
   Music DNA profile, Spotify credentials stay in Home Assistant and DJConnect
   is not affiliated with, endorsed by, or sponsored by Spotify AB.
+- Verify the homepage and Features page explain Ontdek / Music Discovery as a
+  premium recommendations surface that only works after Music DNA consent,
+  uses Home Assistant as the source of truth, shows daily/refreshed tracks,
+  albums, artists and playlists with artwork, `Play Now` and recommendation
+  reasons, and feeds `Play Now` choices back as positive Music DNA signals.
 - Verify Ask DJ Track Insight copy explains server-side interpretive Track
   Insight, example prompts such as "Geef Track Insight voor dit nummer",
   genre/subgenre, mood, energy, confidence, production/listening cues, similar

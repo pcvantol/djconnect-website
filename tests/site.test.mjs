@@ -360,6 +360,8 @@ test("homepage has platform routes and app store placeholders", async () => {
   assert.match(index, /Gebruik remote-capable apps op desktop\/mobiel en local-only ESP32 of Raspberry Pi hardware in huis/);
   assert.match(index, /DJConnect brengt je muziekwens, playerkeuze, fysieke controls en persoonlijke DJ-feedback samen/);
   assert.match(index, /Zeg welke artiest je wilt horen/);
+  assert.match(index, /data-i18n="navDiscover">Ontdek/);
+  assert.match(index, /href="#discover"/);
   assert.match(index, /<script src="assets\/voice-intents\.js"><\/script>/);
   assert.match(index, /id="homepageVoiceExamples"/);
   assert.match(index, /renderHomepageVoiceExamples\(language\)/);
@@ -416,6 +418,21 @@ test("homepage promotes Ask DJ as a major product feature", async () => {
   assert.match(index, /Music DNA is opt-in/);
   assert.match(index, /You can clear Music DNA at any time/);
   assert.match(index, /Clients do not store your persistent Music DNA profile/);
+  assert.match(index, /<section id="discover" class="technical-analysis">/);
+  assert.match(index, /Ontdek is de premium DJConnect discovery-feed/);
+  assert.match(index, /dagelijkse persoonlijke aanbevelingen voor tracks, albums, artists en playlists/);
+  assert.match(index, /Ontdek werkt pas nadat Music DNA expliciet is geactiveerd/);
+  assert.match(index, /Music DNA gebruikt compacte signalen zoals voorkeuren, luisterritme, favoriete artiesten, albums en tracks, playtime aggregaties, mood mix, repeat magnets, taste anchors en expliciete positives/);
+  assert.match(index, /Zonder consent toont de client eerst uitleg/);
+  assert.match(index, /Iedere recommendation kan een reden tonen waarom die past bij je Music DNA/);
+  assert.match(index, /Klik of tap op een Ontdek-item start Play Now/);
+  assert.match(index, /positief signaal, zodat aanbevelingen over tijd beter worden/);
+  assert.match(index, /total hours play time, top artists, luisterritme, mood mix, repeat magnets, explicit positives, taste anchors en recent favorites/);
+  assert.match(index, /verschijnen alleen als er genoeg betrouwbare data is/);
+  assert.match(index, /iOS, macOS, Apple Watch, Raspberry Pi en Windows gebruiken hetzelfde Home Assistant contract/);
+  assert.match(index, /bewaren geen Music DNA lokaal/);
+  assert.match(index, /DJConnect bewaart geen OAuth tokens, bearer tokens, raw audio of volledige prompts in Music DNA/);
+  assert.match(index, /Clear behoudt de opt-in setting en laat opbouw opnieuw vanaf leeg starten/);
   assert.match(index, /Spotify credentials stay in Home Assistant/);
   assert.match(index, /Music DNA mag geen OAuth tokens, bearer tokens, raw audio, volledige prompts of onbeperkte Spotify luistergeschiedenis opslaan/);
   assert.match(index, /DJConnect's active integration routes use Home Assistant Assist\/STT\/TTS and do not call direct external AI\/STT\/TTS APIs/);
@@ -703,6 +720,10 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /Track Insight werkt standaard met beschikbare playbackcontext/);
   assert.match(start, /Optionele metadata- of contextproviders blijven server-side in Home Assistant/);
   assert.match(start, /clients render the analysis and do not calculate conclusions locally/);
+  assert.match(start, /Voor Ontdek: Music DNA consent in Home Assistant/);
+  assert.match(start, /Ontdek bouwt aanbevelingen server-side via Home Assistant/);
+  assert.match(start, /werkt pas na expliciete Music DNA consent/);
+  assert.match(start, /aanbevelingen, artwork, redenen en Play Now-acties uit het backendcontract/);
   assertTranslationsCoverPage(start, "start page");
 });
 
@@ -724,6 +745,10 @@ test("features page describes core functions and bonus games", async () => {
   assert.match(features, /Ask DJ works without Music DNA/);
   assert.match(features, /Music DNA is opt-in/);
   assert.match(features, /Clients zijn renderers en bewaren geen bronprofiel/);
+  assert.match(features, /Home Assistant is server-side bron van waarheid/);
+  assert.match(features, /data-i18n="discoverCoreTitle">Ontdek/);
+  assert.match(features, /Ontdek gebruikt Music DNA voor dagelijkse tracks, albums, artists en playlists/);
+  assert.match(features, /artwork, Play Now en een reden waarom de tip bij je luisterprofiel past/);
   assert.match(features, /Home Assistant is server-side bron van waarheid/);
   assert.match(features, /Spotify credentials stay in Home Assistant/);
   assert.match(features, /Ask DJ does more than answer: it gives you actions/);
@@ -1082,6 +1107,10 @@ test("privacy policy page covers App Store requirements", async () => {
   assert.match(privacy, /Music DNA is opt-in/);
   assert.match(privacy, /You can clear Music DNA at any time/);
   assert.match(privacy, /Clients do not store your persistent Music DNA profile/);
+  assert.match(privacy, /Ontdek gebruikt Music DNA alleen na opt-in/);
+  assert.match(privacy, /toont eerst consent als Music DNA nog niet actief is/);
+  assert.match(privacy, /Play Now vanuit Ontdek telt als expliciet positief signaal/);
+  assert.match(privacy, /clients bewaren geen Music DNA lokaal/);
   assert.match(privacy, /DJConnect's active integration routes use Home Assistant Assist\/STT\/TTS and do not call direct external AI\/STT\/TTS APIs/);
   assert.match(privacy, /Diagnostics en logs redacteren secrets/);
   assert.match(privacy, /geen raw audio, full prompts, volledige Ask DJ history of Music DNA dumps/);

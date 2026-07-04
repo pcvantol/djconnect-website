@@ -99,7 +99,7 @@
     @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } .switch-tabs { grid-template-columns:1fr; } }
 
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.12" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.13" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -159,6 +159,7 @@
           <li data-i18n="requirementsLocalPairing">Home Assistant en DJConnect client op hetzelfde lokale netwerk tijdens pairing; remote pairing wordt niet ondersteund</li>
           <li data-i18n="requirementsEspWifi">Voor ESP hardware: 2.4 GHz WiFi tijdens provisioning en lokaal gebruik</li>
           <li data-i18n="requirementsSpotifyOauth">Alleen voor Spotify Direct: Spotify Premium en je eigen Spotify Developer app met Client ID</li>
+          <li data-i18n="requirementsMusicDnaConsent">Voor Ontdek: Music DNA consent in Home Assistant</li>
           <li data-i18n="requirementsMusicAssistant">Alleen voor Music Assistant: Music Assistant geinstalleerd, providers geconfigureerd en een player geselecteerd</li>
           <li data-i18n="requirementsExternalUrl">Optioneel voor remote iOS/macOS/Windows: een externe HTTPS Home Assistant URL, bij voorkeur Nabu Casa</li>
         </ul>
@@ -168,6 +169,7 @@
         <article class="card"><h3 data-i18n="credentialsTitle">Credentials blijven in Home Assistant</h3><p data-i18n="credentialsText">DJConnect devices en apps krijgen geen Spotify refresh token of playback credentials.</p></article>
         <article class="card"><h3 data-i18n="remoteTitle">Remote na lokale pairing</h3><p data-i18n="remoteText">iOS, macOS en Windows kunnen na lokale pairing via je externe Home Assistant URL werken. ESP32 en Raspberry Pi blijven local-only.</p></article>
         <article class="card"><h3 data-i18n="trackAnalysisProviderTitle">Optioneel: Track Insight providers</h3><p data-i18n="trackAnalysisProviderText">Track Insight werkt standaard met beschikbare playbackcontext of meegegeven trackmetadata. Optionele metadata- of contextproviders blijven server-side in Home Assistant; clients tonen de analyse en berekenen geen conclusies lokaal.</p></article>
+        <article class="card"><h3 data-i18n="discoverSetupTitle">Music DNA en Ontdek</h3><p data-i18n="discoverSetupText">Ontdek bouwt aanbevelingen server-side via Home Assistant en werkt pas na expliciete Music DNA consent. Clients bewaren geen profiel; ze tonen alleen aanbevelingen, artwork, redenen en Play Now-acties uit het backendcontract.</p></article>
       </div>
     </section>
 
@@ -499,11 +501,11 @@
     <p data-i18n="legalSpotify">Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.2.12</p>
+    <p class="site-version">DJConnect website v3.2.13</p>
   </footer>
 
-  <script src="assets/i18n.js?v=3.2.12"></script>
-  <script src="assets/page-translations.js?v=3.2.12"></script>
+  <script src="assets/i18n.js?v=3.2.13"></script>
+  <script src="assets/page-translations.js?v=3.2.13"></script>
 
   <script>
     const translations = window.DJCONNECT_PAGE_TRANSLATIONS?.["start"] || {};
@@ -534,6 +536,6 @@
 
   </script>
 
-  <script src="assets/site-nav.js?v=3.2.12"></script>
+  <script src="assets/site-nav.js?v=3.2.13"></script>
 </body>
 </html>

@@ -4,12 +4,21 @@ All notable changes to this website are grouped per release.
 
 ## Unreleased
 
+## DJConnect website v3.2.13 - 2026-07-04
+
 - Documented VibeCast as a premium-ready first-class Apple client feature across
   Features, Platform, iOS, macOS and How To Start, including
   `GET /api/djconnect/vibecast`, macOS/iOS parity, backend-neutral Home
   Assistant playback source of truth, structured text, disabled reasons and
   polling/cache semantics.
 - Added regression and manual-test coverage for the VibeCast website contract.
+- Added Music DNA richer dashboard and Ontdek/Music Discovery copy across the
+  website and docs, including opt-in consent, Home Assistant source of truth,
+  daily recommendations, Play Now from recommendations and recommendation
+  reasons.
+- Documented cross-platform Music DNA/Ontdek support for iOS, macOS, Apple
+  Watch, Raspberry Pi and Windows clients, with clients rendering the same
+  backend contract instead of storing Music DNA locally.
 
 ## DJConnect website v3.2.12 - 2026-07-04
 

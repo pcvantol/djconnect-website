@@ -12,7 +12,7 @@
 - Cloudflare Pages project: `djconnect`
 - Source directory: `wwwroot`
 - Release publish directory: `dist/wwwroot`
-- Current version: `3.2.12`
+- Current version: `3.2.13`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Platform overview page with CSS architecture diagram: `wwwroot/platform.html`
@@ -73,6 +73,13 @@
   display plus Home Assistant-provided structured action buttons, without Pi
   voice, free text, TTS or local audio unless a future Pi capability explicitly
   expands that scope.
+- Music DNA and Ontdek are premium platform features, not client-local storage.
+  Music DNA is opt-in and server-side in Home Assistant. Ontdek uses Music DNA
+  for daily or refreshed recommendations for tracks, albums, artists and
+  playlists with artwork, `Play Now` and reasons. If Music DNA is not active,
+  clients must show consent/education first. iOS, macOS, Apple Watch,
+  Raspberry Pi and Windows render the same backend contract and must not store
+  Music DNA locally.
 - Ask DJ Track Insight copy must stay clear that DJConnect does not directly
   analyze encrypted Spotify playback audio. Public copy must not promise hidden
   audio measurements, harmonic labels, exact sections, timestamps or waveform
@@ -295,7 +302,7 @@ useful for higher GitHub API limits.
   the token-protected `/api/stats` contract and the release-script
   dependency/tool preflight.
 - `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. `npm run screenshots:live` captures Dutch live production screenshots at a laptop viewport into `screenshots/live-laptop/`. Neither is part of the default `npm test` run.
-- Current released version `3.2.12` syncs the public product contract with the
+- Current released version `3.2.13` syncs the public product contract with the
   current Home Assistant integration and aligns the website color system with
   the current app. Version `3.2.7` loads localized static What's New JSON on
   download-page changelogs before falling back to GitHub release bodies.

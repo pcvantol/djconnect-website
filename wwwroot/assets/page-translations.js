@@ -256,7 +256,26 @@ window.DJCONNECT_PAGE_TRANSLATIONS = {
       "legalSpotify": "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility.",
       "legalPrivacy": "Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.",
       "legalPrivacyLink": "Privacybeleid",
-      "legalSupport": "Steun"
+      "legalSupport": "Steun",
+      "navDiscover": "Ontdek",
+      "discoverTitle": "Ontdek",
+      "discoverLead": "Ontdek is de premium DJConnect discovery-feed: dagelijkse persoonlijke aanbevelingen voor tracks, albums, artists en playlists, opgebouwd door Home Assistant op basis van je Music DNA.",
+      "discoverBenefit1Title": "Jouw luisterprofiel",
+      "discoverBenefit1Text": "Music DNA gebruikt compacte signalen zoals voorkeuren, luisterritme, favoriete artiesten, albums en tracks, playtime aggregaties, mood mix, repeat magnets, taste anchors en expliciete positives.",
+      "discoverBenefit2Title": "Slimmer ontdekken",
+      "discoverBenefit2Text": "Ontdek werkt pas nadat Music DNA expliciet is geactiveerd. Zonder consent toont de client eerst uitleg en een knop om Music DNA alsnog te activeren.",
+      "discoverBenefit3Title": "Waarom deze tip?",
+      "discoverBenefit3Text": "Iedere recommendation kan een reden tonen waarom die past bij je Music DNA; mobiel kan dat achter long press/details zitten en desktop in hover, details of context UI.",
+      "discoverBenefit4Title": "Play Now met feedback",
+      "discoverBenefit4Text": "Klik of tap op een Ontdek-item start Play Now en koppelt die keuze terug naar Music DNA als positief signaal, zodat aanbevelingen over tijd beter worden.",
+      "discoverBenefit5Title": "Alleen betrouwbare blokken",
+      "discoverBenefit5Text": "Dashboardblokken zoals total hours play time, top artists, luisterritme, mood mix, repeat magnets, explicit positives, taste anchors en recent favorites verschijnen alleen als er genoeg betrouwbare data is.",
+      "discoverBenefit6Title": "Zelfde backendcontract",
+      "discoverBenefit6Text": "iOS, macOS, Apple Watch, Raspberry Pi en Windows gebruiken hetzelfde Home Assistant contract; clients verschillen alleen in presentatie en bewaren geen Music DNA lokaal.",
+      "discoverConsentTitle": "Privacybewust en opt-in",
+      "discoverConsentText": "Music DNA staat server-side in Home Assistant. DJConnect bewaart geen OAuth tokens, bearer tokens, raw audio of volledige prompts in Music DNA. Wissen blijft altijd mogelijk; Clear behoudt de opt-in setting en laat opbouw opnieuw vanaf leeg starten als Music DNA aan staat.",
+      "discoverRolloutTitle": "Beschikbaar op je DJConnect clients",
+      "discoverRolloutText": "Music DNA en Ontdek worden uitgerold voor iOS, macOS, Apple Watch, Raspberry Pi en Windows. Home Assistant blijft de bron van waarheid; clients renderen artwork, redenen en Play Now-acties vanuit de backend."
     },
     "en": {
       "title": "DJConnect. A personal music platform for every device",
@@ -417,7 +436,26 @@ window.DJCONNECT_PAGE_TRANSLATIONS = {
       "legalSpotify": "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility.",
       "legalPrivacy": "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
       "legalPrivacyLink": "Privacy Policy",
-      "legalSupport": "Support"
+      "legalSupport": "Support",
+      "navDiscover": "Discover",
+      "discoverTitle": "Discover",
+      "discoverLead": "Discover is the premium DJConnect discovery feed: daily personal recommendations for tracks, albums, artists and playlists, built by Home Assistant from your Music DNA.",
+      "discoverBenefit1Title": "Your listening profile",
+      "discoverBenefit1Text": "Music DNA uses compact signals such as preferences, listening rhythm, favorite artists, albums and tracks, playtime aggregates, mood mix, repeat magnets, taste anchors and explicit positives.",
+      "discoverBenefit2Title": "Smarter discovery",
+      "discoverBenefit2Text": "Discover works only after Music DNA is explicitly enabled. Without consent, the client first shows an explanation and a button to activate Music DNA.",
+      "discoverBenefit3Title": "Why this tip?",
+      "discoverBenefit3Text": "Every recommendation can show why it fits your Music DNA; on mobile this can live behind long press/details, and on desktop in hover, details or context UI.",
+      "discoverBenefit4Title": "Play Now with feedback",
+      "discoverBenefit4Text": "Clicking or tapping a Discover item starts Play Now and feeds that choice back to Music DNA as a positive signal, so recommendations improve over time.",
+      "discoverBenefit5Title": "Only reliable blocks",
+      "discoverBenefit5Text": "Dashboard blocks such as total hours play time, top artists, listening rhythm, mood mix, repeat magnets, explicit positives, taste anchors and recent favorites appear only when there is enough reliable data.",
+      "discoverBenefit6Title": "Same backend contract",
+      "discoverBenefit6Text": "iOS, macOS, Apple Watch, Raspberry Pi and Windows use the same Home Assistant contract; clients differ only in presentation and do not store Music DNA locally.",
+      "discoverConsentTitle": "Privacy-conscious and opt-in",
+      "discoverConsentText": "Music DNA is server-side in Home Assistant. DJConnect stores no OAuth tokens, bearer tokens, raw audio or full prompts in Music DNA. Clearing is always possible; Clear keeps the opt-in setting and starts learning again from empty if Music DNA is enabled.",
+      "discoverRolloutTitle": "Available on your DJConnect clients",
+      "discoverRolloutText": "Music DNA and Discover are being rolled out for iOS, macOS, Apple Watch, Raspberry Pi and Windows. Home Assistant remains the source of truth; clients render artwork, reasons and Play Now actions from the backend."
     },
     "de": {
       "title": "DJConnect. Eine persönliche Musikplattform für jedes Gerät",
@@ -578,7 +616,26 @@ window.DJCONNECT_PAGE_TRANSLATIONS = {
       "legalSpotify": "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility.",
       "legalPrivacy": "Datenschutz: DJConnect speichert Konto-Tokens und Kopplungsdetails in der App oder Home Assistant. Diese Website empfängt oder speichert keine Kontodaten.",
       "legalPrivacyLink": "Datenschutzrichtlinie",
-      "legalSupport": "Unterstützung"
+      "legalSupport": "Unterstützung",
+      "navDiscover": "Entdecken",
+      "discoverTitle": "Entdecken",
+      "discoverLead": "Entdecken ist der Premium-Discovery-Feed von DJConnect: taegliche persoenliche Empfehlungen fuer Tracks, Alben, Artists und Playlists, die Home Assistant aus deinem Music DNA erstellt.",
+      "discoverBenefit1Title": "Dein Hoerprofil",
+      "discoverBenefit1Text": "Music DNA nutzt kompakte Signale wie Vorlieben, Hoerrhythmus, Lieblingskuenstler, Alben und Tracks, Playtime-Aggregate, Mood Mix, Repeat Magnets, Taste Anchors und ausdrueckliche Positives.",
+      "discoverBenefit2Title": "Schlauer entdecken",
+      "discoverBenefit2Text": "Entdecken funktioniert erst, nachdem Music DNA explizit aktiviert wurde. Ohne Consent zeigt der Client zuerst eine Erklaerung und eine Schaltflaeche zum Aktivieren von Music DNA.",
+      "discoverBenefit3Title": "Warum dieser Tipp?",
+      "discoverBenefit3Text": "Jede Empfehlung kann zeigen, warum sie zu deinem Music DNA passt; mobil kann das hinter Long Press/Details liegen, auf Desktop in Hover, Details oder Kontext-UI.",
+      "discoverBenefit4Title": "Play Now mit Feedback",
+      "discoverBenefit4Text": "Ein Klick oder Tap auf ein Entdecken-Item startet Play Now und meldet diese Auswahl als positives Signal an Music DNA zurueck, damit Empfehlungen mit der Zeit besser werden.",
+      "discoverBenefit5Title": "Nur verlaessliche Bloecke",
+      "discoverBenefit5Text": "Dashboard-Bloecke wie total hours play time, Top Artists, Hoerrhythmus, Mood Mix, Repeat Magnets, explicit positives, Taste Anchors und recent favorites erscheinen nur bei genug verlaesslichen Daten.",
+      "discoverBenefit6Title": "Dasselbe Backend-Contract",
+      "discoverBenefit6Text": "iOS, macOS, Apple Watch, Raspberry Pi und Windows nutzen dasselbe Home Assistant Contract; Clients unterscheiden sich nur in der Darstellung und speichern Music DNA nicht lokal.",
+      "discoverConsentTitle": "Privacybewusst und Opt-in",
+      "discoverConsentText": "Music DNA liegt serverseitig in Home Assistant. DJConnect speichert keine OAuth-Tokens, Bearer-Tokens, kein Rohaudio und keine vollstaendigen Prompts in Music DNA. Loeschen ist immer moeglich; Clear behaelt die Opt-in-Einstellung und startet bei aktivem Music DNA wieder leer.",
+      "discoverRolloutTitle": "Verfuegbar auf deinen DJConnect Clients",
+      "discoverRolloutText": "Music DNA und Entdecken werden fuer iOS, macOS, Apple Watch, Raspberry Pi und Windows ausgerollt. Home Assistant bleibt die Quelle der Wahrheit; Clients rendern Artwork, Gruende und Play Now-Aktionen aus dem Backend."
     },
     "fr": {
       "title": "DJConnect. Une plateforme musicale personnelle pour chaque appareil",
@@ -739,7 +796,26 @@ window.DJCONNECT_PAGE_TRANSLATIONS = {
       "legalSpotify": "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility.",
       "legalPrivacy": "Confidentialité: le DJConnect stocke les jetons de compte et les détails de couplage dans l'application ou le Home Assistant. Ce site Web ne reçoit ni ne stocke les détails du compte.",
       "legalPrivacyLink": "politique de confidentialité",
-      "legalSupport": "Soutien"
+      "legalSupport": "Soutien",
+      "navDiscover": "Decouvrir",
+      "discoverTitle": "Decouvrir",
+      "discoverLead": "Decouvrir est le flux discovery premium de DJConnect: des recommandations personnelles quotidiennes pour tracks, albums, artists et playlists, construites par Home Assistant a partir de votre Music DNA.",
+      "discoverBenefit1Title": "Votre profil d'ecoute",
+      "discoverBenefit1Text": "Music DNA utilise des signaux compacts comme les preferences, le rythme d'ecoute, les artistes, albums et tracks favoris, les agregats de playtime, mood mix, repeat magnets, taste anchors et explicit positives.",
+      "discoverBenefit2Title": "Decouverte plus intelligente",
+      "discoverBenefit2Text": "Decouvrir fonctionne uniquement apres activation explicite de Music DNA. Sans consentement, le client affiche d'abord une explication et un bouton pour activer Music DNA.",
+      "discoverBenefit3Title": "Pourquoi ce conseil?",
+      "discoverBenefit3Text": "Chaque recommandation peut expliquer pourquoi elle correspond a votre Music DNA; sur mobile cela peut etre dans long press/details, sur desktop dans hover, details ou context UI.",
+      "discoverBenefit4Title": "Play Now avec feedback",
+      "discoverBenefit4Text": "Cliquer ou toucher un item Decouvrir lance Play Now et renvoie ce choix vers Music DNA comme signal positif, afin d'ameliorer les recommandations avec le temps.",
+      "discoverBenefit5Title": "Blocs fiables seulement",
+      "discoverBenefit5Text": "Les blocs comme total hours play time, top artists, rythme d'ecoute, mood mix, repeat magnets, explicit positives, taste anchors et recent favorites n'apparaissent que lorsqu'il y a assez de donnees fiables.",
+      "discoverBenefit6Title": "Meme contrat backend",
+      "discoverBenefit6Text": "iOS, macOS, Apple Watch, Raspberry Pi et Windows utilisent le meme contrat Home Assistant; les clients different seulement par la presentation et ne stockent pas Music DNA localement.",
+      "discoverConsentTitle": "Confidentialite et opt-in",
+      "discoverConsentText": "Music DNA reste cote serveur dans Home Assistant. DJConnect ne stocke aucun jeton OAuth, bearer token, raw audio ou prompt complet dans Music DNA. L'effacement reste toujours possible; Clear garde le reglage opt-in et recommence depuis vide si Music DNA est actif.",
+      "discoverRolloutTitle": "Disponible sur vos clients DJConnect",
+      "discoverRolloutText": "Music DNA et Decouvrir sont deployes pour iOS, macOS, Apple Watch, Raspberry Pi et Windows. Home Assistant reste la source de verite; les clients affichent artwork, raisons et actions Play Now depuis le backend."
     },
     "es": {
       "title": "DJConnect. Una plataforma de música personal para cada dispositivo",
@@ -900,7 +976,26 @@ window.DJCONNECT_PAGE_TRANSLATIONS = {
       "legalSpotify": "Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility.",
       "legalPrivacy": "Privacidad: DJConnect almacena tokens de cuenta y detalles de emparejamiento en la aplicación o Home Assistant. Este sitio web no recibe ni almacena datos de la cuenta.",
       "legalPrivacyLink": "política de privacidad",
-      "legalSupport": "Apoyo"
+      "legalSupport": "Apoyo",
+      "navDiscover": "Descubrir",
+      "discoverTitle": "Descubrir",
+      "discoverLead": "Descubrir es el feed premium de discovery de DJConnect: recomendaciones personales diarias para tracks, albums, artists y playlists, creadas por Home Assistant desde tu Music DNA.",
+      "discoverBenefit1Title": "Tu perfil de escucha",
+      "discoverBenefit1Text": "Music DNA usa senales compactas como preferencias, ritmo de escucha, artistas, albums y tracks favoritos, agregados de playtime, mood mix, repeat magnets, taste anchors y explicit positives.",
+      "discoverBenefit2Title": "Descubrir mejor",
+      "discoverBenefit2Text": "Descubrir solo funciona despues de activar Music DNA de forma explicita. Sin consentimiento, el cliente muestra primero una explicacion y un boton para activar Music DNA.",
+      "discoverBenefit3Title": "Por que esta recomendacion?",
+      "discoverBenefit3Text": "Cada recomendacion puede mostrar por que encaja con tu Music DNA; en movil puede estar tras long press/details y en desktop en hover, details o context UI.",
+      "discoverBenefit4Title": "Play Now con feedback",
+      "discoverBenefit4Text": "Hacer clic o tocar un item de Descubrir inicia Play Now y devuelve esa eleccion a Music DNA como senal positiva, para mejorar las recomendaciones con el tiempo.",
+      "discoverBenefit5Title": "Solo bloques fiables",
+      "discoverBenefit5Text": "Bloques como total hours play time, top artists, ritmo de escucha, mood mix, repeat magnets, explicit positives, taste anchors y recent favorites aparecen solo cuando hay suficientes datos fiables.",
+      "discoverBenefit6Title": "Mismo contrato backend",
+      "discoverBenefit6Text": "iOS, macOS, Apple Watch, Raspberry Pi y Windows usan el mismo contrato de Home Assistant; los clientes solo cambian la presentacion y no guardan Music DNA localmente.",
+      "discoverConsentTitle": "Privacidad y opt-in",
+      "discoverConsentText": "Music DNA vive server-side en Home Assistant. DJConnect no guarda tokens OAuth, bearer tokens, raw audio ni prompts completos en Music DNA. Borrar siempre es posible; Clear mantiene el opt-in y vuelve a aprender desde vacio si Music DNA esta activo.",
+      "discoverRolloutTitle": "Disponible en tus clientes DJConnect",
+      "discoverRolloutText": "Music DNA y Descubrir se estan desplegando para iOS, macOS, Apple Watch, Raspberry Pi y Windows. Home Assistant sigue siendo la fuente de verdad; los clientes renderizan artwork, razones y acciones Play Now desde el backend."
     }
   },
   "start": {
@@ -1085,7 +1180,10 @@ window.DJCONNECT_PAGE_TRANSLATIONS = {
       "vibecastParityTitle": "macOS/iOS-pariteit",
       "vibecastParityText": "Gebruik hetzelfde endpoint, response contract, item kinds, structured text segmenttypes, disabled reasons en polling/cache semantics voor client_type:\"macos\" en client_type:\"ios\". De backend mag macOS en iOS niet verschillend behandelen qua contentkwaliteit, premium entitlement, fact generation, cache, TTL, revision of current-track resolution.",
       "vibecastBackendTitle": "Backend-neutraal",
-      "vibecastBackendText": "Home Assistant/backend playback is de source of truth. VibeCast maakt geen Spotify-only aannames: Spotify Direct, Music Assistant en toekomstige backends lopen via DJConnect backend abstraction. Clients pollen nu via ttl_seconds en poll_after_seconds; WebSocket of push kan later worden toegevoegd zonder contractbreuk."
+      "vibecastBackendText": "Home Assistant/backend playback is de source of truth. VibeCast maakt geen Spotify-only aannames: Spotify Direct, Music Assistant en toekomstige backends lopen via DJConnect backend abstraction. Clients pollen nu via ttl_seconds en poll_after_seconds; WebSocket of push kan later worden toegevoegd zonder contractbreuk.",
+      "requirementsMusicDnaConsent": "Voor Ontdek: Music DNA consent in Home Assistant",
+      "discoverSetupTitle": "Music DNA en Ontdek",
+      "discoverSetupText": "Ontdek bouwt aanbevelingen server-side via Home Assistant en werkt pas na expliciete Music DNA consent. Clients bewaren geen profiel; ze tonen alleen aanbevelingen, artwork, redenen en Play Now-acties uit het backendcontract."
     },
     "en": {
       "title": "DJConnect Get started",
@@ -1268,7 +1366,10 @@ window.DJCONNECT_PAGE_TRANSLATIONS = {
       "vibecastParityTitle": "macOS/iOS parity",
       "vibecastParityText": "Use the same endpoint, response contract, item kinds, structured text segment types, disabled reasons and polling/cache semantics for client_type:\"macos\" and client_type:\"ios\". The backend must not treat macOS and iOS differently for content quality, premium entitlement, fact generation, cache, TTL, revision or current-track resolution.",
       "vibecastBackendTitle": "Backend-neutral",
-      "vibecastBackendText": "Home Assistant/backend playback is the source of truth. VibeCast makes no Spotify-only assumptions: Spotify Direct, Music Assistant and future backends go through the DJConnect backend abstraction. Clients poll now using ttl_seconds and poll_after_seconds; WebSocket or push can be added later without breaking the contract."
+      "vibecastBackendText": "Home Assistant/backend playback is the source of truth. VibeCast makes no Spotify-only assumptions: Spotify Direct, Music Assistant and future backends go through the DJConnect backend abstraction. Clients poll now using ttl_seconds and poll_after_seconds; WebSocket or push can be added later without breaking the contract.",
+      "requirementsMusicDnaConsent": "For Discover: Music DNA consent in Home Assistant",
+      "discoverSetupTitle": "Music DNA and Discover",
+      "discoverSetupText": "Discover builds recommendations server-side through Home Assistant and works only after explicit Music DNA consent. Clients store no profile; they only render recommendations, artwork, reasons and Play Now actions from the backend contract."
     },
     "de": {
       "title": "DJConnect Jetzt loslegen",
@@ -1451,7 +1552,10 @@ window.DJCONNECT_PAGE_TRANSLATIONS = {
       "vibecastParityTitle": "macOS/iOS-Parität",
       "vibecastParityText": "Verwenden Sie für client_type:\"macos\" und client_type:\"ios\" denselben Endpunkt, Antwortvertrag, dieselben Elementarten, strukturierten Textsegmenttypen, deaktivierten Gründe und dieselbe Abfrage-/Cache-Semantik. Das Backend darf macOS und iOS hinsichtlich Inhaltsqualität, Premium-Berechtigung, Faktengenerierung, Cache, TTL, Revision oder Auflösung des aktuellen Titels nicht unterschiedlich behandeln.",
       "vibecastBackendTitle": "Backend-context",
-      "vibecastBackendText": "Die Home Assistant/Backend-Wiedergabe ist die Quelle der Wahrheit. VibeCast geht nicht nur von Spotify-Annahmen aus: Spotify Direct, Music Assistant und zukünftige Backends durchlaufen die DJConnect-Backend-Abstraktion. Clients fragen jetzt mit ttl_seconds und poll_after_seconds ab; WebSocket oder Push können später hinzugefügt werden, ohne den Vertrag zu brechen."
+      "vibecastBackendText": "Die Home Assistant/Backend-Wiedergabe ist die Quelle der Wahrheit. VibeCast geht nicht nur von Spotify-Annahmen aus: Spotify Direct, Music Assistant und zukünftige Backends durchlaufen die DJConnect-Backend-Abstraktion. Clients fragen jetzt mit ttl_seconds und poll_after_seconds ab; WebSocket oder Push können später hinzugefügt werden, ohne den Vertrag zu brechen.",
+      "requirementsMusicDnaConsent": "Fuer Entdecken: Music DNA Consent in Home Assistant",
+      "discoverSetupTitle": "Music DNA und Entdecken",
+      "discoverSetupText": "Entdecken baut Empfehlungen serverseitig ueber Home Assistant auf und funktioniert erst nach explizitem Music DNA Consent. Clients speichern kein Profil; sie zeigen nur Empfehlungen, Artwork, Gruende und Play Now-Aktionen aus dem Backend-Contract."
     },
     "fr": {
       "title": "DJConnect Commencer",
@@ -1634,7 +1738,10 @@ window.DJCONNECT_PAGE_TRANSLATIONS = {
       "vibecastParityTitle": "Parité macOS/iOS",
       "vibecastParityText": "Utilisez le même point de terminaison, le même contrat de réponse, les mêmes types d'éléments, les mêmes types de segments de texte structuré, les mêmes raisons de désactivation et la même sémantique d'interrogation/de cache pour client_type: \"macos\" et client_type:\"ios\". Le backend ne doit pas traiter différemment macOS et iOS en termes de qualité du contenu, de droits premium, de génération de faits, de cache, de durée de vie, de révision ou de résolution de la piste actuelle.",
       "vibecastBackendTitle": "Neutre en termes de back-end",
-      "vibecastBackendText": "La lecture Home Assistant/backend est la source de la vérité. VibeCast ne fait aucune hypothèse uniquement sur Spotify: Spotify Direct, Music Assistant et les futurs backends passent par l'abstraction du backend DJConnect. Les clients interrogent désormais en utilisant ttl_seconds et poll_after_seconds; WebSocket ou push peuvent être ajoutés ultérieurement sans rompre le contrat."
+      "vibecastBackendText": "La lecture Home Assistant/backend est la source de la vérité. VibeCast ne fait aucune hypothèse uniquement sur Spotify: Spotify Direct, Music Assistant et les futurs backends passent par l'abstraction du backend DJConnect. Les clients interrogent désormais en utilisant ttl_seconds et poll_after_seconds; WebSocket ou push peuvent être ajoutés ultérieurement sans rompre le contrat.",
+      "requirementsMusicDnaConsent": "Pour Decouvrir: consentement Music DNA dans Home Assistant",
+      "discoverSetupTitle": "Music DNA et Decouvrir",
+      "discoverSetupText": "Decouvrir construit les recommandations cote serveur via Home Assistant et fonctionne uniquement apres consentement explicite Music DNA. Les clients ne stockent aucun profil; ils affichent seulement recommandations, artwork, raisons et actions Play Now depuis le contrat backend."
     },
     "es": {
       "title": "DJConnect Empezar",
@@ -1817,7 +1924,10 @@ window.DJCONNECT_PAGE_TRANSLATIONS = {
       "vibecastParityTitle": "Paridad macOS/iOS",
       "vibecastParityText": "Utilice el mismo punto final, contrato de respuesta, tipos de elementos, tipos de segmentos de texto estructurado, motivos deshabilitados y semántica de sondeo/caché para client_type:\"macos\" y client_type:\"ios\". El backend no debe tratar a macOS y iOS de manera diferente en cuanto a calidad del contenido, derechos premium, generación de datos, caché, TTL, revisión o resolución de la pista actual.",
       "vibecastBackendTitle": "Backend neutral",
-      "vibecastBackendText": "Home Assistant/la reproducción backend es la fuente de la verdad. VibeCast no hace suposiciones exclusivas de Spotify: Spotify Direct, Music Assistant y los backends futuros pasan por la abstracción del backend DJConnect. Los clientes encuestan ahora usando ttl_segundos y poll_after_segundos; WebSocket o push se pueden agregar más tarde sin romper el contrato."
+      "vibecastBackendText": "Home Assistant/la reproducción backend es la fuente de la verdad. VibeCast no hace suposiciones exclusivas de Spotify: Spotify Direct, Music Assistant y los backends futuros pasan por la abstracción del backend DJConnect. Los clientes encuestan ahora usando ttl_segundos y poll_after_segundos; WebSocket o push se pueden agregar más tarde sin romper el contrato.",
+      "requirementsMusicDnaConsent": "Para Descubrir: consentimiento de Music DNA en Home Assistant",
+      "discoverSetupTitle": "Music DNA y Descubrir",
+      "discoverSetupText": "Descubrir crea recomendaciones server-side mediante Home Assistant y solo funciona tras consentimiento explicito de Music DNA. Los clientes no guardan perfil; solo muestran recomendaciones, artwork, razones y acciones Play Now del contrato backend."
     }
   },
   "features": {
@@ -1905,7 +2015,9 @@ window.DJCONNECT_PAGE_TRANSLATIONS = {
       "vibecastItem6Text": "Disabled responses blijven JSON met enabled:false, reason en items:[]; clients tonen nooit ruwe provider-, cache-, decode- of generation errors.",
       "vibecastCta": "Bekijk VibeCast contract",
       "vibecastCoreTitle": "VibeCast-toevoer",
-      "vibecastCoreText": "Een first-class Apple client feature voor korte, veilige vibe-items over de huidige playbackcontext, met expliciete macOS/iOS parity."
+      "vibecastCoreText": "Een first-class Apple client feature voor korte, veilige vibe-items over de huidige playbackcontext, met expliciete macOS/iOS parity.",
+      "discoverCoreTitle": "Ontdek",
+      "discoverCoreText": "Ontdek gebruikt Music DNA voor dagelijkse tracks, albums, artists en playlists met artwork, Play Now en een reden waarom de tip bij je luisterprofiel past."
     },
     "en": {
       "title": "DJConnect Features",
@@ -1991,7 +2103,9 @@ window.DJCONNECT_PAGE_TRANSLATIONS = {
       "vibecastItem6Text": "Disabled responses stay JSON with enabled:false, reason and items:[]; clients never show raw provider, cache, decode or generation errors.",
       "vibecastCta": "View VibeCast contract",
       "vibecastCoreTitle": "VibeCast feed",
-      "vibecastCoreText": "A first-class Apple client feature for short, safe vibe items about the current playback context, with explicit macOS/iOS parity."
+      "vibecastCoreText": "A first-class Apple client feature for short, safe vibe items about the current playback context, with explicit macOS/iOS parity.",
+      "discoverCoreTitle": "Discover",
+      "discoverCoreText": "Discover uses Music DNA for daily tracks, albums, artists and playlists with artwork, Play Now and a reason why the tip fits your listening profile."
     },
     "de": {
       "title": "DJConnect-Funktionen",
@@ -2077,7 +2191,9 @@ window.DJCONNECT_PAGE_TRANSLATIONS = {
       "vibecastItem6Text": "Deaktivierte Antworten bleiben JSON mit aktiviertem:false, Grund und Elementen:[]; Clients zeigen niemals rohe Provider-, Cache-, Dekodierungs- oder Generierungsfehler an.",
       "vibecastCta": "VibeCast-Vertrag anzeigen",
       "vibecastCoreTitle": "VibeCast-Feed",
-      "vibecastCoreText": "Eine erstklassige Apple-Client-Funktion für kurze, sichere Vibe-Elemente zum aktuellen Wiedergabekontext mit expliziter macOS/iOS-Parität."
+      "vibecastCoreText": "Eine erstklassige Apple-Client-Funktion für kurze, sichere Vibe-Elemente zum aktuellen Wiedergabekontext mit expliziter macOS/iOS-Parität.",
+      "discoverCoreTitle": "Entdecken",
+      "discoverCoreText": "Entdecken nutzt Music DNA fuer taegliche Tracks, Alben, Artists und Playlists mit Artwork, Play Now und einem Grund, warum der Tipp zu deinem Hoerprofil passt."
     },
     "fr": {
       "title": "Caractéristiques du DJConnect",
@@ -2163,7 +2279,9 @@ window.DJCONNECT_PAGE_TRANSLATIONS = {
       "vibecastItem6Text": "Les réponses désactivées restent JSON avec activé: false, raison et éléments: []; les clients n'affichent jamais d'erreurs brutes de fournisseur, de cache, de décodage ou de génération.",
       "vibecastCta": "Voir le contrat VibeCast",
       "vibecastCoreTitle": "Alimentation VibeCast",
-      "vibecastCoreText": "Une fonctionnalité client Apple de première classe pour des éléments d'ambiance courts et sûrs sur le contexte de lecture actuel, avec une parité explicite macOS/iOS."
+      "vibecastCoreText": "Une fonctionnalité client Apple de première classe pour des éléments d'ambiance courts et sûrs sur le contexte de lecture actuel, avec une parité explicite macOS/iOS.",
+      "discoverCoreTitle": "Decouvrir",
+      "discoverCoreText": "Decouvrir utilise Music DNA pour proposer chaque jour tracks, albums, artists et playlists avec artwork, Play Now et une raison expliquant le lien avec votre profil d'ecoute."
     },
     "es": {
       "title": "Características de DJConnect",
@@ -2249,7 +2367,9 @@ window.DJCONNECT_PAGE_TRANSLATIONS = {
       "vibecastItem6Text": "Las respuestas deshabilitadas permanecen en JSON con habilitado:falso, motivo y elementos:[]; los clientes nunca muestran errores de proveedor, caché, decodificación o generación sin procesar.",
       "vibecastCta": "Ver contrato VibeCast",
       "vibecastCoreTitle": "Alimentación VibeCast",
-      "vibecastCoreText": "Una función de cliente de Apple de primera clase para elementos breves y seguros sobre el contexto de reproducción actual, con paridad explícita macOS/iOS."
+      "vibecastCoreText": "Una función de cliente de Apple de primera clase para elementos breves y seguros sobre el contexto de reproducción actual, con paridad explícita macOS/iOS.",
+      "discoverCoreTitle": "Descubrir",
+      "discoverCoreText": "Descubrir usa Music DNA para tracks, albums, artists y playlists diarios con artwork, Play Now y una razon que explica por que encaja con tu perfil de escucha."
     }
   },
   "platform": {
@@ -3623,7 +3743,9 @@ window.DJCONNECT_PAGE_TRANSLATIONS = {
       "faqSpotifyAffiliationAnswer": "DJConnect is niet aangesloten bij, onderschreven door of gesponsord door Spotify AB.",
       "legalPrivacy": "Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.",
       "legalPrivacyLink": "Privacybeleid",
-      "legalSupport": "Steun"
+      "legalSupport": "Steun",
+      "discoverPrivacyTitle": "Ontdek aanbevelingen",
+      "discoverPrivacyText": "Ontdek gebruikt Music DNA alleen na opt-in en toont eerst consent als Music DNA nog niet actief is. Play Now vanuit Ontdek telt als expliciet positief signaal voor toekomstige aanbevelingen, maar clients bewaren geen Music DNA lokaal."
     },
     "en": {
       "title": "DJConnect Privacy Policy",
@@ -3678,7 +3800,9 @@ window.DJCONNECT_PAGE_TRANSLATIONS = {
       "faqSpotifyAffiliationAnswer": "DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.",
       "legalPrivacy": "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
       "legalPrivacyLink": "Privacy Policy",
-      "legalSupport": "Support"
+      "legalSupport": "Support",
+      "discoverPrivacyTitle": "Discover recommendations",
+      "discoverPrivacyText": "Discover uses Music DNA only after opt-in and shows consent first when Music DNA is not active yet. Play Now from Discover counts as an explicit positive signal for future recommendations, but clients do not store Music DNA locally."
     },
     "de": {
       "title": "DJConnect Datenschutzrichtlinie",
@@ -3733,7 +3857,9 @@ window.DJCONNECT_PAGE_TRANSLATIONS = {
       "faqSpotifyAffiliationAnswer": "DJConnect ist nicht mit Spotify AB verbunden, wird nicht von Spotify AB unterstützt oder gesponsert.",
       "legalPrivacy": "Datenschutz: DJConnect speichert Konto-Tokens und Kopplungsdetails in der App oder Home Assistant. Diese Website empfängt oder speichert keine Kontodaten.",
       "legalPrivacyLink": "Datenschutzrichtlinie",
-      "legalSupport": "Unterstützung"
+      "legalSupport": "Unterstützung",
+      "discoverPrivacyTitle": "Entdecken-Empfehlungen",
+      "discoverPrivacyText": "Entdecken nutzt Music DNA nur nach Opt-in und zeigt zuerst Consent, wenn Music DNA noch nicht aktiv ist. Play Now aus Entdecken zaehlt als ausdruecklich positives Signal fuer kuenftige Empfehlungen, aber Clients speichern Music DNA nicht lokal."
     },
     "fr": {
       "title": "Politique de confidentialité du DJConnect",
@@ -3788,7 +3914,9 @@ window.DJCONNECT_PAGE_TRANSLATIONS = {
       "faqSpotifyAffiliationAnswer": "DJConnect n'est pas affilié, approuvé ou sponsorisé par Spotify AB.",
       "legalPrivacy": "Confidentialité: le DJConnect stocke les jetons de compte et les détails de couplage dans l'application ou le Home Assistant. Ce site Web ne reçoit ni ne stocke les détails du compte.",
       "legalPrivacyLink": "politique de confidentialité",
-      "legalSupport": "Soutien"
+      "legalSupport": "Soutien",
+      "discoverPrivacyTitle": "Recommandations Decouvrir",
+      "discoverPrivacyText": "Decouvrir utilise Music DNA uniquement apres opt-in et affiche d'abord le consentement si Music DNA n'est pas encore actif. Play Now depuis Decouvrir compte comme signal positif explicite pour les futures recommandations, mais les clients ne stockent pas Music DNA localement."
     },
     "es": {
       "title": "Política de privacidad DJConnect",
@@ -3843,7 +3971,9 @@ window.DJCONNECT_PAGE_TRANSLATIONS = {
       "faqSpotifyAffiliationAnswer": "DJConnect no está afiliado, respaldado ni patrocinado por Spotify AB.",
       "legalPrivacy": "Privacidad: DJConnect almacena tokens de cuenta y detalles de emparejamiento en la aplicación o Home Assistant. Este sitio web no recibe ni almacena datos de la cuenta.",
       "legalPrivacyLink": "política de privacidad",
-      "legalSupport": "Apoyo"
+      "legalSupport": "Apoyo",
+      "discoverPrivacyTitle": "Recomendaciones de Descubrir",
+      "discoverPrivacyText": "Descubrir usa Music DNA solo despues del opt-in y muestra primero el consentimiento si Music DNA aun no esta activo. Play Now desde Descubrir cuenta como senal positiva explicita para futuras recomendaciones, pero los clientes no guardan Music DNA localmente."
     }
   },
   "troubleshooting": {

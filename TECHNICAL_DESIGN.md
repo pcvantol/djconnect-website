@@ -2,7 +2,7 @@
 
 This document records the implementation-level design choices for the DJConnect website. It is reverse-engineered from the repository and must be reviewed for every release.
 
-Current website version: `3.2.12`
+Current website version: `3.2.13`
 
 ## Scope
 
@@ -103,6 +103,51 @@ Why:
 Sources:
 
 - `wwwroot/assets/downloads.js`
+- `tests/site.test.mjs`
+
+### Music DNA and Ontdek Content Contract
+
+Music DNA and Ontdek are documented as premium DJConnect platform features that
+belong to the Home Assistant integration contract. Music DNA is opt-in and
+server-side in Home Assistant; iOS, macOS, Apple Watch, Raspberry Pi and
+Windows clients render profile/dashboard/recommendation data but do not store a
+persistent Music DNA profile locally.
+
+The public copy must keep these boundaries visible:
+
+- Music DNA uses compact, privacy-conscious signals such as preferences,
+  listening rhythm, favorite artists/albums/tracks, playtime aggregates, mood
+  mix, repeat magnets, taste anchors and explicit positives.
+- Music DNA must not store OAuth tokens, bearer tokens, raw audio or full
+  prompts.
+- Clear/Wissen keeps the opt-in setting, clears the learned profile and starts
+  from empty again if Music DNA remains enabled.
+- Dashboard blocks such as total hours play time, top artists/albums by
+  playtime, listening rhythm, mood mix, repeat magnets, explicit positives,
+  taste anchors and recent favorites are conditional and should be described as
+  hidden until enough reliable data exists.
+- Ontdek works only after explicit Music DNA consent. It can show daily or
+  client-refreshed recommendations for tracks, albums, artists and playlists,
+  including artwork, `Play Now` and a reason explaining why the item fits the
+  user's Music DNA.
+- `Play Now` from Ontdek is fed back as an explicit positive Music DNA signal.
+
+Why:
+
+- Prevents marketing copy from drifting into client-local profile storage or
+  unbounded Spotify/history claims.
+- Keeps privacy and consent visible while still presenting Ontdek as a premium,
+  tangible discovery feature.
+- Lets every client use the same backend contract while keeping presentation
+  differences platform-specific.
+
+Sources:
+
+- `wwwroot/index.html`
+- `wwwroot/features.html`
+- `wwwroot/start.html`
+- `wwwroot/privacy.html`
+- `wwwroot/assets/page-translations.js`
 - `tests/site.test.mjs`
 
 ### Edge Functions as Thin Adapters

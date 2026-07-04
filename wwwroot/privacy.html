@@ -53,7 +53,7 @@
     @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } }
 
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.12" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.13" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -125,6 +125,10 @@
           <p data-i18n="clientDnaText">Clients do not store your persistent Music DNA profile. Het Music DNA dashboard haalt server-side kaarten uit Home Assistant, zoals samenvatting, favoriete genres, favoriete artiesten, energieprofiel, mood/smaakrichting, recente tracks, gebaseerd op en bijgewerkt.</p>
         </article>
         <article class="card">
+          <h2 data-i18n="discoverPrivacyTitle">Ontdek aanbevelingen</h2>
+          <p data-i18n="discoverPrivacyText">Ontdek gebruikt Music DNA alleen na opt-in en toont eerst consent als Music DNA nog niet actief is. Play Now vanuit Ontdek telt als expliciet positief signaal voor toekomstige aanbevelingen, maar clients bewaren geen Music DNA lokaal.</p>
+        </article>
+        <article class="card">
           <h2 data-i18n="notificationsTitle">Apple meldingen</h2>
           <p data-i18n="notificationsText">iOS, macOS en Apple Watch kunnen optionele pushmeldingen gebruiken via de DJConnect pushrelay op api.djconnect.dev. Home Assistant en de relay bewaren alleen push-routingmetadata en minimale auditgegevens. Pushberichten zijn minimale wake/attention hints en bevatten geen Spotify tokens, Home Assistant tokens, ruwe prompts, volledige Music DNA/history, audio of lange DJ-antwoorden.</p>
         </article>
@@ -168,11 +172,11 @@
     <p>Copyright Peter van Tol 2026. Released under the MIT License.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.2.12</p>
+    <p class="site-version">DJConnect website v3.2.13</p>
   </footer>
 
-  <script src="assets/i18n.js?v=3.2.12"></script>
-  <script src="assets/page-translations.js?v=3.2.12"></script>
+  <script src="assets/i18n.js?v=3.2.13"></script>
+  <script src="assets/page-translations.js?v=3.2.13"></script>
 
   <script>
     const translations = window.DJCONNECT_PAGE_TRANSLATIONS?.["privacy"] || {};
@@ -204,6 +208,6 @@
 
   </script>
 
-  <script src="assets/site-nav.js?v=3.2.12"></script>
+  <script src="assets/site-nav.js?v=3.2.13"></script>
 </body>
 </html>

@@ -36,6 +36,15 @@
 - Verify the Features page includes server-side Ask DJ Track Insight with
   genre, mood, production/listening-cue copy and read-only behavior, without
   removed tempo or harmonic-analysis wording.
+- Verify the Features, Platform, iOS, macOS and How To Start pages document
+  VibeCast as a premium-ready Apple client feature via `GET
+  /api/djconnect/vibecast`. Confirm supported Apple client types `ios`,
+  `macos` and `watchos`, explicit macOS/iOS functional parity, backend-neutral
+  Home Assistant playback source of truth, structured text segment types
+  `text`, `strong`, `emphasis`, `magnify`, `accent`, `line_break`, graceful
+  capability fallback, JSON disabled responses, safe disabled reasons, polling
+  through `ttl_seconds`/`poll_after_seconds`, optional cache metadata, and
+  WebSocket/push as a future non-breaking extension path.
 - Verify the Features, Spraak, Blog, Support and Privacy pages keep their top
   navigation focused on relevant cross-links only and do not show self-links.
 - Open `wwwroot/voice-commands.html` and verify the current-track,

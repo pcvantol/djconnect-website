@@ -233,17 +233,29 @@ test("localized homepage routes render localized hero copy", async () => {
 });
 
 test("screenshot tooling is available for live page review", async () => {
-  const [packageJson, screenshotTest, testsDoc, readme] = await Promise.all([
+  const [packageJson, screenshotTest, screenshotScript, gitignore, testsDoc, readme] = await Promise.all([
     read("package.json"),
     read("tests/screenshots.spec.mjs"),
+    read("scripts/capture-all-screenshots.sh"),
+    read(".gitignore"),
     read("TESTS.md"),
     read("README.md")
   ]);
 
   const scripts = JSON.parse(packageJson).scripts;
   assert.equal(scripts.screenshots, "SCREENSHOT_LANG=nl npx playwright test tests/screenshots.spec.mjs");
+  assert.equal(scripts["screenshots:all"], "./scripts/capture-all-screenshots.sh");
   assert.match(scripts["screenshots:live"], /SCREENSHOT_LANG=nl SCREENSHOT_BASE_URL=https:\/\/djconnect\.dev/);
   assert.equal(scripts["test:smoke"], "npx playwright test tests/smoke.spec.mjs");
+  assert.match(screenshotScript, /rm -rf "\$OUTPUT_DIR"/);
+  assert.match(screenshotScript, /publicPages, supportedLanguages, defaultLanguage/);
+  assert.match(screenshotScript, /const include404 = process\.env\.INCLUDE_404_SCREENSHOT === "1"/);
+  assert.match(screenshotScript, /publicPages\.filter\(\(page\) => page !== "404"\)/);
+  assert.match(screenshotScript, /returned HTTP/);
+  assert.match(screenshotScript, /rendered page-not-found copy unexpectedly/);
+  assert.match(screenshotScript, /page\.screenshot\(\{ path: filePath, fullPage: true \}\)/);
+  assert.match(screenshotScript, /manifest\.json/);
+  assert.match(gitignore, /screenshots\/all-pages\//);
   assert.match(screenshotTest, /width: Number\(process\.env\.SCREENSHOT_WIDTH \|\| 1440\)/);
   assert.match(screenshotTest, /height: Number\(process\.env\.SCREENSHOT_HEIGHT \|\| 900\)/);
   assert.match(screenshotTest, /const language = process\.env\.SCREENSHOT_LANG \|\| "nl"/);
@@ -424,6 +436,45 @@ test("homepage promotes Ask DJ as a major product feature", async () => {
   assertTranslationsCoverPage(index, "homepage");
 });
 
+test("public pages document VibeCast Apple client parity", async () => {
+  const [features, platform, ios, macos, translations] = await Promise.all([
+    read("wwwroot/features.html"),
+    read("wwwroot/platform.html"),
+    read("wwwroot/ios.html"),
+    read("wwwroot/macos.html"),
+    readPageTranslations()
+  ]);
+
+  assert.match(features, /<h2 data-i18n="vibecastTitle">VibeCast<\/h2>/);
+  assert.match(features, /premium-ready DJConnect feed voor Apple clients/);
+  assert.match(features, /Home Assistant blijft de bron van waarheid/);
+  assert.match(features, /Spotify Direct, Music Assistant en toekomstige backends lopen via DJConnect backend abstraction/);
+  assert.match(features, /text, strong, emphasis, magnify, accent en line_break/);
+  assert.match(features, /WebSocket of push kan later worden toegevoegd zonder contractbreuk/);
+  assert.match(features, /Disabled responses blijven JSON met enabled:false/);
+  assert.match(features, /href="start\.html#vibecast"/);
+
+  assert.match(platform, /Backend-neutrale Apple feed via \/api\/djconnect\/vibecast/);
+  assert.match(platform, /iOS en macOS krijgen dezelfde VibeCast contentkwaliteit/);
+  assert.match(platform, /current-track resolution, cache, TTL, revision en disabled reasons/);
+
+  assert.match(ios, /GET \/api\/djconnect\/vibecast met client_type:"ios"/);
+  assert.match(ios, /dezelfde response, item kinds, structured text segmenttypes, disabled reasons, TTL, polling en cache semantics als macOS/);
+  assert.match(ios, /backend behandelt iOS en macOS niet verschillend/);
+
+  assert.match(macos, /GET \/api\/djconnect\/vibecast met client_type:"macos"/);
+  assert.match(macos, /dezelfde response, item kinds, structured text segmenttypes, disabled reasons, TTL, polling en cache semantics als iOS/);
+  assert.match(macos, /backend behandelt macOS en iOS niet verschillend/);
+
+  for (const language of supportedLanguages) {
+    assert.ok(translations.features[language].vibecastLead, `features ${language} should translate VibeCast lead`);
+    assert.ok(translations.platform[language].legendVibecastText, `platform ${language} should translate VibeCast parity`);
+    assert.ok(translations.ios[language].vibecastText, `ios ${language} should translate VibeCast`);
+    assert.ok(translations.macos[language].vibecastText, `macos ${language} should translate VibeCast`);
+    assert.ok(translations.start[language].vibecastReasonsText, `start ${language} should translate VibeCast disabled reasons`);
+  }
+});
+
 test("all public nav pages include the mobile hamburger menu", async () => {
   const [navCss, navJs] = await Promise.all([
     read("wwwroot/assets/site-nav.css"),
@@ -550,6 +601,21 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /Sla deze stap over als je Music Assistant gebruikt/);
   assert.match(start, /https:\/\/&lt;your-home-assistant-external-url&gt;\/api\/djconnect\/spotify\/callback/);
   assert.match(start, /Nabu Casa HTTPS external URL/);
+  assert.match(start, /VibeCast contract/);
+  assert.match(start, /GET \/api\/djconnect\/vibecast/);
+  assert.match(start, /Supported Apple client types zijn ios, macos en watchos/);
+  assert.match(start, /enabled:true, revision, ttl_seconds, poll_after_seconds, context, items\[\]/);
+  assert.match(start, /music_backend, music_backend_name en music_backend_revision/);
+  assert.match(start, /track_fact, artist_fact, album_fact, genre_fact, trivia, listening_tip, mood_note, production_note, history_note en system/);
+  assert.match(start, /text, strong, emphasis, magnify, accent en line_break/);
+  assert.match(start, /geen HTML of Markdown te parsen/);
+  assert.match(start, /enabled:false, reason, ttl_seconds, poll_after_seconds en items:\[\]/);
+  assert.match(start, /feature_disabled, premium_unavailable, no_active_playback, playback_inactive, unknown_track, unsupported_backend, provider_unavailable, generative_provider_unavailable, rate_limited, cache_failure, unauthorized, invalid_client_type, client_type_mismatch en privacy_disabled/);
+  assert.match(start, /client_type:"macos" en client_type:"ios"/);
+  assert.match(start, /contentkwaliteit, premium entitlement, fact generation, cache, TTL, revision of current-track resolution/);
+  assert.match(start, /Home Assistant\/backend playback is de source of truth/);
+  assert.match(start, /Spotify Direct, Music Assistant en toekomstige backends lopen via DJConnect backend abstraction/);
+  assert.match(start, /WebSocket of push kan later worden toegevoegd zonder contractbreuk/);
   assert.match(start, /DJConnect gebruikt PKCE/);
   assert.match(start, /Spotify Client Secret is bij voorkeur niet nodig/);
   assert.match(start, /Open het Spotify Developer Dashboard/);

@@ -93,6 +93,20 @@ Static landing page for DJConnect, published through Cloudflare Pages.
   `djconnect/track_insight` calls when `djconnect/capabilities` advertises
   them. HTTP remains the canonical fallback for remote access, pairing,
   history sync/clear, voice uploads, image/TTS URLs and websocket failures.
+- VibeCast is a premium-ready first-class Apple client feature documented on
+  the Features, Platform, iOS, macOS and How To Start pages. Public copy must
+  keep `GET /api/djconnect/vibecast` visible, with supported Apple client
+  types `ios`, `macos` and `watchos`. macOS and iOS use the same endpoint,
+  response contract, item kinds, structured text segment types, disabled
+  reasons, polling/cache semantics, entitlement behavior, TTL, revision and
+  current-track resolution. Platform differences are presentation-only or
+  capability-driven. Home Assistant/backend playback is the source of truth;
+  VibeCast is backend-neutral across Spotify Direct, Music Assistant and future
+  DJConnect backend abstractions. Clients render structured text segments
+  (`text`, `strong`, `emphasis`, `magnify`, `accent`, `line_break`) without
+  HTML/Markdown parsing and never show raw provider/cache/decode/generation
+  errors. Polling is current contract; WebSocket or push may be added later
+  without breaking the response contract.
   Ask DJ Track Insight should be described as server-side interpretive track
   analysis from current playback or provided track metadata. It can use language
   and realtime mood for analysis tone and visual style, and it may return track

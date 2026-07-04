@@ -125,6 +125,22 @@
     </section>
 
     <section>
+      <div class="wrap analysis-band">
+        <h2 data-i18n="vibecastTitle">VibeCast</h2>
+        <p class="lead" data-i18n="vibecastLead">VibeCast is een premium-ready DJConnect feed voor Apple clients. Home Assistant blijft de bron van waarheid voor wat er speelt; de backend maakt veilige track-, artiest-, album- en vibe-items voor iOS, macOS en watchOS.</p>
+        <div class="analysis-grid">
+          <div class="analysis-item"><strong data-i18n="vibecastItem1Title">Apple parity</strong><span data-i18n="vibecastItem1Text">macOS en iOS gebruiken hetzelfde endpoint en contract; verschillen mogen alleen presentatie- of capability-driven zijn.</span></div>
+          <div class="analysis-item"><strong data-i18n="vibecastItem2Title">Backend-neutral</strong><span data-i18n="vibecastItem2Text">Spotify Direct, Music Assistant en toekomstige backends lopen via DJConnect backend abstraction, zonder Spotify-only aannames.</span></div>
+          <div class="analysis-item"><strong data-i18n="vibecastItem3Title">Structured text</strong><span data-i18n="vibecastItem3Text">Clients renderen veilige segmenten zoals text, strong, emphasis, magnify, accent en line_break; geen HTML- of Markdown-parser nodig.</span></div>
+          <div class="analysis-item"><strong data-i18n="vibecastItem4Title">Graceful capability fallback</strong><span data-i18n="vibecastItem4Text">Als een client bijvoorbeeld magnify niet ondersteunt, degradeert de presentatie zonder de betekenis van het item te veranderen.</span></div>
+          <div class="analysis-item"><strong data-i18n="vibecastItem5Title">Polling nu, push later</strong><span data-i18n="vibecastItem5Text">Clients volgen ttl_seconds en poll_after_seconds; WebSocket of push kan later worden toegevoegd zonder contractbreuk.</span></div>
+          <div class="analysis-item"><strong data-i18n="vibecastItem6Title">Veilige disabled states</strong><span data-i18n="vibecastItem6Text">Disabled responses blijven JSON met enabled:false, reason en items:[]; clients tonen nooit ruwe provider-, cache-, decode- of generation errors.</span></div>
+        </div>
+        <a class="btn primary" href="start.html#vibecast" data-i18n="vibecastCta">Bekijk VibeCast contract</a>
+      </div>
+    </section>
+
+    <section>
       <div class="wrap">
         <div class="section-head">
           <h2 data-i18n="coreTitle">Hoofdfuncties</h2>
@@ -133,6 +149,7 @@
         <div class="grid-3">
           <article class="card"><div class="icon">🎙️</div><h3 data-i18n="musicTitle">Muziek aanvragen</h3><p data-i18n="musicText">Vraag een artiest aan met je stem of via de app. DJConnect vertaalt je verzoek naar een concrete muziekactie.</p></article>
           <article class="card"><div class="icon">💬</div><h3 data-i18n="askDjTitle">Slimme follow-ups</h3><p data-i18n="askDjText">Ask DJ geeft niet alleen antwoord, maar ook acties. Ask DJ works without Music DNA; met opt-in kan Home Assistant compacte Music DNA signalen gebruiken voor persoonlijkere aanbevelingen.</p></article>
+          <article class="card"><div class="icon">◎</div><h3 data-i18n="vibecastCoreTitle">VibeCast feed</h3><p data-i18n="vibecastCoreText">Een first-class Apple client feature voor korte, veilige vibe-items over de huidige playbackcontext, met expliciete macOS/iOS parity.</p></article>
           <article class="card"><div class="icon">🧬</div><h3 data-i18n="musicDnaTitle">Music DNA is opt-in</h3><p data-i18n="musicDnaText">Music DNA is opt-in. Clients zijn renderers en bewaren geen bronprofiel; Home Assistant is server-side bron van waarheid en clear wist learned DNA zonder de opt-in instelling te veranderen.</p></article>
           <article class="card"><div class="icon">📊</div><h3 data-i18n="trackAnalysisTitle">Ask DJ Track Insight</h3><p data-i18n="trackAnalysisText">Laat Ask DJ de huidige track server-side duiden: genre, subgenre, mood, vibe, texture, emotionele toon, energie, danceability, intensiteit, confidence, productie, instrumentatie, arrangement, luistercues, similar tracks en visual profile. Read-only: analyse verandert nooit je playback.</p></article>
           <article class="card"><div class="icon">▶</div><h3 data-i18n="playbackTitle">Music backend playback</h3><p data-i18n="playbackText">Start, pauzeer en stuur playback naar je gekozen player via Spotify Direct of Music Assistant.</p></article>
@@ -151,9 +168,9 @@
           <p data-i18n="interfacesLead">DJConnect is gemaakt voor meerdere schermen en gebruikssituaties, met dezelfde logica onder water.</p>
         </div>
         <div class="grid-3">
-          <article class="card"><div class="icon">💻</div><h3>macOS</h3><p data-i18n="macosText">Desktopbediening voor vaste controle over zoeken, output, playback en status.</p></article>
+          <article class="card"><div class="icon">💻</div><h3>macOS</h3><p data-i18n="macosText">Desktopbediening voor vaste controle over zoeken, output, playback, status en dezelfde VibeCast-feed als iOS.</p></article>
           <article class="card"><div class="icon">🪟</div><h3>Windows</h3><p data-i18n="windowsText">Desktopbediening met Ask DJ, playback-acties en veilige tokenopslag in Windows Credential Manager.</p></article>
-          <article class="card"><div class="icon">📱</div><h3>iOS en Apple Watch</h3><p data-i18n="iosText">Mobiele bediening dichtbij: snel muziek aanvragen, Ask DJ voortzetten, optionele meldingen ontvangen en je Home Assistant koppeling gebruiken.</p></article>
+          <article class="card"><div class="icon">📱</div><h3>iOS en Apple Watch</h3><p data-i18n="iosText">Mobiele bediening dichtbij: muziek aanvragen, Ask DJ voortzetten, VibeCast tonen, optionele meldingen ontvangen en je Home Assistant koppeling gebruiken.</p></article>
           <article class="card"><div class="icon">🖥️</div><h3>Linux</h3><p data-i18n="raspberryText">Als vaste app op een klein scherm of dedicated muziekcontroller.</p></article>
           <article class="card"><div class="icon">🕹️</div><h3>ESP32 device</h3><p data-i18n="espText">Embedded bediening met fysieke interactie, lokaal netwerkgebruik en pairing via Home Assistant.</p></article>
         </div>

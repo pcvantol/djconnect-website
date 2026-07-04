@@ -138,10 +138,10 @@
             <div class="lane-title" data-i18n="hubTitle">Home Assistant</div>
             <div class="ha-core">
               <h3>Home Assistant</h3>
-              <p data-i18n="haText">Centrale plek voor accounts, apparaten, Assist, Ask DJ en Music DNA opt-in.</p>
+              <p data-i18n="haText">Centrale plek voor accounts, apparaten, Assist, Ask DJ, VibeCast en Music DNA opt-in.</p>
               <div class="integration">
                 <strong>DJConnect integration</strong>
-              <p data-i18n="integrationText">Orkestreert Ask DJ, playback, Assist/STT/TTS en Music DNA; clients bewaren geen persistent Music DNA profiel.</p>
+              <p data-i18n="integrationText">Orkestreert Ask DJ, VibeCast, playback, Assist/STT/TTS en Music DNA; Home Assistant is bron van waarheid voor playback en clients bewaren geen persistent Music DNA profiel.</p>
               </div>
               <div class="pipeline" aria-label="Assist pipeline opties" data-i18n-attr="aria-label:pipelineLabel">
                 <span data-i18n="pipelineLocal">Assist pipeline: local</span>
@@ -155,10 +155,12 @@
             <div class="node primary"><strong>Spotify Direct</strong><span data-i18n="spotifyText">Directe Spotify backend</span></div>
             <div class="node"><strong>Music Assistant</strong><span data-i18n="speakersText">Music Assistant players en providers</span></div>
             <div class="node future"><strong data-i18n="futureTitle">Capabilities</strong><span data-i18n="futureText">Clients tonen acties die de actieve backend ondersteunt</span></div>
+            <div class="node future"><strong>VibeCast</strong><span data-i18n="vibecastNode">Backend-neutrale Apple feed via /api/djconnect/vibecast</span></div>
           </div>
         </div>
         <div class="legend">
           <article class="card"><h3 data-i18n="legendClientsTitle">Alle clients</h3><p data-i18n="legendClientsText">Elke client gebruikt dezelfde DJConnect flow, maar met een eigen scherm of fysieke bediening.</p></article>
+          <article class="card"><h3 data-i18n="legendVibecastTitle">VibeCast parity</h3><p data-i18n="legendVibecastText">iOS en macOS krijgen dezelfde VibeCast contentkwaliteit, entitlement, current-track resolution, cache, TTL, revision en disabled reasons; UI-verschillen zijn alleen presentatie of capabilities.</p></article>
           <article class="card"><h3 data-i18n="legendAssistTitle">Assist bepaalt stem</h3><p data-i18n="legendAssistText">STT, taal, stem en TTS-engine beheer je in Home Assistant Assist.</p></article>
           <article class="card"><h3 data-i18n="legendSpotifyTitle">Backend speelt af</h3><p data-i18n="legendSpotifyText">DJConnect kiest de actie; Spotify Direct of Music Assistant verzorgt playback via de gekozen player.</p></article>
           <article class="card"><h3 data-i18n="legendFutureTitle">Remote en local</h3><p data-i18n="legendFutureText">Apps kunnen na lokale pairing remote werken via Home Assistant. ESP32 en Raspberry Pi blijven local-only.</p></article>

@@ -4,6 +4,13 @@ All notable changes to this website are grouped per release.
 
 ## Unreleased
 
+- Documented VibeCast as a premium-ready first-class Apple client feature across
+  Features, Platform, iOS, macOS and How To Start, including
+  `GET /api/djconnect/vibecast`, macOS/iOS parity, backend-neutral Home
+  Assistant playback source of truth, structured text, disabled reasons and
+  polling/cache semantics.
+- Added regression and manual-test coverage for the VibeCast website contract.
+
 ## DJConnect website v3.2.11 - 2026-07-04
 
 - Fixed language-aware internal navigation so links follow the active selector

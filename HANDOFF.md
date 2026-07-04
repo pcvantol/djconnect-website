@@ -78,6 +78,20 @@
   audio measurements, harmonic labels, exact sections, timestamps or waveform
   data. Track Insight is server-side, interpretive/contextual and read-only,
   and must not imply playback changes.
+- VibeCast is documented as a premium-ready first-class Apple platform feature
+  on Features, Platform, iOS, macOS and How To Start. Keep `GET
+  /api/djconnect/vibecast`, supported client types `ios`, `macos`, `watchos`,
+  and explicit macOS/iOS functional parity visible. macOS and iOS share the
+  same endpoint, response contract, item kinds, structured text segment types,
+  disabled reasons, polling/cache semantics, premium entitlement, TTL, revision
+  and current-track resolution. Only presentation or reported render
+  capabilities may differ. Home Assistant/backend playback is the source of
+  truth, and VibeCast stays backend-neutral through the DJConnect backend
+  abstraction for Spotify Direct, Music Assistant and future backends. Clients
+  render structured text without HTML/Markdown parsing, degrade missing
+  capabilities gracefully and never show raw provider/cache/decode/generation
+  errors. Polling is current; WebSocket/push is a later extension path without
+  contract breakage.
 - The features page summarizes the main DJConnect functions and mentions Ask DJ
   plus the bonus mini-games: Paddle Rally, Meteor Run, Sky Dash & Maze Chase.
 - The voice commands page documents the user-facing intent families,

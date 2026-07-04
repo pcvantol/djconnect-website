@@ -45,9 +45,10 @@
   `npm run sitemap:build` when public routes or supported languages change.
 - Shared product/legal strings live in `wwwroot/assets/i18n.js`. Preserve the
   exact legal meaning of MIT license notes and Spotify trademark /
-  non-affiliation copy, use placeholders instead of real artist names in
-  examples unless essential, and keep setup copy aligned with HACS integration
-  requirements.
+  non-affiliation copy, use only fictional artist/track/album/playlist names in
+  examples, and keep setup copy aligned with HACS integration requirements.
+  Real artist names must not appear in website copy, docs, release-note assets,
+  tests or screenshots.
 - The homepage is platform-independent and routes users to setup and downloads.
 - The homepage navigation intentionally contains cross-page routes only:
   `Features`, `Ask DJ`, `Spraak`, `Blog`, `Installeren`, `Support` and

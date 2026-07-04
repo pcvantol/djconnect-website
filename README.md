@@ -191,8 +191,9 @@ All public website and docs pages must ship complete copy for `en`, `nl`, `de`,
 `wwwroot/assets/i18n.js`, and run `npm run i18n:check` before review. Legal
 meaning must stay exact: keep MIT license notes and the Spotify trademark /
 non-affiliation disclaimer unchanged unless the maintainer explicitly approves
-new legal copy. Use placeholders in examples instead of real artist names
-unless a real name is essential and appropriate.
+new legal copy. Use only fictional artist, track, album and playlist names in
+examples; real artist names must not appear in public copy, docs, release-note
+assets, tests or screenshots.
 
 Localized static routes live under `/en/`, `/de/`, `/fr/` and `/es/`; Dutch is
 the root default. Each public page must keep `hreflang` alternates in sync.

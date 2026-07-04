@@ -1,4 +1,5 @@
 import { execFile } from "node:child_process";
+import { readdir } from "node:fs/promises";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { promisify } from "node:util";
@@ -68,47 +69,68 @@ test("public pages expose five-language i18n routes and shared legal strings", a
 
 test("public examples use fictional artist names only", async () => {
   const forbiddenNames = [
-    "Nirvana",
-    "Metallica",
-    "London Grammar",
-    "Pearl Jam",
-    "Peter Gabriel",
-    "Radiohead",
-    "Taylor Swift",
-    "The Beatles",
-    "Beyonce",
-    "Beyoncé",
-    "Drake",
-    "Coldplay",
-    "Daft Punk",
-    "Fleetwood Mac",
-    "Adele",
-    "Prince",
-    "Madonna",
-    "Queen",
-    "Kendrick",
-    "SZA",
-    "Billie Eilish",
-    "Arctic Monkeys",
-    "Muse",
-    "Oasis",
-    "U2",
-    "ABBA",
-    "David Bowie"
-  ];
+    ["Nir", "vana"],
+    ["Metal", "lica"],
+    ["London", " Grammar"],
+    ["Pearl", " Jam"],
+    ["Peter", " Gabriel"],
+    ["Radio", "head"],
+    ["Taylor", " Swift"],
+    ["The ", "Beat", "les"],
+    ["Bey", "once"],
+    ["Bey", "oncé"],
+    ["Dra", "ke"],
+    ["Cold", "play"],
+    ["Daft", " Punk"],
+    ["Fleetwood", " Mac"],
+    ["Ade", "le"],
+    ["Prin", "ce"],
+    ["Mad", "onna"],
+    ["Que", "en"],
+    ["Kend", "rick"],
+    ["S", "ZA"],
+    ["Billie", " Eilish"],
+    ["Arctic", " Monkeys"],
+    ["Mu", "se"],
+    ["Oa", "sis"],
+    ["U", "2"],
+    ["AB", "BA"],
+    ["David", " Bowie"],
+    ["Lith", "ium"],
+    ["Nothing", " Else Matters"],
+    ["Never", "mind"],
+    ["Rum", "ours"]
+  ].map((parts) => parts.join(""));
+
+  const collectFiles = async (directory) => {
+    const entries = await readdir(new URL(`../${directory}/`, import.meta.url), { withFileTypes: true });
+    const files = [];
+    for (const entry of entries) {
+      const path = `${directory}/${entry.name}`;
+      if (entry.isDirectory()) {
+        files.push(...await collectFiles(path));
+      } else if (/\.(html|js|css|json|md|svg|txt|webmanifest)$/.test(entry.name)) {
+        files.push(path);
+      }
+    }
+    return files;
+  };
 
   const files = [
-    ...publicPages.map((page) => `wwwroot/${page}.html`),
-    ...supportedLanguages
-      .filter((language) => language !== "nl")
-      .flatMap((language) => publicPages.map((page) => `wwwroot/${language}/${page}.html`)),
-    "wwwroot/assets/voice-intents.js"
+    ...await collectFiles("wwwroot"),
+    ...await collectFiles("tests"),
+    "README.md",
+    "CONTRIBUTING.md",
+    "TESTS.md",
+    "HANDOFF.md",
+    "CHANGELOG.md",
+    "TECHNICAL_DESIGN.md"
   ];
 
   for (const file of files) {
     const text = await read(file);
     for (const name of forbiddenNames) {
-      assert.doesNotMatch(text, new RegExp(name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")), `${file} should not mention real artist name ${name}`);
+      assert.doesNotMatch(text, new RegExp(name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")), `${file} should not mention real artist/track name ${name}`);
     }
   }
 });

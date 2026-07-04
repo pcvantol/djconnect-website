@@ -80,8 +80,9 @@ website repository.
   and shared product/legal strings in `wwwroot/assets/i18n.js`.
 - Preserve the exact legal meaning of MIT license notes and the Spotify
   trademark/non-affiliation disclaimer.
-- Use placeholders instead of real artist names in examples unless the real
-  example is essential and legally/brand-wise appropriate.
+- Use only fictional artist, track, album and playlist names in public examples.
+  Do not use real artist names anywhere in website copy, docs, release-note
+  assets, tests or screenshots. Add new fictional names to examples instead.
 - Keep setup, HACS and troubleshooting instructions consistent with the
   DJConnect Home Assistant integration requirements.
 - Keep secrets, tokens, passwords and private user data out of commits, logs

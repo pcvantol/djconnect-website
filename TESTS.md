@@ -57,6 +57,9 @@
 - Verify shared product/legal strings come from `wwwroot/assets/i18n.js`,
   including taglines, pairing wording, requirements, client names, MIT license
   notes and the Spotify trademark/non-affiliation disclaimer.
+- Verify all public examples use fictional artist, track, album and playlist
+  names only. Real artist names must not appear in website copy, docs,
+  release-note assets, tests or screenshots.
 - Verify the voice commands page mirrors the canonical HA repo
   `examples/voice_intents.json` examples: current-track questions read status
   only, playback-control phrases map directly to backend commands, generic

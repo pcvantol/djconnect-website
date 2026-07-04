@@ -16,7 +16,8 @@ import {
   assertTranslationsCoverPage,
   extractRefs,
   publicPages,
-  read
+  read,
+  readPageTranslations
 } from "./helpers/site.mjs";
 
 const exec = promisify(execFile);
@@ -153,9 +154,10 @@ test("shared i18n runtime loads before page translation scripts", async () => {
 });
 
 test("localized start routes apply the requested setup language", async () => {
-  const [i18nRuntime, start] = await Promise.all([
+  const [i18nRuntime, start, pageTranslations] = await Promise.all([
     read("wwwroot/assets/i18n.js"),
-    read("wwwroot/start.html")
+    read("wwwroot/start.html"),
+    readPageTranslations()
   ]);
 
   assert.match(i18nRuntime, /pathLanguage = window\.location\.pathname/);
@@ -170,9 +172,40 @@ test("localized start routes apply the requested setup language", async () => {
 
   for (const [language, title] of Object.entries(expectedCopy)) {
     const localized = await read(`wwwroot/${language}/start.html`);
-    assert.match(localized, new RegExp(`${language}: \\{[\\s\\S]*pairingTitle: "${title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"`));
-    assert.doesNotMatch(localized, new RegExp(`${language}: \\{[\\s\\S]*pairingTitle: "6\\. Pair app or device locally"`));
+    assert.equal(pageTranslations.start[language].pairingTitle, title);
+    assert.notEqual(pageTranslations.start[language].pairingTitle, "6. Pair app or device locally");
     assert.match(localized, /applyLanguage\(window\.DJCONNECT_I18N\?\.initialLanguage \|\| "nl"\)/);
+  }
+});
+
+test("localized homepage routes render localized hero copy", async () => {
+  const expected = {
+    de: {
+      title: "DJConnect. Musiksteuerung mit Charakter.",
+      cta: "So startest du",
+      nav: "Funktionen"
+    },
+    fr: {
+      title: "DJConnect. Controle musical avec du caractere.",
+      cta: "Comment demarrer",
+      nav: "Fonctions"
+    },
+    es: {
+      title: "DJConnect. Control musical con caracter.",
+      cta: "Como empezar",
+      nav: "Funciones"
+    }
+  };
+  const pageTranslations = await readPageTranslations();
+
+  for (const [language, copy] of Object.entries(expected)) {
+    const localized = await read(`wwwroot/${language}/index.html`);
+    assert.equal(pageTranslations.index[language].heroTitle, copy.title);
+    assert.equal(pageTranslations.index[language].navChoose, copy.cta);
+    assert.equal(pageTranslations.index[language].navFeatures, copy.nav);
+    assert.notEqual(pageTranslations.index[language].heroTitle, "DJConnect. Music control with character.");
+    assert.notEqual(pageTranslations.index[language].navChoose, "How to start");
+    assert.match(localized, /applyLanguage\(getInitialLanguage\(\)\)/);
   }
 });
 

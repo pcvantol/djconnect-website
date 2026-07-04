@@ -103,105 +103,10 @@
   </footer>
 
   <script src="assets/i18n.js?v=3.2.8"></script>
+  <script src="assets/page-translations.js?v=3.2.8"></script>
 
   <script>
-    const translations = {
-          nl: {
-                title: "DJConnect Blog",
-                metaDescription: "Blog over DJConnect: ontwerpkeuzes, releases, Home Assistant, apps en embedded devices.",
-                navLabel: "Navigatie",
-                languageToggle: "Taalkeuze",
-                navMenu: "Menu",
-                navFeatures: "Features",
-                navVoice: "Spraak",
-                navStart: "Aan de slag",
-                heroTitle: "Blog",
-                heroLead: "Achter de schermen bij DJConnect: ontwerpkeuzes, releases en de route naar muziekbediening met karakter.",
-                postMeta: "15 juni 2026 · Project",
-                postTitle: "DJConnect: muziekbediening met karakter",
-                postExcerpt: "Waarom DJConnect bestaat, hoe Home Assistant de veilige basis vormt en hoe macOS, Windows, iOS, Linux en ESP32 dezelfde muziekworkflow delen.",
-                postCta: "Lees blogpost",
-                legalPrivacy: "Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.",
-                legalPrivacyLink: "Privacy Policy",
-                legalSupport: "Support"
-          },
-          en: {
-                title: "DJConnect Blog",
-                metaDescription: "Blog about DJConnect: design choices, releases, Home Assistant, apps and embedded devices.",
-                navLabel: "Navigation",
-                languageToggle: "Language",
-                navMenu: "Menu",
-                navFeatures: "Features",
-                navVoice: "Voice",
-                navStart: "Get started",
-                heroTitle: "Blog",
-                heroLead: "Behind the scenes of DJConnect: design choices, releases and the route toward music control with character.",
-                postMeta: "June 15, 2026 · Project",
-                postTitle: "DJConnect: music control with character",
-                postExcerpt: "Why DJConnect exists, how Home Assistant forms the secure base and how macOS, Windows, iOS, Linux and ESP32 share the same music workflow.",
-                postCta: "Read blog post",
-                legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
-                legalPrivacyLink: "Privacy Policy",
-                legalSupport: "Support"
-          },
-          de: {
-                title: "DJConnect Blog",
-                metaDescription: "Blog about DJConnect: design choices, releases, Home Assistant, apps and embedded devices.",
-                navLabel: "Navigation",
-                languageToggle: "Language",
-                navMenu: "Menu",
-                navFeatures: "Features",
-                navVoice: "Voice",
-                navStart: "Get started",
-                heroTitle: "Blog",
-                heroLead: "Behind the scenes of DJConnect: design choices, releases and the route toward music control with character.",
-                postMeta: "June 15, 2026 · Project",
-                postTitle: "DJConnect: music control with character",
-                postExcerpt: "Why DJConnect exists, how Home Assistant forms the secure base and how macOS, Windows, iOS, Linux and ESP32 share the same music workflow.",
-                postCta: "Read blog post",
-                legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
-                legalPrivacyLink: "Privacy Policy",
-                legalSupport: "Support"
-          },
-          fr: {
-                title: "DJConnect Blog",
-                metaDescription: "Blog about DJConnect: design choices, releases, Home Assistant, apps and embedded devices.",
-                navLabel: "Navigation",
-                languageToggle: "Language",
-                navMenu: "Menu",
-                navFeatures: "Features",
-                navVoice: "Voice",
-                navStart: "Get started",
-                heroTitle: "Blog",
-                heroLead: "Behind the scenes of DJConnect: design choices, releases and the route toward music control with character.",
-                postMeta: "June 15, 2026 · Project",
-                postTitle: "DJConnect: music control with character",
-                postExcerpt: "Why DJConnect exists, how Home Assistant forms the secure base and how macOS, Windows, iOS, Linux and ESP32 share the same music workflow.",
-                postCta: "Read blog post",
-                legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
-                legalPrivacyLink: "Privacy Policy",
-                legalSupport: "Support"
-          },
-          es: {
-                title: "DJConnect Blog",
-                metaDescription: "Blog about DJConnect: design choices, releases, Home Assistant, apps and embedded devices.",
-                navLabel: "Navigation",
-                languageToggle: "Language",
-                navMenu: "Menu",
-                navFeatures: "Features",
-                navVoice: "Voice",
-                navStart: "Get started",
-                heroTitle: "Blog",
-                heroLead: "Behind the scenes of DJConnect: design choices, releases and the route toward music control with character.",
-                postMeta: "June 15, 2026 · Project",
-                postTitle: "DJConnect: music control with character",
-                postExcerpt: "Why DJConnect exists, how Home Assistant forms the secure base and how macOS, Windows, iOS, Linux and ESP32 share the same music workflow.",
-                postCta: "Read blog post",
-                legalPrivacy: "Privacy: DJConnect stores account tokens and pairing details in the app or Home Assistant. This website does not receive or store account details.",
-                legalPrivacyLink: "Privacy Policy",
-                legalSupport: "Support"
-          }
-    };
+    const translations = window.DJCONNECT_PAGE_TRANSLATIONS?.["blog"] || {};
     const getInitialLanguage = () => {
       const stored = localStorage.getItem("djconnect-language");
       if (stored === "nl" || stored === "en") return stored;

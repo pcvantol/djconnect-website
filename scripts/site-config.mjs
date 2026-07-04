@@ -5,6 +5,7 @@ export const releaseOutputDir = "dist/wwwroot";
 
 export const sharedReleaseAssets = [
   "assets/i18n.js",
+  "assets/page-translations.js",
   "assets/site-nav.css",
   "assets/site-nav.js",
   "assets/downloads.css",

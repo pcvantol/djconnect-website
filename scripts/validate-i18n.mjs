@@ -23,11 +23,11 @@ const extractDataKeys = (html) => {
   return [...keys].sort();
 };
 
-const extractTranslations = (html, page) => {
-  const match = html.match(/const translations = (\{[\s\S]*?\n\s*\});/);
-  if (!match) throw new Error(`${page}: missing const translations block`);
-  const context = vm.createContext({});
-  return vm.runInContext(`(${match[1]})`, context, { timeout: 1000 });
+const readPageTranslations = async () => {
+  const source = await read("assets/page-translations.js");
+  const context = vm.createContext({ window: {} });
+  vm.runInContext(source, context, { timeout: 1000 });
+  return context.window.DJCONNECT_PAGE_TRANSLATIONS || {};
 };
 
 const routeFor = (page, language) => {
@@ -48,10 +48,13 @@ const assertLocalizedRoute = async (page, language) => {
   await access(path.join(sourceDir, route));
 };
 
-const validatePage = async (page) => {
+const validatePage = async (page, pageTranslations) => {
   const file = `${page}.html`;
   const html = await read(file);
-  const translations = extractTranslations(html, file);
+  const translations = pageTranslations[page];
+  if (!translations) throw new Error(`${file}: missing centralized page translations`);
+  if (!html.includes("assets/page-translations.js")) throw new Error(`${file}: missing centralized page translation asset`);
+  if (!html.includes(`window.DJCONNECT_PAGE_TRANSLATIONS?.["${page}"]`)) throw new Error(`${file}: missing centralized page translation key`);
   const dataKeys = extractDataKeys(html);
   const expectedKeys = ["title", "metaDescription", ...dataKeys].sort();
 
@@ -68,9 +71,11 @@ const validatePage = async (page) => {
   if (!html.includes('hreflang="x-default"')) throw new Error(`${file}: missing x-default hreflang`);
 };
 
+const pageTranslations = await readPageTranslations();
 await Promise.all([
   access(path.join(sourceDir, "assets/i18n.js")),
-  ...publicPages.map(validatePage)
+  access(path.join(sourceDir, "assets/page-translations.js")),
+  ...publicPages.map((page) => validatePage(page, pageTranslations))
 ]);
 
 const sitemap = await read("sitemap.xml");

@@ -185,6 +185,13 @@ test("language selection persists globally and falls back to OS language", async
   assert.match(i18nRuntime, /const storedLanguage = localStorage\.getItem\("djconnect-language"\)/);
   assert.match(i18nRuntime, /const browserLanguage = \[/);
   assert.match(i18nRuntime, /firstSupportedLanguage\(urlLanguage, storedLanguage, pathLanguage, browserLanguage, defaultLanguage\)/);
+  assert.match(i18nRuntime, /const localizedPathFor = \(targetUrl, language\) =>/);
+  assert.match(i18nRuntime, /const localizeUrl = \(href, language = localStorage\.getItem\("djconnect-language"\) \|\| initialLanguage\) =>/);
+  assert.match(i18nRuntime, /const applyLocalizedLinks = \(language = localStorage\.getItem\("djconnect-language"\) \|\| initialLanguage\) =>/);
+  assert.match(i18nRuntime, /document\.addEventListener\("click", \(event\) =>/);
+  assert.match(i18nRuntime, /languageButton\?\.dataset\?\.lang/);
+  assert.match(i18nRuntime, /window\.setTimeout\(\(\) => applyLocalizedLinks\(languageButton\.dataset\.lang\), 0\)/);
+  assert.match(i18nRuntime, /normalizedLanguage === defaultLanguage/);
   assert.doesNotMatch(i18nRuntime, /urlLanguage \|\| pathLanguage \|\| localStorage/);
   assert.doesNotMatch(i18nRuntime, /stored === "nl" \|\| stored === "en"/);
 

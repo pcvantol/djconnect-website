@@ -101,12 +101,68 @@
   const initialLanguage = firstSupportedLanguage(urlLanguage, storedLanguage, pathLanguage, browserLanguage, defaultLanguage);
   localStorage.setItem("djconnect-language", initialLanguage);
 
+  const localizedPathFor = (targetUrl, language) => {
+    if (targetUrl.origin !== window.location.origin) return null;
+    if (targetUrl.pathname.startsWith("/api/") || targetUrl.pathname.startsWith("/go/")) return null;
+    if (targetUrl.pathname.startsWith("/assets/")) return null;
+
+    const normalizedLanguage = normalizeLanguage(language);
+    const parts = targetUrl.pathname.split("/").filter(Boolean);
+    const hasLanguagePrefix = supportedLanguages.includes(parts[0]);
+    const pageParts = hasLanguagePrefix ? parts.slice(1) : parts;
+    const pagePath = pageParts.join("/");
+    const isIndex = pagePath === "" || pagePath === "index.html";
+    const localizedPath = normalizedLanguage === defaultLanguage
+      ? `/${isIndex ? "" : pagePath}`
+      : `/${normalizedLanguage}/${isIndex ? "" : pagePath}`;
+
+    return `${localizedPath}${targetUrl.search}${targetUrl.hash}`;
+  };
+
+  const localizeUrl = (href, language = localStorage.getItem("djconnect-language") || initialLanguage) => {
+    if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) return href;
+    const targetUrl = new URL(href, window.location.href);
+    return localizedPathFor(targetUrl, language) || href;
+  };
+
+  const applyLocalizedLinks = (language = localStorage.getItem("djconnect-language") || initialLanguage) => {
+    document.querySelectorAll("a[href]").forEach((link) => {
+      const originalHref = link.dataset.baseHref || link.getAttribute("href");
+      if (!originalHref) return;
+      link.dataset.baseHref = originalHref;
+      const localizedHref = localizeUrl(originalHref, language);
+      if (localizedHref !== originalHref || link.getAttribute("href") !== localizedHref) {
+        link.setAttribute("href", localizedHref);
+      }
+    });
+  };
+
+  document.addEventListener("click", (event) => {
+    const languageButton = event.target.closest?.("[data-lang]");
+    if (languageButton?.dataset?.lang) {
+      window.setTimeout(() => applyLocalizedLinks(languageButton.dataset.lang), 0);
+    }
+
+    const link = event.target.closest?.("a[href]");
+    if (!link || event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    if (link.target && link.target !== "_self") return;
+    const originalHref = link.dataset.baseHref || link.getAttribute("href");
+    const localizedHref = localizeUrl(originalHref);
+    if (!localizedHref || localizedHref === link.getAttribute("href")) return;
+    event.preventDefault();
+    window.location.href = localizedHref;
+  });
+
+  document.addEventListener("DOMContentLoaded", () => applyLocalizedLinks(initialLanguage));
+
   window.DJCONNECT_I18N = {
     supportedLanguages,
     defaultLanguage,
     shared,
     initialLanguage,
     normalizeLanguage,
-    firstSupportedLanguage
+    firstSupportedLanguage,
+    localizeUrl,
+    applyLocalizedLinks
   };
 })();

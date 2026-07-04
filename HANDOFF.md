@@ -12,7 +12,7 @@
 - Cloudflare Pages project: `djconnect`
 - Source directory: `wwwroot`
 - Release publish directory: `dist/wwwroot`
-- Current version: `3.2.10`
+- Current version: `3.2.11`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Platform overview page with CSS architecture diagram: `wwwroot/platform.html`
@@ -281,7 +281,7 @@ useful for higher GitHub API limits.
   the token-protected `/api/stats` contract and the release-script
   dependency/tool preflight.
 - `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. `npm run screenshots:live` captures Dutch live production screenshots at a laptop viewport into `screenshots/live-laptop/`. Neither is part of the default `npm test` run.
-- Current released version `3.2.10` syncs the public product contract with the
+- Current released version `3.2.11` syncs the public product contract with the
   current Home Assistant integration and aligns the website color system with
   the current app. Version `3.2.7` loads localized static What's New JSON on
   download-page changelogs before falling back to GitHub release bodies.

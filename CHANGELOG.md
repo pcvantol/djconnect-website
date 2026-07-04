@@ -4,6 +4,15 @@ All notable changes to this website are grouped per release.
 
 ## Unreleased
 
+## DJConnect website v3.2.11 - 2026-07-04
+
+- Fixed language-aware internal navigation so links follow the active selector
+  language across the whole site, including root pages rendered in a stored
+  non-Dutch language.
+- Rewrites internal page links immediately after a language selector click and
+  routes clicks to the matching localized path, while keeping Dutch on root
+  routes.
+
 ## DJConnect website v3.2.10 - 2026-07-04
 
 - Fixed global language selection so one selector click is persisted across

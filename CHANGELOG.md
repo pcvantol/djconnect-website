@@ -11,6 +11,16 @@ All notable changes to this website are grouped per release.
   polling/cache semantics.
 - Added regression and manual-test coverage for the VibeCast website contract.
 
+## DJConnect website v3.2.12 - 2026-07-04
+
+- Completed global Dutch, German, French and Spanish page copy in the centralized
+  translation resource so selected language routes no longer fall back to
+  English body text.
+- Added full-site screenshot capture tooling with per-language route validation,
+  page-not-found detection and untranslated-copy guards for visible page text.
+- Regenerated and validated 95 local screenshots across 19 public pages and all
+  five supported languages.
+
 ## DJConnect website v3.2.11 - 2026-07-04
 
 - Fixed language-aware internal navigation so links follow the active selector

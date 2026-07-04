@@ -1,13 +1,13 @@
 :root {
-  --bg: #0b0d12;
+  --bg: #07091c;
   --panel: rgba(255, 255, 255, 0.075);
   --panel-strong: rgba(255, 255, 255, 0.12);
   --text: #f7f7fb;
   --muted: #b7bccb;
   --line: rgba(255, 255, 255, 0.14);
-  --cyan: #66e0ff;
-  --green: #7ef7a7;
-  --rose: #fb7185;
+  --cyan: #38d7d2;
+  --green: #d13cff;
+  --rose: #a855f7;
 }
 
 * { box-sizing: border-box; }
@@ -25,7 +25,7 @@ body {
   background:
     radial-gradient(circle at 12% 8%, rgba(102, 224, 255, 0.18), transparent 26rem),
     radial-gradient(circle at 86% 4%, rgba(251, 113, 133, 0.13), transparent 28rem),
-    linear-gradient(180deg, #0b0d12 0%, #111827 58%, #090b10 100%);
+    linear-gradient(180deg, #07091c 0%, #14183a 58%, #080a1d 100%);
 }
 
 button,
@@ -140,7 +140,7 @@ select {
 
 button {
   padding: 0 18px;
-  color: #06110c;
+  color: #07091c;
   border: 0;
   background: linear-gradient(135deg, var(--cyan), var(--green));
   font-weight: 850;

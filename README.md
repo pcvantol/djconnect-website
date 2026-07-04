@@ -75,24 +75,46 @@ Static landing page for DJConnect, published through Cloudflare Pages.
   `What do you know about me?` are privacy/info answers from server-side
   `djconnect_music_dna` only: render text and sources, not stale album art,
   media cards, TTS replay buttons or `Play Now` controls.
-  Ask DJ works without Music DNA. Music DNA is opt-in; until enabled,
-  DJConnect does not build Music DNA knowledge from Ask DJ, listening profiles,
-  recent tracks, preferences or recommendations. Clients do not store your
-  persistent Music DNA profile. Spotify credentials stay in Home Assistant.
-  You can clear Music DNA at any time; if Music DNA remains enabled, DJConnect
-  starts learning again from an empty profile, and if it is turned off learned
-  DNA is cleared and future learning stops.
+  Ask DJ works without Music DNA. Music DNA is an opt-in, server-side Home
+  Assistant listening profile built from compact signals such as successful
+  playback/Play Now choices, recent playback metadata, available artists and
+  genres, Track Insight energy/genre analysis, realtime client mood samples and
+  compact Spotify profile/recently-played/top-data when the backend fetches it.
+  Clients render Music DNA cards and send context; they do not store or compute
+  the persistent Music DNA source of truth. Music DNA must never store OAuth
+  tokens, bearer tokens, raw audio, full prompts or unlimited Spotify listening
+  history. Users can enable, disable and clear Music DNA. Clear keeps the opt-in
+  setting; if Music DNA remains enabled, DJConnect starts learning again from an
+  empty profile, and if it is turned off learned DNA is cleared and future
+  learning stops.
   Local app clients may optionally use Home Assistant's native `/api/websocket`
   after normal local pairing and HA websocket auth for low-latency
   `djconnect/command`, `djconnect/ask_dj/message` and
   `djconnect/track_insight` calls when `djconnect/capabilities` advertises
   them. HTTP remains the canonical fallback for remote access, pairing,
   history sync/clear, voice uploads, image/TTS URLs and websocket failures.
-  Ask DJ Track Insight should be described as musical/technical explanation
-  from playback context plus optional user-configured providers. Do not imply
-  DJConnect directly analyzes encrypted Spotify playback audio; exact BPM, key,
-  section or timestamp data requires an available source or local analysis
-  provider. The feature is read-only and should never change playback.
+  Ask DJ Track Insight should be described as server-side interpretive track
+  analysis from current playback or provided track metadata. It can use language
+  and realtime mood for analysis tone and visual style, and it may return track
+  metadata, summary/full text, genre/subgenre, mood/vibe/texture/emotional tone,
+  energy/danceability/intensity/confidence, production/instrumentation/
+  arrangement/listening cues, similar tracks and a visual profile. Genre remains
+  supported primarily through `analysis.genre`, with detail in
+  `analysis.subgenre` and fallback/context in `track.genres[]`, enriched from
+  artist metadata where available. Do not imply DJConnect directly analyzes
+  encrypted Spotify playback audio, extracts hidden audio measurements, or that
+  clients calculate conclusions locally. The feature is read-only and should
+  never change playback.
+  Realtime client mood is leading for DJ announcement style: `chill` maps to
+  late-night radio, `groove` to a classic radio presenter, `energy` to an
+  energetic presenter and `party` to a tight presenter. Numeric mood zones are
+  0-24 chill, 25-59 groove, 60-84 energy and 85-100 party. The backend DJ voice
+  profile is only fallback when the client sends no valid mood. Home Assistant
+  TTS/Assist still chooses the actual audio voice; DJConnect voice profiles
+  control the announcement prompt/persona/style text.
+  The public visual system should follow the current app: midnight indigo base,
+  violet glass panels, magenta/violet primary actions and cyan as a secondary
+  analysis/voice accent.
 - `wwwroot/embedded.html`: ESP32 embedded-device one-pager.
 - `wwwroot/macos.html`: macOS app page with binaries from `pcvantol/djconnect-app-releases`.
 - `wwwroot/windows.html`: Windows desktop app page with binaries from `pcvantol/djconnect-app-releases`.

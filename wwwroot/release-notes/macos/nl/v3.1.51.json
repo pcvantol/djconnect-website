@@ -3,5 +3,5 @@
   "platform": "macos",
   "language": "nl",
   "name": "DJConnect macOS 3.1.51",
-  "body": "# DJConnect App 3.1.51\n\n## Ask DJ\n\n- Het read-only contract voor technische trackanalyse in Ask DJ is toegevoegd.\n- Ask DJ kan nu compacte technische metrics tonen, zoals BPM, toonsoort,\n  opbouw en analysebronnen, wanneer Home Assistant die teruggeeft.\n- Het lege Ask DJ-scherm bevat nu ook een voorbeeldvraag voor technische\n  trackanalyse.\n\n---\n\nPlatform: macOS\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nVoor normale macOS-distributie heeft de genotariseerde Developer ID-build de voorkeur wanneer die is bijgevoegd."
+  "body": "# DJConnect App 3.1.51\n\n## Ask DJ\n\n- Het read-only contract voor technische trackanalyse in Ask DJ is toegevoegd.\n- Ask DJ kan nu compacte interpretieve Track Insight tonen, zoals genre,\n  energie, productie, luisterpunten en analysebronnen, wanneer Home Assistant\n  die teruggeeft.\n- Het lege Ask DJ-scherm bevat nu ook een voorbeeldvraag voor technische\n  trackanalyse.\n\n---\n\nPlatform: macOS\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nVoor normale macOS-distributie heeft de genotariseerde Developer ID-build de voorkeur wanneer die is bijgevoegd."
 }

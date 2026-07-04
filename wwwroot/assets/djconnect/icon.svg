@@ -13,7 +13,7 @@
       <stop offset="1" stop-color="#030207"/>
     </radialGradient>
     <linearGradient id="accent" x1="152" y1="142" x2="902" y2="870" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#66e0ff"/>
+      <stop offset="0" stop-color="#38d7d2"/>
       <stop offset="0.48" stop-color="#7b5cff"/>
       <stop offset="1" stop-color="#db5cff"/>
     </linearGradient>
@@ -50,7 +50,7 @@
       <circle cx="454" cy="514" r="206" fill="none" stroke="#7f9cff" stroke-opacity="0.10" stroke-width="3"/>
       <circle cx="454" cy="514" r="150" fill="none" stroke="#ffffff" stroke-opacity="0.05" stroke-width="2"/>
       <path d="M170 516a284 284 0 0 1 284-284" fill="none" stroke="#fff" stroke-opacity="0.12" stroke-width="8" stroke-linecap="round"/>
-      <path d="M225 688c102 106 282 122 405 34" fill="none" stroke="#66e0ff" stroke-opacity="0.15" stroke-width="9" stroke-linecap="round"/>
+      <path d="M225 688c102 106 282 122 405 34" fill="none" stroke="#38d7d2" stroke-opacity="0.15" stroke-width="9" stroke-linecap="round"/>
       <circle cx="454" cy="514" r="96" fill="#151023" stroke="url(#accent)" stroke-width="16"/>
       <circle cx="454" cy="514" r="22" fill="#0b0814" stroke="#b9c7ff" stroke-opacity="0.7" stroke-width="6"/>
     </g>
@@ -59,7 +59,7 @@
       <path d="M704 201c39-21 90 8 90 53 0 41-40 70-78 58-37 140-82 258-169 346-38 38-78 62-116 75" fill="none" stroke="url(#metal)" stroke-width="42" stroke-linecap="round" stroke-linejoin="round"/>
       <circle cx="733" cy="254" r="58" fill="#131522" stroke="url(#accent2)" stroke-width="14"/>
       <path d="M706 236h54M699 256h68M709 276h48" stroke="#dbe6ff" stroke-opacity="0.75" stroke-width="8" stroke-linecap="round"/>
-      <path d="M565 655l60 60" stroke="#66e0ff" stroke-width="14" stroke-linecap="round"/>
+      <path d="M565 655l60 60" stroke="#38d7d2" stroke-width="14" stroke-linecap="round"/>
     </g>
     <g filter="url(#shadow)" font-family="Avenir Next, Arial Black, Impact, sans-serif" font-weight="900" font-style="italic">
       <text x="132" y="786" font-size="372" letter-spacing="-34" fill="#080711" stroke="#080711" stroke-width="74" stroke-linejoin="round">DJ</text>

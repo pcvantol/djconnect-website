@@ -12,7 +12,7 @@
 - Cloudflare Pages project: `djconnect`
 - Source directory: `wwwroot`
 - Release publish directory: `dist/wwwroot`
-- Current version: `3.2.7`
+- Current version: `3.2.8`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Platform overview page with CSS architecture diagram: `wwwroot/platform.html`
@@ -73,11 +73,10 @@
   voice, free text, TTS or local audio unless a future Pi capability explicitly
   expands that scope.
 - Ask DJ Track Insight copy must stay clear that DJConnect does not directly
-  analyze encrypted Spotify playback audio. Exact BPM, key, sections or
-  timestamps are shown only when available from source data or a user-configured
-  local/provider analysis path; otherwise Ask DJ should label the answer as
-  musical interpretation. The feature is read-only and must not imply playback
-  changes.
+  analyze encrypted Spotify playback audio. Public copy must not promise hidden
+  audio measurements, harmonic labels, exact sections, timestamps or waveform
+  data. Track Insight is server-side, interpretive/contextual and read-only,
+  and must not imply playback changes.
 - The features page summarizes the main DJConnect functions and mentions Ask DJ
   plus the bonus mini-games: Paddle Rally, Meteor Run, Sky Dash & Maze Chase.
 - The voice commands page documents the user-facing intent families,
@@ -114,7 +113,10 @@
   with header plus Pimoroni HyperPixel 4.0 Square. Keep the old separate starter
   hardware cards off the page.
 - The embedded page is now a compact product page: supported hardware, how it works and firmware downloads. Keep experience, setup, requirements and FAQ content off this page.
-- The embedded page should use the same site color language as the homepage: cyan/green primary CTA, subtle pink/green/cyan background accents and no dominant purple-blue page background.
+- The embedded page should use the same app-aligned site color language as the
+  homepage: midnight indigo background, violet glass panels, soft violet
+  borders, magenta/violet primary actions and cyan only as a secondary
+  analysis/voice accent.
 - The embedded page should point users to LilyGO product specs where relevant. Firmware download and setup links belong on the start page. Do not reintroduce pre-flashed copy.
 - The start page presents the current 3.2 setup order: configure the Home
   Assistant voice assist pipeline, add DJConnect to Home Assistant through HACS,
@@ -278,7 +280,9 @@ useful for higher GitHub API limits.
   the token-protected `/api/stats` contract and the release-script
   dependency/tool preflight.
 - `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. `npm run screenshots:live` captures Dutch live production screenshots at a laptop viewport into `screenshots/live-laptop/`. Neither is part of the default `npm test` run.
-- Current released version `3.2.7` loads localized static What's New JSON on
+- Current released version `3.2.8` syncs the public product contract with the
+  current Home Assistant integration and aligns the website color system with
+  the current app. Version `3.2.7` loads localized static What's New JSON on
   download-page changelogs before falling back to GitHub release bodies.
   Version `3.1.64` adds dedicated Windows and Mac Catalyst client pages,
   homepage cards, download rendering and release-note paths. Version `3.1.63`

@@ -229,8 +229,8 @@ test("homepage promotes Ask DJ as a major product feature", async () => {
   assert.match(index, /Ask DJ Track Insight/);
   assert.match(index, /Laat Ask DJ uitleggen waarom een track werkt/);
   assert.match(index, /Geef Track Insight voor dit nummer/);
-  assert.match(index, /BPM, key, energiecurve, groove, structuur, instrumentatie, productie en mixbaarheid/);
-  assert.match(index, /optional providers you configure/);
+  assert.match(index, /genre, subgenre, mood, vibe, texture, emotionele toon, energie, instrumentatie, arrangement, productie, luistercues, similar tracks en visual profile/);
+  assert.match(index, /Track Insight draait server-side in je Home Assistant integration/);
   assert.match(index, /Continuity op Watch, iPhone, Mac en Windows/);
   assert.match(index, /server-side per Home Assistant gebruiker/);
   assert.match(index, /is begrensd/);
@@ -256,9 +256,9 @@ test("homepage promotes Ask DJ as a major product feature", async () => {
   assert.match(index, /You can clear Music DNA at any time/);
   assert.match(index, /Clients do not store your persistent Music DNA profile/);
   assert.match(index, /Spotify credentials stay in Home Assistant/);
-  assert.match(index, /Music DNA mag geen OAuth tokens, bearer tokens, raw audio, volledige prompts of volledige chatgeschiedenis opslaan/);
+  assert.match(index, /Music DNA mag geen OAuth tokens, bearer tokens, raw audio, volledige prompts of onbeperkte Spotify luistergeschiedenis opslaan/);
   assert.match(index, /DJConnect's active integration routes use Home Assistant Assist\/STT\/TTS and do not call direct external AI\/STT\/TTS APIs/);
-  assert.match(index, /clients reconstrueren geen fake persistent profile uit lokale Track Insight history/);
+  assert.match(index, /Het Music DNA dashboard haalt kaarten zoals Samenvatting, Favoriete genres, Favoriete artiesten, Energieprofiel, Mood\/smaakrichting, Recente tracks, Gebaseerd op en Bijgewerkt op uit Home Assistant/);
   assert.match(index, /Spotify Premium en Client ID zijn alleen nodig voor Spotify Direct/);
   assert.match(index, /Music Assistant gebruikt eigen providers/);
   assert.doesNotMatch(index, /HACS DJConnect integration v3\.1\.69\+/);
@@ -270,7 +270,8 @@ test("homepage promotes Ask DJ as a major product feature", async () => {
   assert.doesNotMatch(index, /DJConnect listens to Spotify audio/i);
   assert.doesNotMatch(index, /official Spotify partner/i);
   assert.doesNotMatch(index, /powered by Spotify/i);
-  assert.doesNotMatch(index, /guaranteed BPM\/key for every track/i);
+  assert.doesNotMatch(index, new RegExp("B" + "PM", "i"));
+  assert.doesNotMatch(index, new RegExp("key" + " signature", "i"));
   assertTranslationsCoverPage(index, "homepage");
 });
 
@@ -485,8 +486,8 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB/);
   assert.match(start, /Optioneel: Track Insight providers/);
   assert.match(start, /Track Insight werkt standaard met beschikbare playbackcontext/);
-  assert.match(start, /API keys blijven in je eigen Home Assistant-installatie/);
-  assert.match(start, /music metadata API or local audio-analysis add-on/);
+  assert.match(start, /Optionele metadata- of contextproviders blijven server-side in Home Assistant/);
+  assert.match(start, /clients render the analysis and do not calculate conclusions locally/);
   assertTranslationsCoverPage(start, "start page");
 });
 
@@ -498,17 +499,21 @@ test("features page describes core functions and bonus games", async () => {
   assert.match(features, /data-i18n="askDjTitle">Slimme follow-ups<\/h3>/);
   assert.match(features, /Ask DJ geeft niet alleen antwoord, maar ook acties/);
   assert.match(features, /Ask DJ Track Insight/);
-  assert.match(features, /BPM en key waar brondata beschikbaar is/);
-  assert.match(features, /energiecurve, groove, intro, refrein, breakdowns, instrumentatie, productie en mixbaarheid/);
+  assert.match(features, /genre, subgenre, mood, vibe, texture, emotionele toon, energie, danceability, intensiteit, confidence, productie, instrumentatie, arrangement, luistercues, similar tracks en visual profile/);
+  assert.match(features, /0-24 chill is late-night radio, 25-59 groove klassiek radio, 60-84 energy energiek en 85-100 party strak/);
+  assert.match(features, /Home Assistant TTS\/Assist bepaalt de echte audiostem/);
   assert.match(features, /Read-only: analyse verandert nooit je playback/);
   assert.match(features, /analysis never changes playback/);
   assert.match(features, /Gebruik dezelfde flow op Mac, Windows, iOS, Linux en ESP32/);
   assert.match(features, /Desktopbediening met Ask DJ, playback-acties en veilige tokenopslag in Windows Credential Manager/);
   assert.match(features, /Ask DJ works without Music DNA/);
   assert.match(features, /Music DNA is opt-in/);
-  assert.match(features, /Clients do not store your persistent Music DNA profile/);
+  assert.match(features, /Clients zijn renderers en bewaren geen bronprofiel/);
+  assert.match(features, /Home Assistant is server-side bron van waarheid/);
   assert.match(features, /Spotify credentials stay in Home Assistant/);
   assert.match(features, /Ask DJ does more than answer: it gives you actions/);
+  assert.doesNotMatch(features, new RegExp("B" + "PM", "i"));
+  assert.doesNotMatch(features, new RegExp("key" + " signature", "i"));
   assert.match(features, /Music backend playback/);
   assert.match(features, /Speaker keuze/);
   assert.match(features, /Home Assistant hub/);
@@ -964,12 +969,14 @@ test("embedded page contains firmware release embed", async () => {
 test("embedded page uses the shared site color styling", async () => {
   const embedded = await read("wwwroot/embedded.html");
 
-  assert.match(embedded, /--cyan: #66e0ff/);
-  assert.match(embedded, /--green: #7ef7a7/);
-  assert.match(embedded, /radial-gradient\(circle at 86% 6%, rgba\(251, 113, 133, 0\.14\), transparent 27rem\)/);
-  assert.match(embedded, /radial-gradient\(circle at 58% 72%, rgba\(126, 247, 167, 0\.1\), transparent 31rem\)/);
+  assert.match(embedded, /--bg: #07091c/);
+  assert.match(embedded, /--cyan: #38d7d2/);
+  assert.match(embedded, /--green: #d13cff/);
+  assert.match(embedded, /--purple: #7357ff/);
+  assert.match(embedded, /radial-gradient\(circle at 86% 6%, rgba\(209, 60, 255, 0\.22\), transparent 27rem\)/);
   assert.match(embedded, /linear-gradient\(135deg, var\(--cyan\), var\(--green\)\)/);
-  assert.doesNotMatch(embedded, /linear-gradient\(135deg, var\(--accent-cyan\), #8b5cf6\)/);
+  assert.doesNotMatch(embedded, /#7ef7a7/);
+  assert.doesNotMatch(embedded, /#fb7185/);
 });
 
 test("site does not embed website repository releases", async () => {

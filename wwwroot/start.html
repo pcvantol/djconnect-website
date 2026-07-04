@@ -14,26 +14,26 @@
   <link rel="alternate" hreflang="x-default" href="https://djconnect.dev/start.html" />
   <link rel="icon" href="assets/djconnect/icon.svg" type="image/svg+xml" />
   <style>
-    :root { --bg:#0b0d12; --panel:rgba(255,255,255,0.075); --panel-strong:rgba(255,255,255,0.12); --text:#f7f7fb; --muted:#b7bccb; --line:rgba(255,255,255,0.14); --cyan:#66e0ff; --green:#7ef7a7; --purple:#8b5cf6; --pink:#fb7185; --shadow:0 24px 70px rgba(0,0,0,0.35); --max:1180px; }
+    :root { --bg:#07091c; --panel:rgba(26,20,58,0.74); --panel-strong:rgba(43,34,88,0.82); --text:#f7f3ff; --muted:#aaa4bd; --line:rgba(167,118,255,0.28); --cyan:#38d7d2; --green:#d13cff; --purple:#7357ff; --purple:#7357ff; --pink:#a855f7; --shadow:0 24px 70px rgba(0,0,0,0.35); --max:1180px; }
     * { box-sizing:border-box; }
     html { scroll-behavior:smooth; background:var(--bg); }
-    body { margin:0; color:var(--text); font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height:1.55; background:radial-gradient(circle at 16% 10%, rgba(102,224,255,0.18), transparent 28rem), radial-gradient(circle at 86% 6%, rgba(251,113,133,0.14), transparent 27rem), radial-gradient(circle at 58% 72%, rgba(126,247,167,0.1), transparent 31rem), linear-gradient(180deg,#0b0d12 0%,#111827 54%,#090b10 100%); }
+    body { margin:0; color:var(--text); font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height:1.55; background:radial-gradient(circle at 16% 10%, rgba(56,215,210,0.2), transparent 28rem), radial-gradient(circle at 86% 6%, rgba(209,60,255,0.22), transparent 27rem), radial-gradient(circle at 58% 72%, rgba(115,87,255,0.18), transparent 31rem), linear-gradient(180deg,#07091c 0%,#111a47 52%,#160526 100%); }
     a { color:inherit; text-decoration:none; }
     code { border:1px solid var(--line); border-radius:8px; background:rgba(255,255,255,0.09); color:#d9fbe5; padding:2px 7px; overflow-wrap:anywhere; }
     .wrap { width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
-    .nav { position:sticky; top:0; z-index:20; backdrop-filter:blur(18px); background:rgba(11,13,18,0.7); border-bottom:1px solid var(--line); }
+    .nav { position:sticky; top:0; z-index:20; backdrop-filter:blur(18px); background:rgba(7,9,28,0.78); border-bottom:1px solid var(--line); }
     .nav-inner { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:22px; }
     .brand { display:flex; align-items:center; gap:12px; font-weight:850; font-size:1.13rem; }
-    .brand img { width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.18); box-shadow:0 0 34px rgba(102,224,255,0.25); }
+    .brand img { width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.18); box-shadow:0 0 34px rgba(209,60,255,0.28); }
     .nav-links { display:flex; align-items:center; gap:18px; color:var(--muted); font-size:0.94rem; }
     .nav-links a:hover { color:var(--text); }
     .nav-controls { display:flex; align-items:center; gap:12px; }
-    .lang-toggle { display:inline-grid; grid-template-columns: repeat(5, 1fr); min-width: 190px; padding:3px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.06); }
+    .lang-toggle { display:inline-grid; grid-template-columns: repeat(5, 1fr); min-width: 190px; padding:3px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.055); }
     .lang-toggle button { min-height:34px; border:0; border-radius:999px; background:transparent; color:var(--muted); font:inherit; font-size:0.82rem; font-weight:850; cursor:pointer; }
-    .lang-toggle button[aria-pressed="true"] { background:rgba(102,224,255,0.18); color:var(--text); }
+    .lang-toggle button[aria-pressed="true"] { background:rgba(209,60,255,0.22); color:var(--text); }
     .btn { display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:46px; padding:0 18px; border-radius:999px; border:1px solid var(--line); background:var(--panel); color:var(--text); font-weight:780; box-shadow:0 10px 30px rgba(0,0,0,0.15); transition:transform 160ms ease, background 160ms ease, border-color 160ms ease; }
     .btn:hover { transform:translateY(-2px); background:var(--panel-strong); border-color:rgba(255,255,255,0.28); }
-    .btn.primary { border:0; color:#06110c; background:linear-gradient(135deg,var(--cyan),var(--green)); }
+    .btn.primary { border:0; color:#fff; background:linear-gradient(135deg,var(--green),var(--purple)); }
     .hero { padding:82px 0 52px; }
     .hero-grid { display:grid; grid-template-columns:1.02fr 0.98fr; gap:48px; align-items:center; }
     h1,h2,h3 { margin:0; letter-spacing:-0.045em; line-height:1.05; }
@@ -50,19 +50,19 @@
     .card p,.muted { color:var(--muted); margin:0; }
     .hero-steps { display:grid; gap:14px; margin:0; padding:0; counter-reset:heroSteps; }
     .hero-steps li { list-style:none; counter-increment:heroSteps; display:flex; align-items:center; gap:14px; color:var(--muted); font-size:1.08rem; font-weight:760; }
-    .hero-steps li::before { content:counter(heroSteps); flex:0 0 42px; width:42px; height:42px; display:grid; place-items:center; border-radius:999px; background:linear-gradient(135deg,var(--cyan),var(--green)); color:#06110c; font-weight:950; box-shadow:0 14px 28px rgba(102,224,255,0.18); }
+    .hero-steps li::before { content:counter(heroSteps); flex:0 0 42px; width:42px; height:42px; display:grid; place-items:center; border-radius:999px; background:linear-gradient(135deg,var(--cyan),var(--green)); color:#ffffff; font-weight:950; box-shadow:0 14px 28px rgba(56,215,210,0.18); }
     .hero-done { display:flex; align-items:center; gap:14px; margin-top:18px; color:var(--text); font-size:1.08rem; font-weight:820; }
     .hero-done::before { content:"♪"; flex:0 0 42px; width:42px; height:42px; display:grid; place-items:center; border-radius:999px; background:linear-gradient(135deg,var(--purple),#c084fc); color:var(--text); font-weight:950; }
     .download-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
     .route-card { min-height:100%; }
-    .route-label { display:inline-flex; margin-bottom:14px; padding:6px 10px; border-radius:999px; background:rgba(102,224,255,0.14); color:#9becff; font-size:0.78rem; font-weight:850; text-transform:uppercase; letter-spacing:0.06em; }
+    .route-label { display:inline-flex; margin-bottom:14px; padding:6px 10px; border-radius:999px; background:rgba(56,215,210,0.14); color:#9ff3ef; font-size:0.78rem; font-weight:850; text-transform:uppercase; letter-spacing:0.06em; }
     .route-card .btn { margin-top:22px; }
     .checklist { display:grid; gap:12px; margin:0; padding:0; }
     .checklist li { list-style:none; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,0.055); padding:14px 16px; color:var(--muted); }
     .checklist li::before { content:"♪"; color:var(--green); font-weight:900; margin-right:10px; }
     .steps { counter-reset:steps; display:grid; gap:14px; margin:0; padding:0; }
     .steps li { list-style:none; counter-increment:steps; display:flex; gap:14px; align-items:flex-start; border:1px solid var(--line); border-radius:20px; background:rgba(255,255,255,0.055); padding:16px; color:var(--muted); overflow-wrap:anywhere; }
-    .steps li::before { content:counter(steps); flex:0 0 48px; width:48px; height:48px; display:grid; place-items:center; border-radius:16px; background:var(--cyan); color:#07110b; font-weight:950; }
+    .steps li::before { content:counter(steps); flex:0 0 48px; width:48px; height:48px; display:grid; place-items:center; border-radius:16px; background:var(--cyan); color:#ffffff; font-weight:950; }
     .comparison-table { width:100%; border-collapse:separate; border-spacing:0; overflow:hidden; border:1px solid var(--line); border-radius:22px; background:rgba(255,255,255,0.045); }
     .comparison-table th, .comparison-table td { padding:14px 16px; text-align:left; vertical-align:top; border-bottom:1px solid var(--line); color:var(--muted); }
     .comparison-table th { color:var(--text); background:rgba(255,255,255,0.07); font-size:0.94rem; }
@@ -79,7 +79,7 @@
     #client-ios:checked ~ .switch-tabs label[for="client-ios"],
     #client-macos:checked ~ .switch-tabs label[for="client-macos"],
     #client-windows:checked ~ .switch-tabs label[for="client-windows"],
-    #client-raspberry:checked ~ .switch-tabs label[for="client-raspberry"] { color:#06110c; border-color:transparent; background:linear-gradient(135deg,var(--cyan),var(--green)); transform:translateY(-1px); }
+    #client-raspberry:checked ~ .switch-tabs label[for="client-raspberry"] { color:#ffffff; border-color:transparent; background:linear-gradient(135deg,var(--cyan),var(--green)); transform:translateY(-1px); }
     .client-panels { display:grid; }
     .client-panel { grid-area:1 / 1; visibility:hidden; opacity:0; transform:translateY(8px); pointer-events:none; transition:opacity 180ms ease, transform 180ms ease, visibility 180ms ease; }
     #client-esp:checked ~ .client-panels [data-client-panel="esp"],
@@ -91,7 +91,7 @@
     .client-panel .steps { margin-top:18px; }
     .client-panel .steps .btn { margin-top:2px; }
     .client-panel .muted { margin-top:14px; font-size:1.02rem; }
-    .note { border-left:3px solid var(--green); padding:14px 16px; background:rgba(126,247,167,0.09); border-radius:14px; color:var(--muted); }
+    .note { border-left:3px solid var(--green); padding:14px 16px; background:rgba(209,60,255,0.09); border-radius:14px; color:var(--muted); }
     .legal { color:var(--muted); font-size:0.86rem; padding:34px 0 44px; border-top:1px solid var(--line); }
     .site-version { margin-top:14px; font-size:0.76rem; color:rgba(183,188,203,0.72); }
     .privacy-notice { font-size:0.78rem; color:rgba(183,188,203,0.78); }
@@ -99,7 +99,7 @@
     @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } .switch-tabs { grid-template-columns:1fr; } }
 
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.7" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.8" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -167,7 +167,7 @@
         <article class="card"><h3 data-i18n="backendTitle">Music backend kiezen</h3><p data-i18n="backendText">DJConnect 3.2 werkt met Spotify Direct of Music Assistant. Home Assistant meldt aan clients welke backend actief is en welke acties beschikbaar zijn.</p></article>
         <article class="card"><h3 data-i18n="credentialsTitle">Credentials blijven in Home Assistant</h3><p data-i18n="credentialsText">DJConnect devices en apps krijgen geen Spotify refresh token of playback credentials.</p></article>
         <article class="card"><h3 data-i18n="remoteTitle">Remote na lokale pairing</h3><p data-i18n="remoteText">iOS, macOS en Windows kunnen na lokale pairing via je externe Home Assistant URL werken. ESP32 en Raspberry Pi blijven local-only.</p></article>
-        <article class="card"><h3 data-i18n="trackAnalysisProviderTitle">Optioneel: Track Insight providers</h3><p data-i18n="trackAnalysisProviderText">Track Insight werkt standaard met beschikbare playbackcontext. Voor diepere analyse kun je later eigen providers configureren, zoals een muziekmetadata-API of lokale audio-analyse add-on. API keys blijven in je eigen Home Assistant-installatie.</p></article>
+        <article class="card"><h3 data-i18n="trackAnalysisProviderTitle">Optioneel: Track Insight providers</h3><p data-i18n="trackAnalysisProviderText">Track Insight werkt standaard met beschikbare playbackcontext of meegegeven trackmetadata. Optionele metadata- of contextproviders blijven server-side in Home Assistant; clients tonen de analyse en berekenen geen conclusies lokaal.</p></article>
       </div>
     </section>
 
@@ -470,10 +470,10 @@
     <p data-i18n="legalSpotify">Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.2.7</p>
+    <p class="site-version">DJConnect website v3.2.8</p>
   </footer>
 
-  <script src="assets/i18n.js?v=3.2.7"></script>
+  <script src="assets/i18n.js?v=3.2.8"></script>
 
   <script>
     const translations = {
@@ -509,7 +509,7 @@
                 remoteTitle: "Remote na lokale pairing",
                 remoteText: "iOS, macOS en Windows kunnen na lokale pairing via je externe Home Assistant URL werken. ESP32 en Raspberry Pi blijven local-only.",
                 trackAnalysisProviderTitle: "Optioneel: Track Insight providers",
-                trackAnalysisProviderText: "Track Insight werkt standaard met beschikbare playbackcontext. Voor diepere analyse kun je later eigen providers configureren, zoals een muziekmetadata-API of lokale audio-analyse add-on. API keys blijven in je eigen Home Assistant-installatie.",
+                trackAnalysisProviderText: "Track Insight werkt standaard met beschikbare playbackcontext of meegegeven trackmetadata. Optionele metadata- of contextproviders blijven server-side in Home Assistant; clients tonen de analyse en berekenen geen conclusies lokaal.",
                 backendCompareTitle: "3. Kies je music backend",
                 backendCompareLead: "Kies voor setup of DJConnect direct met Spotify werkt, of dat Music Assistant de centrale muzieklaag in Home Assistant is.",
                 requirementHeader: "Vereiste",
@@ -679,7 +679,7 @@
                 remoteTitle: "Remote after local pairing",
                 remoteText: "iOS, macOS and Windows can work through your external Home Assistant URL after local pairing. ESP32 and Raspberry Pi stay local-only.",
                 trackAnalysisProviderTitle: "Optional: Track Insight providers",
-                trackAnalysisProviderText: "Track Insight works by default with available playback context. For deeper analysis, you can later configure your own providers, such as a music metadata API or local audio-analysis add-on. API keys stay in your own Home Assistant installation.",
+                trackAnalysisProviderText: "Track Insight works by default with available playback context or provided track metadata. Optional metadata or context providers stay server-side in Home Assistant; clients render the analysis and do not calculate conclusions locally.",
                 backendCompareTitle: "3. Choose your music backend",
                 backendCompareLead: "Before setup, choose whether DJConnect talks directly to Spotify or whether Music Assistant is the central music layer in Home Assistant.",
                 requirementHeader: "Requirement",
@@ -849,7 +849,7 @@
                 remoteTitle: "Remote after local pairing",
                 remoteText: "iOS, macOS and Windows can work through your external Home Assistant URL after local pairing. ESP32 and Raspberry Pi stay local-only.",
                 trackAnalysisProviderTitle: "Optional: Track Insight providers",
-                trackAnalysisProviderText: "Track Insight works by default with available playback context. For deeper analysis, you can later configure your own providers, such as a music metadata API or local audio-analysis add-on. API keys stay in your own Home Assistant installation.",
+                trackAnalysisProviderText: "Track Insight works by default with available playback context or provided track metadata. Optional metadata or context providers stay server-side in Home Assistant; clients render the analysis and do not calculate conclusions locally.",
                 backendCompareTitle: "3. Choose your music backend",
                 backendCompareLead: "Before setup, choose whether DJConnect talks directly to Spotify or whether Music Assistant is the central music layer in Home Assistant.",
                 requirementHeader: "Requirement",
@@ -1019,7 +1019,7 @@
                 remoteTitle: "Remote after local pairing",
                 remoteText: "iOS, macOS and Windows can work through your external Home Assistant URL after local pairing. ESP32 and Raspberry Pi stay local-only.",
                 trackAnalysisProviderTitle: "Optional: Track Insight providers",
-                trackAnalysisProviderText: "Track Insight works by default with available playback context. For deeper analysis, you can later configure your own providers, such as a music metadata API or local audio-analysis add-on. API keys stay in your own Home Assistant installation.",
+                trackAnalysisProviderText: "Track Insight works by default with available playback context or provided track metadata. Optional metadata or context providers stay server-side in Home Assistant; clients render the analysis and do not calculate conclusions locally.",
                 backendCompareTitle: "3. Choose your music backend",
                 backendCompareLead: "Before setup, choose whether DJConnect talks directly to Spotify or whether Music Assistant is the central music layer in Home Assistant.",
                 requirementHeader: "Requirement",
@@ -1189,7 +1189,7 @@
                 remoteTitle: "Remote after local pairing",
                 remoteText: "iOS, macOS and Windows can work through your external Home Assistant URL after local pairing. ESP32 and Raspberry Pi stay local-only.",
                 trackAnalysisProviderTitle: "Optional: Track Insight providers",
-                trackAnalysisProviderText: "Track Insight works by default with available playback context. For deeper analysis, you can later configure your own providers, such as a music metadata API or local audio-analysis add-on. API keys stay in your own Home Assistant installation.",
+                trackAnalysisProviderText: "Track Insight works by default with available playback context or provided track metadata. Optional metadata or context providers stay server-side in Home Assistant; clients render the analysis and do not calculate conclusions locally.",
                 backendCompareTitle: "3. Choose your music backend",
                 backendCompareLead: "Before setup, choose whether DJConnect talks directly to Spotify or whether Music Assistant is the central music layer in Home Assistant.",
                 requirementHeader: "Requirement",
@@ -1354,6 +1354,6 @@
 
   </script>
 
-  <script src="assets/site-nav.js?v=3.2.7"></script>
+  <script src="assets/site-nav.js?v=3.2.8"></script>
 </body>
 </html>

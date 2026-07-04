@@ -4,23 +4,23 @@
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#091016"/>
-      <stop offset="0.52" stop-color="#0b0d12"/>
+      <stop offset="0.52" stop-color="#07091c"/>
       <stop offset="1" stop-color="#191225"/>
     </linearGradient>
     <radialGradient id="cyanGlow" cx="17%" cy="14%" r="70%">
-      <stop offset="0" stop-color="#66e0ff" stop-opacity="0.28"/>
-      <stop offset="1" stop-color="#66e0ff" stop-opacity="0"/>
+      <stop offset="0" stop-color="#38d7d2" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#38d7d2" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="greenGlow" cx="78%" cy="74%" r="58%">
-      <stop offset="0" stop-color="#7ef7a7" stop-opacity="0.18"/>
-      <stop offset="1" stop-color="#7ef7a7" stop-opacity="0"/>
+      <stop offset="0" stop-color="#d13cff" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#d13cff" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="pinkGlow" cx="92%" cy="8%" r="48%">
-      <stop offset="0" stop-color="#fb7185" stop-opacity="0.18"/>
-      <stop offset="1" stop-color="#fb7185" stop-opacity="0"/>
+      <stop offset="0" stop-color="#a855f7" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#a855f7" stop-opacity="0"/>
     </radialGradient>
     <linearGradient id="accent" x1="0" y1="0" x2="220" y2="220" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#66e0ff"/>
+      <stop offset="0" stop-color="#38d7d2"/>
       <stop offset="0.5" stop-color="#8b5cf6"/>
       <stop offset="1" stop-color="#db5cff"/>
     </linearGradient>
@@ -68,7 +68,7 @@
 
   <g transform="translate(352 478)">
     <rect width="250" height="52" rx="26" fill="rgba(102,224,255,0.13)" stroke="rgba(102,224,255,0.35)"/>
-    <circle cx="30" cy="26" r="7" fill="#7ef7a7"/>
+    <circle cx="30" cy="26" r="7" fill="#d13cff"/>
     <text x="52" y="35" font-family="Inter, Avenir Next, Segoe UI, Arial, sans-serif" font-size="22" font-weight="850" fill="#f7f7fb">djconnect.dev</text>
   </g>
 </svg>

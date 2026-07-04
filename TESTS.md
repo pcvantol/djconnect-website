@@ -6,6 +6,10 @@
 - Verify the homepage navigation shows `Features`, `Ask DJ`, `Spraak`, `Blog`,
   `Installeren`, `Support` and `Privacy`, with `Aan de slag` only as the
   primary CTA button. The homepage should not show a `Hoe werkt het` self-link.
+- Verify the homepage and shared navigation use the app-aligned visual system:
+  midnight indigo background, violet glass panels, soft violet borders,
+  magenta/violet primary actions and cyan only as a secondary analysis/voice
+  accent.
 - Verify the homepage Ask DJ section explains chat, optional personal recommendations,
   explicit `Play Now`, Watch/iPhone/Mac/Windows continuity, Home Assistant
   server-side Music DNA/history with explicit opt-in, Ja/Nee follow-ups, bounded history trim
@@ -17,12 +21,11 @@
   Music DNA can be cleared at any time, clients do not store the persistent
   Music DNA profile, Spotify credentials stay in Home Assistant and DJConnect
   is not affiliated with, endorsed by, or sponsored by Spotify AB.
-- Verify Ask DJ Track Insight copy explains musical/technical Track Insight,
-  example prompts such as "Geef Track Insight voor dit nummer", BPM/key only where source data
-  is available, optional user-configured metadata or local analysis providers,
-  local-first Home Assistant operation and read-only playback behavior. It must
-  not claim direct analysis of encrypted Spotify playback audio or guaranteed
-  BPM/key for every track.
+- Verify Ask DJ Track Insight copy explains server-side interpretive Track
+  Insight, example prompts such as "Geef Track Insight voor dit nummer",
+  genre/subgenre, mood, energy, confidence, production/listening cues, similar
+  tracks, visual profile and read-only playback behavior. It must not claim
+  direct analysis of encrypted Spotify playback audio or show removed tempo or harmonic-analysis copy.
 - Verify the homepage `Kies je interface` section includes macOS, Windows,
   Mac Catalyst, iPhone/iPad, Voice Assistant, Embedded device and
   Linux/Raspberry Pi cards.
@@ -30,8 +33,9 @@
 - Open `wwwroot/features.html` and verify Ask DJ, the core features and renamed
   bonus mini-games are visible: Paddle Rally, Meteor Run, Sky Dash and Maze
   Chase.
-- Verify the Features page includes Ask DJ Track Insight with BPM/key source
-  nuance, music structure, production/mixability copy and read-only behavior.
+- Verify the Features page includes server-side Ask DJ Track Insight with
+  genre, mood, production/listening-cue copy and read-only behavior, without
+  removed tempo or harmonic-analysis wording.
 - Verify the Features, Spraak, Blog, Support and Privacy pages keep their top
   navigation focused on relevant cross-links only and do not show self-links.
 - Open `wwwroot/voice-commands.html` and verify the current-track,
@@ -214,7 +218,9 @@
   assets for root and localized routes, and that deployment commands use that
   release output.
 - Verify `https://www.djconnect.dev` redirects permanently to `https://djconnect.dev`, preserving path and query string.
-- Verify the embedded page uses the shared site color styling: cyan/green CTA and the same subtle cyan/pink/green background family as the homepage.
+- Verify the embedded page uses the shared app-aligned site color styling:
+  midnight indigo background, violet glass panels, magenta/violet CTA treatment
+  and cyan only as a secondary analysis/voice accent.
 - Verify iOS, macOS, Windows and Mac Catalyst do not show website repository release embeds, iOS/macOS/Windows/Mac Catalyst use `pcvantol/djconnect-app-releases`, ESP32 uses `pcvantol/djconnect-firmware` downloadable assets and Raspberry Pi uses `pcvantol/djconnect-pi-releases`.
 - Verify the embedded page does not mention pre-flashed devices.
 - Verify the embedded page does not show local quick start, requirements, FAQ, the experience section or the `Stem via HA / Veilig gekoppeld / DJ-karakter` row.

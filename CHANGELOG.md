@@ -4,6 +4,27 @@ All notable changes to this website are grouped per release.
 
 ## Unreleased
 
+## DJConnect website v3.2.8 - 2026-07-04
+
+- Synced public website and docs with the current Home Assistant integration
+  contract: Ask DJ, Music DNA, Track Insight, playback orchestration, Spotify
+  OAuth and DJ announcements are described as Home Assistant/server-side
+  responsibilities, while clients render and send context.
+- Reworked Music DNA copy as an opt-in Home Assistant listening profile built
+  from compact playback, Track Insight, mood and Spotify profile signals, with
+  explicit clear/delete behavior and token/audio/prompt storage boundaries.
+- Repositioned Track Insight as server-side interpretive track analysis with
+  genre/subgenre, mood, energy, production, listening cues, similar tracks and
+  visual profile, and removed old tempo and harmonic-analysis claims.
+- Documented realtime mood-driven DJ announcement styles and numeric mood
+  zones, with the backend DJ voice profile as fallback and Home Assistant
+  TTS/Assist as the actual audio voice.
+- Aligned the public visual style with the current app: midnight indigo
+  background, violet glass panels, magenta/violet primary actions and cyan as a
+  secondary analysis/voice accent across all language routes.
+- Updated regression tests and documentation checks for the new product and
+  visual contracts.
+
 ## DJConnect website v3.2.7 - 2026-07-01
 
 - Synced website/docs copy with the canonical cross-repo prompt after Home

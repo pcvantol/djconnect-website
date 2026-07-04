@@ -14,24 +14,24 @@
   <link rel="alternate" hreflang="x-default" href="https://djconnect.dev/privacy.html" />
   <link rel="icon" href="assets/djconnect/icon.svg" type="image/svg+xml" />
   <style>
-    :root { --bg:#0b0d12; --panel:rgba(255,255,255,0.075); --text:#f7f7fb; --muted:#b7bccb; --line:rgba(255,255,255,0.14); --cyan:#66e0ff; --green:#7ef7a7; --pink:#fb7185; --max:1180px; }
+    :root { --bg:#07091c; --panel:rgba(26,20,58,0.74); --text:#f7f3ff; --muted:#aaa4bd; --line:rgba(167,118,255,0.28); --cyan:#38d7d2; --green:#d13cff; --purple:#7357ff; --pink:#a855f7; --max:1180px; }
     * { box-sizing:border-box; }
     html { scroll-behavior:smooth; background:var(--bg); }
-    body { margin:0; color:var(--text); font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height:1.55; background:radial-gradient(circle at 16% 10%, rgba(102,224,255,0.18), transparent 28rem), radial-gradient(circle at 86% 6%, rgba(251,113,133,0.13), transparent 27rem), radial-gradient(circle at 58% 72%, rgba(126,247,167,0.1), transparent 31rem), linear-gradient(180deg,#0b0d12 0%,#111827 54%,#090b10 100%); }
+    body { margin:0; color:var(--text); font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height:1.55; background:radial-gradient(circle at 16% 10%, rgba(56,215,210,0.2), transparent 28rem), radial-gradient(circle at 86% 6%, rgba(209,60,255,0.2), transparent 27rem), radial-gradient(circle at 58% 72%, rgba(115,87,255,0.18), transparent 31rem), linear-gradient(180deg,#07091c 0%,#111a47 52%,#160526 100%); }
     a { color:inherit; text-decoration:none; }
     .wrap { width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
-    .nav { position:sticky; top:0; z-index:20; backdrop-filter:blur(18px); background:rgba(11,13,18,0.7); border-bottom:1px solid var(--line); }
+    .nav { position:sticky; top:0; z-index:20; backdrop-filter:blur(18px); background:rgba(7,9,28,0.78); border-bottom:1px solid var(--line); }
     .nav-inner { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:22px; }
     .brand { display:flex; align-items:center; gap:12px; font-weight:850; font-size:1.13rem; }
-    .brand img { width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.18); box-shadow:0 0 34px rgba(102,224,255,0.25); }
+    .brand img { width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.18); box-shadow:0 0 34px rgba(209,60,255,0.28); }
     .nav-links { display:flex; align-items:center; gap:18px; color:var(--muted); font-size:0.94rem; }
     .nav-links a:hover, .nav-links a[aria-current="page"] { color:var(--text); }
     .nav-controls { display:flex; align-items:center; gap:12px; }
-    .lang-toggle { display:inline-grid; grid-template-columns: repeat(5, 1fr); min-width: 190px; padding:3px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.06); }
+    .lang-toggle { display:inline-grid; grid-template-columns: repeat(5, 1fr); min-width: 190px; padding:3px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.055); }
     .lang-toggle button { min-height:34px; border:0; border-radius:999px; background:transparent; color:var(--muted); font:inherit; font-size:0.82rem; font-weight:850; cursor:pointer; }
-    .lang-toggle button[aria-pressed="true"] { background:rgba(102,224,255,0.18); color:var(--text); }
+    .lang-toggle button[aria-pressed="true"] { background:rgba(209,60,255,0.22); color:var(--text); }
     .btn { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:0 18px; border-radius:999px; border:1px solid var(--line); background:var(--panel); color:var(--text); font-weight:780; box-shadow:0 10px 30px rgba(0,0,0,0.15); }
-    .btn.primary { border:0; color:#06110c; background:linear-gradient(135deg,var(--cyan),var(--green)); }
+    .btn.primary { border:0; color:#fff; background:linear-gradient(135deg,var(--green),var(--purple)); }
     .hero { padding:82px 0 52px; }
     .hero-grid { display:grid; grid-template-columns:0.95fr 1.05fr; gap:42px; align-items:end; }
     h1,h2,h3 { margin:0; letter-spacing:-0.045em; line-height:1.05; }
@@ -53,7 +53,7 @@
     @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } }
 
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.7" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.8" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -114,7 +114,7 @@
         </article>
         <article class="card">
           <h2 data-i18n="musicDnaTitle">Music DNA is opt-in</h2>
-          <p data-i18n="musicDnaText">Music DNA is opt-in. Totdat je het inschakelt, bouwt DJConnect geen Music DNA kennis uit Ask DJ, luisterprofielen, recente tracks, voorkeuren of aanbevelingen. Na opt-in mag Home Assistant compacte signalen opbouwen zoals favoriete genres/artiesten, recente tracks, mood/energy hints, recommendation feedback en listening-time patterns.</p>
+          <p data-i18n="musicDnaText">Music DNA is opt-in. Totdat je het inschakelt, bouwt DJConnect geen Music DNA kennis uit Ask DJ, luisterprofielen, recente tracks, voorkeuren of aanbevelingen. Na opt-in mag Home Assistant compacte signalen opbouwen zoals succesvolle playback/Play Now-keuzes, recente playbackmetadata, artiesten en genres waar beschikbaar, Track Insight energie/genre analyse, realtime mood samples en compacte Spotify profiel/recently-played/top-data waar de backend die ophaalt.</p>
         </article>
         <article class="card">
           <h2 data-i18n="clearDnaTitle">Music DNA wissen</h2>
@@ -122,7 +122,7 @@
         </article>
         <article class="card">
           <h2 data-i18n="clientDnaTitle">Clients en profieldata</h2>
-          <p data-i18n="clientDnaText">Clients do not store your persistent Music DNA profile. Het Music DNA scherm haalt structured profile data op uit Home Assistant; als Music DNA disabled is, toont de client een opt-in of empty state. Track Insight kan per-track Music DNA Match hints tonen, maar dat is niet hetzelfde als het volledige Music DNA profiel.</p>
+          <p data-i18n="clientDnaText">Clients do not store your persistent Music DNA profile. Het Music DNA dashboard haalt server-side kaarten uit Home Assistant, zoals samenvatting, favoriete genres, favoriete artiesten, energieprofiel, mood/smaakrichting, recente tracks, gebaseerd op en bijgewerkt.</p>
         </article>
         <article class="card">
           <h2 data-i18n="notificationsTitle">Apple meldingen</h2>
@@ -134,7 +134,7 @@
         </article>
         <article class="card">
           <h2 data-i18n="logsTitle">Diagnostics en logs</h2>
-          <p data-i18n="logsText">Diagnostics en logs redacteren secrets en horen geen raw audio, full prompts, volledige Ask DJ history of Music DNA dumps te bevatten. Music DNA mag geen OAuth tokens, bearer tokens, raw audio, volledige prompts of volledige chatgeschiedenis opslaan.</p>
+          <p data-i18n="logsText">Diagnostics en logs redacteren secrets en horen geen raw audio, full prompts, volledige Ask DJ history of Music DNA dumps te bevatten. Music DNA mag geen OAuth tokens, bearer tokens, raw audio, volledige prompts of onbeperkte Spotify luistergeschiedenis opslaan.</p>
         </article>
         <article class="card">
           <h2 data-i18n="supportTitle">Support en feedback</h2>
@@ -147,7 +147,7 @@
       <div class="wrap grid-2">
         <article class="card"><h2 data-i18n="faqAskDjDnaQuestion">Does Ask DJ require Music DNA?</h2><p data-i18n="faqAskDjDnaAnswer">Nee. Ask DJ works without Music DNA. Zonder opt-in werkt Ask DJ nog steeds voor vragen, muziekbediening, Track Insight en gewone antwoorden.</p></article>
         <article class="card"><h2 data-i18n="faqDnaStoredQuestion">Where is Music DNA stored?</h2><p data-i18n="faqDnaStoredAnswer">Music DNA is server-side in Home Assistant, niet een client-local profiel. Clients do not store your persistent Music DNA profile.</p></article>
-        <article class="card"><h2 data-i18n="faqDnaDeleteQuestion">Can I delete Music DNA?</h2><p data-i18n="faqDnaDeleteAnswer">You can clear Music DNA at any time. Clear wist learned Music DNA, maar hoeft de feature niet uit te zetten.</p></article>
+        <article class="card"><h2 data-i18n="faqDnaDeleteQuestion">Can I delete Music DNA?</h2><p data-i18n="faqDnaDeleteAnswer">You can clear Music DNA at any time. Clear wist learned Music DNA en behoudt de opt-in instelling; als Music DNA aan staat begint de opbouw opnieuw vanaf leeg.</p></article>
         <article class="card"><h2 data-i18n="faqSpotifyQuestion">Does DJConnect store Spotify credentials on devices?</h2><p data-i18n="faqSpotifyAnswer">Nee. Spotify credentials stay in Home Assistant. ESP32 bewaart geen Spotify credentials en krijgt geen Ask DJ chat history.</p></article>
         <article class="card"><h2 data-i18n="faqCloudQuestion">Does DJConnect send raw audio or prompts to its own cloud?</h2><p data-i18n="faqCloudAnswer">Nee. DJConnect's active integration routes use Home Assistant Assist/STT/TTS and do not call direct external AI/STT/TTS APIs. Ruwe audio wordt standaard niet opgeslagen.</p></article>
         <article class="card"><h2 data-i18n="faqSpotifyAffiliationQuestion">Is DJConnect affiliated with Spotify?</h2><p data-i18n="faqSpotifyAffiliationAnswer">DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.</p></article>
@@ -168,10 +168,10 @@
     <p>Copyright Peter van Tol 2026. Released under the MIT License.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.2.7</p>
+    <p class="site-version">DJConnect website v3.2.8</p>
   </footer>
 
-  <script src="assets/i18n.js?v=3.2.7"></script>
+  <script src="assets/i18n.js?v=3.2.8"></script>
 
   <script>
     const translations = {
@@ -199,17 +199,17 @@
                 aiTitle: "Ask DJ en Music DNA",
                 aiText: "DJConnect is ontworpen als Home Assistant-first systeem. De Home Assistant integration orkestreert Ask DJ, playback, Assist/STT/TTS en Music DNA. Ask DJ works without Music DNA. Zonder opt-in gebruikt Ask DJ geen opgeslagen persoonlijke Music DNA context.",
                 musicDnaTitle: "Music DNA is opt-in",
-                musicDnaText: "Music DNA is opt-in. Totdat je het inschakelt, bouwt DJConnect geen Music DNA kennis uit Ask DJ, luisterprofielen, recente tracks, voorkeuren of aanbevelingen. Na opt-in mag Home Assistant compacte signalen opbouwen zoals favoriete genres/artiesten, recente tracks, mood/energy hints, recommendation feedback en listening-time patterns.",
+                musicDnaText: "Music DNA is opt-in. Totdat je het inschakelt, bouwt DJConnect geen Music DNA kennis uit Ask DJ, luisterprofielen, recente tracks, voorkeuren of aanbevelingen. Na opt-in mag Home Assistant compacte signalen opbouwen zoals succesvolle playback/Play Now-keuzes, recente playbackmetadata, artiesten en genres waar beschikbaar, Track Insight energie/genre analyse, realtime mood samples en compacte Spotify profiel/recently-played/top-data waar de backend die ophaalt.",
                 clearDnaTitle: "Music DNA wissen",
                 clearDnaText: "You can clear Music DNA at any time. Als Music DNA aan blijft, begint DJConnect opnieuw vanaf een leeg profiel. Zet je Music DNA uit, dan wordt learned DNA gewist en stopt verdere opbouw.",
                 clientDnaTitle: "Clients en profieldata",
-                clientDnaText: "Clients do not store your persistent Music DNA profile. Het Music DNA scherm haalt structured profile data op uit Home Assistant; als Music DNA disabled is, toont de client een opt-in of empty state. Track Insight kan per-track Music DNA Match hints tonen, maar dat is niet hetzelfde als het volledige Music DNA profiel.",
+                clientDnaText: "Clients do not store your persistent Music DNA profile. Het Music DNA dashboard haalt server-side kaarten uit Home Assistant, zoals samenvatting, favoriete genres, favoriete artiesten, energieprofiel, mood/smaakrichting, recente tracks, gebaseerd op en bijgewerkt.",
                 notificationsTitle: "Apple meldingen",
                 notificationsText: "iOS, macOS en Apple Watch kunnen optionele pushmeldingen gebruiken via de DJConnect pushrelay op api.djconnect.dev. Home Assistant en de relay bewaren alleen push-routingmetadata en minimale auditgegevens. Pushberichten zijn minimale wake/attention hints en bevatten geen Spotify tokens, Home Assistant tokens, ruwe prompts, volledige Music DNA/history, audio of lange DJ-antwoorden.",
                 voiceTitle: "Voice en audio",
                 voiceText: "Wanneer je DJConnect met Home Assistant Assist gebruikt, worden spraakherkenning, taal en TTS door je eigen Home Assistant Assist pipeline verwerkt. DJConnect's active integration routes use Home Assistant Assist/STT/TTS and do not call direct external AI/STT/TTS APIs.",
                 logsTitle: "Diagnostics en logs",
-                logsText: "Diagnostics en logs redacteren secrets en horen geen raw audio, full prompts, volledige Ask DJ history of Music DNA dumps te bevatten. Music DNA mag geen OAuth tokens, bearer tokens, raw audio, volledige prompts of volledige chatgeschiedenis opslaan.",
+                logsText: "Diagnostics en logs redacteren secrets en horen geen raw audio, full prompts, volledige Ask DJ history of Music DNA dumps te bevatten. Music DNA mag geen OAuth tokens, bearer tokens, raw audio, volledige prompts of onbeperkte Spotify luistergeschiedenis opslaan.",
                 supportTitle: "Support en feedback",
                 supportText: "Als je support mailt, verwerken we de informatie die je zelf meestuurt om je vraag te beantwoorden. Stuur geen wachtwoorden, OAuth tokens, WiFi-wachtwoorden of andere geheimen mee. Gebruik voor privacyvragen support@djconnect.dev.",
                 rightsTitle: "Vragen of verzoeken",
@@ -219,7 +219,7 @@
                 faqDnaStoredQuestion: "Where is Music DNA stored?",
                 faqDnaStoredAnswer: "Music DNA is server-side in Home Assistant, niet een client-local profiel. Clients do not store your persistent Music DNA profile.",
                 faqDnaDeleteQuestion: "Can I delete Music DNA?",
-                faqDnaDeleteAnswer: "You can clear Music DNA at any time. Clear wist learned Music DNA, maar hoeft de feature niet uit te zetten.",
+                faqDnaDeleteAnswer: "You can clear Music DNA at any time. Clear wist learned Music DNA en behoudt de opt-in instelling; als Music DNA aan staat begint de opbouw opnieuw vanaf leeg.",
                 faqSpotifyQuestion: "Does DJConnect store Spotify credentials on devices?",
                 faqSpotifyAnswer: "Nee. Spotify credentials stay in Home Assistant. ESP32 bewaart geen Spotify credentials en krijgt geen Ask DJ chat history.",
                 faqCloudQuestion: "Does DJConnect send raw audio or prompts to its own cloud?",
@@ -254,17 +254,17 @@
                 aiTitle: "Ask DJ and Music DNA",
                 aiText: "DJConnect is designed as a Home Assistant-first system. The Home Assistant integration orchestrates Ask DJ, playback, Assist/STT/TTS and Music DNA. Ask DJ works without Music DNA. Without opt-in, Ask DJ uses no stored personal Music DNA context.",
                 musicDnaTitle: "Music DNA is opt-in",
-                musicDnaText: "Music DNA is opt-in. Until you enable it, DJConnect does not build Music DNA knowledge from Ask DJ, listening profiles, recent tracks, preferences, or recommendations. After opt-in, Home Assistant may build compact signals such as favorite genres/artists, recent tracks, mood/energy hints, recommendation feedback and listening-time patterns.",
+                musicDnaText: "Music DNA is opt-in. Until you enable it, DJConnect does not build Music DNA knowledge from Ask DJ, listening profiles, recent tracks, preferences, or recommendations. After opt-in, Home Assistant may build compact signals such as successful playback/Play Now choices, recent playback metadata, artists and genres where available, Track Insight energy/genre analysis, realtime mood samples and compact Spotify profile/recently-played/top data where the backend fetches it.",
                 clearDnaTitle: "Clear Music DNA",
                 clearDnaText: "You can clear Music DNA at any time. If Music DNA remains enabled, DJConnect starts learning again from an empty profile. If you turn it off, learned DNA is cleared and future learning stops.",
                 clientDnaTitle: "Clients and profile data",
-                clientDnaText: "Clients do not store your persistent Music DNA profile. The Music DNA screen fetches structured profile data from Home Assistant; when Music DNA is disabled, the client shows an opt-in or empty state. Track Insight can show per-track Music DNA Match hints, but that is not the full Music DNA profile.",
+                clientDnaText: "Clients do not store your persistent Music DNA profile. The Music DNA dashboard fetches server-side cards from Home Assistant, such as summary, favorite genres, favorite artists, energy profile, mood/taste direction, recent tracks, based on and updated.",
                 notificationsTitle: "Apple notifications",
                 notificationsText: "iOS, macOS and Apple Watch can use optional push notifications through the DJConnect push relay at api.djconnect.dev. Home Assistant and the relay store only push routing metadata and minimal audit data. Push messages are minimal wake/attention hints and contain no Spotify tokens, Home Assistant tokens, raw prompts, full Music DNA/history, audio or long DJ replies.",
                 voiceTitle: "Voice and audio",
                 voiceText: "When you use DJConnect with Home Assistant Assist, speech recognition, language and TTS are handled by your own Home Assistant Assist pipeline. DJConnect's active integration routes use Home Assistant Assist/STT/TTS and do not call direct external AI/STT/TTS APIs.",
                 logsTitle: "Diagnostics and logs",
-                logsText: "Diagnostics and logs redact secrets and should not contain raw audio, full prompts, full Ask DJ history or Music DNA dumps. Music DNA must not store OAuth tokens, bearer tokens, raw audio, full prompts or full chat history.",
+                logsText: "Diagnostics and logs redact secrets and should not contain raw audio, full prompts, full Ask DJ history or Music DNA dumps. Music DNA must not store OAuth tokens, bearer tokens, raw audio, full prompts or unbounded Spotify listening history.",
                 supportTitle: "Support and feedback",
                 supportText: "If you email support, we process the information you choose to send so we can answer your question. Do not send passwords, OAuth tokens, WiFi passwords or other secrets. Use support@djconnect.dev for privacy questions.",
                 rightsTitle: "Questions or requests",
@@ -274,7 +274,7 @@
                 faqDnaStoredQuestion: "Where is Music DNA stored?",
                 faqDnaStoredAnswer: "Music DNA is server-side in Home Assistant, not a client-local profile. Clients do not store your persistent Music DNA profile.",
                 faqDnaDeleteQuestion: "Can I delete Music DNA?",
-                faqDnaDeleteAnswer: "You can clear Music DNA at any time. Clear removes learned Music DNA without necessarily turning the feature off.",
+                faqDnaDeleteAnswer: "You can clear Music DNA at any time. Clear removes learned Music DNA and keeps the opt-in setting; if Music DNA is enabled, learning restarts from empty.",
                 faqSpotifyQuestion: "Does DJConnect store Spotify credentials on devices?",
                 faqSpotifyAnswer: "No. Spotify credentials stay in Home Assistant. ESP32 stores no Spotify credentials and receives no Ask DJ chat history.",
                 faqCloudQuestion: "Does DJConnect send raw audio or prompts to its own cloud?",
@@ -309,17 +309,17 @@
                 aiTitle: "Ask DJ and Music DNA",
                 aiText: "DJConnect is designed as a Home Assistant-first system. The Home Assistant integration orchestrates Ask DJ, playback, Assist/STT/TTS and Music DNA. Ask DJ works without Music DNA. Without opt-in, Ask DJ uses no stored personal Music DNA context.",
                 musicDnaTitle: "Music DNA is opt-in",
-                musicDnaText: "Music DNA is opt-in. Until you enable it, DJConnect does not build Music DNA knowledge from Ask DJ, listening profiles, recent tracks, preferences, or recommendations. After opt-in, Home Assistant may build compact signals such as favorite genres/artists, recent tracks, mood/energy hints, recommendation feedback and listening-time patterns.",
+                musicDnaText: "Music DNA is opt-in. Until you enable it, DJConnect does not build Music DNA knowledge from Ask DJ, listening profiles, recent tracks, preferences, or recommendations. After opt-in, Home Assistant may build compact signals such as successful playback/Play Now choices, recent playback metadata, artists and genres where available, Track Insight energy/genre analysis, realtime mood samples and compact Spotify profile/recently-played/top data where the backend fetches it.",
                 clearDnaTitle: "Clear Music DNA",
                 clearDnaText: "You can clear Music DNA at any time. If Music DNA remains enabled, DJConnect starts learning again from an empty profile. If you turn it off, learned DNA is cleared and future learning stops.",
                 clientDnaTitle: "Clients and profile data",
-                clientDnaText: "Clients do not store your persistent Music DNA profile. The Music DNA screen fetches structured profile data from Home Assistant; when Music DNA is disabled, the client shows an opt-in or empty state. Track Insight can show per-track Music DNA Match hints, but that is not the full Music DNA profile.",
+                clientDnaText: "Clients do not store your persistent Music DNA profile. The Music DNA dashboard fetches server-side cards from Home Assistant, such as summary, favorite genres, favorite artists, energy profile, mood/taste direction, recent tracks, based on and updated.",
                 notificationsTitle: "Apple notifications",
                 notificationsText: "iOS, macOS and Apple Watch can use optional push notifications through the DJConnect push relay at api.djconnect.dev. Home Assistant and the relay store only push routing metadata and minimal audit data. Push messages are minimal wake/attention hints and contain no Spotify tokens, Home Assistant tokens, raw prompts, full Music DNA/history, audio or long DJ replies.",
                 voiceTitle: "Voice and audio",
                 voiceText: "When you use DJConnect with Home Assistant Assist, speech recognition, language and TTS are handled by your own Home Assistant Assist pipeline. DJConnect's active integration routes use Home Assistant Assist/STT/TTS and do not call direct external AI/STT/TTS APIs.",
                 logsTitle: "Diagnostics and logs",
-                logsText: "Diagnostics and logs redact secrets and should not contain raw audio, full prompts, full Ask DJ history or Music DNA dumps. Music DNA must not store OAuth tokens, bearer tokens, raw audio, full prompts or full chat history.",
+                logsText: "Diagnostics and logs redact secrets and should not contain raw audio, full prompts, full Ask DJ history or Music DNA dumps. Music DNA must not store OAuth tokens, bearer tokens, raw audio, full prompts or unbounded Spotify listening history.",
                 supportTitle: "Support and feedback",
                 supportText: "If you email support, we process the information you choose to send so we can answer your question. Do not send passwords, OAuth tokens, WiFi passwords or other secrets. Use support@djconnect.dev for privacy questions.",
                 rightsTitle: "Questions or requests",
@@ -329,7 +329,7 @@
                 faqDnaStoredQuestion: "Where is Music DNA stored?",
                 faqDnaStoredAnswer: "Music DNA is server-side in Home Assistant, not a client-local profile. Clients do not store your persistent Music DNA profile.",
                 faqDnaDeleteQuestion: "Can I delete Music DNA?",
-                faqDnaDeleteAnswer: "You can clear Music DNA at any time. Clear removes learned Music DNA without necessarily turning the feature off.",
+                faqDnaDeleteAnswer: "You can clear Music DNA at any time. Clear removes learned Music DNA and keeps the opt-in setting; if Music DNA is enabled, learning restarts from empty.",
                 faqSpotifyQuestion: "Does DJConnect store Spotify credentials on devices?",
                 faqSpotifyAnswer: "No. Spotify credentials stay in Home Assistant. ESP32 stores no Spotify credentials and receives no Ask DJ chat history.",
                 faqCloudQuestion: "Does DJConnect send raw audio or prompts to its own cloud?",
@@ -364,17 +364,17 @@
                 aiTitle: "Ask DJ and Music DNA",
                 aiText: "DJConnect is designed as a Home Assistant-first system. The Home Assistant integration orchestrates Ask DJ, playback, Assist/STT/TTS and Music DNA. Ask DJ works without Music DNA. Without opt-in, Ask DJ uses no stored personal Music DNA context.",
                 musicDnaTitle: "Music DNA is opt-in",
-                musicDnaText: "Music DNA is opt-in. Until you enable it, DJConnect does not build Music DNA knowledge from Ask DJ, listening profiles, recent tracks, preferences, or recommendations. After opt-in, Home Assistant may build compact signals such as favorite genres/artists, recent tracks, mood/energy hints, recommendation feedback and listening-time patterns.",
+                musicDnaText: "Music DNA is opt-in. Until you enable it, DJConnect does not build Music DNA knowledge from Ask DJ, listening profiles, recent tracks, preferences, or recommendations. After opt-in, Home Assistant may build compact signals such as successful playback/Play Now choices, recent playback metadata, artists and genres where available, Track Insight energy/genre analysis, realtime mood samples and compact Spotify profile/recently-played/top data where the backend fetches it.",
                 clearDnaTitle: "Clear Music DNA",
                 clearDnaText: "You can clear Music DNA at any time. If Music DNA remains enabled, DJConnect starts learning again from an empty profile. If you turn it off, learned DNA is cleared and future learning stops.",
                 clientDnaTitle: "Clients and profile data",
-                clientDnaText: "Clients do not store your persistent Music DNA profile. The Music DNA screen fetches structured profile data from Home Assistant; when Music DNA is disabled, the client shows an opt-in or empty state. Track Insight can show per-track Music DNA Match hints, but that is not the full Music DNA profile.",
+                clientDnaText: "Clients do not store your persistent Music DNA profile. The Music DNA dashboard fetches server-side cards from Home Assistant, such as summary, favorite genres, favorite artists, energy profile, mood/taste direction, recent tracks, based on and updated.",
                 notificationsTitle: "Apple notifications",
                 notificationsText: "iOS, macOS and Apple Watch can use optional push notifications through the DJConnect push relay at api.djconnect.dev. Home Assistant and the relay store only push routing metadata and minimal audit data. Push messages are minimal wake/attention hints and contain no Spotify tokens, Home Assistant tokens, raw prompts, full Music DNA/history, audio or long DJ replies.",
                 voiceTitle: "Voice and audio",
                 voiceText: "When you use DJConnect with Home Assistant Assist, speech recognition, language and TTS are handled by your own Home Assistant Assist pipeline. DJConnect's active integration routes use Home Assistant Assist/STT/TTS and do not call direct external AI/STT/TTS APIs.",
                 logsTitle: "Diagnostics and logs",
-                logsText: "Diagnostics and logs redact secrets and should not contain raw audio, full prompts, full Ask DJ history or Music DNA dumps. Music DNA must not store OAuth tokens, bearer tokens, raw audio, full prompts or full chat history.",
+                logsText: "Diagnostics and logs redact secrets and should not contain raw audio, full prompts, full Ask DJ history or Music DNA dumps. Music DNA must not store OAuth tokens, bearer tokens, raw audio, full prompts or unbounded Spotify listening history.",
                 supportTitle: "Support and feedback",
                 supportText: "If you email support, we process the information you choose to send so we can answer your question. Do not send passwords, OAuth tokens, WiFi passwords or other secrets. Use support@djconnect.dev for privacy questions.",
                 rightsTitle: "Questions or requests",
@@ -384,7 +384,7 @@
                 faqDnaStoredQuestion: "Where is Music DNA stored?",
                 faqDnaStoredAnswer: "Music DNA is server-side in Home Assistant, not a client-local profile. Clients do not store your persistent Music DNA profile.",
                 faqDnaDeleteQuestion: "Can I delete Music DNA?",
-                faqDnaDeleteAnswer: "You can clear Music DNA at any time. Clear removes learned Music DNA without necessarily turning the feature off.",
+                faqDnaDeleteAnswer: "You can clear Music DNA at any time. Clear removes learned Music DNA and keeps the opt-in setting; if Music DNA is enabled, learning restarts from empty.",
                 faqSpotifyQuestion: "Does DJConnect store Spotify credentials on devices?",
                 faqSpotifyAnswer: "No. Spotify credentials stay in Home Assistant. ESP32 stores no Spotify credentials and receives no Ask DJ chat history.",
                 faqCloudQuestion: "Does DJConnect send raw audio or prompts to its own cloud?",
@@ -419,17 +419,17 @@
                 aiTitle: "Ask DJ and Music DNA",
                 aiText: "DJConnect is designed as a Home Assistant-first system. The Home Assistant integration orchestrates Ask DJ, playback, Assist/STT/TTS and Music DNA. Ask DJ works without Music DNA. Without opt-in, Ask DJ uses no stored personal Music DNA context.",
                 musicDnaTitle: "Music DNA is opt-in",
-                musicDnaText: "Music DNA is opt-in. Until you enable it, DJConnect does not build Music DNA knowledge from Ask DJ, listening profiles, recent tracks, preferences, or recommendations. After opt-in, Home Assistant may build compact signals such as favorite genres/artists, recent tracks, mood/energy hints, recommendation feedback and listening-time patterns.",
+                musicDnaText: "Music DNA is opt-in. Until you enable it, DJConnect does not build Music DNA knowledge from Ask DJ, listening profiles, recent tracks, preferences, or recommendations. After opt-in, Home Assistant may build compact signals such as successful playback/Play Now choices, recent playback metadata, artists and genres where available, Track Insight energy/genre analysis, realtime mood samples and compact Spotify profile/recently-played/top data where the backend fetches it.",
                 clearDnaTitle: "Clear Music DNA",
                 clearDnaText: "You can clear Music DNA at any time. If Music DNA remains enabled, DJConnect starts learning again from an empty profile. If you turn it off, learned DNA is cleared and future learning stops.",
                 clientDnaTitle: "Clients and profile data",
-                clientDnaText: "Clients do not store your persistent Music DNA profile. The Music DNA screen fetches structured profile data from Home Assistant; when Music DNA is disabled, the client shows an opt-in or empty state. Track Insight can show per-track Music DNA Match hints, but that is not the full Music DNA profile.",
+                clientDnaText: "Clients do not store your persistent Music DNA profile. The Music DNA dashboard fetches server-side cards from Home Assistant, such as summary, favorite genres, favorite artists, energy profile, mood/taste direction, recent tracks, based on and updated.",
                 notificationsTitle: "Apple notifications",
                 notificationsText: "iOS, macOS and Apple Watch can use optional push notifications through the DJConnect push relay at api.djconnect.dev. Home Assistant and the relay store only push routing metadata and minimal audit data. Push messages are minimal wake/attention hints and contain no Spotify tokens, Home Assistant tokens, raw prompts, full Music DNA/history, audio or long DJ replies.",
                 voiceTitle: "Voice and audio",
                 voiceText: "When you use DJConnect with Home Assistant Assist, speech recognition, language and TTS are handled by your own Home Assistant Assist pipeline. DJConnect's active integration routes use Home Assistant Assist/STT/TTS and do not call direct external AI/STT/TTS APIs.",
                 logsTitle: "Diagnostics and logs",
-                logsText: "Diagnostics and logs redact secrets and should not contain raw audio, full prompts, full Ask DJ history or Music DNA dumps. Music DNA must not store OAuth tokens, bearer tokens, raw audio, full prompts or full chat history.",
+                logsText: "Diagnostics and logs redact secrets and should not contain raw audio, full prompts, full Ask DJ history or Music DNA dumps. Music DNA must not store OAuth tokens, bearer tokens, raw audio, full prompts or unbounded Spotify listening history.",
                 supportTitle: "Support and feedback",
                 supportText: "If you email support, we process the information you choose to send so we can answer your question. Do not send passwords, OAuth tokens, WiFi passwords or other secrets. Use support@djconnect.dev for privacy questions.",
                 rightsTitle: "Questions or requests",
@@ -439,7 +439,7 @@
                 faqDnaStoredQuestion: "Where is Music DNA stored?",
                 faqDnaStoredAnswer: "Music DNA is server-side in Home Assistant, not a client-local profile. Clients do not store your persistent Music DNA profile.",
                 faqDnaDeleteQuestion: "Can I delete Music DNA?",
-                faqDnaDeleteAnswer: "You can clear Music DNA at any time. Clear removes learned Music DNA without necessarily turning the feature off.",
+                faqDnaDeleteAnswer: "You can clear Music DNA at any time. Clear removes learned Music DNA and keeps the opt-in setting; if Music DNA is enabled, learning restarts from empty.",
                 faqSpotifyQuestion: "Does DJConnect store Spotify credentials on devices?",
                 faqSpotifyAnswer: "No. Spotify credentials stay in Home Assistant. ESP32 stores no Spotify credentials and receives no Ask DJ chat history.",
                 faqCloudQuestion: "Does DJConnect send raw audio or prompts to its own cloud?",
@@ -483,6 +483,6 @@
 
   </script>
 
-  <script src="assets/site-nav.js?v=3.2.7"></script>
+  <script src="assets/site-nav.js?v=3.2.8"></script>
 </body>
 </html>

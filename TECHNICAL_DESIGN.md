@@ -2,7 +2,7 @@
 
 This document records the implementation-level design choices for the DJConnect website. It is reverse-engineered from the repository and must be reviewed for every release.
 
-Current website version: `3.2.7`
+Current website version: `3.2.8`
 
 ## Scope
 
@@ -314,6 +314,11 @@ Sources:
 ### CSS
 
 - CSS custom properties define per-page design tokens such as `--bg`, `--text`, `--muted`, `--line`, `--cyan`, `--green`, `--purple`.
+- The current visual contract follows the app: midnight indigo page
+  backgrounds, violet glass panels, soft violet borders, magenta/violet primary
+  actions and cyan as a secondary analysis/voice accent. Do not reintroduce the
+  previous high-cyan CTA family or mixed pastel background accents for public
+  pages.
 - Layouts prefer CSS Grid and Flexbox.
 - Components use low-radius cards, pill buttons and responsive media queries.
 - Visuals are mostly CSS-built device mockups and SVG/PNG assets.

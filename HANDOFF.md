@@ -12,10 +12,12 @@
 - Cloudflare Pages project: `djconnect`
 - Source directory: `wwwroot`
 - Release publish directory: `dist/wwwroot`
-- Current version: `3.2.13`
+- Current version: `3.2.14`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Platform overview page with CSS architecture diagram: `wwwroot/platform.html`
+- Developer documentation page with architecture, repositories and API
+  contracts: `wwwroot/developers.html`
 - Voice commands page: `wwwroot/voice-commands.html`
 - Voice Assistant page: `wwwroot/voice-assistant.html`
 - Support page: `wwwroot/support.html`
@@ -246,11 +248,12 @@
    commit.
 2. Commit all changes to `main`.
 3. Update or consciously re-check all repository documentation files before release: `README.md`, `HANDOFF.md`, `TESTS.md`, `TODO.md`, `ISSUES.md`, `CHANGELOG.md`, `VOICE_INTENT_DATA_PROMPT.md`, `TECHNICAL_DESIGN.md` and `CHAT_BOOTSTRAP.md`.
-4. For cross-repo contract changes, update `pcvantol/djconnect/SYNC_PROMPTS.md` in the Home Assistant integration repo. For roadmap changes, update `pcvantol/djconnect/PRODUCT_ROADMAP.md`. Keep no local copies of either file in this website repo.
-5. Check whether test coverage needs to be expanded for the release change. Add tests for changed routes, copy, rendering contracts, analytics, release scripts or deployment behavior.
-6. Ensure the GitHub Actions repository secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` exist.
-7. Run `./release.sh --skip-deploy` when Cloudflare credentials are only available in GitHub Actions.
-8. Verify the GitHub Release, the `Deploy Cloudflare Pages` workflow run and https://djconnect.dev.
+4. Review all public translations in `en`, `nl`, `de`, `fr` and `es`, not only changed source-language copy, and run `npm run i18n:check`.
+5. For cross-repo contract changes, update `pcvantol/djconnect/SYNC_PROMPTS.md` in the Home Assistant integration repo. For roadmap changes, update `pcvantol/djconnect/PRODUCT_ROADMAP.md`. Keep no local copies of either file in this website repo.
+6. Check whether test coverage needs to be expanded for the release change. Add tests for changed routes, copy, rendering contracts, translations, analytics, release scripts or deployment behavior.
+7. Ensure the GitHub Actions repository secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` exist.
+8. Run `./release.sh --skip-deploy` when Cloudflare credentials are only available in GitHub Actions.
+9. Verify the GitHub Release, the `Deploy Cloudflare Pages` workflow run and https://djconnect.dev.
 
 The workflow runs `npm ci`, `npm run deps:check`, `npm test` and `npm run build:release` on pull requests and pushes to `main`. Pull requests only validate, build and test the site. Pushes to `main` deploy the validated `dist/wwwroot` artifact to Cloudflare Pages after the test job succeeds, using `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` from GitHub Actions secrets, then check https://djconnect.dev for the expected footer version.
 The release script verifies the Dutch screenshot manifest, verifies the core documentation files exist, checks `CHANGELOG.md` and `HANDOFF.md` against the current `VERSION`, builds a minified release copy in `dist/wwwroot`, removes older GitHub Releases, matching local/remote tags and older GitHub Actions workflow runs by default. It keeps the newly released tag and only the newest workflow run. Override workflow-run retention with `KEEP_WORKFLOW_RUNS=N` when needed.
@@ -302,7 +305,7 @@ useful for higher GitHub API limits.
   the token-protected `/api/stats` contract and the release-script
   dependency/tool preflight.
 - `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. `npm run screenshots:live` captures Dutch live production screenshots at a laptop viewport into `screenshots/live-laptop/`. Neither is part of the default `npm test` run.
-- Current released version `3.2.13` syncs the public product contract with the
+- Current released version `3.2.14` syncs the public product contract with the
   current Home Assistant integration and aligns the website color system with
   the current app. Version `3.2.7` loads localized static What's New JSON on
   download-page changelogs before falling back to GitHub release bodies.

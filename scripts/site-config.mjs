@@ -22,6 +22,7 @@ export const publicPages = [
   "start",
   "features",
   "platform",
+  "developers",
   "voice-commands",
   "voice-assistant",
   "blog",

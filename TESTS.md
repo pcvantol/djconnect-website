@@ -50,6 +50,12 @@
   capability fallback, JSON disabled responses, safe disabled reasons, polling
   through `ttl_seconds`/`poll_after_seconds`, optional cache metadata, and
   WebSocket/push as a future non-breaking extension path.
+- Open `wwwroot/developers.html` and verify it documents the technical
+  architecture, repository map, canonical `client_type` values, stable client
+  ID prefixes, Home Assistant and local device API endpoint groups, Ask DJ
+  response contract, Music DNA opt-in endpoints, backend adapter metadata,
+  firmware manifest/OTA rules, security/privacy redaction rules and the MIT /
+  Spotify non-affiliation legal copy.
 - Verify the Features, Spraak, Blog, Support and Privacy pages keep their top
   navigation focused on relevant cross-links only and do not show self-links.
 - Open `wwwroot/voice-commands.html` and verify the current-track,
@@ -278,6 +284,11 @@ test ! -e docs/SYNC_PROMPTS.md
 ```
 
 Before every release, check whether the test suite needs to grow. Add or update tests for changed routes, copy, translations, rendering contracts, analytics redirects, release scripts or deploy behavior.
+
+Before every release, review the visible public copy in all five supported
+languages: `en`, `nl`, `de`, `fr` and `es`. This is required even when the
+change started in only one language or in shared copy. Run `npm run i18n:check`
+after the review.
 
 `release.sh` also enforces the core documentation-file presence, verifies that
 `CHANGELOG.md` and `HANDOFF.md` mention the current website version, includes

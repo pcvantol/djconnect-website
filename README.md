@@ -7,6 +7,7 @@ Static landing page for DJConnect, published through Cloudflare Pages.
 - `wwwroot/index.html`: platform homepage with DJConnect essentials, Ask DJ, download routes and swipeable device hero.
 - `wwwroot/features.html`: feature overview page, including Ask DJ and bonus mini-games: Paddle Rally, Meteor Run, Sky Dash and Maze Chase.
 - `wwwroot/platform.html`: CSS-only platform architecture overview for clients, Home Assistant, Assist, Spotify and speakers.
+- `wwwroot/developers.html`: developer documentation page with repository overview, client identity, pairing, Home Assistant/API contracts, Ask DJ, Music DNA, backend, OTA and security notes.
 - `wwwroot/voice-commands.html`: bilingual How To page for DJConnect voice
   command intent families, including current-track status questions, direct
   playback controls, Spotify music search requests and separately rendered Ask
@@ -249,6 +250,10 @@ Before every release, update or consciously re-check all repository documentatio
 - `CHANGELOG.md`
 - `TECHNICAL_DESIGN.md`
 - `CHAT_BOOTSTRAP.md`
+
+Review all public translations in `en`, `nl`, `de`, `fr` and `es` before
+release, including unchanged-looking pages that may inherit shared copy, and
+run `npm run i18n:check`.
 
 Cross-repo contract changes must update the only canonical sync prompt in
 `pcvantol/djconnect/SYNC_PROMPTS.md`. Product roadmap changes must update the

@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DJConnect Developer Documentation</title>
+  <meta name="description" content="Technical documentation for DJConnect architecture, repositories, pairing, APIs, Music DNA, Ask DJ, OTA and security." />
+  <link rel="canonical" href="https://djconnect.dev/developers" />
+  <link rel="alternate" hreflang="en" href="https://djconnect.dev/en/developers.html" />
+  <link rel="alternate" hreflang="nl" href="https://djconnect.dev/developers.html" />
+  <link rel="alternate" hreflang="de" href="https://djconnect.dev/de/developers.html" />
+  <link rel="alternate" hreflang="fr" href="https://djconnect.dev/fr/developers.html" />
+  <link rel="alternate" hreflang="es" href="https://djconnect.dev/es/developers.html" />
+  <link rel="alternate" hreflang="x-default" href="https://djconnect.dev/developers.html" />
+  <link rel="icon" href="assets/djconnect/icon.svg" type="image/svg+xml" />
+  <style>
+    :root { --bg:#07091c; --panel:rgba(26,20,58,0.74); --panel-strong:rgba(43,34,88,0.82); --text:#f7f3ff; --muted:#aaa4bd; --line:rgba(167,118,255,0.28); --cyan:#38d7d2; --green:#d13cff; --purple:#7357ff; --pink:#a855f7; --amber:#fbbf24; --max:1180px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; background:var(--bg); }
+    body { margin:0; color:var(--text); font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height:1.55; background:radial-gradient(circle at 14% 10%, rgba(56,215,210,0.18), transparent 28rem), radial-gradient(circle at 86% 8%, rgba(168,85,247,0.13), transparent 26rem), linear-gradient(180deg,#07091c 0%,#111a47 52%,#160526 100%); }
+    a { color:inherit; text-decoration:none; }
+    code, pre { font-family:"SFMono-Regular", Consolas, "Liberation Mono", monospace; }
+    .wrap { width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
+    .nav { position:sticky; top:0; z-index:20; backdrop-filter:blur(18px); background:rgba(7,9,28,0.78); border-bottom:1px solid var(--line); }
+    .nav-inner { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:22px; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:850; font-size:1.13rem; }
+    .brand img { width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.18); box-shadow:0 0 34px rgba(209,60,255,0.28); }
+    .nav-links { display:flex; align-items:center; gap:18px; color:var(--muted); font-size:0.94rem; }
+    .nav-links a:hover, .nav-links a[aria-current="page"] { color:var(--text); }
+    .nav-controls { display:flex; align-items:center; gap:12px; }
+    .lang-toggle { display:inline-grid; grid-template-columns:repeat(5,1fr); min-width:190px; padding:3px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.055); }
+    .lang-toggle button { min-height:34px; border:0; border-radius:999px; background:transparent; color:var(--muted); font:inherit; font-size:0.82rem; font-weight:850; cursor:pointer; }
+    .lang-toggle button[aria-pressed="true"] { background:rgba(209,60,255,0.22); color:var(--text); }
+    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:0 18px; border-radius:999px; border:1px solid var(--line); background:var(--panel); color:var(--text); font-weight:780; }
+    .btn.primary { border:0; color:#fff; background:linear-gradient(135deg,var(--green),var(--purple)); }
+    .hero { padding:82px 0 34px; }
+    .hero-grid { display:grid; grid-template-columns:0.9fr 1.1fr; gap:48px; align-items:end; }
+    h1,h2,h3 { margin:0; letter-spacing:0; line-height:1.08; }
+    h1 { font-size:clamp(2.8rem,6.5vw,5.8rem); max-width:12ch; }
+    h2 { font-size:clamp(1.8rem,3.6vw,3.2rem); margin-bottom:18px; }
+    h3 { font-size:1.05rem; margin-bottom:8px; }
+    .lead { color:var(--muted); font-size:clamp(1.08rem,2.1vw,1.28rem); margin:24px 0 0; max-width:820px; }
+    section { padding:52px 0; }
+    .card { border:1px solid var(--line); border-radius:8px; background:var(--panel); padding:22px; box-shadow:0 12px 36px rgba(0,0,0,0.16); }
+    .card p, li, td { color:var(--muted); }
+    .pill { display:inline-flex; align-items:center; min-height:34px; padding:0 13px; border-radius:999px; background:rgba(56,215,210,0.13); border:1px solid var(--line); color:#9ff3ef; font-size:0.76rem; font-weight:900; letter-spacing:0.09em; text-transform:uppercase; margin-bottom:14px; }
+    .grid-2 { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+    .grid-3 { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+    .toc { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
+    .toc a { color:#9ff3ef; border:1px solid var(--line); border-radius:999px; padding:8px 12px; background:rgba(255,255,255,0.055); font-weight:760; font-size:0.9rem; }
+    .diagram { display:grid; grid-template-columns:1fr 1.2fr 1fr; gap:14px; align-items:stretch; }
+    .lane { display:grid; gap:12px; align-content:start; }
+    .lane-title { color:#9ff3ef; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.09em; font-weight:900; }
+    .node { border:1px solid var(--line); border-radius:8px; background:rgba(255,255,255,0.065); padding:14px; }
+    .node strong { display:block; color:var(--text); }
+    .node span { color:var(--muted); font-size:0.9rem; }
+    .hub { background:linear-gradient(135deg, rgba(209,60,255,0.16), rgba(56,215,210,0.1)); border-color:rgba(56,215,210,0.34); }
+    table { width:100%; border-collapse:collapse; overflow:hidden; border:1px solid var(--line); border-radius:8px; background:rgba(255,255,255,0.045); }
+    th, td { padding:12px 14px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+    th { color:var(--text); font-size:0.82rem; text-transform:uppercase; letter-spacing:0.08em; background:rgba(255,255,255,0.06); }
+    tr:last-child td { border-bottom:0; }
+    .endpoint { display:grid; gap:14px; margin-top:16px; }
+    .endpoint h3 { color:#9ff3ef; }
+    pre { margin:12px 0 0; overflow:auto; padding:14px; border-radius:8px; border:1px solid rgba(56,215,210,0.22); background:rgba(2,6,23,0.78); color:#e9f7ff; font-size:0.84rem; line-height:1.45; }
+    .small { font-size:0.9rem; color:var(--muted); }
+    .legal { color:var(--muted); font-size:0.86rem; padding:34px 0 44px; border-top:1px solid var(--line); }
+    .site-version { margin-top:14px; font-size:0.76rem; color:rgba(183,188,203,0.72); }
+    .privacy-notice { font-size:0.78rem; color:rgba(183,188,203,0.78); }
+    @media (max-width:980px) { .hero-grid,.grid-2,.grid-3,.diagram { grid-template-columns:1fr; } }
+    @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } th, td { display:block; width:100%; } tr { display:block; border-bottom:1px solid var(--line); } }
+  </style>
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.14" />
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="index.html"><img src="assets/djconnect/icon.svg" alt="" aria-hidden="true" /><span>DJConnect</span></a>
+      <div class="nav-links" id="primaryNav" aria-label="Navigatie" data-i18n-attr="aria-label:navLabel">
+        <a href="index.html" data-i18n="navHome">Home</a>
+        <a href="platform.html" data-i18n="navPlatform">Platform</a>
+        <a href="developers.html" aria-current="page" data-i18n="navDevelopers">Developers</a>
+        <a href="features.html" data-i18n="navFeatures">Features</a>
+        <a href="support.html" data-i18n="navSupport">Support</a>
+      </div>
+      <div class="nav-controls">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Menu" data-i18n-attr="aria-label:navMenu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg></button>
+        <div class="lang-toggle" aria-label="Taalkeuze" data-i18n-attr="aria-label:languageToggle">
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+          <button type="button" data-lang="nl" aria-pressed="true">NL</button>
+          <button type="button" data-lang="de" aria-pressed="false">DE</button>
+          <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+          <button type="button" data-lang="es" aria-pressed="false">ES</button>
+        </div>
+        <a class="btn primary" href="start.html" data-i18n="navStart">Aan de slag</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="mainContent">
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="pill" data-i18n="heroLabel">Technical docs</span>
+          <h1 data-i18n="heroTitle">Developer Documentation</h1>
+          <p class="lead" data-i18n="heroLead">DJConnect is a Home Assistant-first platform for Spotify or Music Assistant playback, voice remote control, Ask DJ, OTA, pairing and client integrations.</p>
+        </div>
+        <div class="card">
+          <h2 data-i18n="introTitle">Home Assistant is the orchestration point</h2>
+          <p data-i18n="introText">The custom integration coordinates pairing, backend playback, Assist/STT/TTS, Ask DJ, Music DNA, diagnostics and firmware update flows. Clients render state and send intent; they do not own Spotify backend credentials.</p>
+          <div class="toc" aria-label="Page sections" data-i18n-attr="aria-label:tocLabel">
+            <a href="#architecture">Architecture</a>
+            <a href="#repositories">Repositories</a>
+            <a href="#identity">Identity</a>
+            <a href="#api">API</a>
+            <a href="#contracts">Contracts</a>
+            <a href="#security">Security</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="architecture">
+      <div class="wrap">
+        <h2>Architecture overview</h2>
+        <div class="diagram" aria-label="DJConnect technical architecture">
+          <div class="lane">
+            <div class="lane-title">Clients</div>
+            <div class="node"><strong>ESP32</strong><span>Device runtime, audio, local UI and OTA target. No Spotify credentials.</span></div>
+            <div class="node"><strong>iOS, macOS, watchOS</strong><span>Home Assistant API clients with optional Apple push wake/sync hints.</span></div>
+            <div class="node"><strong>Raspberry Pi, Windows</strong><span>Local or desktop clients using DJConnect API contracts.</span></div>
+          </div>
+          <div class="node hub">
+            <strong>Home Assistant DJConnect integration</strong>
+            <span>Pairing, bearer token validation, Spotify OAuth/backend playback, Assist/STT/TTS, Ask DJ, Music DNA, diagnostics, OTA coordination and status cache.</span>
+          </div>
+          <div class="lane">
+            <div class="lane-title">Backends and services</div>
+            <div class="node"><strong>Spotify Web API / Music Assistant</strong><span>Playback and library operations through backend adapters.</span></div>
+            <div class="node"><strong>Home Assistant Assist/STT/TTS</strong><span>Voice pipeline, transcript and spoken responses.</span></div>
+            <div class="node"><strong>Central API / APNs relay</strong><span>Optional Apple push wake/sync hints with per-install <code>djci_</code> tokens.</span></div>
+            <div class="node"><strong>djconnect-firmware</strong><span>Public firmware releases and <code>firmware_manifest.json</code>.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="repositories">
+      <div class="wrap">
+        <h2>Repositories</h2>
+        <table>
+          <thead><tr><th>Repository</th><th>Purpose</th><th>Runtime/language</th><th>Public role</th><th>Link</th></tr></thead>
+          <tbody>
+            <tr><td>pcvantol/djconnect</td><td>Home Assistant custom integration and canonical contracts.</td><td>Python / Home Assistant</td><td>Orchestration, API and HACS install source.</td><td><a href="https://github.com/pcvantol/djconnect">GitHub</a></td></tr>
+            <tr><td>pcvantol/djconnect-app</td><td>Apple clients.</td><td>Swift / SwiftUI</td><td>iOS, macOS and watchOS clients.</td><td><a href="https://github.com/pcvantol/djconnect-app">GitHub</a></td></tr>
+            <tr><td>pcvantol/djconnect-esp32</td><td>Embedded firmware source.</td><td>ESP32 firmware</td><td>Device runtime, UI, audio and local device API.</td><td><a href="https://github.com/pcvantol/djconnect-esp32">GitHub</a></td></tr>
+            <tr><td>pcvantol/djconnect-windows</td><td>Windows client.</td><td>Windows desktop app</td><td>Desktop client integration.</td><td><a href="https://github.com/pcvantol/djconnect-windows">GitHub</a></td></tr>
+            <tr><td>pcvantol/djconnect-pi</td><td>Raspberry Pi client.</td><td>Python / Linux</td><td>Local controller and display client.</td><td><a href="https://github.com/pcvantol/djconnect-pi">GitHub</a></td></tr>
+            <tr><td>pcvantol/djconnect-website</td><td>Product website and public docs.</td><td>Static HTML/CSS/JS, Cloudflare Pages Functions</td><td>Website, docs, downloads and operator UI.</td><td><a href="https://github.com/pcvantol/djconnect-website">GitHub</a></td></tr>
+            <tr><td>pcvantol/djconnect-api</td><td>Central API and APNs relay.</td><td>Cloudflare / API service</td><td>Optional Apple push relay and operator contracts.</td><td><a href="https://github.com/pcvantol/djconnect-api">GitHub</a></td></tr>
+            <tr><td>pcvantol/djconnect-firmware</td><td>Public firmware release repository.</td><td>Release assets</td><td>Firmware binaries and manifests.</td><td><a href="https://github.com/pcvantol/djconnect-firmware">GitHub</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="identity">
+      <div class="wrap grid-2">
+        <div class="card">
+          <h2>Client identity and pairing</h2>
+          <p>Canonical <code>client_type</code> values are <code>esp32</code>, <code>ios</code>, <code>macos</code>, <code>watchos</code>, <code>raspberry_pi</code> and <code>windows</code>. The type must match the stable ID prefix.</p>
+          <pre><code>djconnect-ios-XXXXXXXXXXXX
+djconnect-macos-XXXXXXXXXXXX
+djconnect-watchos-XXXXXXXXXXXX
+djconnect-raspberry-pi-XXXXXXXXXXXX
+djconnect-windows-XXXXXXXXXXXX
+djconnect-lilygo-t-embed-s3-XXXXXXXXXXXX</code></pre>
+        </div>
+        <div class="card">
+          <h2>Pairing rules</h2>
+          <ul>
+            <li>ESP32 status and pairing JSON payloads must include <code>client_type: "esp32"</code>.</li>
+            <li>Pairing and status use bearer tokens. Token values must never appear in docs, logs or diagnostics.</li>
+            <li>App clients use Home Assistant API endpoints and do not store playback-backend credentials.</li>
+            <li>ESP32 firmware owns device runtime/audio/UI and stores no Spotify credentials.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="api">
+      <div class="wrap">
+        <h2>API documentation</h2>
+        <p class="lead">Examples use placeholders only: <code>&lt;HA_TOKEN&gt;</code>, <code>&lt;DEVICE_TOKEN&gt;</code>, <code>&lt;CLIENT_ID&gt;</code>, <code>&lt;DEVICE_ID&gt;</code>, <code>&lt;PAIRING_CODE&gt;</code> and <code>&lt;IMAGE_TOKEN&gt;</code>.</p>
+
+        <div class="endpoint">
+          <article class="card"><h3>POST /api/djconnect/v1/status</h3><p>Used by ESP32/local clients to publish current device status to Home Assistant. Auth: bearer device token.</p><pre><code>{"client_type":"esp32","device_id":"&lt;DEVICE_ID&gt;","firmware_version":"3.2.14","battery_percent":84}</code></pre><pre><code>{"success":true,"paired":true,"server_time":"2026-07-05T08:00:00Z"}</code></pre></article>
+          <article class="card"><h3>POST /api/djconnect/v1/command</h3><p>Used by app/device clients for playback, backend-aware actions, Ask DJ Play Now and confirmation responses. Auth: bearer HA/client token.</p><pre><code>{"client_type":"ios","client_id":"&lt;CLIENT_ID&gt;","command":"play_track","value":"spotify:track:example"}</code></pre><pre><code>{"success":true,"music_backend":"spotify_direct","music_backend_available":true,"music_target_player":"Living Room"}</code></pre></article>
+          <article class="card"><h3>POST /api/djconnect/v1/voice</h3><p>Used for voice/PTT upload or text-only DJ response tests. WAV requests use Assist/STT before command or Ask DJ handling. Auth: bearer HA/client token.</p><pre><code>{"client_type":"macos","client_id":"&lt;CLIENT_ID&gt;","text":"Play the latest album by Nova Lane"}</code></pre><pre><code>{"success":true,"recognized_text":"Play the latest album by Nova Lane","message":"I found a matching album."}</code></pre></article>
+          <article class="card"><h3>POST /api/djconnect/v1/ask_dj/message</h3><p>Text chat for iOS, macOS, watchOS, Raspberry Pi and Windows. <code>client_message_id</code> deduplicates retries. Auth: bearer HA/client token.</p><pre><code>{"client_type":"watchos","client_id":"&lt;CLIENT_ID&gt;","client_message_id":"msg-001","message":"Why does this track fit my mood?"}</code></pre><pre><code>{"success":true,"messages":[{"role":"user","text":"Why does this track fit my mood?"},{"role":"assistant","text":"Because it matches your recent late-night groove."}],"history_revision":42}</code></pre></article>
+          <article class="card"><h3>GET /api/djconnect/v1/ask_dj/history?since_revision=&lt;number&gt;</h3><p>Synchronizes server-side HA-user-scoped Ask DJ history to clients. Auth: bearer HA/client token.</p><pre><code>{"success":true,"history_revision":42,"messages":[{"role":"assistant","text":"Try a mellow synth mix."}]}</code></pre></article>
+          <article class="card"><h3>POST /api/djconnect/v1/ask_dj/history/clear</h3><p>Clears Ask DJ history for the authenticated Home Assistant user scope. Auth: bearer HA/client token.</p><pre><code>{"client_type":"macos","client_id":"&lt;CLIENT_ID&gt;"}</code></pre><pre><code>{"success":true,"clear_revision":43}</code></pre></article>
+          <article class="card"><h3>POST /api/djconnect/v1/ask_dj</h3><p>Developer/service Ask DJ entrypoint for structured requests. Auth: Home Assistant authenticated request.</p><pre><code>{"message":"Suggest three quiet tracks","client_type":"macos"}</code></pre><pre><code>{"success":true,"text":"Here are three quiet picks.","intent":"personal_music_recommendations"}</code></pre></article>
+          <article class="card"><h3>POST /api/djconnect/v1/ask_dj/idle_suggestion</h3><p>Backend-generated Ask DJ suggestion for idle clients that support it. Auth: bearer HA/client token.</p><pre><code>{"client_type":"ios","client_id":"&lt;CLIENT_ID&gt;","locale":"en"}</code></pre><pre><code>{"success":true,"message":"Want a short discovery mix?"}</code></pre></article>
+          <article class="card"><h3>POST /api/djconnect/v1/music_dna/profile</h3><p>Returns structured Music DNA dashboard/profile data. Music DNA is explicit opt-in. Auth: bearer HA/client token.</p><pre><code>{"client_type":"ios","client_id":"&lt;CLIENT_ID&gt;"}</code></pre><pre><code>{"success":true,"enabled":true,"profile":{"summary":"Warm electronic listening pattern."}}</code></pre></article>
+          <article class="card"><h3>POST /api/djconnect/v1/music_dna/settings</h3><p>Enables or disables Music DNA for the HA user scope. Auth: bearer HA/client token.</p><pre><code>{"client_type":"macos","enabled":true}</code></pre><pre><code>{"success":true,"enabled":true}</code></pre></article>
+          <article class="card"><h3>POST /api/djconnect/v1/music_dna/clear</h3><p>Clears learned Music DNA while preserving the opt-in setting. Auth: bearer HA/client token.</p><pre><code>{"client_type":"macos","confirm":true}</code></pre><pre><code>{"success":true,"enabled":true,"cleared":true}</code></pre></article>
+          <article class="card"><h3>GET /api/djconnect/v1/image_proxy/{token}</h3><p>Serves external Ask DJ images through a safe proxy token. Auth: endpoint token plus Home Assistant access context.</p><pre><code>GET /api/djconnect/v1/image_proxy/&lt;IMAGE_TOKEN&gt;</code></pre><pre><code>HTTP 200 image/jpeg</code></pre></article>
+          <article class="card"><h3>Local device API</h3><p>Home Assistant uses local-device endpoints for ESP32/Raspberry Pi pairing, commands, OTA and DJ responses. Auth varies by pairing state and device bearer token.</p><pre><code>POST /api/device/pair
+GET /api/device/info
+POST /api/device/command
+POST /api/device/ota
+POST /api/device/dj_response</code></pre><pre><code>{"pairing_code":"&lt;PAIRING_CODE&gt;","device_token":"&lt;DEVICE_TOKEN&gt;"}</code></pre></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contracts">
+      <div class="wrap grid-2">
+        <article class="card">
+          <h2>Ask DJ contract highlights</h2>
+          <ul>
+            <li>Ask DJ history is server-side, HA-user scoped and synchronized through history endpoints.</li>
+            <li><code>messages[]</code> is canonical for render order; <code>client_message_id</code> prevents duplicate chat entries.</li>
+            <li>Responses may include <code>success</code>, <code>text</code>, <code>dj_text</code>, <code>message</code>, <code>messages[]</code>, <code>user_message</code>, <code>assistant_message</code>, <code>history_revision</code>, <code>clear_revision</code>, <code>images[]</code>, <code>links[]</code>, <code>sources[]</code>, <code>playback_actions[]</code>, <code>confirmation_actions[]</code>, <code>intent</code> and <code>action</code>.</li>
+            <li><code>recently_played_history</code>, <code>track_insight</code>, <code>personal_music_profile_analysis</code> and <code>personal_music_recommendations</code> are informational unless an explicit playback action is executed through <code>/command</code>.</li>
+            <li>External images must go through the image proxy.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h2>Music backend architecture</h2>
+          <p>DJConnect routes playback through a use-case/backend layer. Spotify Direct is the default backend; Music Assistant can be used as a backend adapter when configured. New playback/control code should call the backend adapter, not Spotify helpers directly.</p>
+          <pre><code>music_backend
+music_backend_name
+music_backend_available
+music_backend_revision
+music_backend_capabilities
+music_target_player
+music_backend_error</code></pre>
+        </article>
+        <article class="card">
+          <h2>Firmware / OTA</h2>
+          <p>ESP firmware and the Home Assistant integration must share the same <code>major.minor</code> protocol version. A mismatch returns HTTP <code>426</code> with <code>error: "version_mismatch"</code>. Public releases expose <code>firmware_manifest.json</code> with <code>firmwares[]</code> entries containing <code>device</code>, <code>asset</code>, <code>url</code>, <code>sha256</code> and <code>size</code>. The LilyGO device key is <code>lilygo-t-embed-s3</code>; stable uses the latest non-prerelease and beta uses the latest prerelease.</p>
+        </article>
+        <article class="card" id="security">
+          <h2>Security and privacy</h2>
+          <ul>
+            <li>No Spotify credentials on ESP/app clients; Spotify OAuth uses PKCE in Home Assistant.</li>
+            <li>BLE provisioning writes only WiFi SSID/password.</li>
+            <li>Diagnostics redact keys containing <code>token</code>, <code>password</code>, <code>secret</code>, <code>proof</code>, <code>authorization</code>, <code>prompt</code>, <code>history</code>, <code>memory</code> or <code>raw_audio</code>.</li>
+            <li>Push payloads contain no tokens, raw prompts, full history, Music DNA dumps or long assistant text.</li>
+            <li>Music DNA is opt-in. Raw audio is not stored by default.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap legal">
+    <p>DJConnect repositories are MIT-licensed unless a third-party dependency states otherwise. Copyright (c) 2026 Peter van Tol.</p>
+    <p>Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.</p>
+    <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
+    <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
+    <p class="site-version">DJConnect website v3.2.14</p>
+  </footer>
+
+  <script src="assets/i18n.js?v=3.2.14"></script>
+  <script src="assets/page-translations.js?v=3.2.14"></script>
+  <script>
+    const translations = window.DJCONNECT_PAGE_TRANSLATIONS?.["developers"] || {};
+    const getInitialLanguage = () => window.DJCONNECT_I18N?.initialLanguage || "nl";
+    const applyLanguage = (language) => {
+      const copy = { ...(window.DJCONNECT_I18N?.shared?.[language] || {}), ...(translations[language] || translations[window.DJCONNECT_I18N?.defaultLanguage || "nl"]) };
+      document.documentElement.lang = language;
+      document.title = copy.title;
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) metaDescription.setAttribute("content", copy.metaDescription);
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.getAttribute("data-i18n");
+        if (copy[key]) element.textContent = copy[key];
+      });
+      document.querySelectorAll("[data-i18n-attr]").forEach((element) => {
+        element.getAttribute("data-i18n-attr").split(",").forEach((mapping) => {
+          const [attribute, key] = mapping.split(":").map((part) => part.trim());
+          if (attribute && key && copy[key]) element.setAttribute(attribute, copy[key]);
+        });
+      });
+      document.querySelectorAll("[data-lang]").forEach((button) => {
+        button.setAttribute("aria-pressed", button.getAttribute("data-lang") === language ? "true" : "false");
+      });
+      localStorage.setItem("djconnect-language", language);
+    };
+    document.querySelectorAll("[data-lang]").forEach((button) => {
+      button.addEventListener("click", () => applyLanguage(button.getAttribute("data-lang")));
+    });
+    applyLanguage(getInitialLanguage());
+  </script>
+  <script src="assets/site-nav.js?v=3.2.14"></script>
+</body>
+</html>

@@ -259,6 +259,7 @@ test("screenshot tooling is available for live page review", async () => {
   assert.match(screenshotTest, /width: Number\(process\.env\.SCREENSHOT_WIDTH \|\| 1440\)/);
   assert.match(screenshotTest, /height: Number\(process\.env\.SCREENSHOT_HEIGHT \|\| 900\)/);
   assert.match(screenshotTest, /const language = process\.env\.SCREENSHOT_LANG \|\| "nl"/);
+  assert.match(screenshotTest, /\/developers/);
   assert.match(screenshotTest, /localStorage\.setItem\("djconnect-language", lang\)/);
   assert.match(screenshotTest, /toHaveAttribute\("lang", language\)/);
   assert.match(screenshotTest, /language,/);
@@ -492,6 +493,47 @@ test("public pages document VibeCast Apple client parity", async () => {
   }
 });
 
+test("developers page documents technical architecture and API contracts", async () => {
+  const [developers, platform, sitemap, translations] = await Promise.all([
+    read("wwwroot/developers.html"),
+    read("wwwroot/platform.html"),
+    read("wwwroot/sitemap.xml"),
+    readPageTranslations()
+  ]);
+
+  assert.match(platform, /href="developers\.html">Developers<\/a>/);
+  assert.match(sitemap, /https:\/\/djconnect\.dev\/developers/);
+  assert.match(developers, /Developer Documentation/);
+  assert.match(developers, /Home Assistant is the orchestration point/);
+  assert.match(developers, /Home Assistant DJConnect integration/);
+  assert.match(developers, /Central API \/ APNs relay/);
+  assert.match(developers, /pcvantol\/djconnect-api/);
+  assert.match(developers, /djconnect-lilygo-t-embed-s3-XXXXXXXXXXXX/);
+  assert.match(developers, /client_type: "esp32"/);
+  assert.match(developers, /POST \/api\/djconnect\/v1\/status/);
+  assert.match(developers, /POST \/api\/djconnect\/v1\/command/);
+  assert.match(developers, /POST \/api\/djconnect\/v1\/voice/);
+  assert.match(developers, /POST \/api\/djconnect\/v1\/ask_dj\/message/);
+  assert.match(developers, /GET \/api\/djconnect\/v1\/ask_dj\/history\?since_revision=&lt;number&gt;/);
+  assert.match(developers, /POST \/api\/djconnect\/v1\/ask_dj\/idle_suggestion/);
+  assert.match(developers, /POST \/api\/djconnect\/v1\/music_dna\/profile/);
+  assert.match(developers, /GET \/api\/djconnect\/v1\/image_proxy\/\{token\}/);
+  assert.match(developers, /POST \/api\/device\/ota/);
+  assert.match(developers, /messages\[\]<\/code> is canonical for render order/);
+  assert.match(developers, /music_backend_capabilities/);
+  assert.match(developers, /firmware_manifest\.json/);
+  assert.match(developers, /HTTP <code>426<\/code> with <code>error: "version_mismatch"/);
+  assert.match(developers, /No Spotify credentials on ESP\/app clients/);
+  assert.match(developers, /Spotify is a trademark of Spotify AB/);
+  assert.doesNotMatch(developers, /AuthKey_/);
+  assert.doesNotMatch(developers, /sk_live|client_secret|refresh_token/i);
+
+  for (const language of supportedLanguages) {
+    assert.ok(translations.developers[language].heroLead, `developers ${language} should translate hero lead`);
+    assert.ok(translations.developers[language].introText, `developers ${language} should translate intro`);
+  }
+});
+
 test("all public nav pages include the mobile hamburger menu", async () => {
   const [navCss, navJs] = await Promise.all([
     read("wwwroot/assets/site-nav.css"),
@@ -508,13 +550,15 @@ test("all public nav pages include the mobile hamburger menu", async () => {
   assert.match(navJs, /setMenuOpen/);
   assert.match(navJs, /site-nav-open/);
 
+  const translations = await readPageTranslations();
+
   for (const page of publicPages) {
     const html = await read(`wwwroot/${page}.html`);
     assert.match(html, /class="menu-toggle"/, `${page} should include a mobile menu button`);
     assert.match(html, /aria-expanded="false"/, `${page} should expose collapsed menu state`);
     assert.match(html, /aria-controls="primaryNav"/, `${page} should connect the menu button to primary nav`);
     assert.match(html, /id="primaryNav"/, `${page} should identify the primary nav`);
-    assert.match(html, /navMenu: "Menu"/, `${page} should translate the menu label`);
+    assert.equal(translations[page].nl.navMenu, "Menu", `${page} should translate the menu label`);
     assert.match(html, /assets\/site-nav\.css/, `${page} should include shared nav CSS`);
     assert.match(html, /assets\/site-nav\.js/, `${page} should include shared nav behavior`);
     assert.doesNotMatch(html, /MOBILE_MENU_ENHANCEMENT/, `${page} should not duplicate mobile nav CSS`);

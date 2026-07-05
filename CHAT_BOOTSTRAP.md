@@ -11,11 +11,12 @@ Lees eerst `HANDOFF.md`, `README.md`, `TECHNICAL_DESIGN.md`, `TESTS.md`,
 Context:
 - Dit is de DJConnect website repo, statische site in `wwwroot`, deploy via
   Cloudflare Pages.
-- Huidige versie is `3.2.8`.
+- Huidige versie is `3.2.14`.
 - Repo is MIT-licensed via `LICENSE`.
 - Gebruik `npm test` voor de standaard testset.
 - Voor releases: refresh Nederlandse screenshots voor alle publieke pagina's,
-  update versie/changelog/docs inclusief `CHAT_BOOTSTRAP.md`, commit en run
+  loop alle vertalingen na in `en`, `nl`, `de`, `fr` en `es`, update
+  versie/changelog/docs inclusief `CHAT_BOOTSTRAP.md`, commit en run
   `./release.sh --skip-deploy` wanneer publicatie via GitHub Actions loopt.
   Controleer daarna de Pages-workflow en de live footer-versie.
 - Cross-repo contracten horen in `pcvantol/djconnect/SYNC_PROMPTS.md` en

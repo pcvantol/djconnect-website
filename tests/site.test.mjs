@@ -1806,6 +1806,8 @@ test("release build minifies shared assets before deploy", async () => {
   assert.match(cleanupScript, /Warning: could not delete workflow run/);
   assert.match(deployWorkflow, /pull_request:/);
   assert.match(deployWorkflow, /name: Test website/);
+  assert.match(deployWorkflow, /actions\/checkout@v5/);
+  assert.match(deployWorkflow, /actions\/setup-node@v5/);
   assert.match(deployWorkflow, /cache: npm/);
   assert.match(deployWorkflow, /npm ci/);
   assert.match(deployWorkflow, /npm test/);
@@ -1814,8 +1816,8 @@ test("release build minifies shared assets before deploy", async () => {
   assert.match(deployWorkflow, /npm run test:smoke/);
   assert.match(deployWorkflow, /npm run build:release/);
   assert.match(deployWorkflow, /needs: test/);
-  assert.match(deployWorkflow, /actions\/upload-artifact@v4/);
-  assert.match(deployWorkflow, /actions\/download-artifact@v4/);
+  assert.match(deployWorkflow, /actions\/upload-artifact@v5/);
+  assert.match(deployWorkflow, /actions\/download-artifact@v5/);
   assert.match(deployWorkflow, /if: github\.event_name == 'push' && github\.ref == 'refs\/heads\/main'/);
   assert.match(deployWorkflow, /CLOUDFLARE_ACCOUNT_ID: \$\{\{ secrets\.CLOUDFLARE_ACCOUNT_ID \}\}/);
   assert.match(deployWorkflow, /pages deploy dist\/wwwroot --project-name djconnect --branch main/);

@@ -48,14 +48,6 @@ jobs:
       - name: Build release site
         run: npm run build:release
 
-      - name: Upload Cloudflare Pages artifact
-        uses: actions/upload-artifact@v5
-        with:
-          name: cloudflare-pages-site
-          path: dist/wwwroot
-          if-no-files-found: error
-          retention-days: 1
-
   deploy:
     name: Deploy website
     runs-on: ubuntu-latest
@@ -72,11 +64,11 @@ jobs:
         with:
           node-version: 24
 
-      - name: Download Cloudflare Pages artifact
-        uses: actions/download-artifact@v5
-        with:
-          name: cloudflare-pages-site
-          path: dist/wwwroot
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build release site
+        run: npm run build:release
 
       - name: Deploy to Cloudflare Pages
         env:

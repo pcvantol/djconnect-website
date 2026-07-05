@@ -38,6 +38,7 @@ test("public page registry covers every static HTML page", async () => {
     "404",
     "blog",
     "blog-djconnect-project",
+    "developers",
     "embedded",
     "features",
     "index",

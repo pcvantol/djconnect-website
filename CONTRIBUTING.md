@@ -123,6 +123,10 @@ Before release, update `VERSION`, `package.json`, `package-lock.json`,
 version strings. Refresh Dutch screenshots for all public pages and include the
 updated files under `screenshots/live-laptop/`.
 
+Also review all public translations in the five supported languages: `en`,
+`nl`, `de`, `fr` and `es`. Do this for shared copy and unchanged-looking pages
+too, then run `npm run i18n:check`.
+
 The release script expects a clean `main` worktree, runs `npm test`, verifies
 release documentation, creates and pushes a `vX.Y.Z` tag, creates the GitHub
 Release and can deploy `wwwroot` to Cloudflare Pages. Use

@@ -5,7 +5,7 @@
     "width": 1440,
     "height": 900
   },
-  "capturedAt": "2026-06-26T21:22:40.485Z",
+  "capturedAt": "2026-07-05T06:18:20.818Z",
   "pages": [
     {
       "path": "/",
@@ -32,76 +32,82 @@
       "file": "04-platform-1440x900.png"
     },
     {
+      "path": "/developers",
+      "name": "developers",
+      "url": "http://127.0.0.1:4173/developers.html",
+      "file": "05-developers-1440x900.png"
+    },
+    {
       "path": "/voice-commands",
       "name": "voice-commands",
       "url": "http://127.0.0.1:4173/voice-commands.html",
-      "file": "05-voice-commands-1440x900.png"
+      "file": "06-voice-commands-1440x900.png"
     },
     {
       "path": "/voice-assistant",
       "name": "voice-assistant",
       "url": "http://127.0.0.1:4173/voice-assistant.html",
-      "file": "06-voice-assistant-1440x900.png"
+      "file": "07-voice-assistant-1440x900.png"
     },
     {
       "path": "/blog",
       "name": "blog",
       "url": "http://127.0.0.1:4173/blog.html",
-      "file": "07-blog-1440x900.png"
+      "file": "08-blog-1440x900.png"
     },
     {
       "path": "/blog-djconnect-project",
       "name": "blog-djconnect-project",
       "url": "http://127.0.0.1:4173/blog-djconnect-project.html",
-      "file": "08-blog-djconnect-project-1440x900.png"
+      "file": "09-blog-djconnect-project-1440x900.png"
     },
     {
       "path": "/support",
       "name": "support",
       "url": "http://127.0.0.1:4173/support.html",
-      "file": "09-support-1440x900.png"
+      "file": "10-support-1440x900.png"
     },
     {
       "path": "/ios",
       "name": "ios",
       "url": "http://127.0.0.1:4173/ios.html",
-      "file": "10-ios-1440x900.png"
+      "file": "11-ios-1440x900.png"
     },
     {
       "path": "/testflight-macos",
       "name": "testflight-macos",
       "url": "http://127.0.0.1:4173/testflight-macos.html",
-      "file": "11-testflight-macos-1440x900.png"
+      "file": "12-testflight-macos-1440x900.png"
     },
     {
       "path": "/macos",
       "name": "macos",
       "url": "http://127.0.0.1:4173/macos.html",
-      "file": "12-macos-1440x900.png"
+      "file": "13-macos-1440x900.png"
     },
     {
       "path": "/windows",
       "name": "windows",
       "url": "http://127.0.0.1:4173/windows.html",
-      "file": "13-windows-1440x900.png"
+      "file": "14-windows-1440x900.png"
     },
     {
       "path": "/maccatalyst",
       "name": "maccatalyst",
       "url": "http://127.0.0.1:4173/maccatalyst.html",
-      "file": "14-maccatalyst-1440x900.png"
+      "file": "15-maccatalyst-1440x900.png"
     },
     {
       "path": "/raspberry-pi",
       "name": "raspberry-pi",
       "url": "http://127.0.0.1:4173/raspberry-pi.html",
-      "file": "15-raspberry-pi-1440x900.png"
+      "file": "16-raspberry-pi-1440x900.png"
     },
     {
       "path": "/embedded",
       "name": "embedded",
       "url": "http://127.0.0.1:4173/embedded.html",
-      "file": "16-embedded-1440x900.png"
+      "file": "17-embedded-1440x900.png"
     }
   ]
 }

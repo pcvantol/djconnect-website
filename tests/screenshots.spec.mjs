@@ -15,6 +15,7 @@ const pages = [
   { path: "/start", name: "start" },
   { path: "/features", name: "features" },
   { path: "/platform", name: "platform" },
+  { path: "/developers", name: "developers" },
   { path: "/voice-commands", name: "voice-commands" },
   { path: "/voice-assistant", name: "voice-assistant" },
   { path: "/blog", name: "blog" },

@@ -2,12 +2,18 @@
 
 All notable changes to this website are grouped per release.
 
-## Unreleased
+## DJConnect website v3.2.14 - 2026-07-05
 
 - Restricted the Cloudflare Pages deploy job to successful pushes on `main`,
   moved Cloudflare account auth to GitHub Actions secrets, published the
   validated `dist/wwwroot` artifact and added a production footer-version
   smoke check after deploy.
+- Added release-hygiene documentation requiring a full `en`, `nl`, `de`, `fr`
+  and `es` translation review before every release.
+- Added a public Developer Documentation page covering architecture,
+  repositories, client identity, pairing, API groups, Ask DJ, Music DNA,
+  backend metadata, OTA and security/legal notes.
+- Added the Developer Documentation route to the live screenshot capture list.
 
 ## DJConnect website v3.2.13 - 2026-07-04
 

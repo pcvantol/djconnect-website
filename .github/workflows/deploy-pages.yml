@@ -115,21 +115,27 @@ jobs:
         run: |
           set -euo pipefail
 
+          current_workflow_id="$(gh api "/repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" --jq '.workflow_id')"
           workflows="$(gh api "/repos/${GITHUB_REPOSITORY}/actions/workflows" --paginate --jq '.workflows[] | .id')"
 
           for workflow_id in $workflows; do
+            keep_limit="$KEEP_RUNS"
+            if [[ "$workflow_id" == "$current_workflow_id" ]]; then
+              keep_limit=$((KEEP_RUNS - 1))
+            fi
+
             mapfile -t run_ids < <(
               gh api "/repos/${GITHUB_REPOSITORY}/actions/workflows/${workflow_id}/runs?status=completed&per_page=100" \
                 --jq '.workflow_runs | sort_by(.created_at) | reverse | .[].id'
             )
 
-            if ((${#run_ids[@]} <= KEEP_RUNS)); then
+            if ((${#run_ids[@]} <= keep_limit)); then
               continue
             fi
 
             for index in "${!run_ids[@]}"; do
               run_id="${run_ids[$index]}"
-              if ((index < KEEP_RUNS)) || [[ "$run_id" == "$GITHUB_RUN_ID" ]]; then
+              if ((index < keep_limit)) || [[ "$run_id" == "$GITHUB_RUN_ID" ]]; then
                 continue
               fi
               gh api --method DELETE "/repos/${GITHUB_REPOSITORY}/actions/runs/${run_id}"

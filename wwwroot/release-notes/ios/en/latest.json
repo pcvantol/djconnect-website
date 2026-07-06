@@ -1,7 +1,7 @@
 {
-  "version": "3.2.22",
+  "version": "3.2.23",
   "platform": "ios",
   "language": "en",
-  "name": "DJConnect iOS 3.2.22",
-  "body": "# DJConnect App 3.2.22\n\n## Added\n\n- Added dark and tinted app icon support for iOS.\n- Added haptic feedback for Mood changes, playback starts, queue and playlist\n  starts, Discover Play Now, and Ask DJ actions.\n\n## Changed\n\n- Widgets and visual accents now follow the selected Mood more consistently.\n- Mood helper copy is clearer across all supported languages.\n- App icons now use platform-specific iOS, macOS, and watchOS asset sets.\n- Track Insight keeps its Mood-driven visuals, but no longer adds an extra\n  haptic tap when opened or analyzed.\n\n## Fixed\n\n- Fixed the offline Wi-Fi link so it no longer falls back to the DJConnect app\n  settings page.\n\n---\n\nPlatform: iOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nUnsigned iOS binaries are published here for diagnostics and internal validation. For normal iOS distribution, use TestFlight/App Store."
+  "name": "DJConnect iOS 3.2.23",
+  "body": "# DJConnect App 3.2.23\n\n## Changed\n\n- Music DNA cards on iPhone are taller and scroll internally when content does\n  not fit on smaller or landscape screens.\n- Track Insight sharing uses tighter preview spacing and more bottom padding for\n  the action buttons.\n- The release flow is stricter about the exact release commit and version-scoped\n  release notes.\n\n## Fixed\n\n- Fixed the iOS copy-logs icon so it stays white instead of inheriting the\n  purple tint.\n\n---\n\nPlatform: iOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nUnsigned iOS binaries are published here for diagnostics and internal validation. For normal iOS distribution, use TestFlight/App Store."
 }

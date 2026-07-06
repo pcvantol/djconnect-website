@@ -1,23 +1,18 @@
-# DJConnect App 3.2.22
-
-## Added
-
-- Added dark and tinted app icon support for iOS.
-- Added haptic feedback for Mood changes, playback starts, queue and playlist
-  starts, Discover Play Now, and Ask DJ actions.
+# DJConnect App 3.2.23
 
 ## Changed
 
-- Widgets and visual accents now follow the selected Mood more consistently.
-- Mood helper copy is clearer across all supported languages.
-- App icons now use platform-specific iOS, macOS, and watchOS asset sets.
-- Track Insight keeps its Mood-driven visuals, but no longer adds an extra
-  haptic tap when opened or analyzed.
+- Music DNA cards on iPhone are taller and scroll internally when content does
+  not fit on smaller or landscape screens.
+- Track Insight sharing uses tighter preview spacing and more bottom padding for
+  the action buttons.
+- The release flow is stricter about the exact release commit and version-scoped
+  release notes.
 
 ## Fixed
 
-- Fixed the offline Wi-Fi link so it no longer falls back to the DJConnect app
-  settings page.
+- Fixed the iOS copy-logs icon so it stays white instead of inheriting the
+  purple tint.
 
 ---
 

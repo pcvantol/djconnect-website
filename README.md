@@ -235,7 +235,9 @@ dependencies, logs the active npm, Wrangler and Playwright tool versions, and
 stops the release if package metadata changes and still needs to be committed.
 It then runs tests, verifies that the Dutch release screenshot manifest exists,
 checks core documentation files, builds a minified release copy in
-`dist/wwwroot`, pushes `main`, creates a `vX.Y.Z` tag, creates a GitHub Release,
+`dist/wwwroot`, verifies the current `HEAD` is based on `origin/main`, pushes
+the release commit explicitly to `origin` with `HEAD:main`, creates a `vX.Y.Z`
+tag, creates a GitHub Release from only that version's `CHANGELOG.md` section,
 deploys the minified release copy to Cloudflare Pages and then automatically
 removes older GitHub Releases, matching local/remote tags and older GitHub
 Actions workflow runs. By default, only the newest workflow run remains.

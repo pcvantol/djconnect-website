@@ -11,6 +11,8 @@ FORBIDDEN_CANONICAL_COPIES=(SYNC_PROMPTS.md PRODUCT_ROADMAP.md HA_SYNC_PROMPT.md
 VERSION="$(tr -d '[:space:]' < VERSION)"
 TAG="v${VERSION}"
 BRANCH="$(git branch --show-current)"
+RELEASE_NOTES_FILE="$(mktemp)"
+trap 'rm -f "$RELEASE_NOTES_FILE"' EXIT
 usage() {
   cat <<USAGE
 Usage: ./release.sh [--skip-deploy]
@@ -57,6 +59,13 @@ if git rev-parse "$TAG" >/dev/null 2>&1; then
   exit 1
 fi
 
+echo "Checking remote release base..."
+git fetch origin main
+if ! git merge-base --is-ancestor origin/main HEAD; then
+  echo "Current HEAD is not based on origin/main. Rebase or merge the remote main branch before releasing."
+  exit 1
+fi
+
 if [[ "$SKIP_DEPLOY" != "true" && -z "${CLOUDFLARE_API_TOKEN:-}" ]]; then
   echo "CLOUDFLARE_API_TOKEN is required for deployment."
   exit 1
@@ -92,6 +101,23 @@ grep -q "Current version: \`${VERSION}\`" HANDOFF.md
 grep -q "Current website version: \`${VERSION}\`" TECHNICAL_DESIGN.md
 grep -q "DJConnect website v${VERSION}" "$PUBLISH_DIR/index.html"
 grep -q "DJConnect website v${VERSION}" "$PUBLISH_DIR/embedded.html"
+awk -v tag="$TAG" '
+  BEGIN {
+    heading = "## DJConnect website " tag " - "
+  }
+  index($0, heading) == 1 {
+    in_section = 1
+    print
+    next
+  }
+  in_section && /^## DJConnect website v/ {
+    exit
+  }
+  in_section {
+    print
+  }
+' CHANGELOG.md > "$RELEASE_NOTES_FILE"
+grep -q "DJConnect website ${TAG}" "$RELEASE_NOTES_FILE"
 
 echo "Building minified release site..."
 npm run build:release
@@ -102,7 +128,7 @@ grep -q "assets/site-nav.min.css" "$RELEASE_PUBLISH_DIR/index.html"
 grep -q "assets/site-nav.min.js" "$RELEASE_PUBLISH_DIR/index.html"
 
 echo "Pushing main..."
-git push origin main
+git push origin HEAD:main
 
 echo "Creating tag $TAG..."
 git tag -a "$TAG" -m "DJConnect website ${TAG}"
@@ -111,7 +137,7 @@ git push origin "$TAG"
 echo "Creating GitHub Release..."
 gh release create "$TAG" \
   --title "DJConnect website ${TAG}" \
-  --notes-file CHANGELOG.md \
+  --notes-file "$RELEASE_NOTES_FILE" \
   --latest
 
 if [[ "$SKIP_DEPLOY" == "true" ]]; then

@@ -1776,6 +1776,23 @@ test("release script performs standard cleanup after release", async () => {
   assert.match(releaseScript, /KEEP_WORKFLOW_RUNS="\$\{KEEP_WORKFLOW_RUNS:-1\}"/);
 });
 
+test("release script uses remote-safe push and scoped GitHub release notes", async () => {
+  const releaseScript = await read("release.sh");
+
+  assert.match(releaseScript, /git fetch origin main/);
+  assert.match(releaseScript, /git merge-base --is-ancestor origin\/main HEAD/);
+  assert.match(releaseScript, /Current HEAD is not based on origin\/main/);
+  assert.match(releaseScript, /git push origin HEAD:main/);
+  assert.doesNotMatch(releaseScript, /git push origin main/);
+  assert.match(releaseScript, /RELEASE_NOTES_FILE="\$\(mktemp\)"/);
+  assert.match(releaseScript, /trap 'rm -f "\$RELEASE_NOTES_FILE"' EXIT/);
+  assert.match(releaseScript, /awk -v tag="\$TAG"/);
+  assert.match(releaseScript, /CHANGELOG\.md > "\$RELEASE_NOTES_FILE"/);
+  assert.match(releaseScript, /grep -q "DJConnect website \$\{TAG\}" "\$RELEASE_NOTES_FILE"/);
+  assert.match(releaseScript, /--notes-file "\$RELEASE_NOTES_FILE"/);
+  assert.doesNotMatch(releaseScript, /--notes-file CHANGELOG\.md/);
+});
+
 test("release build minifies shared assets before deploy", async () => {
   const [packageJson, releaseScript, buildScript, deployWorkflow, cleanupScript] = await Promise.all([
     read("package.json"),

@@ -1,7 +1,7 @@
 {
-  "version": "3.2.21",
+  "version": "3.2.22",
   "platform": "ios",
   "language": "en",
-  "name": "DJConnect iOS 3.2.21",
-  "body": "# DJConnect App 3.2.21\n\n## Added\n\n- Added Music Discovery reminder push handling with deep links and safe refresh\n  behavior.\n- Added the Mood control to Now Playing on iOS and macOS.\n\n## Changed\n\n- Now Playing artwork backgrounds now follow the selected Mood palette.\n- VibeCast genre badges now have a larger, more distinctive gradient style that\n  follows the selected Mood palette.\n- Track Insight share actions now sit closer to the preview card.\n\n## Fixed\n\n- Fixed demo VibeCast so switching to the next track automatically starts Track\n  Insight analysis and refreshes the genre badge.\n\n---\n\nPlatform: iOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nUnsigned iOS binaries are published here for diagnostics and internal validation. For normal iOS distribution, use TestFlight/App Store."
+  "name": "DJConnect iOS 3.2.22",
+  "body": "# DJConnect App 3.2.22\n\n## Added\n\n- Added dark and tinted app icon support for iOS.\n- Added haptic feedback for Mood changes, playback starts, queue and playlist\n  starts, Discover Play Now, and Ask DJ actions.\n\n## Changed\n\n- Widgets and visual accents now follow the selected Mood more consistently.\n- Mood helper copy is clearer across all supported languages.\n- App icons now use platform-specific iOS, macOS, and watchOS asset sets.\n- Track Insight keeps its Mood-driven visuals, but no longer adds an extra\n  haptic tap when opened or analyzed.\n\n## Fixed\n\n- Fixed the offline Wi-Fi link so it no longer falls back to the DJConnect app\n  settings page.\n\n---\n\nPlatform: iOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nUnsigned iOS binaries are published here for diagnostics and internal validation. For normal iOS distribution, use TestFlight/App Store."
 }

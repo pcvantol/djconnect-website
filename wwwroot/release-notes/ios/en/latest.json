@@ -1,7 +1,7 @@
 {
-  "version": "3.2.20",
+  "version": "3.2.21",
   "platform": "ios",
   "language": "en",
-  "name": "DJConnect iOS 3.2.20",
-  "body": "# DJConnect App 3.2.20\n\n## Fixed\n\n- Fixed update-check publishing so the About screen can find the latest release\n  notes manifest on djconnect.dev.\n\n---\n\nPlatform: iOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nUnsigned iOS binaries are published here for diagnostics and internal validation. For normal iOS distribution, use TestFlight/App Store."
+  "name": "DJConnect iOS 3.2.21",
+  "body": "# DJConnect App 3.2.21\n\n## Added\n\n- Added Music Discovery reminder push handling with deep links and safe refresh\n  behavior.\n- Added the Mood control to Now Playing on iOS and macOS.\n\n## Changed\n\n- Now Playing artwork backgrounds now follow the selected Mood palette.\n- VibeCast genre badges now have a larger, more distinctive gradient style that\n  follows the selected Mood palette.\n- Track Insight share actions now sit closer to the preview card.\n\n## Fixed\n\n- Fixed demo VibeCast so switching to the next track automatically starts Track\n  Insight analysis and refreshes the genre badge.\n\n---\n\nPlatform: iOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nUnsigned iOS binaries are published here for diagnostics and internal validation. For normal iOS distribution, use TestFlight/App Store."
 }

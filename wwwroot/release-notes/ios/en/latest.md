@@ -1,9 +1,22 @@
-# DJConnect App 3.2.20
+# DJConnect App 3.2.21
+
+## Added
+
+- Added Music Discovery reminder push handling with deep links and safe refresh
+  behavior.
+- Added the Mood control to Now Playing on iOS and macOS.
+
+## Changed
+
+- Now Playing artwork backgrounds now follow the selected Mood palette.
+- VibeCast genre badges now have a larger, more distinctive gradient style that
+  follows the selected Mood palette.
+- Track Insight share actions now sit closer to the preview card.
 
 ## Fixed
 
-- Fixed update-check publishing so the About screen can find the latest release
-  notes manifest on djconnect.dev.
+- Fixed demo VibeCast so switching to the next track automatically starts Track
+  Insight analysis and refreshes the genre badge.
 
 ---
 

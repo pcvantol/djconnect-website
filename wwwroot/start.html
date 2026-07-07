@@ -233,14 +233,14 @@
       <div class="wrap grid-2 section-followup" id="vibecast">
         <div>
           <h3 data-i18n="vibecastContractTitle">VibeCast contract</h3>
-          <p class="lead" data-i18n="vibecastContractLead">VibeCast is een premium-ready Apple client feature via GET /api/djconnect/vibecast. Supported Apple client types zijn ios, macos en watchos; iOS en macOS moeten functioneel hetzelfde werken.</p>
+          <p class="lead" data-i18n="vibecastContractLead">VibeCast is een premium-ready Apple client feature via GET /api/djconnect/v1/vibecast. Supported Apple client types zijn ios, macos en watchos; iOS en macOS moeten functioneel hetzelfde werken.</p>
         </div>
         <div class="card">
           <p data-i18n="vibecastContractText">Success bevat enabled:true, revision, ttl_seconds, poll_after_seconds, context, items[] en optioneel cache. Context bevat track, artist, album, music_backend, music_backend_name en music_backend_revision. Item kinds zijn track_fact, artist_fact, album_fact, genre_fact, trivia, listening_tip, mood_note, production_note, history_note en system.</p>
         </div>
         <div class="card">
           <h3 data-i18n="vibecastStructuredTitle">Structured text</h3>
-          <p data-i18n="vibecastStructuredText">Items gebruiken structured text segmenttypes text, strong, emphasis, magnify, accent en line_break. Clients hoeven geen HTML of Markdown te parsen. Als een capability ontbreekt, bijvoorbeeld magnify, degradeert de client graceful zonder betekenisverlies.</p>
+          <p data-i18n="vibecastStructuredText">Items gebruiken structured text segmenttypes text, strong, emphasis, magnify, accent, emoji en line_break. Clients hoeven geen HTML of Markdown te parsen. Als een capability ontbreekt, bijvoorbeeld magnify, degradeert de client graceful zonder betekenisverlies.</p>
         </div>
         <div class="card">
           <h3 data-i18n="vibecastDisabledTitle">Disabled responses</h3>
@@ -268,9 +268,9 @@
             <tr><td>ESP32 LilyGO T-Embed S3</td><td data-i18n="protocol32">Protocol 3.2.x</td><td data-i18n="localOnly">Local-only</td><td data-i18n="espContract">Local-device client with _djconnect._tcp, optional Client adres and /api/device/*.</td></tr>
             <tr><td>ESP32-S3-BOX-3</td><td data-i18n="notSupported">Not supported</td><td data-i18n="notSupported">Not supported</td><td data-i18n="notSupported">Not supported</td></tr>
             <tr><td>Raspberry Pi/Linux</td><td data-i18n="protocol32">Protocol 3.2.x</td><td data-i18n="localOnly">Local-only</td><td data-i18n="piContract">Local-device client with _djconnect._tcp, optional Client adres, /api/device/*, Pi restart/shutdown/display use cases and Ask DJ readonly_actions only.</td></tr>
-            <tr><td>iOS</td><td data-i18n="localPairing">Local pairing</td><td data-i18n="remoteCapable">Remote-capable after local pairing</td><td data-i18n="iosContract">Inbound-only app client: djconnect-ios-XXXXXXXXXXXX, client_type ios, posts to /api/djconnect/pair.</td></tr>
-            <tr><td>macOS</td><td data-i18n="localPairing">Local pairing</td><td data-i18n="remoteCapable">Remote-capable after local pairing</td><td data-i18n="macosContract">Inbound-only app client: djconnect-macos-XXXXXXXXXXXX, client_type macos, posts to /api/djconnect/pair.</td></tr>
-            <tr><td>Windows</td><td data-i18n="localPairing">Local pairing</td><td data-i18n="remoteCapable">Remote-capable after local pairing</td><td data-i18n="windowsContract">Inbound-only app client: djconnect-windows-XXXXXXXXXXXX, client_type windows, posts to /api/djconnect/pair.</td></tr>
+            <tr><td>iOS</td><td data-i18n="localPairing">Local pairing</td><td data-i18n="remoteCapable">Remote-capable after local pairing</td><td data-i18n="iosContract">Inbound-only app client: djconnect-ios-XXXXXXXXXXXX, client_type ios, posts to /api/djconnect/v1/pair.</td></tr>
+            <tr><td>macOS</td><td data-i18n="localPairing">Local pairing</td><td data-i18n="remoteCapable">Remote-capable after local pairing</td><td data-i18n="macosContract">Inbound-only app client: djconnect-macos-XXXXXXXXXXXX, client_type macos, posts to /api/djconnect/v1/pair.</td></tr>
+            <tr><td>Windows</td><td data-i18n="localPairing">Local pairing</td><td data-i18n="remoteCapable">Remote-capable after local pairing</td><td data-i18n="windowsContract">Inbound-only app client: djconnect-windows-XXXXXXXXXXXX, client_type windows, posts to /api/djconnect/v1/pair.</td></tr>
             <tr><td>watchOS</td><td data-i18n="iphoneProxy">Via iPhone proxy</td><td data-i18n="iphoneProxy">Via iPhone proxy</td><td data-i18n="watchContract">No separate Home Assistant pairing; the paired iPhone proxies Watch identity and sync.</td></tr>
             <tr><td>HA Assist satellites</td><td data-i18n="conversationAgent">DJConnect conversation agent</td><td>Home Assistant Assist</td><td data-i18n="assistContract">No device token, firmware controls or client pairing UI; STT/TTS stay in the HA Assist pipeline.</td></tr>
           </tbody>
@@ -298,7 +298,7 @@
         <div class="card route-card">
           <span class="route-label">Automatisch</span>
           <h2 data-i18n="hacsTitle">2. Voeg toe aan Home Assistant</h2>
-          <p class="lead" data-i18n="hacsLead">Gebruik onderstaande Home Assistant Community Store knop om direct naar de DJConnect repository in HACS te gaan. Installeer de DJConnect integration v3.2.5 of nieuwer, herstart Home Assistant en voeg daarna DJConnect toe via Devices & services.</p>
+          <p class="lead" data-i18n="hacsLead">Gebruik onderstaande Home Assistant Community Store knop om direct naar de DJConnect repository in HACS te gaan. Installeer de DJConnect integration v3.2.18 of nieuwer, herstart Home Assistant en voeg daarna DJConnect toe via Devices & services.</p>
           <a class="btn primary" href="/go/hacs" target="_blank" rel="noopener" data-i18n="hacsButton">Open DJConnect in HACS</a>
         </div>
         <div class="card route-card">
@@ -393,7 +393,7 @@
                 <li><a class="btn primary" href="ios.html">Download iOS app</a></li>
                 <li data-i18n="appPairStep2">Open de DJConnect app op hetzelfde lokale netwerk als Home Assistant</li>
                 <li data-i18n="iosPairStep3">Scan de QR/deep-link payload die Home Assistant genereert</li>
-                <li data-i18n="appPairStep4">Geen Client adres kopiëren: de app belt Home Assistant zelf via /api/djconnect/...</li>
+                <li data-i18n="appPairStep4">Geen Client adres kopiëren: de app belt Home Assistant zelf via /api/djconnect/v1/...</li>
                 <li data-i18n="appPairStep5">Daarna kan de app lokaal of remote werken via je Home Assistant URL</li>
                 <li data-i18n="watchPairStep">Voor Apple Watch genereert Home Assistant een aparte Watch QR/deep-link payload. Scan die met iPhone; iPhone geeft de pairinggegevens door aan de gekoppelde Watch.</li>
               </ol>
@@ -404,7 +404,7 @@
                 <li><a class="btn primary" href="macos.html">Download macOS app</a></li>
                 <li data-i18n="appPairStep2">Open de DJConnect app op hetzelfde lokale netwerk als Home Assistant</li>
                 <li data-i18n="desktopPairStep3">Voer handmatig de lokale Home Assistant URL en de door Home Assistant gegenereerde koppelcode in</li>
-                <li data-i18n="appPairStep4">Geen Client adres kopiëren: de app belt Home Assistant zelf via /api/djconnect/...</li>
+                <li data-i18n="appPairStep4">Geen Client adres kopiëren: de app belt Home Assistant zelf via /api/djconnect/v1/...</li>
                 <li data-i18n="appPairStep5">Daarna kan de app lokaal of remote werken via je Home Assistant URL</li>
               </ol>
             </article>
@@ -415,7 +415,7 @@
                 <li data-i18n="windowsInstallStep">Installeer de DJConnect Windows desktop app zodra je build beschikbaar is</li>
                 <li data-i18n="appPairStep2">Open de DJConnect app op hetzelfde lokale netwerk als Home Assistant</li>
                 <li data-i18n="desktopPairStep3">Voer handmatig de lokale Home Assistant URL en de door Home Assistant gegenereerde koppelcode in</li>
-                <li data-i18n="appPairStep4">Geen Client adres kopiëren: de app belt Home Assistant zelf via /api/djconnect/...</li>
+                <li data-i18n="appPairStep4">Geen Client adres kopiëren: de app belt Home Assistant zelf via /api/djconnect/v1/...</li>
                 <li data-i18n="appPairStep5">Daarna kan de app lokaal of remote werken via je Home Assistant URL</li>
               </ol>
             </article>
@@ -455,7 +455,7 @@
       <div class="wrap grid-2">
         <article class="card">
           <h3 data-i18n="appClientTechTitle">Technisch: app-clients zijn inbound-only</h3>
-          <p data-i18n="appClientTechText">iPhone, Apple Watch, macOS en Windows publiceren geen lokale app API voor Home Assistant. Home Assistant belt nooit terug naar de app; de client post zelf naar POST /api/djconnect/pair en gebruikt daarna Home Assistant routes. Er is geen app-client mDNS/local-API discovery of fallback.</p>
+          <p data-i18n="appClientTechText">iPhone, Apple Watch, macOS en Windows publiceren geen lokale app API voor Home Assistant. Home Assistant belt nooit terug naar de app; de client post zelf naar POST /api/djconnect/v1/pair en gebruikt daarna Home Assistant routes. Er is geen app-client mDNS/local-API discovery of fallback.</p>
         </article>
         <article class="card">
           <h3 data-i18n="deviceClientTechTitle">Technisch: local-device clients blijven lokaal</h3>

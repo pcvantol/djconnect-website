@@ -43,7 +43,7 @@
   removed tempo or harmonic-analysis wording.
 - Verify the Features, Platform, iOS, macOS and How To Start pages document
   VibeCast as a premium-ready Apple client feature via `GET
-  /api/djconnect/vibecast`. Confirm supported Apple client types `ios`,
+  /api/djconnect/v1/vibecast`. Confirm supported Apple client types `ios`,
   `macos` and `watchos`, explicit macOS/iOS functional parity, backend-neutral
   Home Assistant playback source of truth, structured text segment types
   `text`, `strong`, `emphasis`, `magnify`, `accent`, `line_break`, graceful
@@ -156,7 +156,7 @@
   plus the Home Assistant-generated pairing code.
 - Verify the developer pairing copy says app clients are inbound-only, Home
   Assistant never calls back to a local app API, app clients post to
-  `POST /api/djconnect/pair`, app-client mDNS/local-API discovery is absent,
+  `POST /api/djconnect/v1/pair`, app-client mDNS/local-API discovery is absent,
   local-device clients may use `_djconnect._tcp` and local `/api/device/*`, and
   ESP32/Raspberry Pi receive no `ha_remote_url`.
 - Verify the start page links to Home Assistant voice assistant documentation, the embedded firmware page and app releases.

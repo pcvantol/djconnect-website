@@ -89,7 +89,7 @@
   and must not imply playback changes.
 - VibeCast is documented as a premium-ready first-class Apple platform feature
   on Features, Platform, iOS, macOS and How To Start. Keep `GET
-  /api/djconnect/vibecast`, supported client types `ios`, `macos`, `watchos`,
+  /api/djconnect/v1/vibecast`, supported client types `ios`, `macos`, `watchos`,
   and explicit macOS/iOS functional parity visible. macOS and iOS share the
   same endpoint, response contract, item kinds, structured text segment types,
   disabled reasons, polling/cache semantics, premium entitlement, TTL, revision
@@ -159,7 +159,7 @@
   URL. ESP32 and Raspberry Pi remain local-only. watchOS uses the iPhone proxy.
   Apple/Windows clients no longer host a local device API or require users to
   copy a Client address to Home Assistant; apps call Home Assistant through
-  `/api/djconnect/...`.
+  `/api/djconnect/v1/...`.
 - Local app clients may optionally use Home Assistant's native `/api/websocket`
   as a low-latency fast path after normal local pairing and HA websocket auth.
   Capability-detect with `djconnect/capabilities`, then use

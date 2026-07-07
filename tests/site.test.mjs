@@ -441,7 +441,7 @@ test("homepage promotes Ask DJ as a major product feature", async () => {
   assert.match(index, /Spotify Premium en Client ID zijn alleen nodig voor Spotify Direct/);
   assert.match(index, /Music Assistant gebruikt eigen providers/);
   assert.doesNotMatch(index, /HACS DJConnect integration v3\.1\.69\+/);
-  assert.match(index, /Home Assistant, HACS DJConnect integration v3\.2\.5 of nieuwer, een music backend, lokale pairing/);
+  assert.match(index, /Home Assistant, HACS DJConnect integration v3\.2\.18 of nieuwer, een music backend, lokale pairing/);
   assert.match(index, /For concrete recommendations you choose Play Now yourself; playback starts only after your tap/);
   assert.match(index, /Spotify is a trademark of Spotify AB/);
   assert.match(index, /DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB/);
@@ -467,20 +467,20 @@ test("public pages document VibeCast Apple client parity", async () => {
   assert.match(features, /premium-ready DJConnect feed voor Apple clients/);
   assert.match(features, /Home Assistant blijft de bron van waarheid/);
   assert.match(features, /Spotify Direct, Music Assistant en toekomstige backends lopen via DJConnect backend abstraction/);
-  assert.match(features, /text, strong, emphasis, magnify, accent en line_break/);
+  assert.match(features, /text, strong, emphasis, magnify, accent, emoji en line_break/);
   assert.match(features, /WebSocket of push kan later worden toegevoegd zonder contractbreuk/);
   assert.match(features, /Disabled responses blijven JSON met enabled:false/);
   assert.match(features, /href="start\.html#vibecast"/);
 
-  assert.match(platform, /Backend-neutrale Apple feed via \/api\/djconnect\/vibecast/);
+  assert.match(platform, /Backend-neutrale Apple feed via \/api\/djconnect\/v1\/vibecast/);
   assert.match(platform, /iOS en macOS krijgen dezelfde VibeCast contentkwaliteit/);
   assert.match(platform, /current-track resolution, cache, TTL, revision en disabled reasons/);
 
-  assert.match(ios, /GET \/api\/djconnect\/vibecast met client_type:"ios"/);
+  assert.match(ios, /GET \/api\/djconnect\/v1\/vibecast met client_type:"ios"/);
   assert.match(ios, /dezelfde response, item kinds, structured text segmenttypes, disabled reasons, TTL, polling en cache semantics als macOS/);
   assert.match(ios, /backend behandelt iOS en macOS niet verschillend/);
 
-  assert.match(macos, /GET \/api\/djconnect\/vibecast met client_type:"macos"/);
+  assert.match(macos, /GET \/api\/djconnect\/v1\/vibecast met client_type:"macos"/);
   assert.match(macos, /dezelfde response, item kinds, structured text segmenttypes, disabled reasons, TTL, polling en cache semantics als iOS/);
   assert.match(macos, /backend behandelt macOS en iOS niet verschillend/);
 
@@ -517,6 +517,10 @@ test("developers page documents technical architecture and API contracts", async
   assert.match(developers, /GET \/api\/djconnect\/v1\/ask_dj\/history\?since_revision=&lt;number&gt;/);
   assert.match(developers, /POST \/api\/djconnect\/v1\/ask_dj\/idle_suggestion/);
   assert.match(developers, /POST \/api\/djconnect\/v1\/music_dna\/profile/);
+  assert.match(developers, /GET \/api\/djconnect\/v1\/music_discovery/);
+  assert.match(developers, /POST \/api\/djconnect\/v1\/music_discovery\/refresh/);
+  assert.match(developers, /POST \/api\/djconnect\/v1\/music_discovery\/play/);
+  assert.match(developers, /clients never render recommendations from push payloads/);
   assert.match(developers, /GET \/api\/djconnect\/v1\/image_proxy\/\{token\}/);
   assert.match(developers, /POST \/api\/device\/ota/);
   assert.match(developers, /messages\[\]<\/code> is canonical for render order/);
@@ -652,9 +656,9 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /Patchversies mogen verschillen; major\/minor moeten matchen/);
   assert.match(start, /ESP32-S3-BOX-3<\/td><td data-i18n="notSupported">Not supported/);
   assert.match(start, /Remote-capable na lokale pairing/);
-  assert.match(start, /Inbound-only app client: djconnect-ios-XXXXXXXXXXXX, client_type ios, post naar \/api\/djconnect\/pair/);
-  assert.match(start, /Inbound-only app client: djconnect-macos-XXXXXXXXXXXX, client_type macos, post naar \/api\/djconnect\/pair/);
-  assert.match(start, /Inbound-only app client: djconnect-windows-XXXXXXXXXXXX, client_type windows, post naar \/api\/djconnect\/pair/);
+  assert.match(start, /Inbound-only app client: djconnect-ios-XXXXXXXXXXXX, client_type ios, post naar \/api\/djconnect\/v1\/pair/);
+  assert.match(start, /Inbound-only app client: djconnect-macos-XXXXXXXXXXXX, client_type macos, post naar \/api\/djconnect\/v1\/pair/);
+  assert.match(start, /Inbound-only app client: djconnect-windows-XXXXXXXXXXXX, client_type windows, post naar \/api\/djconnect\/v1\/pair/);
   assert.match(start, /Local-device client met _djconnect\._tcp, optioneel Client adres en \/api\/device\/\*/);
   assert.match(start, /Geen losse Home Assistant pairing; de gekoppelde iPhone proxyt Watch identity en sync/);
   assert.match(start, /Geen device token, firmware controls of client pairing UI; STT\/TTS blijven in de HA Assist pipeline/);
@@ -663,12 +667,12 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /https:\/\/&lt;your-home-assistant-external-url&gt;\/api\/djconnect\/spotify\/callback/);
   assert.match(start, /Nabu Casa HTTPS external URL/);
   assert.match(start, /VibeCast contract/);
-  assert.match(start, /GET \/api\/djconnect\/vibecast/);
+  assert.match(start, /GET \/api\/djconnect\/v1\/vibecast/);
   assert.match(start, /Supported Apple client types zijn ios, macos en watchos/);
   assert.match(start, /enabled:true, revision, ttl_seconds, poll_after_seconds, context, items\[\]/);
   assert.match(start, /music_backend, music_backend_name en music_backend_revision/);
   assert.match(start, /track_fact, artist_fact, album_fact, genre_fact, trivia, listening_tip, mood_note, production_note, history_note en system/);
-  assert.match(start, /text, strong, emphasis, magnify, accent en line_break/);
+  assert.match(start, /text, strong, emphasis, magnify, accent, emoji en line_break/);
   assert.match(start, /geen HTML of Markdown te parsen/);
   assert.match(start, /enabled:false, reason, ttl_seconds, poll_after_seconds en items:\[\]/);
   assert.match(start, /feature_disabled, premium_unavailable, no_active_playback, playback_inactive, unknown_track, unsupported_backend, provider_unavailable, generative_provider_unavailable, rate_limited, cache_failure, unauthorized, invalid_client_type, client_type_mismatch en privacy_disabled/);
@@ -721,11 +725,11 @@ test("how-to-start page covers setup flow", async () => {
   assert.match(start, /Voor Apple Watch genereert Home Assistant een aparte Watch QR\/deep-link payload/);
   assert.match(start, /iPhone geeft de pairinggegevens door aan de gekoppelde Watch/);
   assert.match(start, /Voer handmatig de lokale Home Assistant URL en de door Home Assistant gegenereerde koppelcode in/);
-  assert.match(start, /Geen Client adres kopiëren: de app belt Home Assistant zelf via \/api\/djconnect\/\.\.\./);
+  assert.match(start, /Geen Client adres kopiëren: de app belt Home Assistant zelf via \/api\/djconnect\/v1\/\.\.\./);
   assert.match(start, /Daarna kan de app lokaal of remote werken via je Home Assistant URL/);
   assert.match(start, /Technisch: app-clients zijn inbound-only/);
   assert.match(start, /Home Assistant belt nooit terug naar de app/);
-  assert.match(start, /de client post zelf naar POST \/api\/djconnect\/pair/);
+  assert.match(start, /de client post zelf naar POST \/api\/djconnect\/v1\/pair/);
   assert.match(start, /geen app-client mDNS\/local-API discovery of fallback/);
   assert.match(start, /Technisch: local-device clients blijven lokaal/);
   assert.match(start, /gebruiken lokale \/api\/device\/\*/);

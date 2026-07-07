@@ -43,7 +43,7 @@ Static landing page for DJConnect, published through Cloudflare Pages.
   Windows pair by entering the local Home Assistant URL plus the
   Home Assistant-generated code. iPhone, Apple Watch, macOS and Windows are
   inbound-only app clients: Home Assistant never calls back to a local app API,
-  clients post to `POST /api/djconnect/pair`, and there is no app-client
+  clients post to `POST /api/djconnect/v1/pair`, and there is no app-client
   mDNS/local-API discovery or fallback. ESP32 and Raspberry Pi remain
   local-device clients: they use local/two-way pairing, may be discovered via
   `_djconnect._tcp`, use local `/api/device/*`, receive no `ha_remote_url`, and
@@ -55,7 +55,7 @@ Static landing page for DJConnect, published through Cloudflare Pages.
   prefixes (`djconnect-ios-*`, `djconnect-macos-*`,
   `djconnect-windows-*`, `djconnect-raspberry-pi-*` and model-specific ESP32
   IDs). iOS, macOS and Windows are inbound-only app clients that post local
-  pairing to `/api/djconnect/pair`; ESP32 and Raspberry Pi are local-device
+  pairing to `/api/djconnect/v1/pair`; ESP32 and Raspberry Pi are local-device
   clients using `_djconnect._tcp`, optional Client adres and `/api/device/*`.
   Keep public copy clear that local pairing avoids remote bootstrap exposure,
   requires LAN presence plus a temporary QR/code, and avoids the extra expiry,
@@ -64,7 +64,7 @@ Static landing page for DJConnect, published through Cloudflare Pages.
 - Ask DJ is a major product feature for iOS, macOS, Windows, Apple Watch and
   Raspberry Pi clients.
   Website copy should keep it clear that Ask DJ runs through Home Assistant and
-  DJConnect integration 3.2.5 or newer, uses compact bounded server-side Music
+  DJConnect integration 3.2.18 or newer, uses compact bounded server-side Music
   DNA/history only after opt-in, carries chat continuity across app clients, can show Ja/Nee
   follow-up controls, uses backend-aware Spotify Direct or Music Assistant
   actions, can use optional Apple push notifications only as wake/attention
@@ -106,7 +106,7 @@ Static landing page for DJConnect, published through Cloudflare Pages.
   history sync/clear, voice uploads, image/TTS URLs and websocket failures.
 - VibeCast is a premium-ready first-class Apple client feature documented on
   the Features, Platform, iOS, macOS and How To Start pages. Public copy must
-  keep `GET /api/djconnect/vibecast` visible, with supported Apple client
+  keep `GET /api/djconnect/v1/vibecast` visible, with supported Apple client
   types `ios`, `macos` and `watchos`. macOS and iOS use the same endpoint,
   response contract, item kinds, structured text segment types, disabled
   reasons, polling/cache semantics, entitlement behavior, TTL, revision and

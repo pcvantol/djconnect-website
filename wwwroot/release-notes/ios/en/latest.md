@@ -1,16 +1,20 @@
-# DJConnect App 3.2.25
-
-## Added
-
-- Now Playing on iOS has a direct Queue button next to shuffle.
+# DJConnect App 3.2.26
 
 ## Changed
 
-- Now Playing widget fallback artwork now uses a DJConnect music/play
-  placeholder instead of a grey block.
-- Lock Screen Live Activity and Dynamic Island now match the Now Playing widget
-  more closely, with Mood colours, artwork loading, compact Dynamic Island
-  artwork, and matching fallback visuals.
+- Playback refreshes and backend recovery retries now coalesce better, reducing
+  repeated network work after commands.
+- The local issue and TODO documentation now reflects the completed hardening
+  work.
+
+## Fixed
+
+- Temporary `backend_unavailable` outages now show recovery copy, retry
+  automatically, and keep pairing intact.
+- Generic playback-backend unavailable command failures now use the recovery
+  copy while specific playback restrictions still show their own message.
+- Voice/audio loading, incoming payload limits, runtime log redaction, and
+  duplicate queue row identity handling are hardened.
 
 ---
 

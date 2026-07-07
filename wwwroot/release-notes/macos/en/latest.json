@@ -1,7 +1,7 @@
 {
-  "version": "3.2.25",
+  "version": "3.2.26",
   "platform": "macos",
   "language": "en",
-  "name": "DJConnect macOS 3.2.25",
-  "body": "# DJConnect App 3.2.25\n\n## Added\n\n- Now Playing on iOS has a direct Queue button next to shuffle.\n\n## Changed\n\n- Now Playing widget fallback artwork now uses a DJConnect music/play\n  placeholder instead of a grey block.\n- Lock Screen Live Activity and Dynamic Island now match the Now Playing widget\n  more closely, with Mood colours, artwork loading, compact Dynamic Island\n  artwork, and matching fallback visuals.\n\n---\n\nPlatform: macOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nFor normal macOS distribution, prefer the notarized Developer ID build when attached."
+  "name": "DJConnect macOS 3.2.26",
+  "body": "# DJConnect App 3.2.26\n\n## Changed\n\n- Playback refreshes and backend recovery retries now coalesce better, reducing\n  repeated network work after commands.\n- The local issue and TODO documentation now reflects the completed hardening\n  work.\n\n## Fixed\n\n- Temporary `backend_unavailable` outages now show recovery copy, retry\n  automatically, and keep pairing intact.\n- Generic playback-backend unavailable command failures now use the recovery\n  copy while specific playback restrictions still show their own message.\n- Voice/audio loading, incoming payload limits, runtime log redaction, and\n  duplicate queue row identity handling are hardened.\n\n---\n\nPlatform: macOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nFor normal macOS distribution, prefer the notarized Developer ID build when attached."
 }

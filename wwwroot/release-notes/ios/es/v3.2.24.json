@@ -1,0 +1,7 @@
+{
+  "version": "3.2.24",
+  "platform": "ios",
+  "language": "es",
+  "name": "DJConnect iOS 3.2.24",
+  "body": "# DJConnect App 3.2.24\n\n## Aniadido\n\n- Apple Watch ahora tiene Descubrir con lista de recomendaciones, explicacion\n  detallada y Reproducir ahora mediante el proxy del iPhone.\n- Las notas What's New se publican como JSON en ingles, neerlandes, aleman,\n  frances y espanol.\n\n## Cambios\n\n- El proyecto Xcode y los schemes compartidos estan preparados para los ajustes\n  de migracion de Xcode 27.\n- Apple Watch agrupa Mood, Cola, Listas y Descubrir antes de Ask DJ y las vistas\n  de analisis.\n- Track Insight usa el mismo selector flotante de Mood que Ask DJ.\n- Los juegos usan un area de juego mas baja en iPad horizontal para que los\n  botones debajo del juego sigan visibles.\n\n## Corregido\n\n- La respuesta haptica ahora tambien funciona en modo demo en un Apple Watch\n  real.\n\n---\n\nPlatform: iOS\n\nLos artefactos CI sin firmar son para diagnostico y validacion interna.\nLos binarios iOS sin firmar se publican aqui para diagnostico y validacion interna. Para distribucion normal de iOS, usa TestFlight/App Store."
+}

@@ -1,18 +1,25 @@
-# DJConnect App 3.2.23
+# DJConnect App 3.2.24
+
+## Added
+
+- Apple Watch now has Discover with a recommendation list, item detail
+  reasoning, and Play Now through the iPhone proxy.
+- What's New release notes are published as JSON in English, Dutch, German,
+  French, and Spanish.
 
 ## Changed
 
-- Music DNA cards on iPhone are taller and scroll internally when content does
-  not fit on smaller or landscape screens.
-- Track Insight sharing uses tighter preview spacing and more bottom padding for
-  the action buttons.
-- The release flow is stricter about the exact release commit and version-scoped
-  release notes.
+- The Xcode project and shared schemes are prepared for Xcode 27 migration
+  settings.
+- Apple Watch keeps Mood, Queue, Playlists, and Discover together before Ask DJ
+  and analysis views.
+- Track Insight uses the same floating Mood selector pattern as Ask DJ.
+- Games keep a shorter playfield on iPad landscape so the controls below the
+  game remain visible.
 
 ## Fixed
 
-- Fixed the iOS copy-logs icon so it stays white instead of inheriting the
-  purple tint.
+- Haptic feedback now also works in demo mode on a real Apple Watch.
 
 ---
 

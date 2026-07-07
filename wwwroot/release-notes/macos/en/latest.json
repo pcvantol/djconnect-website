@@ -1,7 +1,7 @@
 {
-  "version": "3.2.24",
+  "version": "3.2.25",
   "platform": "macos",
   "language": "en",
-  "name": "DJConnect macOS 3.2.24",
-  "body": "# DJConnect App 3.2.24\n\n## Added\n\n- Apple Watch now has Discover with a recommendation list, item detail\n  reasoning, and Play Now through the iPhone proxy.\n- What's New release notes are published as JSON in English, Dutch, German,\n  French, and Spanish.\n\n## Changed\n\n- The Xcode project and shared schemes are prepared for Xcode 27 migration\n  settings.\n- Apple Watch keeps Mood, Queue, Playlists, and Discover together before Ask DJ\n  and analysis views.\n- Track Insight uses the same floating Mood selector pattern as Ask DJ.\n- Games keep a shorter playfield on iPad landscape so the controls below the\n  game remain visible.\n\n## Fixed\n\n- Haptic feedback now also works in demo mode on a real Apple Watch.\n\n---\n\nPlatform: macOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nFor normal macOS distribution, prefer the notarized Developer ID build when attached."
+  "name": "DJConnect macOS 3.2.25",
+  "body": "# DJConnect App 3.2.25\n\n## Added\n\n- Now Playing on iOS has a direct Queue button next to shuffle.\n\n## Changed\n\n- Now Playing widget fallback artwork now uses a DJConnect music/play\n  placeholder instead of a grey block.\n- Lock Screen Live Activity and Dynamic Island now match the Now Playing widget\n  more closely, with Mood colours, artwork loading, compact Dynamic Island\n  artwork, and matching fallback visuals.\n\n---\n\nPlatform: macOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nFor normal macOS distribution, prefer the notarized Developer ID build when attached."
 }

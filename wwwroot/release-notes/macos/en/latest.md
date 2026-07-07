@@ -1,25 +1,16 @@
-# DJConnect App 3.2.24
+# DJConnect App 3.2.25
 
 ## Added
 
-- Apple Watch now has Discover with a recommendation list, item detail
-  reasoning, and Play Now through the iPhone proxy.
-- What's New release notes are published as JSON in English, Dutch, German,
-  French, and Spanish.
+- Now Playing on iOS has a direct Queue button next to shuffle.
 
 ## Changed
 
-- The Xcode project and shared schemes are prepared for Xcode 27 migration
-  settings.
-- Apple Watch keeps Mood, Queue, Playlists, and Discover together before Ask DJ
-  and analysis views.
-- Track Insight uses the same floating Mood selector pattern as Ask DJ.
-- Games keep a shorter playfield on iPad landscape so the controls below the
-  game remain visible.
-
-## Fixed
-
-- Haptic feedback now also works in demo mode on a real Apple Watch.
+- Now Playing widget fallback artwork now uses a DJConnect music/play
+  placeholder instead of a grey block.
+- Lock Screen Live Activity and Dynamic Island now match the Now Playing widget
+  more closely, with Mood colours, artwork loading, compact Dynamic Island
+  artwork, and matching fallback visuals.
 
 ---
 

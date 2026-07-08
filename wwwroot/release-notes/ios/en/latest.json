@@ -1,7 +1,7 @@
 {
-  "version": "3.2.29",
+  "version": "3.2.30",
   "platform": "ios",
   "language": "en",
-  "name": "DJConnect iOS 3.2.29",
-  "body": "# DJConnect App 3.2.29\n\n## Changed\n\n- Apple clients now retain `ha_install_id`, `integration_version`, and optional\n  `pairing_session_id` from Home Assistant pairing/status responses and send\n  that metadata to Central without the APNs token.\n\n## Fixed\n\n- Watch push bootstrap recovery now goes through the iPhone proxy with the Watch\n  identity, then retries Home Assistant exactly once with a Central\n  `djcboot_...` proof.\n- Central bootstrap errors such as `invalid_client_type`,\n  `invalid_app_bundle_id`, `invalid_push_environment`, and\n  `bootstrap_rate_limited` are now stored as privacy-safe status codes.\n- Watch Track Insight now fills energy/detail metrics from nested backend\n  payloads, and Music DNA no longer asks to activate again after it is already\n  enabled.\n\n---\n\nPlatform: iOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nUnsigned iOS binaries are published here for diagnostics and internal validation. For normal iOS distribution, use TestFlight/App Store."
+  "name": "DJConnect iOS 3.2.30",
+  "body": "# DJConnect App 3.2.30\n\n## Changed\n\n- About now shows a privacy-safe Push notifications status in the Connection\n  section on iOS, macOS, and watchOS: registered, not active, not supported, or\n  action needed, including sandbox/production when known.\n- Ask DJ response audio auto-play is now controlled by a Settings toggle and is\n  off by default.\n\n## Fixed\n\n- The Now Playing Live Activity artwork fallback has cleaner spacing and no\n  overlapping playback glyph.\n- Push status labels are localized in English, Dutch, German, French, and\n  Spanish.\n\n---\n\nPlatform: iOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nUnsigned iOS binaries are published here for diagnostics and internal validation. For normal iOS distribution, use TestFlight/App Store."
 }

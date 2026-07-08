@@ -1,22 +1,19 @@
-# DJConnect App 3.2.29
+# DJConnect App 3.2.30
 
 ## Changed
 
-- Apple clients now retain `ha_install_id`, `integration_version`, and optional
-  `pairing_session_id` from Home Assistant pairing/status responses and send
-  that metadata to Central without the APNs token.
+- About now shows a privacy-safe Push notifications status in the Connection
+  section on iOS, macOS, and watchOS: registered, not active, not supported, or
+  action needed, including sandbox/production when known.
+- Ask DJ response audio auto-play is now controlled by a Settings toggle and is
+  off by default.
 
 ## Fixed
 
-- Watch push bootstrap recovery now goes through the iPhone proxy with the Watch
-  identity, then retries Home Assistant exactly once with a Central
-  `djcboot_...` proof.
-- Central bootstrap errors such as `invalid_client_type`,
-  `invalid_app_bundle_id`, `invalid_push_environment`, and
-  `bootstrap_rate_limited` are now stored as privacy-safe status codes.
-- Watch Track Insight now fills energy/detail metrics from nested backend
-  payloads, and Music DNA no longer asks to activate again after it is already
-  enabled.
+- The Now Playing Live Activity artwork fallback has cleaner spacing and no
+  overlapping playback glyph.
+- Push status labels are localized in English, Dutch, German, French, and
+  Spanish.
 
 ---
 

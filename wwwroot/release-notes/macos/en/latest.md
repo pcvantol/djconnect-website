@@ -1,20 +1,16 @@
-# DJConnect App 3.2.26
+# DJConnect App 3.2.28
 
 ## Changed
 
-- Playback refreshes and backend recovery retries now coalesce better, reducing
-  repeated network work after commands.
-- The local issue and TODO documentation now reflects the completed hardening
-  work.
+- Push registration now follows the Central API v1.0.11 bootstrap contract:
+  Apple clients fetch short-lived `djcboot_...` proofs through a trusted
+  pairing issuer, never from Home Assistant directly.
 
 ## Fixed
 
-- Temporary `backend_unavailable` outages now show recovery copy, retry
-  automatically, and keep pairing intact.
-- Generic playback-backend unavailable command failures now use the recovery
-  copy while specific playback restrictions still show their own message.
-- Voice/audio loading, incoming payload limits, runtime log redaction, and
-  duplicate queue row identity handling are hardened.
+- Push bootstrap recovery now retries Home Assistant exactly once, keeps proofs
+  only in memory, validates issuer proof expiry, and avoids retry loops for
+  invalid or expired proofs.
 
 ---
 

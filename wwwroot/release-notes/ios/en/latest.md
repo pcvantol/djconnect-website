@@ -1,16 +1,22 @@
-# DJConnect App 3.2.28
+# DJConnect App 3.2.29
 
 ## Changed
 
-- Push registration now follows the Central API v1.0.11 bootstrap contract:
-  Apple clients fetch short-lived `djcboot_...` proofs through a trusted
-  pairing issuer, never from Home Assistant directly.
+- Apple clients now retain `ha_install_id`, `integration_version`, and optional
+  `pairing_session_id` from Home Assistant pairing/status responses and send
+  that metadata to Central without the APNs token.
 
 ## Fixed
 
-- Push bootstrap recovery now retries Home Assistant exactly once, keeps proofs
-  only in memory, validates issuer proof expiry, and avoids retry loops for
-  invalid or expired proofs.
+- Watch push bootstrap recovery now goes through the iPhone proxy with the Watch
+  identity, then retries Home Assistant exactly once with a Central
+  `djcboot_...` proof.
+- Central bootstrap errors such as `invalid_client_type`,
+  `invalid_app_bundle_id`, `invalid_push_environment`, and
+  `bootstrap_rate_limited` are now stored as privacy-safe status codes.
+- Watch Track Insight now fills energy/detail metrics from nested backend
+  payloads, and Music DNA no longer asks to activate again after it is already
+  enabled.
 
 ---
 

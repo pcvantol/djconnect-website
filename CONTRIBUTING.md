@@ -113,6 +113,12 @@ Before opening a pull request:
 3. Describe what changed.
 4. List the checks you ran.
 5. Mention any impact on other DJConnect repositories.
+6. For release or Ask DJ/voice documentation changes, review website copy
+   against the `DJ Announcement Output Sync` section in
+   `pcvantol/djconnect/SYNC_PROMPTS.md`. Confirm product wording treats Ask DJ
+   as the intelligence/personality, HA speakers as optional physical voice
+   output, and does not claim Spotify ducking/volume changes or unimplemented
+   Music Assistant behavior.
 
 ## Releases
 

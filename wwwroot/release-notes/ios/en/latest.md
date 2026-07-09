@@ -1,4 +1,10 @@
-DJConnect App 3.2.32
+# DJConnect App 3.2.33
+
+## Fixed
+
+- Updated the local Node contract e2e fixture to remove the legacy Home
+  Assistant `/push/bootstrap` route. Push registration coverage now matches the
+  current Central trusted-issuer bootstrap flow used by Apple clients.
 
 ---
 

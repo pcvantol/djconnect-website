@@ -761,6 +761,83 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
     }
   },
   {
+    "id": "music_discovery_help",
+    "plays_music": false,
+    "action": "none",
+    "intent": "music_discovery_help",
+    "response_shape": {
+      "text_only": true,
+      "images": [],
+      "playback_actions": [],
+      "sources": [
+        "music_discovery",
+        "djconnect_music_dna"
+      ]
+    },
+    "description": "Read-only Discover and Music DNA explanation prompts. These questions explain backend-owned recommendations, feedback and reasons; they must not mutate playback, Discover or Music DNA state.",
+    "nl": [
+      "Wat is er nieuw in Discover?",
+      "Ververs mijn Discover aanbevelingen",
+      "Hoe werkt Discover met feedback?",
+      "Waarom past deze aanbeveling bij mijn smaak?"
+    ],
+    "en": [
+      "What is new in Discover?",
+      "Refresh my Discover recommendations",
+      "How does Discover work with feedback?",
+      "Why does this recommendation fit my taste?"
+    ],
+    "playsMusic": false,
+    "messageKind": "user",
+    "pill": {
+      "nl": "Discover",
+      "en": "Discover",
+      "de": "Discover",
+      "fr": "Discover",
+      "es": "Discover"
+    },
+    "title": {
+      "nl": "Discover uitleg",
+      "en": "Discover help",
+      "de": "Discover-Hilfe",
+      "fr": "Aide Discover",
+      "es": "Ayuda Discover"
+    },
+    "text": {
+      "nl": "Read-only vragen over Discover, Music DNA, feedback en aanbevelingsredenen. Uitlegvragen muteren geen playback, Discover of Music DNA state.",
+      "en": "Read-only questions about Discover, Music DNA, feedback and recommendation reasons. Explanation questions do not mutate playback, Discover or Music DNA state.",
+      "de": "Read-only Fragen zu Discover, Music DNA, Feedback und Empfehlungsgruenden. Erklaerfragen aendern weder Playback noch Discover oder Music DNA state.",
+      "fr": "Questions read-only sur Discover, Music DNA, feedback et raisons de recommandation. Ces questions ne modifient pas playback, Discover ou Music DNA state.",
+      "es": "Preguntas read-only sobre Discover, Music DNA, feedback y razones de recomendacion. No modifican playback, Discover ni Music DNA state."
+    },
+    "examples": {
+      "nl": [
+        "Wat is er nieuw in Discover?",
+        "Ververs mijn Discover aanbevelingen",
+        "Hoe werkt Discover met feedback?",
+        "Waarom past deze aanbeveling bij mijn smaak?"
+      ],
+      "en": [
+        "What is new in Discover?",
+        "Refresh my Discover recommendations",
+        "How does Discover work with feedback?",
+        "Why does this recommendation fit my taste?"
+      ],
+      "de": [
+        "Was ist neu in Discover?",
+        "Aktualisiere meine Discover-Empfehlungen"
+      ],
+      "fr": [
+        "Quoi de neuf dans Discover ?",
+        "Actualise mes recommandations Discover"
+      ],
+      "es": [
+        "Que hay de nuevo en Discover?",
+        "Actualiza mis recomendaciones Discover"
+      ]
+    }
+  },
+  {
     "id": "personal_music_dna_summary",
     "plays_music": false,
     "action": "music_dna_summary",
@@ -773,18 +850,22 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "djconnect_music_dna"
       ]
     },
-    "description": "Ask what DJConnect currently remembers about the user. The response must be based on Music DNA only, without live playback artwork, Spotify profile enrichment or Play Now actions.",
+    "description": "Ask what DJConnect currently remembers about the user or how Music DNA privacy works. The response must be based on Music DNA only, without live playback artwork, Spotify profile enrichment or Play Now actions, and must mention that Music DNA stores no raw audio, OAuth tokens or full prompts.",
     "nl": [
       "Wat weet je nu over mij?",
       "Wat weet je over mij?",
       "Wat weet DJConnect over mij?",
       "Wat staat er in mijn Music DNA?",
+      "Wat zegt mijn Music DNA?",
+      "Welke gegevens bewaart Music DNA over mij?",
       "Wat herinner je je over mij?"
     ],
     "en": [
       "What do you know about me?",
       "What does DJConnect know about me?",
       "What is in my Music DNA?",
+      "What does my Music DNA say?",
+      "What data does Music DNA keep about me?",
       "What do you remember about me?"
     ],
     "playsMusic": false,
@@ -804,8 +885,8 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
       "es": "Revisar Music DNA"
     },
     "text": {
-      "nl": "Privacyvraag over server-side Music DNA. Render als tekst met bron djconnect_music_dna: geen oude album art, mediakaarten, Play Now en geen live playback of profielverrijking.",
-      "en": "Privacy question about server-side Music DNA. Render as text with djconnect_music_dna source: no old album art, media cards, Play Now, live playback or profile enrichment.",
+      "nl": "Privacyvraag over server-side Music DNA. Render als tekst met bron djconnect_music_dna: geen oude album art, mediakaarten, Play Now, live playback, profielverrijking, raw audio, OAuth tokens of volledige prompts.",
+      "en": "Privacy question about server-side Music DNA. Render as text with djconnect_music_dna source: no old album art, media cards, Play Now, live playback, profile enrichment, raw audio, OAuth tokens or full prompts.",
       "de": "Datenschutzfrage zu serverseitigem Music DNA. Als Text mit Quelle djconnect_music_dna rendern: keine alte Albumgrafik, Medienkarten, Play Now, Live-Wiedergabe oder Profilanreicherung.",
       "fr": "Question de confidentialite sur Music DNA cote serveur. A rendre en texte avec la source djconnect_music_dna : pas d ancienne pochette, cartes media, Play Now, lecture live ou enrichissement de profil.",
       "es": "Pregunta de privacidad sobre Music DNA del servidor. Renderiza como texto con fuente djconnect_music_dna: sin arte antiguo, tarjetas multimedia, Play Now, reproduccion en vivo ni enriquecimiento de perfil."
@@ -816,12 +897,16 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
         "Wat weet je over mij?",
         "Wat weet DJConnect over mij?",
         "Wat staat er in mijn Music DNA?",
+        "Wat zegt mijn Music DNA?",
+        "Welke gegevens bewaart Music DNA over mij?",
         "Wat herinner je je over mij?"
       ],
       "en": [
         "What do you know about me?",
         "What does DJConnect know about me?",
         "What is in my Music DNA?",
+        "What does my Music DNA say?",
+        "What data does Music DNA keep about me?",
         "What do you remember about me?"
       ],
       "de": [
@@ -1482,6 +1567,78 @@ window.DJCONNECT_ASK_DJ_INTENTS = [
       "es": [
         "Hay otras versiones?",
         "Que version es esta?"
+      ]
+    }
+  },
+  {
+    "id": "track_versions_search",
+    "plays_music": false,
+    "action": "none",
+    "intent": "track_versions_search",
+    "response_shape": {
+      "playback_actions_kind": "track",
+      "button_labels": [
+        "Play Now"
+      ],
+      "max_results": 10
+    },
+    "description": "Search Spotify for tracks with the requested title by different artists. DJConnect uses limit 10, requires every meaningful title-query word to appear in the found track title, returns at most 10 Play Now rows and does not start playback automatically.",
+    "nl": [
+      "Geef me 10 uitvoeringen van Voorbeeldlied door verschillende artiesten",
+      "Doe me 10 uitvoeringen door verschillende artiesten van \"Voorbeeldlied\"",
+      "Zoek versies van \"Voorbeeldlied\"",
+      "Toon covers van \"Voorbeeldlied\""
+    ],
+    "en": [
+      "Find versions of \"Example Song\"",
+      "Give me versions titled Example Song",
+      "Give me 10 versions of Example Song by different artists",
+      "Show covers of \"Example Song\""
+    ],
+    "playsMusic": false,
+    "messageKind": "user",
+    "pill": {
+      "nl": "Titelversies",
+      "en": "Title versions",
+      "de": "Titelversionen",
+      "fr": "Versions par titre",
+      "es": "Versiones por titulo"
+    },
+    "title": {
+      "nl": "Tracks met dezelfde titel",
+      "en": "Tracks with the same title",
+      "de": "Tracks mit gleichem Titel",
+      "fr": "Titres avec le meme nom",
+      "es": "Temas con el mismo titulo"
+    },
+    "text": {
+      "nl": "Zoekt maximaal 10 Spotify tracks met dezelfde betekenisvolle titelwoorden door verschillende artiesten. Toont Play Now, maar start niets automatisch.",
+      "en": "Searches up to 10 Spotify tracks whose title contains every meaningful query word, ideally by different artists. Shows Play Now but starts nothing automatically.",
+      "de": "Sucht bis zu 10 Spotify Tracks, deren Titel alle wichtigen Suchwoerter enthalten. Zeigt Play Now, startet aber nichts automatisch.",
+      "fr": "Cherche jusqu'a 10 tracks Spotify dont le titre contient tous les mots significatifs. Affiche Play Now sans lancer automatiquement.",
+      "es": "Busca hasta 10 tracks de Spotify cuyo titulo contiene todas las palabras significativas. Muestra Play Now sin iniciar automaticamente."
+    },
+    "examples": {
+      "nl": [
+        "Geef me 10 uitvoeringen van Voorbeeldlied door verschillende artiesten",
+        "Doe me 10 uitvoeringen door verschillende artiesten van \"Voorbeeldlied\"",
+        "Zoek versies van \"Voorbeeldlied\"",
+        "Toon covers van \"Voorbeeldlied\""
+      ],
+      "en": [
+        "Find versions of \"Example Song\"",
+        "Give me versions titled Example Song",
+        "Give me 10 versions of Example Song by different artists",
+        "Show covers of \"Example Song\""
+      ],
+      "de": [
+        "Finde Versionen von \"Example Song\""
+      ],
+      "fr": [
+        "Trouve des versions de \"Example Song\""
+      ],
+      "es": [
+        "Busca versiones de \"Example Song\""
       ]
     }
   },

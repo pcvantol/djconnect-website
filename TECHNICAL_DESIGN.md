@@ -2,7 +2,7 @@
 
 This document records the implementation-level design choices for the DJConnect website. It is reverse-engineered from the repository and must be reviewed for every release.
 
-Current website version: `3.2.14`
+Current website version: `3.2.15`
 
 ## Scope
 
@@ -118,20 +118,34 @@ The public copy must keep these boundaries visible:
 
 - Music DNA uses compact, privacy-conscious signals such as preferences,
   listening rhythm, favorite artists/albums/tracks, playtime aggregates, mood
-  mix, repeat magnets, taste anchors and explicit positives.
+  mix, repeat magnets, taste anchors, explicit positives, Discover feedback
+  and Spotify recently-played/top profile data when the backend fetches it.
 - Music DNA must not store OAuth tokens, bearer tokens, raw audio or full
   prompts.
 - Clear/Wissen keeps the opt-in setting, clears the learned profile and starts
   from empty again if Music DNA remains enabled.
-- Dashboard blocks such as total hours play time, top artists/albums by
-  playtime, listening rhythm, mood mix, repeat magnets, explicit positives,
-  taste anchors and recent favorites are conditional and should be described as
-  hidden until enough reliable data exists.
-- Ontdek works only after explicit Music DNA consent. It can show daily or
-  client-refreshed recommendations for tracks, albums, artists and playlists,
-  including artwork, `Play Now` and a reason explaining why the item fits the
-  user's Music DNA.
-- `Play Now` from Ontdek is fed back as an explicit positive Music DNA signal.
+- Dashboard blocks such as `snapshot_history`, `privacy_dashboard` and
+  `discovery_feedback` are backend-owned. `snapshot_history` is bounded and
+  compact, not raw playback history. `privacy_dashboard` arrives in `/profile`
+  when present and has no separate endpoint.
+- Ontdek works only after explicit Music DNA consent. It is a backend-owned
+  recommendations feed, not a recently-played list. Raw recently played tracks
+  must not be shown as Discover cards unless returned explicitly in
+  `sections[]`.
+- Discover and Music DNA refresh roughly hourly while enabled. New profile
+  data, mood, `Play Now` and negative feedback can trigger a rebuild.
+- Sections such as `new_for_you`, `rediscover`, `artist_spotlight` and
+  `accepted_recommendations` are rendered in backend order; clients must not
+  hardcode section ids.
+- Items carry backend-owned `reason`, `reason_sources`, `quality_score`,
+  `quality_band` and `quality_factors`. Freshness/dedupe, known/recent/blocked
+  tracks, live/remix/radio edit/remaster variants, album/title overlap and
+  artist overload are server-side.
+- `Play Now` from Ontdek uses `/api/djconnect/v1/music_discovery/play`.
+  Negative feedback uses `/api/djconnect/v1/music_discovery/feedback` with
+  `not_for_me`, `less_like_this` and `hide_artist`. Clients keep no permanent
+  local blocklist. Accepted recommendations and negative feedback are fed back
+  to Ask DJ as compact Music DNA signals.
 
 Why:
 

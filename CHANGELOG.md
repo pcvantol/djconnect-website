@@ -2,6 +2,18 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.2.15 - 2026-07-09
+
+- Synced website copy and developer docs with Home Assistant integration
+  `3.2.44` and the follow-up Ask DJ E2E expansions.
+- Documented server-side hourly Discover/Music DNA refresh, Discover as
+  backend recommendations rather than recently played, expanded discovery
+  sections, backend-owned reasons, quality scores, freshness/dedupe and
+  negative feedback.
+- Added Music DNA snapshot/privacy/discovery feedback guidance, backend
+  capability fallback notes, expanded Ask DJ help examples and same-title track
+  version search behavior.
+
 ## DJConnect website v3.2.14 - 2026-07-05
 
 - Restricted the Cloudflare Pages deploy job to successful pushes on `main`,

@@ -69,7 +69,7 @@
     @media (max-width:980px) { .hero-grid,.grid-2,.grid-3,.diagram { grid-template-columns:1fr; } }
     @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } th, td { display:block; width:100%; } tr { display:block; border-bottom:1px solid var(--line); } }
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.14" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.15" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -194,7 +194,7 @@ djconnect-lilygo-t-embed-s3-XXXXXXXXXXXX</code></pre>
         <p class="lead">Examples use placeholders only: <code>&lt;HA_TOKEN&gt;</code>, <code>&lt;DEVICE_TOKEN&gt;</code>, <code>&lt;CLIENT_ID&gt;</code>, <code>&lt;DEVICE_ID&gt;</code>, <code>&lt;PAIRING_CODE&gt;</code> and <code>&lt;IMAGE_TOKEN&gt;</code>.</p>
 
         <div class="endpoint">
-          <article class="card"><h3>POST /api/djconnect/v1/status</h3><p>Used by ESP32/local clients to publish current device status to Home Assistant. Auth: bearer device token.</p><pre><code>{"client_type":"esp32","device_id":"&lt;DEVICE_ID&gt;","firmware_version":"3.2.14","battery_percent":84}</code></pre><pre><code>{"success":true,"paired":true,"server_time":"2026-07-05T08:00:00Z"}</code></pre></article>
+          <article class="card"><h3>POST /api/djconnect/v1/status</h3><p>Used by ESP32/local clients to publish current device status to Home Assistant. Auth: bearer device token.</p><pre><code>{"client_type":"esp32","device_id":"&lt;DEVICE_ID&gt;","firmware_version":"3.2.15","battery_percent":84}</code></pre><pre><code>{"success":true,"paired":true,"server_time":"2026-07-05T08:00:00Z"}</code></pre></article>
           <article class="card"><h3>POST /api/djconnect/v1/command</h3><p>Used by app/device clients for playback, backend-aware actions, Ask DJ Play Now and confirmation responses. Auth: bearer HA/client token.</p><pre><code>{"client_type":"ios","client_id":"&lt;CLIENT_ID&gt;","command":"play_track","value":"spotify:track:example"}</code></pre><pre><code>{"success":true,"music_backend":"spotify_direct","music_backend_available":true,"music_target_player":"Living Room"}</code></pre></article>
           <article class="card"><h3>POST /api/djconnect/v1/voice</h3><p>Used for voice/PTT upload or text-only DJ response tests. WAV requests use Assist/STT before command or Ask DJ handling. Auth: bearer HA/client token.</p><pre><code>{"client_type":"macos","client_id":"&lt;CLIENT_ID&gt;","text":"Play the latest album by Nova Lane"}</code></pre><pre><code>{"success":true,"recognized_text":"Play the latest album by Nova Lane","message":"I found a matching album."}</code></pre></article>
           <article class="card"><h3>POST /api/djconnect/v1/ask_dj/message</h3><p>Text chat for iOS, macOS, watchOS, Raspberry Pi and Windows. <code>client_message_id</code> deduplicates retries. Auth: bearer HA/client token.</p><pre><code>{"client_type":"watchos","client_id":"&lt;CLIENT_ID&gt;","client_message_id":"msg-001","message":"Why does this track fit my mood?"}</code></pre><pre><code>{"success":true,"messages":[{"role":"user","text":"Why does this track fit my mood?"},{"role":"assistant","text":"Because it matches your recent late-night groove."}],"history_revision":42}</code></pre></article>
@@ -202,12 +202,15 @@ djconnect-lilygo-t-embed-s3-XXXXXXXXXXXX</code></pre>
           <article class="card"><h3>POST /api/djconnect/v1/ask_dj/history/clear</h3><p>Clears Ask DJ history for the authenticated Home Assistant user scope. Auth: bearer HA/client token.</p><pre><code>{"client_type":"macos","client_id":"&lt;CLIENT_ID&gt;"}</code></pre><pre><code>{"success":true,"clear_revision":43}</code></pre></article>
           <article class="card"><h3>POST /api/djconnect/v1/ask_dj</h3><p>Developer/service Ask DJ entrypoint for structured requests. Auth: Home Assistant authenticated request.</p><pre><code>{"message":"Suggest three quiet tracks","client_type":"macos"}</code></pre><pre><code>{"success":true,"text":"Here are three quiet picks.","intent":"personal_music_recommendations"}</code></pre></article>
           <article class="card"><h3>POST /api/djconnect/v1/ask_dj/idle_suggestion</h3><p>Backend-generated Ask DJ suggestion for idle clients that support it. Auth: bearer HA/client token.</p><pre><code>{"client_type":"ios","client_id":"&lt;CLIENT_ID&gt;","locale":"en"}</code></pre><pre><code>{"success":true,"message":"Want a short discovery mix?"}</code></pre></article>
-          <article class="card"><h3>POST /api/djconnect/v1/music_dna/profile</h3><p>Returns structured Music DNA dashboard/profile data. Music DNA is explicit opt-in. Auth: bearer HA/client token.</p><pre><code>{"client_type":"ios","client_id":"&lt;CLIENT_ID&gt;"}</code></pre><pre><code>{"success":true,"enabled":true,"profile":{"summary":"Warm electronic listening pattern."}}</code></pre></article>
+          <article class="card"><h3>POST /api/djconnect/v1/music_dna/profile</h3><p>Returns structured Music DNA dashboard/profile data. Music DNA is explicit opt-in and server-side in Home Assistant. The profile may include <code>snapshot_history</code>, <code>privacy_dashboard</code> and <code>discovery_feedback</code>; clients do not rebuild Music DNA locally.</p><pre><code>{"client_type":"ios","client_id":"&lt;CLIENT_ID&gt;"}</code></pre><pre><code>{"success":true,"enabled":true,"profile":{"summary":"Warm electronic listening pattern.","snapshot_history":[],"privacy_dashboard":{"sources":["play_now","discover_feedback"]},"discovery_feedback":{"accepted_recommendations":2}}}</code></pre></article>
           <article class="card"><h3>POST /api/djconnect/v1/music_dna/settings</h3><p>Enables or disables Music DNA for the HA user scope. Auth: bearer HA/client token.</p><pre><code>{"client_type":"macos","enabled":true}</code></pre><pre><code>{"success":true,"enabled":true}</code></pre></article>
           <article class="card"><h3>POST /api/djconnect/v1/music_dna/clear</h3><p>Clears learned Music DNA while preserving the opt-in setting. Auth: bearer HA/client token.</p><pre><code>{"client_type":"macos","confirm":true}</code></pre><pre><code>{"success":true,"enabled":true,"cleared":true}</code></pre></article>
-          <article class="card"><h3>GET /api/djconnect/v1/music_discovery</h3><p>Returns backend-owned Music Discovery recommendations from Home Assistant Music DNA. Auth: bearer HA/client token.</p><pre><code>{"client_type":"ios","client_id":"&lt;CLIENT_ID&gt;"}</code></pre><pre><code>{"success":true,"enabled":true,"sections":[{"id":"daily","items":[{"id":"rec-001","kind":"track","title":"Midnight Circuit","reason":"Fits your recent late-night groove."}]}]}</code></pre></article>
-          <article class="card"><h3>POST /api/djconnect/v1/music_discovery/refresh</h3><p>Refreshes the Home Assistant-generated discovery feed; clients never render recommendations from push payloads. Auth: bearer HA/client token.</p><pre><code>{"client_type":"macos","client_id":"&lt;CLIENT_ID&gt;"}</code></pre><pre><code>{"success":true,"refresh_target":"music_discovery"}</code></pre></article>
+          <article class="card"><h3>POST /api/djconnect/v1/music_dna/export<br>POST /api/djconnect/v1/music_dna/import</h3><p>HTTP-only Music DNA import/export helpers. Do not expose them as websocket commands and do not place raw OAuth tokens, bearer tokens, raw audio, full prompts or full listening history in exported material.</p><pre><code>{"client_type":"macos","client_id":"&lt;CLIENT_ID&gt;"}</code></pre><pre><code>{"success":true,"format":"djconnect_music_dna_export_v1"}</code></pre></article>
+          <article class="card"><h3>GET /api/djconnect/v1/music_discovery</h3><p>Returns backend-owned Music Discovery recommendations from Home Assistant Music DNA. Discover is not a recently-played list; raw recently played tracks are not cards unless returned explicitly in <code>sections[]</code>. Clients render backend section order and do not hardcode section ids.</p><pre><code>{"client_type":"ios","client_id":"&lt;CLIENT_ID&gt;"}</code></pre><pre><code>{"success":true,"enabled":true,"sections":[{"id":"new_for_you","items":[{"id":"rec-001","kind":"track","title":"Midnight Circuit","reason":"Fits your recent late-night groove.","reason_sources":["music_dna","spotify_top_profile"],"quality_score":0.91,"quality_band":"high","quality_factors":["fresh_artist","mood_match"]}]}]}</code></pre></article>
+          <article class="card"><h3>POST /api/djconnect/v1/music_discovery/refresh</h3><p>Refreshes the Home Assistant-generated discovery feed. The backend also refreshes roughly hourly while Music DNA is enabled, and may rebuild after new profile data, mood, Play Now or negative feedback. Clients never render recommendations from push payloads.</p><pre><code>{"client_type":"macos","client_id":"&lt;CLIENT_ID&gt;"}</code></pre><pre><code>{"success":true,"refresh_target":"music_discovery"}</code></pre></article>
           <article class="card"><h3>POST /api/djconnect/v1/music_discovery/play</h3><p>Starts a backend-owned recommendation through its section and item id, instead of generic local playback. Auth: bearer HA/client token.</p><pre><code>{"client_type":"ios","section_id":"daily","discovery_item_id":"rec-001"}</code></pre><pre><code>{"success":true,"command":"play_now"}</code></pre></article>
+          <article class="card"><h3>POST /api/djconnect/v1/music_discovery/feedback</h3><p>Stores negative Discover feedback as compact Music DNA signal. Supported values are <code>not_for_me</code>, <code>less_like_this</code> and <code>hide_artist</code>. Clients keep no permanent local blocklist.</p><pre><code>{"client_type":"ios","section_id":"new_for_you","discovery_item_id":"rec-001","feedback":"less_like_this"}</code></pre><pre><code>{"success":true,"stored":true}</code></pre></article>
+          <article class="card"><h3>WebSocket djconnect/capabilities</h3><p>Clients infer support from capabilities, not Home Assistant version parsing. Responses may include <code>features</code> and <code>fallbacks</code>. If websocket commands are missing, use HTTP fallback paths; if optional features are missing, hide controls such as negative feedback. Music DNA import/export remains HTTP-only.</p><pre><code>{"type":"djconnect/capabilities","client_type":"ios"}</code></pre><pre><code>{"success":true,"features":{"music_discovery_feedback":true},"fallbacks":{"music_dna_import_export":"http_only"}}</code></pre></article>
           <article class="card"><h3>GET /api/djconnect/v1/image_proxy/{token}</h3><p>Serves external Ask DJ images through a safe proxy token. Auth: endpoint token plus Home Assistant access context.</p><pre><code>GET /api/djconnect/v1/image_proxy/&lt;IMAGE_TOKEN&gt;</code></pre><pre><code>HTTP 200 image/jpeg</code></pre></article>
           <article class="card"><h3>Local device API</h3><p>Home Assistant uses local-device endpoints for ESP32/Raspberry Pi pairing, commands, OTA and DJ responses. Auth varies by pairing state and device bearer token.</p><pre><code>POST /api/device/pair
 GET /api/device/info
@@ -228,6 +231,27 @@ POST /api/device/dj_response</code></pre><pre><code>{"pairing_code":"&lt;PAIRING
             <li>Responses may include <code>success</code>, <code>text</code>, <code>dj_text</code>, <code>message</code>, <code>messages[]</code>, <code>user_message</code>, <code>assistant_message</code>, <code>history_revision</code>, <code>clear_revision</code>, <code>images[]</code>, <code>links[]</code>, <code>sources[]</code>, <code>playback_actions[]</code>, <code>confirmation_actions[]</code>, <code>intent</code> and <code>action</code>.</li>
             <li><code>recently_played_history</code>, <code>track_insight</code>, <code>personal_music_profile_analysis</code> and <code>personal_music_recommendations</code> are informational unless an explicit playback action is executed through <code>/command</code>.</li>
             <li>External images must go through the image proxy.</li>
+            <li><code>track_versions_search</code> returns at most 10 Spotify tracks with Play Now actions, requires meaningful title words to match the found title and never starts playback automatically.</li>
+            <li>Discover and Music DNA explanation questions are read-only. Negative preference phrases such as "never play this artist again" are stored only as compact Music DNA avoid signals.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h2>Music Discovery contract highlights</h2>
+          <ul>
+            <li>Music Discovery is a backend-owned recommendations feed, not a recently-played list.</li>
+            <li>Sections such as <code>new_for_you</code>, <code>rediscover</code>, <code>artist_spotlight</code> and <code>accepted_recommendations</code> must be rendered in backend order.</li>
+            <li>Freshness, dedupe, blocked tracks, live/remix/radio edit/remaster variants, album/title overlap and artist overload are backend-owned.</li>
+            <li>Items carry backend-owned <code>reason</code>, <code>reason_sources</code>, <code>quality_score</code>, <code>quality_band</code> and <code>quality_factors</code>.</li>
+            <li>Clients do not compute local recommendations, reasons, quality scores or permanent blocklists.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h2>Client capability fallback</h2>
+          <ul>
+            <li>Use <code>djconnect/capabilities</code> and its <code>features</code>/<code>fallbacks</code> fields to decide UI support.</li>
+            <li>Use HTTP fallback when optional websocket commands are not advertised.</li>
+            <li>Hide optional controls, including negative feedback, when the backend does not advertise support.</li>
+            <li>Do not reuse stale artwork from older Ask DJ or Discover responses when a refreshed response omits it.</li>
           </ul>
         </article>
         <article class="card">
@@ -264,11 +288,11 @@ music_backend_error</code></pre>
     <p>Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.2.14</p>
+    <p class="site-version">DJConnect website v3.2.15</p>
   </footer>
 
-  <script src="assets/i18n.js?v=3.2.14"></script>
-  <script src="assets/page-translations.js?v=3.2.14"></script>
+  <script src="assets/i18n.js?v=3.2.15"></script>
+  <script src="assets/page-translations.js?v=3.2.15"></script>
   <script>
     const translations = window.DJCONNECT_PAGE_TRANSLATIONS?.["developers"] || {};
     const getInitialLanguage = () => window.DJCONNECT_I18N?.initialLanguage || "nl";
@@ -298,6 +322,6 @@ music_backend_error</code></pre>
     });
     applyLanguage(getInitialLanguage());
   </script>
-  <script src="assets/site-nav.js?v=3.2.14"></script>
+  <script src="assets/site-nav.js?v=3.2.15"></script>
 </body>
 </html>

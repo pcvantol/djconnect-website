@@ -12,7 +12,7 @@
 - Cloudflare Pages project: `djconnect`
 - Source directory: `wwwroot`
 - Release publish directory: `dist/wwwroot`
-- Current version: `3.2.14`
+- Current version: `3.2.15`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Platform overview page with CSS architecture diagram: `wwwroot/platform.html`
@@ -75,13 +75,28 @@
   display plus Home Assistant-provided structured action buttons, without Pi
   voice, free text, TTS or local audio unless a future Pi capability explicitly
   expands that scope.
+- Current Home Assistant integration release for public website copy is
+  `3.2.44`.
 - Music DNA and Ontdek are premium platform features, not client-local storage.
-  Music DNA is opt-in and server-side in Home Assistant. Ontdek uses Music DNA
-  for daily or refreshed recommendations for tracks, albums, artists and
-  playlists with artwork, `Play Now` and reasons. If Music DNA is not active,
-  clients must show consent/education first. iOS, macOS, Apple Watch,
-  Raspberry Pi and Windows render the same backend contract and must not store
-  Music DNA locally.
+  Music DNA is opt-in and server-side in Home Assistant. Ontdek / Music
+  Discovery is a backend-owned recommendations feed, not a recently-played
+  list. Home Assistant uses Music DNA and Spotify recent/top profile data as
+  seed/context, refreshes Discover and Music DNA roughly hourly while enabled,
+  and may rebuild after new profile data, mood, `Play Now` or negative
+  feedback. Raw recently played tracks must not be shown as Discover cards
+  unless the backend explicitly returns them in `sections[]`. Sections such as
+  `new_for_you`, `rediscover`, `artist_spotlight` and
+  `accepted_recommendations` are rendered in backend order; clients must not
+  hardcode section ids. Items carry backend-owned `reason`, `reason_sources`,
+  `quality_score`, `quality_band` and `quality_factors`; freshness/dedupe,
+  blocked tracks and artist overload are backend-owned. `Play Now` uses
+  `/api/djconnect/v1/music_discovery/play`; negative feedback uses
+  `/api/djconnect/v1/music_discovery/feedback` with `not_for_me`,
+  `less_like_this` and `hide_artist`. Clients keep no permanent local blocklist
+  and must not compute local recommendations, reasons or quality scores.
+  `snapshot_history`, `privacy_dashboard` and `discovery_feedback` are
+  backend-owned Music DNA dashboard blocks; snapshot history is bounded and
+  compact, not raw playback history.
 - Ask DJ Track Insight copy must stay clear that DJConnect does not directly
   analyze encrypted Spotify playback audio. Public copy must not promise hidden
   audio measurements, harmonic labels, exact sections, timestamps or waveform
@@ -305,7 +320,7 @@ useful for higher GitHub API limits.
   the token-protected `/api/stats` contract and the release-script
   dependency/tool preflight.
 - `npm run test:smoke` is the optional Playwright smoke-test entrypoint for live/browser checks. `npm run screenshots:live` captures Dutch live production screenshots at a laptop viewport into `screenshots/live-laptop/`. Neither is part of the default `npm test` run.
-- Current released version `3.2.14` syncs the public product contract with the
+- Current released version `3.2.15` syncs the public product contract with the
   current Home Assistant integration and aligns the website color system with
   the current app. Version `3.2.7` loads localized static What's New JSON on
   download-page changelogs before falling back to GitHub release bodies.

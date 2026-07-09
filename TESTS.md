@@ -22,10 +22,18 @@
   Music DNA profile, Spotify credentials stay in Home Assistant and DJConnect
   is not affiliated with, endorsed by, or sponsored by Spotify AB.
 - Verify the homepage and Features page explain Ontdek / Music Discovery as a
-  premium recommendations surface that only works after Music DNA consent,
-  uses Home Assistant as the source of truth, shows daily/refreshed tracks,
-  albums, artists and playlists with artwork, `Play Now` and recommendation
-  reasons, and feeds `Play Now` choices back as positive Music DNA signals.
+  backend-owned recommendations feed, not a recently-played list. Confirm Home
+  Assistant uses Music DNA and Spotify recent/top profile data as seed/context,
+  refreshes Discover and Music DNA roughly hourly while Music DNA is enabled,
+  and may rebuild after new profile data, mood, `Play Now` or negative
+  feedback. Raw recently played tracks must not appear as Discover cards unless
+  the backend returns them in `sections[]`. Clients must render backend section
+  order without hardcoding ids, show backend-owned `reason`, `reason_sources`,
+  `quality_score`, `quality_band` and `quality_factors`, use backend
+  freshness/dedupe, send Play Now through
+  `/api/djconnect/v1/music_discovery/play`, send negative feedback through
+  `/api/djconnect/v1/music_discovery/feedback`, and keep no permanent local
+  blocklist.
 - Verify Ask DJ Track Insight copy explains server-side interpretive Track
   Insight, example prompts such as "Geef Track Insight voor dit nummer",
   genre/subgenre, mood, energy, confidence, production/listening cues, similar

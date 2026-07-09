@@ -65,7 +65,7 @@
     @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } }
 
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.14" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.15" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -150,8 +150,8 @@
           <article class="card"><div class="icon">🎙️</div><h3 data-i18n="musicTitle">Muziek aanvragen</h3><p data-i18n="musicText">Vraag een artiest aan met je stem of via de app. DJConnect vertaalt je verzoek naar een concrete muziekactie.</p></article>
           <article class="card"><div class="icon">💬</div><h3 data-i18n="askDjTitle">Slimme follow-ups</h3><p data-i18n="askDjText">Ask DJ geeft niet alleen antwoord, maar ook acties. Ask DJ works without Music DNA; met opt-in kan Home Assistant compacte Music DNA signalen gebruiken voor persoonlijkere aanbevelingen.</p></article>
           <article class="card"><div class="icon">◎</div><h3 data-i18n="vibecastCoreTitle">VibeCast feed</h3><p data-i18n="vibecastCoreText">Een first-class Apple client feature voor korte, veilige vibe-items over de huidige playbackcontext, met expliciete macOS/iOS parity.</p></article>
-          <article class="card"><div class="icon">🧬</div><h3 data-i18n="musicDnaTitle">Music DNA is opt-in</h3><p data-i18n="musicDnaText">Music DNA is opt-in. Clients zijn renderers en bewaren geen bronprofiel; Home Assistant is server-side bron van waarheid en clear wist learned DNA zonder de opt-in instelling te veranderen.</p></article>
-          <article class="card"><div class="icon">🪄</div><h3 data-i18n="discoverCoreTitle">Ontdek</h3><p data-i18n="discoverCoreText">Ontdek gebruikt Music DNA voor dagelijkse tracks, albums, artists en playlists met artwork, Play Now en een reden waarom de tip bij je luisterprofiel past.</p></article>
+          <article class="card"><div class="icon">🧬</div><h3 data-i18n="musicDnaTitle">Music DNA is opt-in</h3><p data-i18n="musicDnaText">Music DNA is opt-in en server-side in Home Assistant. Clients zijn renderers; snapshot_history, privacy_dashboard en discovery_feedback komen uit de backend en bevatten geen raw playback history.</p></article>
+          <article class="card"><div class="icon">🪄</div><h3 data-i18n="discoverCoreTitle">Ontdek</h3><p data-i18n="discoverCoreText">Ontdek is backend-owned recommendations, not recently played: Home Assistant ververst ongeveer uurlijks secties met reasons, quality scores, freshness/dedupe en Play Now/negative feedback.</p></article>
           <article class="card"><div class="icon">📊</div><h3 data-i18n="trackAnalysisTitle">Ask DJ Track Insight</h3><p data-i18n="trackAnalysisText">Laat Ask DJ de huidige track server-side duiden: genre, subgenre, mood, vibe, texture, emotionele toon, energie, danceability, intensiteit, confidence, productie, instrumentatie, arrangement, luistercues, similar tracks en visual profile. Read-only: analyse verandert nooit je playback.</p></article>
           <article class="card"><div class="icon">▶</div><h3 data-i18n="playbackTitle">Music backend playback</h3><p data-i18n="playbackText">Start, pauzeer en stuur playback naar je gekozen player via Spotify Direct of Music Assistant.</p></article>
           <article class="card"><div class="icon">🔊</div><h3 data-i18n="speakerTitle">Speaker keuze</h3><p data-i18n="speakerText">Kies bewust waar muziek wordt afgespeeld, zodat dezelfde aanvraag past bij je kamer, moment of device.</p></article>
@@ -198,14 +198,14 @@
     <p>Copyright Peter van Tol 2026. Released under the MIT License.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.2.14</p>
+    <p class="site-version">DJConnect website v3.2.15</p>
   </footer>
 
 
-  <script src="assets/site-nav.js?v=3.2.14"></script>
+  <script src="assets/site-nav.js?v=3.2.15"></script>
 </body>
-<script src="assets/i18n.js?v=3.2.14"></script>
-  <script src="assets/page-translations.js?v=3.2.14"></script>
+<script src="assets/i18n.js?v=3.2.15"></script>
+  <script src="assets/page-translations.js?v=3.2.15"></script>
 <script>
     const translations = window.DJCONNECT_PAGE_TRANSLATIONS?.["features"] || {};
   const applyLanguage = (language) => {

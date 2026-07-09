@@ -61,10 +61,11 @@ Static landing page for DJConnect, published through Cloudflare Pages.
   requires LAN presence plus a temporary QR/code, and avoids the extra expiry,
   replay protection, rate limiting, phishing/error states and external URL
   dependencies that remote pairing would require.
+- Current Home Assistant integration release for public copy is `3.2.44`.
 - Ask DJ is a major product feature for iOS, macOS, Windows, Apple Watch and
   Raspberry Pi clients.
   Website copy should keep it clear that Ask DJ runs through Home Assistant and
-  DJConnect integration 3.2.18 or newer, uses compact bounded server-side Music
+  DJConnect integration 3.2.44 or newer, uses compact bounded server-side Music
   DNA/history only after opt-in, carries chat continuity across app clients, can show Ja/Nee
   follow-up controls, uses backend-aware Spotify Direct or Music Assistant
   actions, can use optional Apple push notifications only as wake/attention
@@ -92,18 +93,46 @@ Static landing page for DJConnect, published through Cloudflare Pages.
   learning stops.
   Ontdek / Music Discovery is the premium recommendations surface built on
   Music DNA. It only works after explicit Music DNA consent and is generated
-  server-side by Home Assistant. It can show daily or refreshed recommendations
-  for tracks, albums, artists and playlists, with artwork, `Play Now` actions
-  and a reason explaining why each item fits the user's Music DNA. A `Play Now`
-  tap from Ontdek is fed back as an explicit positive signal. iOS, macOS,
-  Apple Watch, Raspberry Pi and Windows clients use the same backend contract
-  and differ only in presentation; they do not store Music DNA locally.
+  server-side by Home Assistant. It is a backend-owned recommendations feed,
+  not a recently-played list: raw recently played tracks must not be presented
+  as Discover cards unless the backend explicitly returns them in `sections[]`.
+  Home Assistant refreshes Discover and Music DNA roughly hourly while Music DNA
+  is enabled, using Music DNA plus Spotify recently-played/top profile data as
+  seed/context. New profile data, mood, `Play Now` and negative feedback may
+  trigger a rebuild. Sections such as `new_for_you`, `rediscover`,
+  `artist_spotlight` and `accepted_recommendations` are rendered in backend
+  order; clients must not hardcode section ids. Items carry backend-owned
+  `reason`, `reason_sources`, `quality_score`, `quality_band` and
+  `quality_factors`. Freshness and dedupe are backend-owned, including
+  known/recent/blocked tracks, live/remix/radio edit/remaster variants,
+  album/title overlap and artist overload. `Play Now` uses
+  `/api/djconnect/v1/music_discovery/play`; negative feedback uses
+  `/api/djconnect/v1/music_discovery/feedback` with `not_for_me`,
+  `less_like_this` and `hide_artist`. Clients keep no permanent local blocklist
+  and do not compute local recommendations, reasons or quality scores. Discover
+  accepted recommendations and negative feedback are fed back to Ask DJ as
+  compact Music DNA signals.
+  Music DNA dashboard/profile data may include `snapshot_history`,
+  `privacy_dashboard` and `discovery_feedback`. `snapshot_history` is bounded,
+  compact and backend-owned, not raw playback history. `privacy_dashboard`
+  arrives inside `/profile` when present; it has no separate endpoint and shows
+  active sources, raw counts, retention limits and controls without raw audio,
+  OAuth tokens, bearer tokens, full prompts or full listening history.
+  iOS and macOS support full Discover and Music DNA UI, watchOS is compact,
+  Raspberry Pi may render text/desktop-style Discover and Music DNA UI while
+  storing no Music DNA locally, and APNs `music_discovery_ready` contains no
+  recommendations, only an open/refresh hint.
   Local app clients may optionally use Home Assistant's native `/api/websocket`
   after normal local pairing and HA websocket auth for low-latency
   `djconnect/command`, `djconnect/ask_dj/message` and
   `djconnect/track_insight` calls when `djconnect/capabilities` advertises
-  them. HTTP remains the canonical fallback for remote access, pairing,
-  history sync/clear, voice uploads, image/TTS URLs and websocket failures.
+  them. Clients infer support from capabilities, including `features` and
+  `fallbacks`, not Home Assistant version parsing. HTTP remains the canonical
+  fallback for remote access, pairing, history sync/clear, voice uploads,
+  image/TTS URLs, missing websocket commands and websocket failures. Optional
+  controls such as negative feedback should be hidden when capabilities do not
+  advertise support. Music DNA import/export remains HTTP-only through
+  `/music_dna/export` and `/music_dna/import`.
 - VibeCast is a premium-ready first-class Apple client feature documented on
   the Features, Platform, iOS, macOS and How To Start pages. Public copy must
   keep `GET /api/djconnect/v1/vibecast` visible, with supported Apple client
@@ -476,10 +505,11 @@ Use `./cleanup_old_releases.sh` manually only when you want cleanup outside the 
   `DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.`
 - Keep Music DNA and Ontdek copy aligned across the website, TESTS, HANDOFF and
   TECHNICAL_DESIGN. Ontdek must stay consent-gated, server-side via Home
-  Assistant, driven primarily by Music DNA, and capable of showing tracks,
-  albums, artists and playlists with artwork, `Play Now` and a recommendation
-  reason. Clients must remain renderers only and must not be described as
-  storing a persistent Music DNA profile locally.
+  Assistant, backend-owned, not a recently-played list, refreshed roughly
+  hourly while Music DNA is enabled and driven by Music DNA plus Spotify
+  recent/top profile data. Clients must render backend sections, reasons,
+  quality data, freshness/dedupe and feedback affordances without computing
+  local recommendations, reasons, quality scores or permanent blocklists.
 - Keep content-page navigation free of self-links. Features, Spraak, Blog,
   Support and Privacy should not show their own page as a menu option.
 - Keep the homepage `Kies je interface` cards aligned with the supported

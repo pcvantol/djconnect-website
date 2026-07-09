@@ -53,7 +53,7 @@
     @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } }
 
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.14" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.15" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -114,7 +114,7 @@
         </article>
         <article class="card">
           <h2 data-i18n="musicDnaTitle">Music DNA is opt-in</h2>
-          <p data-i18n="musicDnaText">Music DNA is opt-in. Totdat je het inschakelt, bouwt DJConnect geen Music DNA kennis uit Ask DJ, luisterprofielen, recente tracks, voorkeuren of aanbevelingen. Na opt-in mag Home Assistant compacte signalen opbouwen zoals succesvolle playback/Play Now-keuzes, recente playbackmetadata, artiesten en genres waar beschikbaar, Track Insight energie/genre analyse, realtime mood samples en compacte Spotify profiel/recently-played/top-data waar de backend die ophaalt.</p>
+          <p data-i18n="musicDnaText">Music DNA is opt-in. Totdat je het inschakelt, bouwt DJConnect geen Music DNA kennis uit Ask DJ, luisterprofielen, voorkeuren of aanbevelingen. Na opt-in mag Home Assistant server-side compacte signalen opbouwen en ongeveer uurlijks verversen vanuit Play Now-keuzes, Discover feedback, snapshot_history, Track Insight context, realtime mood samples en Spotify recently-played/top profile data waar de backend die ophaalt.</p>
         </article>
         <article class="card">
           <h2 data-i18n="clearDnaTitle">Music DNA wissen</h2>
@@ -122,11 +122,11 @@
         </article>
         <article class="card">
           <h2 data-i18n="clientDnaTitle">Clients en profieldata</h2>
-          <p data-i18n="clientDnaText">Clients do not store your persistent Music DNA profile. Het Music DNA dashboard haalt server-side kaarten uit Home Assistant, zoals samenvatting, favoriete genres, favoriete artiesten, energieprofiel, mood/smaakrichting, recente tracks, gebaseerd op en bijgewerkt.</p>
+          <p data-i18n="clientDnaText">Clients do not store your persistent Music DNA profile. Het Music DNA dashboard haalt server-side kaarten uit Home Assistant, zoals samenvatting, snapshot_history, privacy_dashboard en discovery_feedback. Snapshot history is bounded en compact; het is geen raw playback history.</p>
         </article>
         <article class="card">
           <h2 data-i18n="discoverPrivacyTitle">Ontdek aanbevelingen</h2>
-          <p data-i18n="discoverPrivacyText">Ontdek gebruikt Music DNA alleen na opt-in en toont eerst consent als Music DNA nog niet actief is. Play Now vanuit Ontdek telt als expliciet positief signaal voor toekomstige aanbevelingen, maar clients bewaren geen Music DNA lokaal.</p>
+          <p data-i18n="discoverPrivacyText">Ontdek gebruikt Music DNA alleen na opt-in en toont eerst consent als Music DNA nog niet actief is. Ontdek is een backend-owned aanbevelingenfeed, geen recently-played lijst; raw recently played tracks worden niet als Discover cards gepresenteerd tenzij Home Assistant ze expliciet in sections teruggeeft. Play Now en negatieve feedback tellen als compacte Music DNA signalen, maar clients bewaren geen Music DNA of permanente blocklist lokaal.</p>
         </article>
         <article class="card">
           <h2 data-i18n="notificationsTitle">Apple meldingen</h2>
@@ -172,11 +172,11 @@
     <p>Copyright Peter van Tol 2026. Released under the MIT License.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.2.14</p>
+    <p class="site-version">DJConnect website v3.2.15</p>
   </footer>
 
-  <script src="assets/i18n.js?v=3.2.14"></script>
-  <script src="assets/page-translations.js?v=3.2.14"></script>
+  <script src="assets/i18n.js?v=3.2.15"></script>
+  <script src="assets/page-translations.js?v=3.2.15"></script>
 
   <script>
     const translations = window.DJCONNECT_PAGE_TRANSLATIONS?.["privacy"] || {};
@@ -208,6 +208,6 @@
 
   </script>
 
-  <script src="assets/site-nav.js?v=3.2.14"></script>
+  <script src="assets/site-nav.js?v=3.2.15"></script>
 </body>
 </html>

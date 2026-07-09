@@ -381,8 +381,8 @@ test("homepage promotes Ask DJ as a major product feature", async () => {
   assert.match(index, /Ask DJ werkt ook als Music DNA uit staat/);
   assert.match(index, /met opt-in kan Home Assistant compacte Music DNA signalen gebruiken/);
   assert.match(index, /"Waarom koos je dit nummer\?"/);
-  assert.match(index, /"Welke muziek raad je mij aan\?"/);
-  assert.match(index, /"Omschrijf eens waar ik de afgelopen maand naar luisterde\."/);
+  assert.match(index, /"Wat is er nieuw in Discover\?"/);
+  assert.match(index, /"Geef me 10 uitvoeringen van dit nummer door verschillende artiesten\."/);
   assert.match(index, /"Volgende nummer\."/);
   assert.match(index, /"Zet iets rustigers op\."/);
   assert.match(index, /Home Assistant haalt context, history en playbackstatus op/);
@@ -420,28 +420,29 @@ test("homepage promotes Ask DJ as a major product feature", async () => {
   assert.match(index, /You can clear Music DNA at any time/);
   assert.match(index, /Clients do not store your persistent Music DNA profile/);
   assert.match(index, /<section id="discover" class="technical-analysis">/);
-  assert.match(index, /Ontdek is de premium DJConnect discovery-feed/);
-  assert.match(index, /dagelijkse persoonlijke aanbevelingen voor tracks, albums, artists en playlists/);
-  assert.match(index, /Ontdek werkt pas nadat Music DNA expliciet is geactiveerd/);
-  assert.match(index, /Music DNA gebruikt compacte signalen zoals voorkeuren, luisterritme, favoriete artiesten, albums en tracks, playtime aggregaties, mood mix, repeat magnets, taste anchors en expliciete positives/);
-  assert.match(index, /Zonder consent toont de client eerst uitleg/);
-  assert.match(index, /Iedere recommendation kan een reden tonen waarom die past bij je Music DNA/);
-  assert.match(index, /Klik of tap op een Ontdek-item start Play Now/);
-  assert.match(index, /positief signaal, zodat aanbevelingen over tijd beter worden/);
-  assert.match(index, /total hours play time, top artists, luisterritme, mood mix, repeat magnets, explicit positives, taste anchors en recent favorites/);
-  assert.match(index, /verschijnen alleen als er genoeg betrouwbare data is/);
+  assert.match(index, /Ontdek is een backend-owned aanbevelingenfeed, geen recent-played lijst/);
+  assert.match(index, /Home Assistant bouwt persoonlijke secties uit Music DNA en Spotify recent\/top profile data/);
+  assert.match(index, /new_for_you, rediscover, artist_spotlight en accepted_recommendations/);
+  assert.match(index, /clients renderen de volgorde en hardcoden geen section ids/);
+  assert.match(index, /Discover wordt server-side ongeveer uurlijks ververst zolang Music DNA enabled is/);
+  assert.match(index, /nieuwe profile data, mood, Play Now of negatieve feedback kan een rebuild triggeren/);
+  assert.match(index, /backend-owned reason, reason_sources, quality_score, quality_band en quality_factors/);
+  assert.match(index, /Play Now loopt via \/api\/djconnect\/v1\/music_discovery\/play/);
+  assert.match(index, /negatieve feedback via \/api\/djconnect\/v1\/music_discovery\/feedback met not_for_me, less_like_this of hide_artist/);
+  assert.match(index, /Known, recent en blocked tracks, live\/remix\/radio edit\/remaster varianten, album\/title overlap en artist overload worden server-side gefilterd/);
   assert.match(index, /iOS, macOS, Apple Watch, Raspberry Pi en Windows gebruiken hetzelfde Home Assistant contract/);
-  assert.match(index, /bewaren geen Music DNA lokaal/);
-  assert.match(index, /DJConnect bewaart geen OAuth tokens, bearer tokens, raw audio of volledige prompts in Music DNA/);
-  assert.match(index, /Clear behoudt de opt-in setting en laat opbouw opnieuw vanaf leeg starten/);
+  assert.match(index, /clients bewaren geen aanbevelingen, redenen, quality data of blocklists lokaal/);
+  assert.match(index, /Raw recently played tracks worden niet als Discover cards gepresenteerd tenzij de backend ze expliciet in sections teruggeeft/);
+  assert.match(index, /Accepted recommendations en negatieve feedback worden als compacte Music DNA signalen teruggekoppeld naar Ask DJ/);
+  assert.match(index, /APNs music_discovery_ready bevat geen aanbevelingen, alleen een open\/refresh hint/);
   assert.match(index, /Spotify credentials stay in Home Assistant/);
   assert.match(index, /Music DNA mag geen OAuth tokens, bearer tokens, raw audio, volledige prompts of onbeperkte Spotify luistergeschiedenis opslaan/);
   assert.match(index, /DJConnect's active integration routes use Home Assistant Assist\/STT\/TTS and do not call direct external AI\/STT\/TTS APIs/);
-  assert.match(index, /Het Music DNA dashboard haalt kaarten zoals Samenvatting, Favoriete genres, Favoriete artiesten, Energieprofiel, Mood\/smaakrichting, Recente tracks, Gebaseerd op en Bijgewerkt op uit Home Assistant/);
+  assert.match(index, /snapshot_history en Spotify recent\/top profile data/);
   assert.match(index, /Spotify Premium en Client ID zijn alleen nodig voor Spotify Direct/);
   assert.match(index, /Music Assistant gebruikt eigen providers/);
   assert.doesNotMatch(index, /HACS DJConnect integration v3\.1\.69\+/);
-  assert.match(index, /Home Assistant, HACS DJConnect integration v3\.2\.18 of nieuwer, een music backend, lokale pairing/);
+  assert.match(index, /Home Assistant, HACS DJConnect integration v3\.2\.44 of nieuwer, een music backend, lokale pairing/);
   assert.match(index, /For concrete recommendations you choose Play Now yourself; playback starts only after your tap/);
   assert.match(index, /Spotify is a trademark of Spotify AB/);
   assert.match(index, /DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB/);
@@ -517,10 +518,29 @@ test("developers page documents technical architecture and API contracts", async
   assert.match(developers, /GET \/api\/djconnect\/v1\/ask_dj\/history\?since_revision=&lt;number&gt;/);
   assert.match(developers, /POST \/api\/djconnect\/v1\/ask_dj\/idle_suggestion/);
   assert.match(developers, /POST \/api\/djconnect\/v1\/music_dna\/profile/);
+  assert.match(developers, /snapshot_history/);
+  assert.match(developers, /privacy_dashboard/);
+  assert.match(developers, /discovery_feedback/);
+  assert.match(developers, /POST \/api\/djconnect\/v1\/music_dna\/export/);
+  assert.match(developers, /POST \/api\/djconnect\/v1\/music_dna\/import/);
   assert.match(developers, /GET \/api\/djconnect\/v1\/music_discovery/);
   assert.match(developers, /POST \/api\/djconnect\/v1\/music_discovery\/refresh/);
   assert.match(developers, /POST \/api\/djconnect\/v1\/music_discovery\/play/);
-  assert.match(developers, /clients never render recommendations from push payloads/);
+  assert.match(developers, /POST \/api\/djconnect\/v1\/music_discovery\/feedback/);
+  assert.match(developers, /not_for_me/);
+  assert.match(developers, /less_like_this/);
+  assert.match(developers, /hide_artist/);
+  assert.match(developers, /reason_sources/);
+  assert.match(developers, /quality_score/);
+  assert.match(developers, /quality_band/);
+  assert.match(developers, /quality_factors/);
+  assert.match(developers, /WebSocket djconnect\/capabilities/);
+  assert.match(developers, /features/);
+  assert.match(developers, /fallbacks/);
+  assert.match(developers, /Music DNA import\/export remains HTTP-only/);
+  assert.match(developers, /track_versions_search/);
+  assert.match(developers, /never starts playback automatically/);
+  assert.match(developers, /Clients never render recommendations from push payloads/);
   assert.match(developers, /GET \/api\/djconnect\/v1\/image_proxy\/\{token\}/);
   assert.match(developers, /POST \/api\/device\/ota/);
   assert.match(developers, /messages\[\]<\/code> is canonical for render order/);
@@ -792,12 +812,11 @@ test("features page describes core functions and bonus games", async () => {
   assert.match(features, /Desktopbediening met Ask DJ, playback-acties en veilige tokenopslag in Windows Credential Manager/);
   assert.match(features, /Ask DJ works without Music DNA/);
   assert.match(features, /Music DNA is opt-in/);
-  assert.match(features, /Clients zijn renderers en bewaren geen bronprofiel/);
-  assert.match(features, /Home Assistant is server-side bron van waarheid/);
+  assert.match(features, /snapshot_history, privacy_dashboard en discovery_feedback komen uit de backend/);
+  assert.match(features, /geen raw playback history/);
   assert.match(features, /data-i18n="discoverCoreTitle">Ontdek/);
-  assert.match(features, /Ontdek gebruikt Music DNA voor dagelijkse tracks, albums, artists en playlists/);
-  assert.match(features, /artwork, Play Now en een reden waarom de tip bij je luisterprofiel past/);
-  assert.match(features, /Home Assistant is server-side bron van waarheid/);
+  assert.match(features, /Ontdek is backend-owned recommendations, not recently played/);
+  assert.match(features, /ongeveer uurlijks secties met reasons, quality scores, freshness\/dedupe en Play Now\/negative feedback/);
   assert.match(features, /Spotify credentials stay in Home Assistant/);
   assert.match(features, /Ask DJ does more than answer: it gives you actions/);
   assert.doesNotMatch(features, new RegExp("B" + "PM", "i"));
@@ -978,6 +997,7 @@ test("voice commands page documents intent families and DJ response styles", asy
   assert.deepEqual(actualAskDjIntentOrder, [
     "conversation_followup",
     "help",
+    "music_discovery_help",
     "personal_music_dna_summary",
     "speaker_outputs",
     "retry_previous_request",
@@ -989,6 +1009,7 @@ test("voice commands page documents intent families and DJ response styles", asy
     "concert_agenda",
     "next_track_info",
     "current_track_versions",
+    "track_versions_search",
     "personal_music_profile_analysis",
     "track_insight",
     "recently_played_history",
@@ -1002,6 +1023,12 @@ test("voice commands page documents intent families and DJ response styles", asy
   assert.match(intents, /Geeft niet/);
   assert.match(intents, /Wat kun je\?/);
   assert.match(intents, /Welke commando's kan ik gebruiken\?/);
+  assert.match(intents, /"id": "music_discovery_help"/);
+  assert.match(intents, /Wat is er nieuw in Discover\?/);
+  assert.match(intents, /Ververs mijn Discover aanbevelingen/);
+  assert.match(intents, /Hoe werkt Discover met feedback\?/);
+  assert.match(intents, /Waarom past deze aanbeveling bij mijn smaak\?/);
+  assert.match(intents, /Explanation questions do not mutate playback, Discover or Music DNA state/);
   assert.match(intents, /"id": "personal_music_dna_summary"/);
   assert.match(intents, /"action": "music_dna_summary"/);
   assert.match(intents, /"intent": "personal_music_dna_summary"/);
@@ -1011,10 +1038,13 @@ test("voice commands page documents intent families and DJ response styles", asy
   assert.match(intents, /Wat weet je nu over mij\?/);
   assert.match(intents, /Wat weet DJConnect over mij\?/);
   assert.match(intents, /Wat staat er in mijn Music DNA\?/);
+  assert.match(intents, /Wat zegt mijn Music DNA\?/);
+  assert.match(intents, /Welke gegevens bewaart Music DNA over mij\?/);
   assert.match(intents, /What does DJConnect know about me\?/);
   assert.match(intents, /What is in my Music DNA\?/);
+  assert.match(intents, /What data does Music DNA keep about me\?/);
   assert.match(intents, /server-side Music DNA/);
-  assert.match(intents, /no old album art, media cards, Play Now, live playback or profile enrichment/);
+  assert.match(intents, /raw audio, OAuth tokens or full prompts/);
   assert.match(intents, /Welke speakers zijn er\?/);
   assert.match(intents, /Wissel van speaker/);
   assert.match(intents, /Move music to the living room speaker/);
@@ -1035,6 +1065,16 @@ test("voice commands page documents intent families and DJ response styles", asy
   assert.match(intents, /"id": "current_track_versions"/);
   assert.match(intents, /Heb je een live versie\?/);
   assert.match(intents, /Find a remix of this track/);
+  assert.match(intents, /"id": "track_versions_search"/);
+  assert.match(intents, /"intent": "track_versions_search"/);
+  assert.match(intents, /Geef me 10 uitvoeringen van Voorbeeldlied door verschillende artiesten/);
+  assert.match(intents, /Doe me 10 uitvoeringen door verschillende artiesten van \\"Voorbeeldlied\\"/);
+  assert.match(intents, /Zoek versies van \\"Voorbeeldlied\\"/);
+  assert.match(intents, /Toon covers van \\"Voorbeeldlied\\"/);
+  assert.match(intents, /Find versions of \\"Example Song\\"/);
+  assert.match(intents, /Give me versions titled Example Song/);
+  assert.match(intents, /requires every meaningful title-query word to appear in the found track title/);
+  assert.match(intents, /does not start playback automatically/);
   assert.match(intents, /Omschrijf eens waar ik zoal naar luisterde de afgelopen maand/);
   assert.match(intents, /"id": "track_insight"/);
   assert.match(intents, /Geef Track Insight voor dit nummer/);
@@ -1155,10 +1195,14 @@ test("privacy policy page covers App Store requirements", async () => {
   assert.match(privacy, /Music DNA is opt-in/);
   assert.match(privacy, /You can clear Music DNA at any time/);
   assert.match(privacy, /Clients do not store your persistent Music DNA profile/);
+  assert.match(privacy, /snapshot_history, privacy_dashboard en discovery_feedback/);
+  assert.match(privacy, /Snapshot history is bounded en compact; het is geen raw playback history/);
   assert.match(privacy, /Ontdek gebruikt Music DNA alleen na opt-in/);
   assert.match(privacy, /toont eerst consent als Music DNA nog niet actief is/);
-  assert.match(privacy, /Play Now vanuit Ontdek telt als expliciet positief signaal/);
-  assert.match(privacy, /clients bewaren geen Music DNA lokaal/);
+  assert.match(privacy, /Ontdek is een backend-owned aanbevelingenfeed, geen recently-played lijst/);
+  assert.match(privacy, /raw recently played tracks worden niet als Discover cards gepresenteerd tenzij Home Assistant ze expliciet in sections teruggeeft/);
+  assert.match(privacy, /Play Now en negatieve feedback tellen als compacte Music DNA signalen/);
+  assert.match(privacy, /clients bewaren geen Music DNA of permanente blocklist lokaal/);
   assert.match(privacy, /DJConnect's active integration routes use Home Assistant Assist\/STT\/TTS and do not call direct external AI\/STT\/TTS APIs/);
   assert.match(privacy, /Diagnostics en logs redacteren secrets/);
   assert.match(privacy, /geen raw audio, full prompts, volledige Ask DJ history of Music DNA dumps/);

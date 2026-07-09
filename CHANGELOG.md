@@ -2,6 +2,18 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.2.16 - 2026-07-09
+
+- Documented optional DJ announcements through a chosen Home Assistant
+  `media_player` speaker across homepage, Features, setup and Voice Assistant
+  routes.
+- Clarified the two Home Assistant Voice roles: Assist as the input route to
+  `DJConnect DJ`, and an announcement speaker as the physical DJ voice in the
+  room.
+- Added client output-mode guidance for app clients, Raspberry Pi and ESP32,
+  including the explicit Spotify Direct expectation that DJConnect does not
+  pause, resume, mix or duck Spotify playback for announcements.
+
 ## DJConnect website v3.2.15 - 2026-07-09
 
 - Synced website copy and developer docs with Home Assistant integration

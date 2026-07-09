@@ -11,7 +11,7 @@ Lees eerst `HANDOFF.md`, `README.md`, `TECHNICAL_DESIGN.md`, `TESTS.md`,
 Context:
 - Dit is de DJConnect website repo, statische site in `wwwroot`, deploy via
   Cloudflare Pages.
-- Huidige versie is `3.2.15`.
+- Huidige versie is `3.2.16`.
 - Huidige Home Assistant integration release voor websitecopy is `3.2.44`.
 - Repo is MIT-licensed via `LICENSE`.
 - Gebruik `npm test` voor de standaard testset.

@@ -69,7 +69,7 @@
     @media (max-width:980px) { .hero-grid,.grid-2,.grid-3,.diagram { grid-template-columns:1fr; } }
     @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } th, td { display:block; width:100%; } tr { display:block; border-bottom:1px solid var(--line); } }
   </style>
-  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.15" />
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.2.16" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
@@ -194,7 +194,7 @@ djconnect-lilygo-t-embed-s3-XXXXXXXXXXXX</code></pre>
         <p class="lead">Examples use placeholders only: <code>&lt;HA_TOKEN&gt;</code>, <code>&lt;DEVICE_TOKEN&gt;</code>, <code>&lt;CLIENT_ID&gt;</code>, <code>&lt;DEVICE_ID&gt;</code>, <code>&lt;PAIRING_CODE&gt;</code> and <code>&lt;IMAGE_TOKEN&gt;</code>.</p>
 
         <div class="endpoint">
-          <article class="card"><h3>POST /api/djconnect/v1/status</h3><p>Used by ESP32/local clients to publish current device status to Home Assistant. Auth: bearer device token.</p><pre><code>{"client_type":"esp32","device_id":"&lt;DEVICE_ID&gt;","firmware_version":"3.2.15","battery_percent":84}</code></pre><pre><code>{"success":true,"paired":true,"server_time":"2026-07-05T08:00:00Z"}</code></pre></article>
+          <article class="card"><h3>POST /api/djconnect/v1/status</h3><p>Used by ESP32/local clients to publish current device status to Home Assistant. Auth: bearer device token.</p><pre><code>{"client_type":"esp32","device_id":"&lt;DEVICE_ID&gt;","firmware_version":"3.2.16","battery_percent":84}</code></pre><pre><code>{"success":true,"paired":true,"server_time":"2026-07-05T08:00:00Z"}</code></pre></article>
           <article class="card"><h3>POST /api/djconnect/v1/command</h3><p>Used by app/device clients for playback, backend-aware actions, Ask DJ Play Now and confirmation responses. Auth: bearer HA/client token.</p><pre><code>{"client_type":"ios","client_id":"&lt;CLIENT_ID&gt;","command":"play_track","value":"spotify:track:example"}</code></pre><pre><code>{"success":true,"music_backend":"spotify_direct","music_backend_available":true,"music_target_player":"Living Room"}</code></pre></article>
           <article class="card"><h3>POST /api/djconnect/v1/voice</h3><p>Used for voice/PTT upload or text-only DJ response tests. WAV requests use Assist/STT before command or Ask DJ handling. Auth: bearer HA/client token.</p><pre><code>{"client_type":"macos","client_id":"&lt;CLIENT_ID&gt;","text":"Play the latest album by Nova Lane"}</code></pre><pre><code>{"success":true,"recognized_text":"Play the latest album by Nova Lane","message":"I found a matching album."}</code></pre></article>
           <article class="card"><h3>POST /api/djconnect/v1/ask_dj/message</h3><p>Text chat for iOS, macOS, watchOS, Raspberry Pi and Windows. <code>client_message_id</code> deduplicates retries. Auth: bearer HA/client token.</p><pre><code>{"client_type":"watchos","client_id":"&lt;CLIENT_ID&gt;","client_message_id":"msg-001","message":"Why does this track fit my mood?"}</code></pre><pre><code>{"success":true,"messages":[{"role":"user","text":"Why does this track fit my mood?"},{"role":"assistant","text":"Because it matches your recent late-night groove."}],"history_revision":42}</code></pre></article>
@@ -288,11 +288,11 @@ music_backend_error</code></pre>
     <p>Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB.</p>
     <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
     <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
-    <p class="site-version">DJConnect website v3.2.15</p>
+    <p class="site-version">DJConnect website v3.2.16</p>
   </footer>
 
-  <script src="assets/i18n.js?v=3.2.15"></script>
-  <script src="assets/page-translations.js?v=3.2.15"></script>
+  <script src="assets/i18n.js?v=3.2.16"></script>
+  <script src="assets/page-translations.js?v=3.2.16"></script>
   <script>
     const translations = window.DJCONNECT_PAGE_TRANSLATIONS?.["developers"] || {};
     const getInitialLanguage = () => window.DJCONNECT_I18N?.initialLanguage || "nl";
@@ -322,6 +322,6 @@ music_backend_error</code></pre>
     });
     applyLanguage(getInitialLanguage());
   </script>
-  <script src="assets/site-nav.js?v=3.2.15"></script>
+  <script src="assets/site-nav.js?v=3.2.16"></script>
 </body>
 </html>

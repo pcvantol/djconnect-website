@@ -91,7 +91,7 @@
         <div>
           <span class="pill" data-i18n="heroLabel">Assist Conversation Agent</span>
           <h1 data-i18n="heroTitle">DJConnect via je Voice Assistant</h1>
-          <p class="lead" data-i18n="heroLead">Gebruik DJConnect met Home Assistant Assist satellites die op ESPHome draaien. Zo past DJConnect native in je bestaande Assist setup, zonder aparte DJConnect hardware-client of koppelcode.</p>
+          <p class="lead" data-i18n="heroLead">Gebruik DJConnect met Home Assistant Assist satellites die op ESPHome draaien. Je kunt via Home Assistant Voice tegen DJConnect praten, en DJConnect kan via een gekozen Home Assistant speaker als DJ-stem in de kamer terugpraten.</p>
         </div>
         <div class="card">
           <h2 data-i18n="cardTitle">Hoe het werkt</h2>
@@ -103,8 +103,21 @@
     <section>
       <div class="wrap grid-3">
         <article class="card"><h3 data-i18n="deviceTitle">ESPHome device</h3><p data-i18n="deviceText">Gebruik bijvoorbeeld de Home Assistant Voice Preview Edition, M5 Atom Echo of een ander ESPHome-powered voice assistant project.</p></article>
-        <article class="card"><h3 data-i18n="assistTitle">Home Assistant Assist</h3><p data-i18n="assistText">Het device doet wake word, microfoonopname, STT-route en speaker-output via je ingestelde Assist pipeline.</p></article>
-        <article class="card"><h3 data-i18n="djTitle">DJConnect</h3><p data-i18n="djText">DJConnect verwerkt het muziekverzoek via de actieve music backend en spreekt de DJ-response uit via Home Assistant TTS.</p></article>
+        <article class="card"><h3 data-i18n="assistTitle">Home Assistant Assist</h3><p data-i18n="assistText">Het device doet wake word, microfoonopname en STT-route via je ingestelde Assist pipeline.</p></article>
+        <article class="card"><h3 data-i18n="djTitle">DJConnect</h3><p data-i18n="djText">DJConnect verwerkt het muziekverzoek via de actieve music backend. Voor output kun je optioneel een Home Assistant media_player kiezen als DJ-aankondiging speaker.</p></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap grid-2">
+        <article class="card">
+          <h2 data-i18n="routesTitle">Twee routes, één DJ</h2>
+          <p data-i18n="routesText">Met de Assist-agent route kun je tegen DJConnect praten via Home Assistant Voice. Met de announcement-speaker route kan DJConnect via een Home Assistant speaker terugpraten als DJ-stem in de kamer.</p>
+        </article>
+        <article class="card">
+          <h2 data-i18n="speakerExamplesTitle">Geschikte speakers</h2>
+          <p data-i18n="speakerExamplesText">Denk aan Home Assistant Voice Preview Edition, ESPHome voice satellites of speakers, Cast, Sonos, Music Assistant players of andere Home Assistant media_player entities die audio kunnen afspelen.</p>
+        </article>
       </div>
     </section>
 
@@ -115,9 +128,10 @@
           <ol class="steps">
             <li data-i18n="setup1">Configureer je Home Assistant Assist pipeline met STT en TTS.</li>
             <li data-i18n="setup2">Installeer en configureer de DJConnect Home Assistant integration.</li>
-            <li data-i18n="setup3">Kies in de DJConnect setup voor “Assist Conversation Agent”.</li>
-            <li data-i18n="setup4">Selecteer DJConnect als conversation agent voor je Assist satellite.</li>
-            <li data-i18n="setup5">Vraag muziek aan via je voice assistant en laat DJConnect playback starten via je actieve music backend.</li>
+            <li data-i18n="setup3">Kies in de DJConnect setup voor “Assist Conversation Agent”; Home Assistant registreert dan `DJConnect DJ` als conversation agent.</li>
+            <li data-i18n="setup4">Selecteer DJConnect DJ als conversation agent voor je Assist satellite.</li>
+            <li data-i18n="setup5">Kies in “Spraak en playback” optioneel een Home Assistant speaker voor DJ-aankondigingen.</li>
+            <li data-i18n="setup6">Vraag muziek aan via je voice assistant en laat DJConnect playback starten via je actieve music backend.</li>
           </ol>
           <p class="note" data-i18n="noteText">Deze route gebruikt je bestaande Home Assistant Assist instellingen voor stem, taal en TTS-engine. DJConnect is geen onderdeel van ESPHome of Home Assistant.</p>
           <p class="note" data-i18n="aiDisclaimer">AI- en Assist-antwoorden kunnen onjuist zijn. De werking en kwaliteit hangen af van je eigen Home Assistant installatie, Assist pipeline, STT/TTS-engine, taalinstellingen en DJConnect-configuratie.</p>

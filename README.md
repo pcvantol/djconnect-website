@@ -70,9 +70,17 @@ Static landing page for DJConnect, published through Cloudflare Pages.
   follow-up controls, uses backend-aware Spotify Direct or Music Assistant
   actions, can use optional Apple push notifications only as wake/attention
   hints through Home Assistant sync and starts concrete recommendations only
-  after the user taps `Play Now`. ESP32 uses PTT/playback command flow without
-  Ask DJ chat history; Raspberry Pi remains local-only and currently read-only
-  for history unless a future Pi release explicitly expands that scope.
+  after the user taps `Play Now`. DJ announcements can optionally play through
+  a configured Home Assistant `media_player` speaker. Ask DJ remains the
+  intelligence/personality; the HA speaker is the physical DJ voice in the
+  room. App clients support Device, Device + Home Assistant speaker, Home
+  Assistant speaker only and text-only output modes; Device + Home Assistant
+  speaker is the default when a HA speaker is configured, and speaker modes are
+  locked otherwise. Spotify Direct playback keeps playing: DJConnect does not
+  pause/resume Spotify, change Spotify volume or mix/duck Spotify audio for
+  announcements. ESP32 uses the existing device-speaker/DJ response flow without
+  Ask DJ chat history; Raspberry Pi has no local audio output and supports
+  text-only or HA speaker output when configured.
   Music DNA summary questions such as `Wat weet je nu over mij?` /
   `What do you know about me?` are privacy/info answers from server-side
   `djconnect_music_dna` only: render text and sources, not stale album art,
@@ -495,9 +503,10 @@ Use `./cleanup_old_releases.sh` manually only when you want cleanup outside the 
   Assistant, optional server-side Music DNA/history, Apple Watch/iPhone/Mac/Windows
   continuity, explicit `Play Now`, Ja/Nee follow-ups, bounded history/trim
   behavior, backend-aware Spotify Direct or Music Assistant actions, voice/PTT
-  with Assist STT/TTS on iOS, macOS, Windows and Apple Watch, Raspberry Pi
-  local-only Ask DJ readonly_actions history/status display without Pi voice, free text, TTS or local audio, ESP PTT/playback command flow without
-  chat history, optional Apple push notifications as wake/attention hints only,
+  with Assist STT/TTS on iOS, macOS, Windows and Apple Watch, optional HA
+  `media_player` speaker output for DJ announcements, Raspberry Pi text-only
+  or HA speaker output with no local Pi audio, ESP device-speaker/DJ response
+  flow without chat history, optional Apple push notifications as wake/attention hints only,
   and compact privacy boundaries without implying Spotify affiliation. Include
   the claims `Ask DJ works without Music DNA.`, `Music DNA is opt-in.`,
   `You can clear Music DNA at any time.`, `Clients do not store your persistent

@@ -156,6 +156,7 @@
           <li data-i18n="requirementsBackend">Een muziekbackend: Spotify Direct of Music Assistant</li>
           <li>Home Assistant Assist pipeline met werkende STT en TTS</li>
           <li>DJConnect device, DJConnect app of Assist Conversation Agent route</li>
+          <li data-i18n="requirementsAnnouncementSpeaker">Optioneel: geschikte Home Assistant media_player speaker voor spoken DJ announcements</li>
           <li data-i18n="requirementsLocalPairing">Home Assistant en DJConnect client op hetzelfde lokale netwerk tijdens pairing; remote pairing wordt niet ondersteund</li>
           <li data-i18n="requirementsEspWifi">Voor ESP hardware: 2.4 GHz WiFi tijdens provisioning en lokaal gebruik</li>
           <li data-i18n="requirementsSpotifyOauth">Alleen voor Spotify Direct: Spotify Premium en je eigen Spotify Developer app met Client ID</li>
@@ -318,7 +319,23 @@
           <li data-i18n="configureStep3">Bij Spotify Direct: vul je Client ID in en autoriseer Spotify via Home Assistant</li>
           <li data-i18n="configureStep4">Bij Music Assistant: selecteer je Music Assistant player; Spotify OAuth in DJConnect is dan niet nodig</li>
           <li data-i18n="configureStep5">Configureer voice via je Home Assistant Assist pipeline, niet via directe externe STT/TTS APIs</li>
+          <li data-i18n="configureStep6">Kies bij “Assist Conversation Agent” de DJConnect DJ agent voor Home Assistant Assist</li>
+          <li data-i18n="configureStep7">Kies in “Spraak en playback” optioneel een Home Assistant speaker voor DJ-aankondigingen</li>
         </ol>
+      </div>
+    </section>
+
+    <section id="announcements">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 data-i18n="announcementsTitle">DJ-aankondigingen via Home Assistant speaker</h2>
+          <p data-i18n="announcementsLead">Ask DJ blijft de intelligentie en persoonlijkheid. Een gekozen Home Assistant media_player is de fysieke stem in de ruimte.</p>
+        </div>
+      </div>
+      <div class="wrap grid-3">
+        <article class="card"><h3 data-i18n="announcementClientModesTitle">App-clients</h3><p data-i18n="announcementClientModesText">iPhone, iPad, macOS, Apple Watch en Windows ondersteunen Apparaat, Apparaat + Home Assistant speaker, Alleen Home Assistant speaker en Alleen tekst. Met een geconfigureerde HA speaker is Apparaat + Home Assistant speaker de default; zonder speaker zijn speaker-modi locked.</p></article>
+        <article class="card"><h3 data-i18n="announcementDeviceModesTitle">Pi en ESP32</h3><p data-i18n="announcementDeviceModesText">Raspberry Pi heeft geen lokale audio-output en ondersteunt tekst-only of HA speaker. ESP32 blijft de bestaande device-speaker/DJ response flow gebruiken.</p></article>
+        <article class="card"><h3 data-i18n="announcementSpotifyTitle">Spotify Direct verwachting</h3><p data-i18n="announcementSpotifyText">Bij Spotify Direct blijft Spotify playback gewoon doorspelen. DJConnect pauzeert Spotify niet, hervat niet en past volume niet automatisch aan; de DJ-stem speelt apart via de gekozen HA speaker.</p></article>
       </div>
     </section>
 
@@ -366,7 +383,9 @@
                 <li data-i18n="iosPairStep3">Scan de QR/deep-link payload die Home Assistant genereert</li>
                 <li data-i18n="appPairStep4">Geen Client adres kopiëren: de app belt Home Assistant zelf via /api/djconnect/v1/...</li>
                 <li data-i18n="appPairStep5">Daarna kan de app lokaal of remote werken via je Home Assistant URL</li>
+                <li data-i18n="appOutputModesStep">Ask DJ audio kan op apparaat, apparaat + Home Assistant speaker, alleen Home Assistant speaker of alleen tekst; speaker-modi zijn beschikbaar zodra Home Assistant een announcement speaker heeft.</li>
                 <li data-i18n="watchPairStep">Voor Apple Watch genereert Home Assistant een aparte Watch QR/deep-link payload. Scan die met iPhone; iPhone geeft de pairinggegevens door aan de gekoppelde Watch.</li>
+                <li data-i18n="appOutputModesStep">Ask DJ audio kan op apparaat, apparaat + Home Assistant speaker, alleen Home Assistant speaker of alleen tekst; speaker-modi zijn beschikbaar zodra Home Assistant een announcement speaker heeft.</li>
               </ol>
             </article>
             <article class="card client-panel" data-client-panel="macos">
@@ -377,6 +396,7 @@
                 <li data-i18n="desktopPairStep3">Voer handmatig de lokale Home Assistant URL en de door Home Assistant gegenereerde koppelcode in</li>
                 <li data-i18n="appPairStep4">Geen Client adres kopiëren: de app belt Home Assistant zelf via /api/djconnect/v1/...</li>
                 <li data-i18n="appPairStep5">Daarna kan de app lokaal of remote werken via je Home Assistant URL</li>
+                <li data-i18n="appOutputModesStep">Ask DJ audio kan op apparaat, apparaat + Home Assistant speaker, alleen Home Assistant speaker of alleen tekst; speaker-modi zijn beschikbaar zodra Home Assistant een announcement speaker heeft.</li>
               </ol>
             </article>
             <article class="card client-panel" data-client-panel="windows">
@@ -388,6 +408,7 @@
                 <li data-i18n="desktopPairStep3">Voer handmatig de lokale Home Assistant URL en de door Home Assistant gegenereerde koppelcode in</li>
                 <li data-i18n="appPairStep4">Geen Client adres kopiëren: de app belt Home Assistant zelf via /api/djconnect/v1/...</li>
                 <li data-i18n="appPairStep5">Daarna kan de app lokaal of remote werken via je Home Assistant URL</li>
+                <li data-i18n="appOutputModesStep">Ask DJ audio kan op apparaat, apparaat + Home Assistant speaker, alleen Home Assistant speaker of alleen tekst; speaker-modi zijn beschikbaar zodra Home Assistant een announcement speaker heeft.</li>
               </ol>
             </article>
             <article class="card client-panel" data-client-panel="esp">
@@ -398,6 +419,7 @@
                 <li>Open DJConnect integratie setup in Home Assistant</li>
                 <li>Voer de koppelcode in van het device</li>
                 <li data-i18n="espLocalOnlyStep">Het DJConnect ESP32 apparaat gebruikt _djconnect._tcp of Client adres, alleen de lokale /api/device/* device API en blijft local-only</li>
+                <li data-i18n="espAnnouncementStep">ESP32 blijft de bestaande device-speaker/DJ response flow gebruiken.</li>
               </ol>
             </article>
             <article class="card client-panel" data-client-panel="assist">
@@ -407,6 +429,7 @@
                 <li>Kies in de DJConnect setup voor <strong>Assist Conversation Agent</strong></li>
                 <li>Selecteer DJConnect als conversation agent in je Home Assistant Assist configuratie</li>
                 <li data-i18n="assistSatelliteStep">Gebruik je HA Assist satellite, Home Assistant Voice Preview Edition, M5 Atom Echo of ander ESPHome-powered voice project voor wake word, microfoon en speaker-output</li>
+                <li data-i18n="assistAnnouncementStep">Dezelfde of een andere HA speaker kan optioneel als DJ-aankondiging speaker worden gekozen.</li>
                 <li data-i18n="assistNoPairingStep">Geen client pairing, device token of Client adres nodig</li>
               </ol>
             </article>
@@ -418,6 +441,7 @@
                 <li>Open DJConnect integratie setup in Home Assistant</li>
                 <li data-i18n="raspberryPairStep">Kies client type Raspberry Pi app en koppel lokaal op hetzelfde netwerk</li>
                 <li data-i18n="raspberryLocalOnlyStep">Raspberry Pi gebruikt _djconnect._tcp of Client adres, lokale /api/device/* runtime/device-connectiviteit en blijft local-only</li>
+                <li data-i18n="raspberryAnnouncementStep">Raspberry Pi heeft geen lokale audio-output: Ask DJ is tekst-only of speelt via de gekozen Home Assistant speaker.</li>
               </ol>
             </article>
           </div>

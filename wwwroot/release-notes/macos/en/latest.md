@@ -1,10 +1,8 @@
-# DJConnect App 3.2.33
 
-## Fixed
+### Fixed
 
-- Updated the local Node contract e2e fixture to remove the legacy Home
-  Assistant `/push/bootstrap` route. Push registration coverage now matches the
-  current Central trusted-issuer bootstrap flow used by Apple clients.
+- Fixed the AirPlay VibeCast export test for the Xcode 16 public release runner.
+
 
 ---
 

@@ -1,7 +1,7 @@
 {
-  "version": "3.2.30",
+  "version": "3.2.31",
   "platform": "ios",
   "language": "en",
-  "name": "DJConnect iOS 3.2.30",
-  "body": "# DJConnect App 3.2.30\n\n## Changed\n\n- About now shows a privacy-safe Push notifications status in the Connection\n  section on iOS, macOS, and watchOS: registered, not active, not supported, or\n  action needed, including sandbox/production when known.\n- Ask DJ response audio auto-play is now controlled by a Settings toggle and is\n  off by default.\n\n## Fixed\n\n- The Now Playing Live Activity artwork fallback has cleaner spacing and no\n  overlapping playback glyph.\n- Push status labels are localized in English, Dutch, German, French, and\n  Spanish.\n\n---\n\nPlatform: iOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nUnsigned iOS binaries are published here for diagnostics and internal validation. For normal iOS distribution, use TestFlight/App Store."
+  "name": "DJConnect iOS 3.2.31",
+  "body": "# DJConnect App 3.2.31\n\n## Changed\n\n- Updated Music Discovery for the current backend feed contract: Discover now\n  renders backend `sections[]` in order, supports `new_for_you` and\n  `accepted_recommendations` without hardcoded section assumptions, and treats\n  `revision` and `cache.hit` as metadata.\n- Discovery cards are rendered only from backend-provided `sections[].items[]`;\n  recent tracks, top tracks, Music DNA data, and previous UI cache are not\n  reconstructed locally as recommendations.\n\n## Fixed\n\n- Music Discovery item decoding now tolerates new backend `kind` values so one\n  newly introduced recommendation type does not break the feed.\n\n---\n\nPlatform: iOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nUnsigned iOS binaries are published here for diagnostics and internal validation. For normal iOS distribution, use TestFlight/App Store."
 }

@@ -1,19 +1,19 @@
-# DJConnect App 3.2.30
+# DJConnect App 3.2.31
 
 ## Changed
 
-- About now shows a privacy-safe Push notifications status in the Connection
-  section on iOS, macOS, and watchOS: registered, not active, not supported, or
-  action needed, including sandbox/production when known.
-- Ask DJ response audio auto-play is now controlled by a Settings toggle and is
-  off by default.
+- Updated Music Discovery for the current backend feed contract: Discover now
+  renders backend `sections[]` in order, supports `new_for_you` and
+  `accepted_recommendations` without hardcoded section assumptions, and treats
+  `revision` and `cache.hit` as metadata.
+- Discovery cards are rendered only from backend-provided `sections[].items[]`;
+  recent tracks, top tracks, Music DNA data, and previous UI cache are not
+  reconstructed locally as recommendations.
 
 ## Fixed
 
-- The Now Playing Live Activity artwork fallback has cleaner spacing and no
-  overlapping playback glyph.
-- Push status labels are localized in English, Dutch, German, French, and
-  Spanish.
+- Music Discovery item decoding now tolerates new backend `kind` values so one
+  newly introduced recommendation type does not break the feed.
 
 ---
 

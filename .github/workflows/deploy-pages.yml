@@ -10,6 +10,15 @@ on:
   workflow_dispatch:
 
 jobs:
+  software-assurance-governance:
+    name: Software Assurance governance
+    permissions:
+      contents: read
+    uses: pcvantol/djconnect/.github/workflows/software-assurance-governance.yml@b02217ab54ff5a93e9ba5ae406ac608f43ff8792
+    with:
+      execution_profile: release
+      owner: pcvantol/djconnect-website
+
   test:
     name: Test website
     runs-on: ubuntu-latest

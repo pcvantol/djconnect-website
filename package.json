@@ -1,9 +1,10 @@
 {
   "name": "djconnect-website",
-  "version": "3.2.16",
+  "version": "3.3.0",
   "private": true,
   "scripts": {
     "build": "npm run sitemap:build && npm run build:release",
+    "sync:version": "node scripts/sync-site-version.mjs",
     "build:release": "node scripts/build-release.mjs",
     "deps:update": "node scripts/refresh-dependencies.mjs update",
     "deps:check": "node scripts/refresh-dependencies.mjs check",

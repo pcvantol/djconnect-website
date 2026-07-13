@@ -1,5 +1,7 @@
 import { execFile } from "node:child_process";
-import { readdir } from "node:fs/promises";
+import { mkdtemp, readdir, rm, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import path from "node:path";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { promisify } from "node:util";
@@ -297,8 +299,14 @@ test("canonical cross-repo prompt and roadmap stay external", async () => {
     read("release.sh")
   ]);
 
+  const pointer = await read("SYNC_PROMPTS.md");
+  assert.match(pointer, /^# .*Pointer|^# .*Navigation/im);
+  assert.match(pointer, /pcvantol\/djconnect/);
+  assert.match(pointer, /SYNC_PROMPTS\.md/);
+  assert.match(pointer, /PRODUCT_ROADMAP\.md/);
+  assert.match(pointer, /Do not fork .*cross-repo contracts locally/i);
+
   for (const forbidden of [
-    "SYNC_PROMPTS.md",
     "PRODUCT_ROADMAP.md",
     "HA_SYNC_PROMPT.md",
     "ESP_SYNC_PROMPT.md",
@@ -315,6 +323,23 @@ test("canonical cross-repo prompt and roadmap stay external", async () => {
   }
 
   assert.doesNotMatch(`${readme}\n${handoff}\n${testsDoc}\n${todo}\n${design}`, /byte-for-byte/i);
+});
+
+test("sync prompt pointer validation accepts pointers and rejects copied canonical content", async () => {
+  const directory = await mkdtemp(path.join(tmpdir(), "djconnect-sync-pointer-"));
+  const valid = path.join(directory, "valid.md");
+  const invalid = path.join(directory, "invalid.md");
+  const validator = "scripts/validate-sync-prompt-pointer.mjs";
+  const pointer = await read("SYNC_PROMPTS.md");
+
+  try {
+    await writeFile(valid, pointer);
+    await exec("node", [validator, valid]);
+    await writeFile(invalid, `${pointer}\n\n## Mission\nCopied implementation prompt body.`);
+    await assert.rejects(exec("node", [validator, invalid]));
+  } finally {
+    await rm(directory, { force: true, recursive: true });
+  }
 });
 
 test("homepage has platform routes and app store placeholders", async () => {
@@ -1914,8 +1939,9 @@ test("release build minifies shared assets before deploy", async () => {
   assert.match(cleanupScript, /Warning: could not delete workflow run/);
   assert.match(deployWorkflow, /pull_request:/);
   assert.match(deployWorkflow, /name: Test website/);
-  assert.match(deployWorkflow, /actions\/checkout@v5/);
-  assert.match(deployWorkflow, /actions\/setup-node@v5/);
+  // Canonical Batch 1 registry pins: actions/checkout v5 and actions/setup-node v5.
+  assert.match(deployWorkflow, /actions\/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd/);
+  assert.match(deployWorkflow, /actions\/setup-node@a0853c24544627f65ddf259abe73b1d18a591444/);
   assert.match(deployWorkflow, /cache: npm/);
   assert.match(deployWorkflow, /npm ci/);
   assert.match(deployWorkflow, /npm test/);
@@ -1998,12 +2024,14 @@ test("404 page is present and excluded from indexing", async () => {
 test("release script checks documentation before tagging", async () => {
   const releaseScript = await read("release.sh");
 
-  for (const file of ["README.md", "HANDOFF.md", "TESTS.md", "TODO.md", "ISSUES.md", "CHANGELOG.md", "TECHNICAL_DESIGN.md", "CHAT_BOOTSTRAP.md"]) {
+  for (const file of ["README.md", "HANDOFF.md", "TESTS.md", "TODO.md", "ISSUES.md", "CHANGELOG.md", "TECHNICAL_DESIGN.md", "CHAT_BOOTSTRAP.md", "SYNC_PROMPTS.md"]) {
     assert.match(releaseScript, new RegExp(file.replace(".", "\\.")));
   }
 
-  assert.doesNotMatch(releaseScript, /DOC_FILES=.*SYNC_PROMPTS/);
-  assert.match(releaseScript, /FORBIDDEN_CANONICAL_COPIES=\(SYNC_PROMPTS\.md PRODUCT_ROADMAP\.md/);
+  assert.match(releaseScript, /DOC_FILES=.*SYNC_PROMPTS/);
+  assert.doesNotMatch(releaseScript, /FORBIDDEN_CANONICAL_COPIES=\(SYNC_PROMPTS\.md/);
+  assert.match(releaseScript, /FORBIDDEN_CANONICAL_COPIES=\(PRODUCT_ROADMAP\.md HA_SYNC_PROMPT\.md/);
+  assert.match(releaseScript, /node scripts\/validate-sync-prompt-pointer\.mjs SYNC_PROMPTS\.md/);
   assert.match(releaseScript, /pcvantol\/djconnect\/SYNC_PROMPTS\.md and pcvantol\/djconnect\/PRODUCT_ROADMAP\.md/);
   assert.match(releaseScript, /for DOC_FILE in "\$\{DOC_FILES\[@\]\}"; do/);
   assert.match(releaseScript, /test -f "\$DOC_FILE"/);

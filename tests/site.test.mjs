@@ -1914,8 +1914,9 @@ test("release build minifies shared assets before deploy", async () => {
   assert.match(cleanupScript, /Warning: could not delete workflow run/);
   assert.match(deployWorkflow, /pull_request:/);
   assert.match(deployWorkflow, /name: Test website/);
-  assert.match(deployWorkflow, /actions\/checkout@v5/);
-  assert.match(deployWorkflow, /actions\/setup-node@v5/);
+  // Canonical Batch 1 registry pins: actions/checkout v5 and actions/setup-node v5.
+  assert.match(deployWorkflow, /actions\/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd/);
+  assert.match(deployWorkflow, /actions\/setup-node@a0853c24544627f65ddf259abe73b1d18a591444/);
   assert.match(deployWorkflow, /cache: npm/);
   assert.match(deployWorkflow, /npm ci/);
   assert.match(deployWorkflow, /npm test/);

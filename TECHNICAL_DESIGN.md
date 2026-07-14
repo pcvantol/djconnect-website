@@ -266,6 +266,33 @@ Sources:
 - `tests/screenshots.spec.mjs`
 - `.github/workflows/deploy-pages.yml`
 
+### Manifest-bound Internal Release Delivery
+
+Platform Internal Release delivery is separate from the repository's legacy
+release script. The Website uses three GitHub Actions workflows:
+
+- `website-release-artifact.yml` runs after successful `main` validation,
+  builds `dist/wwwroot`, packages one immutable tarball and records its
+  artifact ID and SHA-256 without Cloudflare credentials;
+- `deploy-pages.yml` is `workflow_dispatch` only, accepts the canonical
+  manifest, candidate, artifact and target bindings, verifies provenance and
+  checksum, then deploys only the downloaded artifact to Cloudflare Pages;
+- `website-post-deployment-smoke.yml` is a separate `workflow_dispatch`
+  consumer. It validates the deployment-evidence identity and performs only a
+  bounded read-only production route check before producing smoke evidence.
+
+The deployment workflow does not rebuild the website and the smoke workflow
+does not deploy it. Cloudflare credentials are scoped to the deployment job;
+artifact and smoke workflows have no deployment credentials. Operational use
+remains blocked until an approved exact-SHA manifest and explicit deployment
+authorization exist.
+
+Sources:
+
+- `.github/workflows/website-release-artifact.yml`
+- `.github/workflows/deploy-pages.yml`
+- `.github/workflows/website-post-deployment-smoke.yml`
+
 ### Release Script Owns Publishing Hygiene
 
 `release.sh` is the canonical release path. It checks branch cleanliness,

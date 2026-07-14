@@ -222,11 +222,11 @@ The production site is deployed to Cloudflare Pages:
 - Release publish directory: `dist/wwwroot`
 
 GitHub Actions runs the automated website tests and release build on pull
-requests and pushes to `main`. Pull requests only validate, build and test the
-site. A push to `main` deploys the validated `dist/wwwroot` artifact to
-Cloudflare Pages after the test job succeeds, then checks
-`https://djconnect.dev` for the expected footer version. The repository must
-have Actions secrets for both `CLOUDFLARE_API_TOKEN` and
+requests and pushes to `main`. CI validates, builds and tests the site but
+never deploys it. `Deploy Cloudflare Pages` is an explicitly dispatched,
+bounded internal-release workflow that deploys the qualified exact-main-SHA
+artifact and then checks `https://djconnect.dev` for the expected footer
+version. The repository must have Actions secrets for both `CLOUDFLARE_API_TOKEN` and
 `CLOUDFLARE_ACCOUNT_ID`; Cloudflare tokens and account identifiers must not be
 committed.
 
@@ -322,8 +322,8 @@ export CLOUDFLARE_API_TOKEN='your-cloudflare-pages-token'
 ```
 
 If Cloudflare credentials are only configured as GitHub Actions secrets, run
-the release without direct local deploy and let the push to `main` trigger the
-workflow:
+the release without direct local deploy and dispatch `Deploy Cloudflare Pages`
+with the qualified exact-main-SHA and release manifest inputs:
 
 ```bash
 ./release.sh --skip-deploy

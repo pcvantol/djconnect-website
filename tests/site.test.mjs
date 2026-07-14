@@ -1909,12 +1909,14 @@ test("release script uses remote-safe push and scoped GitHub release notes", asy
   assert.doesNotMatch(releaseScript, /--notes-file CHANGELOG\.md/);
 });
 
-test("release build minifies shared assets before deploy", async () => {
-  const [packageJson, releaseScript, buildScript, deployWorkflow, cleanupScript] = await Promise.all([
+test("release build minifies shared assets before manifest-bound deploy", async () => {
+  const [packageJson, releaseScript, buildScript, deployWorkflow, artifactWorkflow, smokeWorkflow, cleanupScript] = await Promise.all([
     read("package.json"),
     read("release.sh"),
     read("scripts/build-release.mjs"),
     read(".github/workflows/deploy-pages.yml"),
+    read(".github/workflows/website-release-artifact.yml"),
+    read(".github/workflows/website-post-deployment-smoke.yml"),
     read("cleanup_old_releases.sh")
   ]);
   const scripts = JSON.parse(packageJson).scripts;
@@ -1940,26 +1942,31 @@ test("release build minifies shared assets before deploy", async () => {
   assert.match(deployWorkflow, /workflow_dispatch:/);
   assert.match(deployWorkflow, /candidate_sha:/);
   assert.match(deployWorkflow, /release_profile:/);
+  assert.match(deployWorkflow, /artifact_id:/);
+  assert.match(deployWorkflow, /artifact_sha256:/);
+  assert.match(deployWorkflow, /target:/);
   assert.doesNotMatch(deployWorkflow, /pull_request:/);
   assert.doesNotMatch(deployWorkflow, /push:/);
-  assert.match(deployWorkflow, /name: Test website/);
+  assert.match(deployWorkflow, /Verify immutable artifact provenance/);
+  assert.match(deployWorkflow, /actions\/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093/);
+  assert.match(deployWorkflow, /sha256sum artifact\/website-release\.tar\.gz/);
+  assert.doesNotMatch(deployWorkflow, /npm run build:release/);
   // Canonical Batch 1 registry pins: actions/checkout v5 and actions/setup-node v5.
   assert.match(deployWorkflow, /actions\/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd/);
-  assert.match(deployWorkflow, /actions\/setup-node@a0853c24544627f65ddf259abe73b1d18a591444/);
-  assert.match(deployWorkflow, /cache: npm/);
-  assert.match(deployWorkflow, /npm ci/);
-  assert.match(deployWorkflow, /npm test/);
-  assert.match(deployWorkflow, /npx playwright install --with-deps chromium/);
-  assert.match(deployWorkflow, /SMOKE_BASE_URL: https:\/\/djconnect\.dev/);
-  assert.match(deployWorkflow, /npm run test:smoke/);
-  assert.match(deployWorkflow, /npm run build:release/);
-  assert.match(deployWorkflow, /needs: test/);
   assert.match(deployWorkflow, /actions\/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02/);
   assert.match(deployWorkflow, /platform-release-deployment-evidence/);
-  assert.doesNotMatch(deployWorkflow, /actions\/download-artifact@/);
   assert.match(deployWorkflow, /CLOUDFLARE_ACCOUNT_ID: \$\{\{ secrets\.CLOUDFLARE_ACCOUNT_ID \}\}/);
-  assert.match(deployWorkflow, /pages deploy dist\/wwwroot --project-name djconnect --branch main/);
-  assert.match(deployWorkflow, /curl --fail --silent --show-error --location https:\/\/djconnect\.dev/);
+  assert.match(deployWorkflow, /pages deploy site --project-name djconnect --branch main/);
+  assert.match(artifactWorkflow, /name: Website release artifact/);
+  assert.match(artifactWorkflow, /actions\/setup-node@a0853c24544627f65ddf259abe73b1d18a591444/);
+  assert.match(artifactWorkflow, /cache: npm/);
+  assert.match(artifactWorkflow, /npm ci/);
+  assert.match(artifactWorkflow, /npm run deps:check/);
+  assert.match(artifactWorkflow, /npm run build:release/);
+  assert.match(artifactWorkflow, /website-release\.tar\.gz/);
+  assert.match(smokeWorkflow, /name: Website post-deployment smoke/);
+  assert.match(smokeWorkflow, /platform-release-deployment-evidence/);
+  assert.match(smokeWorkflow, /curl --fail --silent --show-error --location https:\/\/djconnect\.dev/);
   assert.doesNotMatch(deployWorkflow, /pages deploy wwwroot/);
 
   await exec("npm", ["run", "build:release"], { cwd: new URL("../", import.meta.url) });
@@ -2050,12 +2057,12 @@ test("release script checks documentation before tagging", async () => {
 });
 
 test("release script performs dependency and release-tool preflight", async () => {
-  const [releaseScript, packageJson, refreshScript, validateWorkflow, deployWorkflow] = await Promise.all([
+  const [releaseScript, packageJson, refreshScript, validateWorkflow, artifactWorkflow] = await Promise.all([
     read("release.sh"),
     read("package.json"),
     read("scripts/refresh-dependencies.mjs"),
     read(".github/workflows/validate.yml"),
-    read(".github/workflows/deploy-pages.yml")
+    read(".github/workflows/website-release-artifact.yml")
   ]);
 
   assert.match(packageJson, /"deps:update": "node scripts\/refresh-dependencies\.mjs update"/);
@@ -2069,7 +2076,8 @@ test("release script performs dependency and release-tool preflight", async () =
   assert.match(refreshScript, /npm", updateArgs/);
   assert.match(refreshScript, /package-lock\.json would change after npm update/);
   assert.match(validateWorkflow, /Check third-party packages and tools[\s\S]*npm run deps:check/);
-  assert.match(deployWorkflow, /Check third-party packages and tools[\s\S]*npm run deps:check/);
+  assert.match(artifactWorkflow, /npm ci/);
+  assert.match(artifactWorkflow, /npm run build:release/);
 });
 
 test("technical design document records architecture, style and dependency inventory", async () => {

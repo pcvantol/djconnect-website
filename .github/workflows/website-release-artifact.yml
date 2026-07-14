@@ -1,0 +1,61 @@
+name: Website release artifact
+
+on:
+  workflow_run:
+    workflows: [Validate]
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 1
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run deps:check
+      - run: npm run build:release
+      - name: Package immutable website artifact
+        run: |
+          set -euo pipefail
+          tar -C dist/wwwroot -czf website-release.tar.gz .
+          sha256sum website-release.tar.gz | awk '{print $1}' > website-release.sha256
+      - id: upload
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: website-release-${{ github.event.workflow_run.head_sha }}
+          path: website-release.tar.gz
+          if-no-files-found: error
+      - name: Publish artifact evidence
+        env:
+          CANDIDATE_SHA: ${{ github.event.workflow_run.head_sha }}
+          ARTIFACT_ID: ${{ steps.upload.outputs.artifact-id }}
+        run: |
+          python - <<'PY'
+          from datetime import UTC, datetime
+          import json, os
+          with open("website-release-artifact-evidence.json", "w", encoding="utf-8") as file:
+              json.dump({
+                  "schema_version": 1,
+                  "kind": "website_release_artifact",
+                  "repository": os.environ["GITHUB_REPOSITORY"],
+                  "candidate_sha": os.environ["CANDIDATE_SHA"],
+                  "artifact_id": os.environ["ARTIFACT_ID"],
+                  "artifact_sha256": open("website-release.sha256", encoding="utf-8").read().strip(),
+                  "timestamp": datetime.now(UTC).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+              }, file, sort_keys=True)
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: website-release-artifact-evidence
+          path: website-release-artifact-evidence.json
+          if-no-files-found: error

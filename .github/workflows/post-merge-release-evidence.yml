@@ -1,0 +1,21 @@
+name: Post-Merge Release Evidence
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  actions: read
+  checks: read
+  contents: read
+  pull-requests: read
+  statuses: write
+
+jobs:
+  reconcile:
+    uses: pcvantol/djconnect/.github/workflows/post-merge-release-evidence.yml@5fb2c41f29c01a9c0000475fe8565d943f090d60
+    with:
+      policy_source_ref: 5fb2c41f29c01a9c0000475fe8565d943f090d60
+      required_main_workflow: Validate
+      repository_role: active_source
+      coverage_artifact_name: website-cobertura-coverage

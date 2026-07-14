@@ -1,17 +1,73 @@
 name: Deploy Cloudflare Pages
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
   workflow_dispatch:
+    inputs:
+      action:
+        description: Bounded Platform Release action.
+        required: true
+        type: choice
+        options: [deployment]
+      candidate_sha:
+        description: Qualified exact main SHA to deploy.
+        required: true
+        type: string
+      execution_mode:
+        description: Deployment execution mode.
+        required: true
+        type: choice
+        options: [execute]
+      manifest_id:
+        description: Qualified Platform Release manifest identifier.
+        required: true
+        type: string
+      platform_version:
+        description: Platform Major.Minor version.
+        required: true
+        type: string
+      release_profile:
+        description: Authorized release profile.
+        required: true
+        type: choice
+        options: [INTERNAL_RELEASE]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: website-production-deployment
+  cancel-in-progress: false
 
 jobs:
+  validate-release-dispatch:
+    name: Validate qualified deployment dispatch
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd
+        with:
+          ref: ${{ inputs.candidate_sha }}
+          fetch-depth: 1
+      - name: Validate bounded internal release request
+        env:
+          ACTION: ${{ inputs.action }}
+          CANDIDATE_SHA: ${{ inputs.candidate_sha }}
+          EXECUTION_MODE: ${{ inputs.execution_mode }}
+          MANIFEST_ID: ${{ inputs.manifest_id }}
+          PLATFORM_VERSION: ${{ inputs.platform_version }}
+          RELEASE_PROFILE: ${{ inputs.release_profile }}
+        run: |
+          set -euo pipefail
+          test "$ACTION" = deployment
+          test "$EXECUTION_MODE" = execute
+          test "$RELEASE_PROFILE" = INTERNAL_RELEASE
+          printf '%s' "$CANDIDATE_SHA" | grep -Eq '^[0-9a-f]{40}$'
+          printf '%s' "$PLATFORM_VERSION" | grep -Eq '^[0-9]+\.[0-9]+$'
+          printf '%s' "$MANIFEST_ID" | grep -Eq '^release-[A-Za-z0-9._-]+$'
+          test "$(git rev-parse HEAD)" = "$CANDIDATE_SHA"
+
   software-assurance-governance:
     name: Software Assurance governance
+    needs: validate-release-dispatch
     permissions:
       contents: read
     uses: pcvantol/djconnect/.github/workflows/software-assurance-governance.yml@5b235069a79f3f650e497a5b64a4bce4aeb1e031
@@ -21,12 +77,18 @@ jobs:
 
   test:
     name: Test website
+    needs:
+      - validate-release-dispatch
+      - software-assurance-governance
     runs-on: ubuntu-latest
     permissions:
       contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd
+        with:
+          ref: ${{ inputs.candidate_sha }}
+          fetch-depth: 1
 
       - name: Setup Node
         uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444
@@ -61,12 +123,14 @@ jobs:
     name: Deploy website
     runs-on: ubuntu-latest
     needs: test
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     permissions:
       contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd
+        with:
+          ref: ${{ inputs.candidate_sha }}
+          fetch-depth: 1
 
       - name: Setup Node
         uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444
@@ -91,20 +155,37 @@ jobs:
           curl --fail --silent --show-error --location https://djconnect.dev > /tmp/djconnect-home.html
           grep -q "DJConnect website v${version}" /tmp/djconnect-home.html
 
+      - name: Produce deployment evidence
+        env:
+          CANDIDATE_SHA: ${{ inputs.candidate_sha }}
+          MANIFEST_ID: ${{ inputs.manifest_id }}
+          PLATFORM_VERSION: ${{ inputs.platform_version }}
+          RELEASE_PROFILE: ${{ inputs.release_profile }}
+        run: |
+          python - <<'PY'
+          from datetime import UTC, datetime
+          import json, os
+          with open("platform-release-deployment-evidence.json", "w", encoding="utf-8") as file:
+              json.dump({"schema_version": 1, "kind": "website_production_deployment", "repository": os.environ["GITHUB_REPOSITORY"], "candidate_sha": os.environ["CANDIDATE_SHA"], "manifest_id": os.environ["MANIFEST_ID"], "platform_version": os.environ["PLATFORM_VERSION"], "release_profile": os.environ["RELEASE_PROFILE"], "health": "PASS", "status": "PASS", "timestamp": datetime.now(UTC).replace(microsecond=0).isoformat().replace("+00:00", "Z")}, file, sort_keys=True)
+          PY
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: platform-release-deployment-evidence
+          path: platform-release-deployment-evidence.json
+          if-no-files-found: error
+
   cleanup-workflow-runs:
     name: Cleanup workflow runs
     runs-on: ubuntu-latest
     needs:
       - test
       - deploy
-    if: |
+    if: >-
       always() &&
-      (
-        (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
-        github.event_name == 'workflow_dispatch'
-      ) &&
+      github.event_name == 'workflow_dispatch' &&
       needs.test.result == 'success' &&
-      (needs.deploy.result == 'success' || needs.deploy.result == 'skipped')
+      needs.deploy.result == 'success'
     permissions:
       actions: write
       contents: read

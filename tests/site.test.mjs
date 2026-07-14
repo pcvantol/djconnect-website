@@ -1937,7 +1937,11 @@ test("release build minifies shared assets before deploy", async () => {
   assert.match(releaseScript, /assets\/site-nav\.min\.css/);
   assert.match(releaseScript, /pages deploy "\$RELEASE_PUBLISH_DIR"/);
   assert.match(cleanupScript, /Warning: could not delete workflow run/);
-  assert.match(deployWorkflow, /pull_request:/);
+  assert.match(deployWorkflow, /workflow_dispatch:/);
+  assert.match(deployWorkflow, /candidate_sha:/);
+  assert.match(deployWorkflow, /release_profile:/);
+  assert.doesNotMatch(deployWorkflow, /pull_request:/);
+  assert.doesNotMatch(deployWorkflow, /push:/);
   assert.match(deployWorkflow, /name: Test website/);
   // Canonical Batch 1 registry pins: actions/checkout v5 and actions/setup-node v5.
   assert.match(deployWorkflow, /actions\/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd/);
@@ -1950,9 +1954,9 @@ test("release build minifies shared assets before deploy", async () => {
   assert.match(deployWorkflow, /npm run test:smoke/);
   assert.match(deployWorkflow, /npm run build:release/);
   assert.match(deployWorkflow, /needs: test/);
-  assert.doesNotMatch(deployWorkflow, /actions\/upload-artifact@/);
+  assert.match(deployWorkflow, /actions\/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02/);
+  assert.match(deployWorkflow, /platform-release-deployment-evidence/);
   assert.doesNotMatch(deployWorkflow, /actions\/download-artifact@/);
-  assert.match(deployWorkflow, /if: github\.event_name == 'push' && github\.ref == 'refs\/heads\/main'/);
   assert.match(deployWorkflow, /CLOUDFLARE_ACCOUNT_ID: \$\{\{ secrets\.CLOUDFLARE_ACCOUNT_ID \}\}/);
   assert.match(deployWorkflow, /pages deploy dist\/wwwroot --project-name djconnect --branch main/);
   assert.match(deployWorkflow, /curl --fail --silent --show-error --location https:\/\/djconnect\.dev/);

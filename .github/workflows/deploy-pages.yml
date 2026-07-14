@@ -94,6 +94,21 @@ jobs:
           test "$(jq -r '.head_sha' <<<"$run")" = "$CANDIDATE_SHA"
           test "$(jq -r '.name' <<<"$run")" = 'Website release artifact'
           printf 'run_id=%s\n' "$run_id" >> "$GITHUB_OUTPUT"
+      - name: Verify target deployment readiness
+        uses: pcvantol/djconnect/.github/actions/deployment-readiness-preflight@962609ad77668c615b00c88b22167ed6b20bffc3
+        with:
+          target: ${{ inputs.target }}
+          manifest_id: ${{ inputs.manifest_id }}
+          candidate_sha: ${{ inputs.candidate_sha }}
+          artifact_id: ${{ inputs.artifact_id }}
+          artifact_sha256: ${{ inputs.artifact_sha256 }}
+          expected_runner_os: Linux
+          expected_runner_arch: X64
+          required_configuration: READINESS_CLOUDFLARE_API_TOKEN,READINESS_CLOUDFLARE_ACCOUNT_ID
+          smoke_contract: website-production-route-v1
+        env:
+          READINESS_CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          READINESS_CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
   software-assurance-governance:
     needs: validate-release-dispatch

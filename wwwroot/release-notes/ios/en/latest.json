@@ -1,7 +1,7 @@
 {
-  "version": "3.2.35",
+  "version": "3.3.0",
   "platform": "ios",
   "language": "en",
-  "name": "DJConnect iOS 3.2.35",
-  "body": "### Fixed\n\n- Fixed the AirPlay VibeCast export test for the Xcode 16 public release runner.\n\n\n---\n\nPlatform: iOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nUnsigned iOS binaries are published here for diagnostics and internal validation. For normal iOS distribution, use TestFlight/App Store."
+  "name": "DJConnect iOS 3.3.0",
+  "body": "DJConnect App 3.3.0\n\n---\n\nPlatform: iOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nUnsigned iOS binaries are published here for diagnostics and internal validation. For normal iOS distribution, use TestFlight/App Store."
 }

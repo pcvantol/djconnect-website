@@ -1,8 +1,4 @@
-
-### Fixed
-
-- Fixed the AirPlay VibeCast export test for the Xcode 16 public release runner.
-
+DJConnect App 3.3.0
 
 ---
 

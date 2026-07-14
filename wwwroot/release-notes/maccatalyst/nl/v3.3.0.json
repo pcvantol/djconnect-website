@@ -1,0 +1,7 @@
+{
+  "version": "3.3.0",
+  "platform": "maccatalyst",
+  "language": "nl",
+  "name": "DJConnect Mac Catalyst 3.3.0",
+  "body": "DJConnect Windows 3.3.0\n\n---\n\nPlatform: MacCatalyst\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nMac Catalyst-artifacts zijn niet ondertekend en niet genotariseerd."
+}

@@ -30,7 +30,7 @@ jobs:
           tar -C dist/wwwroot -czf website-release.tar.gz .
           sha256sum website-release.tar.gz | awk '{print $1}' > website-release.sha256
       - id: upload
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         with:
           name: website-release-${{ github.event.workflow_run.head_sha }}
           path: website-release.tar.gz
@@ -54,7 +54,7 @@ jobs:
                   "timestamp": datetime.now(UTC).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
               }, file, sort_keys=True)
           PY
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         with:
           name: website-release-artifact-evidence
           path: website-release-artifact-evidence.json

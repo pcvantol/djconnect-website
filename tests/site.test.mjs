@@ -1949,7 +1949,9 @@ test("release build minifies shared assets before manifest-bound deploy", async 
   assert.doesNotMatch(deployWorkflow, /push:/);
   assert.match(deployWorkflow, /Verify immutable artifact provenance/);
   assert.match(deployWorkflow, /actions\/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093/);
-  assert.match(deployWorkflow, /sha256sum artifact\/website-release\.tar\.gz/);
+  assert.match(deployWorkflow, /find artifact -type f -name website-release\.tar\.gz -print/);
+  assert.match(deployWorkflow, /test "\$\{#release_artifacts\[@\]\}" -eq 1/);
+  assert.match(deployWorkflow, /sha256sum "\$release_artifact"/);
   assert.doesNotMatch(deployWorkflow, /npm run build:release/);
   // Canonical Batch 1 registry pins: actions/checkout v5 and actions/setup-node v5.
   assert.match(deployWorkflow, /actions\/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd/);

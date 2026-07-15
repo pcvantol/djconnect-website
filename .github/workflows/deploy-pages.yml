@@ -140,9 +140,12 @@ jobs:
           ARTIFACT_SHA256: ${{ inputs.artifact_sha256 }}
         run: |
           set -euo pipefail
-          test "$(sha256sum artifact/website-release.tar.gz | awk '{print $1}')" = "$ARTIFACT_SHA256"
+          mapfile -t release_artifacts < <(find artifact -type f -name website-release.tar.gz -print)
+          test "${#release_artifacts[@]}" -eq 1
+          release_artifact="${release_artifacts[0]}"
+          test "$(sha256sum "$release_artifact" | awk '{print $1}')" = "$ARTIFACT_SHA256"
           mkdir site
-          tar -xzf artifact/website-release.tar.gz -C site
+          tar -xzf "$release_artifact" -C site
       - name: Deploy manifest-bound website artifact
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

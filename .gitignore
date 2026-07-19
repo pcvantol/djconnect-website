@@ -4,6 +4,9 @@ test-results/
 dist/
 screenshots/all-pages/
 
+# Local Technical Debt Engine evidence, baselines and qualifications
+/.tde/
+
 # DJConnect shared local metadata
 .DS_Store
 **/.DS_Store

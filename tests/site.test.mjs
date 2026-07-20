@@ -48,6 +48,8 @@ test("universal session receiver is stateless and Broadcast-only", async () => {
   assert.match(receiver, /type==='snapshot'/);
   assert.match(receiver, /type==='event'/);
   assert.match(receiver, /mode.*guest.*tv.*desktop/);
+  assert.match(receiver, /audience_signal/);
+  assert.match(receiver, /audience_signals/);
   assert.doesNotMatch(receiver, /localStorage|sessionStorage|fetch\(/);
 });
 

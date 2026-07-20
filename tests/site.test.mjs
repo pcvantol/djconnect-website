@@ -41,6 +41,16 @@ test("site version is consistent", async () => {
   assert.match(embedded, new RegExp(`DJConnect website v${cleanVersion}`));
 });
 
+test("universal session receiver is stateless and Broadcast-only", async () => {
+  const receiver = await read("wwwroot/session-receiver.html");
+  assert.match(receiver, /broadcast_token/);
+  assert.match(receiver, /new WebSocket/);
+  assert.match(receiver, /type==='snapshot'/);
+  assert.match(receiver, /type==='event'/);
+  assert.match(receiver, /mode.*guest.*tv.*desktop/);
+  assert.doesNotMatch(receiver, /localStorage|sessionStorage|fetch\(/);
+});
+
 test("public pages expose five-language i18n routes and shared legal strings", async () => {
   const [index, i18nRuntime, readme, contributing] = await Promise.all([
     read("wwwroot/index.html"),

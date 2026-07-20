@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>DJConnect Session Receiver</title>
+  <style>
+    :root { color-scheme: dark; --bg:#090b1a; --panel:#151a36; --line:#303a6b; --text:#f7f8ff; --muted:#abb4d5; --accent:#63e5d7; }
+    * { box-sizing:border-box; } body { margin:0; min-height:100vh; font:16px/1.5 system-ui,sans-serif; color:var(--text); background:radial-gradient(circle at top,#26305e 0,var(--bg) 48rem); }
+    main { width:min(1100px,calc(100% - 32px)); margin:auto; padding:clamp(18px,5vw,64px) 0; display:grid; gap:18px; }
+    header,.card { border:1px solid var(--line); border-radius:20px; padding:clamp(16px,3vw,30px); background:color-mix(in srgb,var(--panel) 90%,transparent); }
+    header { display:flex; justify-content:space-between; gap:16px; align-items:start; } h1,h2,p { margin:0; } h1 { font-size:clamp(1.5rem,4vw,2.6rem); } h2 { font-size:1rem; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; } .status { color:var(--accent); font-weight:700; }
+    .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; } .wide { grid-column:span 2; } .track { display:grid; grid-template-columns:96px 1fr; gap:18px; align-items:center; }
+    img { width:96px; height:96px; object-fit:cover; border-radius:14px; background:#0d1128; } ul { list-style:none; padding:0; margin:12px 0 0; display:grid; gap:8px; } li { padding:10px 12px; border-left:3px solid var(--accent); background:#0d1128; border-radius:6px; }
+    .muted { color:var(--muted); } progress { width:100%; accent-color:var(--accent); } @media (max-width:760px) { .grid{grid-template-columns:1fr}.wide{grid-column:span 1}.track{grid-template-columns:72px 1fr}img{width:72px;height:72px} }
+  </style>
+</head>
+<body>
+  <main data-mode="guest">
+    <header><div><p class="muted">DJConnect · <span id="mode">Guest</span></p><h1 id="title">DJ Session</h1><p id="mood" class="muted">Connecting…</p></div><span id="status" class="status">Connecting</span></header>
+    <section class="grid"><article class="card wide"><h2>Now playing</h2><div class="track"><img id="art" alt="" hidden /><div><p id="track">No current track</p><p id="artist" class="muted"></p><progress id="progress" value="0" max="1"></progress></div></div></article><article class="card"><h2>Planner</h2><p id="planner">—</p><p id="direction" class="muted"></p></article><article class="card wide"><h2>Session flow</h2><ul id="flow"><li class="muted">Waiting for Broadcast State…</li></ul></article><article class="card"><h2>Read-only</h2><p class="muted">Viewing is the only capability in this Receiver.</p></article></section>
+  </main>
+  <script>
+    (() => {
+      const query = new URLSearchParams(location.search), endpoint = query.get('broadcast_url'), token = query.get('broadcast_token'), sessionID = query.get('session_id');
+      const el = id => document.getElementById(id), state = { session:{}, playback:{}, planner:{}, session_flow:{items:[]} };
+      el('mode').textContent = ({guest:'Guest',tv:'TV',desktop:'Desktop'})[query.get('mode')] || 'Guest';
+      const setStatus = text => el('status').textContent = text;
+      const render = () => { const s=state.session,p=state.playback,pl=state.planner,f=state.session_flow||{}; el('title').textContent=s.title||'DJ Session'; el('mood').textContent=s.selected_mood||'—'; el('track').textContent=p.current_track?.title||'No current track'; el('artist').textContent=p.current_track?.artist||''; el('planner').textContent=pl.planning_state||'—'; el('direction').textContent=`${pl.planning_horizon_minutes||'—'} min · ${pl.current_direction||'—'}`; el('progress').value=p.playback_progress?.position||0; el('progress').max=p.playback_progress?.duration||1; const art=p.current_track?.artwork_url; el('art').hidden=!art; if(art) el('art').src=art; el('flow').replaceChildren(...(f.items||[]).map(item=>{const row=document.createElement('li');row.textContent=`${item.position.toUpperCase()} · ${item.label}`;return row;})); };
+      const apply = data => { Object.assign(state,data); render(); };
+      const connect = () => { if(!endpoint||!token||!sessionID){setStatus('Invalid receiver link');return;} const url=new URL(endpoint);url.searchParams.set('broadcast_token',token); const socket=new WebSocket(url); socket.onopen=()=>setStatus('Live'); socket.onmessage=event=>{const message=JSON.parse(event.data);if(message.type==='snapshot')apply(message.snapshot);if(message.type==='event')apply(message.data.payload);if(message.type==='error'){setStatus('Unavailable');socket.close();}}; socket.onclose=()=>{setStatus('Reconnecting');setTimeout(connect,1500);}; socket.onerror=()=>socket.close(); };
+      connect();
+    })();
+  </script>
+</body>
+</html>

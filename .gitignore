@@ -2,7 +2,7 @@
 node_modules/
 test-results/
 dist/
-screenshots/all-pages/
+/screenshots/
 
 # Local Technical Debt Engine evidence, baselines and qualifications
 /.tde/

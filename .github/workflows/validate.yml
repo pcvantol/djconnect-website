@@ -173,9 +173,14 @@ jobs:
                 continue
               fi
 
-              gh api \
-                --method DELETE \
-                "/repos/${repo}/actions/runs/${run_id}"
+              if ! delete_error="$(gh api --method DELETE "/repos/${repo}/actions/runs/${run_id}" 2>&1)"; then
+                if grep -q 'HTTP 404' <<<"${delete_error}"; then
+                  echo "Workflow run ${run_id} was already deleted; continuing."
+                  continue
+                fi
+                printf '%s\n' "${delete_error}" >&2
+                exit 1
+              fi
               deleted_count=$((deleted_count + 1))
             done
 

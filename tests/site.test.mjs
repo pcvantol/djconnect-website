@@ -269,7 +269,7 @@ test("screenshot tooling is available for live page review", async () => {
   assert.match(screenshotScript, /rendered page-not-found copy unexpectedly/);
   assert.match(screenshotScript, /page\.screenshot\(\{ path: filePath, fullPage: true \}\)/);
   assert.match(screenshotScript, /manifest\.json/);
-  assert.match(gitignore, /screenshots\/all-pages\//);
+  assert.match(gitignore, /\/screenshots\//);
   assert.match(screenshotTest, /width: Number\(process\.env\.SCREENSHOT_WIDTH \|\| 1440\)/);
   assert.match(screenshotTest, /height: Number\(process\.env\.SCREENSHOT_HEIGHT \|\| 900\)/);
   assert.match(screenshotTest, /const language = process\.env\.SCREENSHOT_LANG \|\| "nl"/);

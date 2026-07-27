@@ -113,3 +113,71 @@ jobs:
           done
           curl --fail --silent --output /dev/null http://127.0.0.1:4173
           npm run test:smoke
+
+  cleanup-workflow-runs:
+    if: ${{ always() && (github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main')) }}
+    needs:
+      - software-assurance-governance
+      - website
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      contents: read
+    env:
+      GH_TOKEN: ${{ github.token }}
+      KEEP_RUNS: "2"
+    steps:
+      - name: Delete old completed workflow runs
+        run: |
+          set -euo pipefail
+
+          repo="${GITHUB_REPOSITORY}"
+          current_run_id="${GITHUB_RUN_ID}"
+          current_workflow_id="$(gh api "/repos/${repo}/actions/runs/${current_run_id}" --jq '.workflow_id')"
+
+          gh api "/repos/${repo}/actions/workflows" --paginate --jq '.workflows[] | [.id, .name] | @tsv' |
+          while IFS=$'\t' read -r workflow_id workflow_name; do
+            [ -n "${workflow_id}" ] || continue
+
+            keep_limit="${KEEP_RUNS}"
+            active_run_count="$(
+              {
+                gh api "/repos/${repo}/actions/workflows/${workflow_id}/runs?status=queued&per_page=100" \
+                  --paginate \
+                  --jq '.workflow_runs[] | .id'
+                gh api "/repos/${repo}/actions/workflows/${workflow_id}/runs?status=in_progress&per_page=100" \
+                  --paginate \
+                  --jq '.workflow_runs[] | .id'
+              } | awk -v current_run_id="${current_run_id}" '$0 != current_run_id { count++ } END { print count + 0 }'
+            )"
+
+            if [ "${workflow_id}" = "${current_workflow_id}" ] || [ "${active_run_count}" -gt 0 ]; then
+              keep_limit=$((KEEP_RUNS - 1))
+            fi
+
+            deleted_count=0
+            mapfile -t run_ids < <(
+              gh api "/repos/${repo}/actions/workflows/${workflow_id}/runs?status=completed&per_page=100" \
+                --paginate \
+                --jq '.workflow_runs | sort_by(.created_at) | reverse | .[].id'
+            )
+
+            if ((${#run_ids[@]} <= keep_limit)); then
+              echo "Workflow '${workflow_name}' (${workflow_id}): no completed runs to delete."
+              continue
+            fi
+
+            for index in "${!run_ids[@]}"; do
+              run_id="${run_ids[$index]}"
+              if ((index < keep_limit)) || [ "${run_id}" = "${current_run_id}" ]; then
+                continue
+              fi
+
+              gh api \
+                --method DELETE \
+                "/repos/${repo}/actions/runs/${run_id}"
+              deleted_count=$((deleted_count + 1))
+            done
+
+            echo "Workflow '${workflow_name}' (${workflow_id}): deleted ${deleted_count} completed runs older than the effective keep limit ${keep_limit}."
+          done

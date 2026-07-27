@@ -1,0 +1,13 @@
+{
+  "identifier": "djconnect-website",
+  "name": "DJConnect Website",
+  "repositoryRoot": "../..",
+  "repositoryType": "source",
+  "primaryLanguage": "HTML",
+  "defaultAssessmentProfile": "standard",
+  "metadata": {
+    "consumer": "DJConnect",
+    "rolloutPhase": "observe"
+  }
+}
+

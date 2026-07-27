@@ -49,7 +49,7 @@ jobs:
     outputs:
       artifact_run_id: ${{ steps.artifact.outputs.run_id }}
     steps:
-      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           ref: ${{ inputs.candidate_sha }}
           fetch-depth: 1
@@ -95,7 +95,7 @@ jobs:
           test "$(jq -r '.name' <<<"$run")" = 'Website release artifact'
           printf 'run_id=%s\n' "$run_id" >> "$GITHUB_OUTPUT"
       - name: Verify target deployment readiness
-        uses: pcvantol/djconnect/.github/actions/deployment-readiness-preflight@962609ad77668c615b00c88b22167ed6b20bffc3
+        uses: pcvantol/djconnect/.github/actions/deployment-readiness-preflight@191b4561bdb659bd2e02905b5bce9643d4390a63
         with:
           target: ${{ inputs.target }}
           manifest_id: ${{ inputs.manifest_id }}
@@ -129,7 +129,7 @@ jobs:
       contents: read
     steps:
       - name: Download the manifest-bound artifact
-        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           artifact-ids: ${{ inputs.artifact_id }}
           github-token: ${{ github.token }}
@@ -181,7 +181,7 @@ jobs:
           with open("platform-release-deployment-evidence.json", "w", encoding="utf-8") as file:
               json.dump(payload, file, sort_keys=True)
           PY
-      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: platform-release-deployment-evidence
           path: platform-release-deployment-evidence.json

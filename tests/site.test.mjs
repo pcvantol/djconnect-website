@@ -1960,19 +1960,19 @@ test("release build minifies shared assets before manifest-bound deploy", async 
   assert.doesNotMatch(deployWorkflow, /pull_request:/);
   assert.doesNotMatch(deployWorkflow, /push:/);
   assert.match(deployWorkflow, /Verify immutable artifact provenance/);
-  assert.match(deployWorkflow, /actions\/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131/);
+  assert.match(deployWorkflow, /actions\/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c/);
   assert.match(deployWorkflow, /find artifact -type f -name website-release\.tar\.gz -print/);
   assert.match(deployWorkflow, /test "\$\{#release_artifacts\[@\]\}" -eq 1/);
   assert.match(deployWorkflow, /sha256sum "\$release_artifact"/);
   assert.doesNotMatch(deployWorkflow, /npm run build:release/);
   // Canonical Batch 1 registry pins: actions/checkout v5 and actions/setup-node v5.
-  assert.match(deployWorkflow, /actions\/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd/);
-  assert.match(deployWorkflow, /actions\/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f/);
+  assert.match(deployWorkflow, /actions\/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1/);
+  assert.match(deployWorkflow, /actions\/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a/);
   assert.match(deployWorkflow, /platform-release-deployment-evidence/);
   assert.match(deployWorkflow, /CLOUDFLARE_ACCOUNT_ID: \$\{\{ secrets\.CLOUDFLARE_ACCOUNT_ID \}\}/);
   assert.match(deployWorkflow, /pages deploy site --project-name djconnect --branch main/);
   assert.match(artifactWorkflow, /name: Website release artifact/);
-  assert.match(artifactWorkflow, /actions\/setup-node@a0853c24544627f65ddf259abe73b1d18a591444/);
+  assert.match(artifactWorkflow, /actions\/setup-node@820762786026740c76f36085b0efc47a31fe5020/);
   assert.match(artifactWorkflow, /cache: npm/);
   assert.match(artifactWorkflow, /npm ci/);
   assert.match(artifactWorkflow, /npm run deps:check/);

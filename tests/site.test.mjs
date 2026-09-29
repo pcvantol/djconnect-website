@@ -2087,8 +2087,8 @@ test("release script performs dependency and release-tool preflight", async () =
   assert.match(refreshScript, /npm", \["--version"\]/);
   assert.match(refreshScript, /npx", \["wrangler@4", "--version"\]/);
   assert.match(refreshScript, /npx", \["playwright", "--version"\]/);
-  assert.match(refreshScript, /npm", updateArgs/);
-  assert.match(refreshScript, /package-lock\.json would change after npm update/);
+  assert.match(refreshScript, /run\("npm", \["ls", "--all"\]\)/);
+  assert.match(refreshScript, /\["update", "--package-lock-only"\]/);
   assert.match(validateWorkflow, /Check third-party packages and tools[\s\S]*npm run deps:check/);
   assert.match(artifactWorkflow, /npm ci/);
   assert.match(artifactWorkflow, /npm run build:release/);

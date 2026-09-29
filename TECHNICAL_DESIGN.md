@@ -307,10 +307,12 @@ creates and pushes the tag, creates the GitHub Release from only the current
 and runs cleanup.
 `cleanup_old_releases.sh` removes older releases, tags and workflow runs.
 
-CI runs `npm run deps:check` after `npm ci` in the Validate workflow and in the
-Deploy workflow test job. The check performs the same package-lock refresh in a
-non-mutating mode and fails when dependency metadata would change, forcing the
-update to be committed before release or merge.
+CI runs `npm run deps:check` after `npm ci` in the Validate and website release
+artifact workflows. `npm ci` verifies the manifest against the committed
+lockfile; `deps:check` validates the installed dependency tree. Registry
+refreshes happen explicitly through `npm run deps:update` before a release or
+dependency change, so a newly published indirect package cannot fail CI for an
+unchanged commit.
 
 The GitHub Actions workflow runs `npm ci`, `npm run deps:check`, `npm test`
 and `npm run build:release` for pull requests and pushes to `main`. Pull

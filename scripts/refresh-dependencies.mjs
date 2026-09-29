@@ -1,6 +1,6 @@
-import { readFile, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { spawnSync } from "node:child_process";
+import { readFile } from "node:fs/promises";
 
 const mode = process.argv[2] || "update";
 if (!["update", "check"].includes(mode)) {
@@ -19,28 +19,24 @@ const run = (command, args) => {
 
 console.log(`Dependency/tool refresh mode: ${mode}`);
 run("npm", ["--version"]);
-run("npx", ["wrangler@4", "--version"]);
-run("npx", ["playwright", "--version"]);
 
 if (!hasDeclaredDependencies) {
   console.log("No declared npm dependencies to update.");
   process.exit(0);
 }
 
-const lockPath = "package-lock.json";
-const beforeLock = existsSync(lockPath) ? await readFile(lockPath, "utf8") : null;
-
-const updateArgs = existsSync(lockPath) ? ["update", "--package-lock-only"] : ["update"];
-run("npm", updateArgs);
-
 if (mode === "check") {
-  const afterLock = existsSync(lockPath) ? await readFile(lockPath, "utf8") : null;
-  if (beforeLock !== afterLock) {
-    if (beforeLock !== null) {
-      await writeFile(lockPath, beforeLock);
-    }
-    console.error("package-lock.json would change after npm update. Run `npm run deps:update` and commit the result.");
+  if (!existsSync("package-lock.json")) {
+    console.error("package-lock.json is required. Run `npm install` and commit the lockfile.");
     process.exit(1);
   }
-  console.log("Dependency lockfile is up to date.");
+  // CI runs npm ci first, which verifies package.json against the committed lockfile.
+  // A registry refresh here would make an unchanged commit fail when a new package is published.
+  run("npm", ["ls", "--all"]);
+  console.log("Installed dependency tree is valid.");
+  process.exit(0);
 }
+
+run("npx", ["wrangler@4", "--version"]);
+run("npx", ["playwright", "--version"]);
+run("npm", existsSync("package-lock.json") ? ["update", "--package-lock-only"] : ["update"]);

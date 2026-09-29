@@ -305,8 +305,9 @@ on `origin/main`, pushes the release commit with `git push origin HEAD:main`,
 creates GitHub release notes from only the current `CHANGELOG.md` version
 section, runs `npm run deps:update`, records active npm, Wrangler and
 Playwright tool versions, fails if package metadata changes without a commit
-and builds the minified release output in `dist/wwwroot`. CI runs
-`npm run deps:check` so dependency drift is caught before merge. When a
+and builds the minified release output in `dist/wwwroot`. CI runs `npm ci`
+followed by `npm run deps:check` to validate the committed lockfile and
+installed dependency tree without refreshing registry versions. When a
 third-party library, framework or release tool is upgraded, update
 `TECHNICAL_DESIGN.md` and any third-party notices before publishing.
 

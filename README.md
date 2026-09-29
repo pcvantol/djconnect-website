@@ -302,9 +302,12 @@ repo must not keep local copies of either file.
 When third-party libraries, frameworks or release tools are updated or upgraded,
 also update the dependency inventory and third-party notice details in
 `TECHNICAL_DESIGN.md` and any dedicated notices document before publishing.
-CI runs `npm run deps:check` after `npm ci`; if `npm update --package-lock-only`
-would change the lockfile, update with `npm run deps:update` and commit the
-result before merging or releasing.
+CI runs `npm run deps:check` after `npm ci`. The install verifies that
+`package.json` matches the committed lockfile, and the check validates the
+installed dependency tree without refreshing from the registry. Refreshes
+remain an explicit `npm run deps:update` step before a release or dependency
+change, so newly published indirect packages do not make an unchanged commit
+fail CI.
 
 `CHANGELOG.md` gets a separate entry per release and `HANDOFF.md` must mention the current `VERSION`.
 

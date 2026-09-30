@@ -12,7 +12,7 @@
 - Cloudflare Pages project: `djconnect`
 - Source directory: `wwwroot`
 - Release publish directory: `dist/wwwroot`
-- Current version: `3.2.16`
+- Current version: `3.3.1`
 - Main page: `wwwroot/index.html`
 - Features page: `wwwroot/features.html`
 - Platform overview page with CSS architecture diagram: `wwwroot/platform.html`

@@ -2,6 +2,13 @@
 
 All notable changes to this website are grouped per release.
 
+## DJConnect website v3.3.1 - 2026-09-30
+
+- Published the current `main` website as version `3.3.1`, aligning page
+  footers, shared-asset cache keys, package metadata and release documentation
+  across all five languages.
+- Included the reproducible CI dependency check from the current main branch.
+
 ## DJConnect website v3.2.16 - 2026-07-09
 
 - Documented optional DJ announcements through a chosen Home Assistant

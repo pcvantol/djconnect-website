@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "deployed_candidate": "6f1adde58c0bbde7f50153d1abd26992ac31af3a",
+  "deployment_run": 39320898420,
+  "cloudflare_production_id": "093e9c8a-ab3e-4abf-bd4e-5ee35367dbb5",
+  "first_live_smoke": {
+    "run_id": 39321166427,
+    "conclusion": "FAILURE",
+    "browser_tests_passed": 61,
+    "actual_screenshots": 32,
+    "operational_test": "FAIL: automatic redirect follow interpreted login HTTP200 as protected route response",
+    "redacted_observed_chain": [
+      {
+        "origin": "https://djconnect.dev",
+        "path": "/operator",
+        "status": 302,
+        "location_origin": "https://pcvantol.cloudflareaccess.com",
+        "location_path": "/cdn-cgi/access/login/djconnect.dev"
+      },
+      {
+        "origin": "https://pcvantol.cloudflareaccess.com",
+        "path": "/cdn-cgi/access/login/djconnect.dev",
+        "status": 200
+      }
+    ],
+    "trace_limit": "Only origin/path/status retained; no auth-state query, cookie, header or registration payload copied into source evidence"
+  },
+  "correction": "Test-only: no redirect following. Require401/403, or production-only302 to exact HTTPS Access origin/loginpath without credentials. Reject protected200, spoofed host, wrong path, HTTP and unexpected redirect statuses. No production security/configuration/product change.",
+  "local_node_regressions": "21PASS",
+  "actual_local_workerd_operational": "1PASS",
+  "required_remaining": "Independent exact review, protected correction PR/mainCI and separate Finalization; actual new immutable artifact/manifest/deploy/full live smoke. Old first smoke FAIL remains preserved; browserPASS never substitutes for operationalPASS.",
+  "actual_local_production_operational": "1PASS against https://djconnect.dev using corrected no-follow assertion; this is not a governed full-smoke PASS"
+}

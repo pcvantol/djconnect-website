@@ -1,3 +1,15 @@
+# Website V2 — production Access smoke correction
+
+6f1adde protected source/Finalization/mainQUALIFIED and actual deployment
+39320898420 succeeded; public4.0.0 exactcleanSHA/CFcanonicalidentity verified.
+Actual live39321166427:61browser/32visual PASS, operational FAIL because it
+followed valid Access302 to the loginpage200. No operator content exposed.
+Bounded sole-writer test-only correction now in review, with21Node and actual
+workerd1PASS; original failure retained in access-smoke-correction.json.
+No product/UI/Functions/Access/binding change or new lane. Protected followup
+source and separate Finalization, exact new artifact/deployment/full live smoke
+remain required before completion. Earlier records follow.
+
 # Website repository status
 
 Current phase: WebsiteV2 protected-source Finalization. SourcePR63/main`491b83850d949fe61f3e2d85be7c50677da78300` accepted with exact reviewed tree and separate source authorization. Source-main verification and this Finalization own review/CI/authorization remain required. See [Finalization](docs/website-v2/FINALIZATION.md) and [completion report](docs/website-v2/COMPLETION_REPORT.md).

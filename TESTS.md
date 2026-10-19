@@ -43,3 +43,11 @@ and malformed source identities; only absent API source (direct upload) or an
 explicitly disabled supported Git source passes. Local Node suite: 19 PASS.
 Actual pre-merge Cloudflare policy is separately verified by the read-only
 readiness run; offline fixtures alone do not qualify the remote configuration.
+
+Production operator Access smoke never follows authentication redirects. It
+requires401/403 locally; production may instead return302 only from the exact
+https://djconnect.dev origin to the exact HTTPS pcvantol.cloudflareaccess.com
+loginpath for djconnect.dev, without credentials. A loginpage200 is never an
+accepted protected response. Actual first live trace established this boundary;
+negative origin/path/status/credential cases fail closed. No Access policy or
+function changes. Old full-smokeFAIL remains recorded, not reclassified.

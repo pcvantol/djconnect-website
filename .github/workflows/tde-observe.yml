@@ -24,6 +24,9 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v5
 
+        with:
+          fetch-depth: 0
+
       - name: Set up Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
@@ -38,6 +41,7 @@ jobs:
       - name: Generate canonical coverage input
         run: |
           npm ci
+          npm run build:release
           npm run test:coverage
 
       - name: Install published TDE runtime

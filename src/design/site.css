@@ -119,3 +119,5 @@ to{opacity:1;transform:none}
 @media(forced-colors:active){.glass,.button{border:var(--border-width) solid ButtonText}
 .mood-controls button[aria-pressed=true]{outline:var(--border-width) solid Highlight}
 }
+
+.site-header{padding-top:max(var(--space-5),env(safe-area-inset-top));padding-left:max(var(--space-gutter),env(safe-area-inset-left));padding-right:max(var(--space-gutter),env(safe-area-inset-right))}

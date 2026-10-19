@@ -12,7 +12,7 @@ Assignment: DJC-WEBSITE-PREMIUM-CLEAN-REBUILD-V2. Canonical issue: https://githu
 | FIVE_LOCALE_STATUS | 20 static pages generated from one 65-key catalog; key/route/SEO/escaping tests and five-locale Chromium checks PASS |
 | RESPONSIVE_UX_STATUS | Chromium screenshots at 320/375/390/430/768/1280 and four translated mobile pages; menu/focus/Escape/backdrop/touch/no-overflow tests PASS |
 | VIBECAST_INTEGRATION | Compact social product-vision section and original friends/TV artwork; direct https://vibecast.tv link; no backend/pairing feature changes |
-| TESTS_AND_VISUAL_ACCEPTANCE | 13 Node tests PASS; 29 Chromium browser tests PASS before final workflow edits; real workerd operational acceptance PASS; updated final results recorded by CI. axe AA for five locales and open navigation states PASS. Local WebKit startup repeatedly times out; no WebKit PASS claimed |
+| TESTS_AND_VISUAL_ACCEPTANCE | 13 Node tests PASS; 57 Chromium/WebKit browser tests PASS in the final local run, plus real workerd operational acceptance PASS; updated exact-head results recorded by CI. axe AA for five locales and open navigation states PASS. Final local run: 57 Chromium/WebKit tests PASS; one CDP media-emulation test is intentionally Chromium-only. The initial apparent WebKit startup issue was a screenshot helper waiting on offscreen lazy images; real scrolling fixed it. Safari modal Tab eligibility also differed and was corrected with explicit focus cycling |
 | PR_REVIEW_CI | Protected review/CI pending; first Linux visual capture intentionally fails for missing baselines until reviewed and committed |
 | FINALIZATION | Pending implementation merge, then separate exact-SHA reconciliation |
 | DEPLOYMENT_STATUS | No production deployment. Current owner authorization allows governed deployment only after review/CI/artifact/readiness/acceptance gates |
@@ -36,3 +36,9 @@ Actual locally rendered full-page Chromium screenshots at 390 and 1280px were op
 README, TECHNICAL_DESIGN, TESTS, HANDOFF and REPOSITORY_STATUS now reflect the actual clean static architecture, archive isolation, new routes, generated artwork, packaging, test commands and release boundaries. No Core Foundation/API contract was changed. This checkpoint is not completion, installed qualification or live release proof.
 
 Recommended continuation: close concrete review/producer/browser/acceptance gates on this same candidate, correct real CI failures, qualify exact-head and exact-main, then perform protected implementation and separate Finalization; use only the manifest-bound deploy workflow and live SHA/browser readback for publication.
+
+## Browser correction and final local run
+
+`npx playwright test --workers=2`: 57 PASS, 0 failed, 1 explicitly Chromium-only CDP test inapplicable to WebKit. Both real browser engines exercised all five locales, six widths, modal keyboard/focus/backdrop behavior, screenshots and axe AA. Screenshots were reviewed at mobile and desktop size for both engines. This is browser-engine qualification, not physical iPhone/VoiceOver or independent user acceptance.
+
+Linux CI initially exposed shallow history in the archive test. Validate and coverage observation now fetch full history; coverage observation also builds the artifact before testing it. The test is retained, not skipped. Core producer receipt, independent review, CI/Linux baselines, native/nontechnical acceptance and release gates remain open.

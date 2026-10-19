@@ -27,3 +27,12 @@ New owner handoff supersedes opaque recovery branding: exact transparent/micro/w
 Continue same sole writer. Preserve review/CI/Owner Authorization for exact candidate, protected implementation merge, separate Finalization and actual immutable artifact/deployment/live smoke. No deployment has happened. No physical Apple/VoiceOver or nontechnical-user study PASS is claimed. See docs/website-v2/COMPLETION_REPORT.md and release-gates.json.
 
 Actual final32Linux screenshot captures and14Node/61browser/worker PASS are recorded in evidence/website-v2/final-linux-acceptance.json. Independent P1/P2 findings closed; producer acceptance remains OPEN. No protected merge, Finalization or deployment yet.
+
+## Release-governance correction within this Finalization
+
+Source-main Validate39318065412 and immutable artifact39318759152 SUCCESS; old
+formal reconciliation39318759729FAIL because ebbb policy truncates commit files
+to300 versus1986full PRpaths. Actual fully paginated sets/tree equal. Consume
+existing protected canonical baac22d policy/workflow with internal-website tag
+scope; retain old FAIL, require actual final-main QUALIFIED before deploy.
+No product/UI/backend/binding change or new lane. Evidence canonical-policy-admission.json.

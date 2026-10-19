@@ -4,7 +4,7 @@ SourcePR63 accepted main491b83850d949fe61f3e2d85be7c50677da78300. Entire tree
 80e98aad93462e12ea1537fe7f841307bbb76f08 equals independently GO-reviewed
 a1ea748e17e094b880ad8a3a7c2216fa1ab476bc. Source OwnerAuthorization
 39317953159SUCCESS, exact PR/pushValidate39317604383/39317594831 and actual
-CodeQL118283504464SUCCESS. This separate Finalization is governance-only; its
+CodeQL118283504464SUCCESS. This separate Finalization is governance-only, including adoption of the existing protected canonical release-evidence pagination correction; its
 actual commit/PR identity is supplied by GitHub readback.
 
 | Requested status | Actual outcome |
@@ -119,3 +119,10 @@ The owner directly supplied the exact approved brand source and approved the pre
 ## Remediation verification
 
 Source b7ea5e43b70ce5e8da32627e20d1bf3ffb889aec: real Validate 39299850174 SUCCESS, separate CodeQL result 118222294749 SUCCESS with zero annotations, and the branch-scoped open-alert query returned an empty set. Semgrep, Trusted Delivery technical qualification and projection passed. Local full browser suite now has 61 PASS, zero failures and the same single Chromium-only CDP test not applicable to WebKit; 13 Node tests and the complete historical rebuild/hash checks still pass. No old-SHA authorization run was created. Remaining internal gate: independent review. A separate read-only reviewer-agent has been offered through the pending user question; no reviewer was spawned without that explicit choice.
+
+Actual old source reconciliation39318759729FAIL remains retained; old policy
+truncated commit paths300/1986. Real full API path sets and reviewed Git tree
+are equal. This governance increment pins the accepted canonical fix atbaac22d
+and scopes durable qualification tags to internal-website. No check is waived;
+final main must actually become QUALIFIED before any production deployment.
+See evidence/website-v2/canonical-policy-admission.json.

@@ -15,3 +15,12 @@ Current main: `7de55333a0791e74f55fefdb2e30c90175007fa4`.
 No site behavior or public copy changes are in scope.
 
 **Recommended next prompt:** reconcile this adoption PR after merge.
+
+## Release-governance correction within this Finalization
+
+Source-main Validate39318065412 and immutable artifact39318759152 SUCCESS; old
+formal reconciliation39318759729FAIL because ebbb policy truncates commit files
+to300 versus1986full PRpaths. Actual fully paginated sets/tree equal. Consume
+existing protected canonical baac22d policy/workflow with internal-website tag
+scope; retain old FAIL, require actual final-main QUALIFIED before deploy.
+No product/UI/backend/binding change or new lane. Evidence canonical-policy-admission.json.

@@ -21,12 +21,23 @@
     "validate_run": 39318065412,
     "website_quality": "SUCCESS",
     "software_assurance_governance": "SUCCESS",
-    "workflow_cleanup": "IN_PROGRESS_AT_RECORDING",
+    "workflow_cleanup": "SUCCESS",
     "codeql_run": 39318065373,
     "codeql_conclusion": "SUCCESS",
     "coverage_artifact": 12219490243,
     "browser_artifact": 12218392570,
-    "full_workflow_and_immutable_artifact": "Must be read back and recorded in Finalization PR before protected merge"
+    "full_validate": "SUCCESS",
+    "immutable_artifact_run": 39318759152,
+    "artifact_id": 12218773775,
+    "artifact_sha256": "98112fe8e8f31eea444f5947eb3a3d2352eb421ce0b69ae2457ccdbb0d5d8526",
+    "artifact_identity_and_publication_boundary": "PASS actual downloaded artifact",
+    "formal_release_evidence": {
+      "run_id": 39318759729,
+      "conclusion": "FAILURE",
+      "cause": "Old pinned collector truncates commit files300 versus1986PRpaths",
+      "preserved_not_waived": true,
+      "required_final_main": "Actual canonical QUALIFIED before deployment"
+    }
   },
   "deployment": "NOT_YET_EXECUTED",
   "finalization": "Separate reviewed protected PR, own exact authorization/CI/main acceptance required"

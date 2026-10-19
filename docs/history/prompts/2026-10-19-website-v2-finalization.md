@@ -9,9 +9,16 @@ without inferring runtime or other-consumer acceptance.
 
 This bounded governance increment reconciles six rolling records, durable
 source receipt, completion report and prompt history. It introduces no source,
-UI, test, asset, workflow, backend or binding change. Review, exactCI, separate
+UI, test, asset, backend or binding change. Review, exactCI, separate
 Owner Authorization and normal protected merge remain mandatory. Final main
 artifact must be downloaded/verified and exercised before actual manifest-bound
 production upload and live SHA/visual/security smoke. Durable actual receipts
 belong to the Finalization PR/Actions, not invented future/self SHA fields.
 No new product phase or other writer is activated.
+
+Actual old source reconciliation39318759729FAIL remains retained; old policy
+truncated commit paths300/1986. Real full API path sets and reviewed Git tree
+are equal. This governance increment pins the accepted canonical fix atbaac22d
+and scopes durable qualification tags to internal-website. No check is waived;
+final main must actually become QUALIFIED before any production deployment.
+See evidence/website-v2/canonical-policy-admission.json.

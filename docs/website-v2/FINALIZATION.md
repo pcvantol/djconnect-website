@@ -9,9 +9,18 @@ CodeQL118283504464SUCCESS. No protection/admin bypass or second source writer.
 
 Source-main Validate39318065412 Website quality/governance jobs SUCCESS,
 coverage artifact12219490243 and actual browser artifact12218392570 retained.
-Main CodeQL39318065373SUCCESS. Workflow cleanup is still in progress; its full
-conclusion, formal post-merge release receipt and immutable artifact are verified
-and registered in this Finalization PR before protected Finalization merge. Finalization has its own
+Main CodeQL39318065373SUCCESS. Full mainValidate39318065412SUCCESS and immutable source artifact workflow
+39318759152SUCCESS. Downloaded artifact12218773775 hash
+98112fe8e8f31eea444f5947eb3a3d2352eb421ce0b69ae2457ccdbb0d5d8526 verified;
+actual build.json source491b838/4.0.0/clean, worker present, archive absent.
+Old formal source reconciliation39318759729FAIL is preserved: its old
+ebbb policy compares only300commit paths against1986PRpaths. Full actual
+API-pagination1986/1986path equality and entire reviewed Git tree are verified.
+This Finalization consumes the already-protected canonical pagination fix via
+matching baac22d workflow/policy pins, with internal-website durable tag scope.
+Four canonical regression tests PASS. No policy fork or relaxed check. Original
+run remains FAIL; no retrospective qualification is claimed. Final main must
+produce actual canonical QUALIFIED evidence before production deployment. Finalization has its own
 independent review, exact CI, separate Owner Authorization, protected merge
 and exact-main readback. Its commit/PR identity is provided by actual GitHub
 readback; no self-referential SHA or future acceptance is fabricated.

@@ -43,3 +43,12 @@ unrelated repository roadmaps here unless this repository owns that work.
 `docs/website-v2/FINALIZATION.md`; immutable prompt `docs/history/prompts/2026-10-19-website-v2-finalization.md`. Exact final PR/CI/deployment readback is recorded in the protected Finalization PR.
 
 Target repository state: `MERGED_RECONCILED` becomes effective only after this separate Finalization is protected merged and its reviewed tree is confirmed by actual exact-main readback. Before that, it remains `FINALIZATION_IN_REVIEW`. This transition does not itself establish production/live acceptance; those receipts remain separate.
+
+## Release-governance correction within this Finalization
+
+Source-main Validate39318065412 and immutable artifact39318759152 SUCCESS; old
+formal reconciliation39318759729FAIL because ebbb policy truncates commit files
+to300 versus1986full PRpaths. Actual fully paginated sets/tree equal. Consume
+existing protected canonical baac22d policy/workflow with internal-website tag
+scope; retain old FAIL, require actual final-main QUALIFIED before deploy.
+No product/UI/backend/binding change or new lane. Evidence canonical-policy-admission.json.

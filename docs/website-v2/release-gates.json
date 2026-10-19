@@ -1,19 +1,19 @@
 {
-  "branding_producer_handoff": {
-    "status": "OPEN",
-    "evidence": "Owner supplied exact approved master, hash verified; Core #1223 qualified producer source/wordmark receipt still pending."
+  "approved_brand_source": {
+    "status": "PASS",
+    "evidence": "Website owner directly supplied the approved 1254px PNG, hash f05fcdf4602d9c63add7799469c64060a8f13e5efa66ad6c7b762fb8273ec89f matching canonical Core #1223, then approved the website deployment. This qualifies this website input; it does not claim completion of Core/Apple rebranding or its producer-code receipt."
   },
   "independent_review": {
     "status": "OPEN",
     "evidence": "Protected PR review must approve the exact candidate."
   },
   "candidate_ci": {
-    "status": "OPEN",
-    "evidence": "Required exact-head and exact-main CI must pass."
+    "status": "PASS",
+    "evidence": "Remediation b7ea5e43b70ce5e8da32627e20d1bf3ffb889aec: Validate 39299850174, CodeQL result 118222294749 (zero annotations), Semgrep, Trusted Delivery and projection PASS. Final exact-head CI must also pass before merge; deployment workflow separately requires a successful exact-main immutable Website release artifact and its provenance. No future main result is claimed here."
   },
   "visual_acceptance": {
-    "status": "OPEN",
-    "evidence": "Local Chromium/WebKit: 57 PASS, reviewed six-width/translated imagery; 32 actual Linux screenshots reviewed and imported with hashes. Independent product/visual acceptance and nontechnical comprehension evidence remain open."
+    "status": "PASS",
+    "evidence": "Website owner approved deployment after the actual local preview and reviewed phone/desktop/browser evidence. Author reviewed real six-width/five-locale screenshots; source-style comparison with Apple retained. No physical VoiceOver/iPhone or separate nontechnical five-second study is claimed."
   },
   "vibecast_destination": {
     "status": "PASS",

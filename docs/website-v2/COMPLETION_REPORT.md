@@ -50,3 +50,11 @@ PR CI run 39295444260 (source 81ec58df21ab66b0028968a85f67dd32624e7866, PR merge
 All 32 Linux Chromium/WebKit screenshots were retained with SHA-256 provenance in evidence/website-v2/linux-baseline-receipt.json. Actual phone, desktop, menu and translated images were opened and visually reviewed before importing them. Native OS font fallbacks differ; deliberate engine/OS baselines preserve that fact rather than pretending Linux is an Apple device. CI now fails on flaky tests as well as missing/different snapshots. The next exact-head run must compare against these reviewed baselines successfully; this failed first-capture run is not called a PASS.
 
 Owner Authorization currently reports HIGH_RISK authorization required for the exact SHA. Trusted Delivery wrapper success does not waive that separate commit status. No authorization dispatch, protected merge or deployment is inferred from generic consent.
+
+## Deployment continuation — security result correction
+
+The user approved deployment, then repeated approval after the CodeQL findings were disclosed. Initial dispatch of authorization for 58fc267 was rejected by automatic approval review because the earlier approval predated disclosure of two high-severity results. No authorization, merge or deployment occurred.
+
+Fresh status inspection found a separate failed CodeQL result check even though the analysis workflow succeeded. Active `src/operational/session-receiver.html` assigned arbitrary Broadcast artwork URLs to img.src. The fix admits only parsed HTTP(S) URLs without embedded credentials, removes a prior image source for invalid artwork and preserves valid relative artwork, Broadcast rendering and audience signaling. Two real-browser regression cases run in each engine (four additional tests) exercise malicious/invalid/credential-bearing URLs, stale-source clearing and valid behavior.
+
+Archive files remain exact. Default CodeQL queries and action pins remain active; only immutable nonpublished `archive/**` is excluded through a repository config, rather than modifying historical bytes or dismissing real active alerts. This material security correction creates a new candidate; old-SHA authorization is not transferred. Exact-head security results, independent review and the governed release gates remain required.

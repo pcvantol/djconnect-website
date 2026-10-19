@@ -28,7 +28,25 @@
       const signals = [['more_energy','More Energy'],['less_energy','Less Energy'],['chill','Chill'],['dance','Dance'],['surprise_us','Surprise Us'],['more_guitars','More Guitars'],['more_vocals','More Vocals'],['more_instrumental','More Instrumental'],['more_like_this','More Like This']];
       el('mode').textContent = ({guest:'Guest',tv:'TV',desktop:'Desktop'})[query.get('mode')] || 'Guest';
       const setStatus = text => el('status').textContent = text;
-      const render = () => { const s=state.session,p=state.playback,pl=state.planner,f=state.session_flow||{},a=state.audience||{}; el('title').textContent=s.title||'DJ Session'; el('mood').textContent=s.selected_mood||'—'; el('track').textContent=p.current_track?.title||'No current track'; el('artist').textContent=p.current_track?.artist||''; el('planner').textContent=pl.planning_state||'—'; el('direction').textContent=`${pl.planning_horizon_minutes||'—'} min · ${pl.current_direction||'—'}`; el('progress').value=p.playback_progress?.position||0; el('progress').max=p.playback_progress?.duration||1; const art=p.current_track?.artwork_url; el('art').hidden=!art; if(art) el('art').src=art; el('flow').replaceChildren(...(f.items||[]).map(item=>{const row=document.createElement('li');row.textContent=`${item.position.toUpperCase()} · ${item.label}`;return row;})); el('audience').textContent=Object.entries(a.signal_totals||{}).map(([signal,total])=>`${signal}: ${total}`).join(' · ')||'No audience activity yet.'; };
+      // Broadcast artwork may only load ordinary web images. Never pass arbitrary
+      // provider strings to a browser URL sink (javascript:, data:, file:, etc.).
+      const setArtwork = value => {
+        const image = el('art');
+        image.hidden = true;
+        image.removeAttribute('src');
+        if (typeof value !== 'string' || !value.trim()) return;
+        try {
+          const url = new URL(value, location.href);
+          if (url.username || url.password) return;
+          if (url.protocol === 'https:' || url.protocol === 'http:') {
+            image.src = url.href;
+            image.hidden = false;
+          }
+        } catch {
+          // Invalid artwork does not prevent the rest of the Broadcast rendering.
+        }
+      };
+      const render = () => { const s=state.session,p=state.playback,pl=state.planner,f=state.session_flow||{},a=state.audience||{}; el('title').textContent=s.title||'DJ Session'; el('mood').textContent=s.selected_mood||'—'; el('track').textContent=p.current_track?.title||'No current track'; el('artist').textContent=p.current_track?.artist||''; el('planner').textContent=pl.planning_state||'—'; el('direction').textContent=`${pl.planning_horizon_minutes||'—'} min · ${pl.current_direction||'—'}`; el('progress').value=p.playback_progress?.position||0; el('progress').max=p.playback_progress?.duration||1; setArtwork(p.current_track?.artwork_url); el('flow').replaceChildren(...(f.items||[]).map(item=>{const row=document.createElement('li');row.textContent=`${item.position.toUpperCase()} · ${item.label}`;return row;})); el('audience').textContent=Object.entries(a.signal_totals||{}).map(([signal,total])=>`${signal}: ${total}`).join(' · ')||'No audience activity yet.'; };
       const apply = data => { Object.assign(state,data); render(); };
       const renderSignals = () => { if(!capabilities.audience_signals)return; const container=el('signals');container.hidden=false;container.replaceChildren(...signals.map(([signal,label])=>{const button=document.createElement('button');button.textContent=label;button.onclick=()=>socket?.readyState===WebSocket.OPEN&&socket.send(JSON.stringify({type:'audience_signal',signal}));return button;})); };
       const connect = () => { if(!endpoint||!token||!sessionID){setStatus('Invalid receiver link');return;} const url=new URL(endpoint);url.searchParams.set('broadcast_token',token); socket=new WebSocket(url); socket.onopen=()=>setStatus('Live'); socket.onmessage=event=>{const message=JSON.parse(event.data);if(message.type==='snapshot'){capabilities=message.capabilities||{};renderSignals();apply(message.snapshot);}if(message.type==='event')apply(message.data.payload);if(message.type==='error'){setStatus('Unavailable');socket.close();}}; socket.onclose=()=>{setStatus('Reconnecting');setTimeout(connect,1500);}; socket.onerror=()=>socket.close(); };

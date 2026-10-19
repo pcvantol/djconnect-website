@@ -41,3 +41,5 @@ unrelated repository roadmaps here unless this repository owns that work.
 ## Finalization record
 
 `docs/website-v2/FINALIZATION.md`; immutable prompt `docs/history/prompts/2026-10-19-website-v2-finalization.md`. Exact final PR/CI/deployment readback is recorded in the protected Finalization PR.
+
+Target repository state: `MERGED_RECONCILED` becomes effective only after this separate Finalization is protected merged and its reviewed tree is confirmed by actual exact-main readback. Before that, it remains `FINALIZATION_IN_REVIEW`. This transition does not itself establish production/live acceptance; those receipts remain separate.

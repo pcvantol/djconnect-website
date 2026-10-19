@@ -18,7 +18,7 @@ actual commit/PR identity is supplied by GitHub readback.
 | VIBECAST_INTEGRATION | PASS: compact social product vision, original living-room visual, direct verified vibecast.tv CTA; no backend changes |
 | TESTS_AND_VISUAL_ACCEPTANCE |19Node and61browserPASS, axeAA/five locales/open menu, real compiled-worker operational acceptance;32actual reviewed Linux captures. One CDP test is Chromium-only |
 | PR_REVIEW_CI | SourcePR63 protected merged; independent exact GO/CI/security/OwnerAuth PASS. Source-main/Finalization own evidence is recorded in FINALIZATION.md and the protected Finalization PR |
-| FINALIZATION | IN REVIEW: separate governance-only branch codex/website-v2-finalization-20261019, six rolling records/history/source receipt; own exact review/CI/authorization/merge required |
+| FINALIZATION | IN REVIEW: separate governance-only branch, six rolling records/history/source receipt; target MERGED_RECONCILED becomes effective only after protected Finalization merge and actual exact-main tree readback; production acceptance remains separately required |
 | DEPLOYMENT_STATUS | NOT YET DEPLOYED: actual Cloudflare readiness confirms direct-upload/manual publication. After protected Finalization, qualify immutable final-main artifact and execute existing manifest-bound deploy/live smoke |
 | OPEN_BLOCKERS | No open implementation/review/Core-brand-source finding. Remaining delivery gates are separate Finalization, exact final-main artifact and actual production/live acceptance; Core HA-runtime Golden failure remains separate and unwaived |
 

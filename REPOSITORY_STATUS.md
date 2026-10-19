@@ -4,6 +4,8 @@ Current phase: WebsiteV2 protected-source Finalization. SourcePR63/main`491b8385
 
 No new product increment. Real immutable-artifact production deployment/live acceptance remains the next authorized delivery step after protected Finalization. Cloudflare direct upload confirmed; no automatic publication. Core HA-runtime failure remains a separate producer runtime block, never a website/backend PASS.
 
+Target repository state: `MERGED_RECONCILED` becomes effective only after this separate Finalization is protected merged and its reviewed tree is confirmed by actual exact-main readback. Before that, it remains `FINALIZATION_IN_REVIEW`. This transition does not itself establish production/live acceptance; those receipts remain separate.
+
 ## Historical records
 
 # Website V2 — current delivery handoff

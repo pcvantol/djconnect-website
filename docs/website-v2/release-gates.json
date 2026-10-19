@@ -4,8 +4,8 @@
     "evidence": "Exact owner master retained; canonical corrected transparent and micro/wordmark variants imported byte-for-byte from Core883cb9f3ff9de8ec7f5ae4c5f04f852e0d8bd866, archive aa51cf9bd417a2009cdd3bed037f46b5424ac85869fbe3e9fbb2657b4754f977, manifest73cc408e10d88aa1fb8a1be2783b9c577aec398ce3dcd54c2f997ad1425984d2. Latest #62 explicitly requires protected producer acceptance; CorePR1224 remains open with Owner Authorization FAILURE. Consumer review does not waive producer gate."
   },
   "independent_review": {
-    "status": "OPEN",
-    "evidence": "Readonly reviewer /root/independent_review reviewed e97741043ea3cc26360b9bc51e442924ff155e3e: archive980 and13Node tests PASS, no further runtime/security blocker, NO-GO for newly superseded branding and stale visual references. Corrected final candidate requires follow-up review."
+    "status": "PASS",
+    "evidence": "Readonly independent reviewer /root/independent_review: source-review GO for ce1832c9cc2957620e09c284dcf464247d0f2de6 after actual file/hash review,14Node tests including980-file archive restoration, actual390px/320px-menu/1280px screenshots. P1 branding and P2 stale baseline findings resolved. Release NO-GO for independent producer acceptance and current Linux/exact-head qualification. Subsequent changes limited to recording this review and correcting test counts; no source behavior change."
   },
   "candidate_ci": {
     "status": "PASS",

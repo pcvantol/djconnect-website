@@ -1,16 +1,31 @@
-# Current delivery checkpoint — supersedes historical checkpoint statuses below
+# Website V2 — validated source, producer-blocked delivery
 
-Decision: NOT QUALIFIED FOR PRODUCTION. PR #63, branch codex/website-premium-v2. New canonical #62 owner handoff requires corrected transparent Core assets and protected producer acceptance; CorePR1224 remains OPEN with missing Owner Authorization at readback. This is an external producer gate, not permission for this Website lane to merge Core.
+Decision: SOURCE QUALIFIED / RELEASE BLOCKED. Branch codex/website-premium-v2, PR https://github.com/pcvantol/djconnect-website/pull/63. Runtime source reviewed fe5bf41d71caaf1b1b8e2f1d923a6ea3696de145. Final reconciliation commit is the Git commit containing this document; no self-referential SHA is fabricated.
 
-Readonly review /root/independent_review of e97741043ea3cc26360b9bc51e442924ff155e3e: NO-GO only for superseded branding and stale visual references; archive980 and13Node tests independently PASS. Corrected ce1832c9cc2957620e09c284dcf464247d0f2de6 received independent source-review GO; producer and current Linux/exact-head gates still block release. Canonical variants imported with receipt src/assets/brand/HANDOFF_RECEIPT.md; source original preserved; screenshot baseline refresh uses current4.0.0. Prior exact-head CI39300324673, separate CodeQL118223965548 zero annotations and Owner Authorization39300521680 PASS apply only to e977, not the changed candidate.
+| Requested status | Actual outcome |
+| --- | --- |
+| ARCHIVE_STATUS | PASS:980 baseline tracked files, exact hashes/Git blobs, isolated historical rebuild, excluded from public output |
+| DESIGN_SYSTEM_STATUS | PASS: central tokens, shared UI/shell/sections/page registry; real palette/font propagation verified |
+| VISUAL_ASSETS_STATUS | PASS: four original finished art families; canonical transparent/micro/wordmark variants hash-verified from Core883cb9; protected producer acceptance OPEN |
+| WEBSITE_IMPLEMENTATION | PASS: clean4.0.0 short four-experience homepage plus start/privacy/support |
+| FIVE_LOCALE_STATUS | PASS:65-key central catalog,20static routes, parity/alt/ARIA/SEO/canonical/hreflang |
+| RESPONSIVE_UX_STATUS | PASS: real320/375/390/430/768/1280, Chromium/WebKit, overlay/focus/keyboard/touch/fallbacks |
+| VIBECAST_INTEGRATION | PASS: compact social product vision, original room artwork, actual vibecast.tv destination; no backend changes |
+| TESTS_AND_VISUAL_ACCEPTANCE |14Node and61browserPASS, one Chromium-only emulation inapplicable to WebKit; axeAA and real compiled-worker acceptance PASS. Actual32Linuxcaptures retained with provenance and independent visual closure |
+| PR_REVIEW_CI | Independent source GO for fe5bf41; Validate39304056369 SUCCESS, actual CodeQL118236788706 SUCCESS. Final reconciliation requires its own exact-head CI and Owner Authorization |
+| FINALIZATION | NOT DONE: requires protected implementation merge followed by separate reconciliation PR |
+| DEPLOYMENT_STATUS | NOT DEPLOYED: no main release artifact or deployment/live receipt fabricated |
+| OPEN_BLOCKERS | Latest owner #62 handoff explicitly requires protected Core producer acceptance. CorePR1224 at883cb9 remains OPEN, Owner Authorization missing. Website lane cannot accept/merge Core |
 
-Local brand-refresh suite61PASS,14NodePASS; one Chromium-only media emulation not applicable to WebKit. No physical/native/user-study acceptance claimed. Implementation/Finalization are not merged; no production deployment. Remaining: producer acceptance, exact-candidate CI/authorization, protected implementation merge, separate Finalization, immutable artifact qualification, governed deployment and actual live smoke.
+## Review and durable knowledge
 
-Architecture: no Core/API/trust ownership change; Pages Functions bundle preserves existing service bindings/security. Durable learnings and prompt history are committed; current local status/navigation reconciled. Recommended next action is same-scope remediation/delivery, not a new capability.
+Initial readonly review found superseded opaque branding and stale screenshots. Canonical corrected assets imported byte-for-byte; receipt src/assets/brand/HANDOFF_RECEIPT.md. Original owner master retained only as recovery source. Reused local preview disabled; screenshots taken from verified new artifact on unique4187.0.5% full-page tolerance had masked small header/footer changes; comparisons now permit100pixels. Actual screenshots are retained even on success. Soft assertions capture later menu states while any mismatch still fails.
 
-The earlier baseline version mismatch had two causes: reused local preview and the full-page0.5% pixel tolerance retaining small header/footer differences. Existing preview reuse is now disabled, capture used a unique verified4.0.0 artifact endpoint, all32 Darwin images were explicitly replaced, and visual comparisons now allow at most100 differing pixels. New screenshot hashes are in evidence/website-v2/brand-refresh-receipt.json. Linux baselines must be captured/reviewed from real CI, not copied from Darwin.
+Independent reviewer /root/independent_review opened actual390px LinuxWebKit,768px menu and1280px desktop. The overlapping image bottom border is transparent without geometry change; the visible line through mood labels is gone. P1/P2 closed, SOURCE GO for exactfe5bf41. Evidence: final-linux-acceptance.json, source run39304056369, PRmerge3b93810b48d1e2a5b30721f5549a121c6381e6af, artifact12214005193. Final accepted Linux references are these actual32captures, not copied Darwin images. Physical iPhone/VoiceOver and a separate nontechnical comprehension study remain unclaimed.
 
-A final independent Linux review noticed the image bottom border crossing mood labels through unblurred glass. The overlapping bottom edge is now transparent without geometry change. Screenshot checks use soft assertions only to capture later menu states even when a preceding home differs; any difference still fails the test and CI. New Linux capture/visual review remains required.
+The receiver now validates parsed HTTP(S) artwork URLs and rejects credentials/executable schemes, clearing stale images. Active CodeQL remains enabled; immutable nonpublic archive excluded without modifying historical bytes. Pages Functions compile into the artifact so source-independent deployment preserves APIs/auth/bindings. No Core/API/Apple/runtime ownership or trust contract changed.
+
+README/TECHNICAL_DESIGN/TESTS/HANDOFF/REPOSITORY_STATUS/PROMPT_INDEX and immutable prompt history reflect implementation. No new capability activated. Recommended continuation: obtain actual protected producer readback, qualify exact candidate and authorize through existing workflow; protected merge; separate Finalization; exact-main CI and manifest-bound immutable artifact; governed deployment and real live SHA/browser smoke. Owner deploy permission remains valid but waives no gate. Preserve sole-writer branch and main checkout until safe completion.
 
 ## Historical checkpoint and evidence chronology
 

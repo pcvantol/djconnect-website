@@ -5,11 +5,11 @@
   },
   "independent_review": {
     "status": "PASS",
-    "evidence": "Readonly independent reviewer /root/independent_review: source-review GO for ce1832c9cc2957620e09c284dcf464247d0f2de6 after actual file/hash review,14Node tests including980-file archive restoration, actual390px/320px-menu/1280px screenshots. P1 branding and P2 stale baseline findings resolved. Release NO-GO for independent producer acceptance and current Linux/exact-head qualification. Subsequent changes limited to recording this review and correcting test counts; no source behavior change."
+    "evidence": "Separate readonly reviewer /root/independent_review SOURCE GO for fe5bf41d71caaf1b1b8e2f1d923a6ea3696de145. P1 canonical-branding and P2 actual LinuxWebKit mood-line findings closed; real capture SHA59c1cd0948bc4f0abcdf8802532c990431c9fc8da4f5ddf1ec65b4f699ea02e5 from artifact12214005193/run39304056369. No source modifications by reviewer. Final documentation/baseline reconciliation separately reviewed; protected exact-head/main authorization and CI remain required."
   },
   "candidate_ci": {
     "status": "PASS",
-    "evidence": "Remediation b7ea5e43b70ce5e8da32627e20d1bf3ffb889aec: Validate 39299850174, CodeQL result 118222294749 (zero annotations), Semgrep, Trusted Delivery and projection PASS. Final exact-head CI must also pass before merge; deployment workflow separately requires a successful exact-main immutable Website release artifact and its provenance. No future main result is claimed here."
+    "evidence": "Runtime/test sourcefe5bf41d71caaf1b1b8e2f1d923a6ea3696de145: Validate39304056369 SUCCESS, actual CodeQL118236788706 SUCCESS.14Node61browsers and real worker acceptance PASS;32actual screenshot hashes retained in evidence/website-v2/final-linux-acceptance.json. Subsequent reconciliation changes only docs/accepted references. Final exact-head CI and new authorization still required; no future main/artifact/deployment result claimed."
   },
   "visual_acceptance": {
     "status": "PASS",

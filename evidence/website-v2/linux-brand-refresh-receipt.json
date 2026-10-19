@@ -105,5 +105,22 @@
       "destination": "tests/visual-baselines/linux/webkit/home-fr.png",
       "sha256": "4b09b8fb51e68ad9f170d2272b8585b23753ff589add47486512412636c82feb"
     }
-  ]
+  ],
+  "menu_followup": {
+    "run": 39302618635,
+    "artifact_id": 12212530564,
+    "source_sha": "0bce1168d02545545c0fb4a40159231a84454d73",
+    "result": "59PASS2visualdifferences, one Chromium-only test inapplicable to WebKit; not a qualified run",
+    "review": "Actual768menu and1280diff opened. Only updated canonical header branding behind backdrop differs; layout/focus/links unchanged. Two actual references imported, no tolerance relaxation.",
+    "files": [
+      {
+        "destination": "tests/visual-baselines/linux/webkit/menu-768.png",
+        "sha256": "d47f0d3b4244825a7e9daa2c5bc69b28d96e37a53bce2e0d6fb3c30d346b2782"
+      },
+      {
+        "destination": "tests/visual-baselines/linux/webkit/menu-1280.png",
+        "sha256": "527f9dbf8d604bbd91761ae7f811e6d5ce84b213d5979cefc061f6996604610c"
+      }
+    ]
+  }
 }

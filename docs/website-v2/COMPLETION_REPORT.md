@@ -42,3 +42,11 @@ Recommended continuation: close concrete review/producer/browser/acceptance gate
 `npx playwright test --workers=2`: 57 PASS, 0 failed, 1 explicitly Chromium-only CDP test inapplicable to WebKit. Both real browser engines exercised all five locales, six widths, modal keyboard/focus/backdrop behavior, screenshots and axe AA. Screenshots were reviewed at mobile and desktop size for both engines. This is browser-engine qualification, not physical iPhone/VoiceOver or independent user acceptance.
 
 Linux CI initially exposed shallow history in the archive test. Validate and coverage observation now fetch full history; coverage observation also builds the artifact before testing it. The test is retained, not skipped. Core producer receipt, independent review, CI/Linux baselines, native/nontechnical acceptance and release gates remain open.
+
+## First real Linux capture and reviewed baselines
+
+PR CI run 39295444260 (source 81ec58df21ab66b0028968a85f67dd32624e7866, PR merge 8c00f9471cb657d45efb48c876f33833ed7a694a) produced artifact 12209205095. It had 37 passing nonvisual checks, 20 explicit missing-baseline failures and one Chromium-only CDP test not applicable to WebKit. Inspection of the actual results confirmed that every failure was a first baseline capture, not an ignored functional or accessibility defect.
+
+All 32 Linux Chromium/WebKit screenshots were retained with SHA-256 provenance in evidence/website-v2/linux-baseline-receipt.json. Actual phone, desktop, menu and translated images were opened and visually reviewed before importing them. Native OS font fallbacks differ; deliberate engine/OS baselines preserve that fact rather than pretending Linux is an Apple device. CI now fails on flaky tests as well as missing/different snapshots. The next exact-head run must compare against these reviewed baselines successfully; this failed first-capture run is not called a PASS.
+
+Owner Authorization currently reports HIGH_RISK authorization required for the exact SHA. Trusted Delivery wrapper success does not waive that separate commit status. No authorization dispatch, protected merge or deployment is inferred from generic consent.

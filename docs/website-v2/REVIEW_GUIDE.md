@@ -1,0 +1,13 @@
+# Independent review guide
+
+Review this as one integral Website #62 outcome. The complete archive and retained release-note trees create a large diff; do not treat truncated GitHub diff output as full review. The full checkout and paginated files API are authoritative.
+
+1. `archive/legacy-website-2026-10-19/ARCHIVE_MANIFEST.md` and FILE_INVENTORY: pinned origin, full inventory, no secrets/caches, build and restore. `npm run archive:check` compares every byte both to SHA-256 inventory and the original Git blob, not just a self-authored manifest. The test reconstructs and runs the actual historical release build in isolation.
+2. `src/pages`, `src/layouts`, `src/components`, `src/locales`, `src/design`: source composition and tokens, 20 routes, four-part story, five locale/alt/ARIA/SEO catalogs, privacy and truthful onboarding. Review all translated copy, header, dialog behavior and footer contract.
+3. `src/assets`: original approved master checksum, unchanged mark semantics, four original image sources/prompts/provenance and responsive derivatives. Actual phone/desktop screenshots live under tests/visual-baselines by OS/engine. Artwork is illustrative, not actual live/native screenshots.
+4. `scripts/build-site.mjs`, `scripts/build-release.mjs`: clean source generation, explicit publication allowlist, archive/source isolation, no symlinks, VERSION-derived metadata and actual Pages Functions bundle. Review packaging carefully: the workflow deploys the immutable artifact independently of the source checkout.
+5. `functions/`, `migrations/`, `src/operational`, `docs/website-v2/OPERATIONAL_CONTRACTS.md`: original source/feed byte preservation, Access fail-closed guards, server-only secret handling, safe downloads and curated redirects versus genuine 404s. Never execute a live revoke as part of review.
+6. Active Node/Playwright tests and workflows: no auto-discovery of archived tests; actual Chromium/WebKit/axe/workerd; six widths, five languages, modal focus cycling, Escape/backdrop, image readiness, reduced-motion/transparency, SEO and live SHA receipt. Missing baselines and flaky CI are failures, not accepted updates.
+7. Internal release gates: Core qualified handoff and independent acceptance remain separate from direct owner-file receipt. Source candidate requires HIGH_RISK Owner Authorization for the exact final SHA; neither a passing Trusted Delivery wrapper nor general deploy permission waives that status. Implementation merge and Finalization are separate protected steps.
+
+Author implementation review and automated checks do not constitute independent review. Record exact candidate SHA, reviewer identity and concrete findings in the PR. Do not merge or deploy while any required gate remains unresolved.

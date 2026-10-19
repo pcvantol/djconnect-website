@@ -13,10 +13,10 @@
   },
   "visual_acceptance": {
     "status": "OPEN",
-    "evidence": "Local real Chromium/WebKit: 57 PASS, zero failed, reviewed phone/desktop screenshots; Linux baselines and independent native/nontechnical visual acceptance pending."
+    "evidence": "Local Chromium/WebKit: 57 PASS, reviewed six-width/translated imagery; 32 actual Linux screenshots reviewed and imported with hashes. Independent product/visual acceptance and nontechnical comprehension evidence remain open."
   },
   "vibecast_destination": {
-    "status": "OPEN",
-    "evidence": "Actual live browser observation/screenshots: 200 and connecting-is-not-available-yet screen, no QR or connected session. Owner permits final-product story; release owner must disposition destination readiness explicitly."
+    "status": "PASS",
+    "evidence": "Live destination and actual browser UX verified with retained screenshots: correct five-locale VibeCast destination, connecting currently unavailable, no fake QR/session. Final-product story is expressly authorized by #62; this PASS is destination verification only, never runtime readiness."
   }
 }

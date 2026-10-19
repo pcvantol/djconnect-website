@@ -10,6 +10,8 @@ Architecture: no Core/API/trust ownership change; Pages Functions bundle preserv
 
 The earlier baseline version mismatch had two causes: reused local preview and the full-page0.5% pixel tolerance retaining small header/footer differences. Existing preview reuse is now disabled, capture used a unique verified4.0.0 artifact endpoint, all32 Darwin images were explicitly replaced, and visual comparisons now allow at most100 differing pixels. New screenshot hashes are in evidence/website-v2/brand-refresh-receipt.json. Linux baselines must be captured/reviewed from real CI, not copied from Darwin.
 
+A final independent Linux review noticed the image bottom border crossing mood labels through unblurred glass. The overlapping bottom edge is now transparent without geometry change. Screenshot checks use soft assertions only to capture later menu states even when a preceding home differs; any difference still fails the test and CI. New Linux capture/visual review remains required.
+
 ## Historical checkpoint and evidence chronology
 
 # Website V2 implementation checkpoint

@@ -50,3 +50,8 @@ No physical iPhone/VoiceOver or separate nontechnical comprehension study
 was performed; real browser/a11y/owner preview acceptance remains distinct.
 
 Target repository state: `MERGED_RECONCILED` becomes effective only after this separate Finalization is protected merged and its reviewed tree is confirmed by actual exact-main readback. Before that, it remains `FINALIZATION_IN_REVIEW`. This transition does not itself establish production/live acceptance; those receipts remain separate.
+
+Live smoke retains complete browser screenshot/JSON evidence: its second,
+operational Playwright invocation uses a separate output directory and list-only
+reporter, so it cannot overwrite the first full visual run before upload.
+This is release-evidence retention only, not a test skip or runtime change.

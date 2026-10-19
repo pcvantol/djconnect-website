@@ -22,3 +22,7 @@ are equal. This governance increment pins the accepted canonical fix atbaac22d
 and scopes durable qualification tags to internal-website. No check is waived;
 final main must actually become QUALIFIED before any production deployment.
 See evidence/website-v2/canonical-policy-admission.json.
+
+The live operational Playwright invocation also uses a separate output/list
+reporter to preserve the full visual report before artifact upload. Both real
+browser and operational suites still run; no test or comparison is skipped.

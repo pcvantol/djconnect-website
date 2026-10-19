@@ -205,3 +205,12 @@ pids/
 
 # Framework-specific generated output
 .gatsby/
+
+# Browser evidence is uploaded by CI; reviewed visual baselines are committed.
+playwright-report/
+.wrangler/
+operational-test-results/
+webkit-check-results/
+
+# Ephemeral checkout identity; generated afresh into each qualified artifact.
+/wwwroot/build.json

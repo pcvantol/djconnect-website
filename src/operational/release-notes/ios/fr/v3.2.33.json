@@ -1,0 +1,7 @@
+{
+  "version": "3.2.33",
+  "platform": "ios",
+  "language": "fr",
+  "name": "DJConnect iOS 3.2.33",
+  "body": "# DJConnect App 3.2.33\n\n## Corrigé\n\n- La fixture e2e de contrat Node locale a été mise à jour et ne teste plus\n  l'ancienne route Home Assistant `/push/bootstrap`. La couverture de\n  l'enregistrement push correspond maintenant au flux d'amorçage Central avec\n  émetteur de confiance utilisé par les clients Apple.\n\n---\n\nPlatform: iOS\n\nLes artefacts CI non signes sont destines au diagnostic et a la validation interne.\nLes binaires iOS non signes sont publies ici pour le diagnostic et la validation interne. Pour une distribution iOS normale, utilisez TestFlight/App Store."
+}

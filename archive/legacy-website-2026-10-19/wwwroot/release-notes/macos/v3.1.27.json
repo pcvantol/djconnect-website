@@ -1,0 +1,6 @@
+{
+  "version": "3.1.27",
+  "platform": "macos",
+  "name": "DJConnect macOS 3.1.27",
+  "body": "### Changed\n\n- Load in-app What's New notes from static `djconnect.dev` JSON files first,\n  with GitHub release metadata retained only as a fallback.\n- Added public-release workflow publication of static platform-specific\n  release-note `.md` and `.json` files to the website repository.\n- Removed the sticky compact app banner from the Now Playing flow on iPhone and\n  Mac, keeping only the regular in-page banner.\n\n### Tests\n\n- Added coverage for the static What's New release-note URLs and GitHub\n  fallback URLs.\n\n\n---\n\nPlatform: macOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nFor normal macOS distribution, prefer the notarized Developer ID build when attached."
+}

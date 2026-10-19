@@ -1,622 +1,78 @@
-# Technical Design Decisions
+# DJCONNECT Website V2 technical design
 
-This document records the implementation-level design choices for the DJConnect website. It is reverse-engineered from the repository and must be reviewed for every release.
+The 4.0.0 website replaces the old marketing surface with one short session-led homepage and three small service pages. The website owns presentation, localized copy and onboarding entry points. Core owns Session behavior and canonical branding; Apple owns its onboarding wizard; VibeCast owns its actual shared-screen implementation. No runtime feature or pairing contract is added here.
 
-Current website version: `3.3.1`
+## Static composition
 
-## Scope
+`src/pages/registry.mjs` defines routes and section composition. `src/layouts/SiteLayout.mjs` owns the HTML shell, SEO, header, language control, modal menu and footer. `src/layouts/sections.mjs` composes Hero, Vibe, Moment, VibeCast and service content. `src/components/ui.mjs` supplies shared semantic primitives. `src/locales/catalog.mjs` has 65 stable English keys and complete NL/EN/DE/FR/ES copy including alt and ARIA labels. Essential content and links work without JavaScript; mood preview and navigation are progressive enhancements.
 
-The site is a Cloudflare Pages website with static HTML/CSS/JavaScript, small Cloudflare Pages Functions for GitHub release proxying and privacy-friendly redirect analytics, and Node.js tests.
+`npm run build` generates 20 HTML routes into a clean `wwwroot`, then copies an allowlisted tree to `dist/wwwroot`. `VERSION` is the website version authority and must match package metadata. The source catalog and original PNG assets are never copied to public output. The source tree contains generated HTML for review; templates are the only editable page source. The build has no framework, hydration, CMS, external fonts or runtime translation dependency.
 
-Primary source files:
+## Design language
 
-- Static pages: `wwwroot/*.html`
-- Browser JavaScript: `wwwroot/assets/site-nav.js`, `wwwroot/assets/downloads.js`, `wwwroot/assets/releases.js`
-- Browser CSS: inline page `<style>` blocks plus `wwwroot/assets/site-nav.css`, `wwwroot/assets/downloads.css` and `wwwroot/assets/releases.css`
-- Edge functions: `functions/**/*.js`
-- Data schema: `migrations/0001_create_click_counters.sql`
-- Tests: `tests/site.test.mjs`
-- Optional browser smoke and screenshot tests: `tests/smoke.spec.mjs`, `tests/screenshots.spec.mjs`
-- Operational helper scripts: `scripts/check-stats.mjs`
-- Shared site configuration: `scripts/site-config.mjs`
-- Release tooling: `release.sh`, `scripts/build-release.mjs`, `cleanup_old_releases.sh`
-- CI/CD: `.github/workflows/deploy-pages.yml`
+`src/design/tokens.css` is the palette/font/typography/spacing/glass/mood/focus/motion authority. CSS uses semantic tokens and adapts the same composition to phone, tablet and desktop. The Apple source reference includes IdleDJSessionView, DJSessionWelcomeArtwork, DJConnectLaunchBanner, DJConnectCardAppearance and djSessionFrostedSurface. Native radius 32, border opacity .32 and width 1.25 informed the hierarchy; CSS approximates translucent material without claiming system Liquid Glass. Standard `dialog.showModal` plus explicit Tab wrap, Escape, backdrop and focus restoration protects keyboard users. Reduced motion, reduced transparency, unsupported-filter and forced-color fallbacks are included.
 
-## Architecture Decisions
+Mood controls are a local visual preview; they never pretend to configure a live Session. The four moods have distinct original artwork cues and centrally selected border/light colors. DJ Moment copy is a short explicitly illustrative musical observation, not an attributed artist fact. VibeCast artwork is a product-vision illustration, not a live connected screenshot or customer endorsement.
 
-### Static-first Pages
+## Artwork and brand provenance
 
-The site is implemented as static HTML pages in `wwwroot/` instead of a client framework. Each page owns its markup, critical styling, metadata and language dictionary. Shared behavior is limited to small asset scripts for responsive navigation and download/release rendering.
+The owner supplied Approved-Source-Handoff ZIP, SHA-256 `a0deec308d82c812875f80c509983fab595dd9745b241c2e5f46ff58fbb11197`. Its exact 1254×1254 PNG SHA-256 is `f05fcdf4602d9c63add7799469c64060a8f13e5efa66ad6c7b762fb8273ec89f`. `src/assets/brand/approved-master.png` preserves the original bytes. Production uses the accepted Core transparent glass, headset-only micro marks and outlined compact/primary dark wordmarks, without redrawing. The opaque owner master is retained only as recovery source. Core source PR1224/main7e14 and separate Finalization PR1227/mainbaac are accepted; exact export/import hashes and source/CI evidence are in `evidence/website-v2/core-producer-acceptance.json`. This is asset-source acceptance, not complete Core runtime/native/integral-rebrand acceptance.
 
-Why:
+Four original supporting images were generated with the built-in image_gen tool during this assignment. Original PNGs, exact prompts and provenance hashes live in `src/assets/artwork`. `scripts/optimize-images.py` reproduces WebP 480/800/1280 derivatives, mark sizes and five localized social previews with Pillow 13.0.0 (macOS Arial font for social captions; use the same font for byte reproduction). No album covers, artist endorsements or third-party image source materials were used. Hero image is eager/high priority; lower images are lazy. No image-generation service runs in the public website.
 
-- Cloudflare Pages can serve static files directly with minimal runtime complexity.
-- The site remains inspectable, cacheable and easy to deploy.
-- Marketing/product pages do not need hydration, routing or a build step.
+## Operational preservation and packaging
 
-Sources:
+All `functions/` and `migrations/` source bytes remain unchanged from the archived baseline. The pinned Wrangler 4.151.2 compiler bundles Pages Functions into `dist/wwwroot/_worker.js/index.js` and emits `_routes.json`. This is essential: an artifact containing static files alone cannot preserve server-only Access guards and API proxies when deployed outside a source checkout. Actual compiler and workerd routing are tested, not merely source regexes.
 
-- `wwwroot/index.html`
-- `wwwroot/start.html`
-- `wwwroot/developers.html`
-- `wwwroot/embedded.html`
-- `wwwroot/macos.html`
-- `wwwroot/ios.html`
-- `wwwroot/raspberry-pi.html`
+`src/operational/` retains protected operator UI, its assets, Broadcast-only session receiver and all release-note JSON/Markdown feed paths. The receiver now rejects non-HTTP(S), malformed and credential-bearing artwork URLs before assigning the image source; this fixes CodeQL URL-injection findings while preserving ordinary relative/HTTP(S) artwork and audience-signal messages. Operator HTML removes the old decorative brand image; security behavior stays unchanged. Middleware retains Cloudflare Access JWT checks, configured audience and JWKS verification, with fail-closed defaults. `/api/stats` still requires its token, `/api/operator/*` uses the server relay secret and `/go/*` retains destination allowlists and cookieless aggregate counting. No binding, credential or Access policy is altered.
 
-### Shared Build and Test Configuration
+Apple source explicitly consumes `/start`, versioned/latest localized release-note feeds, and `/ios#downloads` / `/macos#downloads`. Feed bytes remain unchanged. Curated old install/platform routes redirect to compact `/start`. Retired technical/marketing routes return a real 404 through the custom noindex page. No blanket homepage redirect. `docs/website-v2/OPERATIONAL_CONTRACTS.md` records the matrix.
 
-Small cross-cutting site facts live in `scripts/site-config.mjs`: the source
-directory, release output directory, public page registry, release-minified
-assets and version reader. Build tooling and tests import this module instead
-of maintaining separate hardcoded lists.
+## Archive and test isolation
 
-Why:
+`archive/legacy-website-2026-10-19/` contains all 980 tracked files at `3133cb833c846395ac37dae804ba96848650bb7c`, with inventory, SHA-256, build and restoration instructions. Tests compare the inventory with the exact pinned Git tree, verify every hash and reconstruct an isolated source tree. npm explicitly runs `tests/*.test.mjs`; archived historical tests must never be auto-discovered. The clean generator and release allowlist exclude archive, originals, credentials, symlinks and unknown public files.
 
-- Keeps the static-site architecture while reducing drift between build,
-  tests, sitemap expectations and release asset minification.
-- Lets `scripts/build-release.mjs` apply footer version and asset cache-busting
-  from the canonical `VERSION` file when producing `dist/wwwroot`.
-- Gives tests a single public-page registry for link, sitemap and translation
-  coverage.
+## Validation and release
 
-Sources:
+Node tests cover archive/restore, catalog/key/route parity, escaping, composition, operational byte preservation, runtime guard failures and redacted proxy errors. Playwright checks the exact built tree in Chromium and WebKit, keyboard/menu behavior, touch targets, responsive widths, routes and axe WCAG AA. Visual baselines are engine- and OS-specific; Linux CI baselines must be reviewed, not silently accepted from macOS. Chromium CDP additionally emulates reduced transparency. Real workerd tests cover protected routes, stats denial, bad download destinations, HACS redirect, release-note JSON and archive 404.
 
-- `scripts/site-config.mjs`
-- `scripts/build-release.mjs`
-- `tests/helpers/site.mjs`
-- `tests/site-architecture.test.mjs`
+The independent reviewer and release owner must close `docs/website-v2/release-gates.json` with exact evidence before publication. Owner authorization in #62 allows iterative production deployments, but existing Trusted Delivery, independent review, exact-main CI, immutable artifact/provenance and environment-readiness gates remain mandatory. `deploy-pages.yml` stays workflow_dispatch-only. No direct Wrangler production upload, force-push, release.sh direct-main push or protection bypass is authorized. Finalization remains a separate protected increment after implementation merge.
 
-### Progressive Enhancement for Dynamic Data
+## CodeQL result remediation
 
-GitHub release data and install commands are rendered after page load by plain browser JavaScript. Static fallback containers remain valid HTML, while `assets/downloads.js` replaces them with live release cards or fallback messages.
+The earlier statement that CodeQL was green referred incorrectly to successful analysis workflow execution. The separate CodeQL result check reported two active URL-injection findings and duplicate historical archive findings. The active receiver URL sink is now guarded by explicit parsed-URL protocol validation and covered by genuine Chromium/WebKit malicious-input and Broadcast-compatibility tests. No query is disabled or alert dismissed.
 
-Why:
+The canonical reusable CodeQL workflow exposes only a language input, so this repository uses the same pinned checkout, CodeQL init/analyze actions and default queries with a local config. Its only exclusion is `archive/**`, the hash-verified immutable nonpublished historical source. Active templates, receiver source, generated public HTML, Functions, scripts and tests remain scanned. Historical bytes are preserved; they are never substituted for patched active output.
 
-- Pages remain deployable without a build pipeline.
-- GitHub release content can change independently of website releases.
-- Download links can route through `/go/download` for aggregate, cookieless click counts.
-- The shared download renderer is loaded with a site-version query string and
-  Cloudflare Pages `_headers` marks it `Cache-Control: no-cache`, so browsers
-  and in-app WebViews revalidate platform-filter changes instead of running a
-  stale release renderer.
+## Exact build and production identity
 
-Sources:
+`build-identity.mjs` reads the actual checked-out GitHEAD, never workflow-event
+GITHUB_SHA (workflow_run can refer to a later default branch). Qualified CI
+builds reject dirty/missing source identity and a mismatched WEBSITE_BUILD_SHA.
+The release-artifact workflow supplies its immutable producer SHA explicitly
+and accepts only successful own-repository main push validation, never a
+pull-request workflow_run with a branch-name lookalike. Deploy requires the
+exact candidate-named immutable artifact; smoke validates the actual successful
+governed deployment run identity before reading its receipt.
+`wwwroot/build.json` is ephemeral/ignored and generated anew with commit,
+source_dirty, VERSION, languages and pages; it is always included in output.
 
-- `wwwroot/assets/downloads.js`
-- `wwwroot/_headers`
-- `wwwroot/assets/releases.js`
-- `wwwroot/macos.html`
-- `wwwroot/embedded.html`
-- `wwwroot/raspberry-pi.html`
+Deployment still uploads only the checksum-verified artifact under `site`.
+A sparse checkout supplies only the immutable readback helper, not public source.
+Pinned Wrangler4.151.2 receives --commit-hash explicitly. The helper GETs the
+existing Pages project before/after, whitelists only canonical production ID,
+URL, branch/SHA/status/time, and never retains/logs configuration, environment
+variables, token, account ID or commit text. Previous production identity is
+retained. Canonical production must match candidate/main/success before an
+accepted deployment receipt can be emitted. Live smoke additionally verifies
+that receipt and actual public build.json commit/version/source_dirty=false.
+No bindings, Access policy, DNS or credentials are modified.
 
-### Data Attribute Configuration
+References: [Wrangler Pages deployment flags](https://developers.cloudflare.com/workers/wrangler/commands/pages/)
+and [Pages project canonical production metadata](https://developers.cloudflare.com/api/resources/pages/subresources/projects/methods/get/).
 
-Dynamic components are configured with `data-*` attributes such as `data-github-owner`, `data-github-repo`, `data-release-limit`, `data-download-target`, `data-github-downloads`, `data-github-install` and `data-i18n`.
-
-Why:
-
-- Keeps page-specific configuration in markup.
-- Allows the same script to render macOS, iOS, ESP32 firmware and Linux/Raspberry Pi downloads.
-- Keeps platform filtering explicit when multiple client types share one public release repository.
-- Makes static tests simple: contracts can be asserted by scanning HTML.
-
-Sources:
-
-- `wwwroot/assets/downloads.js`
-- `tests/site.test.mjs`
-
-### Music DNA and Ontdek Content Contract
-
-Music DNA and Ontdek are documented as premium DJConnect platform features that
-belong to the Home Assistant integration contract. Music DNA is opt-in and
-server-side in Home Assistant; iOS, macOS, Apple Watch, Raspberry Pi and
-Windows clients render profile/dashboard/recommendation data but do not store a
-persistent Music DNA profile locally.
-
-The public copy must keep these boundaries visible:
-
-- Music DNA uses compact, privacy-conscious signals such as preferences,
-  listening rhythm, favorite artists/albums/tracks, playtime aggregates, mood
-  mix, repeat magnets, taste anchors, explicit positives, Discover feedback
-  and Spotify recently-played/top profile data when the backend fetches it.
-- Music DNA must not store OAuth tokens, bearer tokens, raw audio or full
-  prompts.
-- Clear/Wissen keeps the opt-in setting, clears the learned profile and starts
-  from empty again if Music DNA remains enabled.
-- Dashboard blocks such as `snapshot_history`, `privacy_dashboard` and
-  `discovery_feedback` are backend-owned. `snapshot_history` is bounded and
-  compact, not raw playback history. `privacy_dashboard` arrives in `/profile`
-  when present and has no separate endpoint.
-- Ontdek works only after explicit Music DNA consent. It is a backend-owned
-  recommendations feed, not a recently-played list. Raw recently played tracks
-  must not be shown as Discover cards unless returned explicitly in
-  `sections[]`.
-- Discover and Music DNA refresh roughly hourly while enabled. New profile
-  data, mood, `Play Now` and negative feedback can trigger a rebuild.
-- Sections such as `new_for_you`, `rediscover`, `artist_spotlight` and
-  `accepted_recommendations` are rendered in backend order; clients must not
-  hardcode section ids.
-- Items carry backend-owned `reason`, `reason_sources`, `quality_score`,
-  `quality_band` and `quality_factors`. Freshness/dedupe, known/recent/blocked
-  tracks, live/remix/radio edit/remaster variants, album/title overlap and
-  artist overload are server-side.
-- `Play Now` from Ontdek uses `/api/djconnect/v1/music_discovery/play`.
-  Negative feedback uses `/api/djconnect/v1/music_discovery/feedback` with
-  `not_for_me`, `less_like_this` and `hide_artist`. Clients keep no permanent
-  local blocklist. Accepted recommendations and negative feedback are fed back
-  to Ask DJ as compact Music DNA signals.
-
-Why:
-
-- Prevents marketing copy from drifting into client-local profile storage or
-  unbounded Spotify/history claims.
-- Keeps privacy and consent visible while still presenting Ontdek as a premium,
-  tangible discovery feature.
-- Lets every client use the same backend contract while keeping presentation
-  differences platform-specific.
-
-Sources:
-
-- `wwwroot/index.html`
-- `wwwroot/features.html`
-- `wwwroot/start.html`
-- `wwwroot/privacy.html`
-- `wwwroot/assets/page-translations.js`
-- `tests/site.test.mjs`
-
-### Edge Functions as Thin Adapters
-
-Cloudflare Pages Functions are kept small and task-specific:
-
-- `/api/releases`: proxies GitHub release API calls and applies a response cache.
-- `/api/stats`: returns token-protected aggregate click counters plus GitHub `download_count` totals.
-- `operator.html`: static internal UI for the D1-backed `/api/stats` contract.
-  The old `/admin` Pages Function route is retired.
-- `operator.html` operator tooling: prepares explicit install-token revocation
-  calls through `/api/operator/install-token/revoke`, a server-side Pages
-  Function that holds `DJCONNECT_RELAY_SECRET` and calls the DJConnect API
-  bootstrap/operator contract.
-- `/go/[target]`: redirects known targets such as HACS and latest Linux install bundle.
-- `/go/download`: redirects allowed GitHub release asset URLs.
-
-Why:
-
-- Avoids exposing private tokens to browser JavaScript.
-- Centralizes redirect allowlists and tracking.
-- Keeps privacy-sensitive logic outside static pages.
-
-Sources:
-
-- `functions/api/releases.js`
-- `functions/api/stats.js`
-- `functions/go/[target].js`
-- `functions/go/download.js`
-- `functions/_shared/analytics.js`
-
-### Explicit Allowlists for External Redirects
-
-Download and redirect endpoints use explicit allowlists for supported repositories and named targets. Arbitrary destinations are rejected.
-
-Why:
-
-- Prevents open redirect behavior.
-- Limits tracked download redirects to known DJConnect public release repos.
-- Keeps analytics labels predictable through token sanitization.
-
-Sources:
-
-- `functions/_shared/analytics.js`
-- `functions/go/download.js`
-- `functions/go/[target].js`
-
-### Cookieless Aggregate Analytics
-
-The site tracks only daily aggregate counts by `target` and `source` in D1. It does not store cookies, IP addresses, user agents or unique identifiers.
-
-Why:
-
-- Gives basic insight into HACS/download usage.
-- Preserves visitor privacy.
-- Keeps storage schema simple and auditable.
-
-Sources:
-
-- `functions/_shared/analytics.js`
-- `functions/api/stats.js`
-- `migrations/0001_create_click_counters.sql`
-
-### Latest-only Release Embeds
-
-macOS, iOS, ESP32 firmware and Linux/Raspberry Pi download blocks intentionally show only the latest GitHub release by using `data-release-limit="1"`. macOS and iOS use explicit `data-download-target` values so the shared app release repository cannot show the wrong platform assets on a client page. Release body text is escaped and rendered as an expandable changelog, rather than parsed as Markdown or HTML.
-
-Why:
-
-- Reduces choice overload for users.
-- Keeps install/download pages focused.
-- Prevents old binaries from being presented as equal choices.
-- Shows release context without adding a Markdown rendering dependency or
-  trusting remote release HTML.
-
-Sources:
-
-- `wwwroot/assets/downloads.js`
-- `wwwroot/macos.html`
-- `wwwroot/embedded.html`
-- `wwwroot/raspberry-pi.html`
-- `tests/site.test.mjs`
-
-### Static Regression Tests With Optional Browser Smoke Tests
-
-The default test suite uses Node's built-in test runner and file inspection rather than a browser runner. Tests assert route links, local link existence, version consistency, copy contracts, translation coverage, download embed contracts, release script behavior and SEO/social metadata. Separate Playwright suites exist for live/browser smoke checks and Dutch laptop screenshot capture, and are intentionally kept out of the default `npm test` path.
-
-Why:
-
-- Fast default tests with no browser dependency.
-- Good fit for a static site with deterministic markup.
-- Easy to run in GitHub Actions before deploying.
-- Browser smoke coverage can grow separately without making every local test run install browsers.
-- Release screenshots force `SCREENSHOT_LANG=nl`, set the site language in browser storage and record `"language": "nl"` in `screenshots/live-laptop/manifest.json`.
-
-Sources:
-
-- `package.json`
-- `tests/site.test.mjs`
-- `tests/smoke.playwright.mjs`
-- `tests/screenshots.spec.mjs`
-- `.github/workflows/deploy-pages.yml`
-
-### Manifest-bound Internal Release Delivery
-
-Platform Internal Release delivery is separate from the repository's legacy
-release script. The Website uses three GitHub Actions workflows:
-
-- `website-release-artifact.yml` runs after successful `main` validation,
-  builds `dist/wwwroot`, packages one immutable tarball and records its
-  artifact ID and SHA-256 without Cloudflare credentials;
-- `deploy-pages.yml` is `workflow_dispatch` only, accepts the canonical
-  manifest, candidate, artifact and target bindings, verifies provenance and
-  checksum, then deploys only the downloaded artifact to Cloudflare Pages;
-- `website-post-deployment-smoke.yml` is a separate `workflow_dispatch`
-  consumer. It validates the deployment-evidence identity and performs only a
-  bounded read-only production route check before producing smoke evidence.
-
-The deployment workflow does not rebuild the website and the smoke workflow
-does not deploy it. Cloudflare credentials are scoped to the deployment job;
-artifact and smoke workflows have no deployment credentials. Operational use
-remains blocked until an approved exact-SHA manifest and explicit deployment
-authorization exist.
-
-Sources:
-
-- `.github/workflows/website-release-artifact.yml`
-- `.github/workflows/deploy-pages.yml`
-- `.github/workflows/website-post-deployment-smoke.yml`
-
-### Release Script Owns Publishing Hygiene
-
-`release.sh` is the canonical release path. It checks branch cleanliness,
-version consistency, verifies the release `HEAD` is based on `origin/main`,
-runs `npm run deps:update`, records active npm, Wrangler and Playwright
-versions, fails if package metadata changed without a commit, runs tests,
-checks release files, verifies documentation presence, checks current
-changelog/handoff version references, builds a minified release copy in
-`dist/wwwroot`, pushes the release commit with `git push origin HEAD:main`,
-creates and pushes the tag, creates the GitHub Release from only the current
-`CHANGELOG.md` version section, deploys the minified output to Cloudflare Pages
-and runs cleanup.
-`cleanup_old_releases.sh` removes older releases, tags and workflow runs.
-
-CI runs `npm run deps:check` after `npm ci` in the Validate and website release
-artifact workflows. `npm ci` verifies the manifest against the committed
-lockfile; `deps:check` validates the installed dependency tree. Registry
-refreshes happen explicitly through `npm run deps:update` before a release or
-dependency change, so a newly published indirect package cannot fail CI for an
-unchanged commit.
-
-The GitHub Actions workflow runs `npm ci`, `npm run deps:check`, `npm test`
-and `npm run build:release` for pull requests and pushes to `main`. Pull
-requests only validate, build and test the site. The deploy job depends on that
-test job and runs only for pushes to `main`, so `./release.sh --skip-deploy`
-and direct CI deploys publish the same minified site structure as local releases
-only after automated checks pass. The deploy job reads Cloudflare auth from
-GitHub Actions secrets and checks https://djconnect.dev after publishing.
-
-Why:
-
-- Makes repeated releases predictable.
-- Prevents stale documentation and version drift.
-- Keeps production HTML and shared browser assets smaller without making source
-  files hard to review.
-- Keeps dependency/tool upgrade checks visible before publishing.
-- Keeps the GitHub Releases/tags/actions history tidy by default.
-
-Sources:
-
-- `release.sh`
-- `scripts/build-release.mjs`
-- `cleanup_old_releases.sh`
-- `README.md`
-- `HANDOFF.md`
-- `TESTS.md`
-
-## Coding Style Conventions
-
-No separate formatter, linter or style guide configuration is present. The conventions below are inferred from the codebase.
-
-### HTML
-
-- One static HTML file per route/page.
-- Semantic sections: `nav`, `header`, `section`, `article`, `footer`.
-- Reusable class names such as `wrap`, `nav`, `hero`, `card`, `grid-2`, `grid-3`, `btn`.
-- Accessibility attributes are used for navigation, toggles, carousel controls and decorative visuals (`aria-label`, `aria-hidden`, `aria-pressed`, `role`).
-- Every public page exposes one `main` landmark, one `h1`, a skip link to
-  `#mainContent`, visible focus styles and a declared document language.
-- SEO and social metadata live in each page head.
-- Translation keys are attached with `data-i18n` and `data-i18n-attr`.
-
-Sources:
-
-- `wwwroot/index.html`
-- `wwwroot/start.html`
-- `wwwroot/features.html`
-- `wwwroot/support.html`
-- `wwwroot/voice-commands.html`
-- `tests/site.test.mjs`
-
-### Production Hardening
-
-Cloudflare Pages serves static files from the release output. The source pages
-remain readable in `wwwroot`, while `scripts/build-release.mjs` creates
-`dist/wwwroot` with minified HTML and shared browser assets before deploy.
-`wwwroot/_headers` defines conservative defaults for HTML, long-lived immutable
-caching for static assets, no-cache exceptions for dynamic renderer scripts and
-baseline security headers.
-
-The site includes a custom `wwwroot/404.html` marked `noindex`. It links back to
-the homepage and support route and is intentionally excluded from the sitemap.
-
-Why:
-
-- Keeps production assets smaller and more cacheable.
-- Keeps source files reviewable.
-- Gives broken links a branded recovery path.
-- Provides a baseline browser security posture without introducing app state.
-
-Sources:
-
-- `scripts/build-release.mjs`
-- `wwwroot/_headers`
-- `wwwroot/404.html`
-- `.github/workflows/deploy-pages.yml`
-- `tests/site.test.mjs`
-
-### Public Support Route
-
-Public support is routed through `wwwroot/support.html`. Site footers link to
-that page, which presents `support@djconnect.dev` as the primary support
-channel and keeps GitHub Issues as a technical fallback for logs, errors and
-reproducible website issues.
-
-Why:
-
-- Gives non-technical users one clear contact address.
-- Keeps GitHub Issues available for technical reports without making it the
-  primary public support path.
-- Avoids adding forms, tracking or account data collection to the static site.
-
-Sources:
-
-- `wwwroot/support.html`
-- `tests/site.test.mjs`
-
-### CSS
-
-- CSS custom properties define per-page design tokens such as `--bg`, `--text`, `--muted`, `--line`, `--cyan`, `--green`, `--purple`.
-- The current visual contract follows the app: midnight indigo page
-  backgrounds, violet glass panels, soft violet borders, magenta/violet primary
-  actions and cyan as a secondary analysis/voice accent. Do not reintroduce the
-  previous high-cyan CTA family or mixed pastel background accents for public
-  pages.
-- Layouts prefer CSS Grid and Flexbox.
-- Components use low-radius cards, pill buttons and responsive media queries.
-- Visuals are mostly CSS-built device mockups and SVG/PNG assets.
-- Shared download/release styles are extracted to asset CSS files; page-specific styling stays inline in the relevant HTML page.
-
-Sources:
-
-- `wwwroot/index.html`
-- `wwwroot/embedded.html`
-- `wwwroot/assets/downloads.css`
-- `wwwroot/assets/releases.css`
-
-### Browser JavaScript
-
-- Plain JavaScript, no bundler, no transpilation.
-- `const`/`let`, arrow functions and small pure helpers.
-- Browser APIs used directly: `fetch`, `XMLHttpRequest` fallback, `Intl.DateTimeFormat`, `MutationObserver`, `navigator.clipboard`.
-- HTML generation is template-literal based, with explicit `escapeHtml` where command text is injected into attributes.
-- Language changes are handled by observing the document `lang` attribute and re-rendering dynamic blocks.
-
-Sources:
-
-- `wwwroot/assets/downloads.js`
-- `wwwroot/assets/releases.js`
-- Inline translation scripts in `wwwroot/*.html`
-
-### Cloudflare Pages Functions JavaScript
-
-- ES modules with named exports.
-- Pages Functions expose `onRequestGet`.
-- Shared helpers live in `functions/_shared/analytics.js`.
-- External calls use `fetch`.
-- Responses use the Web `Response` API.
-- Error handling favors short public messages and safe status codes.
-- Sensitive endpoints return `404` when unauthorized.
-
-Sources:
-
-- `functions/_shared/analytics.js`
-- `functions/api/releases.js`
-- `functions/api/stats.js`
-- `functions/go/[target].js`
-- `functions/go/download.js`
-
-### Node.js Tests
-
-- Uses `node:test` and `node:assert/strict`.
-- Tests read files directly with `node:fs/promises`.
-- Tests are contract-oriented: they assert known strings, data attributes, script references, absence of removed copy and release script safety checks.
-- Helper functions keep repeated parsing logic local to the test file.
-
-Sources:
-
-- `tests/site.test.mjs`
-- `package.json`
-
-### Bash
-
-- Scripts start with `#!/usr/bin/env bash`.
-- `set -euo pipefail` is used.
-- Arguments are parsed with `case`.
-- Release scripts fail early on dirty worktrees, version mismatch, missing tokens and existing tags.
-- GitHub CLI is used for release and cleanup operations.
-
-Sources:
-
-- `release.sh`
-- `cleanup_old_releases.sh`
-
-### SQL
-
-- D1 schema is intentionally minimal.
-- Primary key is `(day, target, source)` for aggregate counters.
-- An index supports target/day lookup.
-
-Source:
-
-- `migrations/0001_create_click_counters.sql`
-
-### YAML
-
-- GitHub Actions workflow is minimal and explicit.
-- Node version is pinned to major `20`.
-- Actions are pinned to major versions.
-- Cloudflare account ID and API token are read from GitHub Actions secrets.
-
-Source:
-
-- `.github/workflows/deploy-pages.yml`
-
-### Markdown
-
-- Repository documentation uses short operational sections.
-- Release documentation is split across README, HANDOFF, TESTS, TODO, ISSUES, CHANGELOG and this technical design document. Cross-repo sync prompt policy lives only in `pcvantol/djconnect/SYNC_PROMPTS.md`; the product roadmap lives only in `pcvantol/djconnect/PRODUCT_ROADMAP.md`.
-- `CHANGELOG.md` is grouped per release.
-
-Sources:
-
-- `README.md`
-- `HANDOFF.md`
-- `TESTS.md`
-- `CHANGELOG.md`
-
-## Frameworks, Libraries and Third-party Dependencies
-
-### Runtime and Build-time Dependencies
-
-| Name | Type | Version in repo | License model | Source URL | Used by |
-| --- | --- | --- | --- | --- | --- |
-| Node.js | Runtime / test runner | GitHub Actions uses `20`; local version not pinned in repo | MIT-style Node.js license | https://github.com/nodejs/node | `npm test`, `node:test`, `node:assert/strict`, `node:fs/promises` |
-| npm | Package/script runner | Comes with Node; no lockfile version pinned | Artistic License 2.0 | https://github.com/npm/cli | `npm test`, `npx wrangler@4` |
-| Wrangler | Cloudflare CLI | `4` major via `npx wrangler@4`; latest observed during deploy: `4.104.0` | Apache-2.0 | https://github.com/cloudflare/workers-sdk | Cloudflare Pages deploy, D1 setup commands |
-| Playwright / `@playwright/test` | Optional browser automation test runner | 1.63.0 locked devDependency | Apache-2.0 | https://github.com/microsoft/playwright | Optional `npm run test:smoke`, `npm run screenshots` and `npm run screenshots:live` browser checks |
-| Cloudflare Pages | Hosting platform | Service, not vendored | Service terms, not source-licensed library | https://developers.cloudflare.com/pages/ | Static hosting and Pages Functions |
-| Cloudflare Pages Functions / Workers runtime | Edge runtime | Service runtime, not vendored | Service terms, not source-licensed library | https://developers.cloudflare.com/pages/functions/ | `functions/**/*.js` |
-| Cloudflare D1 | Managed SQLite-compatible database | Service, not vendored | Service terms, not source-licensed library | https://developers.cloudflare.com/d1/ | Aggregate click counters |
-| GitHub REST API | External API | API version via `Accept: application/vnd.github+json`; no client library | Service terms, not source-licensed library | https://docs.github.com/rest | Release metadata, release assets, download counts |
-| GitHub CLI (`gh`) | Release/cleanup CLI | Required locally; version not pinned in repo | MIT | https://github.com/cli/cli | `release.sh`, `cleanup_old_releases.sh` |
-| GitHub Actions | CI/CD platform | Service, not vendored | Service terms, not source-licensed library | https://docs.github.com/actions | Test and deploy workflow |
-| `actions/checkout` | GitHub Action | `v4` | MIT | https://github.com/actions/checkout | CI checkout |
-| `actions/setup-node` | GitHub Action | `v4` | MIT | https://github.com/actions/setup-node | CI Node setup |
-| Home Assistant HACS deeplink | External redirect target | Service URL, not a library | Service/project terms | https://my.home-assistant.io/ | `/go/hacs` redirect |
-
-### Browser and Web Platform APIs
-
-These are platform APIs, not third-party libraries:
-
-| API | Used by | Purpose | Reference |
-| --- | --- | --- | --- |
-| Fetch API | Browser JS and Pages Functions | GitHub API calls and redirects | https://developer.mozilla.org/docs/Web/API/Fetch_API |
-| XMLHttpRequest | `wwwroot/assets/downloads.js`, `wwwroot/assets/releases.js` | Fallback JSON loading path | https://developer.mozilla.org/docs/Web/API/XMLHttpRequest |
-| Intl.DateTimeFormat | Download/release renderers | Localized release dates | https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat |
-| MutationObserver | `wwwroot/assets/downloads.js` | Re-render dynamic blocks when language changes | https://developer.mozilla.org/docs/Web/API/MutationObserver |
-| Clipboard API | `wwwroot/assets/downloads.js` | Copy Linux install command | https://developer.mozilla.org/docs/Web/API/Clipboard_API |
-| URL / URLSearchParams | Browser JS and Functions | Query parsing and target validation | https://developer.mozilla.org/docs/Web/API/URL |
-| Response | Pages Functions | JSON responses and redirects | https://developer.mozilla.org/docs/Web/API/Response |
-
-### npm Dependencies
-
-`package.json` declares no production package dependencies. The only development package dependency is `@playwright/test`, used for optional live smoke tests and screenshot capture. The website intentionally avoids a frontend framework, bundler, transpiler and CSS framework.
-
-Source:
-
-- `package.json`
-
-### Static Assets
-
-| Asset group | Location | Notes |
-| --- | --- | --- |
-| DJConnect icons, logo and social card | `wwwroot/assets/djconnect/` | Project-owned brand assets. |
-| LilyGO DJConnect visuals | `wwwroot/assets/lilygo-t-embed-djconnect.svg`, `wwwroot/assets/lilygo-t-embed-djconnect-en.svg` | Project-specific device illustrations. |
-| Web manifest | `wwwroot/assets/djconnect/site.webmanifest` | Browser install/metadata file. |
-
-## Security and Privacy Decisions
-
-- GitHub tokens are read only from server-side environment bindings and are never exposed to the browser.
-- `/api/stats` requires `STATS_TOKEN`; unauthorized requests return `404`.
-- The old `/admin` Pages Function route is retired. The static `operator.html`
-  surface is `noindex` and still requires `STATS_TOKEN` to load data.
-- Operator APNs device registration overview flow:
-  `operator.html -> /api/operator/registrations -> https://api.djconnect.dev/v1/admin/registrations`.
-  The Pages Function adds server-side `DJCONNECT_RELAY_SECRET` auth, validates
-  pagination/filter query values and returns only privacy-safe metadata that the
-  central API already redacts. The website does not query D1 directly for Apple
-  device registrations.
-- Operator revoke actions must go through the server-side
-  `/api/operator/install-token/revoke` proxy. `DJCONNECT_RELAY_SECRET` must stay
-  only in Cloudflare Pages secrets and must never be embedded in browser
-  bundles, screenshots, docs or fixtures.
-- Download redirects validate that the destination is a GitHub release URL in an allowed DJConnect release repo.
-- Redirect analytics store aggregate counts only.
-- No cookies or persistent browser identifiers are set by the website code.
-
-Sources:
-
-- `functions/_shared/analytics.js`
-- `functions/api/stats.js`
-- `functions/go/download.js`
-- `README.md`
-
-## Release Maintenance Rule
-
-For every future release, update or consciously re-check this document together with:
-
-- `README.md`
-- `HANDOFF.md`
-- `TESTS.md`
-- `TODO.md`
-- `ISSUES.md`
-- `CHANGELOG.md`
-- `CHAT_BOOTSTRAP.md`
-
-Also decide whether test coverage needs to be expanded. Add tests when a release changes behavior, routes, copy contracts, translation keys, analytics, release scripts, deploy behavior or design-system contracts.
-
-For cross-repo contract changes, update `pcvantol/djconnect/SYNC_PROMPTS.md` in
-the Home Assistant integration repo as a follow-up. For roadmap changes, update
-`pcvantol/djconnect/PRODUCT_ROADMAP.md`. Do not add local copies of either file
-to this website repo.
-
-If any third-party library, framework or release tool is updated or upgraded,
-update the dependency inventory and third-party notice details in this document
-and any dedicated notices document before publishing.
+Before source main merge, `Website Pages read-only readiness` GETs the existing
+project from the sole-writer branch and records only identity and publishing
+flags. Direct-upload projects or explicitly disabled automatic Git production
+publication pass; unknown/malformed source policy fails closed. No Pages
+configuration is changed. The same policy guard runs before/after deployment.

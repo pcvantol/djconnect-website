@@ -9,7 +9,7 @@ canonical platform roadmap from `pcvantol/djconnect/PROMPT_INDEX.md`.
 
 ## Current Repository Phase
 
-RG-WEBSITE-001: website governance adoption.
+DJC-WEBSITE-PREMIUM-CLEAN-REBUILD-V2: canonical #62, lane #59.
 
 ## Status
 
@@ -23,17 +23,15 @@ LOCAL_IN_PROGRESS
 
 ## Current Prompt
 
-Website governance adoption
+Website premium clean rebuild V2
 
 ## Completion Report
 
-`docs/history/prompts/2026-07-15-rg-website-001.md`
+`docs/website-v2/COMPLETION_REPORT.md`
 
 ## Next Repository Phase
 
-Complete repository-local bootstrap alignment, then wait for the next
-repository-specific implementation, verification, release or documentation
-prompt.
+Finish protected Website V2 delivery and separate Finalization when producer branding acceptance and exact-candidate gates pass. No new product increment is activated.
 
 ## Boundary
 

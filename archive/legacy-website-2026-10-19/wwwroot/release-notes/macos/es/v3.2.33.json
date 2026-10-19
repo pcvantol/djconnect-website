@@ -1,0 +1,7 @@
+{
+  "version": "3.2.33",
+  "platform": "macos",
+  "language": "es",
+  "name": "DJConnect macOS 3.2.33",
+  "body": "# DJConnect App 3.2.33\n\n## Corregido\n\n- La fixture e2e de contrato Node local se actualizó y ya no prueba la ruta\n  antigua de Home Assistant `/push/bootstrap`. La cobertura del registro push\n  ahora coincide con el flujo actual de bootstrap de Central con emisor de\n  confianza usado por los clientes Apple.\n\n---\n\nPlatform: macOS\n\nLos artefactos CI sin firmar son para diagnostico y validacion interna.\nPara la distribucion normal de macOS, prefiere la build Developer ID notarizada cuando este adjunta."
+}

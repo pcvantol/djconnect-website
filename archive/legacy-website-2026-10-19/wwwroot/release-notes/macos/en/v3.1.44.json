@@ -1,0 +1,7 @@
+{
+  "version": "3.1.44",
+  "platform": "macos",
+  "language": "en",
+  "name": "DJConnect macOS 3.1.44",
+  "body": "### Added\n\n- Render Ask DJ recently played history for tracks, albums, artists, and\n  playlists as compact informational lists without reconstructing playback\n  actions client-side.\n\n### Changed\n\n- Improved Ask DJ rich chat rendering for mood/status messages, playlist and\n  album action rows, and album artwork sizing across iOS and macOS.\n- Kept macOS mood controls aligned and prevented the expanded mood panel from\n  shifting the sidebar or Ask DJ chat layout.\n\n### Fixed\n\n- Fixed macOS Home Assistant pairing discovery by keeping the local mDNS\n  advertisement alive during pairing and regenerating stale local pairing codes\n  without stopping the pairing flow too early.\n- Prevented Ask DJ text-only and recent-history responses from showing stale\n  artwork from previous chat bubbles.\n\n### Removed\n\n- Removed the discontinued Apple display feature from the Apple apps, including\n  its UI, local serving path, demo launch flag, and screenshot coverage.\n\n\n---\n\nPlatform: macOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nFor normal macOS distribution, prefer the notarized Developer ID build when attached."
+}

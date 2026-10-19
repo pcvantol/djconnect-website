@@ -1,0 +1,7 @@
+{
+  "version": "3.1.38",
+  "platform": "ios",
+  "language": "nl",
+  "name": "DJConnect iOS 3.1.38",
+  "body": "# DJConnect App 3.1.38\n\n- Ask DJ ondersteunt nu automatische DJ-feitjes en andere systeemmeldingen uit Home Assistant, met een subtiele eigen stijl in de chat.\n- iOS, macOS en watchOS bewaren het DJConnect device-token voortaan in app-private opslag in plaats van Keychain, zodat er geen Keychain-popup meer verschijnt.\n- Instellingen bevat nu `App opnieuw koppelen` om de lokale koppeling te resetten en direct opnieuw te pairen.\n- Ask DJ Demo Mode blijft volledig lokaal: starter prompts werken zonder backendverkeer en leggen uit dat echte antwoorden beschikbaar zijn na koppeling met Home Assistant.\n- Ask DJ toont geen ruwe backend-, proxy- of HTML-fouten meer in de chat; technische details blijven alleen in diagnostics logs.\n- Pull-to-refresh in Ask DJ negeert geannuleerde refresh-taken, zodat er geen onterechte netwerkfout verschijnt.\n\n---\n\nPlatform: iOS\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nNiet-ondertekende iOS-binaries worden hier gepubliceerd voor diagnostics en interne validatie. Gebruik voor normale iOS-distributie TestFlight/App Store."
+}

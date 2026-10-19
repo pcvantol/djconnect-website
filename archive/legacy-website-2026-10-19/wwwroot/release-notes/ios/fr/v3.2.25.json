@@ -1,0 +1,7 @@
+{
+  "version": "3.2.25",
+  "platform": "ios",
+  "language": "fr",
+  "name": "DJConnect iOS 3.2.25",
+  "body": "# DJConnect App 3.2.25\n\n## Ajoute\n\n- Now Playing sur iOS propose maintenant un bouton Queue direct a cote de shuffle.\n\n## Modifie\n\n- Le widget Now Playing utilise maintenant un placeholder DJConnect music/play\n  quand la pochette manque, au lieu d'un bloc gris.\n- La Live Activity de l'ecran verrouille et Dynamic Island correspondent mieux\n  au widget Now Playing, avec les couleurs Mood, la pochette, une pochette\n  compacte dans Dynamic Island et les memes visuels de fallback.\n\n---\n\nPlatform: iOS\n\nLes artefacts CI non signes sont destines au diagnostic et a la validation interne.\nLes binaires iOS non signes sont publies ici pour le diagnostic et la validation interne. Pour une distribution iOS normale, utilisez TestFlight/App Store."
+}

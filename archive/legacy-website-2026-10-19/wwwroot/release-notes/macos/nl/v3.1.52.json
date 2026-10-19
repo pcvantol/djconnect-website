@@ -1,0 +1,7 @@
+{
+  "version": "3.1.52",
+  "platform": "macos",
+  "language": "nl",
+  "name": "DJConnect macOS 3.1.52",
+  "body": "# DJConnect App 3.1.52\n\n## Apple Watch\n\n- Apple Watch-koppeling loopt nu volledig via de gekoppelde iPhone.\n- De Watch publiceert geen eigen lokale API en geen Bonjour/mDNS meer.\n- Home Assistant ziet nog steeds een normale watchOS-identiteit, maar gebruikt\n  de iPhone als blijvende proxy voor lokale callbacks.\n- Het Watch-koppelscherm toont alleen nog de koppelcode en iPhone\n  companion-status.\n\n---\n\nPlatform: macOS\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nVoor normale macOS-distributie heeft de genotariseerde Developer ID-build de voorkeur wanneer die is bijgevoegd."
+}

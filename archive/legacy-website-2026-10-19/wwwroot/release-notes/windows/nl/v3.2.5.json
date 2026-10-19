@@ -1,0 +1,7 @@
+{
+  "version": "3.2.5",
+  "platform": "windows",
+  "language": "nl",
+  "name": "DJConnect Windows 3.2.5",
+  "body": "# DJConnect Windows 3.2.5\n\n- Maakt app-brede lokalisatie compleet voor Engels, Nederlands, Duits, Frans en Spaans, inclusief instellingen, meldingen, onboarding, mini-games en lege staten.\n- Koppelt Windows `djconnect://` protocolactivatie aan de bestaande QR/deeplink pairing-flow.\n- Voegt strengere lokalisatievalidatie toe voor ontbrekende keys, dubbele keys, placeholderverschillen en resource-formatting.\n- Scherpt gewone Windows UI-teksten aan zodat technische diagnostiek in About, feedback en logs blijft.\n\n---\n\nPlatform: Windows\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nWindows-artifacts zijn niet ondertekend en nog geen Store/MSIX-installer."
+}

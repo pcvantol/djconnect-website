@@ -1,0 +1,7 @@
+{
+  "version": "3.1.46",
+  "platform": "ios",
+  "language": "en",
+  "name": "DJConnect iOS 3.1.46",
+  "body": "### Changed\n\n- Documented the expanded Bonjour/mDNS discovery TXT contract, including\n  `pairing_status`, pairing-code aliases, local device API paths, and\n  standalone watchOS troubleshooting.\n- Made iOS fallback local-device identity platform-correct if the local API info\n  provider is invoked after the app model is gone.\n\n### Fixed\n\n- Fixed standalone watchOS mDNS discovery by advertising the Watch as\n  `client_type=watchos` with the `djconnect-watchos-` device ID, the reachable\n  local URL, pairing metadata, and `/api/device/*` paths.\n- Prevented stale watchOS Network.framework listeners from leaving duplicate\n  `_djconnect._tcp` services on different ports.\n- Restarted watchOS local discovery when the app returns to foreground, pairing\n  starts or resets, or WiFi becomes available again.\n- Reduced watchOS demo-mode CPU and memory churn by lazily rendering the Now\n  Playing page, disabling demo Crown focus churn, and stopping demo diagnostics\n  publishers.\n- Removed the oversized watchOS top refresh button and suppressed demo haptics\n  that could produce noisy OSStatus logs on Apple Watch.\n\n\n---\n\nPlatform: iOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nUnsigned iOS binaries are published here for diagnostics and internal validation. For normal iOS distribution, use TestFlight/App Store."
+}

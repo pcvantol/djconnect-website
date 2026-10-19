@@ -1,0 +1,7 @@
+{
+  "version": "3.1.29",
+  "platform": "macos",
+  "language": "nl",
+  "name": "DJConnect macOS 3.1.29",
+  "body": "### Changed\n\n- Documented and implemented language-specific static What's New release notes\n  so the app can load Dutch or English changelog JSON from `djconnect.dev`\n  based on the selected app language.\n- Updated release documentation and hygiene notes for maintaining localized\n  release-note Markdown/JSON alongside the existing public GitHub releases.\n- Documented the Home Assistant integration removal of `spotify_source` and\n  `liked_proxy_playlist_uri` user settings; clients keep sending generic\n  backend-mediated playback commands and no longer expose those overrides.\n- Added a standalone MIT `LICENSE` file and updated repository license\n  documentation.\n\n\n---\n\nPlatform: macOS\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nVoor normale macOS-distributie heeft de genotariseerde Developer ID-build de voorkeur wanneer die is bijgevoegd."
+}

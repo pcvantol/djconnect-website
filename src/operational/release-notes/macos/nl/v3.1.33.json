@@ -1,0 +1,7 @@
+{
+  "version": "3.1.33",
+  "platform": "macos",
+  "language": "nl",
+  "name": "DJConnect macOS 3.1.33",
+  "body": "### Gewijzigd\n\n- De publieke GitHub-repository is aangescherpt met secret scanning, push\n  protection, Dependabot alerts, Dependabot security updates en branch\n  protection op `main`.\n\n---\n\nPlatform: macOS\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nVoor normale macOS-distributie heeft de genotariseerde Developer ID-build de voorkeur wanneer die is bijgevoegd."
+}

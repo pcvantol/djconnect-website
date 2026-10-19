@@ -1,0 +1,7 @@
+{
+  "version": "3.2.5",
+  "platform": "maccatalyst",
+  "language": "fr",
+  "name": "DJConnect Mac Catalyst 3.2.5",
+  "body": "# DJConnect Windows 3.2.5\n\n- Finalise la localisation complète de l’app en anglais, néerlandais, allemand, français et espagnol, y compris les réglages, alertes, onboarding, mini-jeux et états vides.\n- Relie l’activation du protocole Windows `djconnect://` au flux d’appairage QR/deeplink existant.\n- Ajoute une validation de localisation plus stricte pour les clés manquantes, doublons, différences de paramètres et formatage des ressources.\n- Améliore les textes courants de l’interface Windows afin que les diagnostics techniques restent dans About, feedback et logs.\n\n---\n\nPlatform: MacCatalyst\n\nLes artefacts CI non signés sont destinés au diagnostic et à la validation interne.\nLes artefacts Mac Catalyst ne sont pas signés ni notariés."
+}

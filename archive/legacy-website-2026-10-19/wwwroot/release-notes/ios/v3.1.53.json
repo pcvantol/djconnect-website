@@ -1,0 +1,7 @@
+{
+  "version": "3.1.53",
+  "platform": "ios",
+  "language": "en",
+  "name": "DJConnect iOS 3.1.53",
+  "body": "# DJConnect App 3.1.53\n\n## Ask DJ\n\n- Added compatibility with DJConnect 3.1.98 technical track analysis provider\n  status metadata.\n- Provider diagnostics are treated as metadata only; the normal analysis UI\n  still uses sections, timeline, and DJ tips from Home Assistant.\n\n---\n\nPlatform: iOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nUnsigned iOS binaries are published here for diagnostics and internal validation. For normal iOS distribution, use TestFlight/App Store."
+}

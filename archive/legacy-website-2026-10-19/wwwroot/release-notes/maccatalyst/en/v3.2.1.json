@@ -1,0 +1,7 @@
+{
+  "version": "3.2.1",
+  "platform": "maccatalyst",
+  "language": "en",
+  "name": "DJConnect Mac Catalyst 3.2.1",
+  "body": "# DJConnect Windows 3.2.1\n\n- Synced the Windows client with the Home Assistant DJConnect `3.2.x` backend\n  contract.\n- Status now includes app and protocol version metadata.\n- Ask DJ now sends mood values, renders `links[]` alongside sources, and\n  handles safe backend error objects.\n- Stale backend actions and unsupported Music Assistant capabilities now show\n  clear refresh or unavailable-feature states.\n\n---\n\nPlatform: MacCatalyst\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nMac Catalyst artifacts are unsigned and not notarized."
+}

@@ -1,0 +1,7 @@
+name: DJCONNECT active website source
+# Historical source is preserved byte-for-byte and never served or imported
+# as active product code. An isolated restoration test runs only its build
+# tooling; every original file is verified against pinned Git blobs/SHA-256.
+# All active source, generated public output and tests retain default queries.
+paths-ignore:
+  - archive/**

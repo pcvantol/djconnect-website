@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "project": "djconnect",
+  "production_branch": "main",
+  "publishing": {
+    "source_type": "direct_upload",
+    "production_deployments_enabled": null,
+    "deployments_enabled": null
+  },
+  "deployment": {
+    "id": "a073943f-5e0e-4e5e-b79b-3209f377ea82",
+    "url": "https://a073943f.djconnect.pages.dev",
+    "environment": "production",
+    "branch": "main",
+    "commit_hash": "6eef6aa267f18239b88f8edae6201dc62494e4eb",
+    "status": "success",
+    "created_on": "2026-09-30T15:28:34.131332Z"
+  },
+  "observed_at": "2026-10-19T20:10:16.414Z"
+}

@@ -58,6 +58,17 @@ jobs:
           printf '%s' "$PLATFORM_VERSION" | grep -Eq '^[0-9]+\.[0-9]+$'
           test "$RELEASE_PROFILE" = INTERNAL_RELEASE
           printf '%s' "$DEPLOYMENT_WORKFLOW_RUN" | grep -Eq '^[0-9]+$'
+      - name: Verify actual successful governed deployment run
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DEPLOYMENT_WORKFLOW_RUN: ${{ inputs.deployment_workflow_run }}
+        run: |
+          set -euo pipefail
+          run="$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${DEPLOYMENT_WORKFLOW_RUN}")"
+          test "$(jq -r '.name' <<<"$run")" = 'Deploy Cloudflare Pages'
+          test "$(jq -r '.event' <<<"$run")" = workflow_dispatch
+          test "$(jq -r '.head_branch' <<<"$run")" = main
+          test "$(jq -r '.conclusion' <<<"$run")" = success
       - name: Download deployment evidence
         uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
@@ -81,11 +92,43 @@ jobs:
           test "$(jq -r '.artifact_sha256' "$evidence")" = "$ARTIFACT_SHA256"
           test "$(jq -r '.target' "$evidence")" = "$TARGET"
           test "$(jq -r '.deployment_result' "$evidence")" = DEPLOYED_PENDING_SMOKE
-      - name: Run read-only production smoke
+          test "$(jq -r '.cloudflare.project' "$evidence")" = djconnect
+          test "$(jq -r '.cloudflare.deployment.environment' "$evidence")" = production
+          test "$(jq -r '.cloudflare.deployment.status' "$evidence")" = success
+          test "$(jq -r '.cloudflare.deployment.commit_hash' "$evidence")" = "$CANDIDATE_SHA"
+          test -n "$(jq -r '.cloudflare.deployment.id // empty' "$evidence")"
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ inputs.candidate_sha }}
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium webkit
+      - name: Verify live deployed source identity
+        env:
+          CANDIDATE_SHA: ${{ inputs.candidate_sha }}
         run: |
           set -euo pipefail
-          curl --fail --silent --show-error --location https://djconnect.dev > /tmp/djconnect-home.html
-          grep -q 'DJConnect website v' /tmp/djconnect-home.html
+          curl --fail --silent --show-error https://djconnect.dev/build.json > /tmp/website-build.json
+          test "$(jq -r '.commit' /tmp/website-build.json)" = "$CANDIDATE_SHA"
+          test "$(jq -r '.version' /tmp/website-build.json)" = "$(cat VERSION)"
+          test "$(jq -r '.source_dirty' /tmp/website-build.json)" = false
+      - name: Run read-only production browser and operational acceptance
+        env:
+          SMOKE_BASE_URL: https://djconnect.dev
+        run: |
+          npm run test:e2e
+          OPERATIONAL_BASE_URL=https://djconnect.dev npx playwright test tests/operational-browser.spec.mjs --project=chromium
+      - name: Upload live browser evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: website-live-browser-evidence
+          path: |
+            playwright-report/
+            test-results/
       - name: Publish smoke evidence
         env:
           CANDIDATE_SHA: ${{ inputs.candidate_sha }}

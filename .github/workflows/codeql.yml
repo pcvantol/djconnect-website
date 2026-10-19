@@ -22,6 +22,15 @@ jobs:
       owner: pcvantol/djconnect-website
 
   analyze:
-    uses: pcvantol/djconnect/.github/workflows/djconnect-codeql-ci.yml@191b4561bdb659bd2e02905b5bce9643d4390a63 # Current canonical workflow closure
-    with:
-      languages: javascript-typescript
+    name: Analyze
+    needs: software-assurance-governance
+    runs-on: ubuntu-latest
+    steps:
+      # Same pinned scanner and default query suite as the canonical reusable
+      # workflow. Local configuration only fences the immutable source archive.
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd
+      - uses: github/codeql-action/init@99df26d4f13ea111d4ec1a7dddef6063f76b97e9
+        with:
+          languages: javascript-typescript
+          config-file: .github/codeql/website.yml
+      - uses: github/codeql-action/analyze@99df26d4f13ea111d4ec1a7dddef6063f76b97e9

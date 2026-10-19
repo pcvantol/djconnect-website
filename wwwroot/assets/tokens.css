@@ -1,0 +1,26 @@
+:root {
+ color-scheme: dark;
+ --color-primary: #a6b9ff; --color-secondary: #c7a1ff; --color-accent: #71e2ef;
+ --color-background: #070a18; --color-background-raised: #12172d;
+ --color-text: #f4f5ff; --color-text-muted: #b8bed4; --color-text-quiet: #9da7c5;
+ --color-focus: #b8efff; --color-on-primary: #0a1029;
+ --mood-chill: #71e4d2; --mood-groove: #c4a1ff; --mood-energy: #8dbbff; --mood-party: #ff9bb8;
+ --gradient-brand: linear-gradient(120deg, var(--color-primary), var(--color-secondary));
+ --gradient-atmosphere: radial-gradient(ellipse at 70% 12%, #37265b55, transparent 45%),radial-gradient(ellipse at 10% 45%, #112d4f44, transparent 40%);
+ --glass-background: #171d36bd; --glass-bg: var(--glass-background); --glass-opaque: #192039;
+ --glass-border: #d7e1ff38; --glass-highlight: #ffffff18; --glass-blur: 20px; --glass-saturation: 130%;
+ --color-backdrop: #030615b8; --color-backdrop-opaque: #030615ee;
+ --glass-shadow: 0 12px 40px #00000035, inset 0 1px 0 var(--glass-highlight);
+ --font-display: ui-rounded, 'SF Pro Rounded', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+ --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+ --type-hero: clamp(3.15rem, 7.1vw, 6.5rem); --type-title: clamp(2.35rem,4.2vw,4rem);
+ --type-body: 1rem; --type-lead: clamp(1.0625rem,1.35vw,1.25rem); --type-small: .8125rem; --type-eyebrow: .75rem;
+ --weight-display: 650; --line-display: 1.04; --line-body: 1.65; --tracking-display: -.055em; --tracking-eyebrow: .16em;
+ --space-1: .25rem; --space-2: .5rem; --space-3: .75rem; --space-4: 1rem; --space-5: 1.5rem; --space-6: 2rem; --space-7: 3rem; --space-8: 4rem; --space-9: 6rem;
+ --space-section: clamp(4rem,8vw,7rem); --space-gutter: clamp(1.25rem,4vw,4rem); --grid-gap: clamp(2rem,5vw,5rem);
+ --width-content: 1240px; --width-copy: 29rem; --width-service: 760px; --width-menu: 420px;
+ --radius-card: 32px; --radius-small: 18px; --radius-pill: 999px; --radius-glass: var(--radius-card);
+ --border-width: 1px; --focus-width: 3px; --focus-offset: 5px; --touch-target: 44px;
+ --duration-fast: 180ms; --duration-state: 420ms; --easing: cubic-bezier(.2,.7,.2,1);
+ --shadow-glow: 0 12px 40px #8a7fff26;
+}

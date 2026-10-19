@@ -1,0 +1,7 @@
+{
+  "version": "3.1.49",
+  "platform": "macos",
+  "language": "en",
+  "name": "DJConnect macOS 3.1.49",
+  "body": "# DJConnect App 3.1.49\n\n### Changed\n\n- Ask DJ speaker/output responses now render as vertical rows with the speaker name on the left and the active/activate button on the right.\n- Ask DJ now scrolls to the bottom when opening the chat history, including after the first async history load.\n\n---\n\nPlatform: macOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nFor normal macOS distribution, prefer the notarized Developer ID build when attached."
+}

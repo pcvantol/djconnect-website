@@ -1,0 +1,50 @@
+[
+  {
+    "name": "hero",
+    "source": "hero-original.png",
+    "sha256": "7a160a8ab5a3e56b4fd230a49a7ec0b0eddd030485b8931bbf4134246236a0f6",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "origin": "OpenAI built-in image_gen, created during Website #62 implementation",
+    "rights": "AI-generated supporting illustration; no third-party source artwork supplied",
+    "use": "illustrative product vision, not a screenshot or customer testimonial"
+  },
+  {
+    "name": "vibe",
+    "source": "vibe-original.png",
+    "sha256": "7b330bfecdd33e003c8d0ea12c8d6712fd271abea07b2d9d2a91227a82da9d26",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "origin": "OpenAI built-in image_gen, created during Website #62 implementation",
+    "rights": "AI-generated supporting illustration; no third-party source artwork supplied",
+    "use": "illustrative product vision, not a screenshot or customer testimonial"
+  },
+  {
+    "name": "moment",
+    "source": "moment-original.png",
+    "sha256": "fae9237d5cc19384b5feb8f308c77c5b28304b9b3a8456ee0b126b5563c29e6e",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "origin": "OpenAI built-in image_gen, created during Website #62 implementation",
+    "rights": "AI-generated supporting illustration; no third-party source artwork supplied",
+    "use": "illustrative product vision, not a screenshot or customer testimonial"
+  },
+  {
+    "name": "cast",
+    "source": "cast-original.png",
+    "sha256": "b8e1a98c9cddb6335ead7f8e7aec2438071c821cab4c9bab328d7eec90f296d4",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "origin": "OpenAI built-in image_gen, created during Website #62 implementation",
+    "rights": "AI-generated supporting illustration; no third-party source artwork supplied",
+    "use": "illustrative product vision, not a screenshot or customer testimonial"
+  }
+]

@@ -1,3 +1,13 @@
+# Website changelog
+
+## 4.0.0 — Website V2 candidate
+
+- Replace the legacy marketing collection with a session-led premium glass homepage and brief localized onboarding, privacy and support.
+- Centralize design tokens, shared page/UI composition and all five locales.
+- Add four original responsive artwork families and the owner-approved Brand V2 source.
+- Archive the entire previous source and preserve API, Access, download and release-note contracts in the compiled Pages artifact.
+- Add archive/restore, browser, visual, accessibility and operational acceptance gates. Production qualification remains pending.
+
 # Changelog
 
 All notable changes to this website are grouped per release.

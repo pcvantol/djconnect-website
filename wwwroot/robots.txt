@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
-
+Disallow: /operator
+Disallow: /api/
+Disallow: /archive/
 Sitemap: https://djconnect.dev/sitemap.xml

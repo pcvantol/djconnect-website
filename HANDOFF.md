@@ -1,12 +1,9 @@
-# Website V2 handoff — 4.0.0
+# Website V2 handoff
 
-Assignment: DJC-WEBSITE-PREMIUM-CLEAN-REBUILD-V2, issue #62, owning lane #59.
-Branch: codex/website-premium-v2. Isolated worktree: /private/tmp/djc-website-v2-source.
+Assignment #62 / lane #59; sole writer codex/website-premium-v2; PR #63. Isolated checkout /private/tmp/djc-website-v2-source; original main checkout preserved.
 
-The legacy source is fully archived at pinned main 3133cb8. New static architecture, central tokens and five-locale catalog generate the short Hero → Vibe → DJ Moment → VibeCast homepage plus start/privacy/support. Four original artworks and the exact owner-supplied Brand V2 master are included with provenance. Required operational sources/feed bytes are preserved, and the release artifact now explicitly includes compiled Pages Functions.
+Host verification with actual --github-root '/Volumes/Shared Data/GitHub' PASS; no host repair needed. Complete980-file recoverable archive, clean localized architecture, four original visuals, operational contracts and receiver security correction implemented. Local13Node and61Chromium/WebKit tests PASS; Linux CI and security results retained in completion report.
 
-Host verification with `--github-root '/Volumes/Shared Data/GitHub'` exits 0, required onboarding 4.5.4 MATCH. The earlier default-path failures were false diagnosis from the old Documents/GitHub root; no hostrepair was performed.
+New owner handoff supersedes opaque recovery branding: exact transparent/micro/wordmark assets from Core883cb9 imported with verified hashes. CorePR1224 remains unaccepted; release gate OPEN. Initial readonly review NO-GO for superseded branding and stale visual references; corrected candidate requires follow-up.
 
-Node/archive checks and real Chromium acceptance are passing locally; local Chromium and WebKit now pass (57 tests; one Chromium-only CDP emulation is not applicable to WebKit). Linux CI must provide its actual WebKit result and reviewed OS-specific screenshots. No local source-only test is installed/native/live acceptance. Independent review, qualified Core #1223 handoff, exact-head/main CI, release-gate closure, implementation merge and separate Finalization remain open. Owner has authorized governed iterative production deployments in #62; no production deployment has occurred.
-
-Continue within the same writer/worktree. Review screenshots in tests/visual-baselines, exact API/workerd checks, Linux CI artifacts and docs/website-v2/release-gates.json. Do not merge incomplete work, alter security bindings or bypass the workflow. Full scope/results: docs/website-v2/COMPLETION_REPORT.md; operational preservation: docs/website-v2/OPERATIONAL_CONTRACTS.md.
+Continue same sole writer. Preserve review/CI/Owner Authorization for exact candidate, protected implementation merge, separate Finalization and actual immutable artifact/deployment/live smoke. No deployment has happened. No physical Apple/VoiceOver or nontechnical-user study PASS is claimed. See docs/website-v2/COMPLETION_REPORT.md and release-gates.json.

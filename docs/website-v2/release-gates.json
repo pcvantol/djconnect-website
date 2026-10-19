@@ -1,11 +1,11 @@
 {
   "approved_brand_source": {
-    "status": "PASS",
-    "evidence": "Website owner directly supplied the approved 1254px PNG, hash f05fcdf4602d9c63add7799469c64060a8f13e5efa66ad6c7b762fb8273ec89f matching canonical Core #1223, then approved the website deployment. This qualifies this website input; it does not claim completion of Core/Apple rebranding or its producer-code receipt."
+    "status": "OPEN",
+    "evidence": "Exact owner master retained; canonical corrected transparent and micro/wordmark variants imported byte-for-byte from Core883cb9f3ff9de8ec7f5ae4c5f04f852e0d8bd866, archive aa51cf9bd417a2009cdd3bed037f46b5424ac85869fbe3e9fbb2657b4754f977, manifest73cc408e10d88aa1fb8a1be2783b9c577aec398ce3dcd54c2f997ad1425984d2. Latest #62 explicitly requires protected producer acceptance; CorePR1224 remains open with Owner Authorization FAILURE. Consumer review does not waive producer gate."
   },
   "independent_review": {
     "status": "OPEN",
-    "evidence": "Protected PR review must approve the exact candidate."
+    "evidence": "Readonly reviewer /root/independent_review reviewed e97741043ea3cc26360b9bc51e442924ff155e3e: archive980 and13Node tests PASS, no further runtime/security blocker, NO-GO for newly superseded branding and stale visual references. Corrected final candidate requires follow-up review."
   },
   "candidate_ci": {
     "status": "PASS",

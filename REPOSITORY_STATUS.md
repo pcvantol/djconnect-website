@@ -1,11 +1,13 @@
 # DJConnect Website status
 
-Active assignment: DJC-WEBSITE-PREMIUM-CLEAN-REBUILD-V2, #62. Website lane: #59.
+Active assignment: DJC-WEBSITE-PREMIUM-CLEAN-REBUILD-V2, #62; lane #59.
 
-Owns: public product story, shared localized website UX, onboarding/support/legal presentation and secure website operational surfaces. Does not own Core/Apple/VibeCast runtime features, canonical branding decisions or client releases.
+Owns public product story, shared localized website UX, onboarding/support/legal presentation and secure website operational surfaces. No Core/Apple/VibeCast runtime ownership.
 
-Phase: IMPLEMENTATION / VALIDATION, not finalized. Baseline: 3133cb833c846395ac37dae804ba96848650bb7c. Candidate branch: codex/website-premium-v2, website version 4.0.0. The protected main checkout remains untouched.
+Phase: VALIDATION, not finalized or deployed. Baseline3133cb833c846395ac37dae804ba96848650bb7c. Sole source writer on codex/website-premium-v2; PR #63. Website4.0.0.
 
-Implemented: full legacy source archive, clean static one-pager and service routes, central tokens/composition/catalog, original responsive art, exact owner mark and preserved operational contracts. Local source/archive/Chromium checks pass. Chromium and WebKit browser qualification now passes locally. Independent review, producer receipt, exact CI, protected delivery, Finalization and live deployment remain open.
+Complete980-file archive; clean static20-route/five-locale architecture; central design tokens/composition/catalog; four original artwork sources; preserved operational functions/feeds and compiled-worker artifact; receiver artwork URL security remediation. Chromium/WebKit61PASS plus13Node tests and full archive reconstruction; prior exact-head CI and CodeQL green, new exact-head qualification required after updated branding.
 
-See HANDOFF.md and docs/website-v2/COMPLETION_REPORT.md. Repository phase status is not live production proof. Owner authorization for website deployment is recorded in #62, subject to all gates.
+Readonly independent review identified superseded branding/stale screenshot evidence. Corrected transparent Core variants imported from candidate883cb9; actual screenshots refreshed. CorePR1224 protected acceptance remains OPEN, blocking release. Independent follow-up, exact-head/main delivery, separate Finalization, artifact-bound deployment and live smoke remain required.
+
+See docs/website-v2/COMPLETION_REPORT.md and release-gates.json. No live production proof is claimed. Owner has authorized governed deployment within #62; authorization does not waive gates.

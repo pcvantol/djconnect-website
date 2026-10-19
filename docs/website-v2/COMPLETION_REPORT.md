@@ -1,3 +1,17 @@
+# Current delivery checkpoint — supersedes historical checkpoint statuses below
+
+Decision: NOT QUALIFIED FOR PRODUCTION. PR #63, branch codex/website-premium-v2. New canonical #62 owner handoff requires corrected transparent Core assets and protected producer acceptance; CorePR1224 remains OPEN with missing Owner Authorization at readback. This is an external producer gate, not permission for this Website lane to merge Core.
+
+Readonly review /root/independent_review of e97741043ea3cc26360b9bc51e442924ff155e3e: NO-GO only for superseded branding and stale visual references; archive980 and13Node tests independently PASS. Corrected exact candidate requires follow-up. Canonical variants imported with receipt src/assets/brand/HANDOFF_RECEIPT.md; source original preserved; screenshot baseline refresh uses current4.0.0. Prior exact-head CI39300324673, separate CodeQL118223965548 zero annotations and Owner Authorization39300521680 PASS apply only to e977, not the changed candidate.
+
+Local brand-refresh suite61PASS,14NodePASS; one Chromium-only media emulation not applicable to WebKit. No physical/native/user-study acceptance claimed. Implementation/Finalization are not merged; no production deployment. Remaining: producer acceptance, follow-up review, exact-candidate CI/authorization, protected implementation merge, separate Finalization, immutable artifact qualification, governed deployment and actual live smoke.
+
+Architecture: no Core/API/trust ownership change; Pages Functions bundle preserves existing service bindings/security. Durable learnings and prompt history are committed; current local status/navigation reconciled. Recommended next action is same-scope remediation/delivery, not a new capability.
+
+The earlier baseline version mismatch had two causes: reused local preview and the full-page0.5% pixel tolerance retaining small header/footer differences. Existing preview reuse is now disabled, capture used a unique verified4.0.0 artifact endpoint, all32 Darwin images were explicitly replaced, and visual comparisons now allow at most100 differing pixels. New screenshot hashes are in evidence/website-v2/brand-refresh-receipt.json. Linux baselines must be captured/reviewed from real CI, not copied from Darwin.
+
+## Historical checkpoint and evidence chronology
+
 # Website V2 implementation checkpoint
 
 Decision: NOT QUALIFIED FOR PRODUCTION — implementation and local validation available; independent review and remaining gates open.

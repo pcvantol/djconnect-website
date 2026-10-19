@@ -22,3 +22,10 @@ test('archive and originals never enter publication; operational sources remain 
  for(const p of await walk('src/operational/release-notes')){const rel=p.replace('src/operational/','');assert.deepEqual(await readFile('dist/wwwroot/'+rel),await readFile(archiveRoot+'/wwwroot/'+rel));}
 });
 test('brand master matches exact owner approved bytes',async()=>{assert.equal(createHash('sha256').update(await readFile('src/assets/brand/approved-master.png')).digest('hex'),'f05fcdf4602d9c63add7799469c64060a8f13e5efa66ad6c7b762fb8273ec89f');});
+test('canonical imported brand variants match pinned producer manifest',async()=>{
+ const manifest=JSON.parse(await read('src/assets/brand/core-manifest.json'));
+ for(const name of ['glass-master.png','headset-master.png','mark-16.png','mark-32.png','mark-40.png','mark-64.png','mark-128.png','mark-256.png','mark-512.png','wordmark-compact-dark.png','wordmark-primary-dark.png']){
+  const bytes=await readFile('src/assets/brand/'+name);assert.equal(createHash('sha256').update(bytes).digest('hex'),manifest.files['assets/djconnect/brand-v2/'+name].sha256);
+ }
+ const html=await read('wwwroot/index.html');assert.ok(html.includes('/assets/brand/wordmark-compact-dark.png'));assert.ok(html.includes('/assets/brand/mark-32.png'));assert.ok(!html.includes('approved-master.png'));
+});

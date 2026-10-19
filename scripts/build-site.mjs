@@ -12,7 +12,7 @@ const output='wwwroot';
 await rm(output,{recursive:true,force:true});await mkdir(output+'/assets/brand',{recursive:true});await mkdir(output+'/assets/artwork',{recursive:true});
 const copy=(a,b)=>copyFile(a,output+'/'+b);
 await copy('src/design/tokens.css','assets/tokens.css');await copy('src/design/site.css','assets/site.css');await copy('src/components/site.js','assets/site.js');
-for(const name of await readdir('src/assets/brand'))if(/^mark-\d+\.png$/.test(name))await copy('src/assets/brand/'+name,'assets/brand/'+name);
+for(const name of await readdir('src/assets/brand'))if(/^(mark-\d+|wordmark-compact-dark)\.png$/.test(name))await copy('src/assets/brand/'+name,'assets/brand/'+name);
 for(const name of await readdir('src/assets/artwork'))if(/^(hero|vibe|moment|cast)-(480|800|1280)\.webp$/.test(name))await copy('src/assets/artwork/'+name,'assets/artwork/'+name);
 for(const locale of languages){
  await copy(`src/assets/social-${locale}.png`,`assets/social-${locale}.png`);

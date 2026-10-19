@@ -9,7 +9,7 @@ try {
  const inspect=async(dir)=>{for(const e of await readdir(dir,{withFileTypes:true})){
   const p=dir+'/'+e.name;if((await lstat(p)).isSymbolicLink())throw Error(`Symlink forbidden: ${p}`);
   if(/archive|legacy|node_modules|\.git/.test(e.name))throw Error(`Private source in public tree: ${p}`);
-  if(e.isDirectory())await inspect(p);else {const rel=p.slice(source.length+1);if(!allowedPages.has(rel)&&!['robots.txt','sitemap.xml','_headers','_redirects','build.json'].includes(rel)&&!/^release-notes\/(?:[^/]+\/)*(?:[^/]+)\.(json|md)$/.test(rel)&&!/^assets\/(?:brand\/mark-\d+\.png|artwork\/(?:hero|vibe|moment|cast)-(?:480|800|1280)\.webp|social-(?:nl|en|de|fr|es)\.png|(?:tokens|site|admin)\.(?:css|js))$/.test(rel))throw Error('Unexpected public file: '+rel);}
+  if(e.isDirectory())await inspect(p);else {const rel=p.slice(source.length+1);if(!allowedPages.has(rel)&&!['robots.txt','sitemap.xml','_headers','_redirects','build.json'].includes(rel)&&!/^release-notes\/(?:[^/]+\/)*(?:[^/]+)\.(json|md)$/.test(rel)&&!/^assets\/(?:brand\/(?:mark-\d+|wordmark-compact-dark)\.png|artwork\/(?:hero|vibe|moment|cast)-(?:480|800|1280)\.webp|social-(?:nl|en|de|fr|es)\.png|(?:tokens|site|admin)\.(?:css|js))$/.test(rel))throw Error('Unexpected public file: '+rel);}
  }};await inspect(source);
  await rm(dest,{recursive:true,force:true});await cp(source,dest,{recursive:true});
  execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js','pages','functions','build','functions','--outdir',dest+'/_worker.js','--output-routes-path',dest+'/_routes.json','--minify'],{stdio:'inherit',env:{...process.env,WRANGLER_SEND_METRICS:'false'}});

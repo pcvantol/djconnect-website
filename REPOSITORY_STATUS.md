@@ -1,3 +1,11 @@
+# Website repository status
+
+Current phase: WebsiteV2 protected-source Finalization. SourcePR63/main`491b83850d949fe61f3e2d85be7c50677da78300` accepted with exact reviewed tree and separate source authorization. Source-main verification and this Finalization own review/CI/authorization remain required. See [Finalization](docs/website-v2/FINALIZATION.md) and [completion report](docs/website-v2/COMPLETION_REPORT.md).
+
+No new product increment. Real immutable-artifact production deployment/live acceptance remains the next authorized delivery step after protected Finalization. Cloudflare direct upload confirmed; no automatic publication. Core HA-runtime failure remains a separate producer runtime block, never a website/backend PASS.
+
+## Historical records
+
 # Website V2 — current delivery handoff
 
 Core asset producer accepted: protected source1224/main7e14e5970b3f68d33d243ae6bab2b281fad59bb2, separate Finalization1227/mainbaac22d771bf3141404001517f62a5e34f8c8644, exact-mainCI39313456009SUCCESS, independent reviews and separate Owner Authorizations. Website imported bytes/manifest match qualified source export. Core HA-runtime release remains independently BLOCKED (Golden0tests/unknowncause); no runtime/native/integral-rebrand acceptance or waiver.

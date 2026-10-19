@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "kind": "website_v2_final_acceptance",
+  "repository": "pcvantol/djconnect-website",
+  "assignment": "DJC-WEBSITE-PREMIUM-CLEAN-REBUILD-V2",
+  "canonical_issue": 62,
+  "lane_issue": 59,
+  "timestamp": "2026-10-19T21:06:10.079459+00:00",
+  "public_origin": "https://djconnect.dev",
+  "version": "4.0.0",
+  "final_main_sha": "1253e1853f91ae1c938f009677618732ed62a5ca",
+  "reviewed_and_merged_tree": "f8499a9b26b065839eb1fdd58c37e4b5a5618c23",
+  "statuses": {
+    "ARCHIVE_STATUS": "PASS:980 exact baseline files; verified historical reconstruction, hashes and exclusion from public artifact",
+    "DESIGN_SYSTEM_STATUS": "PASS:central tokens, shared UI/layout/sections/registry, real font/palette propagation",
+    "VISUAL_ASSETS_STATUS": "PASS:four original art families/source prompts; accepted exact Core transparent/micro/wordmark assets",
+    "WEBSITE_IMPLEMENTATION": "PASS:clean4.0.0 short four-experience homepage and compact start/privacy/support",
+    "FIVE_LOCALE_STATUS": "PASS:NL/EN/DE/FR/ES central65-key catalog and20indexable routes",
+    "RESPONSIVE_UX_STATUS": "PASS:320/375/390/430/768/1280 actual Chromium/WebKit, menu/focus/keyboard/touch/fallbacks",
+    "VIBECAST_INTEGRATION": "PASS:original social vision artwork and verified direct vibecast.tv CTA; no backend changes",
+    "TESTS_AND_VISUAL_ACCEPTANCE": "PASS:21Node;61live browser +1live operational;32actual screenshots hashed; axeAA; exact artifact and independent live visualGO",
+    "PR_REVIEW_CI": "PASS:protected source63/65 and independent exact source reviews; required exact checks/policy authorization and mainQUALIFIED",
+    "FINALIZATION": "MERGED_RECONCILED + WORKSPACE_READY:protected separate64/66, exact main reviewed-tree readback, owned cleanup/recoverybundle",
+    "DEPLOYMENT_STATUS": "PASS:actual governed deploy39323787473 and complete liveSMOKE_PASS39324049320, exactCF/publicSHA/version/clean-source",
+    "OPEN_BLOCKERS": "NONE forWebsite. Separate Core HA-runtimeGolden failure remains registered/unwaived."
+  },
+  "protected_prs": {
+    "initial_source": 63,
+    "initial_finalization": 64,
+    "access_test_correction": 65,
+    "final_finalization": 66
+  },
+  "final_quality": {
+    "main_validate": 39323044524,
+    "main_codeql": 39323044402,
+    "canonical_qualified": 39323452268,
+    "artifact_producer": 39323451967,
+    "deployment": 39323787473,
+    "complete_live_smoke": 39324049320,
+    "all_conclusions": "SUCCESS"
+  },
+  "artifact": {
+    "artifact_id": "12220084787",
+    "artifact_sha256": "411e9c53124c7b124c1ff0743da05fd12e4253937b5d5017981213b183775734",
+    "candidate_sha": "1253e1853f91ae1c938f009677618732ed62a5ca",
+    "kind": "website_release_artifact",
+    "repository": "pcvantol/djconnect-website",
+    "schema_version": 1,
+    "timestamp": "2026-10-19T20:56:33Z"
+  },
+  "manifest_id": "release-website-4.0.0-1253e1853f91-20261019",
+  "cloudflare": {
+    "deployment": {
+      "branch": "main",
+      "commit_hash": "1253e1853f91ae1c938f009677618732ed62a5ca",
+      "created_on": "2026-10-19T20:59:28.497767Z",
+      "environment": "production",
+      "id": "d1977fb3-7561-4f0f-b08f-6daeca861206",
+      "status": "success",
+      "url": "https://d1977fb3.djconnect.pages.dev"
+    },
+    "observed_at": "2026-10-19T20:59:30.936Z",
+    "production_branch": "main",
+    "project": "djconnect",
+    "publishing": {
+      "deployments_enabled": null,
+      "production_deployments_enabled": null,
+      "source_type": "direct_upload"
+    },
+    "schema_version": 1
+  },
+  "previous_cloudflare": {
+    "deployment": {
+      "branch": "main",
+      "commit_hash": "6f1adde58c0bbde7f50153d1abd26992ac31af3a",
+      "created_on": "2026-10-19T20:38:42.121081Z",
+      "environment": "production",
+      "id": "093e9c8a-ab3e-4abf-bd4e-5ee35367dbb5",
+      "status": "success",
+      "url": "https://093e9c8a.djconnect.pages.dev"
+    },
+    "observed_at": "2026-10-19T20:59:16.960Z",
+    "production_branch": "main",
+    "project": "djconnect",
+    "publishing": {
+      "deployments_enabled": null,
+      "production_deployments_enabled": null,
+      "source_type": "direct_upload"
+    },
+    "schema_version": 1
+  },
+  "live_build": {
+    "version": "4.0.0",
+    "commit": "1253e1853f91ae1c938f009677618732ed62a5ca",
+    "source_dirty": false,
+    "locales": [
+      "nl",
+      "en",
+      "de",
+      "fr",
+      "es"
+    ],
+    "pages": [
+      "home",
+      "start",
+      "privacy",
+      "support"
+    ]
+  },
+  "browser_statistics": {
+    "startTime": "2026-10-19T21:01:47.462Z",
+    "duration": 68866.159,
+    "expected": 61,
+    "skipped": 1,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "actual_live_screenshots": 32,
+  "live_browser_evidence_artifact": 12222190336,
+  "smoke_evidence_artifact": 12222025707,
+  "independent_final_review": {
+    "reviewer": "/root/independent_review",
+    "mode": "read_only",
+    "decision": "GO",
+    "findings": [],
+    "reviewed_actual_production": [
+      "390pxWebKit",
+      "768pxmenu",
+      "1280pxChromium"
+    ],
+    "verified_all_screenshot_hashes": 32,
+    "verified_receipt_bindings": true
+  },
+  "workspace": {
+    "main_clean": true,
+    "qa_checkout_clean_detached": true,
+    "owned_candidate_refs_recovery_bundled_verified_and_removed": true,
+    "task_acceptance_servers_stopped": true,
+    "unrelated_workspaces_preserved": true
+  },
+  "historical_failures_preserved": [
+    {
+      "run": 39318759729,
+      "scope": "Old source policy300/1986file truncation; existing canonical complete pagination adopted, no retrospectivePASS"
+    },
+    {
+      "run": 39321166427,
+      "scope": "Original live smokeFAIL after valid Access302 auto-follow tologin200; strict no-follow test corrected via protected65/separate66"
+    }
+  ],
+  "limits": [
+    "Browser-engine/a11y/owner preview acceptance; physical iPhone/VoiceOver and independent nontechnical comprehension study not performed",
+    "Core asset producer source accepted; separate HA-runtimeGolden39312303769FAIL/0tests/unknowncause remains blocked, not waived",
+    "No Apple/backend/other-consumer/runtime release claimed; no Access, credential, DNS or binding changes"
+  ]
+}

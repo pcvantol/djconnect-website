@@ -1,65 +1,22 @@
-# Website V2 Access correction — separate Finalization
+# Website delivery handoff
 
-SourcePR65/main`3d199cc65bfe707b9ff852dcd2b09a72f6e2cd27` accepted with reviewed tree equality,
-exact independentGO/CI/security and policy OwnerAuthorizationSUCCESS/NotRequired.
-Current state FINALIZATION_IN_REVIEW; target MERGED_RECONCILED becomes effective
-only on this separate protected Finalization merge plus actual matching-tree
-mainreadback. Source-main CI/QUALIFIED and this increment own exact review/CI
-remain mandatory before merge. Existing production6f1adde UX is live; initial
-fullsmoke39321166427 remainsFAIL after valid Access302→login200 was followed.
-No product/security change. Final new artifact/deploy/fullsmoke remains pending.
-See docs/website-v2/ACCESS_SMOKE_FINALIZATION.md and this branch's protected PR
-for actual completion receipts. No new lane; existing Core-runtime block intact.
+Published Website release: **4.0.0** at [djconnect.dev](https://djconnect.dev/).
+Published source: `1253e1853f91ae1c938f009677618732ed62a5ca`.
+Delivered capability: `DJC-WEBSITE-PREMIUM-CLEAN-REBUILD-V2`, canonical [#62](https://github.com/pcvantol/djconnect-website/issues/62), lane [#59](https://github.com/pcvantol/djconnect-website/issues/59).
+Release state: **MERGED_RECONCILED**; last completed delivery workspace result: **WORKSPACE_READY**.
 
-## Earlier records
+The accepted production receipt is [final-production-acceptance.json](evidence/website-v2/final-production-acceptance.json), copied byte-for-byte from the [durable exact-source evidence release](https://github.com/pcvantol/djconnect-website/releases/tag/internal-website-1253e1853f91ae1c938f009677618732ed62a5ca).
+[Finalization #66](https://github.com/pcvantol/djconnect-website/pull/66) records the actual post-merge/live results.
 
-# Website V2 — production Access smoke correction
+Exact-release checks: main Validate `39323044524`, CodeQL `39323044402`, canonical qualification `39323452268`, artifact `39323451967`, governed production deployment `39323787473`, complete live smoke `39324049320`: **SUCCESS**.
+Actual acceptance: **21 Node tests, 61 browser tests, one operational test and 32 hashed production screenshots**, with independent final visual/binding **GO**. One Chromium-only CDP case is inapplicable to WebKit.
 
-6f1adde protected source/Finalization/mainQUALIFIED and actual deployment
-39320898420 succeeded; public4.0.0 exactcleanSHA/CFcanonicalidentity verified.
-Actual live39321166427:61browser/32visual PASS, operational FAIL because it
-followed valid Access302 to the loginpage200. No operator content exposed.
-Bounded sole-writer test-only correction now in review, with21Node and actual
-workerd1PASS; original failure retained in access-smoke-correction.json.
-No product/UI/Functions/Access/binding change or new lane. Protected followup
-source and separate Finalization, exact new artifact/deployment/full live smoke
-remain required before completion. Earlier records follow.
+The rebuilt site, complete legacy archive, shared design/page system, five locales and necessary secured operational contracts are delivered. See [completion report](docs/website-v2/COMPLETION_REPORT.md) and [technical design](TECHNICAL_DESIGN.md).
 
-# Website V2 final delivery handoff
+These records describe the accepted production release. The governance commit containing this reconciliation has its own protected PR and CI identity in GitHub; it is not a newly selected production candidate. A documentation-only main commit can therefore differ from the published source above. Keep publication manual and manifest-bound; this update requests no deployment, version change, public build change, backend work or new product phase.
 
-Current phase: WebsiteV2 protected-source Finalization. SourcePR63/main`491b83850d949fe61f3e2d85be7c50677da78300` accepted with exact reviewed tree and separate source authorization. Source-main verification and this Finalization own review/CI/authorization remain required. See [Finalization](docs/website-v2/FINALIZATION.md) and [completion report](docs/website-v2/COMPLETION_REPORT.md).
+Resume from `BOOTSTRAP_CODEX_SESSION.md`. Verify current Git branch/HEAD/remote/worktrees and actual public `build.json`; read the accepted production receipt before inferring release status. Preserve other writers and the recovery bundles. No unmerged product work is handed off by this record.
 
-No new product increment. Real immutable-artifact production deployment/live acceptance remains the next authorized delivery step after protected Finalization. Cloudflare direct upload confirmed; no automatic publication. Core HA-runtime failure remains a separate producer runtime block, never a website/backend PASS.
+The old truncated-file reconciliation failure and the first Access smoke failure remain historical evidence; neither was reclassified. The strict no-follow Access test and complete canonical file pagination were delivered through the protected PR chain. Core branding source is accepted, while its separate HA-runtime Golden failure remains registered and unwaived. Physical iPhone/VoiceOver and an independent nontechnical comprehension study were not performed.
 
-Target repository state: `MERGED_RECONCILED` becomes effective only after this separate Finalization is protected merged and its reviewed tree is confirmed by actual exact-main readback. Before that, it remains `FINALIZATION_IN_REVIEW`. This transition does not itself establish production/live acceptance; those receipts remain separate.
-
-## Historical records
-
-# Website V2 — current delivery handoff
-
-Core asset producer accepted: protected source1224/main7e14e5970b3f68d33d243ae6bab2b281fad59bb2, separate Finalization1227/mainbaac22d771bf3141404001517f62a5e34f8c8644, exact-mainCI39313456009SUCCESS, independent reviews and separate Owner Authorizations. Website imported bytes/manifest match qualified source export. Core HA-runtime release remains independently BLOCKED (Golden0tests/unknowncause); no runtime/native/integral-rebrand acceptance or waiver.
-
-Same Website#62/sourcePR63 sole writer. UI/archive and release controls qualified: exactfbab9c9 independentGO,19Node/61browser/worker and Validate39317053273/39317041847/CodeQL118281645110PASS. Cloudflare readonly39317041319 confirms direct-upload/manual publication, receipt retained. This evidence-only commit requires fresh exact review/CI/OwnerAuth. Implementation merge, separate WebsiteFinalization, immutable-main artifact acceptance and real governed production deploy/live smoke remain to execute. No website deployment has happened. Original Core/AskDJ/Persona worktrees preserved.
-
-See docs/website-v2/COMPLETION_REPORT.md and evidence/website-v2/core-producer-acceptance.json. Earlier checkpoint chronology follows.
-
-# Website V2 handoff
-
-Assignment #62 / lane #59; sole writer codex/website-premium-v2; PR #63. Isolated checkout /private/tmp/djc-website-v2-source; original main checkout preserved.
-
-Host verification with actual --github-root '/Volumes/Shared Data/GitHub' PASS; no host repair needed. Complete980-file recoverable archive, clean localized architecture, four original visuals, operational contracts and receiver security correction implemented. Local14Node and61Chromium/WebKit tests PASS; Linux CI and security results retained in completion report.
-
-New owner handoff supersedes opaque recovery branding: exact transparent/micro/wordmark assets from Core883cb9 imported with verified hashes. CorePR1224 remains unaccepted; release gate OPEN. Readonly final source-review GO for fe5bf41d71caaf1b1b8e2f1d923a6ea3696de145; release remains blocked by producer acceptance and exact-candidate delivery.
-
-Continue same sole writer. Preserve review/CI/Owner Authorization for exact candidate, protected implementation merge, separate Finalization and actual immutable artifact/deployment/live smoke. No deployment has happened. No physical Apple/VoiceOver or nontechnical-user study PASS is claimed. See docs/website-v2/COMPLETION_REPORT.md and release-gates.json.
-
-Actual final32Linux screenshot captures and14Node/61browser/worker PASS are recorded in evidence/website-v2/final-linux-acceptance.json. Independent P1/P2 findings closed; producer acceptance remains OPEN. No protected merge, Finalization or deployment yet.
-
-## Release-governance correction within this Finalization
-
-Source-main Validate39318065412 and immutable artifact39318759152 SUCCESS; old
-formal reconciliation39318759729FAIL because ebbb policy truncates commit files
-to300 versus1986full PRpaths. Actual fully paginated sets/tree equal. Consume
-existing protected canonical baac22d policy/workflow with internal-website tag
-scope; retain old FAIL, require actual final-main QUALIFIED before deploy.
-No product/UI/backend/binding change or new lane. Evidence canonical-policy-admission.json.
+Previous rolling snapshot: [HANDOFF.md at the published source](https://github.com/pcvantol/djconnect-website/blob/1253e1853f91ae1c938f009677618732ed62a5ca/HANDOFF.md). Immutable prompt history and earlier Finalization documents remain unchanged.

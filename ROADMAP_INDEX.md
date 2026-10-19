@@ -1,38 +1,18 @@
-# Website V2 Access correction — separate Finalization
-
-SourcePR65/main`3d199cc65bfe707b9ff852dcd2b09a72f6e2cd27` accepted with reviewed tree equality,
-exact independentGO/CI/security and policy OwnerAuthorizationSUCCESS/NotRequired.
-Current state FINALIZATION_IN_REVIEW; target MERGED_RECONCILED becomes effective
-only on this separate protected Finalization merge plus actual matching-tree
-mainreadback. Source-main CI/QUALIFIED and this increment own exact review/CI
-remain mandatory before merge. Existing production6f1adde UX is live; initial
-fullsmoke39321166427 remainsFAIL after valid Access302→login200 was followed.
-No product/security change. Final new artifact/deploy/fullsmoke remains pending.
-See docs/website-v2/ACCESS_SMOKE_FINALIZATION.md and this branch's protected PR
-for actual completion receipts. No new lane; existing Core-runtime block intact.
-
-## Earlier records
-
 # Website roadmap index
 
-Current phase: WebsiteV2 protected-source Finalization. SourcePR63/main`491b83850d949fe61f3e2d85be7c50677da78300` accepted with exact reviewed tree and separate source authorization. Source-main verification and this Finalization own review/CI/authorization remain required. See [Finalization](docs/website-v2/FINALIZATION.md) and [completion report](docs/website-v2/COMPLETION_REPORT.md).
+Published Website release: **4.0.0** at [djconnect.dev](https://djconnect.dev/).
+Published source: `1253e1853f91ae1c938f009677618732ed62a5ca`.
+Delivered capability: `DJC-WEBSITE-PREMIUM-CLEAN-REBUILD-V2`, canonical [#62](https://github.com/pcvantol/djconnect-website/issues/62), lane [#59](https://github.com/pcvantol/djconnect-website/issues/59).
+Release state: **MERGED_RECONCILED**; last completed delivery workspace result: **WORKSPACE_READY**.
 
-No new product increment. Real immutable-artifact production deployment/live acceptance remains the next authorized delivery step after protected Finalization. Cloudflare direct upload confirmed; no automatic publication. Core HA-runtime failure remains a separate producer runtime block, never a website/backend PASS.
+Website increment #62 is delivered. This repository owns public presentation, localized onboarding/support and website release projections. The central portfolio remains [Core #1101](https://github.com/pcvantol/djconnect/issues/1101); this index does not duplicate or select its backlog.
 
-Target repository state: `MERGED_RECONCILED` becomes effective only after this separate Finalization is protected merged and its reviewed tree is confirmed by actual exact-main readback. Before that, it remains `FINALIZATION_IN_REVIEW`. This transition does not itself establish production/live acceptance; those receipts remain separate.
+The artifact uses platform train `4.0` / `INTERNAL_RELEASE`. Website 4.0.0 acceptance does not qualify a stable overall Platform 4.0, Apple/backend release or other consumer.
 
-## Historical records
+Next product increment: **not selected**. This records-only reconciliation completes the existing assignment; do not automatically activate another product lane.
 
-# Website Roadmap Index
+These records describe the accepted production release. The governance commit containing this reconciliation has its own protected PR and CI identity in GitHub; it is not a newly selected production candidate. A documentation-only main commit can therefore differ from the published source above. Keep publication manual and manifest-bound; this update requests no deployment, version change, public build change, backend work or new product phase.
 
-Local navigation only. Current work is RG-WEBSITE-001. After merge and
-reconciliation, select one evidence-backed website increment.
+The old truncated-file reconciliation failure and the first Access smoke failure remain historical evidence; neither was reclassified. The strict no-follow Access test and complete canonical file pagination were delivered through the protected PR chain. Core branding source is accepted, while its separate HA-runtime Golden failure remains registered and unwaived. Physical iPhone/VoiceOver and an independent nontechnical comprehension study were not performed.
 
-## Release-governance correction within this Finalization
-
-Source-main Validate39318065412 and immutable artifact39318759152 SUCCESS; old
-formal reconciliation39318759729FAIL because ebbb policy truncates commit files
-to300 versus1986full PRpaths. Actual fully paginated sets/tree equal. Consume
-existing protected canonical baac22d policy/workflow with internal-website tag
-scope; retain old FAIL, require actual final-main QUALIFIED before deploy.
-No product/UI/backend/binding change or new lane. Evidence canonical-policy-admission.json.
+Previous rolling snapshot: [ROADMAP_INDEX.md at the published source](https://github.com/pcvantol/djconnect-website/blob/1253e1853f91ae1c938f009677618732ed62a5ca/ROADMAP_INDEX.md). Immutable prompt history and earlier Finalization documents remain unchanged.

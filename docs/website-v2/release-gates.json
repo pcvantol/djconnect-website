@@ -4,12 +4,12 @@
     "evidence": "Actual protected Core sourcePR1224 merged7e14e5970b3f68d33d243ae6bab2b281fad59bb2, independent source/visualGO and source/main/brandCI PASS. Separate FinalizationPR1227 mergedbaac22d771bf3141404001517f62a5e34f8c8644 with matching reviewedec6 tree, separate OwnerAuth39313305759 and exact-mainCI39313456009SUCCESS. Accepted-source archive025202e82a9a9e4c7c4859bb03fdebd1287d817abe5c6b3dce1380b690b4d1f6/manifest73cc408e10d88aa1fb8a1be2783b9c577aec398ce3dcd54c2f997ad1425984d2 verified, Website imports byte-identical. Receipt evidence/website-v2/core-producer-acceptance.json. Asset-source acceptance only; HA-runtime releaseGolden FAIL/unknowncause remains blocked, no generic runtime/native/integral-rebrand PASS inferred."
   },
   "independent_review": {
-    "status": "OPEN",
-    "evidence": "Website55d9425 source/visual reviewGO and actual Linux P1/P2closure retained. New release-only corrections (actual checkout build identity, explicit Cloudflare commit binding and redacted canonical deployment readback) require fresh independent exact-candidate review before merge."
+    "status": "PASS",
+    "evidence": "Readonly independent reviewer /root/independent_review exact-head GO fbab9c92881e0ea230daa2b907c6e772dca0d63a: full release-control delta from55d9425, actualGit identity, artifact provenance, explicit CFcommit/readback, acceptedCore receipt. Malformed source policy finding fixed and independently retested. Earlier UI/visual P1/P2 closure preserved. Final evidence-only commit still requires fresh exact-head review/CI/Owner Authorization before merge."
   },
   "candidate_ci": {
-    "status": "OPEN",
-    "evidence": "Prior source55d9425 Validate39304735768/39304727973, CodeQL118239246144 and OwnerAuth39305125831PASS. New delivery-only source requires its own exact-head CI and authorization. Local18Node tests PASS; no future CI, main artifact or production result is claimed."
+    "status": "PASS",
+    "evidence": "Exact release-controller source fbab9c92881e0ea230daa2b907c6e772dca0d63a: PRValidate39317053273SUCCESS, pushValidate39317041847SUCCESS, actualCodeQL118281645110SUCCESS, Semgrep/TrustedDelivery/projectionSUCCESS.19Node/61browser and real worker PASS. Actual readonly Cloudflare39317041319SUCCESS, artifact12219200832: direct_upload, no automatic Git publication; safe receipt evidence/website-v2/cloudflare-premerge-readiness.json. Final evidence-only commit requires fresh exact CI/OwnerAuth, never transfers earlier SHA authorization."
   },
   "visual_acceptance": {
     "status": "PASS",

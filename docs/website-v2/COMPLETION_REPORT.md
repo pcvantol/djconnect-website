@@ -1,6 +1,6 @@
-# Website V2 — producer accepted, final delivery controls in qualification
+# Website V2 — producer and release controls qualified; protected delivery pending
 
-Decision: UI/ARCHIVE/ASSET SOURCE QUALIFIED; FINAL DELIVERY CHANGES REQUIRE REVIEW/CI. Branch codex/website-premium-v2, PR https://github.com/pcvantol/djconnect-website/pull/63. Runtime source reviewed fe5bf41d71caaf1b1b8e2f1d923a6ea3696de145. Final reconciliation commit is the Git commit containing this document; no self-referential SHA is fabricated.
+Decision: UI/ARCHIVE/ASSET SOURCE/RELEASE CONTROLS QUALIFIED; EXACT EVIDENCE COMMIT DELIVERY PENDING. Branch codex/website-premium-v2, PR https://github.com/pcvantol/djconnect-website/pull/63. Runtime source reviewed fe5bf41d71caaf1b1b8e2f1d923a6ea3696de145. Final reconciliation commit is the Git commit containing this document; no self-referential SHA is fabricated.
 
 | Requested status | Actual outcome |
 | --- | --- |
@@ -11,17 +11,17 @@ Decision: UI/ARCHIVE/ASSET SOURCE QUALIFIED; FINAL DELIVERY CHANGES REQUIRE REVI
 | FIVE_LOCALE_STATUS | PASS:65-key central catalog,20static routes, parity/alt/ARIA/SEO/canonical/hreflang |
 | RESPONSIVE_UX_STATUS | PASS: real320/375/390/430/768/1280, Chromium/WebKit, overlay/focus/keyboard/touch/fallbacks |
 | VIBECAST_INTEGRATION | PASS: compact social product vision, original room artwork, actual vibecast.tv destination; no backend changes |
-| TESTS_AND_VISUAL_ACCEPTANCE |14Node and61browserPASS, one Chromium-only emulation inapplicable to WebKit; axeAA and real compiled-worker acceptance PASS. Actual32Linuxcaptures retained with provenance and independent visual closure |
-| PR_REVIEW_CI | Prior55d9425 exact source/CI/OwnerAuth PASS; new release-identity/readback corrections need fresh independent review, exact-CI and authorization |
+| TESTS_AND_VISUAL_ACCEPTANCE |19Node and61browserPASS, one Chromium-only emulation inapplicable to WebKit; axeAA and real compiled-worker acceptance PASS. Actual32Linuxcaptures retained with provenance and independent visual closure |
+| PR_REVIEW_CI | Exactfbab9c9 independentGO, Validate39317053273/39317041847/CodeQL118281645110SUCCESS;19Node/61browser/workerPASS. Evidence-only final commit requires exact review/CI/new authorization |
 | FINALIZATION | NOT DONE: requires protected implementation merge followed by separate reconciliation PR |
 | DEPLOYMENT_STATUS | NOT DEPLOYED: no main release artifact or deployment/live receipt fabricated |
-| OPEN_BLOCKERS | Core producer blocker RESOLVED: source1224/main7e14 and separate Finalization1227/mainbaac, exact-mainCI39313456009SUCCESS. Fresh website delivery-controller review/CI/authorization remain; HA-runtime-release FAIL is separately registered, not waived |
+| OPEN_BLOCKERS | Core producer blocker RESOLVED: source1224/main7e14 and separate Finalization1227/mainbaac, exact-mainCI39313456009SUCCESS. Releasecontrols qualified; protected exact-evidence commit/source merge/Finalization/deployment remain; HA-runtime-release FAIL is separately registered, not waived |
 
 ## Final delivery corrections
 
 Owner later authorized pickup of the existing blocking CorePR1224. Source and separate Finalization were protected merged with distinct exact-SHA authorization/review, source/mainCI and immutable asset readback. Website imports are byte-identical; receipt core-producer-acceptance.json. Core HA-runtimeGolden failed0tests/unknowncause; HApackage/reconcile blocked, no runtime/native/other-consumer completion claimed. That separate gate remains intact.
 
-New corrections close actual release-provenance gaps: build identity comes from checkout GitHEAD rather than potentially later workflow_run eventSHA, qualified builds require clean source/expectedSHA, ephemeral build.json is ignored; Wrangler receives exact commitSHA and pinned version; redacted read-only canonical Cloudflare production identity is captured before/after without configuration/secrets. Live smoke verifies CFreceipt and actual public SHA/version/clean-source.18local Node tests PASS including real Git fixtures and negative identity/redaction cases. No public layout/copy/assets/API/auth/binding changes. Fresh exact-source review/CI remains required.
+New corrections close actual release-provenance gaps: build identity comes from checkout GitHEAD rather than potentially later workflow_run eventSHA, qualified builds require clean source/expectedSHA, ephemeral build.json is ignored; Wrangler receives exact commitSHA and pinned version; redacted read-only canonical Cloudflare production identity is captured before/after without configuration/secrets. Live smoke verifies CFreceipt and actual public SHA/version/clean-source.19local Node tests PASS including real Git fixtures and negative identity/redaction cases. No public layout/copy/assets/API/auth/binding changes. Exactfbab9c9 independently GO reviewed; actual PR/pushValidate and CodeQL PASS. Cloudflare readonly39317041319 verifies direct-upload/manual publication. Receipts release-controller-acceptance.json and cloudflare-premerge-readiness.json; final evidence-only commit still needs exact review/CI/OwnerAuth.
 
 ## Review and durable knowledge
 

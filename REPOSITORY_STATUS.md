@@ -2,7 +2,7 @@
 
 Core asset producer accepted: protected source1224/main7e14e5970b3f68d33d243ae6bab2b281fad59bb2, separate Finalization1227/mainbaac22d771bf3141404001517f62a5e34f8c8644, exact-mainCI39313456009SUCCESS, independent reviews and separate Owner Authorizations. Website imported bytes/manifest match qualified source export. Core HA-runtime release remains independently BLOCKED (Golden0tests/unknowncause); no runtime/native/integral-rebrand acceptance or waiver.
 
-Same Website#62/sourcePR63 sole writer. UI/archive/18localNode tests qualified; new build-identity/Cloudflare-readback controls require fresh exact review/CI/authorization. Implementation merge, separate WebsiteFinalization, immutable-main artifact acceptance and real governed production deploy/live smoke remain to execute. No website deployment has happened. Original Core/AskDJ/Persona worktrees preserved.
+Same Website#62/sourcePR63 sole writer. UI/archive and release controls qualified: exactfbab9c9 independentGO,19Node/61browser/worker and Validate39317053273/39317041847/CodeQL118281645110PASS. Cloudflare readonly39317041319 confirms direct-upload/manual publication, receipt retained. This evidence-only commit requires fresh exact review/CI/OwnerAuth. Implementation merge, separate WebsiteFinalization, immutable-main artifact acceptance and real governed production deploy/live smoke remain to execute. No website deployment has happened. Original Core/AskDJ/Persona worktrees preserved.
 
 See docs/website-v2/COMPLETION_REPORT.md and evidence/website-v2/core-producer-acceptance.json. Earlier checkpoint chronology follows.
 

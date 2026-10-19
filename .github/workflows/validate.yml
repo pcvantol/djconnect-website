@@ -37,8 +37,11 @@ jobs:
       - name: Check third-party packages and tools
         run: npm run deps:check
 
-      - name: Run regression and content checks
-        run: npm test
+      - name: Clean build and regression checks
+        run: |
+          npm run build:release
+          npm test
+          npm run archive:check
 
       - name: Generate post-merge coverage evidence
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -56,63 +59,34 @@ jobs:
             coverage-main-sha.txt
           if-no-files-found: error
 
-      - name: Build release site
-        run: npm run build:release
-
       - name: Install Playwright browser
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install --with-deps chromium webkit
 
-      - name: Validate all localized page screenshots
-        run: npm run screenshots:all
+      - name: Run complete built-artifact browser and visual acceptance
+        run: npm run test:e2e
 
-      - name: Run local browser smoke tests
-        env:
-          SMOKE_BASE_URL: http://127.0.0.1:4173
+      - name: Verify real compiled Pages security and operational routes
+        if: ${{ !cancelled() }}
         run: |
-          node <<'NODE' &
-          const http = require("node:http");
-          const fs = require("node:fs");
-          const path = require("node:path");
-
-          const root = path.join(process.cwd(), "dist", "wwwroot");
-          const types = {
-            ".css": "text/css; charset=utf-8",
-            ".html": "text/html; charset=utf-8",
-            ".js": "text/javascript; charset=utf-8",
-            ".json": "application/json; charset=utf-8",
-            ".png": "image/png",
-            ".svg": "image/svg+xml",
-            ".txt": "text/plain; charset=utf-8",
-            ".xml": "application/xml; charset=utf-8"
-          };
-
-          const server = http.createServer((req, res) => {
-            const url = new URL(req.url, "http://127.0.0.1:4173");
-            let pathname = decodeURIComponent(url.pathname);
-            if (pathname === "/") pathname = "/index.html";
-            let filePath = path.join(root, pathname);
-            if (!path.extname(filePath) && fs.existsSync(`${filePath}.html`)) {
-              filePath = `${filePath}.html`;
-            }
-            if (!filePath.startsWith(root) || !fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
-              res.writeHead(404, { "content-type": "text/plain; charset=utf-8" });
-              res.end("not found");
-              return;
-            }
-            res.writeHead(200, { "content-type": types[path.extname(filePath)] || "application/octet-stream" });
-            fs.createReadStream(filePath).pipe(res);
-          });
-
-          server.listen(4173, "127.0.0.1", () => console.log("Serving dist/wwwroot on http://127.0.0.1:4173"));
-          NODE
+          npx wrangler pages dev dist/wwwroot --port 4174 --compatibility-date 2026-10-19 > /tmp/website-workerd.log 2>&1 &
+          worker_pid=$!
+          trap 'kill "$worker_pid" 2>/dev/null || true' EXIT
           for attempt in {1..30}; do
-            if curl --fail --silent --output /dev/null http://127.0.0.1:4173; then
-              break
-            fi
+            if curl --silent --fail http://127.0.0.1:4174/ > /dev/null; then break; fi
             sleep 1
           done
-          curl --fail --silent --output /dev/null http://127.0.0.1:4173
-          npm run test:smoke
+          npm run test:operational
+
+      - name: Upload browser visual evidence and diffs
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: website-browser-evidence-${{ github.sha }}
+          path: |
+            playwright-report/
+            test-results/
+            tests/visual-baselines/linux/
+          if-no-files-found: warn
 
   cleanup-workflow-runs:
     if: ${{ always() && (github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main')) }}

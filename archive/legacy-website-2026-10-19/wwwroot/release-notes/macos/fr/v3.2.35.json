@@ -1,0 +1,7 @@
+{
+  "version": "3.2.35",
+  "platform": "macos",
+  "language": "fr",
+  "name": "DJConnect macOS 3.2.35",
+  "body": "### Fixed\n\n- Fixed the AirPlay VibeCast export test for the Xcode 16 public release runner.\n\n\n---\n\nPlatform: macOS\n\nLes artefacts CI non signes sont destines au diagnostic et a la validation interne.\nPour une distribution macOS normale, preferez le build Developer ID notarise lorsqu'il est joint."
+}

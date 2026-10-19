@@ -1,0 +1,7 @@
+{
+  "version": "3.1.9",
+  "platform": "maccatalyst",
+  "language": "nl",
+  "name": "DJConnect Mac Catalyst 3.1.9",
+  "body": "# DJConnect Windows 3.1.9\n\n- Scherpt Ask DJ aan zodat tekst en toekomstige voice/push-to-talk input backend-owned blijven via de Home Assistant DJConnect-integratie.\n- Toont response-eigen images, sources, items, playback actions en confirmation actions alleen wanneer de backend ze expliciet teruggeeft.\n- Voegt client identity en client message ids toe aan command/action payloads en wist lokale Ask DJ cache wanneer Home Assistant stale pairing meldt.\n- Houdt Demo Mode monkey-test gedrag non-destructive voor CI en UI-stresstests.\n\n---\n\nPlatform: MacCatalyst\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nMac Catalyst-artifacts zijn niet ondertekend en niet genotariseerd."
+}

@@ -1,0 +1,7 @@
+{
+  "version": "3.2.32",
+  "platform": "macos",
+  "language": "en",
+  "name": "DJConnect macOS 3.2.32",
+  "body": "DJConnect App 3.2.32\n\n---\n\nPlatform: macOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nFor normal macOS distribution, prefer the notarized Developer ID build when attached."
+}

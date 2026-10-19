@@ -1,0 +1,17 @@
+{
+  "version": "4.0.0",
+  "commit": null,
+  "locales": [
+    "nl",
+    "en",
+    "de",
+    "fr",
+    "es"
+  ],
+  "pages": [
+    "home",
+    "start",
+    "privacy",
+    "support"
+  ]
+}

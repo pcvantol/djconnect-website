@@ -1,0 +1,7 @@
+{
+  "version": "3.2.25",
+  "platform": "ios",
+  "language": "nl",
+  "name": "DJConnect iOS 3.2.25",
+  "body": "# DJConnect App 3.2.25\n\n## Toegevoegd\n\n- Speelt Nu op iOS heeft nu direct naast shuffle een knop naar Wachtrij.\n\n## Gewijzigd\n\n- De Speelt Nu-widget gebruikt bij ontbrekende album-art nu een DJConnect\n  music/play-placeholder in plaats van een grijs blok.\n- De Live Activity op het toegangsscherm en Dynamic Island sluiten nu beter aan\n  op de Speelt Nu-widget, met Mood-kleuren, album-art, compacte Dynamic\n  Island-art en dezelfde fallbackstijl.\n\n---\n\nPlatform: iOS\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nNiet-ondertekende iOS-binaries worden hier gepubliceerd voor diagnostics en interne validatie. Gebruik voor normale iOS-distributie TestFlight/App Store."
+}

@@ -1,0 +1,4902 @@
+[
+  {
+    "path": ".github/CODEOWNERS",
+    "bytes": 80,
+    "sha256": "ec3e16163e2c63d2ef06cce9fed4ce7c4ffcf371286f4c5a4c0772bc99713339"
+  },
+  {
+    "path": ".github/dependabot.yml",
+    "bytes": 315,
+    "sha256": "0930b87cbcae65bfdf356a360ca8099f3ae0dc05b738e56b79cb730ade11d3f0"
+  },
+  {
+    "path": ".github/tde/repository-definition.json",
+    "bytes": 282,
+    "sha256": "2d018a563f648a52f50dc6ea77648f3f4fb8fcdee7b0de3e1541314a3b133b0a"
+  },
+  {
+    "path": ".github/workflows/ai-development-projection.yml",
+    "bytes": 463,
+    "sha256": "3abb55b6360f49b2cec1b06b6944d74bbb43014fd4a96e58be34a3f83be6a758"
+  },
+  {
+    "path": ".github/workflows/codeql.yml",
+    "bytes": 690,
+    "sha256": "bb7a461531a821fc3d66cdaa670e4bebef9a82e4dfb16b3b380a1afa23abd282"
+  },
+  {
+    "path": ".github/workflows/deploy-pages.yml",
+    "bytes": 7499,
+    "sha256": "05588b62a6f11ee7aca7b1a536d02311e51613492c6a1e8861af35abafd592e0"
+  },
+  {
+    "path": ".github/workflows/owner-authorization.yml",
+    "bytes": 902,
+    "sha256": "59705a3d64aa9df11d498c21bebc63e0e520785ba44370a059d261bc41432b5d"
+  },
+  {
+    "path": ".github/workflows/platform-release-execution.yml",
+    "bytes": 2989,
+    "sha256": "56fbb072641e13d8f1a01158ee0a858272717af068d697ddc0beb52a5b4bde72"
+  },
+  {
+    "path": ".github/workflows/post-merge-release-evidence.yml",
+    "bytes": 760,
+    "sha256": "1265e53203c43dfe235a225a69098788fb4cab8b76fbf1c3afc9477c0e2f4db2"
+  },
+  {
+    "path": ".github/workflows/semgrep.yml",
+    "bytes": 599,
+    "sha256": "4ac7ab1036766316f524e242affc13e42de31db3d48e82d5c1940ebce7e7ab74"
+  },
+  {
+    "path": ".github/workflows/tde-observe.yml",
+    "bytes": 4609,
+    "sha256": "dc87a9e8c3165a86e50da2ed8674195aed2ee65f4802dea08314a6b3869e183a"
+  },
+  {
+    "path": ".github/workflows/trusted-delivery.yml",
+    "bytes": 362,
+    "sha256": "3c185e63c8a1b6c4fe6cc813e27c48c13efd9d845690ae7ea392fc945c7542b3"
+  },
+  {
+    "path": ".github/workflows/validate.yml",
+    "bytes": 7515,
+    "sha256": "0c5b71725c394ea4a17d7ea58f4ed172f23a4b565fad4e41d5ad2c0b536e9aa8"
+  },
+  {
+    "path": ".github/workflows/website-post-deployment-smoke.yml",
+    "bytes": 5147,
+    "sha256": "231a59be03b8292e0660fb77449f9d484cdd0515b1506ff5a66c14c867c7189e"
+  },
+  {
+    "path": ".github/workflows/website-release-artifact.yml",
+    "bytes": 2395,
+    "sha256": "bb4497d58171098cf854138b8383dd43fde1f4180d02a6d4ad2a12577c8b8600"
+  },
+  {
+    "path": ".gitignore",
+    "bytes": 2748,
+    "sha256": "e894b6a2b417a1456431bc62868472b3c5009b77192427ab28360263b0de95fb"
+  },
+  {
+    "path": ".tde.yml",
+    "bytes": 68,
+    "sha256": "b167d0e0aa24bbb2eecc7cdb7fbefaf3c9c73c4a2aba15cfb9ece2f39fbabec8"
+  },
+  {
+    "path": "AGENTS.md",
+    "bytes": 1089,
+    "sha256": "7e7acf346a91c5df2da026266bf828a491307634df7df3582e61b7045cb2e4b3"
+  },
+  {
+    "path": "BOOTSTRAP.md",
+    "bytes": 345,
+    "sha256": "5672f82a1ea574f2e3838413f4afb63f97da79df306d0cca407be528fa22e555"
+  },
+  {
+    "path": "BOOTSTRAP_CODEX_SESSION.md",
+    "bytes": 130,
+    "sha256": "0b08d7d9be049f3b6def2964bd0461726ef5b4cd9de6062b32296d34f554f57c"
+  },
+  {
+    "path": "CANONICAL_REFERENCES.md",
+    "bytes": 3303,
+    "sha256": "10c21b1c3b76640b021889c9f1000bb36d21bcf3c4c0fc699b44cb8f7143d44f"
+  },
+  {
+    "path": "CHANGELOG.md",
+    "bytes": 37969,
+    "sha256": "7670d9d2c1e8d994d12ff98ccb77d12f64f7b94251cfc3ee198502bd7f7af3df"
+  },
+  {
+    "path": "CHAT_BOOTSTRAP.md",
+    "bytes": 49,
+    "sha256": "692d33b3a46dfa29a27a5986ce9755f392838ff702c961edb48d9f277182902d"
+  },
+  {
+    "path": "CODE_OF_CONDUCT.md",
+    "bytes": 2155,
+    "sha256": "32a41d649ffd659ebbbaa0235fbf63c86ec840096ad50c9171b0eced8b1ae9c3"
+  },
+  {
+    "path": "CONTRIBUTING.md",
+    "bytes": 5628,
+    "sha256": "a8f8dd3e4afce3fba9cb1f1497cee199ad529506cb57b790bb6741a683a8dbcd"
+  },
+  {
+    "path": "DEVELOPMENT_ENVIRONMENT.md",
+    "bytes": 5985,
+    "sha256": "8a2a103ada184a1c9c543e01d7a2a481669cfcfc4785d28260ca0688cc531dc0"
+  },
+  {
+    "path": "ENGINEERING_STATUS.md",
+    "bytes": 283,
+    "sha256": "6a5fe4e17d48acca1406f07bd2699a1bfc14974f44df3f0ed124b4eb0a3eb93d"
+  },
+  {
+    "path": "HANDOFF.md",
+    "bytes": 28512,
+    "sha256": "3f1c26625941470862346acc14c3b1225e65c4cd008105f5c3f54865e0ebab4e"
+  },
+  {
+    "path": "ISSUES.md",
+    "bytes": 3329,
+    "sha256": "83d7cc1d6f8ab29ae66ceb2055c7ddb3abf3a3e01e4cf99fd92ac401158f4565"
+  },
+  {
+    "path": "LICENSE",
+    "bytes": 1070,
+    "sha256": "9056c5ecea9aa888ff0a79e9b07a91470a5c2e782dc9ba1774dce70aae031d44"
+  },
+  {
+    "path": "MANAGEMENT_SUMMARY.md",
+    "bytes": 965,
+    "sha256": "a23f0639b8a919c95d17e41151ae871d971f3edf312ad0599243ffa81065e323"
+  },
+  {
+    "path": "PLATFORM_RELEASE_DRY_RUN_3_3.json",
+    "bytes": 217,
+    "sha256": "ba19f046821f366f5b53f6ec182b1af9ce719785d7167cd51a4742a384cd29ce"
+  },
+  {
+    "path": "PROMPT_INDEX.md",
+    "bytes": 1030,
+    "sha256": "40322edac9784f145230668865f674943b811558261a14c64afadddeed1654e6"
+  },
+  {
+    "path": "README.md",
+    "bytes": 34100,
+    "sha256": "10d09e39dccdf751c9d50540d8318fe32d1e14b8931d8e22df205594150cec54"
+  },
+  {
+    "path": "REPOSITORY_STATUS.md",
+    "bytes": 1625,
+    "sha256": "4e90cb0c0c48c2ba50719b066cefc64e9bb18944790e2ab25130e4453279816a"
+  },
+  {
+    "path": "ROADMAP_INDEX.md",
+    "bytes": 158,
+    "sha256": "efe1b24bc6c3b65d2ff6c1bdb1c18a77137f482c09ad8f59fb999451f0d29a0a"
+  },
+  {
+    "path": "SECURITY.md",
+    "bytes": 3814,
+    "sha256": "a9860d489ca0d6ff3421064235a10c4e9ce7dd9ec88937278240ac3c327857db"
+  },
+  {
+    "path": "SYNC_PROMPTS.md",
+    "bytes": 452,
+    "sha256": "204d3fa3caf665ddebb68674307624079ad5c55b88480cd3c917009056c7acd2"
+  },
+  {
+    "path": "TECHNICAL_DESIGN.md",
+    "bytes": 27918,
+    "sha256": "42bc25f5c0eaaa4b05de6053e8042f33c3da0e61ad7f33d082e81630b8cc2194"
+  },
+  {
+    "path": "TESTS.md",
+    "bytes": 24805,
+    "sha256": "29756a823986374568c49d2b4f0f0ff183f1c5c51daf71ece5121f0ff0539fb5"
+  },
+  {
+    "path": "TODO.md",
+    "bytes": 1909,
+    "sha256": "5b8ec692c43c598390a3203545852f9374d7b1cc0528c5ec9476f5c460fdd1fa"
+  },
+  {
+    "path": "VERSION",
+    "bytes": 6,
+    "sha256": "ef2a79c2f7dc37800a73fd9930b307824ce20af920cbc7159323456418e77e6b"
+  },
+  {
+    "path": "VOICE_INTENT_DATA_PROMPT.md",
+    "bytes": 3729,
+    "sha256": "b3854de6157b88276aa4019a3885d34b221fb0cf6760567c292e7d250d15eb77"
+  },
+  {
+    "path": "cleanup_old_releases.sh",
+    "bytes": 3679,
+    "sha256": "006de3aaccdba8ba61b48c238a0ce45c9ee51bbe310d68bcaa5caa91a42b4b19"
+  },
+  {
+    "path": "docs/ai-development/AI_DEVELOPMENT_ADOPTION_RECEIPT.md",
+    "bytes": 1110,
+    "sha256": "bd8cc5ebbf49074d64d408f3892e9a2770edbac9f557390a10b325731408af83"
+  },
+  {
+    "path": "docs/ai-development/DJCONNECT_WEBSITE_DEVELOPMENT_EXTENSION.md",
+    "bytes": 501,
+    "sha256": "383ca43ab4f2102265c83b07591ca237093825158ae9985bff217a5989666766"
+  },
+  {
+    "path": "docs/ai-development/GENERATED_PROJECTION.md",
+    "bytes": 2295,
+    "sha256": "1b06f8cffc8f940a4194d4c94416490fbc059dedffb0930dae8449cd8a83c3cf"
+  },
+  {
+    "path": "docs/ai-development/projection-manifest.json",
+    "bytes": 765,
+    "sha256": "854eed3ec5383a975d2370051d727c055fbb7ed43373cc31e2bc3659b3da29d8"
+  },
+  {
+    "path": "docs/ai-development/validate_projection.py",
+    "bytes": 1997,
+    "sha256": "506a4591982fe70b7f9ca6657170eaf38d7454f727019171deebd44c44ae8cfe"
+  },
+  {
+    "path": "docs/governance/ADOPTION.md",
+    "bytes": 606,
+    "sha256": "e3021a2eb566ca75989bb183f5acd6615fb2a1c260eda86431d8db1d30547b17"
+  },
+  {
+    "path": "docs/history/prompts/2026-07-15-rg-website-001.md",
+    "bytes": 216,
+    "sha256": "a372be6bb5d25c3e83fe723675bc6db2a6fbca475ed980d969214b555c2ac2c0"
+  },
+  {
+    "path": "functions/_middleware.js",
+    "bytes": 3251,
+    "sha256": "d6582eefea1536d4e3d56a8c8bbf285adee8af3c6622b74f30ff8b9b55076fce"
+  },
+  {
+    "path": "functions/_shared/analytics.js",
+    "bytes": 2823,
+    "sha256": "739189dd9b91f34d9b5761285abb94e65bc1ce8580920c5c08ff6822789e0d5e"
+  },
+  {
+    "path": "functions/api/operator/install-token/revoke.js",
+    "bytes": 2071,
+    "sha256": "083e1385cbe1709e50c639727e04add04822c9638756ee756c86e61702a1cda6"
+  },
+  {
+    "path": "functions/api/operator/registrations.js",
+    "bytes": 2803,
+    "sha256": "5334f74c2ea51a94965e28ee839ded2190e876610e26f031efff79867a78821a"
+  },
+  {
+    "path": "functions/api/releases.js",
+    "bytes": 835,
+    "sha256": "e1489c5a71a6ef905881e46e8b702ee91212d94be9ae908d00bc7869fd9790f0"
+  },
+  {
+    "path": "functions/api/stats.js",
+    "bytes": 2930,
+    "sha256": "c43559a239ef6d330c6152a578ff5dd30f785b486a9e7bbbcc87def08cdb72f4"
+  },
+  {
+    "path": "functions/go/[target].js",
+    "bytes": 1207,
+    "sha256": "c433730cf880645e542c631406a7d79c15604c36b96959ba709da1aac04acb8f"
+  },
+  {
+    "path": "functions/go/download.js",
+    "bytes": 574,
+    "sha256": "91721842f1fccd6eff2b89e67e482f42590c7c87bdf60fef32e6ce15c294682f"
+  },
+  {
+    "path": "migrations/0001_create_click_counters.sql",
+    "bytes": 349,
+    "sha256": "11dc7e852a2fc0747bc3fcb2f4b7ab9ffcbe979aabae7e955701a149b7dd6078"
+  },
+  {
+    "path": "package-lock.json",
+    "bytes": 26892,
+    "sha256": "21e5aec0e7eab99c47a8037590191337d34b0a2a65c128a9c50138eab95af2b5"
+  },
+  {
+    "path": "package.json",
+    "bytes": 1165,
+    "sha256": "5a058d865f066faeee6b289f2058ba35b6cd57a771f4cb3297919b3233b51bcf"
+  },
+  {
+    "path": "release.sh",
+    "bytes": 5089,
+    "sha256": "b58cf7c218365d99ae26bfdc17c301a851804636c4692b5c38558019a2fa4ea4"
+  },
+  {
+    "path": "scripts/build-release.mjs",
+    "bytes": 3977,
+    "sha256": "30516beeaea55872fdcac9d27da42cf191b18157e69d2e07bd5ffe8d989fc946"
+  },
+  {
+    "path": "scripts/build-sitemap.mjs",
+    "bytes": 1029,
+    "sha256": "71cdd1a2c72532adceabc27dc730b5ce523b33653835dd44f326b0cb838f1299"
+  },
+  {
+    "path": "scripts/capture-all-screenshots.sh",
+    "bytes": 6674,
+    "sha256": "9e61434c5a3c6b28f215c1a0dab85e64937089892a96669f5987e7acaf5beaf6"
+  },
+  {
+    "path": "scripts/check-stats.mjs",
+    "bytes": 1504,
+    "sha256": "4a192c7a567053e7295b60b5d3c1d5baba2ac440b6876011fccf05099dbfce38"
+  },
+  {
+    "path": "scripts/refresh-dependencies.mjs",
+    "bytes": 1576,
+    "sha256": "ff1357e18777b8e1007127b60dbaed8a1cf406beca53b4aa178a81655bab9c2f"
+  },
+  {
+    "path": "scripts/site-config.mjs",
+    "bytes": 994,
+    "sha256": "91f6f05c02022feb43a5eb3ad496aac3863fc6d1ec6687d50e63e41ae1be7888"
+  },
+  {
+    "path": "scripts/sync-site-version.mjs",
+    "bytes": 1106,
+    "sha256": "70fa33b76064a986c599cf3f3b6cefd34e5dd3cbbbb35d7e1475d1ee07fec8b3"
+  },
+  {
+    "path": "scripts/validate-i18n.mjs",
+    "bytes": 3704,
+    "sha256": "5648e0dfebabc836838033bf4723f9a36e3ca3b334875702a56d23b5b0e1fb69"
+  },
+  {
+    "path": "scripts/validate-sync-prompt-pointer.mjs",
+    "bytes": 1167,
+    "sha256": "c491a7e90dc3c48e7b7ad35abd74869240a524e551eb7098274026d1031005f7"
+  },
+  {
+    "path": "tests/helpers/site.mjs",
+    "bytes": 4031,
+    "sha256": "d744e620e2e5f6c9e2d0b6ade941025a842686591dbcc8aea5e80cf893a2afeb"
+  },
+  {
+    "path": "tests/screenshots.spec.mjs",
+    "bytes": 2911,
+    "sha256": "90f7a6e25304996cc83fd3c1b4b6f48013a6681631bcbce8926b0d4634e0ea5c"
+  },
+  {
+    "path": "tests/site-architecture.test.mjs",
+    "bytes": 2242,
+    "sha256": "8fa9190a61fd75b3d7bafe21d3d9d4178f9249052e8bb30b1d4acc1dcd8fd704"
+  },
+  {
+    "path": "tests/site.test.mjs",
+    "bytes": 135560,
+    "sha256": "976487410a1e76c1e97d5eac86c96450f609e9a30cfb3e2dd8214b38544c6f4d"
+  },
+  {
+    "path": "tests/smoke.spec.mjs",
+    "bytes": 1455,
+    "sha256": "d8d5fb844e42b0cf9a39afdb4898fbbc23b4a4e5b1b38cb05d743f872cd1d4c8"
+  },
+  {
+    "path": "wwwroot/404.html",
+    "bytes": 8715,
+    "sha256": "0e728dbcc37ee5d4efbf90ab62a1569f4393a598380c547ed3bac00fc303d932"
+  },
+  {
+    "path": "wwwroot/_headers",
+    "bytes": 653,
+    "sha256": "daa3ca8a9160f9105e44440f1d8aec7f2ed693db8326dc627efdea2cf7db2311"
+  },
+  {
+    "path": "wwwroot/assets/admin.css",
+    "bytes": 6555,
+    "sha256": "b415c25f8106c8f3bd8efc981f1197d27743e1fdbabfb24645535d33bf29b9cd"
+  },
+  {
+    "path": "wwwroot/assets/admin.js",
+    "bytes": 14370,
+    "sha256": "2d44f03090b2cce9064d0881af7b580c2850926092ad816311a640849e239de7"
+  },
+  {
+    "path": "wwwroot/assets/djconnect-logo.png",
+    "bytes": 45994,
+    "sha256": "ff9007c335731b2c35b66961abfed09c80ce3da91032a9e947dbde94ffe8360b"
+  },
+  {
+    "path": "wwwroot/assets/djconnect/apple-touch-icon.png",
+    "bytes": 47734,
+    "sha256": "5bfb81a9906424391f70b0c16d9c32b3e2fe7b1e5d0f6ce94a2d36e058db5bb0"
+  },
+  {
+    "path": "wwwroot/assets/djconnect/favicon-16.png",
+    "bytes": 1471,
+    "sha256": "eaa9fd672a0efe10f03299834c6e389f4455c2b0bc12d4cf2eab38fc16faf7cf"
+  },
+  {
+    "path": "wwwroot/assets/djconnect/favicon-32.png",
+    "bytes": 3406,
+    "sha256": "dd3c38075de260a67f30e66f48e34294e5f1986c0b1034394d875faf299243fd"
+  },
+  {
+    "path": "wwwroot/assets/djconnect/icon-192.png",
+    "bytes": 53129,
+    "sha256": "5abdaa0ff128e3859727c8fcbf1a5aa63a9910a14782e7f8ae7f1d93ba781231"
+  },
+  {
+    "path": "wwwroot/assets/djconnect/icon-512.png",
+    "bytes": 281825,
+    "sha256": "d0ce54c6a24abd1e5139b435c4b9c1428944ed47721c58a93ad2427dc864048b"
+  },
+  {
+    "path": "wwwroot/assets/djconnect/icon.svg",
+    "bytes": 4954,
+    "sha256": "3b4fd906e7360541303adda4c4315b483a75f5a9c0d1954a51c34cfdb4128271"
+  },
+  {
+    "path": "wwwroot/assets/djconnect/logo-512x256.png",
+    "bytes": 37890,
+    "sha256": "c1c9e2339a705a9a9385268850d6da81f30893a7c79ed401fa82bf611cdbf2a8"
+  },
+  {
+    "path": "wwwroot/assets/djconnect/logo.svg",
+    "bytes": 3120,
+    "sha256": "4dcfb8ad268562390b31585b3748d7409602e641dc5151b1900654e85940fadd"
+  },
+  {
+    "path": "wwwroot/assets/djconnect/site.webmanifest",
+    "bytes": 484,
+    "sha256": "7adcf9f79c7ed375b87bc4d438ced987db876b02358f3ad85eda0172923dc671"
+  },
+  {
+    "path": "wwwroot/assets/djconnect/social-card.png",
+    "bytes": 173108,
+    "sha256": "56490d132977eeaaf29fc12d15e34bf531937c2162ef8d08270851f6689f1c9f"
+  },
+  {
+    "path": "wwwroot/assets/djconnect/social-card.svg",
+    "bytes": 4524,
+    "sha256": "66223f25911a83f74bac54ad5a64772a4f8893754640fffc7ebe3da392f98e4f"
+  },
+  {
+    "path": "wwwroot/assets/downloads.css",
+    "bytes": 3146,
+    "sha256": "439c277cc9f4ebdf419f8d1d62e2de683485c87b4748a7b786319cfddde98050"
+  },
+  {
+    "path": "wwwroot/assets/downloads.js",
+    "bytes": 15702,
+    "sha256": "f0a827d65943f99d643d7acc70e54b54c1f6fd9ef05b593350773a4172720379"
+  },
+  {
+    "path": "wwwroot/assets/i18n.js",
+    "bytes": 8863,
+    "sha256": "89d6dea7f8623dd0d9dcd33f118aff122bec2a886609a225e621b2519fb4265d"
+  },
+  {
+    "path": "wwwroot/assets/lilygo-t-embed-djconnect-en.svg",
+    "bytes": 7338,
+    "sha256": "a4c92c8e3047d50a04ea96eac8eb1c74ee04ad941dc3084ae737084276531b28"
+  },
+  {
+    "path": "wwwroot/assets/lilygo-t-embed-djconnect.svg",
+    "bytes": 4869,
+    "sha256": "05768632060915350d9f03e4a48ce39267a8cf07fff3e0130bd9b661d7df376c"
+  },
+  {
+    "path": "wwwroot/assets/page-translations.js",
+    "bytes": 584371,
+    "sha256": "400e91f1241ed146cfd93e16ec13add6be44c16ead75c7f10f16c404e0e44d68"
+  },
+  {
+    "path": "wwwroot/assets/releases.css",
+    "bytes": 871,
+    "sha256": "943213d555464b0979dea7489511d1fd120c4aad5133c5890323c8994e401c4d"
+  },
+  {
+    "path": "wwwroot/assets/releases.js",
+    "bytes": 3688,
+    "sha256": "5c894ee42952aea4aff9e182618c3c57157a3bc8e020f9d92beb5256d534adaa"
+  },
+  {
+    "path": "wwwroot/assets/site-nav.css",
+    "bytes": 2695,
+    "sha256": "84549df7fa3816b7b2142955b9483fad79444894fddb6a277a6efc15b9a70a2b"
+  },
+  {
+    "path": "wwwroot/assets/site-nav.js",
+    "bytes": 1000,
+    "sha256": "dd39218dd2e86a1ad1e02cec2398399268a63ac1d4883f58a0c4f8aecd748d6d"
+  },
+  {
+    "path": "wwwroot/assets/voice-intents.js",
+    "bytes": 69391,
+    "sha256": "080f1830aa905b9ceac1481c94da5952ea7187c661964b1e3748716cadf3ec89"
+  },
+  {
+    "path": "wwwroot/blog-djconnect-project.html",
+    "bytes": 12297,
+    "sha256": "2de49f6ac5e19881478a555afb9ee241acc2ae775ee5fea9eb013eeb76910433"
+  },
+  {
+    "path": "wwwroot/blog.html",
+    "bytes": 9587,
+    "sha256": "29644eb0af24f91f482aa877a663354dfacc242c7886c47025eb73a865cb6599"
+  },
+  {
+    "path": "wwwroot/de/404.html",
+    "bytes": 8766,
+    "sha256": "8cad0827caea556efe175a5800cc4fba206c1fa91fe11474b29a8e09bb2d233d"
+  },
+  {
+    "path": "wwwroot/de/blog-djconnect-project.html",
+    "bytes": 12345,
+    "sha256": "0d307049191b61a6b27548e7bcf609969d1ea9cde564e2ffcec0012f4cf3d068"
+  },
+  {
+    "path": "wwwroot/de/blog.html",
+    "bytes": 9626,
+    "sha256": "40050801f559f05491fc4fb999f534edbc2b9f6992a1d2e5cb5fb6f81d27145a"
+  },
+  {
+    "path": "wwwroot/de/developers.html",
+    "bytes": 28020,
+    "sha256": "22f558c373910f867253b9cc42a7f1823fae1e58b79bbced5d4c35fb382306ba"
+  },
+  {
+    "path": "wwwroot/de/embedded.html",
+    "bytes": 39227,
+    "sha256": "6d4e430fefd07cb84c5e5078ec5e9179cc916cde5c049ffa3c3f1e36084e1be2"
+  },
+  {
+    "path": "wwwroot/de/features.html",
+    "bytes": 20238,
+    "sha256": "af4257614212ce3bf4b21abcde3339d560c7237c874b480436f311d009b510c9"
+  },
+  {
+    "path": "wwwroot/de/index.html",
+    "bytes": 65144,
+    "sha256": "84a51d2a2dd9f4ada148a2990cdf465b43995f497950224629c9b6fad136368b"
+  },
+  {
+    "path": "wwwroot/de/ios.html",
+    "bytes": 13086,
+    "sha256": "a9b5119ad6545fac00983c3087f5686001b16d0c848560c66e10f61aa4327425"
+  },
+  {
+    "path": "wwwroot/de/maccatalyst.html",
+    "bytes": 13143,
+    "sha256": "5a4d5d5575f8ffb4985e2eb05c44f6f0c48e00f2903f4b3d4d433584f68d0c51"
+  },
+  {
+    "path": "wwwroot/de/macos.html",
+    "bytes": 13191,
+    "sha256": "07dfd71be17edd554b53c3708c6e2792adff84ade7895f5ae69e64eba7cb0854"
+  },
+  {
+    "path": "wwwroot/de/platform.html",
+    "bytes": 16842,
+    "sha256": "a95977a8bd265a1cbbf061489051177ef175700becfd003d0dd9584073b17e09"
+  },
+  {
+    "path": "wwwroot/de/privacy.html",
+    "bytes": 17432,
+    "sha256": "e14cbbd09bd7b11ba5830a79da09d2e46605008fb011b86d549020a9c5f9760c"
+  },
+  {
+    "path": "wwwroot/de/raspberry-pi.html",
+    "bytes": 19146,
+    "sha256": "b7d1d95a2b1b4fb9491aa222a13e5e7830b417d4b246025f9afc86d91a07e6de"
+  },
+  {
+    "path": "wwwroot/de/start.html",
+    "bytes": 49462,
+    "sha256": "96e88c99fb7e14d219fcffe58315cf46424f097a06cd582e62fde9f2e4242271"
+  },
+  {
+    "path": "wwwroot/de/support.html",
+    "bytes": 11478,
+    "sha256": "672135bb1b4dc35fd59cf2102d3339c132fa7e6f8406208970e425b6df4a73b8"
+  },
+  {
+    "path": "wwwroot/de/testflight-macos.html",
+    "bytes": 11309,
+    "sha256": "c8c10755416d5c27bd5e4a6093549a23f4c963226a020065083805767ac1f82c"
+  },
+  {
+    "path": "wwwroot/de/testflight.html",
+    "bytes": 11248,
+    "sha256": "826d343662c34e4d40b7d7166c99b3261e20afc41c70c152bc2adcf7ab1306a5"
+  },
+  {
+    "path": "wwwroot/de/troubleshooting.html",
+    "bytes": 16802,
+    "sha256": "5d8b76f0e261d021414792429b0cd0f44c7a71a3a4a702227b1684e0f371c1cb"
+  },
+  {
+    "path": "wwwroot/de/voice-assistant.html",
+    "bytes": 14310,
+    "sha256": "482ab80c6badf4af303b27fbe34abcede071f5a781b213daf591f8a06af459ea"
+  },
+  {
+    "path": "wwwroot/de/voice-commands.html",
+    "bytes": 23353,
+    "sha256": "204a5c40745b849abf2c6a5278d4099314d30808f0119a4863dff84139c7b137"
+  },
+  {
+    "path": "wwwroot/de/windows.html",
+    "bytes": 13307,
+    "sha256": "d1a19eab53463179e49b881bb344157060b084404dbf2f893d154662be0dc6ab"
+  },
+  {
+    "path": "wwwroot/developers.html",
+    "bytes": 32273,
+    "sha256": "b58bf68bc5ca17985ef95f39c87e3bda05e1dfeb77f370c343d26a0e26a2a6c4"
+  },
+  {
+    "path": "wwwroot/embedded.html",
+    "bytes": 39173,
+    "sha256": "c0363b79017ea02c39a6845eee93bded485506e7f04ee65353c5899a4cef5241"
+  },
+  {
+    "path": "wwwroot/en/404.html",
+    "bytes": 8766,
+    "sha256": "3676f28cb2b120aa2f27d0e7973066d8fb971f1bcf7db9817dc91c89d822e941"
+  },
+  {
+    "path": "wwwroot/en/blog-djconnect-project.html",
+    "bytes": 12345,
+    "sha256": "61c1368c04bcb6cbafd51c632ca3869a93fb92398e355a0f7fabe9ca39c09c04"
+  },
+  {
+    "path": "wwwroot/en/blog.html",
+    "bytes": 9626,
+    "sha256": "236b601a59a90fbc90766a8c5545afcd17fffa1cf81a4d60139663260a4518b4"
+  },
+  {
+    "path": "wwwroot/en/developers.html",
+    "bytes": 28020,
+    "sha256": "22f558c373910f867253b9cc42a7f1823fae1e58b79bbced5d4c35fb382306ba"
+  },
+  {
+    "path": "wwwroot/en/embedded.html",
+    "bytes": 39227,
+    "sha256": "1c109bd22f519229be007fa35aad9c55a90cf9254cd5ce2c0e80f5b42742611e"
+  },
+  {
+    "path": "wwwroot/en/features.html",
+    "bytes": 20238,
+    "sha256": "047829c55d5f24411a78953a8719fcf057fc67e5445a0099ff973c676c221510"
+  },
+  {
+    "path": "wwwroot/en/index.html",
+    "bytes": 65144,
+    "sha256": "2ca93ed46055a95f1fa65869c56c0a37bb397f522f0c5b299535019d7e251be0"
+  },
+  {
+    "path": "wwwroot/en/ios.html",
+    "bytes": 13086,
+    "sha256": "84376c15b0d440de0f0113bcb2bf68af890bf75c4fae4edb89949d8006c5d610"
+  },
+  {
+    "path": "wwwroot/en/maccatalyst.html",
+    "bytes": 13143,
+    "sha256": "d0779105aedfa1b30380943cf6759bfe198110456885b2b652f308dcbfa5f80f"
+  },
+  {
+    "path": "wwwroot/en/macos.html",
+    "bytes": 13191,
+    "sha256": "4a0e50800de033506d3284fc3ae91ba9e1c9e3dc2ce28a84c87f3a80d2c06ebf"
+  },
+  {
+    "path": "wwwroot/en/platform.html",
+    "bytes": 16842,
+    "sha256": "be6df02a8617255d62a7343593b37e80ee01a2ab8e75b7e804eb1f6862de1a8a"
+  },
+  {
+    "path": "wwwroot/en/privacy.html",
+    "bytes": 17432,
+    "sha256": "9dc45a098c9b374cfab786594cdb752dfc7f33efa7f12197871e40b1bc159cc9"
+  },
+  {
+    "path": "wwwroot/en/raspberry-pi.html",
+    "bytes": 19146,
+    "sha256": "cfc9665b68e03987e39ff0660b192b26be72e27d7b8bd702627ed8d649826fdf"
+  },
+  {
+    "path": "wwwroot/en/start.html",
+    "bytes": 49462,
+    "sha256": "03def9cebe3642217e5a235918e14b439a5625964f529ed48e70cfb71f98a8ec"
+  },
+  {
+    "path": "wwwroot/en/support.html",
+    "bytes": 11478,
+    "sha256": "3ad484c2b1d72892142f6102f8539c4029c6c4b5def08a377cda9939bf97fa3a"
+  },
+  {
+    "path": "wwwroot/en/testflight-macos.html",
+    "bytes": 11309,
+    "sha256": "4a00b6b3f630ebf06213263f3d72f18e65f58b7dd6af1b7ea1f83caeedea6170"
+  },
+  {
+    "path": "wwwroot/en/testflight.html",
+    "bytes": 11248,
+    "sha256": "144c33733d23038d2ca36202311ab35503608f3ed23f42a60e4e09040ad8bcd1"
+  },
+  {
+    "path": "wwwroot/en/troubleshooting.html",
+    "bytes": 16802,
+    "sha256": "d69b00eb7df522413187efd3acabe8a8f048627b664b27172b45ed48fcb931e7"
+  },
+  {
+    "path": "wwwroot/en/voice-assistant.html",
+    "bytes": 14310,
+    "sha256": "5eaa43c4721f8bb162c9c737c041c870823414ac4057c6914b802598b8185835"
+  },
+  {
+    "path": "wwwroot/en/voice-commands.html",
+    "bytes": 23353,
+    "sha256": "a9514da369573c1301beaa114734d822bec5de5ef095f5de294bdd4bfe10626a"
+  },
+  {
+    "path": "wwwroot/en/windows.html",
+    "bytes": 13307,
+    "sha256": "6eeebd24b94b51f90402e13298a78bb8d11fcce253b52bb3df653beaf4c58e01"
+  },
+  {
+    "path": "wwwroot/es/404.html",
+    "bytes": 8766,
+    "sha256": "8bd37acdd59b9fd891fe0583b489539da3ae157b8d6213776e980282411b15cd"
+  },
+  {
+    "path": "wwwroot/es/blog-djconnect-project.html",
+    "bytes": 12345,
+    "sha256": "fd2f78ba6d3c61a6e6fcc240a2af71c7f5cbb85ca3dd781d78fc2194c4330d17"
+  },
+  {
+    "path": "wwwroot/es/blog.html",
+    "bytes": 9626,
+    "sha256": "0a2fff3d88224093836b1b9134ae665013c450d4a009262e50cd909c07efa243"
+  },
+  {
+    "path": "wwwroot/es/developers.html",
+    "bytes": 28020,
+    "sha256": "22f558c373910f867253b9cc42a7f1823fae1e58b79bbced5d4c35fb382306ba"
+  },
+  {
+    "path": "wwwroot/es/embedded.html",
+    "bytes": 39227,
+    "sha256": "a697d4105e30b7d74e7427f762609e0edfcadd93fd13be031d7559686f5840aa"
+  },
+  {
+    "path": "wwwroot/es/features.html",
+    "bytes": 20238,
+    "sha256": "3435598dcddc955962d1c920157a0276e1868969d3587950d5dd59db6aa225dd"
+  },
+  {
+    "path": "wwwroot/es/index.html",
+    "bytes": 65144,
+    "sha256": "ef59621baa862059ac5869f8bc26afff63864b1c66513460b3b7321f4a59b0ed"
+  },
+  {
+    "path": "wwwroot/es/ios.html",
+    "bytes": 13086,
+    "sha256": "d054857bb4f85024a296c3e59ed55fd583db6ff8238291b351fd5914ac80af29"
+  },
+  {
+    "path": "wwwroot/es/maccatalyst.html",
+    "bytes": 13143,
+    "sha256": "f5d806c416eb2525778c00a571d8603128ff13b245255252e0042a00ca5eb27e"
+  },
+  {
+    "path": "wwwroot/es/macos.html",
+    "bytes": 13191,
+    "sha256": "0a4a07f0fe693819f3caba5f0a7e704b20a65027372df28e2352cc78b03f7901"
+  },
+  {
+    "path": "wwwroot/es/platform.html",
+    "bytes": 16842,
+    "sha256": "eacf3575672b4089badafe9da2d987818c22a4e497aa34ce71f17b46b26dd807"
+  },
+  {
+    "path": "wwwroot/es/privacy.html",
+    "bytes": 17432,
+    "sha256": "98e52de523b230d9968bfc73c291a4c38aaad0a6caeddce0140196056a0083c8"
+  },
+  {
+    "path": "wwwroot/es/raspberry-pi.html",
+    "bytes": 19146,
+    "sha256": "d85b377a72639b10c7333b010c8c7d9d944cc8e989c896ea239901d1a8fb3af9"
+  },
+  {
+    "path": "wwwroot/es/start.html",
+    "bytes": 49462,
+    "sha256": "2e5a79312a0e125d1791a93309421de4a03d1e2569a52657f1d6e7a65426c770"
+  },
+  {
+    "path": "wwwroot/es/support.html",
+    "bytes": 11478,
+    "sha256": "e7d09a58891bda87680476abb2f7569ad4a727f333ed745158b20f02e2e29a2c"
+  },
+  {
+    "path": "wwwroot/es/testflight-macos.html",
+    "bytes": 11309,
+    "sha256": "f41a25b7c777cc74f6a2237436eee77c3af203b97e1d32a014af40e4893bfa83"
+  },
+  {
+    "path": "wwwroot/es/testflight.html",
+    "bytes": 11248,
+    "sha256": "b58230f55c53ec84adfc3ae63e95ef6aa809a087df6c8b7e5e37b83e6c5ba0c2"
+  },
+  {
+    "path": "wwwroot/es/troubleshooting.html",
+    "bytes": 16802,
+    "sha256": "361c732a82a63ad1b599e83f4c944af32e26143bba85785497f174e0a3fa5e5b"
+  },
+  {
+    "path": "wwwroot/es/voice-assistant.html",
+    "bytes": 14310,
+    "sha256": "89295f772f7bb5596107a73c605bfc9e7b76cc727b5f34d827052136b8f451bb"
+  },
+  {
+    "path": "wwwroot/es/voice-commands.html",
+    "bytes": 23353,
+    "sha256": "2375ed1a508c82b99c00f29d704a7b3ccbf465f359b544733effa2b6ed0e831b"
+  },
+  {
+    "path": "wwwroot/es/windows.html",
+    "bytes": 13307,
+    "sha256": "e6bfb65efdb4d8337e4a1a16ffed65252bf73ede2868d17e9caec19748e9717e"
+  },
+  {
+    "path": "wwwroot/features.html",
+    "bytes": 22829,
+    "sha256": "eab37fb30476481cee876d4fef3dbdb10b8527723d65b1460f8e65ed76f0dc6d"
+  },
+  {
+    "path": "wwwroot/fr/404.html",
+    "bytes": 8766,
+    "sha256": "e3822fa2655b4ec7eed43b0cd7be3b8a590031a3688acd591e44761e26595c28"
+  },
+  {
+    "path": "wwwroot/fr/blog-djconnect-project.html",
+    "bytes": 12345,
+    "sha256": "31288dbcfb7bd69f22c46cc49159427e4d6c54cb9889f9f71838d9a7dcb71e60"
+  },
+  {
+    "path": "wwwroot/fr/blog.html",
+    "bytes": 9626,
+    "sha256": "b6fa8b38a9b7cb857d3dbe675d5f7994b224003d1c667470e08671c518bff34b"
+  },
+  {
+    "path": "wwwroot/fr/developers.html",
+    "bytes": 28020,
+    "sha256": "22f558c373910f867253b9cc42a7f1823fae1e58b79bbced5d4c35fb382306ba"
+  },
+  {
+    "path": "wwwroot/fr/embedded.html",
+    "bytes": 39227,
+    "sha256": "69b2e9b15fd10f7fb3ebb282b38d6b0bec18a5f80622b816dcf9ed0b9d17ab74"
+  },
+  {
+    "path": "wwwroot/fr/features.html",
+    "bytes": 20238,
+    "sha256": "2baa3937aef10adaa668175f3ea32ea2c24961297702635682353353defc86a5"
+  },
+  {
+    "path": "wwwroot/fr/index.html",
+    "bytes": 65144,
+    "sha256": "0079672d4038d165b0d3a6bef19b896d4882bbd186f6a59d5aa60587ed1cabba"
+  },
+  {
+    "path": "wwwroot/fr/ios.html",
+    "bytes": 13086,
+    "sha256": "9f4f03fa319f20b54fcbe14dcea312c07ca0878ef0cb7ed154e2aa09418d1046"
+  },
+  {
+    "path": "wwwroot/fr/maccatalyst.html",
+    "bytes": 13143,
+    "sha256": "ea09677b7c9182917bfe23117de548eda13259ddd54cc3d96b3402e7bb12b91e"
+  },
+  {
+    "path": "wwwroot/fr/macos.html",
+    "bytes": 13191,
+    "sha256": "72d5c451a5dab2ba09dfd7d870de5dd14442d3718a6048f4a1b45395e0feaf13"
+  },
+  {
+    "path": "wwwroot/fr/platform.html",
+    "bytes": 16842,
+    "sha256": "fad668b0c900451041120eac04ea29558f80f46347fe506e4bee5765a0ac71d9"
+  },
+  {
+    "path": "wwwroot/fr/privacy.html",
+    "bytes": 17432,
+    "sha256": "8b624dbb025f40129ad14a636b491cdd07afd161edbe7dab7557f3d7ec17d425"
+  },
+  {
+    "path": "wwwroot/fr/raspberry-pi.html",
+    "bytes": 19146,
+    "sha256": "ccdd441db7de890e3fbb79c7ce76549faf7f50282a6529e3d7e3df865dc4f81a"
+  },
+  {
+    "path": "wwwroot/fr/start.html",
+    "bytes": 49462,
+    "sha256": "20efdb2d339376ec630833c69a574e834a518f3098455e20e80836af71e8af3e"
+  },
+  {
+    "path": "wwwroot/fr/support.html",
+    "bytes": 11478,
+    "sha256": "d40e29fabec3043a5c8f6ca2b9c27173a6f56f85f064366bb1cbc5da947dcddd"
+  },
+  {
+    "path": "wwwroot/fr/testflight-macos.html",
+    "bytes": 11309,
+    "sha256": "c14f210a7cad0c235a1fa4009be2735eeeb3ed6286dfb1dac2118ef5939541f1"
+  },
+  {
+    "path": "wwwroot/fr/testflight.html",
+    "bytes": 11248,
+    "sha256": "40db987754ba012c48d3b49eb0a5d3d76dc4d2cbce573c7b6d7ff6ecada6d7c3"
+  },
+  {
+    "path": "wwwroot/fr/troubleshooting.html",
+    "bytes": 16802,
+    "sha256": "5d9b98badfb70161b4172309ea824b582c16998c456fb320e57f45bb6d1b6c4d"
+  },
+  {
+    "path": "wwwroot/fr/voice-assistant.html",
+    "bytes": 14310,
+    "sha256": "b3c96b94d1bd31922c5a165f47525be4b98d77aeec063bedc9c27518908c91a9"
+  },
+  {
+    "path": "wwwroot/fr/voice-commands.html",
+    "bytes": 23353,
+    "sha256": "d8c0eb1f5722a4df417bd3535a974da32066e106bc12d9a9cce100e2f9b9c7b6"
+  },
+  {
+    "path": "wwwroot/fr/windows.html",
+    "bytes": 13307,
+    "sha256": "e7d71b0642664ce72f496f94d32d1b7374415c3b55a7b882d0d01d1296df5acd"
+  },
+  {
+    "path": "wwwroot/index.html",
+    "bytes": 65040,
+    "sha256": "1c0a14d2cc2e4aea06b3484ed3d446f1bcf8f6cace395ec419291f62b63ed033"
+  },
+  {
+    "path": "wwwroot/ios.html",
+    "bytes": 13767,
+    "sha256": "40229b409ecc80b55842ae4ebe09c7f7e2a117cf3cf28b1939cf79398e123258"
+  },
+  {
+    "path": "wwwroot/maccatalyst.html",
+    "bytes": 13101,
+    "sha256": "4360b839f737d05900d8a0bb94a0a34b017ebc4870e56b5f608884f93d68c1e6"
+  },
+  {
+    "path": "wwwroot/macos.html",
+    "bytes": 13876,
+    "sha256": "12137db2691be76ea990735cba7f3066c06127cd1f896355bcdd006562388404"
+  },
+  {
+    "path": "wwwroot/operator.html",
+    "bytes": 8875,
+    "sha256": "ff185d9196a8298b3b694e80ffa1ceb2a2ef5d8f1f27eac6715be2d485d89b49"
+  },
+  {
+    "path": "wwwroot/platform.html",
+    "bytes": 17362,
+    "sha256": "2726edd32e8a058859130f29385f0f77a552c4541a035b82d25d7682004ec851"
+  },
+  {
+    "path": "wwwroot/privacy.html",
+    "bytes": 17577,
+    "sha256": "bf5b1e4584ad3571566897351e032561f8059deb71fca4acca18c98a83e43722"
+  },
+  {
+    "path": "wwwroot/raspberry-pi.html",
+    "bytes": 19107,
+    "sha256": "7134b5c61e704ddbfd91e2f83e750a08c6c4900415ea7683597604b46dc9b496"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/de/latest.json",
+    "bytes": 393,
+    "sha256": "6fd3300aa14cdc91c5dcc2621ceda77156fb3a72f016a3e54b03d022bde36cc7"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/de/latest.md",
+    "bytes": 274,
+    "sha256": "8fe20f51c2eeee6cd55c8b0d62e3469c8b43f435a8c2e6aa928cacd800c68429"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/de/v3.2.24.json",
+    "bytes": 1212,
+    "sha256": "46c2b3139e617619bbd4da9fb80e68d62c1fd5f7cc5484c084b41dcf25d3e5eb"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/de/v3.2.24.md",
+    "bytes": 1069,
+    "sha256": "f2dc8322b3ec6fa320214fd6e9c9f6eb489eafbac0e23c0f93bed573827f459e"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/de/v3.2.25.json",
+    "bytes": 837,
+    "sha256": "718c05a2e93b115aec3f19100f461d03a447e6b514408b9f837d0b99871a3521"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/de/v3.2.25.md",
+    "bytes": 704,
+    "sha256": "75a9d4c2586dba30fd7fc89dced6453b9fe34e736eb562c511da96bedc8461b8"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/de/v3.2.26.json",
+    "bytes": 1038,
+    "sha256": "8f98ff56c3039218a56b5bc8d9bb04bf399cc2fe7c932d6e711e23dfcbb0c20c"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/de/v3.2.26.md",
+    "bytes": 901,
+    "sha256": "94411fbe242c9d71e418b062eb701cd706db0bbe338437be1707cf8baf468573"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/de/v3.2.28.json",
+    "bytes": 822,
+    "sha256": "810d4f4695353646ca89c04a42a7995fca876e4440b2e39b2aa634c2c6bf5ff1"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/de/v3.2.28.md",
+    "bytes": 689,
+    "sha256": "f721f2c1997b8fce00b3649a27dd3a1e0d437c7fd8f4c87a73a76f663dcad4c6"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/de/v3.2.29.json",
+    "bytes": 1255,
+    "sha256": "922c6ef78ff821964b2294b5b42ed7b8bc249a2c3886f6ea2367a0634319a1c5"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/de/v3.2.29.md",
+    "bytes": 1115,
+    "sha256": "62954ca014459a323e63864ad60eeac74ce5508629e2784a4a58274982aa1e95"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/de/v3.2.30.json",
+    "bytes": 1055,
+    "sha256": "a486753bfb229f0693913f3a1f23ac2676bb7985bf31fced934839dc2b8db24c"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/de/v3.2.30.md",
+    "bytes": 918,
+    "sha256": "14dc8d88a9e3a5e390553aa67ccfa9084b5134305396352ecfdea2e2d1c98874"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/de/v3.2.31.json",
+    "bytes": 1071,
+    "sha256": "a01cbc391020433d11031b8792bb1d29508a87fa55f7601d7bcc0a57f81f392b"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/de/v3.2.31.md",
+    "bytes": 935,
+    "sha256": "f847c8c2d9164270c26e5313dbfa921ba019b03bf6aa1460675aa394b4e3df36"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/de/v3.2.32.json",
+    "bytes": 396,
+    "sha256": "efa8e0b6f92588074033188a2d0d07e8aede3074b1eb31d8a535c4f445e5999e"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/de/v3.2.32.md",
+    "bytes": 275,
+    "sha256": "ffdcbe258d56d1bd3815e3c0d488f9c2bc2f345f75dbb4f5ac232698269a1172"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/de/v3.2.33.json",
+    "bytes": 664,
+    "sha256": "d12abf80c3803cdbf98a1ad829efa446dda58f332f116ff613bcd0381a1c7eb7"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/de/v3.2.33.md",
+    "bytes": 536,
+    "sha256": "2f09474cf7ccd8e87f962ba9cddc42e9d8f37b7c1bba1fea1a882f841ab02b0f"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/de/v3.2.35.json",
+    "bytes": 471,
+    "sha256": "5430b221a2fcc9e79f8d2416a86cabba6d24caf36ab2a93d60c441c8cfeaed3d"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/de/v3.2.35.md",
+    "bytes": 348,
+    "sha256": "ad6c79d1abc3f73aac46f1667aab914f35850e7174f2472f10d8cf52c18d2083"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/de/v3.3.0.json",
+    "bytes": 393,
+    "sha256": "6fd3300aa14cdc91c5dcc2621ceda77156fb3a72f016a3e54b03d022bde36cc7"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/de/v3.3.0.md",
+    "bytes": 274,
+    "sha256": "8fe20f51c2eeee6cd55c8b0d62e3469c8b43f435a8c2e6aa928cacd800c68429"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/latest.json",
+    "bytes": 373,
+    "sha256": "431f4dedca7cd643a898190ecc338f6ceeddfc888ae2d766efad0cb2748fe6ce"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/latest.md",
+    "bytes": 254,
+    "sha256": "8693f6caa2c7a301034dfd96a7ea4a60e00c3782e94b7209f98244f86abbcbba"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.29.json",
+    "bytes": 1037,
+    "sha256": "6ff533b48c213b9def2d11cae83e8621f79d98babb5a2a96b8f9553d2b60a4f1"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.29.md",
+    "bytes": 905,
+    "sha256": "ef95ebad7dd4b7b6e18d8eee03fd025ad7b62972088098777eb168334f96f89f"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.30.json",
+    "bytes": 703,
+    "sha256": "1a764c318cf043afbc5334a0fc2484559a26cf05c0dc61d48b1023ba68964b62"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.30.md",
+    "bytes": 575,
+    "sha256": "2e3db9d31611c1caee133828d2c3d7587b0d760bea4622204b10b1e60f8e5cd3"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.33.json",
+    "bytes": 547,
+    "sha256": "f52d52c753063f3ce00b139846cfc0dae7b296bc059d88cb0be927c953cddc5a"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.33.md",
+    "bytes": 422,
+    "sha256": "9514bc5ec8738ae8b6932b44929b4dd3ccf718abc4ad47e4c03e3fab10361bcf"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.34.json",
+    "bytes": 1269,
+    "sha256": "74f98ea237156e7afe2380b92534cb831a5ea37f1e1fc6dd49cc8c7b11e79106"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.34.md",
+    "bytes": 1129,
+    "sha256": "1e12be49bb27fabfa02e3d91abb0849454d3d5d9211b7a1ac67e439dd2bf114f"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.36.json",
+    "bytes": 1932,
+    "sha256": "06ecd26c823b2e420ac5b0d22ede5eea8a3feccb49b585b62a1f05a9682f9ddb"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.36.md",
+    "bytes": 1780,
+    "sha256": "34d3440e2e733489c1b5f04569b8149ca6fc74f10d7bdc88de39c32a3920560d"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.37.json",
+    "bytes": 376,
+    "sha256": "dc06e9fe069e466f2987ca9ccfd6b27ab4083d9374d4073ce71ddefb46a3c46a"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.37.md",
+    "bytes": 255,
+    "sha256": "9f2435cd0381a81010de3a8c735160c73b380b40881539109ecb2eda24a3f462"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.38.json",
+    "bytes": 1609,
+    "sha256": "320c4f5b5aae7b4e497065d14c3d8131ab953e1762a022314f5cb995998e540d"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.38.md",
+    "bytes": 1464,
+    "sha256": "199a83a2f22874a634cb90ac3bad534863824f24591b5302524e1980e51babe7"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.39.json",
+    "bytes": 376,
+    "sha256": "4465164a0b6487768f97c5b189388eba0872e08f63735548134eb9ef4a8faff7"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.39.md",
+    "bytes": 255,
+    "sha256": "3c7559f282fdf07f3e1cd39444ac1d5ece917f155a97b009e65266cd881896ac"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.40.json",
+    "bytes": 505,
+    "sha256": "f3febf602337e6fe7903128f758c3342956abf413a55d016c9d53312b69c0be9"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.40.md",
+    "bytes": 379,
+    "sha256": "3fb3382874f7af9e0f3ddde824b6a536e5bf1242170c790509ab0f9cef3587a6"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.43.json",
+    "bytes": 1155,
+    "sha256": "faa3b8d1a305d17beb297c5bf9545a2311a1263b85b3b8158ce18cfd027ea5d9"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.43.md",
+    "bytes": 1021,
+    "sha256": "68bcddbc7b3b5c22f9b3a62be58e852394390b99b0f816acf91485d7f8b7eb7d"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.44.json",
+    "bytes": 1340,
+    "sha256": "19150b4bd26f307f2dc3c296de6ef8a8bc883ed92989ffd47064e30a828e0fbb"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.44.md",
+    "bytes": 1195,
+    "sha256": "bd9b6698902826772e5b14d1421d5e070961c46c1d4bf90699688fd1e9e76183"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.46.json",
+    "bytes": 1489,
+    "sha256": "d56822621c3bd9ddd61a137c7426f01b903d8d06251fdc8e14a80403aabf98b4"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.46.md",
+    "bytes": 1347,
+    "sha256": "f9d5cf54f4270d0dc6074915646f7ebaa35ea146456204db46fd3f73ec06c485"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.47.json",
+    "bytes": 1889,
+    "sha256": "f20cc03d119dc1056f7b8009520753e5c01df604103c226c159043dd75a9d566"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.47.md",
+    "bytes": 1734,
+    "sha256": "90fc4042a2707a3b94add3642f349effb62c561794fc0f110e3399d75e024c09"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.48.json",
+    "bytes": 1371,
+    "sha256": "1f594ffceea52c7915000795e295d4f5e70cbafe323988242e5efea40382522c"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.48.md",
+    "bytes": 1235,
+    "sha256": "4597b187e745cb70d18f98a1009d49cc2b83e924f0f913a7cf8f0ee89733195e"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.49.json",
+    "bytes": 650,
+    "sha256": "2855cd175ff04757e95c3d2ab2ecceee89c69a11cac36da36627b5eb81a859c2"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.49.md",
+    "bytes": 524,
+    "sha256": "d346b73e8cbb11979d13b9d9aed92f91096a06f0ba132332776d0da7921dcd5e"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.50.json",
+    "bytes": 950,
+    "sha256": "45eb13bbe76262b8cea6f0e2b2a4aec489f2122c0a688c5daa8ae52fd53cb67c"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.50.md",
+    "bytes": 818,
+    "sha256": "80de58576f12b5f8221a3c84a6a41fe360de306d59d8abd7cfbf4631642eeb23"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.51.json",
+    "bytes": 727,
+    "sha256": "1b9e7a0d462d86da707802028885171672f4b16e9ecbb198378eb23b40ef1a2e"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.51.md",
+    "bytes": 597,
+    "sha256": "a12b30e15245833036db902cc67b5a168e3caf1990b76dff6cb3b0cba109df45"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.52.json",
+    "bytes": 1100,
+    "sha256": "19ff8aa3d1b481b48b5790eda37f96e3fccb1ebca6faace6c1d0015c0b93f61a"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.52.md",
+    "bytes": 966,
+    "sha256": "cf3b59ba71ced4c93b79d66b51aad3b5a471fb2e6d52bbf775867df4511fdffb"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.53.json",
+    "bytes": 636,
+    "sha256": "232dbb698e997fec3c095a8cd753b06993684e039381a2533bb439af2185ab14"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.1.53.md",
+    "bytes": 508,
+    "sha256": "2d048cf2b8684af2d3c3c4580b7bc2fdecf28e6417b5b9a77808c81dabcac5aa"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.0.json",
+    "bytes": 1149,
+    "sha256": "8a6975490edfb7310a1a5145f61a40c95fdb384c7a317298a5afa5715fc67561"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.0.md",
+    "bytes": 1017,
+    "sha256": "15deaad4f7d3aeaf5fc1d3e0d1e771590c4ba867cd05a91fe8959266d82dcb1f"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.19.json",
+    "bytes": 597,
+    "sha256": "21f9540aebad17d61bfecaad81d59fec089c1019bcaffa6eeff6b73797e24a65"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.19.md",
+    "bytes": 467,
+    "sha256": "fd8d09a43544da7f6aa2b1caa5cc46196a890c918c9ff2108e61e331a87100a6"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.20.json",
+    "bytes": 509,
+    "sha256": "91bad2c346895d805705a7ecc308403bb16956944734b1ab73379484839f49d0"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.20.md",
+    "bytes": 383,
+    "sha256": "098a28df4eea4d4c629ff967e4178d73a52cd3c52dfa5a32eb1e4e23bbd4ae64"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.21.json",
+    "bytes": 966,
+    "sha256": "562daf094b398294e45cbed22401ceae20d18dd5ff27ba52812b0990337885e7"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.21.md",
+    "bytes": 827,
+    "sha256": "4e3eaa3edf1c7938dbbf8a8da0957a7701092327b3a488d405d8bfc0311167f3"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.22.json",
+    "bytes": 1031,
+    "sha256": "a95bb101b8eb30e7b2c2b7a86379b9ee1f6998bf00a5ed0dc6179c63c542423a"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.22.md",
+    "bytes": 891,
+    "sha256": "9360d8df6b2d85ed3322d396cdceb65d7338d19590561e5e0bfca00ce7c7d921"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.23.json",
+    "bytes": 829,
+    "sha256": "9093d21c0c23400eba5670f8bc9b965128d382ae33eba0a94765201ffd98db55"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.23.md",
+    "bytes": 694,
+    "sha256": "15cbe9fe32374b7cc1e82681d4e41c201c18ae7dfc100783382b8d48c20ff936"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.24.json",
+    "bytes": 1086,
+    "sha256": "58a5c57b3729f3bea17717d47b0ae840c0e8751a339423bab484e287540ff470"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.24.md",
+    "bytes": 944,
+    "sha256": "59471032650fa963946388100fb4bca8e6dbe457a90e029bce74414602082440"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.25.json",
+    "bytes": 784,
+    "sha256": "8336724729fd6e18daf44e8b2caf3d5d74d6f6d8c1322dde3fedb229372d3554"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.25.md",
+    "bytes": 651,
+    "sha256": "e65a9f690cd533f2053c8f1bc0662d92dd3668d8e09649d39d4c1983a446d57c"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.26.json",
+    "bytes": 1018,
+    "sha256": "1cfd145b7ad17f6256454356295b702a75222a54ada2b12c758f276e9c40aeb8"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.26.md",
+    "bytes": 881,
+    "sha256": "7b00ffbb502b189cd730d37254d85bd1d742eed633dfa4e3b22ce93b3f42a05b"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.28.json",
+    "bytes": 802,
+    "sha256": "d8421d45e2c2b59ee40cb344dcae3993aad2bbb73f561ef96e11f228a0d06779"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.28.md",
+    "bytes": 669,
+    "sha256": "74aca1f093bac469662cce354a7694a8c8fe7cf9c8176e1c98fa4e9fe3659540"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.29.json",
+    "bytes": 1153,
+    "sha256": "c6859cda23f7c106aade6ff0e1a3bc62adfa6aa1d8b49f4b9354b8953dd29b4c"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.29.md",
+    "bytes": 1014,
+    "sha256": "6a6179fd8fd78a2b022b94c73cf5996fa065b31233650a06d95b47e6a3841550"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.3.json",
+    "bytes": 807,
+    "sha256": "8770bf9801c9e227074157ea53600b29a1e5f225f06c770a161bbd6de68605a7"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.3.md",
+    "bytes": 679,
+    "sha256": "0ea2d533cafbc23195b924b9533f191cd6538fd57a78519db1bf974b09549c3d"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.30.json",
+    "bytes": 921,
+    "sha256": "57e921661180458d89211219a0dd19b51e81e7efb792ccb2d3dffad8b6d61f2f"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.30.md",
+    "bytes": 785,
+    "sha256": "6734cbacab8df659908e0c2fb838906c32829e0499abfe479cf92d63d316f4c8"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.31.json",
+    "bytes": 1026,
+    "sha256": "239a8b64da48f130f6e31b81afd54612e04e88c5637ebe265717b272f4941672"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.31.md",
+    "bytes": 890,
+    "sha256": "457d99d871d63d6c010fe20d4f1e06ba200eae90355e64a2ba97c274ca6b29a8"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.32.json",
+    "bytes": 376,
+    "sha256": "e279a2e4877411918f67981f885067f31e60c5a326685a2e6e14d18c6537b98c"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.32.md",
+    "bytes": 255,
+    "sha256": "53c35404a513d14b8e3af69256695e7ab313e28bf08d94100fba9a0fe811e397"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.33.json",
+    "bytes": 618,
+    "sha256": "0d9e9d8a8ab6996be4d29e8ef9565815cd38f2ec2d38e093e5be6878db1e57a1"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.33.md",
+    "bytes": 491,
+    "sha256": "6bf7e32d872c579cb14581c78c502bcf052d839047a65668854f441cc3d9ad3f"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.35.json",
+    "bytes": 451,
+    "sha256": "883f4463587687b9f687fe4659e21583f5a4311d683d9acc11b3fa2ce2c9b4eb"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.35.md",
+    "bytes": 328,
+    "sha256": "40a6f56e4232b0b5875c8c715b20e9fb75764cf9d8f8f9c1c2314c347a81b0af"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.4.json",
+    "bytes": 965,
+    "sha256": "a73b14a3d0c098b497e5f8b30b8c0afbbc4c1c30fa845af2f8b02af1e612f80e"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.4.md",
+    "bytes": 836,
+    "sha256": "0893bcd153ebe64ef2a389181aae17eedef98ead53bfff859b2f9b6c969a4b4f"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.5.json",
+    "bytes": 803,
+    "sha256": "2344e58bcf22365d645d1da2a4b13e993189b0a2cd779a3d0efbb5593c29bd94"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.2.5.md",
+    "bytes": 676,
+    "sha256": "27b2d79fd7a3bfd09fcd86e6e2e72811b35d582ae399b656e56bb15ffe8dbc60"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.3.0.json",
+    "bytes": 373,
+    "sha256": "431f4dedca7cd643a898190ecc338f6ceeddfc888ae2d766efad0cb2748fe6ce"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/en/v3.3.0.md",
+    "bytes": 254,
+    "sha256": "8693f6caa2c7a301034dfd96a7ea4a60e00c3782e94b7209f98244f86abbcbba"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/es/latest.json",
+    "bytes": 375,
+    "sha256": "e8549da95766ce1a4c868b05708e405bb6856a31c31f58f97218cbcfb5c6ef7b"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/es/latest.md",
+    "bytes": 256,
+    "sha256": "4ea00a8042e3704057400c14962d53ae0d0a7e1a74b8d814e809e14a8d8c0a45"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/es/v3.2.24.json",
+    "bytes": 1155,
+    "sha256": "8b3a6e4b9491c809951315de96bb9124feae87a8000dc6f97b1298ab99517327"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/es/v3.2.24.md",
+    "bytes": 1012,
+    "sha256": "28a813eff75731c482153487f8dde5021e09a5a78f1287d34ce531049fe50918"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/es/v3.2.25.json",
+    "bytes": 827,
+    "sha256": "c83f5bbd2f50560c8ec6f04b1c1fa1c3da205e062cc0656531bfae6e60445bd9"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/es/v3.2.25.md",
+    "bytes": 694,
+    "sha256": "d69ad1853faff349e3d3d6c2a752e3dfb03b4f6ee789be96dce91f06cbfd04ec"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/es/v3.2.26.json",
+    "bytes": 1020,
+    "sha256": "d7e5079fd82cea8a7eaf15c9893262cd0d961dce74a41ede60dcb3af77be156e"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/es/v3.2.26.md",
+    "bytes": 883,
+    "sha256": "ad56132902a7609799a3d2b68b425a74f8a9b5263e00deaa115fc19c0dc78f08"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/es/v3.2.28.json",
+    "bytes": 804,
+    "sha256": "0431bbceedf71dbc8755135bb93a5800adc10beb3581dff8d15993add1758513"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/es/v3.2.28.md",
+    "bytes": 671,
+    "sha256": "db03a968d65ddcde34ac86f39c3a0b15b61dec950c263ec47de3c90be6be65dc"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/es/v3.2.29.json",
+    "bytes": 1255,
+    "sha256": "eb7f6e085bc7e562fd5954dbd622ad8ba5e208d1df40644060119d0e8fadb89c"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/es/v3.2.29.md",
+    "bytes": 1115,
+    "sha256": "b466558652e4193c5e50b3cfaed63b999e298157d02a244ccc59a360cab468ea"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/es/v3.2.30.json",
+    "bytes": 1053,
+    "sha256": "0ead4e7f7899647142906804c1c73195fd1fcb7e0f3f68d6f997c79f09b20b02"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/es/v3.2.30.md",
+    "bytes": 916,
+    "sha256": "eada192541e9a854150e3ab428f59a5392dfbe5ec78f4fcf618099fe011dc849"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/es/v3.2.31.json",
+    "bytes": 1112,
+    "sha256": "1a81cba08f8127c7f6b243d497289e5ab94a49cbcb0ccc8ef55587d86e7a6d97"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/es/v3.2.31.md",
+    "bytes": 975,
+    "sha256": "e8319154358b175c61f8471026233fe1ad007a60c7fc1e2f210fc1a0114eb07c"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/es/v3.2.32.json",
+    "bytes": 378,
+    "sha256": "003145f47e59990d00d1aaa47342373ef2ec4082cc4c0726f71bf0055cc38b52"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/es/v3.2.32.md",
+    "bytes": 257,
+    "sha256": "7f51e90472dee3292d62f525dc737fbcb1d9b0b76b4c5d25045bba2bb074c9fb"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/es/v3.2.33.json",
+    "bytes": 674,
+    "sha256": "39dda94a43ab1cfb0f6f10653ef91663cb8ce1614e81354fe4e6fcbe000b4367"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/es/v3.2.33.md",
+    "bytes": 546,
+    "sha256": "a9be2f325bf50258d14734ed81a65a77d35f83efaa4599af275058c2008fc19d"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/es/v3.2.35.json",
+    "bytes": 453,
+    "sha256": "4c04cb7d115ef700697c7c099173609845102e3b7a8ffc046dd01e57649dfcef"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/es/v3.2.35.md",
+    "bytes": 330,
+    "sha256": "62f27e161fd751c129ba4620be0c16eddb66a0e7b6c6890d0409ca98414596c8"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/es/v3.3.0.json",
+    "bytes": 375,
+    "sha256": "e8549da95766ce1a4c868b05708e405bb6856a31c31f58f97218cbcfb5c6ef7b"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/es/v3.3.0.md",
+    "bytes": 256,
+    "sha256": "4ea00a8042e3704057400c14962d53ae0d0a7e1a74b8d814e809e14a8d8c0a45"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/fr/latest.json",
+    "bytes": 400,
+    "sha256": "1c34647f71a6e1318290233b0ba69195305ea69fac47b1614c0c034237599014"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/fr/latest.md",
+    "bytes": 281,
+    "sha256": "402866278f4f7f4265da378bab80307ce2fe693fb18fb650f5e2dbe8948e33aa"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/fr/v3.2.24.json",
+    "bytes": 1208,
+    "sha256": "4ca707277b5d068965f1cdd8df6dd064e62fb7f419ce2cc3d6160b25c454a183"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/fr/v3.2.24.md",
+    "bytes": 1065,
+    "sha256": "0b668978ebac3d2c8305432e2c4cd8c0d70fa6e16d1c32efcecadb387a3e1571"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/fr/v3.2.25.json",
+    "bytes": 875,
+    "sha256": "d6e46be1019acbbe2d9c752e827a59bfac923301ce4c27257f3e1e5e137d6c46"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/fr/v3.2.25.md",
+    "bytes": 742,
+    "sha256": "574f82fe7df52b47c75e1a179b71538d9b2dc6628feb4e3b1705bba946b7ce80"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/fr/v3.2.26.json",
+    "bytes": 1045,
+    "sha256": "e099f8ac3f68e4a6767191e5e33484348505f3f5c4a088a2405d5a717cb8e4a1"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/fr/v3.2.26.md",
+    "bytes": 908,
+    "sha256": "94b39584f0083e49a9dc9e68ba8a0ba96c796df5bb0b3c4c2bceb90847695ea8"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/fr/v3.2.28.json",
+    "bytes": 829,
+    "sha256": "a07f64646ba6c98455481205675abc13a56b7c839b91bdde8fb0012509f9df4a"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/fr/v3.2.28.md",
+    "bytes": 696,
+    "sha256": "bc9ff7b704e1eff70be43ff011f4c431e8487c2647eea46b1394b35ee475cc98"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/fr/v3.2.29.json",
+    "bytes": 1337,
+    "sha256": "2b8f4783eee556957734f7ea707ed4843b53ce2532c9b9beeeacc8a457acaed4"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/fr/v3.2.29.md",
+    "bytes": 1196,
+    "sha256": "2ce3dc05d89a6a5160502b6c1eaee05f59c4dcebdd41632654503d2b189cf1de"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/fr/v3.2.30.json",
+    "bytes": 1081,
+    "sha256": "eadba475aea80870a7da5f4786ee3060755cf4e63751184cc0dde71af9c470d3"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/fr/v3.2.30.md",
+    "bytes": 944,
+    "sha256": "f36efbb9afd5b31b801de077d3a21fdadb9d40ef52c960f4045e01a83cc82ba5"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/fr/v3.2.31.json",
+    "bytes": 1177,
+    "sha256": "d0f0841ae0958a8c2104669a4687441f1e079a7d3c65c05a94e103532f4d6844"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/fr/v3.2.31.md",
+    "bytes": 1039,
+    "sha256": "f54f4f8e137dbb0b850218e000c40a5090bb120c5ea500553f2b2613f01c780e"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/fr/v3.2.32.json",
+    "bytes": 403,
+    "sha256": "00819311ae6890c1250ce0125b995ea378c39e497d9bb9d3583cf68523e6859e"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/fr/v3.2.32.md",
+    "bytes": 282,
+    "sha256": "535bd92edd05f6203da163bf5a7eee26d15340f110b6daba36199e2271cb749d"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/fr/v3.2.33.json",
+    "bytes": 710,
+    "sha256": "ca9b5299f6a65a06633f0d7449aa7edd2e92b712b7e125135713d93d4f66a49b"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/fr/v3.2.33.md",
+    "bytes": 582,
+    "sha256": "210c2f58050b74679224d4ff1712ca42ffcd0dff101f29a86dfe12ecb1ebe7d4"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/fr/v3.2.35.json",
+    "bytes": 478,
+    "sha256": "651775a21b296572fbf52b062493bb2bf6cbd3088857ab3854a0c6bcd7bd9a8f"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/fr/v3.2.35.md",
+    "bytes": 355,
+    "sha256": "dc83c98d15c8e3219171afab72691ced18da8679574bf8c86a30ab95b99d32b8"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/fr/v3.3.0.json",
+    "bytes": 400,
+    "sha256": "1c34647f71a6e1318290233b0ba69195305ea69fac47b1614c0c034237599014"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/fr/v3.3.0.md",
+    "bytes": 281,
+    "sha256": "402866278f4f7f4265da378bab80307ce2fe693fb18fb650f5e2dbe8948e33aa"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/latest.json",
+    "bytes": 373,
+    "sha256": "431f4dedca7cd643a898190ecc338f6ceeddfc888ae2d766efad0cb2748fe6ce"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/latest.md",
+    "bytes": 254,
+    "sha256": "8693f6caa2c7a301034dfd96a7ea4a60e00c3782e94b7209f98244f86abbcbba"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/latest.json",
+    "bytes": 397,
+    "sha256": "453f0287e56df9cc354e9feccbc267c3021432a0b8d3b8ada47e1a3c04cdd8e1"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/latest.md",
+    "bytes": 278,
+    "sha256": "2433ec0a460cfc43c2ed8a705e4b9d01e7d43a9356dc83b792feb9c5badec150"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.29.json",
+    "bytes": 1061,
+    "sha256": "ef7ca8405b3e3c5e0875484b8cfb2e8e521bf2aba6e4db553bf2ddba2b7a1692"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.29.md",
+    "bytes": 929,
+    "sha256": "095e0c5720ffd753cbf557ddc81f0f3d612f72f69ef6f9ca2d6852a5d9ea599f"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.30.json",
+    "bytes": 727,
+    "sha256": "22d377e01095a59a0186dba7986c69f28aeace106c824d422dc61dea3d22fc9a"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.30.md",
+    "bytes": 599,
+    "sha256": "4e57edface2eaa723e2498fdbd7436f7793687af2f1dfb66bcf4ba0526c4d8b2"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.33.json",
+    "bytes": 567,
+    "sha256": "29aaa0f8936ad341162d7273175c8d9294e4e831567b04df56b563db6221312b"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.33.md",
+    "bytes": 442,
+    "sha256": "244a315af2eb58f5992505355b5d4ee35482abca05170abfce502384ae857b80"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.34.json",
+    "bytes": 1094,
+    "sha256": "6867ea6e30c74aadd6d7d54eee399d2e768b5e60ad44f6a4a982e8e4c7d5198e"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.34.md",
+    "bytes": 963,
+    "sha256": "44061e0e0f29c4d62236c6cc618044507736dde30ba6798ea1c4192d4c9efed8"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.36.json",
+    "bytes": 1956,
+    "sha256": "b8f0a0e9da9724b5a99a13bd19f1873c5c76d982e1f65385df3bafed5fea25ac"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.36.md",
+    "bytes": 1804,
+    "sha256": "fa1dbabe1b6b041d4e166969a11db5422fdeb05518bf8528f402034d35ee1898"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.37.json",
+    "bytes": 400,
+    "sha256": "0e4a93d7497f12216e1567b650a4d1578a657b626f363cad8c8c82a820b9201d"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.37.md",
+    "bytes": 279,
+    "sha256": "4e0412c9b1f8bc75ad13251da3c6d95aab9508cb1b3dff699dd85ef5aba2122b"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.38.json",
+    "bytes": 1232,
+    "sha256": "2803ca690beb31ec957ecb4c4b99a65c222467da796f27730b4788df5997466c"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.38.md",
+    "bytes": 1104,
+    "sha256": "0ed641dc8b4a1e2492abe51ba618fb9b4cbf1ee25a35f3399ac1575d7d32ef71"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.39.json",
+    "bytes": 400,
+    "sha256": "eab9cf47e8ae58d10ffc2c131b696ed8a860b335f6eaeb1fdfc044bff4b84633"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.39.md",
+    "bytes": 279,
+    "sha256": "139df2088dcc1433419dadce6443e544a4f8c6bdf224fc75036c71fc45f9588d"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.40.json",
+    "bytes": 574,
+    "sha256": "808e066b4311197f7609f035964e6fd5943d2df34bc63833370c1bbbd5ac2b54"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.40.md",
+    "bytes": 450,
+    "sha256": "f4c4a2e16d4297f0d9de8791adff3b182658ee11d5009fa88f04f2507271236d"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.43.json",
+    "bytes": 1015,
+    "sha256": "bff4a70695aede6dc74eb313088a1352f149e8467b6192a20b558fa85e029e30"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.43.md",
+    "bytes": 878,
+    "sha256": "2ba5367235cdbc2b416c2d784d223f730165637ecb03b140cbcf862ac513d5a7"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.44.json",
+    "bytes": 874,
+    "sha256": "009c771e01fb7e062f435eb73dd7b7aa395d0509005c6d947f450ba659f68f2c"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.44.md",
+    "bytes": 747,
+    "sha256": "1847fd918711976d2885e8627a292280664c322326501d576b010c0d8da63c4f"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.46.json",
+    "bytes": 1010,
+    "sha256": "84677ae7f818820c7dec336bda48b7b63e77e6feb95629d07dbde16edb1705a7"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.46.md",
+    "bytes": 883,
+    "sha256": "284ebb35303a4e4250e094e0ea7f4fbbfbf7d905a0db4df9395388c1ae0e93a0"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.47.json",
+    "bytes": 1913,
+    "sha256": "a8df6643563ce3713a8ef9d6f9393ed9420942f59eaeed8161be6908f863832e"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.47.md",
+    "bytes": 1758,
+    "sha256": "912a2d8f0a31fce3ea8c6449b799f64312e15c1abe0de10fce33afbe32015518"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.48.json",
+    "bytes": 1462,
+    "sha256": "e2da47c8a12cb4151cefcbfcd9b572d3a5b180a423e94fa8b6ebe308cf93165a"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.48.md",
+    "bytes": 1326,
+    "sha256": "4858ad48d77437a7dd3d7b5acd33202e8873127221e2e89c1078469c1c7c32fc"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.49.json",
+    "bytes": 678,
+    "sha256": "a4f5798fb175a661048ef2db7d8f8f8860ee415c5a159ac1ff53a1608f53887f"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.49.md",
+    "bytes": 552,
+    "sha256": "909cf6683dd460c990c17d3e9ac8d0071709611c2254764a04d228997d59a1fc"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.50.json",
+    "bytes": 993,
+    "sha256": "a4bb41313bc444c55a9a5673c35114a564adc99109ad3edbf8e275008dd7956e"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.50.md",
+    "bytes": 861,
+    "sha256": "ce8a733164d825328326fcb8dbeec5768962803b80fa3eb90edfa5b8bb779c0b"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.51.json",
+    "bytes": 760,
+    "sha256": "ebe82682f04f6069c89dfeb8134a6c204c5d876b226a28f1a87813e7f710c861"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.51.md",
+    "bytes": 630,
+    "sha256": "08085952b98d712ecb859efa9ebe0041fa517fd7ca331574eb6f10b52a98084a"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.52.json",
+    "bytes": 787,
+    "sha256": "c24e957e786ead3683f87bc7ab3c074a22b0988c23a470e643709482f5e5a6c5"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.52.md",
+    "bytes": 657,
+    "sha256": "739398ff69a471c827010819df8dd185d06fea20576a821cd3c93d29553b3691"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.53.json",
+    "bytes": 688,
+    "sha256": "fcf5355adb2be15da0847362d37712bf588f867dfd6da578bae18a926fe2e90c"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.1.53.md",
+    "bytes": 559,
+    "sha256": "2a8fed6494d580bf9d9b099000af565938c6d14f591c2f375de6a3b672313c10"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.0.json",
+    "bytes": 1196,
+    "sha256": "c6d1c06f5452d6288dba0cb3611e9da16cec1b1f2497bb22e5bf9529a333a07e"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.0.md",
+    "bytes": 1064,
+    "sha256": "bf8871977722dbc123975be98c5640b62815a6cbbc3e9047522b2d426a2660c5"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.19.json",
+    "bytes": 624,
+    "sha256": "54e9920f24108a2d06e22b8bd4f5fc76f92511efab4d09847c368be06efc9288"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.19.md",
+    "bytes": 494,
+    "sha256": "0841ade3de69e1f7084f5d96080e77911d2350cc208186fc246f2b080c373618"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.20.json",
+    "bytes": 545,
+    "sha256": "0e4fd0a98c623a1ff8d878f5c03feb07a5d292261e0c4cda64f2648440250517"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.20.md",
+    "bytes": 419,
+    "sha256": "3db3b9703dfb0992b9458c7905881d267e5adf921c98d379346bf254101777da"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.21.json",
+    "bytes": 1030,
+    "sha256": "2f35e3761681614ddca2ecffc8f7eb025fac350feb7f2d30b2624e0ed6f86d93"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.21.md",
+    "bytes": 891,
+    "sha256": "3184b22661187f3652e6a12f9a8438583d30153b89bdc040247686c362f80d9d"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.22.json",
+    "bytes": 1046,
+    "sha256": "33652b0287ca41013cf050ff9a5f5d2f7428ac7f008224b056edfc1da3e9cd30"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.22.md",
+    "bytes": 906,
+    "sha256": "4b45dc54bd8b45a8138c13ddb3276096e84986f2cc76b4b96c0c929b7f556a85"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.23.json",
+    "bytes": 832,
+    "sha256": "a931b4db92b332860c4091a6d0c85d19f0810c6adeaf7eac5242d47f313bf904"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.23.md",
+    "bytes": 698,
+    "sha256": "33e4f4035f3b36535dd2083781ad060bd90d8d039505313b04c491041e8b791f"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.24.json",
+    "bytes": 1127,
+    "sha256": "1be8842b9aa340c0cac04f4dde9ecabc060c8e1d089b83904a11a49f7ee121d9"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.24.md",
+    "bytes": 985,
+    "sha256": "15712019924b71ebacb45c411c9c306d0f0ee8f3dd5b446a41531120f5cccc35"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.25.json",
+    "bytes": 839,
+    "sha256": "b4c07f125aa6d2bca00558da8631ab06b3a285cd671280d11864ce8b2667e804"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.25.md",
+    "bytes": 706,
+    "sha256": "60c9e7ea6e5777f24596622321b04451051ca9ab6153830dcd07d62dec0b400b"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.26.json",
+    "bytes": 1065,
+    "sha256": "e74bf9856b74265b3eccee915816848579289962284dc60cdda4ac02dadde96b"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.26.md",
+    "bytes": 929,
+    "sha256": "559bed3ce1ea529bdcb7bbbe846c3841c80799b0f92fdd4f0d091c67f63c7681"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.28.json",
+    "bytes": 847,
+    "sha256": "d395bd1057546b3810d9e36b32d7117f64889580455aa1e057e58b6aaae4f13b"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.28.md",
+    "bytes": 714,
+    "sha256": "860a46237cce7961d7e4f1bf4c4d9f1a78055694c2fdf60b9fc4a0f6d9ad58be"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.29.json",
+    "bytes": 1191,
+    "sha256": "40e070013784b823a55afa905d1baf8a2cc115ab79bf5ade47bb7118484c46df"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.29.md",
+    "bytes": 1052,
+    "sha256": "0a08ca8866b2e253e6b73a00b28ad6f4d1b380379d49fbbf15620f0b76b43765"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.3.json",
+    "bytes": 789,
+    "sha256": "50a14aa2643fffa0389d4266c5dd8791a2de0ca53f196f998aa98f518a5bb8d6"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.3.md",
+    "bytes": 663,
+    "sha256": "b5d0d61629a0f92bed5af23755f39adf1250ed913f085b185c3b8a2aba1ff085"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.30.json",
+    "bytes": 975,
+    "sha256": "7299016715591f302cbcdeb1904a5b2f82cf017905ef10b2e4fefe75bfb9f12c"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.30.md",
+    "bytes": 839,
+    "sha256": "6c082f403dd209cba10aade33f3de39ba2a2bb0d42be2eb35ac0772f3fb07176"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.31.json",
+    "bytes": 1047,
+    "sha256": "35e03c5a5efb1bb1bd44541fb91ce7571ebe6aa135d7cb21089d211442dd37ca"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.31.md",
+    "bytes": 911,
+    "sha256": "50cebadd7b2f4457d4469caf558a26cb580624775e9195012bf7a44967ba448d"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.32.json",
+    "bytes": 400,
+    "sha256": "cec8945e79d5b825b478a59c490146b4732c6832ecb0d91cc0b3262dbe9cfac6"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.32.md",
+    "bytes": 279,
+    "sha256": "be86a815dd725c6f1810448394a9e9a68592d4b69d64780f1bfa2e2504b52404"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.33.json",
+    "bytes": 644,
+    "sha256": "d4a58af26fb5e323af816708e827aec426fe68202ea630a1e3cfeb81f73f89f5"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.33.md",
+    "bytes": 517,
+    "sha256": "9b1249f0810fca4b24fbc90336e3b1e1c53ebff6e99c96561fc032177a780126"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.35.json",
+    "bytes": 475,
+    "sha256": "ac6c4b279214389e670e212bcafc997db14d5fe8f550c364510cf6d424c0afba"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.35.md",
+    "bytes": 352,
+    "sha256": "328817c02354850f46991e4bd0c9927bd205e8f55ac22f767818ff4a05af223c"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.4.json",
+    "bytes": 1006,
+    "sha256": "07208eead72b96d4cc60782989638f94bf3cad5a1f20b6a181380fa8b7a905f7"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.4.md",
+    "bytes": 876,
+    "sha256": "82bfab33e2f57fbf98bc0da4f82f871a823f631c87501b4431f6c0870941c060"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.5.json",
+    "bytes": 828,
+    "sha256": "b294f07b5e7080e459b5fd90edae151836e96263f5c5d74a9710ea18e87e5cb8"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.2.5.md",
+    "bytes": 700,
+    "sha256": "1ba0c2a6d2858e0f43057cf9ab24d65858428a59552e6b61a7aa448d57509f38"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.3.0.json",
+    "bytes": 397,
+    "sha256": "453f0287e56df9cc354e9feccbc267c3021432a0b8d3b8ada47e1a3c04cdd8e1"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/nl/v3.3.0.md",
+    "bytes": 278,
+    "sha256": "2433ec0a460cfc43c2ed8a705e4b9d01e7d43a9356dc83b792feb9c5badec150"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.26.json",
+    "bytes": 529,
+    "sha256": "37266c10f1f2878cdd33354b0fa7b5717751f76f71195a60db3b684a8343908a"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.26.md",
+    "bytes": 421,
+    "sha256": "b3856c6fd17a007ad1954fb1ca19603d95d45a4b76828ae38fe185e7c18b983a"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.27.json",
+    "bytes": 866,
+    "sha256": "fb92a9d7a83b2658e0aef634b02d636816548bf76867c3c8ea5f0df1e9442086"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.27.md",
+    "bytes": 753,
+    "sha256": "306ece5d96e8fc4639e95464270a5091706f9ff0aca1313d197c8f0133e6bb20"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.28.json",
+    "bytes": 1553,
+    "sha256": "5f24d9fefe53b9b87043931bee91b5764a8c1d176bf748c11eba8f3ce17f9d83"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.28.md",
+    "bytes": 1429,
+    "sha256": "8dc1c2448526a32fdef9f314250e3d66e61d4be294e467b607da383b99997c22"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.29.json",
+    "bytes": 1037,
+    "sha256": "6ff533b48c213b9def2d11cae83e8621f79d98babb5a2a96b8f9553d2b60a4f1"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.29.md",
+    "bytes": 905,
+    "sha256": "ef95ebad7dd4b7b6e18d8eee03fd025ad7b62972088098777eb168334f96f89f"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.30.json",
+    "bytes": 703,
+    "sha256": "1a764c318cf043afbc5334a0fc2484559a26cf05c0dc61d48b1023ba68964b62"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.30.md",
+    "bytes": 575,
+    "sha256": "2e3db9d31611c1caee133828d2c3d7587b0d760bea4622204b10b1e60f8e5cd3"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.33.json",
+    "bytes": 547,
+    "sha256": "f52d52c753063f3ce00b139846cfc0dae7b296bc059d88cb0be927c953cddc5a"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.33.md",
+    "bytes": 422,
+    "sha256": "9514bc5ec8738ae8b6932b44929b4dd3ccf718abc4ad47e4c03e3fab10361bcf"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.34.json",
+    "bytes": 1269,
+    "sha256": "74f98ea237156e7afe2380b92534cb831a5ea37f1e1fc6dd49cc8c7b11e79106"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.34.md",
+    "bytes": 1129,
+    "sha256": "1e12be49bb27fabfa02e3d91abb0849454d3d5d9211b7a1ac67e439dd2bf114f"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.36.json",
+    "bytes": 1932,
+    "sha256": "06ecd26c823b2e420ac5b0d22ede5eea8a3feccb49b585b62a1f05a9682f9ddb"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.36.md",
+    "bytes": 1780,
+    "sha256": "34d3440e2e733489c1b5f04569b8149ca6fc74f10d7bdc88de39c32a3920560d"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.37.json",
+    "bytes": 376,
+    "sha256": "dc06e9fe069e466f2987ca9ccfd6b27ab4083d9374d4073ce71ddefb46a3c46a"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.37.md",
+    "bytes": 255,
+    "sha256": "9f2435cd0381a81010de3a8c735160c73b380b40881539109ecb2eda24a3f462"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.38.json",
+    "bytes": 1609,
+    "sha256": "320c4f5b5aae7b4e497065d14c3d8131ab953e1762a022314f5cb995998e540d"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.38.md",
+    "bytes": 1464,
+    "sha256": "199a83a2f22874a634cb90ac3bad534863824f24591b5302524e1980e51babe7"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.39.json",
+    "bytes": 376,
+    "sha256": "4465164a0b6487768f97c5b189388eba0872e08f63735548134eb9ef4a8faff7"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.39.md",
+    "bytes": 255,
+    "sha256": "3c7559f282fdf07f3e1cd39444ac1d5ece917f155a97b009e65266cd881896ac"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.40.json",
+    "bytes": 505,
+    "sha256": "f3febf602337e6fe7903128f758c3342956abf413a55d016c9d53312b69c0be9"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.40.md",
+    "bytes": 379,
+    "sha256": "3fb3382874f7af9e0f3ddde824b6a536e5bf1242170c790509ab0f9cef3587a6"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.43.json",
+    "bytes": 1155,
+    "sha256": "faa3b8d1a305d17beb297c5bf9545a2311a1263b85b3b8158ce18cfd027ea5d9"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.43.md",
+    "bytes": 1021,
+    "sha256": "68bcddbc7b3b5c22f9b3a62be58e852394390b99b0f816acf91485d7f8b7eb7d"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.44.json",
+    "bytes": 1340,
+    "sha256": "19150b4bd26f307f2dc3c296de6ef8a8bc883ed92989ffd47064e30a828e0fbb"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.44.md",
+    "bytes": 1195,
+    "sha256": "bd9b6698902826772e5b14d1421d5e070961c46c1d4bf90699688fd1e9e76183"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.46.json",
+    "bytes": 1489,
+    "sha256": "d56822621c3bd9ddd61a137c7426f01b903d8d06251fdc8e14a80403aabf98b4"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.46.md",
+    "bytes": 1347,
+    "sha256": "f9d5cf54f4270d0dc6074915646f7ebaa35ea146456204db46fd3f73ec06c485"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.47.json",
+    "bytes": 1889,
+    "sha256": "f20cc03d119dc1056f7b8009520753e5c01df604103c226c159043dd75a9d566"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.47.md",
+    "bytes": 1734,
+    "sha256": "90fc4042a2707a3b94add3642f349effb62c561794fc0f110e3399d75e024c09"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.48.json",
+    "bytes": 1371,
+    "sha256": "1f594ffceea52c7915000795e295d4f5e70cbafe323988242e5efea40382522c"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.48.md",
+    "bytes": 1235,
+    "sha256": "4597b187e745cb70d18f98a1009d49cc2b83e924f0f913a7cf8f0ee89733195e"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.49.json",
+    "bytes": 650,
+    "sha256": "2855cd175ff04757e95c3d2ab2ecceee89c69a11cac36da36627b5eb81a859c2"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.49.md",
+    "bytes": 524,
+    "sha256": "d346b73e8cbb11979d13b9d9aed92f91096a06f0ba132332776d0da7921dcd5e"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.50.json",
+    "bytes": 950,
+    "sha256": "45eb13bbe76262b8cea6f0e2b2a4aec489f2122c0a688c5daa8ae52fd53cb67c"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.50.md",
+    "bytes": 818,
+    "sha256": "80de58576f12b5f8221a3c84a6a41fe360de306d59d8abd7cfbf4631642eeb23"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.51.json",
+    "bytes": 727,
+    "sha256": "1b9e7a0d462d86da707802028885171672f4b16e9ecbb198378eb23b40ef1a2e"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.51.md",
+    "bytes": 597,
+    "sha256": "a12b30e15245833036db902cc67b5a168e3caf1990b76dff6cb3b0cba109df45"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.52.json",
+    "bytes": 1100,
+    "sha256": "19ff8aa3d1b481b48b5790eda37f96e3fccb1ebca6faace6c1d0015c0b93f61a"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.52.md",
+    "bytes": 966,
+    "sha256": "cf3b59ba71ced4c93b79d66b51aad3b5a471fb2e6d52bbf775867df4511fdffb"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.53.json",
+    "bytes": 636,
+    "sha256": "232dbb698e997fec3c095a8cd753b06993684e039381a2533bb439af2185ab14"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.1.53.md",
+    "bytes": 508,
+    "sha256": "2d048cf2b8684af2d3c3c4580b7bc2fdecf28e6417b5b9a77808c81dabcac5aa"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.0.json",
+    "bytes": 1149,
+    "sha256": "8a6975490edfb7310a1a5145f61a40c95fdb384c7a317298a5afa5715fc67561"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.0.md",
+    "bytes": 1017,
+    "sha256": "15deaad4f7d3aeaf5fc1d3e0d1e771590c4ba867cd05a91fe8959266d82dcb1f"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.19.json",
+    "bytes": 597,
+    "sha256": "21f9540aebad17d61bfecaad81d59fec089c1019bcaffa6eeff6b73797e24a65"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.19.md",
+    "bytes": 467,
+    "sha256": "fd8d09a43544da7f6aa2b1caa5cc46196a890c918c9ff2108e61e331a87100a6"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.20.json",
+    "bytes": 509,
+    "sha256": "91bad2c346895d805705a7ecc308403bb16956944734b1ab73379484839f49d0"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.20.md",
+    "bytes": 383,
+    "sha256": "098a28df4eea4d4c629ff967e4178d73a52cd3c52dfa5a32eb1e4e23bbd4ae64"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.21.json",
+    "bytes": 966,
+    "sha256": "562daf094b398294e45cbed22401ceae20d18dd5ff27ba52812b0990337885e7"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.21.md",
+    "bytes": 827,
+    "sha256": "4e3eaa3edf1c7938dbbf8a8da0957a7701092327b3a488d405d8bfc0311167f3"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.22.json",
+    "bytes": 1031,
+    "sha256": "a95bb101b8eb30e7b2c2b7a86379b9ee1f6998bf00a5ed0dc6179c63c542423a"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.22.md",
+    "bytes": 891,
+    "sha256": "9360d8df6b2d85ed3322d396cdceb65d7338d19590561e5e0bfca00ce7c7d921"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.23.json",
+    "bytes": 829,
+    "sha256": "9093d21c0c23400eba5670f8bc9b965128d382ae33eba0a94765201ffd98db55"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.23.md",
+    "bytes": 694,
+    "sha256": "15cbe9fe32374b7cc1e82681d4e41c201c18ae7dfc100783382b8d48c20ff936"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.24.json",
+    "bytes": 1086,
+    "sha256": "58a5c57b3729f3bea17717d47b0ae840c0e8751a339423bab484e287540ff470"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.24.md",
+    "bytes": 944,
+    "sha256": "59471032650fa963946388100fb4bca8e6dbe457a90e029bce74414602082440"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.25.json",
+    "bytes": 784,
+    "sha256": "8336724729fd6e18daf44e8b2caf3d5d74d6f6d8c1322dde3fedb229372d3554"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.25.md",
+    "bytes": 651,
+    "sha256": "e65a9f690cd533f2053c8f1bc0662d92dd3668d8e09649d39d4c1983a446d57c"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.26.json",
+    "bytes": 1018,
+    "sha256": "1cfd145b7ad17f6256454356295b702a75222a54ada2b12c758f276e9c40aeb8"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.26.md",
+    "bytes": 881,
+    "sha256": "7b00ffbb502b189cd730d37254d85bd1d742eed633dfa4e3b22ce93b3f42a05b"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.28.json",
+    "bytes": 802,
+    "sha256": "d8421d45e2c2b59ee40cb344dcae3993aad2bbb73f561ef96e11f228a0d06779"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.28.md",
+    "bytes": 669,
+    "sha256": "74aca1f093bac469662cce354a7694a8c8fe7cf9c8176e1c98fa4e9fe3659540"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.29.json",
+    "bytes": 1153,
+    "sha256": "c6859cda23f7c106aade6ff0e1a3bc62adfa6aa1d8b49f4b9354b8953dd29b4c"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.29.md",
+    "bytes": 1014,
+    "sha256": "6a6179fd8fd78a2b022b94c73cf5996fa065b31233650a06d95b47e6a3841550"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.3.json",
+    "bytes": 807,
+    "sha256": "8770bf9801c9e227074157ea53600b29a1e5f225f06c770a161bbd6de68605a7"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.3.md",
+    "bytes": 679,
+    "sha256": "0ea2d533cafbc23195b924b9533f191cd6538fd57a78519db1bf974b09549c3d"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.30.json",
+    "bytes": 921,
+    "sha256": "57e921661180458d89211219a0dd19b51e81e7efb792ccb2d3dffad8b6d61f2f"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.30.md",
+    "bytes": 785,
+    "sha256": "6734cbacab8df659908e0c2fb838906c32829e0499abfe479cf92d63d316f4c8"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.31.json",
+    "bytes": 1026,
+    "sha256": "239a8b64da48f130f6e31b81afd54612e04e88c5637ebe265717b272f4941672"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.31.md",
+    "bytes": 890,
+    "sha256": "457d99d871d63d6c010fe20d4f1e06ba200eae90355e64a2ba97c274ca6b29a8"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.32.json",
+    "bytes": 376,
+    "sha256": "e279a2e4877411918f67981f885067f31e60c5a326685a2e6e14d18c6537b98c"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.32.md",
+    "bytes": 255,
+    "sha256": "53c35404a513d14b8e3af69256695e7ab313e28bf08d94100fba9a0fe811e397"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.33.json",
+    "bytes": 618,
+    "sha256": "0d9e9d8a8ab6996be4d29e8ef9565815cd38f2ec2d38e093e5be6878db1e57a1"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.33.md",
+    "bytes": 491,
+    "sha256": "6bf7e32d872c579cb14581c78c502bcf052d839047a65668854f441cc3d9ad3f"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.35.json",
+    "bytes": 451,
+    "sha256": "883f4463587687b9f687fe4659e21583f5a4311d683d9acc11b3fa2ce2c9b4eb"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.35.md",
+    "bytes": 328,
+    "sha256": "40a6f56e4232b0b5875c8c715b20e9fb75764cf9d8f8f9c1c2314c347a81b0af"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.4.json",
+    "bytes": 965,
+    "sha256": "a73b14a3d0c098b497e5f8b30b8c0afbbc4c1c30fa845af2f8b02af1e612f80e"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.4.md",
+    "bytes": 836,
+    "sha256": "0893bcd153ebe64ef2a389181aae17eedef98ead53bfff859b2f9b6c969a4b4f"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.5.json",
+    "bytes": 803,
+    "sha256": "2344e58bcf22365d645d1da2a4b13e993189b0a2cd779a3d0efbb5593c29bd94"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.2.5.md",
+    "bytes": 676,
+    "sha256": "27b2d79fd7a3bfd09fcd86e6e2e72811b35d582ae399b656e56bb15ffe8dbc60"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.3.0.json",
+    "bytes": 373,
+    "sha256": "431f4dedca7cd643a898190ecc338f6ceeddfc888ae2d766efad0cb2748fe6ce"
+  },
+  {
+    "path": "wwwroot/release-notes/ios/v3.3.0.md",
+    "bytes": 254,
+    "sha256": "8693f6caa2c7a301034dfd96a7ea4a60e00c3782e94b7209f98244f86abbcbba"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/de/v3.2.5.json",
+    "bytes": 904,
+    "sha256": "568af09c673020fc75e616c147a909d916735876e1bc9a21b09482eea2d137e7"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/de/v3.2.5.md",
+    "bytes": 763,
+    "sha256": "2b42de4af9a6a2955cc487536e1391e99d4d9c17b9c169f8b8f865965bd04a66"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/de/v3.3.0.json",
+    "bytes": 336,
+    "sha256": "d8a93670fa52f8b772aedfa842028894f16fe14f7bf52bb216b2d3e5b5fdf7ed"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/de/v3.3.0.md",
+    "bytes": 200,
+    "sha256": "015cabb76ae8aea77a05ce40078dbe500d307c409491ebc381c88a24ab0fec9f"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/en/v3.1.1.json",
+    "bytes": 860,
+    "sha256": "fa8618540fdd7eecfeb84a8ef15140cc275f2332433a94a51c46cdd840a989b2"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/en/v3.1.1.md",
+    "bytes": 718,
+    "sha256": "3d6721b281d94dc6a0d680d11d2a986220620677d60d9762dc38bd6a696db4a6"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/en/v3.1.10.json",
+    "bytes": 828,
+    "sha256": "b8b5cf8b74d593aa29b16351bbbc2a69d5d94579f2ccacb00be6f2e8c8ee8c4e"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/en/v3.1.10.md",
+    "bytes": 685,
+    "sha256": "fef7421f2a3ed7ebf87e69dc6e6c453abab5ad3b7af5e69d8c95c2fe4fb31e64"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/en/v3.1.8.json",
+    "bytes": 672,
+    "sha256": "b0aa2ee6665243b9b6eda878ba1c846ac0c3f63392ca57e544baea2a55f2dc2e"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/en/v3.1.8.md",
+    "bytes": 533,
+    "sha256": "32f5d2d3ee979489221842763d024fbfc877cf973d48be52f5453d3c848b44c8"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/en/v3.1.9.json",
+    "bytes": 825,
+    "sha256": "751c06bdefd1e114b9a59aeadce2adcb8eeb79320c04a329fc763b9114755d07"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/en/v3.1.9.md",
+    "bytes": 684,
+    "sha256": "c203fa50e1e41cbf076f493243343a918f90124dceecbf26e92025562cb5e1de"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/en/v3.2.0.json",
+    "bytes": 996,
+    "sha256": "545846666084083042071d2b9e7ca1329880c3cfeda8c93c1a21e1e6005724f7"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/en/v3.2.0.md",
+    "bytes": 849,
+    "sha256": "972e368894351e00fd23236351fe1be4f405d6ade673b624acf5e092491bf29d"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/en/v3.2.1.json",
+    "bytes": 714,
+    "sha256": "c80ab4fb2ec3d1cc29499710bdfe2793c4b743906d73146fe8afb764f6853c72"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/en/v3.2.1.md",
+    "bytes": 570,
+    "sha256": "b30034e4688f6282b2831590d385a82c74349730cd8c7c65a4b078cf0b71b82b"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/en/v3.2.2.json",
+    "bytes": 1492,
+    "sha256": "3d9fa96d0c576fd6f807ca1298a917703574c9d39218039924f0007d227cd389"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/en/v3.2.2.md",
+    "bytes": 1336,
+    "sha256": "47838c6a041abe75c0b86a130546642128b8450d83bc4f66217cda6b36c829bd"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/en/v3.2.5.json",
+    "bytes": 792,
+    "sha256": "3608cd9b7c5f23372001b5217a927f03e0fcba31fdf87997e34aafd50a76ee07"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/en/v3.2.5.md",
+    "bytes": 651,
+    "sha256": "93df687944e2a5d668bdbde7e24b54602fb6a57c45c62e049b0e8f2512be17db"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/en/v3.3.0.json",
+    "bytes": 320,
+    "sha256": "16ab8e24b78a2446f39f5f9c7a63fff5df70eb07fa307bf9fa9a97c2f231b9e8"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/en/v3.3.0.md",
+    "bytes": 184,
+    "sha256": "98dc080fa22f403ce4e34dd39b1d2e26e620373384ef9322f16f3219a1e0d6a1"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/es/v3.2.5.json",
+    "bytes": 879,
+    "sha256": "2b2eba8321dcd4962cc4e93b0ba35b8f03ec3572e825f5f5e13942e7d00aed1c"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/es/v3.2.5.md",
+    "bytes": 738,
+    "sha256": "2ca05fa723643bbe07dd5eca7a813fd81d450c0abe8a12a6413c34d3a6acd6af"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/es/v3.3.0.json",
+    "bytes": 332,
+    "sha256": "59a286eea59655dcfca5cb5066c4ba38dd033c447205f65037d354ba27a46b62"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/es/v3.3.0.md",
+    "bytes": 196,
+    "sha256": "51cc83a08c3b3079120d0a74d02aadd26d19b70c34681856b3b6857fea936f20"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/fr/v3.2.5.json",
+    "bytes": 906,
+    "sha256": "bfe0856ae700a41e49f3456a7b821bd1f2f8f271ace1d9fa2866f94b49bcd55c"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/fr/v3.2.5.md",
+    "bytes": 765,
+    "sha256": "84a09294f94b69c2ba5a0a164713d7ab4874575d87832b40d5dd7e21e00c4076"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/fr/v3.3.0.json",
+    "bytes": 337,
+    "sha256": "7813bae65f38d82884ed55be88a8bd5bdc7087950989ecfc0da4e2a49b27e281"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/fr/v3.3.0.md",
+    "bytes": 201,
+    "sha256": "9d178513cde55c0b4b60f9314a23d313f5bdfab9c4952f527f79ec3b6e817510"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/nl/v3.1.1.json",
+    "bytes": 918,
+    "sha256": "bf3508bdbbbd88c2d75c3140c9f94e21e847cfff6cda8de33bf8e0a64ab066a0"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/nl/v3.1.1.md",
+    "bytes": 776,
+    "sha256": "8fbed7f50626ae8d8fb101252e58007db8fd4b14e7e6d247bb397e024d0a1e33"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/nl/v3.1.10.json",
+    "bytes": 877,
+    "sha256": "7ebd04593cdac9b15cb3f6cfc27d0d5d5e664734a8181ce0f069d0dcb07193a4"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/nl/v3.1.10.md",
+    "bytes": 734,
+    "sha256": "6d4e6221ec585df20b4d28cb29146c3de1e993eb5a9349cfc422afb9c103d061"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/nl/v3.1.8.json",
+    "bytes": 714,
+    "sha256": "79f8d0af077899b6428dde7d923fd7779ebc8a51a264e1c3ce2ee17806af6949"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/nl/v3.1.8.md",
+    "bytes": 575,
+    "sha256": "6c75d1d39294b26b78d0d4c4c33c15666ab73e1498d1c9187c39feeb8f5a52cf"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/nl/v3.1.9.json",
+    "bytes": 856,
+    "sha256": "0ce48c5bf367720335f329ff5ffc0ea0f2df14f6740b9734228f4fcd0b2394e1"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/nl/v3.1.9.md",
+    "bytes": 715,
+    "sha256": "cd1b75a51883de252630d34a5be764f7328ddca90b02a46e47bbdd07b4b81ce7"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/nl/v3.2.0.json",
+    "bytes": 1005,
+    "sha256": "a812d3b1f76205b8b6468393bbf6171ca2ffa2bd210c773cfc8006e9c8fce487"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/nl/v3.2.0.md",
+    "bytes": 858,
+    "sha256": "9bd72af8ac75d0efe2f907b4fd87bd22eec7573952110d6650c682bdc170d60f"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/nl/v3.2.1.json",
+    "bytes": 759,
+    "sha256": "2f26117ec10bd7ed714e647db9673dffdb9ac255485a92654d3cf22e53fcccb2"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/nl/v3.2.1.md",
+    "bytes": 615,
+    "sha256": "4b04549faf1d490b69642da7cbc05a90323cea9a7f8e1c0ac78920ef28b4aa90"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/nl/v3.2.2.json",
+    "bytes": 1533,
+    "sha256": "35434c509d95b537b2c46abdba620da2b91fdb75a8d3dc4136ec81e7eb5ef79e"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/nl/v3.2.2.md",
+    "bytes": 1377,
+    "sha256": "f06d13cf2bb6e723824b4f0e977d518a22af6b033c529d3d81399cf5ee5aa68e"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/nl/v3.2.5.json",
+    "bytes": 835,
+    "sha256": "cc4c5aa69464ddffd6ac80a932d8f6bbc1916b325f61244c4b775104abfa734d"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/nl/v3.2.5.md",
+    "bytes": 694,
+    "sha256": "bf47e0f2175293b7b860f58559cb1efcba7bc31268eaf323c2ea0935afeef81d"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/nl/v3.3.0.json",
+    "bytes": 340,
+    "sha256": "e1b927ec3fdb6a58cc0704927cc7076d9181fe5cdb887227ee57c8673879f2f8"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/nl/v3.3.0.md",
+    "bytes": 204,
+    "sha256": "712be5cd6d1b16a389f283ac90f1a58f9f6aedcc7b61487d7ca75d88a079756b"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/v3.1.1.json",
+    "bytes": 860,
+    "sha256": "fa8618540fdd7eecfeb84a8ef15140cc275f2332433a94a51c46cdd840a989b2"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/v3.1.1.md",
+    "bytes": 718,
+    "sha256": "3d6721b281d94dc6a0d680d11d2a986220620677d60d9762dc38bd6a696db4a6"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/v3.1.10.json",
+    "bytes": 828,
+    "sha256": "b8b5cf8b74d593aa29b16351bbbc2a69d5d94579f2ccacb00be6f2e8c8ee8c4e"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/v3.1.10.md",
+    "bytes": 685,
+    "sha256": "fef7421f2a3ed7ebf87e69dc6e6c453abab5ad3b7af5e69d8c95c2fe4fb31e64"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/v3.1.8.json",
+    "bytes": 672,
+    "sha256": "b0aa2ee6665243b9b6eda878ba1c846ac0c3f63392ca57e544baea2a55f2dc2e"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/v3.1.8.md",
+    "bytes": 533,
+    "sha256": "32f5d2d3ee979489221842763d024fbfc877cf973d48be52f5453d3c848b44c8"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/v3.1.9.json",
+    "bytes": 825,
+    "sha256": "751c06bdefd1e114b9a59aeadce2adcb8eeb79320c04a329fc763b9114755d07"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/v3.1.9.md",
+    "bytes": 684,
+    "sha256": "c203fa50e1e41cbf076f493243343a918f90124dceecbf26e92025562cb5e1de"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/v3.2.0.json",
+    "bytes": 996,
+    "sha256": "545846666084083042071d2b9e7ca1329880c3cfeda8c93c1a21e1e6005724f7"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/v3.2.0.md",
+    "bytes": 849,
+    "sha256": "972e368894351e00fd23236351fe1be4f405d6ade673b624acf5e092491bf29d"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/v3.2.1.json",
+    "bytes": 714,
+    "sha256": "c80ab4fb2ec3d1cc29499710bdfe2793c4b743906d73146fe8afb764f6853c72"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/v3.2.1.md",
+    "bytes": 570,
+    "sha256": "b30034e4688f6282b2831590d385a82c74349730cd8c7c65a4b078cf0b71b82b"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/v3.2.2.json",
+    "bytes": 1492,
+    "sha256": "3d9fa96d0c576fd6f807ca1298a917703574c9d39218039924f0007d227cd389"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/v3.2.2.md",
+    "bytes": 1336,
+    "sha256": "47838c6a041abe75c0b86a130546642128b8450d83bc4f66217cda6b36c829bd"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/v3.2.5.json",
+    "bytes": 792,
+    "sha256": "3608cd9b7c5f23372001b5217a927f03e0fcba31fdf87997e34aafd50a76ee07"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/v3.2.5.md",
+    "bytes": 651,
+    "sha256": "93df687944e2a5d668bdbde7e24b54602fb6a57c45c62e049b0e8f2512be17db"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/v3.3.0.json",
+    "bytes": 320,
+    "sha256": "16ab8e24b78a2446f39f5f9c7a63fff5df70eb07fa307bf9fa9a97c2f231b9e8"
+  },
+  {
+    "path": "wwwroot/release-notes/maccatalyst/v3.3.0.md",
+    "bytes": 184,
+    "sha256": "98dc080fa22f403ce4e34dd39b1d2e26e620373384ef9322f16f3219a1e0d6a1"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/de/latest.json",
+    "bytes": 355,
+    "sha256": "b21132c28f49d85e5d66eac7a4b3929ea5a56ab3785781a21007eca7eca7f733"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/de/latest.md",
+    "bytes": 232,
+    "sha256": "f03ce23f97461966c8b9d045e621f24189485a1b85a192b7f23fe43caf01c648"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/de/v3.2.24.json",
+    "bytes": 1174,
+    "sha256": "83b0a1fd921a6da64da10e79fd2d2d51df29ac8962e190278b66812e16ad85ca"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/de/v3.2.24.md",
+    "bytes": 1027,
+    "sha256": "34aa77f82f2b77ce27838538bbf82ed57374bf8532301f90af5948aea6ce098c"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/de/v3.2.25.json",
+    "bytes": 799,
+    "sha256": "e4e28aca569057e5932daf90473cc23343561591e42736893956deca94c97c9d"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/de/v3.2.25.md",
+    "bytes": 662,
+    "sha256": "711fba415c54f519d3792b9923949bf95427f07a9e170930cdd3175885d63d6d"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/de/v3.2.26.json",
+    "bytes": 1000,
+    "sha256": "768c910c1083d89dc7c582a910d777f565f504eaaacc9e94601880c1809d6530"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/de/v3.2.26.md",
+    "bytes": 859,
+    "sha256": "db777835eb556dbb5d0100549ad3640a71bf22d7af0f902d1d3ec3a0695350ba"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/de/v3.2.28.json",
+    "bytes": 784,
+    "sha256": "6f5c89221eda65269dfe2885100a12edf2d6ce00670dcc7447264197e81e8610"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/de/v3.2.28.md",
+    "bytes": 647,
+    "sha256": "8bcaa722e4de18514b34969aa580ea1cb41ae19430ce4679c18536f6b18787fc"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/de/v3.2.29.json",
+    "bytes": 1217,
+    "sha256": "49a4d04aff682c446ecf87f751eaeb738a3c43b82b1bec022b6ee7b5add25e42"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/de/v3.2.29.md",
+    "bytes": 1073,
+    "sha256": "7aa59dd1c4d1b1049644c29f9096dcd460967bc218d53b568242110ce5e51dea"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/de/v3.2.30.json",
+    "bytes": 1017,
+    "sha256": "163a64eb3edd0c2ecb970febbaaa2de2992020458520e561c1e7de8071a4ea0a"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/de/v3.2.30.md",
+    "bytes": 876,
+    "sha256": "848202a1b10a746481b2fcc2d686e113c638764d835e9c8b87c5591cfccf18dd"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/de/v3.2.31.json",
+    "bytes": 1033,
+    "sha256": "0b4de1d87599bfdb7508906728e8dc10a63efac17abbfa30440ccf097a4dcce5"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/de/v3.2.31.md",
+    "bytes": 893,
+    "sha256": "2f3bd4af621ba6b3a8c4bdc71174ea3d7c43d13eefbbd7c48dd2b0efb84a2456"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/de/v3.2.32.json",
+    "bytes": 358,
+    "sha256": "1e9c24f7873c8be13cdc0d74bd6182fdf426be2ab1b88188e85330eff72851d8"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/de/v3.2.32.md",
+    "bytes": 233,
+    "sha256": "ed2057751000b643ab193134640b156df8e94f7878722c2574e856e53ac9938e"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/de/v3.2.33.json",
+    "bytes": 626,
+    "sha256": "c304d54234ca23d04815f39df405795f4f36ddc455e408aae8fa349ed8dd5a01"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/de/v3.2.33.md",
+    "bytes": 494,
+    "sha256": "80f9fd9eec21016f4d77c3671a5aa39fc78a1bdb080fde0672592587aeba3235"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/de/v3.2.35.json",
+    "bytes": 433,
+    "sha256": "d63c8e6181de02b1863d041cdd3d7cf408f9747b2c3c15d3f0f8c6f173d10091"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/de/v3.2.35.md",
+    "bytes": 306,
+    "sha256": "bcb5178dd7b17369d4ef5b46f9f341d89b52f850d4b90b76b56fe52234bc5352"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/de/v3.3.0.json",
+    "bytes": 355,
+    "sha256": "b21132c28f49d85e5d66eac7a4b3929ea5a56ab3785781a21007eca7eca7f733"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/de/v3.3.0.md",
+    "bytes": 232,
+    "sha256": "f03ce23f97461966c8b9d045e621f24189485a1b85a192b7f23fe43caf01c648"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/latest.json",
+    "bytes": 328,
+    "sha256": "7cfacf4e35a930682b4937c86de1efd84c6b2eefe928925b4c2f428bf527035c"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/latest.md",
+    "bytes": 205,
+    "sha256": "f3597a8b8ebcd6ab9291b9304a9cae61101e080f1c413fecd32ebbb8edfca480"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.29.json",
+    "bytes": 992,
+    "sha256": "90f0961f84d9bcf2b9ea3fc748e3e997fdcbf0a675e7a12df58496c53e63426b"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.29.md",
+    "bytes": 856,
+    "sha256": "2e2cac2e84aa8ee7cb783be491be9939a0d641340313eba429d6af4f5a072051"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.30.json",
+    "bytes": 658,
+    "sha256": "cf673b08b697f88f7c298884978869fc1461045458aa54d3c71daf0ec31f7e90"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.30.md",
+    "bytes": 526,
+    "sha256": "58045549b0608d22f242a0790b5eb26abc672ec226097e7d6824b6127aaf353d"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.33.json",
+    "bytes": 502,
+    "sha256": "a6268bca81b008cb70f66b2ff2731c4a69894db2e3f529d2e0efc9b0c5c06b62"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.33.md",
+    "bytes": 373,
+    "sha256": "9122857d73a1f4ab2931e95635416f482df39e66e8b7f430aa6fbdfc3c847ab3"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.34.json",
+    "bytes": 1224,
+    "sha256": "25b956a9fb8844f8d5a38c773c0418a9abf06c8855dc4b607e600f9167d11485"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.34.md",
+    "bytes": 1080,
+    "sha256": "72552a47a1f4151a2ddfe97b68826ee13c377a86e5d87438e6ffffe239e6e095"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.36.json",
+    "bytes": 1887,
+    "sha256": "0d19e2b1d44637f8f4011d29cbbe564607a16c16b4fc65830c75a20534a24a23"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.36.md",
+    "bytes": 1731,
+    "sha256": "2173c04966ec4e5bb2df3c0f1e061b76d9425545f08c2b15c1bb55fdbd78faf4"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.37.json",
+    "bytes": 331,
+    "sha256": "3392c275b7b54122ba92967e8bf4993a7bdd6a1c8c3df05551ce6ee8d23fd482"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.37.md",
+    "bytes": 206,
+    "sha256": "4d46198c237f070232f04df1c622e64a75f592c74c220b4b23db0a49d31511ea"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.38.json",
+    "bytes": 1564,
+    "sha256": "438fd3539a153683af41af9e29dacf15044cbe5728917818a58d741c0d0f594d"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.38.md",
+    "bytes": 1415,
+    "sha256": "02cd81a016a54d8ed5b8aed6ffe6847e47d42ff4f3f689cc0146554d70565754"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.39.json",
+    "bytes": 331,
+    "sha256": "3aa6c71319dac11092bf5d5fc245a95cffcf9ea86a44f285bf8912faf02d1c8c"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.39.md",
+    "bytes": 206,
+    "sha256": "1c044d5b6666b5c62cf36585af1274641d81bc8f5ab30d3d18789f0ab6edb161"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.40.json",
+    "bytes": 456,
+    "sha256": "7d7af664bab319dc0d0570a4f27b64d3605ee9e1d97c8d9895d1fca7c75b5bba"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.40.md",
+    "bytes": 326,
+    "sha256": "a1cc9e3eecef13abf16ba2915da8708ef3e7454203ebc2b9dabbd2e2ebf34d32"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.43.json",
+    "bytes": 1110,
+    "sha256": "751bfacf872904e7063f4cc3cd9802781db695027bbc3645f49d3ce2a9a24bdb"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.43.md",
+    "bytes": 972,
+    "sha256": "a54e9fe088123a642658f6a6a7337a97fe4d8fdff3e59d8dfc4d59b71c7207b0"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.44.json",
+    "bytes": 1295,
+    "sha256": "4f440fc75df39238b20b3c3eb4c4d74875cce19470e138daf1808acd05c751b6"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.44.md",
+    "bytes": 1146,
+    "sha256": "441b30acb02d6f7b892a65364a584260269cee074d583f7c9dfdba40d9b879db"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.46.json",
+    "bytes": 1444,
+    "sha256": "04cc896d0476fc7883e0d2f0f78b582af68543ec789cff4c68fbc61128703a4f"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.46.md",
+    "bytes": 1298,
+    "sha256": "a674a4924193a9666a2c705416ca4e0ec6bf3ca27e6628c9e859056a406471f5"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.47.json",
+    "bytes": 1844,
+    "sha256": "2288fb60f093029770bd8ff80d6f3744db28ba6eecf975766d81a0c1a8177a18"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.47.md",
+    "bytes": 1685,
+    "sha256": "f7f6bbf2ed2c0049e288cf4132c32ac9d9c53387a7e3aeac48c9ee2eb0c65993"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.48.json",
+    "bytes": 1326,
+    "sha256": "10c9f4bbbda1f1d63bb47d2cb0a806c978b610d1d6763b9d896a0b6948f41d6c"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.48.md",
+    "bytes": 1186,
+    "sha256": "1f5410a3215a43c9a6b05616de1152456ff32a352051a6c65c70fa5fbf055172"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.49.json",
+    "bytes": 605,
+    "sha256": "e18ace2076d8524206eec06767272cf28822803bc3bf80cb48a6fcdb643497a5"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.49.md",
+    "bytes": 475,
+    "sha256": "dfc854f5a14ff1f1147265d6cae3d49dad975dd424d72718cf16b2dd206635e4"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.50.json",
+    "bytes": 905,
+    "sha256": "88c7af9b4209842cf406cb518a533ad6cc190f896b6f2a241d9f481fc9d681c4"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.50.md",
+    "bytes": 769,
+    "sha256": "b01bfa21739e4dd1ce28de28c2daa995a1ac4236d7718c02a3081933a34b9421"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.51.json",
+    "bytes": 682,
+    "sha256": "c89018dc8222192b44919d93420b40d7511eb89e8eb383211033b46569d77666"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.51.md",
+    "bytes": 548,
+    "sha256": "93ac14c6a2d92e8e990d3d14de2364f6451f2e2da8594c134471bd903b1314ec"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.52.json",
+    "bytes": 1055,
+    "sha256": "6a7841e850ce94e0c609f8534bc1472cee91b2efe292f108195640421ec8d15a"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.52.md",
+    "bytes": 917,
+    "sha256": "d8d59d4eae48d349a4da3ba2971afa2e5a14b6fa701c89fd2e9f7884b694cfdf"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.53.json",
+    "bytes": 591,
+    "sha256": "68a165f1da38d2cab2843fdb04cde083eafa43d1a871c727e3709e6315503d62"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.1.53.md",
+    "bytes": 459,
+    "sha256": "60a497bebcf3cac7245146b185642afbbb6667e080b4477e143719b9062fa316"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.0.json",
+    "bytes": 1104,
+    "sha256": "cfa2038ff80b170f4a3a9abc803bdc6f76647b462448278270e34909fdfa6b89"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.0.md",
+    "bytes": 968,
+    "sha256": "04ac9a69d6a22760be71a453523e92789a38105b28f75fd95f84ffb172a3543f"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.19.json",
+    "bytes": 552,
+    "sha256": "10fdce9b97b3ae503e572a6792ecb71195531c0003a9a676fc99a101e9c2725f"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.19.md",
+    "bytes": 418,
+    "sha256": "22de7aa1773f29302c468b668f3cec4a48ed7a03e86876b2b9d943afddceba86"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.20.json",
+    "bytes": 464,
+    "sha256": "71a99085a0f3dfe72d3db021d8ce62ba21f59bac51cfe1ee33cccb2e634356fa"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.20.md",
+    "bytes": 334,
+    "sha256": "6528359dfd81f535b6d0c21ecc767559dc55125c91d32da6f621f0387216dbb8"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.21.json",
+    "bytes": 921,
+    "sha256": "0f56a1e43a8c789cc3cb15b4c32a3af43848787003a22aedeb3d773ce0178adc"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.21.md",
+    "bytes": 778,
+    "sha256": "80c3350a689ff288ae2042294aa224f756beb7d71f6d88bac2d24821f8129f25"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.22.json",
+    "bytes": 986,
+    "sha256": "89eca9330c07744b327d9a82b20ee056e03c71cd5021b4d315718db378963c3c"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.22.md",
+    "bytes": 842,
+    "sha256": "00441f74591b7c679707d8233793218be9ea68d1a7469b58bed9bf6950cf101c"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.23.json",
+    "bytes": 784,
+    "sha256": "ce47ab3c6f91c934cac414d1822d0e7dbf4206708a71d1598c9219a44f84fc35"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.23.md",
+    "bytes": 645,
+    "sha256": "026885d08588c4a426684456fd67c3b8a7882bd831f527195b3eaf9587209d3b"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.24.json",
+    "bytes": 1041,
+    "sha256": "07efbe1009f90e86699c23362fe953999080c3641df2e30812edf460cc12904c"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.24.md",
+    "bytes": 895,
+    "sha256": "3883a7cd854a78790bc8f9e907217def4b4292231d30b216a10e22d1c3d5e543"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.25.json",
+    "bytes": 739,
+    "sha256": "0abed64db10e68692f93f9da7162d5b0bef1f0b3bc333454ce542505b4dcdb30"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.25.md",
+    "bytes": 602,
+    "sha256": "843f4b1134747081f3c17d5ec346ec14b58e798bccdde78bd0aa7cee636c999c"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.26.json",
+    "bytes": 973,
+    "sha256": "75247f4d27b1cf0ba295821b81f966fe61237e452f05b9d4e0058e830f51d6a1"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.26.md",
+    "bytes": 832,
+    "sha256": "a9a40dbe8f6d354c7629faae50f6637ab01887a5b28175cc5ebc7f9a6e83b60c"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.28.json",
+    "bytes": 757,
+    "sha256": "6346fc556d81df9e1ebbdaf040c7581f4d255a1a93da700c39d45f9ff83a76a1"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.28.md",
+    "bytes": 620,
+    "sha256": "75a7373f1755a9a070d2bb2ca205147f6b911743140f762cdee7f1ce9c56180a"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.29.json",
+    "bytes": 1108,
+    "sha256": "9dbaebbbfbbd62dbc516c72b8e4d5fa703f5d6a1d6f4adb3df86a4408e76b05b"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.29.md",
+    "bytes": 965,
+    "sha256": "b8aadfbe6c8ded06f135a89a7bb90207cb924e3e6639a5a2464b42f4edc3a855"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.3.json",
+    "bytes": 762,
+    "sha256": "ceb7711964e2fa25874bb47ba84fd44f173b97296b522ef42e1b773a4e6aa6f8"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.3.md",
+    "bytes": 630,
+    "sha256": "a4d00fd712f48e696ece6d84b579de561b917a052ad4229d7d7003e582ed9b79"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.30.json",
+    "bytes": 876,
+    "sha256": "b00b9c03e97bb103aa52296440b7402858689968148cc4598c3b78248592e87c"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.30.md",
+    "bytes": 736,
+    "sha256": "b4f70e8b4094e9cf9cce902acca2f98dbc47e0203107b8b77e2201c6f7740530"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.31.json",
+    "bytes": 981,
+    "sha256": "49301dfb697bb8c57dc521c2817091ee3c9f807fa056681e4613a0784a27022e"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.31.md",
+    "bytes": 841,
+    "sha256": "f5fe844dddf4a8cd2f6e18d44601bd453ce6cee5821e7b9c9cd83595319a9ce5"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.32.json",
+    "bytes": 331,
+    "sha256": "39e95aa78e5256efa39744994642bdec450b20c2297586cce3db55241ca50637"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.32.md",
+    "bytes": 206,
+    "sha256": "eb7032df5c322ac8bf278939829b20d933f2baf161f3c22f2b26e47f73ef4b7e"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.33.json",
+    "bytes": 573,
+    "sha256": "7defd2da8fa21cf37b60bd58395897aead98185bd8c6189b07b3268f3e5eccf9"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.33.md",
+    "bytes": 442,
+    "sha256": "2c3897b28fb4f3ad7997e62629cb3a38a2eb992fcf2a766232d2c3a78ab31e3e"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.35.json",
+    "bytes": 406,
+    "sha256": "b386de0fc9fa55ecabeac0a60f071423619b9291446b74b671adaad825346c0a"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.35.md",
+    "bytes": 279,
+    "sha256": "206e0df6017dde3ecd62baa3bb70b2d8cc38bd71714894073f2b245347fae0e7"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.4.json",
+    "bytes": 920,
+    "sha256": "3fc20f35e64062cd732c3386b2302e664b439e30fba0cf97529b670bf2159784"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.4.md",
+    "bytes": 787,
+    "sha256": "9bee7262eb566c6be7dd9f70f2bb32f79db76ae6292d06f46938ee5a5326c9d7"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.5.json",
+    "bytes": 758,
+    "sha256": "54eaaaae20e9f2d3481931dbfbb861fadf01593b7b0f619f3b17cef38681bc0e"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.2.5.md",
+    "bytes": 627,
+    "sha256": "87b69909402e0d8d13e75d2d81439486574bc64f3d05086e8cb9f097de1be5ae"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.3.0.json",
+    "bytes": 328,
+    "sha256": "7cfacf4e35a930682b4937c86de1efd84c6b2eefe928925b4c2f428bf527035c"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/en/v3.3.0.md",
+    "bytes": 205,
+    "sha256": "f3597a8b8ebcd6ab9291b9304a9cae61101e080f1c413fecd32ebbb8edfca480"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/es/latest.json",
+    "bytes": 339,
+    "sha256": "99d652e932e9db5a17a3c78b01fe35f2415b2316bb96073f749bd83bf854f523"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/es/latest.md",
+    "bytes": 216,
+    "sha256": "2732b0de321872a47d71183f213e0453d538230ff096cd454f67fea32dffd71f"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/es/v3.2.24.json",
+    "bytes": 1119,
+    "sha256": "bfc606e5a197c94f414de0482da1efcd665070b576acd2f807534df0ca909656"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/es/v3.2.24.md",
+    "bytes": 972,
+    "sha256": "dc04fa39a5c2747a12fd10fda981332cee23982864e0d63b123198fdee621293"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/es/v3.2.25.json",
+    "bytes": 791,
+    "sha256": "8b218dc978f3390797f077c3981c339f94b750ad9a59db2d510c96c8c1c79038"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/es/v3.2.25.md",
+    "bytes": 654,
+    "sha256": "5989c98286fc7c7bb8b007f11181ea8af4aae0ce7617b587d8cfe04b79cc3d2b"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/es/v3.2.26.json",
+    "bytes": 984,
+    "sha256": "bdb6ad1443f0299785580f5e1a6125ee8efbac0fea2688a2ac8c144970f1de34"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/es/v3.2.26.md",
+    "bytes": 843,
+    "sha256": "22da0c348bbfd79348c25cb78fc916d269b6073c99573ab1e85f63c854c14871"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/es/v3.2.28.json",
+    "bytes": 768,
+    "sha256": "4445447625b7542f1a70bb3af8fdadfdf87e2a4ef34f75cce4047fa95157f45a"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/es/v3.2.28.md",
+    "bytes": 631,
+    "sha256": "c1401998247fedb0fede46446da84a2b04bf02fa231fe042d2d1c796c0bfc09d"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/es/v3.2.29.json",
+    "bytes": 1219,
+    "sha256": "f7118d74e5dea2193cfde7656a0add9d27793cbad72ec9a96a1c97ed7d82773a"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/es/v3.2.29.md",
+    "bytes": 1075,
+    "sha256": "031c84f03874d14bb72126605922daf3ddfb183bd5be6fe9f2d6cfbd5d538ae8"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/es/v3.2.30.json",
+    "bytes": 1017,
+    "sha256": "36b98bb5f23e3b006499cbeeef101dce97280602cc95113363a797ea33181342"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/es/v3.2.30.md",
+    "bytes": 876,
+    "sha256": "9717187be290ad500f699ca6f9a796fc30e6fb9f214cc8229c1d5c05602dd047"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/es/v3.2.31.json",
+    "bytes": 1076,
+    "sha256": "99d9f21afe0c0cdd7b9f597bf972b31e39974207b26a790f677410fd68a5d640"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/es/v3.2.31.md",
+    "bytes": 935,
+    "sha256": "073da1b158508c73e90473d34aed8bdbc98146d1735c2b2b75d6437cf3b91eed"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/es/v3.2.32.json",
+    "bytes": 342,
+    "sha256": "882c9006e901af1a238b375216e69c7aa0e8dd7cff1d3373a08bf8d3e13185bd"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/es/v3.2.32.md",
+    "bytes": 217,
+    "sha256": "672ff71ac7353e7ca09d23e6918ba54ededa152c8ef5038518ec382ec1dd33b8"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/es/v3.2.33.json",
+    "bytes": 638,
+    "sha256": "cc9a2246dd67219eee50178a3ac6b54120ba19b33cce1adb71a89c4020a02cff"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/es/v3.2.33.md",
+    "bytes": 506,
+    "sha256": "85bdcf4595c54c5810a822098fcf3846a326bc4d315566f740bbc6e437d5fefb"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/es/v3.2.35.json",
+    "bytes": 417,
+    "sha256": "517df3693827438787a55dcd7ff123999bd5ede0ab6a9c348a1edf8c1f0b1028"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/es/v3.2.35.md",
+    "bytes": 290,
+    "sha256": "ef7fc8dca6c2bd5b1553b237cc74ef4ab93f5b614ad8f08c95d401fd9b6ab2de"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/es/v3.3.0.json",
+    "bytes": 339,
+    "sha256": "99d652e932e9db5a17a3c78b01fe35f2415b2316bb96073f749bd83bf854f523"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/es/v3.3.0.md",
+    "bytes": 216,
+    "sha256": "2732b0de321872a47d71183f213e0453d538230ff096cd454f67fea32dffd71f"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/fr/latest.json",
+    "bytes": 348,
+    "sha256": "60facff4370f788c9c33c6f386183240e8467da1a5d030ca3235f9f45058d6c5"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/fr/latest.md",
+    "bytes": 225,
+    "sha256": "e4e5f2bfe7791a21a13b39bd8028258f9ce51041f11a9cf39c7ffa827fd11faa"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/fr/v3.2.24.json",
+    "bytes": 1156,
+    "sha256": "1ed2c1d4c96437a464b4a3039a09d0a0d5e0560b70596e4714a9ff00edcfdce2"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/fr/v3.2.24.md",
+    "bytes": 1009,
+    "sha256": "db65f35a1906434afbc94ff26e5b9161d87fd5e873b71c5226ca614f068db2d8"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/fr/v3.2.25.json",
+    "bytes": 823,
+    "sha256": "d3726396cc40f422caf069dce66679ba9b0419c1eddc293df25c838d806eee30"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/fr/v3.2.25.md",
+    "bytes": 686,
+    "sha256": "406a8f6fcda57e7453803c6445fc071ee44bf8739cca71507cb9de3ee1b16820"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/fr/v3.2.26.json",
+    "bytes": 993,
+    "sha256": "72e88bfb00049f3613ab8de8423053a2073db746b13c5c236beb9f9fb2ea91a1"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/fr/v3.2.26.md",
+    "bytes": 852,
+    "sha256": "fcbc3ead990d9e8dd4ff4580e512c6ca1e4d1295c6f2051b397db0cdd3365461"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/fr/v3.2.28.json",
+    "bytes": 777,
+    "sha256": "c189b9b733ce6aa93e527e21f2f4fd42f6cb0457d3329a89c8ec1c00665fe2d6"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/fr/v3.2.28.md",
+    "bytes": 640,
+    "sha256": "0016974a868d66e7386aadb28f9412f1a379eb5ff32204bcc776dc23cabd8caa"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/fr/v3.2.29.json",
+    "bytes": 1285,
+    "sha256": "84efcf4f226ea19da73dd8a0f4643d87299acbfcc588e11920a4e8ea7db4102e"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/fr/v3.2.29.md",
+    "bytes": 1140,
+    "sha256": "d1bc53e2d8274bcb7f4af66ae4fa2d236f7c3d0039722cfb336ed8f73d84f53e"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/fr/v3.2.30.json",
+    "bytes": 1029,
+    "sha256": "07ddd6f9906ae47b4d670b8b8af111b1800ca7b76fa402a6f9d3effa6fe4fcb9"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/fr/v3.2.30.md",
+    "bytes": 888,
+    "sha256": "00ed137caa09983e91f8bc57f1174e4c49816bba02a905ec5e842ae3187f88de"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/fr/v3.2.31.json",
+    "bytes": 1125,
+    "sha256": "35c4bf2198bb0e0d7f0fbef1331ee633e5e4dff1a40dc01158666908e91128b7"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/fr/v3.2.31.md",
+    "bytes": 983,
+    "sha256": "e8ded590a7f875a52811e0a6a3407d65762f9e4b5c8a7a4c83aad4280653912d"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/fr/v3.2.32.json",
+    "bytes": 351,
+    "sha256": "cc7dcc777733b8eab67c174258dda6565906dfcfb7f900cbd05fbf0d5a557986"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/fr/v3.2.32.md",
+    "bytes": 226,
+    "sha256": "4fe426215968ee96f0ad33d921030b10a0ea47013f16e672ee70f7c3dbf1d91c"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/fr/v3.2.33.json",
+    "bytes": 658,
+    "sha256": "cdbac5a82c20fc75c953357be9901bfc07ced501076a7dd334f4c7448de0ff3d"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/fr/v3.2.33.md",
+    "bytes": 526,
+    "sha256": "497a2cd86f2cd9638eee912fbc6f00046e7078a6d0b2266e48e1b19592209145"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/fr/v3.2.35.json",
+    "bytes": 426,
+    "sha256": "d3379754b6688b20b682504b42f360b85ff407a72636095ce0c138236f694142"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/fr/v3.2.35.md",
+    "bytes": 299,
+    "sha256": "975beb767d023cda3055388b4d0499618ba5d27f266292282660def485aa30e7"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/fr/v3.3.0.json",
+    "bytes": 348,
+    "sha256": "60facff4370f788c9c33c6f386183240e8467da1a5d030ca3235f9f45058d6c5"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/fr/v3.3.0.md",
+    "bytes": 225,
+    "sha256": "e4e5f2bfe7791a21a13b39bd8028258f9ce51041f11a9cf39c7ffa827fd11faa"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/latest.json",
+    "bytes": 328,
+    "sha256": "7cfacf4e35a930682b4937c86de1efd84c6b2eefe928925b4c2f428bf527035c"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/latest.md",
+    "bytes": 205,
+    "sha256": "f3597a8b8ebcd6ab9291b9304a9cae61101e080f1c413fecd32ebbb8edfca480"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/latest.json",
+    "bytes": 362,
+    "sha256": "6c0a3b3f8714b44fc322404435cefcdd4ab0365b7ae9538487733bf6a9e69684"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/latest.md",
+    "bytes": 239,
+    "sha256": "1a4d2c4d4852971423ea16e5ce1454cb2e0ad91779e005ec0f48b7769c9d2873"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.29.json",
+    "bytes": 1026,
+    "sha256": "21cf8decc047487826305dbc3ed6b152ada1e431100ee7148846bfb99035bb06"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.29.md",
+    "bytes": 890,
+    "sha256": "a68e22d3a1063edcd1f0876ab9d509a684687d2ab45a09fc7358fa9d46389cc3"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.30.json",
+    "bytes": 692,
+    "sha256": "84229a67cace543947a29cd9ef0f8328bc81b80bfae882c209761c8736409fda"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.30.md",
+    "bytes": 560,
+    "sha256": "571b1654366911722df70afa87e3a111000a52ba7437f4712acfdd7ba9375369"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.33.json",
+    "bytes": 532,
+    "sha256": "59dfcda7a8a1ba8525b842f1bea7099bd06cf067942e1bbe81ec8c3739dfd28e"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.33.md",
+    "bytes": 403,
+    "sha256": "17b2a8a5d145bd0ee2478fb1ab16a6121cacb76e8da1a1301b42843b9e918912"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.34.json",
+    "bytes": 1059,
+    "sha256": "0358c31d771e9619532387f44499283229b28b0291fcd1c3368299edd88363b8"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.34.md",
+    "bytes": 924,
+    "sha256": "4d61c2b32d3f7798b57504b6479e8bdf87842f24393b108da963e7ed2f3c2aa6"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.36.json",
+    "bytes": 1921,
+    "sha256": "38cee40c2c0e94ee3cdb98837643243c77672580dbf5767d9da10572d5491434"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.36.md",
+    "bytes": 1765,
+    "sha256": "c1666561647942174f5ea15b4e4deaeb7294d77b264373ddc9dfb863539eafe2"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.37.json",
+    "bytes": 365,
+    "sha256": "5de9004a5e5a20ec12033890725c9665b21b983d1fe489647915ff1ee8abeaa1"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.37.md",
+    "bytes": 240,
+    "sha256": "dbd54698e4aedad84d36c19cf54a9918fbc6ccc0805fe15aea6e488dbfed1b39"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.38.json",
+    "bytes": 1197,
+    "sha256": "658cccf467d3c2f246f320bc6b074a6c40285a597b8d34172ef56ac387d53c43"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.38.md",
+    "bytes": 1065,
+    "sha256": "347f1cd887b9545dce6bd8e80fb7d45d66b239e97ff890d4c24d20b183c8456f"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.39.json",
+    "bytes": 365,
+    "sha256": "01cce830c9a32ffd877c9e5be6bdb48ed3e5d761158fcba38434be88ae8de248"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.39.md",
+    "bytes": 240,
+    "sha256": "033a4ffeb0a711621adfd56332bd7f31f6c9e95472d5a7a57542a85ec907f2ae"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.40.json",
+    "bytes": 535,
+    "sha256": "e1ea7847ed9e1629450b36dd3dadee2b7e8fa00113e3951a6e8bc78e1bacd9a5"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.40.md",
+    "bytes": 407,
+    "sha256": "d9f421ec14255c419564704a94e4688f5b85952f3ce8acefff04ed2cd113371c"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.43.json",
+    "bytes": 980,
+    "sha256": "3cb80544cd21d7486ebbb6b04ae3541dcd76afd48519d3176323b6fe486218ef"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.43.md",
+    "bytes": 839,
+    "sha256": "a63a16a58f2931aac2e796d8d43b2359075842387b92a8b6020a19d5da630427"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.44.json",
+    "bytes": 839,
+    "sha256": "8baa5c9906a58da51484ca0f7c75714e1556d729f45bdd11c18f416255970cc1"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.44.md",
+    "bytes": 708,
+    "sha256": "035b37d98ad585c4b21114a11cb0d45a9fb1cc924c10d2d45074510b6d8d75fa"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.46.json",
+    "bytes": 975,
+    "sha256": "f2cbccfecd833a03437c86ef20188f4881d7b80e6176f7608f22e5fe8ed9246d"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.46.md",
+    "bytes": 844,
+    "sha256": "5d7ff84d7dcf3fdfc631d1c7b8e8b4d82c271cd8150b7c4f5d58704b8de9b5ad"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.47.json",
+    "bytes": 1878,
+    "sha256": "6539ed7f21a313cda6d7e6247d6c97a87afad6aca4e38aa9c692eb1ea3273835"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.47.md",
+    "bytes": 1719,
+    "sha256": "3eccd9364eba3512fb16553be12cb162c52a34865e84bc9f561900ea3b6d8a9a"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.48.json",
+    "bytes": 1427,
+    "sha256": "69a5b8d58e581e8e3fb62d976925abfa0b6baaab4a5e5b0f57bb7a64da5acb80"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.48.md",
+    "bytes": 1287,
+    "sha256": "d54bfd0ae8191bc8374839baf14710ed015aca6e9974e9f67fa7d117c5b8a144"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.49.json",
+    "bytes": 643,
+    "sha256": "a42195648285c90aed36484207786b108c83dedd9b709416b742632563a382b6"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.49.md",
+    "bytes": 513,
+    "sha256": "532c599d2eecdaf518147ec28e99eafa0dd25fc75f17fb385fbff78f8cb8914f"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.50.json",
+    "bytes": 958,
+    "sha256": "d626d6d69313c0177fdb3f96bc7d3f9fa41515bc194925225e6d6999f92f815f"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.50.md",
+    "bytes": 822,
+    "sha256": "5acd641b55aa72a38184e3ef6bf09271343667555c6c2309172597f2ebff50ef"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.51.json",
+    "bytes": 725,
+    "sha256": "390d9f9105ada879112f94daa479a4c735bb2716cdb478f2c8fcdd0d7dd54031"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.51.md",
+    "bytes": 591,
+    "sha256": "a12e838c1c44ac3af6db3070f47abf54f0c22fba190ae21c52b88be7d65a4255"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.52.json",
+    "bytes": 752,
+    "sha256": "e5341e315d16f9f43fd02dd94784286ea9be38a0d675311f9894a5c6ba29e034"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.52.md",
+    "bytes": 618,
+    "sha256": "630c318a008c9f49bf62131ff282737fd5e7ec541c26273f436a449b6194004e"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.53.json",
+    "bytes": 653,
+    "sha256": "c0ac055c3dcda1180435b05978072c208eb22a9715b430b235b7eb1187275972"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.1.53.md",
+    "bytes": 520,
+    "sha256": "1c8df07967b977e5801140529f24589f01393177dc84cc49a22355846fe32a00"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.0.json",
+    "bytes": 1161,
+    "sha256": "4d949ead51ea04f749af1224b52d15209fd3f2c7968ccbd09f5e9591f85315a0"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.0.md",
+    "bytes": 1025,
+    "sha256": "4b2258637ba1b627b7b2d99d5b483a72aa203d948f1a34cd021f6678dbe66321"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.19.json",
+    "bytes": 589,
+    "sha256": "580e07dacf2b9697a3e227aa10c20b7e078384ae2b035546c879317419b2c91e"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.19.md",
+    "bytes": 455,
+    "sha256": "fab49854fff349afe430da8b4ad32c54b6e88de9af53ca837cf8c5e34b780e9d"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.20.json",
+    "bytes": 510,
+    "sha256": "b5813132215de46146eca11476f5ee8f0eea11d89f562612ebcf1d7f794de2b1"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.20.md",
+    "bytes": 380,
+    "sha256": "ffc411c04089207c1a251dc23051f53344e1458129b0f0fd92817f330256a000"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.21.json",
+    "bytes": 995,
+    "sha256": "6af5c10e8ba15863e4ecd883a4ed3caaec8230ef1cc7866356230e80b92359a4"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.21.md",
+    "bytes": 852,
+    "sha256": "f149762d418f4403e4a7df161cfee46fc5143c259eb2ebea3862761434a13977"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.22.json",
+    "bytes": 1011,
+    "sha256": "3b70155339026591f1e616765f55ab50f7e8364c4aa1f935e2470a76762950d2"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.22.md",
+    "bytes": 867,
+    "sha256": "911bd2cdad4ad63d112fb9cd3fe67baced2ec8dd2bce27d46d1fedcbfbc31deb"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.23.json",
+    "bytes": 797,
+    "sha256": "eed17de80f022262c0a4955b2bb469211e1542c898b5f50b51ce584909f04d0b"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.23.md",
+    "bytes": 659,
+    "sha256": "09b52b534d88639ada7950f4180fd9b13c38b8f557ff98a7ccbff89eb1a7b06a"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.24.json",
+    "bytes": 1092,
+    "sha256": "98cd77f9db2b0f66d6b5c2be39da42ddbc84784b6407a9b18df484535d85bde8"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.24.md",
+    "bytes": 946,
+    "sha256": "4a41cad5595f6365cdcff98daf1dcbf53d2b252e653e220b98c336560e32f6fb"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.25.json",
+    "bytes": 804,
+    "sha256": "8a75e9cca8e2b3e424eeb0246673ef32c7c36edb4ab10d10ba0ade6b50c86034"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.25.md",
+    "bytes": 667,
+    "sha256": "a5efc361f20ad695492f5b9dd02ad8b58eda25e0253cb88737323cc6a2547377"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.26.json",
+    "bytes": 1030,
+    "sha256": "e09e260c0d2d6061e62fbbf6eddf6b76dae35bdbc91b9292b0f7b05ab6d6a766"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.26.md",
+    "bytes": 890,
+    "sha256": "bc4e8ea57e5a156e04b702cc7e2932384d43c1d18c68f7b218445fdc74d218a6"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.28.json",
+    "bytes": 812,
+    "sha256": "4df4d942fc7fd4ab246dbe37eee54c9e450311f907abf4deda667763250d35a8"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.28.md",
+    "bytes": 675,
+    "sha256": "fa6fb2191029194bfe212d7a4d35dcfc1a868bf935dff5df97a3936f4550db6c"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.29.json",
+    "bytes": 1156,
+    "sha256": "fcf2909c410695862acd3514d89abad7c43c168b15d99a1bd34bc979b89dd5a7"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.29.md",
+    "bytes": 1013,
+    "sha256": "852638f472059834ac754a83ce1445f3b62fbbea5b402dd4a5758f37e1f8b822"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.3.json",
+    "bytes": 754,
+    "sha256": "cf46a027e5f98a37b94efb942ecb7efb785499009b8d691f4bda61d2bac0396b"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.3.md",
+    "bytes": 624,
+    "sha256": "df52157f3e55bcfa8f550edbbafd8b565d1b2da8a7307cf37eed57727be35f18"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.30.json",
+    "bytes": 940,
+    "sha256": "ad92faf96fce3fe3989364189b25f9cb32defab59b7b120eb4be39863c32f258"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.30.md",
+    "bytes": 800,
+    "sha256": "26f7531e963971f3edc4b3b837e128f2506318fb922ceb5d7223e1ca97df2d1f"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.31.json",
+    "bytes": 1012,
+    "sha256": "1cf6d306e77e0c1cd32e656e03636baeff570dd9f9913836e3dfcc64f8d52290"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.31.md",
+    "bytes": 872,
+    "sha256": "6ff41cd5015c1bd8be42fbab891d75bf4289d3cc8e3399de332483b7cfcb801a"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.32.json",
+    "bytes": 365,
+    "sha256": "edf1a10fd720b632eecb41bd4d07075e7b2ba1c2d109308b2911ba8946a8897e"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.32.md",
+    "bytes": 240,
+    "sha256": "871f8fe137e0d8649884308b05d9f1de91c543268e4161e8c2f51366041d7800"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.33.json",
+    "bytes": 609,
+    "sha256": "8485ccad512d02f860173077a093203f8f26dc4f8b4bdc1e6a4fcf21ab363c4d"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.33.md",
+    "bytes": 478,
+    "sha256": "63ecd878dba2e3a90a8b5405a49a6ef1511e2e33f26f22b9d61a0daf2b4bc243"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.35.json",
+    "bytes": 440,
+    "sha256": "886da84507e013e47687198617622d36518859ff46e54b4fc64207b319a78926"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.35.md",
+    "bytes": 313,
+    "sha256": "359ae3b7ea4df9695b55f4e61dcf37ec146eb5042041bc46ee33b05fd60a591e"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.4.json",
+    "bytes": 971,
+    "sha256": "117e6069af08727d48657638f37909987df24aa0850f4553e4d335b8a1481b2b"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.4.md",
+    "bytes": 837,
+    "sha256": "8739c39a248ca9e762dd76cb1016013ddb5e2e42395cf489d9d3f9b21ebcf96e"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.5.json",
+    "bytes": 793,
+    "sha256": "822660f99d21b9632f937d2eb9c1a85363f4f9cc8b23cd85559fe02603db6d67"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.2.5.md",
+    "bytes": 661,
+    "sha256": "7cdd3cce8b02fe15d73fd163278b87746f2b97edfe802c14690b24e8816f3d4e"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.3.0.json",
+    "bytes": 362,
+    "sha256": "6c0a3b3f8714b44fc322404435cefcdd4ab0365b7ae9538487733bf6a9e69684"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/nl/v3.3.0.md",
+    "bytes": 239,
+    "sha256": "1a4d2c4d4852971423ea16e5ce1454cb2e0ad91779e005ec0f48b7769c9d2873"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.26.json",
+    "bytes": 484,
+    "sha256": "a517ea6b06060f734e124956a502082f3c6d30c3434682d91852a5570166c449"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.26.md",
+    "bytes": 372,
+    "sha256": "e9762f4d90a3d60e563b289dbfba896e35e2dea291b69d1f18b79221e99d6ea6"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.27.json",
+    "bytes": 821,
+    "sha256": "2fe00446e637c8ebfa8f7cbfebe4bcf64c3aeacb1de9274f8bed7922873f56fd"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.27.md",
+    "bytes": 704,
+    "sha256": "5aed09f96ecab13c3e3cca31e492626e211748c354a37c384fd2a2933766a33f"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.28.json",
+    "bytes": 1508,
+    "sha256": "ba392842f945c9ae2c6b3d8e88497aef3eb245008161e3d3fd64598e081b15b7"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.28.md",
+    "bytes": 1380,
+    "sha256": "fe2a0479b130dbe3f4a9251a75e07666f7e681c1cf4bc75b779728769530b9a5"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.29.json",
+    "bytes": 992,
+    "sha256": "90f0961f84d9bcf2b9ea3fc748e3e997fdcbf0a675e7a12df58496c53e63426b"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.29.md",
+    "bytes": 856,
+    "sha256": "2e2cac2e84aa8ee7cb783be491be9939a0d641340313eba429d6af4f5a072051"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.30.json",
+    "bytes": 658,
+    "sha256": "cf673b08b697f88f7c298884978869fc1461045458aa54d3c71daf0ec31f7e90"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.30.md",
+    "bytes": 526,
+    "sha256": "58045549b0608d22f242a0790b5eb26abc672ec226097e7d6824b6127aaf353d"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.33.json",
+    "bytes": 502,
+    "sha256": "a6268bca81b008cb70f66b2ff2731c4a69894db2e3f529d2e0efc9b0c5c06b62"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.33.md",
+    "bytes": 373,
+    "sha256": "9122857d73a1f4ab2931e95635416f482df39e66e8b7f430aa6fbdfc3c847ab3"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.34.json",
+    "bytes": 1224,
+    "sha256": "25b956a9fb8844f8d5a38c773c0418a9abf06c8855dc4b607e600f9167d11485"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.34.md",
+    "bytes": 1080,
+    "sha256": "72552a47a1f4151a2ddfe97b68826ee13c377a86e5d87438e6ffffe239e6e095"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.36.json",
+    "bytes": 1887,
+    "sha256": "0d19e2b1d44637f8f4011d29cbbe564607a16c16b4fc65830c75a20534a24a23"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.36.md",
+    "bytes": 1731,
+    "sha256": "2173c04966ec4e5bb2df3c0f1e061b76d9425545f08c2b15c1bb55fdbd78faf4"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.37.json",
+    "bytes": 331,
+    "sha256": "3392c275b7b54122ba92967e8bf4993a7bdd6a1c8c3df05551ce6ee8d23fd482"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.37.md",
+    "bytes": 206,
+    "sha256": "4d46198c237f070232f04df1c622e64a75f592c74c220b4b23db0a49d31511ea"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.38.json",
+    "bytes": 1564,
+    "sha256": "438fd3539a153683af41af9e29dacf15044cbe5728917818a58d741c0d0f594d"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.38.md",
+    "bytes": 1415,
+    "sha256": "02cd81a016a54d8ed5b8aed6ffe6847e47d42ff4f3f689cc0146554d70565754"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.39.json",
+    "bytes": 331,
+    "sha256": "3aa6c71319dac11092bf5d5fc245a95cffcf9ea86a44f285bf8912faf02d1c8c"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.39.md",
+    "bytes": 206,
+    "sha256": "1c044d5b6666b5c62cf36585af1274641d81bc8f5ab30d3d18789f0ab6edb161"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.40.json",
+    "bytes": 456,
+    "sha256": "7d7af664bab319dc0d0570a4f27b64d3605ee9e1d97c8d9895d1fca7c75b5bba"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.40.md",
+    "bytes": 326,
+    "sha256": "a1cc9e3eecef13abf16ba2915da8708ef3e7454203ebc2b9dabbd2e2ebf34d32"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.43.json",
+    "bytes": 1110,
+    "sha256": "751bfacf872904e7063f4cc3cd9802781db695027bbc3645f49d3ce2a9a24bdb"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.43.md",
+    "bytes": 972,
+    "sha256": "a54e9fe088123a642658f6a6a7337a97fe4d8fdff3e59d8dfc4d59b71c7207b0"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.44.json",
+    "bytes": 1295,
+    "sha256": "4f440fc75df39238b20b3c3eb4c4d74875cce19470e138daf1808acd05c751b6"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.44.md",
+    "bytes": 1146,
+    "sha256": "441b30acb02d6f7b892a65364a584260269cee074d583f7c9dfdba40d9b879db"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.46.json",
+    "bytes": 1444,
+    "sha256": "04cc896d0476fc7883e0d2f0f78b582af68543ec789cff4c68fbc61128703a4f"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.46.md",
+    "bytes": 1298,
+    "sha256": "a674a4924193a9666a2c705416ca4e0ec6bf3ca27e6628c9e859056a406471f5"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.47.json",
+    "bytes": 1844,
+    "sha256": "2288fb60f093029770bd8ff80d6f3744db28ba6eecf975766d81a0c1a8177a18"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.47.md",
+    "bytes": 1685,
+    "sha256": "f7f6bbf2ed2c0049e288cf4132c32ac9d9c53387a7e3aeac48c9ee2eb0c65993"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.48.json",
+    "bytes": 1326,
+    "sha256": "10c9f4bbbda1f1d63bb47d2cb0a806c978b610d1d6763b9d896a0b6948f41d6c"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.48.md",
+    "bytes": 1186,
+    "sha256": "1f5410a3215a43c9a6b05616de1152456ff32a352051a6c65c70fa5fbf055172"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.49.json",
+    "bytes": 605,
+    "sha256": "e18ace2076d8524206eec06767272cf28822803bc3bf80cb48a6fcdb643497a5"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.49.md",
+    "bytes": 475,
+    "sha256": "dfc854f5a14ff1f1147265d6cae3d49dad975dd424d72718cf16b2dd206635e4"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.50.json",
+    "bytes": 905,
+    "sha256": "88c7af9b4209842cf406cb518a533ad6cc190f896b6f2a241d9f481fc9d681c4"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.50.md",
+    "bytes": 769,
+    "sha256": "b01bfa21739e4dd1ce28de28c2daa995a1ac4236d7718c02a3081933a34b9421"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.51.json",
+    "bytes": 682,
+    "sha256": "c89018dc8222192b44919d93420b40d7511eb89e8eb383211033b46569d77666"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.51.md",
+    "bytes": 548,
+    "sha256": "93ac14c6a2d92e8e990d3d14de2364f6451f2e2da8594c134471bd903b1314ec"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.52.json",
+    "bytes": 1055,
+    "sha256": "6a7841e850ce94e0c609f8534bc1472cee91b2efe292f108195640421ec8d15a"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.52.md",
+    "bytes": 917,
+    "sha256": "d8d59d4eae48d349a4da3ba2971afa2e5a14b6fa701c89fd2e9f7884b694cfdf"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.53.json",
+    "bytes": 591,
+    "sha256": "68a165f1da38d2cab2843fdb04cde083eafa43d1a871c727e3709e6315503d62"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.1.53.md",
+    "bytes": 459,
+    "sha256": "60a497bebcf3cac7245146b185642afbbb6667e080b4477e143719b9062fa316"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.0.json",
+    "bytes": 1104,
+    "sha256": "cfa2038ff80b170f4a3a9abc803bdc6f76647b462448278270e34909fdfa6b89"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.0.md",
+    "bytes": 968,
+    "sha256": "04ac9a69d6a22760be71a453523e92789a38105b28f75fd95f84ffb172a3543f"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.19.json",
+    "bytes": 552,
+    "sha256": "10fdce9b97b3ae503e572a6792ecb71195531c0003a9a676fc99a101e9c2725f"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.19.md",
+    "bytes": 418,
+    "sha256": "22de7aa1773f29302c468b668f3cec4a48ed7a03e86876b2b9d943afddceba86"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.20.json",
+    "bytes": 464,
+    "sha256": "71a99085a0f3dfe72d3db021d8ce62ba21f59bac51cfe1ee33cccb2e634356fa"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.20.md",
+    "bytes": 334,
+    "sha256": "6528359dfd81f535b6d0c21ecc767559dc55125c91d32da6f621f0387216dbb8"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.21.json",
+    "bytes": 921,
+    "sha256": "0f56a1e43a8c789cc3cb15b4c32a3af43848787003a22aedeb3d773ce0178adc"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.21.md",
+    "bytes": 778,
+    "sha256": "80c3350a689ff288ae2042294aa224f756beb7d71f6d88bac2d24821f8129f25"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.22.json",
+    "bytes": 986,
+    "sha256": "89eca9330c07744b327d9a82b20ee056e03c71cd5021b4d315718db378963c3c"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.22.md",
+    "bytes": 842,
+    "sha256": "00441f74591b7c679707d8233793218be9ea68d1a7469b58bed9bf6950cf101c"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.23.json",
+    "bytes": 784,
+    "sha256": "ce47ab3c6f91c934cac414d1822d0e7dbf4206708a71d1598c9219a44f84fc35"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.23.md",
+    "bytes": 645,
+    "sha256": "026885d08588c4a426684456fd67c3b8a7882bd831f527195b3eaf9587209d3b"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.24.json",
+    "bytes": 1041,
+    "sha256": "07efbe1009f90e86699c23362fe953999080c3641df2e30812edf460cc12904c"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.24.md",
+    "bytes": 895,
+    "sha256": "3883a7cd854a78790bc8f9e907217def4b4292231d30b216a10e22d1c3d5e543"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.25.json",
+    "bytes": 739,
+    "sha256": "0abed64db10e68692f93f9da7162d5b0bef1f0b3bc333454ce542505b4dcdb30"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.25.md",
+    "bytes": 602,
+    "sha256": "843f4b1134747081f3c17d5ec346ec14b58e798bccdde78bd0aa7cee636c999c"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.26.json",
+    "bytes": 973,
+    "sha256": "75247f4d27b1cf0ba295821b81f966fe61237e452f05b9d4e0058e830f51d6a1"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.26.md",
+    "bytes": 832,
+    "sha256": "a9a40dbe8f6d354c7629faae50f6637ab01887a5b28175cc5ebc7f9a6e83b60c"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.28.json",
+    "bytes": 757,
+    "sha256": "6346fc556d81df9e1ebbdaf040c7581f4d255a1a93da700c39d45f9ff83a76a1"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.28.md",
+    "bytes": 620,
+    "sha256": "75a7373f1755a9a070d2bb2ca205147f6b911743140f762cdee7f1ce9c56180a"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.29.json",
+    "bytes": 1108,
+    "sha256": "9dbaebbbfbbd62dbc516c72b8e4d5fa703f5d6a1d6f4adb3df86a4408e76b05b"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.29.md",
+    "bytes": 965,
+    "sha256": "b8aadfbe6c8ded06f135a89a7bb90207cb924e3e6639a5a2464b42f4edc3a855"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.3.json",
+    "bytes": 762,
+    "sha256": "ceb7711964e2fa25874bb47ba84fd44f173b97296b522ef42e1b773a4e6aa6f8"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.3.md",
+    "bytes": 630,
+    "sha256": "a4d00fd712f48e696ece6d84b579de561b917a052ad4229d7d7003e582ed9b79"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.30.json",
+    "bytes": 876,
+    "sha256": "b00b9c03e97bb103aa52296440b7402858689968148cc4598c3b78248592e87c"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.30.md",
+    "bytes": 736,
+    "sha256": "b4f70e8b4094e9cf9cce902acca2f98dbc47e0203107b8b77e2201c6f7740530"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.31.json",
+    "bytes": 981,
+    "sha256": "49301dfb697bb8c57dc521c2817091ee3c9f807fa056681e4613a0784a27022e"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.31.md",
+    "bytes": 841,
+    "sha256": "f5fe844dddf4a8cd2f6e18d44601bd453ce6cee5821e7b9c9cd83595319a9ce5"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.32.json",
+    "bytes": 331,
+    "sha256": "39e95aa78e5256efa39744994642bdec450b20c2297586cce3db55241ca50637"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.32.md",
+    "bytes": 206,
+    "sha256": "eb7032df5c322ac8bf278939829b20d933f2baf161f3c22f2b26e47f73ef4b7e"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.33.json",
+    "bytes": 573,
+    "sha256": "7defd2da8fa21cf37b60bd58395897aead98185bd8c6189b07b3268f3e5eccf9"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.33.md",
+    "bytes": 442,
+    "sha256": "2c3897b28fb4f3ad7997e62629cb3a38a2eb992fcf2a766232d2c3a78ab31e3e"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.35.json",
+    "bytes": 406,
+    "sha256": "b386de0fc9fa55ecabeac0a60f071423619b9291446b74b671adaad825346c0a"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.35.md",
+    "bytes": 279,
+    "sha256": "206e0df6017dde3ecd62baa3bb70b2d8cc38bd71714894073f2b245347fae0e7"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.4.json",
+    "bytes": 920,
+    "sha256": "3fc20f35e64062cd732c3386b2302e664b439e30fba0cf97529b670bf2159784"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.4.md",
+    "bytes": 787,
+    "sha256": "9bee7262eb566c6be7dd9f70f2bb32f79db76ae6292d06f46938ee5a5326c9d7"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.5.json",
+    "bytes": 758,
+    "sha256": "54eaaaae20e9f2d3481931dbfbb861fadf01593b7b0f619f3b17cef38681bc0e"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.2.5.md",
+    "bytes": 627,
+    "sha256": "87b69909402e0d8d13e75d2d81439486574bc64f3d05086e8cb9f097de1be5ae"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.3.0.json",
+    "bytes": 328,
+    "sha256": "7cfacf4e35a930682b4937c86de1efd84c6b2eefe928925b4c2f428bf527035c"
+  },
+  {
+    "path": "wwwroot/release-notes/macos/v3.3.0.md",
+    "bytes": 205,
+    "sha256": "f3597a8b8ebcd6ab9291b9304a9cae61101e080f1c413fecd32ebbb8edfca480"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/de/v3.2.5.json",
+    "bytes": 899,
+    "sha256": "5c7e7fe28ba7dc1114955b27309958941e187389499deae44d4ae9350ea6b890"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/de/v3.2.5.md",
+    "bytes": 767,
+    "sha256": "28de5efaefb7b1edc1ab893e70f705ead07d194381b498c13a83920e8f6c1c81"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/de/v3.3.0.json",
+    "bytes": 331,
+    "sha256": "d93a472a14bd7adac5c3984f7b02d03fd7cee1d291ae4d2d3f063d3a1fdc0953"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/de/v3.3.0.md",
+    "bytes": 204,
+    "sha256": "816d8987128dc6d04093c7cab9ff2a2530efb998b3d421ed7baafaea1ea8a111"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/en/v3.1.1.json",
+    "bytes": 863,
+    "sha256": "1e0e07be8555c25143c912917ec655158d43a8a1df6f340c80034158b1a1529b"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/en/v3.1.1.md",
+    "bytes": 730,
+    "sha256": "8cb49c409482bb8ae1fd888c06eed379c6deb63724838dbfdb1270720ad66aaf"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/en/v3.1.10.json",
+    "bytes": 831,
+    "sha256": "528b4cfc74ac5eda823b6892fe1bda0648e340573cca24ce1a4afe4f4c40248a"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/en/v3.1.10.md",
+    "bytes": 697,
+    "sha256": "bd94fa6e85ee04d1ca4ff71193a92cc0d8146123956057da4d07caae0642eb75"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/en/v3.1.8.json",
+    "bytes": 675,
+    "sha256": "4de5c0764252cd149aa4d2ff72ad0529bf2b988e685b7a610b5b2914c89cab20"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/en/v3.1.8.md",
+    "bytes": 545,
+    "sha256": "dd3812e9376bbb33393c44333d724764fec7d77fea12b39371a6bb5c4f4f92d2"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/en/v3.1.9.json",
+    "bytes": 828,
+    "sha256": "abb6167cc6bafe0e8f832c0d27c17f996043ba7cb2f227339e2b29b31c87b12a"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/en/v3.1.9.md",
+    "bytes": 696,
+    "sha256": "90161418bc90faefcdeb7542062073a2085938b77b5eed5813fd0eb02ddfc71d"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/en/v3.2.0.json",
+    "bytes": 999,
+    "sha256": "891d314446aa3a296cfe5095b563eab6479bfa21ae86b740384399fbad49200a"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/en/v3.2.0.md",
+    "bytes": 861,
+    "sha256": "19426e235f2ea182e91c21d96f8f4e59dfd1c82cc45bf407741a8e5c0d238df1"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/en/v3.2.1.json",
+    "bytes": 717,
+    "sha256": "9bef81ef62f193d4c185669a68f22ae22871ae92cf7a43dc3de729d3aff6bb51"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/en/v3.2.1.md",
+    "bytes": 582,
+    "sha256": "139b3cec53fbe9886072464e785faf03ecb576af0b568487d80f8f9453b7c7ac"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/en/v3.2.2.json",
+    "bytes": 1495,
+    "sha256": "a0d6b7548e74037d92c33e4233a7f275d5bcdc2891c11b1bd73335dfe7f7ef59"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/en/v3.2.2.md",
+    "bytes": 1348,
+    "sha256": "9af07a890bcba771eafc91a5634bb2d511228b07c53ba7d2844d329d277bd1e7"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/en/v3.2.5.json",
+    "bytes": 795,
+    "sha256": "ea5be2cf443649b42cf05a445414c9f417a806d55a3377aaf918182fc4cb9cfa"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/en/v3.2.5.md",
+    "bytes": 663,
+    "sha256": "c06b671041c130ade316a74aa0456aadcc0290e70e3da18c897f313dc9bb596b"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/en/v3.3.0.json",
+    "bytes": 323,
+    "sha256": "800a49985965ea18838fc62c918a3c88b859932aa956bd5c9c12b75ca78296a6"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/en/v3.3.0.md",
+    "bytes": 196,
+    "sha256": "451a884d3d1887db6ca59fb84bf6e93734937b4e9256aa73a2e6366c2307f473"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/es/v3.2.5.json",
+    "bytes": 889,
+    "sha256": "b6463ba297495e10041bafa3ab17ec84366a58e33e08fdd09d3ebf401de011ea"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/es/v3.2.5.md",
+    "bytes": 757,
+    "sha256": "91b2b813f97bb5a4e042f776d802cecde9f82d8495f5b2d92f9d42537c4e60aa"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/es/v3.3.0.json",
+    "bytes": 342,
+    "sha256": "29045ce060cc1f7f6ea1ed7d6e3dd623a1c58c6a08170068f6a20a6a63f9b8c9"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/es/v3.3.0.md",
+    "bytes": 215,
+    "sha256": "41b8883284adcd949f8b58df4150509d21fb070ed9713949f545b3867c5d6e2f"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/fr/v3.2.5.json",
+    "bytes": 924,
+    "sha256": "0ad204465b1ef0c03432e28effd43076c48af5d02b684e45a9da8fac1226bf76"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/fr/v3.2.5.md",
+    "bytes": 792,
+    "sha256": "6ee26fca57379c1d2e1924dae8c971b0eba6b2431f2a5c23c13f82f528e6a9ed"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/fr/v3.3.0.json",
+    "bytes": 355,
+    "sha256": "d4e23e7a5afb3383346792dfa0949cacc851d7e1243c999584cc580ff8cadbe9"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/fr/v3.3.0.md",
+    "bytes": 228,
+    "sha256": "7a4a8b67350752b27802fdab1914b0c41e7f490726f4343a842c6b7e2fcf0a93"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/nl/v3.1.1.json",
+    "bytes": 911,
+    "sha256": "f9fe177bfc49f325b024123c428e912655a035e3db0d3a29a0c8a943ebb08481"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/nl/v3.1.1.md",
+    "bytes": 778,
+    "sha256": "ce958a5f1371060c25ccbfbcdd3769a1d9e1ba6af5b65c55134428aa6946e7d9"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/nl/v3.1.10.json",
+    "bytes": 870,
+    "sha256": "700e07476d8fecf5a8080d924002a7abb7b671131015c4c11b59035d386021d4"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/nl/v3.1.10.md",
+    "bytes": 736,
+    "sha256": "3b3ffceae218062b4ec8eeec8b53b302febb0d085118a98e1cd2db0d6b61094f"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/nl/v3.1.8.json",
+    "bytes": 707,
+    "sha256": "21a598161cbc9a2a287023f112cecb464ed5a52d48828ffe60e46a22382076e5"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/nl/v3.1.8.md",
+    "bytes": 577,
+    "sha256": "77fef02c5dd3a1c2f402dd54fb5160b59ccfc58c9be4e82f12d8db02a2448bef"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/nl/v3.1.9.json",
+    "bytes": 849,
+    "sha256": "504c09ffc11bb8464f9d8e0d29f2229c9b9e45eaf8ed77e6bf40b81666d67589"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/nl/v3.1.9.md",
+    "bytes": 717,
+    "sha256": "bd9d29c3407f98c0242cbd5b6c33e6f17a5e4dfe5d7bef43ce20685ab2888c10"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/nl/v3.2.0.json",
+    "bytes": 998,
+    "sha256": "f3379473fecd96f2417b5fe613c3ba4ebc9d66edf2be21c89fe56416e55859f2"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/nl/v3.2.0.md",
+    "bytes": 860,
+    "sha256": "fdd29f68086ce3a0adcbd42e9502a8be0cad33273a086558da99e7c005585443"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/nl/v3.2.1.json",
+    "bytes": 752,
+    "sha256": "2fcf378d852784862e3521077182467f98b533ea2abff843c8163006da282a58"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/nl/v3.2.1.md",
+    "bytes": 617,
+    "sha256": "548243712fc6bf920d4033d009484bb24e7549d6296ec9a7357d1ef2771fb188"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/nl/v3.2.2.json",
+    "bytes": 1526,
+    "sha256": "c2cd9984f4f04cde6e3eb3739bc12cb24f99f33b15c35d984cfa8effe611cec1"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/nl/v3.2.2.md",
+    "bytes": 1379,
+    "sha256": "7914df3422ef481a3ec20562011fe8acf4399548bbdd9eff657bac7f88d429e9"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/nl/v3.2.5.json",
+    "bytes": 828,
+    "sha256": "db074e3f46736fb5d0e0d8b7e4601bf7e488321fa0ca2a31d52c4c2d32dbe19e"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/nl/v3.2.5.md",
+    "bytes": 696,
+    "sha256": "333661928cfbc8c10caf61eb97d7dd1dea0d9a0a2cf88cf82a50ce4995fad0c1"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/nl/v3.3.0.json",
+    "bytes": 333,
+    "sha256": "7b2d68edc2c9372a11f8f561dd378c2f02ec80e5530f2925010607f081d1625d"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/nl/v3.3.0.md",
+    "bytes": 206,
+    "sha256": "a3a70f937620510f1d4c8cceb47e65e05011b081fbe7b036f5055da523826ef7"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/v3.1.1.json",
+    "bytes": 863,
+    "sha256": "1e0e07be8555c25143c912917ec655158d43a8a1df6f340c80034158b1a1529b"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/v3.1.1.md",
+    "bytes": 730,
+    "sha256": "8cb49c409482bb8ae1fd888c06eed379c6deb63724838dbfdb1270720ad66aaf"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/v3.1.10.json",
+    "bytes": 831,
+    "sha256": "528b4cfc74ac5eda823b6892fe1bda0648e340573cca24ce1a4afe4f4c40248a"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/v3.1.10.md",
+    "bytes": 697,
+    "sha256": "bd94fa6e85ee04d1ca4ff71193a92cc0d8146123956057da4d07caae0642eb75"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/v3.1.8.json",
+    "bytes": 675,
+    "sha256": "4de5c0764252cd149aa4d2ff72ad0529bf2b988e685b7a610b5b2914c89cab20"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/v3.1.8.md",
+    "bytes": 545,
+    "sha256": "dd3812e9376bbb33393c44333d724764fec7d77fea12b39371a6bb5c4f4f92d2"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/v3.1.9.json",
+    "bytes": 828,
+    "sha256": "abb6167cc6bafe0e8f832c0d27c17f996043ba7cb2f227339e2b29b31c87b12a"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/v3.1.9.md",
+    "bytes": 696,
+    "sha256": "90161418bc90faefcdeb7542062073a2085938b77b5eed5813fd0eb02ddfc71d"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/v3.2.0.json",
+    "bytes": 999,
+    "sha256": "891d314446aa3a296cfe5095b563eab6479bfa21ae86b740384399fbad49200a"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/v3.2.0.md",
+    "bytes": 861,
+    "sha256": "19426e235f2ea182e91c21d96f8f4e59dfd1c82cc45bf407741a8e5c0d238df1"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/v3.2.1.json",
+    "bytes": 717,
+    "sha256": "9bef81ef62f193d4c185669a68f22ae22871ae92cf7a43dc3de729d3aff6bb51"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/v3.2.1.md",
+    "bytes": 582,
+    "sha256": "139b3cec53fbe9886072464e785faf03ecb576af0b568487d80f8f9453b7c7ac"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/v3.2.2.json",
+    "bytes": 1495,
+    "sha256": "a0d6b7548e74037d92c33e4233a7f275d5bcdc2891c11b1bd73335dfe7f7ef59"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/v3.2.2.md",
+    "bytes": 1348,
+    "sha256": "9af07a890bcba771eafc91a5634bb2d511228b07c53ba7d2844d329d277bd1e7"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/v3.2.5.json",
+    "bytes": 795,
+    "sha256": "ea5be2cf443649b42cf05a445414c9f417a806d55a3377aaf918182fc4cb9cfa"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/v3.2.5.md",
+    "bytes": 663,
+    "sha256": "c06b671041c130ade316a74aa0456aadcc0290e70e3da18c897f313dc9bb596b"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/v3.3.0.json",
+    "bytes": 323,
+    "sha256": "800a49985965ea18838fc62c918a3c88b859932aa956bd5c9c12b75ca78296a6"
+  },
+  {
+    "path": "wwwroot/release-notes/windows/v3.3.0.md",
+    "bytes": 196,
+    "sha256": "451a884d3d1887db6ca59fb84bf6e93734937b4e9256aa73a2e6366c2307f473"
+  },
+  {
+    "path": "wwwroot/robots.txt",
+    "bytes": 67,
+    "sha256": "5cfd8b9f847a43d677dd1602362348d3f47d5d50677e1ff7b5a36d4835f1fb46"
+  },
+  {
+    "path": "wwwroot/session-receiver.html",
+    "bytes": 6135,
+    "sha256": "3a56e1ba9f9cc2b69c21b2b7b3a54c7967c15d6349f6d120c1cd007625c85263"
+  },
+  {
+    "path": "wwwroot/sitemap.xml",
+    "bytes": 10185,
+    "sha256": "5cee801a03f9e879ec96a57903de5de91094b3d2ce1ddfa6a7d45dec33e4c0d1"
+  },
+  {
+    "path": "wwwroot/start.html",
+    "bytes": 52191,
+    "sha256": "23c4285d59664b5578f68e56638fe37b50383d7f7a8892ce2b974896a595941b"
+  },
+  {
+    "path": "wwwroot/support.html",
+    "bytes": 11433,
+    "sha256": "105798ef4cf3d4bdf9c80be5c25142752d7a9d0c7df0e1610c34782802ba3c55"
+  },
+  {
+    "path": "wwwroot/testflight-macos.html",
+    "bytes": 11273,
+    "sha256": "d61f9ebe770fee9101cb8503eef7b0b05dc7d78942c4b8256c6839d563604906"
+  },
+  {
+    "path": "wwwroot/testflight.html",
+    "bytes": 11212,
+    "sha256": "4654b8611768bb391f4226b98976fc50212941967bb50317e169922ac2d8906b"
+  },
+  {
+    "path": "wwwroot/troubleshooting.html",
+    "bytes": 16760,
+    "sha256": "e9e2698fe9cf39bc9b6e21dbc46d6531c5525e6b2a533bee8ba7c58feb533c1a"
+  },
+  {
+    "path": "wwwroot/voice-assistant.html",
+    "bytes": 14265,
+    "sha256": "483fae14a77bdae91665685835aa0e606014065a0b41711d5443f6ad0200a16e"
+  },
+  {
+    "path": "wwwroot/voice-commands.html",
+    "bytes": 23314,
+    "sha256": "2f6adcc76f1e7998efb82073085199dbd6d2e6f8c40d03209d2124660104ff34"
+  },
+  {
+    "path": "wwwroot/windows.html",
+    "bytes": 13265,
+    "sha256": "39e340e0e0e780a15c50a47308cab0aa8b96f00525b7b5a8b19517a4cf71ae5f"
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "branding_producer_handoff": {"status":"OPEN","evidence":"Owner supplied exact approved master, hash verified; Core #1223 qualified producer source/wordmark receipt still pending."},
+  "independent_review": {"status":"OPEN","evidence":"Protected PR review must approve the exact candidate."},
+  "candidate_ci": {"status":"OPEN","evidence":"Required exact-head and exact-main CI must pass."},
+  "visual_acceptance": {"status":"OPEN","evidence":"Real Chromium/WebKit screenshots and accessibility review in progress; native device and nontechnical 5-second acceptance not yet supplied."},
+  "vibecast_destination": {"status":"OPEN","evidence":"Live destination responds 200; end-product story is illustrative. Release owner must verify actual linked destination UX."}
+}

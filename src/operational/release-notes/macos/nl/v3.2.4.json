@@ -1,0 +1,7 @@
+{
+  "version": "3.2.4",
+  "platform": "macos",
+  "language": "nl",
+  "name": "DJConnect macOS 3.2.4",
+  "body": "# DJConnect App 3.2.4\n\n- Music DNA is nu first-class op iPhone, Mac en Apple Watch, met backend-profiel\n  als bron van waarheid.\n- Ask DJ en Music DNA kunnen op Apple Watch dezelfde opt-in vraag tonen.\n- Apple Watch Instellingen kan Music DNA uitschakelen en opnieuw inschakelen via\n  de iPhone-proxy, met behoud van de watchOS-identiteit.\n- Music DNA toont nu duidelijk verschil tussen uitgeschakeld, nog geen profiel,\n  tijdelijke laadfout en demo-modus.\n- Apple-koppeling is nu volledig inbound-only: iPhone, Mac en Apple Watch\n  publiceren geen lokale Home Assistant callback-API of Bonjour/mDNS-discovery\n  meer.\n\n---\n\nPlatform: macOS\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nVoor normale macOS-distributie heeft de genotariseerde Developer ID-build de voorkeur wanneer die is bijgevoegd."
+}

@@ -1,0 +1,7 @@
+{
+  "version": "3.2.29",
+  "platform": "macos",
+  "language": "nl",
+  "name": "DJConnect macOS 3.2.29",
+  "body": "# DJConnect App 3.2.29\n\n## Gewijzigd\n\n- Apple-clients bewaren nu `ha_install_id`, `integration_version` en optioneel\n  `pairing_session_id` uit Home Assistant pairing/status responses en sturen\n  die metadata mee naar Central zonder APNs-token.\n\n## Opgelost\n\n- Watch push-bootstrap-herstel loopt nu via de iPhone-proxy met de Watch\n  identity, en probeert Home Assistant daarna exact één keer opnieuw met een\n  Central `djcboot_...` proof.\n- Central bootstrap-fouten zoals `invalid_client_type`,\n  `invalid_app_bundle_id`, `invalid_push_environment` en\n  `bootstrap_rate_limited` worden nu als privacy-veilige statuscodes bewaard.\n- Track Insight op Watch vult energie/detailmetrics nu uit geneste backend\n  payloads, en Music DNA vraagt niet opnieuw om activeren wanneer het al aan\n  staat.\n\n---\n\nPlatform: macOS\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nVoor normale macOS-distributie heeft de genotariseerde Developer ID-build de voorkeur wanneer die is bijgevoegd."
+}

@@ -1,0 +1,2 @@
+# Historical files are exact byte copies, including their original whitespace.
+archive/** -whitespace

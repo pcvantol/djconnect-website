@@ -1,0 +1,7 @@
+{
+  "version": "3.1.43",
+  "platform": "ios",
+  "language": "nl",
+  "name": "DJConnect iOS 3.1.43",
+  "body": "# DJConnect App 3.1.43\n\n## Ask DJ\n\n- Ask DJ-antwoorden tonen nu koppen, alinea's, lege regels en bullets zoals de\n  DJ ze aanlevert.\n- Playlists, albums, nummers, artiesten, aanbevelingen en uitvoerapparaten\n  verschijnen als duidelijke actiekaarten met artwork en knoppen.\n- Nieuwe tekstuele antwoorden tonen geen oude album- of playlistafbeeldingen\n  meer uit eerdere chatberichten.\n\n## Watch en On Air\n\n- Verbeterde watchOS runtime voor koppelen, demo modus, wakewordgedrag,\n  diagnostiek en meldingen.\n- On Air-streambestanden ondersteunen nu byte ranges, zodat AirPlay en video\n  playback robuuster kunnen starten.\n\n---\n\nPlatform: iOS\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nNiet-ondertekende iOS-binaries worden hier gepubliceerd voor diagnostics en interne validatie. Gebruik voor normale iOS-distributie TestFlight/App Store."
+}

@@ -1,26 +1,33 @@
 {
   "name": "djconnect-website",
-  "version": "3.3.1",
+  "version": "4.0.0",
   "private": true,
   "scripts": {
-    "build": "npm run sitemap:build && npm run build:release",
+    "build": "node scripts/build-site.mjs && node scripts/build-release.mjs",
     "sync:version": "node scripts/sync-site-version.mjs",
-    "build:release": "node scripts/build-release.mjs",
+    "build:release": "node scripts/build-site.mjs && node scripts/build-release.mjs",
     "deps:update": "node scripts/refresh-dependencies.mjs update",
     "deps:check": "node scripts/refresh-dependencies.mjs check",
-    "sitemap:build": "node scripts/build-sitemap.mjs",
-    "test": "npm run i18n:check && node --test",
-    "test:coverage": "npm run i18n:check && c8 --reporter=cobertura --reports-dir=coverage node --test",
+    "sitemap:build": "node scripts/build-site.mjs",
+    "test": "npm run i18n:check && node --test tests/*.test.mjs",
+    "test:coverage": "npm run i18n:check && c8 --reporter=cobertura --reports-dir=coverage node --test tests/*.test.mjs",
     "i18n:check": "node scripts/validate-i18n.mjs",
     "stats:check": "node scripts/check-stats.mjs",
-    "screenshots": "SCREENSHOT_LANG=nl npx playwright test tests/screenshots.spec.mjs",
-    "screenshots:all": "./scripts/capture-all-screenshots.sh",
+    "screenshots": "playwright test tests/screenshots.spec.mjs",
+    "screenshots:all": "playwright test tests/screenshots.spec.mjs",
     "screenshots:live": "SCREENSHOT_LANG=nl SCREENSHOT_BASE_URL=https://djconnect.dev npx playwright test tests/screenshots.spec.mjs",
-    "test:smoke": "npx playwright test tests/smoke.spec.mjs"
+    "test:smoke": "playwright test tests/smoke.spec.mjs",
+    "build:site": "node scripts/build-site.mjs",
+    "archive:check": "node scripts/verify-archive.mjs",
+    "test:e2e": "playwright test tests/*.spec.mjs",
+    "release:gate": "node scripts/release-gate.mjs",
+    "test:operational": "OPERATIONAL_BASE_URL=http://127.0.0.1:4174 playwright test tests/operational-browser.spec.mjs --project=chromium --reporter=list --output=operational-test-results"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
     "@playwright/test": "^1.64.0",
-    "c8": "^12.0.0"
+    "c8": "^12.0.0",
+    "wrangler": "4.151.2"
   },
   "license": "MIT"
 }

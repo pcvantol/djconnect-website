@@ -1,0 +1,7 @@
+{
+  "version": "3.2.32",
+  "platform": "ios",
+  "language": "de",
+  "name": "DJConnect iOS 3.2.32",
+  "body": "DJConnect App 3.2.32\n\n---\n\nPlatform: iOS\n\nNicht signierte CI-Artefakte sind fur Diagnose und interne Validierung gedacht.\nNicht signierte iOS-Binaries werden hier fur Diagnose und interne Validierung veroffentlicht. Fur normale iOS-Verteilung TestFlight/App Store verwenden."
+}

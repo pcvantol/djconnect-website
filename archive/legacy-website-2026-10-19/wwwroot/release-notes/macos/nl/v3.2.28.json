@@ -1,0 +1,7 @@
+{
+  "version": "3.2.28",
+  "platform": "macos",
+  "language": "nl",
+  "name": "DJConnect macOS 3.2.28",
+  "body": "# DJConnect App 3.2.28\n\n## Gewijzigd\n\n- Pushregistratie volgt nu het Central API v1.0.11 bootstrapcontract:\n  Apple-clients halen kortlevende `djcboot_...` proofs op via een vertrouwde\n  pairing issuer, nooit rechtstreeks via Home Assistant.\n\n## Opgelost\n\n- Push-bootstrap-herstel probeert Home Assistant nu exact één keer opnieuw,\n  bewaart proofs alleen in memory, valideert de issuer-expiry en voorkomt\n  retry-loops bij ongeldige of verlopen proofs.\n\n---\n\nPlatform: macOS\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nVoor normale macOS-distributie heeft de genotariseerde Developer ID-build de voorkeur wanneer die is bijgevoegd."
+}

@@ -1,61 +1,11 @@
-# DJConnect Repository Status
+# DJConnect Website status
 
-Status: Active engineering repository
+Active assignment: DJC-WEBSITE-PREMIUM-CLEAN-REBUILD-V2, #62. Website lane: #59.
 
-## Repository
+Owns: public product story, shared localized website UX, onboarding/support/legal presentation and secure website operational surfaces. Does not own Core/Apple/VibeCast runtime features, canonical branding decisions or client releases.
 
-`pcvantol/djconnect-website`
+Phase: IMPLEMENTATION / VALIDATION, not finalized. Baseline: 3133cb833c846395ac37dae804ba96848650bb7c. Candidate branch: codex/website-premium-v2, website version 4.0.0. The protected main checkout remains untouched.
 
-## Role
+Implemented: full legacy source archive, clean static one-pager and service routes, central tokens/composition/catalog, original responsive art, exact owner mark and preserved operational contracts. Local source/archive/Chromium checks pass. WebKit host startup is unqualified. Independent review, producer receipt, exact CI, protected delivery, Finalization and live deployment remain open.
 
-public product story, onboarding, documentation presentation and release/download guidance.
-
-## Ownership
-
-Owns: website implementation, public documentation presentation, onboarding/support surfaces, metadata and localized public copy.
-
-Does not own: runtime contracts, canonical architecture decisions, client implementation or release artifacts.
-
-## Current Phase
-
-RG-WEBSITE-001: Version 2.2 governance adoption. Documentation only.
-
-## Status
-
-Governance adoption in progress.
-
-## Blocking Dependencies
-
-- Cross-repository completion depends on all active DJConnect repositories being
-  aligned and reviewed.
-- Pull request creation requires network/GitHub access and maintainer approval
-  from the local environment.
-
-## Current Prompt
-
-Website governance adoption
-
-## Completion Report
-
-Local governance branch and immutable Prompt History.
-
-## Last Qualification
-
-No repository-local verification qualification was executed for this
-documentation-only bootstrap alignment pass.
-
-## Validated Base SHA
-
-`94c4ac385ab83341634142b585d4ec5ea88f443d`
-
-This value records the repository SHA inspected at the start of the
-repository-local bootstrap alignment pass.
-
-## Repository-Local Next Action
-
-Review and merge the repository-local bootstrap alignment branch, then keep
-future work scoped to this repository's ownership boundary.
-
-## Notes
-
-For release or Ask DJ/voice-copy QA, check website and docs updates against the DJ Announcement Output Sync section in pcvantol/djconnect/SYNC_PROMPTS.md.
+See HANDOFF.md and docs/website-v2/COMPLETION_REPORT.md. Repository phase status is not live production proof. Owner authorization for website deployment is recorded in #62, subject to all gates.

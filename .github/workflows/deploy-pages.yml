@@ -53,6 +53,8 @@ jobs:
         with:
           ref: ${{ inputs.candidate_sha }}
           fetch-depth: 1
+      - name: Validate internal website acceptance gates
+        run: node scripts/release-gate.mjs
       - name: Validate bounded deployment request
         env:
           ACTION: ${{ inputs.action }}

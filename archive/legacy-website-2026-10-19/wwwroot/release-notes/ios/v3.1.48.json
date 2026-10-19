@@ -1,0 +1,7 @@
+{
+  "version": "3.1.48",
+  "platform": "ios",
+  "language": "en",
+  "name": "DJConnect iOS 3.1.48",
+  "body": "# DJConnect App 3.1.48\n\n### Added\n\n- Added app, status, and pairing fields to the local device API so Home Assistant can show iPhone and Watch sensors with concrete values instead of unknown placeholders.\n\n### Changed\n\n- Apple Watch Now Playing refresh now shows a busy state, prevents duplicate refreshes, and temporarily disables transport and volume controls while the status request is running.\n- Ask DJ speaker/output responses now render as list rows with a right-aligned activate button, matching playlist and album action cards.\n- Local pairing now prefers usable LAN IPv4 addresses and hides unusable Watch fallback addresses when no reachable local network address is available.\n- Backend collection refresh throttling now updates only after at least one devices, queue, or playlist refresh succeeds.\n\n### Fixed\n\n- Fixed Dutch What's New publication by adding localized release-note source files for this release so the public workflow no longer falls back to English content for `nl` URLs.\n\n---\n\nPlatform: iOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nUnsigned iOS binaries are published here for diagnostics and internal validation. For normal iOS distribution, use TestFlight/App Store."
+}

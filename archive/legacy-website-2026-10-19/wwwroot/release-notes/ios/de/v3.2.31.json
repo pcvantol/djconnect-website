@@ -1,0 +1,7 @@
+{
+  "version": "3.2.31",
+  "platform": "ios",
+  "language": "de",
+  "name": "DJConnect iOS 3.2.31",
+  "body": "# DJConnect App 3.2.31\n\n## Geändert\n\n- Music Discovery wurde für den aktuellen Backend-Feed-Vertrag aktualisiert:\n  Entdecken rendert Backend-`sections[]` in Reihenfolge, unterstützt\n  `new_for_you` und `accepted_recommendations` ohne hardcodierte Section-\n  Annahmen und behandelt `revision` und `cache.hit` als Metadaten.\n- Discovery-Karten werden nur aus Backend-`sections[].items[]` gerendert;\n  zuletzt gehörte Tracks, Top-Tracks, Music-DNA-Daten und frühere UI-Caches\n  werden nicht lokal als Empfehlungen rekonstruiert.\n\n## Behoben\n\n- Music Discovery Item-Decoding toleriert jetzt neue Backend-`kind`-Werte,\n  damit ein neuer Empfehlungstyp den Feed nicht beschädigt.\n\n---\n\nPlatform: iOS\n\nNicht signierte CI-Artefakte sind fur Diagnose und interne Validierung gedacht.\nNicht signierte iOS-Binaries werden hier fur Diagnose und interne Validierung veroffentlicht. Fur normale iOS-Verteilung TestFlight/App Store verwenden."
+}

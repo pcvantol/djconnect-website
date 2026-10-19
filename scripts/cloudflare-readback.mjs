@@ -5,8 +5,14 @@ import {pathToFileURL} from 'node:url';
 export function redactProject(project){
  const d=project.canonical_deployment, m=d?.deployment_trigger?.metadata;
  return {schema_version:1,project:project.name,production_branch:project.production_branch,
+  publishing:{source_type:project.source==null?'direct_upload':(project.source.type??'unknown'),production_deployments_enabled:project.source?.config?.production_deployments_enabled??null,deployments_enabled:project.source?.config?.deployments_enabled??null},
   deployment:d?{id:d.id,url:d.url,environment:d.environment,branch:m?.branch??null,
    commit_hash:m?.commit_hash??null,status:d.latest_stage?.status??null,created_on:d.created_on}:null};
+}
+export function requireManualPublishing(snapshot){
+ const p=snapshot.publishing;
+ if(!p||!['direct_upload','github','gitlab'].includes(p.source_type)||(p.source_type!=='direct_upload'&&p.production_deployments_enabled!==false&&p.deployments_enabled!==false))throw Error('Automatic production publication is not demonstrably disabled');
+ return snapshot;
 }
 export function requireProduction(snapshot,expectedSha){
  const d=snapshot.deployment;
@@ -31,7 +37,8 @@ async function main(){
    await new Promise(resolve=>setTimeout(resolve,5000));continue;
   }
   await writeFile(output,JSON.stringify({...snapshot,observed_at:new Date().toISOString()},null,2)+'\n');
-  console.log('Redacted canonical Cloudflare production identity recorded');return;
+  requireManualPublishing(snapshot);
+  console.log('Redacted canonical Cloudflare production identity and manual publication boundary recorded');return;
  }
 }
 if(import.meta.url===pathToFileURL(resolve(process.argv[1]??'')).href)await main().catch(()=>{console.error('Cloudflare production identity verification failed; no secret response retained');process.exitCode=1;});

@@ -70,3 +70,9 @@ No bindings, Access policy, DNS or credentials are modified.
 
 References: [Wrangler Pages deployment flags](https://developers.cloudflare.com/workers/wrangler/commands/pages/)
 and [Pages project canonical production metadata](https://developers.cloudflare.com/api/resources/pages/subresources/projects/methods/get/).
+
+Before source main merge, `Website Pages read-only readiness` GETs the existing
+project from the sole-writer branch and records only identity and publishing
+flags. Direct-upload projects or explicitly disabled automatic Git production
+publication pass; unknown/malformed source policy fails closed. No Pages
+configuration is changed. The same policy guard runs before/after deployment.

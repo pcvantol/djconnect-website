@@ -37,3 +37,9 @@ fail closed. Pages receipt tests verify explicit secret/configuration redaction,
 canonical production versus latest preview, wrong project/branch/SHA/status and
 missing identity. These are offline controls; actual Cloudflare API acceptance
 is established only by the separately authorized real deployment/readback.
+
+Publishing-policy cases also reject automatic/unknown Git production settings
+and malformed source identities; only absent API source (direct upload) or an
+explicitly disabled supported Git source passes. Local Node suite: 19 PASS.
+Actual pre-merge Cloudflare policy is separately verified by the read-only
+readiness run; offline fixtures alone do not qualify the remote configuration.

@@ -1,152 +1,62 @@
-# Website V2 — final Access smoke reconciliation
+# Website V2 completion report
 
-The requested implementation/archive/design/assets/five-locale/responsive/
-VibeCast outcomes remain qualified and live at4.0.0. The test-only correction
-PR65/main3d199cc65bfe707b9ff852dcd2b09a72f6e2cd27 is protected merged with
-exact reviewed tree, independentGO and CI/security/authorization-policy PASS.
-Active Node suite21PASS; real browser suite61PASS and actual32visuals retained.
-First full production smoke39321166427 remainsFAIL; only the automatic follow
-of the valid Access302 to loginpage200 caused operational assertion failure.
-Corrected actual local-worker and production operational observations1PASS
-each do not substitute for the full governed final smoke.
+Accepted production: **[djconnect.dev](https://djconnect.dev/), version4.0.0**,
+source `1253e1853f91ae1c938f009677618732ed62a5ca`. Release delivery is **MERGED_RECONCILED** and the
+completed delivery workspace result is **WORKSPACE_READY**.
 
-Separate Access correction Finalization is in review. Source-main actualCI/
-QUALIFIED, own exact review/CI/policy-required authorization/protected merge,
-new exact-main artifact/manifest/deployment/full live acceptance remain gates.
-Target MERGED_RECONCILED becomes effective only on protected Finalization merge
-and exact matching-tree mainreadback, separately from production acceptance.
-Final actual receipts are retained by the Finalization PR and durable release
-assets; no future or self SHA is fabricated in this source document. No new
-product/security/Functions/binding change or lane; Core-runtime block intact.
-See ACCESS_SMOKE_FINALIZATION.md and evidence/website-v2/access-smoke-correction.json.
+This report records the already accepted release, not a prospective candidate.
+The governance commit updating these records has its own protected PR/CI;
+a documentation-only main head can differ from the published source without
+selecting a new deployment. No deployment or product increment is requested.
 
-## Earlier completion records
-
-# Website V2 — protected implementation delivered; separate Finalization
-
-SourcePR63 accepted main491b83850d949fe61f3e2d85be7c50677da78300. Entire tree
-80e98aad93462e12ea1537fe7f841307bbb76f08 equals independently GO-reviewed
-a1ea748e17e094b880ad8a3a7c2216fa1ab476bc. Source OwnerAuthorization
-39317953159SUCCESS, exact PR/pushValidate39317604383/39317594831 and actual
-CodeQL118283504464SUCCESS. This separate Finalization is governance-only, including adoption of the existing protected canonical release-evidence pagination correction; its
-actual commit/PR identity is supplied by GitHub readback.
-
-| Requested status | Actual outcome |
+| Requested status | Verified outcome |
 | --- | --- |
-| ARCHIVE_STATUS | PASS:980 exact baseline files, manifest/hash inventory, isolated historical rebuild/restore, excluded from public output |
-| DESIGN_SYSTEM_STATUS | PASS: central palette/font/glass/motion/focus tokens, shared UI/shell/sections/page registry; real substitution propagation verified |
-| VISUAL_ASSETS_STATUS | PASS: four original finished art families and reproduceable source/prompts; canonical approved transparent/micro/wordmark source accepted, imported hashes verified |
-| WEBSITE_IMPLEMENTATION | PASS: clean4.0.0 short Hero/Vibe/Moment/VibeCast homepage plus compact start/privacy/support |
-| FIVE_LOCALE_STATUS | PASS:65-key shared NL/EN/DE/FR/ES catalog,20static routes, alt/ARIA/SEO/canonical/hreflang |
-| RESPONSIVE_UX_STATUS | PASS: actual320/375/390/430/768/1280 in Chromium/WebKit, mobile language control, overlay/focus/keyboard/touch/fallbacks |
-| VIBECAST_INTEGRATION | PASS: compact social product vision, original living-room visual, direct verified vibecast.tv CTA; no backend changes |
-| TESTS_AND_VISUAL_ACCEPTANCE |19Node and61browserPASS, axeAA/five locales/open menu, real compiled-worker operational acceptance;32actual reviewed Linux captures. One CDP test is Chromium-only |
-| PR_REVIEW_CI | SourcePR63 protected merged; independent exact GO/CI/security/OwnerAuth PASS. Source-main/Finalization own evidence is recorded in FINALIZATION.md and the protected Finalization PR |
-| FINALIZATION | IN REVIEW: separate governance-only branch, six rolling records/history/source receipt; target MERGED_RECONCILED becomes effective only after protected Finalization merge and actual exact-main tree readback; production acceptance remains separately required |
-| DEPLOYMENT_STATUS | NOT YET DEPLOYED: actual Cloudflare readiness confirms direct-upload/manual publication. After protected Finalization, qualify immutable final-main artifact and execute existing manifest-bound deploy/live smoke |
-| OPEN_BLOCKERS | No open implementation/review/Core-brand-source finding. Remaining delivery gates are separate Finalization, exact final-main artifact and actual production/live acceptance; Core HA-runtime Golden failure remains separate and unwaived |
+| ARCHIVE_STATUS | PASS:980 exact legacy files, hashes/inventory, isolated reconstruction and exclusion from public output |
+| DESIGN_SYSTEM_STATUS | PASS:central palette/font/glass/motion/focus tokens, shared components/layouts/sections/page registry |
+| VISUAL_ASSETS_STATUS | PASS:four original art families with source/prompts and accepted canonical brand variants |
+| WEBSITE_IMPLEMENTATION | PASS:short Hero/Vibe/Moment/VibeCast homepage plus start/privacy/support |
+| FIVE_LOCALE_STATUS | PASS:central65-key NL/EN/DE/FR/ES catalog and20indexable routes |
+| RESPONSIVE_UX_STATUS | PASS:actual320/375/390/430/768/1280, Chromium/WebKit, overlay/focus/keyboard/touch/fallbacks |
+| VIBECAST_INTEGRATION | PASS:social vision artwork and verified direct vibecast.tv CTA; no backend changes |
+| TESTS_AND_VISUAL_ACCEPTANCE | PASS:21Node,61live browser,1live operational,32hashed actual production screenshots; independent finalGO |
+| PR_REVIEW_CI | PASS:protected source63/65, exact independent review and required CI/authorization-policy; mainQUALIFIED |
+| FINALIZATION | PASS:separate protected64/66, reviewed-tree/main readback and owned cleanup/recoverybundle |
+| DEPLOYMENT_STATUS | PASS:actual deployment39323787473, complete liveSMOKE_PASS39324049320; CF/publicSHA/version/clean-source agree |
+| OPEN_BLOCKERS | None for the published Website release; separate Core runtime block remains registered/unwaived |
 
-## Evidence and boundaries
+## Actual source and release evidence
 
-See FINALIZATION.md and evidence/website-v2/{final-linux-acceptance,
-core-producer-acceptance,release-controller-acceptance,cloudflare-premerge-readiness}.json.
-Core source1224/main7e14 and separate Finalization1227/mainbaac exact-mainCI
-39313456009SUCCESS; accepted export/import bytes match. Core HA-runtime
-Golden39312303769FAIL/0tests/unknowncause blocks its separate package/release;
-asset-source acceptance never becomes runtime/native/other-consumer acceptance.
+[Final production acceptance JSON](../../evidence/website-v2/final-production-acceptance.json)
+is copied byte-for-byte from the [durable exact-source evidence release](https://github.com/pcvantol/djconnect-website/releases/tag/internal-website-1253e1853f91ae1c938f009677618732ed62a5ca).
+Its SHA-256 is `1582ff67d2b1c37e4b24b77797b9e93d439ac93a1f83eb3a9f1c7a55fdee3ebd`.
+[Finalization #66](https://github.com/pcvantol/djconnect-website/pull/66) records
+actual post-merge results and the32actual-production-image ZIP.
 
-Immutable source archive preserves history and excludes secrets/caches/modules.
-Functions/migrations and machine feeds preserve exact bytes; active receiver
-URL validation is covered in real engines. Cloudflare Access/API/operator
-security, bindings and DNS remain unchanged. No backend feature or product
-lane added. Host verification using the actual GitHub root PASS.
+- Main Validate39323044524 and CodeQL39323044402:SUCCESS.
+- Canonical exact-source qualification39323452268:QUALIFIED/no findings.
+- Immutable artifact producer39323451967:SUCCESS; artifact12220084787,
+  SHA256`411e9c53124c7b124c1ff0743da05fd12e4253937b5d5017981213b183775734`.
+- Actual governed production deployment39323787473:SUCCESS; Cloudflare
+  productionID`d1977fb3-7561-4f0f-b08f-6daeca861206`.
+- Complete production smoke39324049320:SMOKE_PASS;61browser/1operational,
+  zero unexpected errors/flaky results,32actual screenshot hashes PASS.
+- Independent final reviewer inspected actual390WebKit/768menu/1280Chromium
+  and verified all32hashes/receipt bindings:GO, no open review finding.
 
-Visual and accessibility evidence is actual browser-engine acceptance and
-owner preview/deploy approval. Physical iPhone/VoiceOver and an independent
-nontechnical five-second study are not claimed. Original brand master is
-recovery evidence; accepted transparent and headset-only production variants
-are used at the correct sizes. Earlier P1/P2 findings closed independently.
+## Boundaries and retained history
 
-Final deployment/manifest/SHA/CFidentity/live screenshots and smoke are recorded
-in the Finalization PR and immutable Actions receipts after they actually run;
-this file cannot truthfully contain its own future final-main SHA. Owner#62
-authorizes these scoped production actions, without waiving exact-source/main
-CI, provenance, readiness or protection. No automatic merge/deploy bypass.
+The old300/1986file collector failure39318759729 and first live smoke failure
+39321166427 remain historical; neither was retrospectively relabelled PASS.
+Complete canonical pagination and strict no-follow observation of the exact
+Cloudflare Access challenge were delivered through protected review/CI.
+Necessary Functions/migrations/feeds/security contracts remain preserved.
 
-## Historical checkpoint and evidence chronology
+Core brand producer source and separate Finalization are accepted. Its unrelated
+HA-runtimeGolden39312303769FAIL/0tests/unknowncause remains blocked/unwaived.
+No overall Platform4.0-stable, backend/Apple/other-consumer or physical-device
+acceptance is inferred. Physical iPhone/VoiceOver and an independent nontechnical
+comprehension study were not performed. One CDP emulation is Chromium-only.
 
-# Website V2 implementation checkpoint
-
-Decision: NOT QUALIFIED FOR PRODUCTION — implementation and local validation available; independent review and remaining gates open.
-Assignment: DJC-WEBSITE-PREMIUM-CLEAN-REBUILD-V2. Canonical issue: https://github.com/pcvantol/djconnect-website/issues/62. Branch: codex/website-premium-v2. Baseline: 3133cb833c846395ac37dae804ba96848650bb7c. Candidate SHA and PR are bound by the resulting Git commit and PR readback, not invented in this document.
-
-| Requested status | Actual evidence |
-| --- | --- |
-| ARCHIVE_STATUS | PASS: all 980 tracked baseline files, full path/size/SHA-256 inventory, pinned-tree coverage and isolated restoration test; archive excluded from artifact |
-| DESIGN_SYSTEM_STATUS | Implemented central CSS tokens, semantic UI primitives, shared shell and configurable section/page registry; real-browser accent/font propagation verified then restored |
-| VISUAL_ASSETS_STATUS | Four original finished image_gen artworks, original PNGs/prompts/provenance and WebP responsive derivatives; exact owner-supplied 1254px brand master rehashed |
-| WEBSITE_IMPLEMENTATION | Clean new 4.0.0 homepage plus minimal start/privacy/support; no old marketing layout foundation |
-| FIVE_LOCALE_STATUS | 20 static pages generated from one 65-key catalog; key/route/SEO/escaping tests and five-locale Chromium checks PASS |
-| RESPONSIVE_UX_STATUS | Chromium screenshots at 320/375/390/430/768/1280 and four translated mobile pages; menu/focus/Escape/backdrop/touch/no-overflow tests PASS |
-| VIBECAST_INTEGRATION | Compact social product-vision section and original friends/TV artwork; direct https://vibecast.tv link; no backend/pairing feature changes |
-| TESTS_AND_VISUAL_ACCEPTANCE | 13 Node tests PASS; 57 Chromium/WebKit browser tests PASS in the final local run, plus real workerd operational acceptance PASS; updated exact-head results recorded by CI. axe AA for five locales and open navigation states PASS. Final local run: 57 Chromium/WebKit tests PASS; one CDP media-emulation test is intentionally Chromium-only. The initial apparent WebKit startup issue was a screenshot helper waiting on offscreen lazy images; real scrolling fixed it. Safari modal Tab eligibility also differed and was corrected with explicit focus cycling |
-| PR_REVIEW_CI | Protected review/CI pending; first Linux visual capture intentionally fails for missing baselines until reviewed and committed |
-| FINALIZATION | Pending implementation merge, then separate exact-SHA reconciliation |
-| DEPLOYMENT_STATUS | No production deployment. Current owner authorization allows governed deployment only after review/CI/artifact/readiness/acceptance gates |
-| OPEN_BLOCKERS | Qualified Core producer source/wordmark receipt, independent review, Linux/WebKit/browser proof, final visual/nontechnical acceptance and exact delivery gates |
-
-## Visual review performed
-
-Actual locally rendered full-page Chromium screenshots at 390 and 1280px were opened and inspected. The personal session sphere, distinct four-mood forms, music-to-story ribbon and warm shared-room image form one consistent blue/violet optical-glass family. Mobile hero copy/action and language control are visible, with one image per experience. Source reference: Apple IdleDJSessionView, DJSessionWelcomeArtwork, launch banner, shared glass surfaces and card appearance (32 radius, restrained edges, rounded typography, reduce-motion-aware artwork). This is source-style comparison, not a live native-app or physical-iPhone side-by-side acceptance. A nontechnical 5-second comprehension test has not been performed.
-
-## Important corrections and risks
-
-- The legacy build's static-only packaging did not explicitly carry Functions when deploying the immutable artifact. This candidate bundles the unchanged existing Functions and tests actual workerd auth/routing. No authentication or binding semantics are changed.
-- Old tests asserted retired feature catalogs and technical guides. They are archived intact; active tests instead assert the approved new experience, five-locale parity and preserved operational/security contracts. Runtime tests exercise meaningful negative authorization and redaction behavior.
-- Mac and Linux font rendering differ. Visual baselines are OS/engine specific and initial Linux baselines must be downloaded, visually reviewed and committed. Missing baseline failures must not be waived.
-- Direct owner artwork receipt is verified; it is not a claim that Core/Apple rebranding has completed. The publication gate remains open until the exact producer handoff is qualified.
-- Illustrations are product-vision artwork, not real customer/native screenshots. The VibeCast public copy follows the owner's final-product-promise instruction; readiness remains an internal publication gate.
-- No secrets, provider credentials, node_modules, caches or generated dist are archived. Historical release scripts/workflows are reconstructable source, not instructions to execute their side effects.
-
-## Updated knowledge
-
-README, TECHNICAL_DESIGN, TESTS, HANDOFF and REPOSITORY_STATUS now reflect the actual clean static architecture, archive isolation, new routes, generated artwork, packaging, test commands and release boundaries. No Core Foundation/API contract was changed. This checkpoint is not completion, installed qualification or live release proof.
-
-Recommended continuation: close concrete review/producer/browser/acceptance gates on this same candidate, correct real CI failures, qualify exact-head and exact-main, then perform protected implementation and separate Finalization; use only the manifest-bound deploy workflow and live SHA/browser readback for publication.
-
-## Browser correction and final local run
-
-`npx playwright test --workers=2`: 57 PASS, 0 failed, 1 explicitly Chromium-only CDP test inapplicable to WebKit. Both real browser engines exercised all five locales, six widths, modal keyboard/focus/backdrop behavior, screenshots and axe AA. Screenshots were reviewed at mobile and desktop size for both engines. This is browser-engine qualification, not physical iPhone/VoiceOver or independent user acceptance.
-
-Linux CI initially exposed shallow history in the archive test. Validate and coverage observation now fetch full history; coverage observation also builds the artifact before testing it. The test is retained, not skipped. Core producer receipt, independent review, CI/Linux baselines, native/nontechnical acceptance and release gates remain open.
-
-## First real Linux capture and reviewed baselines
-
-PR CI run 39295444260 (source 81ec58df21ab66b0028968a85f67dd32624e7866, PR merge 8c00f9471cb657d45efb48c876f33833ed7a694a) produced artifact 12209205095. It had 37 passing nonvisual checks, 20 explicit missing-baseline failures and one Chromium-only CDP test not applicable to WebKit. Inspection of the actual results confirmed that every failure was a first baseline capture, not an ignored functional or accessibility defect.
-
-All 32 Linux Chromium/WebKit screenshots were retained with SHA-256 provenance in evidence/website-v2/linux-baseline-receipt.json. Actual phone, desktop, menu and translated images were opened and visually reviewed before importing them. Native OS font fallbacks differ; deliberate engine/OS baselines preserve that fact rather than pretending Linux is an Apple device. CI now fails on flaky tests as well as missing/different snapshots. The next exact-head run must compare against these reviewed baselines successfully; this failed first-capture run is not called a PASS.
-
-Owner Authorization currently reports HIGH_RISK authorization required for the exact SHA. Trusted Delivery wrapper success does not waive that separate commit status. No authorization dispatch, protected merge or deployment is inferred from generic consent.
-
-## Deployment continuation — security result correction
-
-The user approved deployment, then repeated approval after the CodeQL findings were disclosed. Initial dispatch of authorization for 58fc267 was rejected by automatic approval review because the earlier approval predated disclosure of two high-severity results. No authorization, merge or deployment occurred.
-
-Fresh status inspection found a separate failed CodeQL result check even though the analysis workflow succeeded. Active `src/operational/session-receiver.html` assigned arbitrary Broadcast artwork URLs to img.src. The fix admits only parsed HTTP(S) URLs without embedded credentials, removes a prior image source for invalid artwork and preserves valid relative artwork, Broadcast rendering and audience signaling. Two real-browser regression cases run in each engine (four additional tests) exercise malicious/invalid/credential-bearing URLs, stale-source clearing and valid behavior.
-
-Archive files remain exact. Default CodeQL queries and action pins remain active; only immutable nonpublished `archive/**` is excluded through a repository config, rather than modifying historical bytes or dismissing real active alerts. This material security correction creates a new candidate; old-SHA authorization is not transferred. Exact-head security results, independent review and the governed release gates remain required.
-
-## Website-specific owner acceptance
-
-The owner directly supplied the exact approved brand source and approved the preview/deployment twice. The website source-input and visual owner-acceptance gates are therefore satisfied. They do not certify the separate Core/Apple integral rebrand and do not invent a qualified Core producer-code/wordmark receipt. The old static branding gate was stricter than this website's actual input requirement; it is now named approved_brand_source and records only verified owner/canonical-master evidence. No security, review, CI or readiness gate is waived. Physical VoiceOver/iPhone and a separate nontechnical comprehension study remain unclaimed.
-
-## Remediation verification
-
-Source b7ea5e43b70ce5e8da32627e20d1bf3ffb889aec: real Validate 39299850174 SUCCESS, separate CodeQL result 118222294749 SUCCESS with zero annotations, and the branch-scoped open-alert query returned an empty set. Semgrep, Trusted Delivery technical qualification and projection passed. Local full browser suite now has 61 PASS, zero failures and the same single Chromium-only CDP test not applicable to WebKit; 13 Node tests and the complete historical rebuild/hash checks still pass. No old-SHA authorization run was created. Remaining internal gate: independent review. A separate read-only reviewer-agent has been offered through the pending user question; no reviewer was spawned without that explicit choice.
-
-Actual old source reconciliation39318759729FAIL remains retained; old policy
-truncated commit paths300/1986. Real full API path sets and reviewed Git tree
-are equal. This governance increment pins the accepted canonical fix atbaac22d
-and scopes durable qualification tags to internal-website. No check is waived;
-final main must actually become QUALIFIED before any production deployment.
-See evidence/website-v2/canonical-policy-admission.json.
+Earlier complete report is retained in [Git at the published source](https://github.com/pcvantol/djconnect-website/blob/1253e1853f91ae1c938f009677618732ed62a5ca/docs/website-v2/COMPLETION_REPORT.md).
+Immutable prompt history and earlier source/Finalization evidence are unchanged.
+No new product phase is selected.

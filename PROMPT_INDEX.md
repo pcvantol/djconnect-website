@@ -1,69 +1,29 @@
-# Website V2 Access correction — separate Finalization
+# Website prompt index
 
-SourcePR65/main`3d199cc65bfe707b9ff852dcd2b09a72f6e2cd27` accepted with reviewed tree equality,
-exact independentGO/CI/security and policy OwnerAuthorizationSUCCESS/NotRequired.
-Current state FINALIZATION_IN_REVIEW; target MERGED_RECONCILED becomes effective
-only on this separate protected Finalization merge plus actual matching-tree
-mainreadback. Source-main CI/QUALIFIED and this increment own exact review/CI
-remain mandatory before merge. Existing production6f1adde UX is live; initial
-fullsmoke39321166427 remainsFAIL after valid Access302→login200 was followed.
-No product/security change. Final new artifact/deploy/fullsmoke remains pending.
-See docs/website-v2/ACCESS_SMOKE_FINALIZATION.md and this branch's protected PR
-for actual completion receipts. No new lane; existing Core-runtime block intact.
+Published Website release: **4.0.0** at [djconnect.dev](https://djconnect.dev/).
+Published source: `1253e1853f91ae1c938f009677618732ed62a5ca`.
+Delivered capability: `DJC-WEBSITE-PREMIUM-CLEAN-REBUILD-V2`, canonical [#62](https://github.com/pcvantol/djconnect-website/issues/62), lane [#59](https://github.com/pcvantol/djconnect-website/issues/59).
+Release state: **MERGED_RECONCILED**; last completed delivery workspace result: **WORKSPACE_READY**.
 
-## Earlier records
+Administrative records reconciliation: update stale rolling records to the actual accepted production outcome, preserving the distinction between published source and later documentation-only governance. Its exact PR/CI identity is supplied by GitHub, not a fabricated self SHA.
 
-# DJConnect Repository Prompt Index
+The accepted production receipt is [final-production-acceptance.json](evidence/website-v2/final-production-acceptance.json), copied byte-for-byte from the [durable exact-source evidence release](https://github.com/pcvantol/djconnect-website/releases/tag/internal-website-1253e1853f91ae1c938f009677618732ed62a5ca).
+[Finalization #66](https://github.com/pcvantol/djconnect-website/pull/66) records the actual post-merge/live results.
 
-Status: repository-local prompt navigation
+Exact-release checks: main Validate `39323044524`, CodeQL `39323044402`, canonical qualification `39323452268`, artifact `39323451967`, governed production deployment `39323787473`, complete live smoke `39324049320`: **SUCCESS**.
+Actual acceptance: **21 Node tests, 61 browser tests, one operational test and 32 hashed production screenshots**, with independent final visual/binding **GO**. One Chromium-only CDP case is inapplicable to WebKit.
 
-Repository: `pcvantol/djconnect-website`
+Immutable prompt history:
 
-This file tracks only this repository's local phase state. It must not copy the
-canonical platform roadmap from `pcvantol/djconnect/PROMPT_INDEX.md`.
+- [Original rebuild](docs/history/prompts/2026-10-19-website-premium-v2.md).
+- [Core producer admission](docs/history/prompts/2026-10-19-website-core-producer-admission.md).
+- [Original Finalization](docs/history/prompts/2026-10-19-website-v2-finalization.md).
+- [Access observation correction](docs/history/prompts/2026-10-19-website-v2-access-smoke.md).
+- [Access Finalization](docs/history/prompts/2026-10-19-website-v2-access-finalization.md).
+- [Completed-delivery records reconciliation](docs/history/prompts/2026-10-19-website-v2-delivery-records.md).
 
-## Current Repository Phase
+These records describe the accepted production release. The governance commit containing this reconciliation has its own protected PR and CI identity in GitHub; it is not a newly selected production candidate. A documentation-only main commit can therefore differ from the published source above. Keep publication manual and manifest-bound; this update requests no deployment, version change, public build change, backend work or new product phase.
 
-DJC-WEBSITE-PREMIUM-CLEAN-REBUILD-V2: canonical #62, lane #59.
+After protected reconciliation and workspace cleanup: stop. No new product increment is selected.
 
-## Status
-
-SOURCE_MERGED_FINALIZATION_IN_REVIEW
-
-## Depends On
-
-- Canonical Platform Foundation in `pcvantol/djconnect`
-- `pcvantol/djconnect/REPOSITORY_OWNERSHIP.md`
-- `pcvantol/djconnect/docs/meta/PHASE_COMPLETION_PROTOCOL.md`
-
-## Current Prompt
-
-Website premium clean rebuild V2
-
-## Completion Report
-
-`docs/website-v2/COMPLETION_REPORT.md`
-
-## Next Repository Phase
-
-SourcePR63 protected merged491b83850d949fe61f3e2d85be7c50677da78300. Complete separate protected Finalization, exact-main immutable artifact qualification, manifest-bound deployment and real live smoke under existing #62 owner authorization. No new product increment is activated.
-
-## Boundary
-
-Do not add Pi phases, ESP phases, Apple phases, platform verification phases or
-unrelated repository roadmaps here unless this repository owns that work.
-
-## Finalization record
-
-`docs/website-v2/FINALIZATION.md`; immutable prompt `docs/history/prompts/2026-10-19-website-v2-finalization.md`. Exact final PR/CI/deployment readback is recorded in the protected Finalization PR.
-
-Target repository state: `MERGED_RECONCILED` becomes effective only after this separate Finalization is protected merged and its reviewed tree is confirmed by actual exact-main readback. Before that, it remains `FINALIZATION_IN_REVIEW`. This transition does not itself establish production/live acceptance; those receipts remain separate.
-
-## Release-governance correction within this Finalization
-
-Source-main Validate39318065412 and immutable artifact39318759152 SUCCESS; old
-formal reconciliation39318759729FAIL because ebbb policy truncates commit files
-to300 versus1986full PRpaths. Actual fully paginated sets/tree equal. Consume
-existing protected canonical baac22d policy/workflow with internal-website tag
-scope; retain old FAIL, require actual final-main QUALIFIED before deploy.
-No product/UI/backend/binding change or new lane. Evidence canonical-policy-admission.json.
+Previous rolling snapshot: [PROMPT_INDEX.md at the published source](https://github.com/pcvantol/djconnect-website/blob/1253e1853f91ae1c938f009677618732ed62a5ca/PROMPT_INDEX.md). Immutable prompt history and earlier Finalization documents remain unchanged.

@@ -1,9 +1,11 @@
 import {test,expect} from '@playwright/test';
+import {isProtectedOperatorResponse} from './helpers/operational-access.mjs';
 // Run against the actual local workerd bundle or non-destructive live routes.
 test('compiled Pages worker preserves protected operator/API and download routes',async({request})=>{
  const base=process.env.OPERATIONAL_BASE_URL;if(!base){test.skip(true,'Operational bundle is tested in the dedicated workerd CI/local step');return;}
  for(const url of ['/operator','/operator.html','/api/operator/registrations']){
-  const response=await request.get(base+url);expect([401,403]).toContain(response.status());
+  const response=await request.get(base+url,{maxRedirects:0});
+  expect(isProtectedOperatorResponse(response.status(),response.headers().location,base),`Protected route ${url} must deny access or issue the exact production Access challenge`).toBe(true);
  }
  expect((await request.get(base+'/api/stats')).status()).toBe(404);
  expect((await request.get(base+'/go/unknown-target')).status()).toBe(404);

@@ -1,3 +1,13 @@
+# Website repository status
+
+Current phase: WebsiteV2 protected-source Finalization. SourcePR63/main`491b83850d949fe61f3e2d85be7c50677da78300` accepted with exact reviewed tree and separate source authorization. Source-main verification and this Finalization own review/CI/authorization remain required. See [Finalization](docs/website-v2/FINALIZATION.md) and [completion report](docs/website-v2/COMPLETION_REPORT.md).
+
+No new product increment. Real immutable-artifact production deployment/live acceptance remains the next authorized delivery step after protected Finalization. Cloudflare direct upload confirmed; no automatic publication. Core HA-runtime failure remains a separate producer runtime block, never a website/backend PASS.
+
+Target repository state: `MERGED_RECONCILED` becomes effective only after this separate Finalization is protected merged and its reviewed tree is confirmed by actual exact-main readback. Before that, it remains `FINALIZATION_IN_REVIEW`. This transition does not itself establish production/live acceptance; those receipts remain separate.
+
+## Historical records
+
 # Website V2 — current delivery handoff
 
 Core asset producer accepted: protected source1224/main7e14e5970b3f68d33d243ae6bab2b281fad59bb2, separate Finalization1227/mainbaac22d771bf3141404001517f62a5e34f8c8644, exact-mainCI39313456009SUCCESS, independent reviews and separate Owner Authorizations. Website imported bytes/manifest match qualified source export. Core HA-runtime release remains independently BLOCKED (Golden0tests/unknowncause); no runtime/native/integral-rebrand acceptance or waiver.
@@ -21,3 +31,12 @@ Readonly independent review identified superseded branding/stale screenshot evid
 See docs/website-v2/COMPLETION_REPORT.md and release-gates.json. No live production proof is claimed. Owner has authorized governed deployment within #62; authorization does not waive gates.
 
 Actual final32Linux screenshot captures and14Node/61browser/worker PASS are recorded in evidence/website-v2/final-linux-acceptance.json. Independent P1/P2 findings closed; producer acceptance remains OPEN. No protected merge, Finalization or deployment yet.
+
+## Release-governance correction within this Finalization
+
+Source-main Validate39318065412 and immutable artifact39318759152 SUCCESS; old
+formal reconciliation39318759729FAIL because ebbb policy truncates commit files
+to300 versus1986full PRpaths. Actual fully paginated sets/tree equal. Consume
+existing protected canonical baac22d policy/workflow with internal-website tag
+scope; retain old FAIL, require actual final-main QUALIFIED before deploy.
+No product/UI/backend/binding change or new lane. Evidence canonical-policy-admission.json.

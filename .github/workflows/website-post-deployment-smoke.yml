@@ -120,7 +120,7 @@ jobs:
           SMOKE_BASE_URL: https://djconnect.dev
         run: |
           npm run test:e2e
-          OPERATIONAL_BASE_URL=https://djconnect.dev npx playwright test tests/operational-browser.spec.mjs --project=chromium
+          OPERATIONAL_BASE_URL=https://djconnect.dev npx playwright test tests/operational-browser.spec.mjs --project=chromium --reporter=list --output=operational-test-results
       - name: Upload live browser evidence
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
@@ -129,6 +129,7 @@ jobs:
           path: |
             playwright-report/
             test-results/
+            operational-test-results/
       - name: Publish smoke evidence
         env:
           CANDIDATE_SHA: ${{ inputs.candidate_sha }}

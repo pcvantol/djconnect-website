@@ -1,37 +1,53 @@
-# Website V2 — producer and release controls qualified; protected delivery pending
+# Website V2 — protected implementation delivered; separate Finalization
 
-Decision: UI/ARCHIVE/ASSET SOURCE/RELEASE CONTROLS QUALIFIED; EXACT EVIDENCE COMMIT DELIVERY PENDING. Branch codex/website-premium-v2, PR https://github.com/pcvantol/djconnect-website/pull/63. Runtime source reviewed fe5bf41d71caaf1b1b8e2f1d923a6ea3696de145. Final reconciliation commit is the Git commit containing this document; no self-referential SHA is fabricated.
+SourcePR63 accepted main491b83850d949fe61f3e2d85be7c50677da78300. Entire tree
+80e98aad93462e12ea1537fe7f841307bbb76f08 equals independently GO-reviewed
+a1ea748e17e094b880ad8a3a7c2216fa1ab476bc. Source OwnerAuthorization
+39317953159SUCCESS, exact PR/pushValidate39317604383/39317594831 and actual
+CodeQL118283504464SUCCESS. This separate Finalization is governance-only, including adoption of the existing protected canonical release-evidence pagination correction; its
+actual commit/PR identity is supplied by GitHub readback.
 
 | Requested status | Actual outcome |
 | --- | --- |
-| ARCHIVE_STATUS | PASS:980 baseline tracked files, exact hashes/Git blobs, isolated historical rebuild, excluded from public output |
-| DESIGN_SYSTEM_STATUS | PASS: central tokens, shared UI/shell/sections/page registry; real palette/font propagation verified |
-| VISUAL_ASSETS_STATUS | PASS: four original finished art families; canonical transparent/micro/wordmark variants hash-verified from Core883cb9; protected asset producer source and separate Finalization/mainCI PASS |
-| WEBSITE_IMPLEMENTATION | PASS: clean4.0.0 short four-experience homepage plus start/privacy/support |
-| FIVE_LOCALE_STATUS | PASS:65-key central catalog,20static routes, parity/alt/ARIA/SEO/canonical/hreflang |
-| RESPONSIVE_UX_STATUS | PASS: real320/375/390/430/768/1280, Chromium/WebKit, overlay/focus/keyboard/touch/fallbacks |
-| VIBECAST_INTEGRATION | PASS: compact social product vision, original room artwork, actual vibecast.tv destination; no backend changes |
-| TESTS_AND_VISUAL_ACCEPTANCE |19Node and61browserPASS, one Chromium-only emulation inapplicable to WebKit; axeAA and real compiled-worker acceptance PASS. Actual32Linuxcaptures retained with provenance and independent visual closure |
-| PR_REVIEW_CI | Exactfbab9c9 independentGO, Validate39317053273/39317041847/CodeQL118281645110SUCCESS;19Node/61browser/workerPASS. Evidence-only final commit requires exact review/CI/new authorization |
-| FINALIZATION | NOT DONE: requires protected implementation merge followed by separate reconciliation PR |
-| DEPLOYMENT_STATUS | NOT DEPLOYED: no main release artifact or deployment/live receipt fabricated |
-| OPEN_BLOCKERS | Core producer blocker RESOLVED: source1224/main7e14 and separate Finalization1227/mainbaac, exact-mainCI39313456009SUCCESS. Releasecontrols qualified; protected exact-evidence commit/source merge/Finalization/deployment remain; HA-runtime-release FAIL is separately registered, not waived |
+| ARCHIVE_STATUS | PASS:980 exact baseline files, manifest/hash inventory, isolated historical rebuild/restore, excluded from public output |
+| DESIGN_SYSTEM_STATUS | PASS: central palette/font/glass/motion/focus tokens, shared UI/shell/sections/page registry; real substitution propagation verified |
+| VISUAL_ASSETS_STATUS | PASS: four original finished art families and reproduceable source/prompts; canonical approved transparent/micro/wordmark source accepted, imported hashes verified |
+| WEBSITE_IMPLEMENTATION | PASS: clean4.0.0 short Hero/Vibe/Moment/VibeCast homepage plus compact start/privacy/support |
+| FIVE_LOCALE_STATUS | PASS:65-key shared NL/EN/DE/FR/ES catalog,20static routes, alt/ARIA/SEO/canonical/hreflang |
+| RESPONSIVE_UX_STATUS | PASS: actual320/375/390/430/768/1280 in Chromium/WebKit, mobile language control, overlay/focus/keyboard/touch/fallbacks |
+| VIBECAST_INTEGRATION | PASS: compact social product vision, original living-room visual, direct verified vibecast.tv CTA; no backend changes |
+| TESTS_AND_VISUAL_ACCEPTANCE |19Node and61browserPASS, axeAA/five locales/open menu, real compiled-worker operational acceptance;32actual reviewed Linux captures. One CDP test is Chromium-only |
+| PR_REVIEW_CI | SourcePR63 protected merged; independent exact GO/CI/security/OwnerAuth PASS. Source-main/Finalization own evidence is recorded in FINALIZATION.md and the protected Finalization PR |
+| FINALIZATION | IN REVIEW: separate governance-only branch, six rolling records/history/source receipt; target MERGED_RECONCILED becomes effective only after protected Finalization merge and actual exact-main tree readback; production acceptance remains separately required |
+| DEPLOYMENT_STATUS | NOT YET DEPLOYED: actual Cloudflare readiness confirms direct-upload/manual publication. After protected Finalization, qualify immutable final-main artifact and execute existing manifest-bound deploy/live smoke |
+| OPEN_BLOCKERS | No open implementation/review/Core-brand-source finding. Remaining delivery gates are separate Finalization, exact final-main artifact and actual production/live acceptance; Core HA-runtime Golden failure remains separate and unwaived |
 
-## Final delivery corrections
+## Evidence and boundaries
 
-Owner later authorized pickup of the existing blocking CorePR1224. Source and separate Finalization were protected merged with distinct exact-SHA authorization/review, source/mainCI and immutable asset readback. Website imports are byte-identical; receipt core-producer-acceptance.json. Core HA-runtimeGolden failed0tests/unknowncause; HApackage/reconcile blocked, no runtime/native/other-consumer completion claimed. That separate gate remains intact.
+See FINALIZATION.md and evidence/website-v2/{final-linux-acceptance,
+core-producer-acceptance,release-controller-acceptance,cloudflare-premerge-readiness}.json.
+Core source1224/main7e14 and separate Finalization1227/mainbaac exact-mainCI
+39313456009SUCCESS; accepted export/import bytes match. Core HA-runtime
+Golden39312303769FAIL/0tests/unknowncause blocks its separate package/release;
+asset-source acceptance never becomes runtime/native/other-consumer acceptance.
 
-New corrections close actual release-provenance gaps: build identity comes from checkout GitHEAD rather than potentially later workflow_run eventSHA, qualified builds require clean source/expectedSHA, ephemeral build.json is ignored; Wrangler receives exact commitSHA and pinned version; redacted read-only canonical Cloudflare production identity is captured before/after without configuration/secrets. Live smoke verifies CFreceipt and actual public SHA/version/clean-source.19local Node tests PASS including real Git fixtures and negative identity/redaction cases. No public layout/copy/assets/API/auth/binding changes. Exactfbab9c9 independently GO reviewed; actual PR/pushValidate and CodeQL PASS. Cloudflare readonly39317041319 verifies direct-upload/manual publication. Receipts release-controller-acceptance.json and cloudflare-premerge-readiness.json; final evidence-only commit still needs exact review/CI/OwnerAuth.
+Immutable source archive preserves history and excludes secrets/caches/modules.
+Functions/migrations and machine feeds preserve exact bytes; active receiver
+URL validation is covered in real engines. Cloudflare Access/API/operator
+security, bindings and DNS remain unchanged. No backend feature or product
+lane added. Host verification using the actual GitHub root PASS.
 
-## Review and durable knowledge
+Visual and accessibility evidence is actual browser-engine acceptance and
+owner preview/deploy approval. Physical iPhone/VoiceOver and an independent
+nontechnical five-second study are not claimed. Original brand master is
+recovery evidence; accepted transparent and headset-only production variants
+are used at the correct sizes. Earlier P1/P2 findings closed independently.
 
-Initial readonly review found superseded opaque branding and stale screenshots. Canonical corrected assets imported byte-for-byte; receipt src/assets/brand/HANDOFF_RECEIPT.md. Original owner master retained only as recovery source. Reused local preview disabled; screenshots taken from verified new artifact on unique4187. The earlier0.5% full-page tolerance had masked small header/footer changes; comparisons now permit100pixels. Actual screenshots are retained even on success. Soft assertions capture later menu states while any mismatch still fails.
-
-Independent reviewer /root/independent_review opened actual390px LinuxWebKit,768px menu and1280px desktop. The overlapping image bottom border is transparent without geometry change; the visible line through mood labels is gone. P1/P2 closed, SOURCE GO for exactfe5bf41. Evidence: final-linux-acceptance.json, source run39304056369, PRmerge3b93810b48d1e2a5b30721f5549a121c6381e6af, artifact12214005193. Final accepted Linux references are these actual32captures, not copied Darwin images. Physical iPhone/VoiceOver and a separate nontechnical comprehension study remain unclaimed.
-
-The receiver now validates parsed HTTP(S) artwork URLs and rejects credentials/executable schemes, clearing stale images. Active CodeQL remains enabled; immutable nonpublic archive excluded without modifying historical bytes. Pages Functions compile into the artifact so source-independent deployment preserves APIs/auth/bindings. No Core/API/Apple/runtime ownership or trust contract changed.
-
-README/TECHNICAL_DESIGN/TESTS/HANDOFF/REPOSITORY_STATUS/PROMPT_INDEX and immutable prompt history reflect implementation. No new capability activated. Recommended continuation: obtain actual protected producer readback, qualify exact candidate and authorize through existing workflow; protected merge; separate Finalization; exact-main CI and manifest-bound immutable artifact; governed deployment and real live SHA/browser smoke. Owner deploy permission remains valid but waives no gate. Preserve sole-writer branch and main checkout until safe completion.
+Final deployment/manifest/SHA/CFidentity/live screenshots and smoke are recorded
+in the Finalization PR and immutable Actions receipts after they actually run;
+this file cannot truthfully contain its own future final-main SHA. Owner#62
+authorizes these scoped production actions, without waiving exact-source/main
+CI, provenance, readiness or protection. No automatic merge/deploy bypass.
 
 ## Historical checkpoint and evidence chronology
 
@@ -103,3 +119,10 @@ The owner directly supplied the exact approved brand source and approved the pre
 ## Remediation verification
 
 Source b7ea5e43b70ce5e8da32627e20d1bf3ffb889aec: real Validate 39299850174 SUCCESS, separate CodeQL result 118222294749 SUCCESS with zero annotations, and the branch-scoped open-alert query returned an empty set. Semgrep, Trusted Delivery technical qualification and projection passed. Local full browser suite now has 61 PASS, zero failures and the same single Chromium-only CDP test not applicable to WebKit; 13 Node tests and the complete historical rebuild/hash checks still pass. No old-SHA authorization run was created. Remaining internal gate: independent review. A separate read-only reviewer-agent has been offered through the pending user question; no reviewer was spawned without that explicit choice.
+
+Actual old source reconciliation39318759729FAIL remains retained; old policy
+truncated commit paths300/1986. Real full API path sets and reviewed Git tree
+are equal. This governance increment pins the accepted canonical fix atbaac22d
+and scopes durable qualification tags to internal-website. No check is waived;
+final main must actually become QUALIFIED before any production deployment.
+See evidence/website-v2/canonical-policy-admission.json.

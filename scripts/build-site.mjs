@@ -1,5 +1,7 @@
 import {mkdir,rm,copyFile,cp,readFile,writeFile,readdir,lstat} from 'node:fs/promises';
 import path from 'node:path';
+import {buildIdentity} from './build-identity.mjs';
+const identity=buildIdentity();
 import {catalog,languages} from '../src/locales/catalog.mjs';
 import {pages,route} from '../src/pages/registry.mjs';
 import {sections} from '../src/layouts/sections.mjs';
@@ -33,5 +35,5 @@ await writeFile(output+'/robots.txt','User-agent: *\nAllow: /\nDisallow: /operat
 // Preserve app-owned download entry URLs, replacing retired guides with brief onboarding.
 const redirects=languages.flatMap(l=>['ios','macos','testflight','testflight-macos','platform','raspberry-pi','embedded'].flatMap(old=>[`${route(l,old)} ${route(l,'start')} 301`,`${route(l,old)}.html ${route(l,'start')} 301`]));
 await writeFile(output+'/_redirects',redirects.join('\n')+'\n');
-await writeFile(output+'/build.json',JSON.stringify({version,commit:process.env.GITHUB_SHA||null,locales:languages,pages:Object.keys(pages)},null,2)+'\n');
+await writeFile(output+'/build.json',JSON.stringify({version,...identity,locales:languages,pages:Object.keys(pages)},null,2)+'\n');
 console.log(`Generated ${urls.length} static localized pages, version ${version}`);

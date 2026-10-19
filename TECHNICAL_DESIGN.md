@@ -43,3 +43,30 @@ The independent reviewer and release owner must close `docs/website-v2/release-g
 The earlier statement that CodeQL was green referred incorrectly to successful analysis workflow execution. The separate CodeQL result check reported two active URL-injection findings and duplicate historical archive findings. The active receiver URL sink is now guarded by explicit parsed-URL protocol validation and covered by genuine Chromium/WebKit malicious-input and Broadcast-compatibility tests. No query is disabled or alert dismissed.
 
 The canonical reusable CodeQL workflow exposes only a language input, so this repository uses the same pinned checkout, CodeQL init/analyze actions and default queries with a local config. Its only exclusion is `archive/**`, the hash-verified immutable nonpublished historical source. Active templates, receiver source, generated public HTML, Functions, scripts and tests remain scanned. Historical bytes are preserved; they are never substituted for patched active output.
+
+## Exact build and production identity
+
+`build-identity.mjs` reads the actual checked-out GitHEAD, never workflow-event
+GITHUB_SHA (workflow_run can refer to a later default branch). Qualified CI
+builds reject dirty/missing source identity and a mismatched WEBSITE_BUILD_SHA.
+The release-artifact workflow supplies its immutable producer SHA explicitly
+and accepts only successful own-repository main push validation, never a
+pull-request workflow_run with a branch-name lookalike. Deploy requires the
+exact candidate-named immutable artifact; smoke validates the actual successful
+governed deployment run identity before reading its receipt.
+`wwwroot/build.json` is ephemeral/ignored and generated anew with commit,
+source_dirty, VERSION, languages and pages; it is always included in output.
+
+Deployment still uploads only the checksum-verified artifact under `site`.
+A sparse checkout supplies only the immutable readback helper, not public source.
+Pinned Wrangler4.151.2 receives --commit-hash explicitly. The helper GETs the
+existing Pages project before/after, whitelists only canonical production ID,
+URL, branch/SHA/status/time, and never retains/logs configuration, environment
+variables, token, account ID or commit text. Previous production identity is
+retained. Canonical production must match candidate/main/success before an
+accepted deployment receipt can be emitted. Live smoke additionally verifies
+that receipt and actual public build.json commit/version/source_dirty=false.
+No bindings, Access policy, DNS or credentials are modified.
+
+References: [Wrangler Pages deployment flags](https://developers.cloudflare.com/workers/wrangler/commands/pages/)
+and [Pages project canonical production metadata](https://developers.cloudflare.com/api/resources/pages/subresources/projects/methods/get/).

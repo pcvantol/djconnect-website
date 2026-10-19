@@ -30,3 +30,10 @@ Screenshots and diffs use `tests/visual-baselines/{platform}/{engine}`. Update o
 Archive restoration tests compare all 980 original paths against the pinned tree, every SHA-256 and a real isolated reconstruction. Publication tests assert archive/originals are absent, functions/migrations/feed bytes remain identical, and all local links resolve. Test commands explicitly exclude archived tests. CSS token tests and real-browser font/accent substitution prove centralized propagation, then reload the approved palette.
 
 Current qualification and limitations: see `docs/website-v2/COMPLETION_REPORT.md`.
+
+Release identity regressions use real temporary Git checkouts: unrelated event
+SHA cannot relabel a build; wrong expectedSHA, dirty CI source and missing Git
+fail closed. Pages receipt tests verify explicit secret/configuration redaction,
+canonical production versus latest preview, wrong project/branch/SHA/status and
+missing identity. These are offline controls; actual Cloudflare API acceptance
+is established only by the separately authorized real deployment/readback.

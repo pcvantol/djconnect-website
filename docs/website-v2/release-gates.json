@@ -1,15 +1,15 @@
 {
   "approved_brand_source": {
-    "status": "OPEN",
-    "evidence": "Exact owner master retained; canonical corrected transparent and micro/wordmark variants imported byte-for-byte from Core883cb9f3ff9de8ec7f5ae4c5f04f852e0d8bd866, archive aa51cf9bd417a2009cdd3bed037f46b5424ac85869fbe3e9fbb2657b4754f977, manifest73cc408e10d88aa1fb8a1be2783b9c577aec398ce3dcd54c2f997ad1425984d2. Latest #62 explicitly requires protected producer acceptance; CorePR1224 remains open with Owner Authorization FAILURE. Consumer review does not waive producer gate."
+    "status": "PASS",
+    "evidence": "Actual protected Core sourcePR1224 merged7e14e5970b3f68d33d243ae6bab2b281fad59bb2, independent source/visualGO and source/main/brandCI PASS. Separate FinalizationPR1227 mergedbaac22d771bf3141404001517f62a5e34f8c8644 with matching reviewedec6 tree, separate OwnerAuth39313305759 and exact-mainCI39313456009SUCCESS. Accepted-source archive025202e82a9a9e4c7c4859bb03fdebd1287d817abe5c6b3dce1380b690b4d1f6/manifest73cc408e10d88aa1fb8a1be2783b9c577aec398ce3dcd54c2f997ad1425984d2 verified, Website imports byte-identical. Receipt evidence/website-v2/core-producer-acceptance.json. Asset-source acceptance only; HA-runtime releaseGolden FAIL/unknowncause remains blocked, no generic runtime/native/integral-rebrand PASS inferred."
   },
   "independent_review": {
-    "status": "PASS",
-    "evidence": "Separate readonly reviewer /root/independent_review SOURCE GO for fe5bf41d71caaf1b1b8e2f1d923a6ea3696de145. P1 canonical-branding and P2 actual LinuxWebKit mood-line findings closed; real capture SHA59c1cd0948bc4f0abcdf8802532c990431c9fc8da4f5ddf1ec65b4f699ea02e5 from artifact12214005193/run39304056369. No source modifications by reviewer. Final documentation/baseline reconciliation separately reviewed; protected exact-head/main authorization and CI remain required."
+    "status": "OPEN",
+    "evidence": "Website55d9425 source/visual reviewGO and actual Linux P1/P2closure retained. New release-only corrections (actual checkout build identity, explicit Cloudflare commit binding and redacted canonical deployment readback) require fresh independent exact-candidate review before merge."
   },
   "candidate_ci": {
-    "status": "PASS",
-    "evidence": "Runtime/test sourcefe5bf41d71caaf1b1b8e2f1d923a6ea3696de145: Validate39304056369 SUCCESS, actual CodeQL118236788706 SUCCESS.14Node61browsers and real worker acceptance PASS;32actual screenshot hashes retained in evidence/website-v2/final-linux-acceptance.json. Subsequent reconciliation changes only docs/accepted references. Final exact-head CI and new authorization still required; no future main/artifact/deployment result claimed."
+    "status": "OPEN",
+    "evidence": "Prior source55d9425 Validate39304735768/39304727973, CodeQL118239246144 and OwnerAuth39305125831PASS. New delivery-only source requires its own exact-head CI and authorization. Local18Node tests PASS; no future CI, main artifact or production result is claimed."
   },
   "visual_acceptance": {
     "status": "PASS",

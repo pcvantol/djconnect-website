@@ -1,25 +1,31 @@
-# Website V2 — validated source, producer-blocked delivery
+# Website V2 — producer accepted, final delivery controls in qualification
 
-Decision: SOURCE QUALIFIED / RELEASE BLOCKED. Branch codex/website-premium-v2, PR https://github.com/pcvantol/djconnect-website/pull/63. Runtime source reviewed fe5bf41d71caaf1b1b8e2f1d923a6ea3696de145. Final reconciliation commit is the Git commit containing this document; no self-referential SHA is fabricated.
+Decision: UI/ARCHIVE/ASSET SOURCE QUALIFIED; FINAL DELIVERY CHANGES REQUIRE REVIEW/CI. Branch codex/website-premium-v2, PR https://github.com/pcvantol/djconnect-website/pull/63. Runtime source reviewed fe5bf41d71caaf1b1b8e2f1d923a6ea3696de145. Final reconciliation commit is the Git commit containing this document; no self-referential SHA is fabricated.
 
 | Requested status | Actual outcome |
 | --- | --- |
 | ARCHIVE_STATUS | PASS:980 baseline tracked files, exact hashes/Git blobs, isolated historical rebuild, excluded from public output |
 | DESIGN_SYSTEM_STATUS | PASS: central tokens, shared UI/shell/sections/page registry; real palette/font propagation verified |
-| VISUAL_ASSETS_STATUS | PASS: four original finished art families; canonical transparent/micro/wordmark variants hash-verified from Core883cb9; protected producer acceptance OPEN |
+| VISUAL_ASSETS_STATUS | PASS: four original finished art families; canonical transparent/micro/wordmark variants hash-verified from Core883cb9; protected asset producer source and separate Finalization/mainCI PASS |
 | WEBSITE_IMPLEMENTATION | PASS: clean4.0.0 short four-experience homepage plus start/privacy/support |
 | FIVE_LOCALE_STATUS | PASS:65-key central catalog,20static routes, parity/alt/ARIA/SEO/canonical/hreflang |
 | RESPONSIVE_UX_STATUS | PASS: real320/375/390/430/768/1280, Chromium/WebKit, overlay/focus/keyboard/touch/fallbacks |
 | VIBECAST_INTEGRATION | PASS: compact social product vision, original room artwork, actual vibecast.tv destination; no backend changes |
 | TESTS_AND_VISUAL_ACCEPTANCE |14Node and61browserPASS, one Chromium-only emulation inapplicable to WebKit; axeAA and real compiled-worker acceptance PASS. Actual32Linuxcaptures retained with provenance and independent visual closure |
-| PR_REVIEW_CI | Independent source GO for fe5bf41; Validate39304056369 SUCCESS, actual CodeQL118236788706 SUCCESS. Final reconciliation requires its own exact-head CI and Owner Authorization |
+| PR_REVIEW_CI | Prior55d9425 exact source/CI/OwnerAuth PASS; new release-identity/readback corrections need fresh independent review, exact-CI and authorization |
 | FINALIZATION | NOT DONE: requires protected implementation merge followed by separate reconciliation PR |
 | DEPLOYMENT_STATUS | NOT DEPLOYED: no main release artifact or deployment/live receipt fabricated |
-| OPEN_BLOCKERS | Latest owner #62 handoff explicitly requires protected Core producer acceptance. CorePR1224 at883cb9 remains OPEN, Owner Authorization missing. Website lane cannot accept/merge Core |
+| OPEN_BLOCKERS | Core producer blocker RESOLVED: source1224/main7e14 and separate Finalization1227/mainbaac, exact-mainCI39313456009SUCCESS. Fresh website delivery-controller review/CI/authorization remain; HA-runtime-release FAIL is separately registered, not waived |
+
+## Final delivery corrections
+
+Owner later authorized pickup of the existing blocking CorePR1224. Source and separate Finalization were protected merged with distinct exact-SHA authorization/review, source/mainCI and immutable asset readback. Website imports are byte-identical; receipt core-producer-acceptance.json. Core HA-runtimeGolden failed0tests/unknowncause; HApackage/reconcile blocked, no runtime/native/other-consumer completion claimed. That separate gate remains intact.
+
+New corrections close actual release-provenance gaps: build identity comes from checkout GitHEAD rather than potentially later workflow_run eventSHA, qualified builds require clean source/expectedSHA, ephemeral build.json is ignored; Wrangler receives exact commitSHA and pinned version; redacted read-only canonical Cloudflare production identity is captured before/after without configuration/secrets. Live smoke verifies CFreceipt and actual public SHA/version/clean-source.18local Node tests PASS including real Git fixtures and negative identity/redaction cases. No public layout/copy/assets/API/auth/binding changes. Fresh exact-source review/CI remains required.
 
 ## Review and durable knowledge
 
-Initial readonly review found superseded opaque branding and stale screenshots. Canonical corrected assets imported byte-for-byte; receipt src/assets/brand/HANDOFF_RECEIPT.md. Original owner master retained only as recovery source. Reused local preview disabled; screenshots taken from verified new artifact on unique4187.0.5% full-page tolerance had masked small header/footer changes; comparisons now permit100pixels. Actual screenshots are retained even on success. Soft assertions capture later menu states while any mismatch still fails.
+Initial readonly review found superseded opaque branding and stale screenshots. Canonical corrected assets imported byte-for-byte; receipt src/assets/brand/HANDOFF_RECEIPT.md. Original owner master retained only as recovery source. Reused local preview disabled; screenshots taken from verified new artifact on unique4187. The earlier0.5% full-page tolerance had masked small header/footer changes; comparisons now permit100pixels. Actual screenshots are retained even on success. Soft assertions capture later menu states while any mismatch still fails.
 
 Independent reviewer /root/independent_review opened actual390px LinuxWebKit,768px menu and1280px desktop. The overlapping image bottom border is transparent without geometry change; the visible line through mood labels is gone. P1/P2 closed, SOURCE GO for exactfe5bf41. Evidence: final-linux-acceptance.json, source run39304056369, PRmerge3b93810b48d1e2a5b30721f5549a121c6381e6af, artifact12214005193. Final accepted Linux references are these actual32captures, not copied Darwin images. Physical iPhone/VoiceOver and a separate nontechnical comprehension study remain unclaimed.
 

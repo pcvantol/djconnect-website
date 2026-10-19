@@ -1,3 +1,18 @@
+# Website V2 Access correction — separate Finalization
+
+SourcePR65/main`3d199cc65bfe707b9ff852dcd2b09a72f6e2cd27` accepted with reviewed tree equality,
+exact independentGO/CI/security and policy OwnerAuthorizationSUCCESS/NotRequired.
+Current state FINALIZATION_IN_REVIEW; target MERGED_RECONCILED becomes effective
+only on this separate protected Finalization merge plus actual matching-tree
+mainreadback. Source-main CI/QUALIFIED and this increment own exact review/CI
+remain mandatory before merge. Existing production6f1adde UX is live; initial
+fullsmoke39321166427 remainsFAIL after valid Access302→login200 was followed.
+No product/security change. Final new artifact/deploy/fullsmoke remains pending.
+See docs/website-v2/ACCESS_SMOKE_FINALIZATION.md and this branch's protected PR
+for actual completion receipts. No new lane; existing Core-runtime block intact.
+
+## Earlier records
+
 # DJConnect Repository Prompt Index
 
 Status: repository-local prompt navigation

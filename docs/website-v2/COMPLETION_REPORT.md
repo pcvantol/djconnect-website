@@ -1,3 +1,27 @@
+# Website V2 — final Access smoke reconciliation
+
+The requested implementation/archive/design/assets/five-locale/responsive/
+VibeCast outcomes remain qualified and live at4.0.0. The test-only correction
+PR65/main3d199cc65bfe707b9ff852dcd2b09a72f6e2cd27 is protected merged with
+exact reviewed tree, independentGO and CI/security/authorization-policy PASS.
+Active Node suite21PASS; real browser suite61PASS and actual32visuals retained.
+First full production smoke39321166427 remainsFAIL; only the automatic follow
+of the valid Access302 to loginpage200 caused operational assertion failure.
+Corrected actual local-worker and production operational observations1PASS
+each do not substitute for the full governed final smoke.
+
+Separate Access correction Finalization is in review. Source-main actualCI/
+QUALIFIED, own exact review/CI/policy-required authorization/protected merge,
+new exact-main artifact/manifest/deployment/full live acceptance remain gates.
+Target MERGED_RECONCILED becomes effective only on protected Finalization merge
+and exact matching-tree mainreadback, separately from production acceptance.
+Final actual receipts are retained by the Finalization PR and durable release
+assets; no future or self SHA is fabricated in this source document. No new
+product/security/Functions/binding change or lane; Core-runtime block intact.
+See ACCESS_SMOKE_FINALIZATION.md and evidence/website-v2/access-smoke-correction.json.
+
+## Earlier completion records
+
 # Website V2 — protected implementation delivered; separate Finalization
 
 SourcePR63 accepted main491b83850d949fe61f3e2d85be7c50677da78300. Entire tree

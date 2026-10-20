@@ -1,5 +1,15 @@
 # Website management summary
 
+## Footer build revision — 2026-10-20
+
+Owner requested publication of latest main plus an eight-character commit in parentheses after the footer version. Source [PR #69](https://github.com/pcvantol/djconnect-website/pull/69) merged as `59f933a541f01cb2061c2cc86b1a96d6c3aa09d8`; its whole tree matches independently reviewed `7a0dc20242b39db4e9476a0ef486b70f933e4b9a`. VERSION remains4.0.0. All20localized pages and404 use the same actual buildIdentity commit as build.json.
+
+Source acceptance:21NodePASS,61real Chromium/WebKit browserPASS, operationalPASS and independent source/phone visualGO. First Linux run39402642733FAIL is retained:15expected footer baselines required reviewed replacement; assertions/tolerances unchanged. Final source PR Validate39403295902/push39403290102 and security/governance checksPASS. Source-main [Validate39403616559](https://github.com/pcvantol/djconnect-website/actions/runs/39403616559) and [CodeQL39403616545](https://github.com/pcvantol/djconnect-website/actions/runs/39403616545) remain exact-main authorities; publication requires their actual success, separate Finalization main qualification, downloaded-artifact Playwright, governed deployment and matching live smoke.
+
+This separate Finalization changes records only. Actual publication identity and outcome are established by the matching `internal-website-<built commit>` release manifest/deployment/smoke receipts and live [build.json](https://djconnect.dev/build.json), rather than the historical snapshot below. No success is inferred before those checks execute. [Completion and publication contract](docs/footer-commit/COMPLETION_REPORT.md); [immutable prompt](docs/history/prompts/2026-10-20-footer-build-revision.md). No other-repository, backend, binding, credential or version change is selected.
+
+## Original Website V2 accepted release snapshot — 2026-10-19
+
 Published Website release: **4.0.0** at [djconnect.dev](https://djconnect.dev/).
 Published source: `1253e1853f91ae1c938f009677618732ed62a5ca`.
 Delivered capability: `DJC-WEBSITE-PREMIUM-CLEAN-REBUILD-V2`, canonical [#62](https://github.com/pcvantol/djconnect-website/issues/62), lane [#59](https://github.com/pcvantol/djconnect-website/issues/59).

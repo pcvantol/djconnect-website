@@ -3,10 +3,12 @@ import {test,expect} from '@playwright/test';
 const version=readFileSync(new URL('../VERSION',import.meta.url),'utf8').trim();
 const locales=['nl','en','de','fr','es'];const prefix=l=>l==='nl'?'':`/${l}`;
 for(const locale of locales){
- test(`${locale}: static routes, SEO, language and destinations`,async({page})=>{
+ test(`${locale}: static routes, SEO, language and destinations`,async({page,request})=>{
+  const build=await (await request.get('/build.json')).json();
+  expect(build.commit).toMatch(/^[0-9a-f]{40}$/);
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
   for(const slug of ['','start','privacy','support']){
-   const url=prefix(locale)+'/'+slug;await page.goto(url);await expect(page.locator('html')).toHaveAttribute('lang',locale);await expect(page.locator('main h1')).toHaveCount(1);await expect(page.locator('link[rel=canonical]')).toHaveAttribute('href','https://djconnect.dev'+url);await expect(page.locator('link[hreflang]')).toHaveCount(6);await expect(page.locator('.site-footer a')).toHaveCount(2);await expect(page.locator('.site-footer')).toContainText(version);
+   const url=prefix(locale)+'/'+slug;await page.goto(url);await expect(page.locator('html')).toHaveAttribute('lang',locale);await expect(page.locator('main h1')).toHaveCount(1);await expect(page.locator('link[rel=canonical]')).toHaveAttribute('href','https://djconnect.dev'+url);await expect(page.locator('link[hreflang]')).toHaveCount(6);await expect(page.locator('.site-footer a')).toHaveCount(2);await expect(page.locator('.site-footer')).toContainText(version+' ('+build.commit.slice(0,8)+')');await expect(page.locator('[data-build-commit]')).toHaveText('('+build.commit.slice(0,8)+')');
    await page.locator('.languages summary').click();await expect(page.locator('.language-options a')).toHaveCount(5);await expect(page.locator('.language-options a[aria-current]')).toHaveAttribute('lang',locale);await page.keyboard.press('Escape');await expect(page.locator('.languages')).not.toHaveAttribute('open','');
   }
   await page.goto(prefix(locale)+'/');await expect(page.locator('main section')).toHaveCount(4);await expect(page.locator('a[href="https://vibecast.tv"]')).toBeVisible();await expect(page.locator('.hero .button')).toHaveAttribute('href',prefix(locale)+'/start');expect(errors).toEqual([]);

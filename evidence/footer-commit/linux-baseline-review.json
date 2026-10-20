@@ -1,0 +1,294 @@
+{
+  "source_candidate": "033c5565d70dd7adc3d3b14c3d377aa7c851e364",
+  "source_ci_run": 39402642733,
+  "classification": "Expected footer change, 15 screenshot assertions failed; 46 other browser tests passed. Original FAIL retained.",
+  "normalization": "Only changing stamp is (00000000) in baseline; actual screenshot attachments restore real stamp.",
+  "visual_review": "Real Linux phone and localized footer reviewed, no overlap or clipping. 52px wrapping where needed. Upper-page differences max2/255 from changed fullpage gradient height; no changed foreground pixels. Tolerances and assertions unchanged.",
+  "baselines": [
+    {
+      "engine": "chromium",
+      "file": "home-320.png",
+      "old": [
+        320,
+        3011
+      ],
+      "new": [
+        320,
+        3063
+      ],
+      "upper_difference": [
+        0,
+        6,
+        320,
+        2323
+      ],
+      "upper_max_channel_difference": 2,
+      "upper_pixels_diff_gt8": 0,
+      "sha256": "a3250639128c07ff005fafb8d26dc856cfdfed39aef842032dabd525d40f649a"
+    },
+    {
+      "engine": "webkit",
+      "file": "home-320.png",
+      "old": [
+        320,
+        3078
+      ],
+      "new": [
+        320,
+        3130
+      ],
+      "upper_difference": [
+        0,
+        7,
+        320,
+        2359
+      ],
+      "upper_max_channel_difference": 2,
+      "upper_pixels_diff_gt8": 0,
+      "sha256": "4d4608e832a07c494607e3ade44286a7431ac78194b64b556ddbf8352dcccdfb"
+    },
+    {
+      "engine": "chromium",
+      "file": "home-375.png",
+      "old": [
+        375,
+        3046
+      ],
+      "new": [
+        375,
+        3046
+      ],
+      "upper_difference": null,
+      "upper_max_channel_difference": 0,
+      "upper_pixels_diff_gt8": 0,
+      "sha256": "82b2f1e54ae7b69ca44e72afb61b6d0be789045d805771776e52641da563330a"
+    },
+    {
+      "engine": "webkit",
+      "file": "home-375.png",
+      "old": [
+        375,
+        3165
+      ],
+      "new": [
+        375,
+        3217
+      ],
+      "upper_difference": [
+        0,
+        8,
+        375,
+        2425
+      ],
+      "upper_max_channel_difference": 2,
+      "upper_pixels_diff_gt8": 0,
+      "sha256": "8a478126d27652c2cc9a5a5db369a4698769e92ea2c6f0aa118f557ea0cba4e7"
+    },
+    {
+      "engine": "chromium",
+      "file": "home-390.png",
+      "old": [
+        390,
+        3047
+      ],
+      "new": [
+        390,
+        3047
+      ],
+      "upper_difference": null,
+      "upper_max_channel_difference": 0,
+      "upper_pixels_diff_gt8": 0,
+      "sha256": "56b823081b75a3cd26c01612065d6de54e801d005e95a27467ae4190afec971d"
+    },
+    {
+      "engine": "webkit",
+      "file": "home-390.png",
+      "old": [
+        390,
+        3114
+      ],
+      "new": [
+        390,
+        3166
+      ],
+      "upper_difference": [
+        0,
+        4,
+        390,
+        2386
+      ],
+      "upper_max_channel_difference": 2,
+      "upper_pixels_diff_gt8": 0,
+      "sha256": "7cac3a9b8d9438cd0c60322be93559e1078bba34b2813cf24587f6242c3352ee"
+    },
+    {
+      "engine": "chromium",
+      "file": "home-430.png",
+      "old": [
+        430,
+        3062
+      ],
+      "new": [
+        430,
+        3062
+      ],
+      "upper_difference": null,
+      "upper_max_channel_difference": 0,
+      "upper_pixels_diff_gt8": 0,
+      "sha256": "0b7aafc8cf3a2250eb77cfb67290d9be7bd0812c4d22bcae513ae706f3480f4f"
+    },
+    {
+      "engine": "chromium",
+      "file": "home-768.png",
+      "old": [
+        768,
+        2328
+      ],
+      "new": [
+        768,
+        2328
+      ],
+      "upper_difference": null,
+      "upper_max_channel_difference": 0,
+      "upper_pixels_diff_gt8": 0,
+      "sha256": "c990af29b27b24db46d2a20db7779c8b8fcad782a08e6e942e6ec2f29c02d1e6"
+    },
+    {
+      "engine": "chromium",
+      "file": "home-de.png",
+      "old": [
+        390,
+        3086
+      ],
+      "new": [
+        390,
+        3138
+      ],
+      "upper_difference": [
+        0,
+        12,
+        390,
+        2379
+      ],
+      "upper_max_channel_difference": 2,
+      "upper_pixels_diff_gt8": 0,
+      "sha256": "1e140d20735b3760b1ec71ca3bf8bec8386b3ded4c04b613c78ddac63ec0f75f"
+    },
+    {
+      "engine": "webkit",
+      "file": "home-de.png",
+      "old": [
+        390,
+        3142
+      ],
+      "new": [
+        390,
+        3194
+      ],
+      "upper_difference": [
+        0,
+        4,
+        390,
+        2407
+      ],
+      "upper_max_channel_difference": 2,
+      "upper_pixels_diff_gt8": 0,
+      "sha256": "8a478e9d56caf9245aa503c6ec0abaccfa7728f87cc84786d4a8f39dd3cc9323"
+    },
+    {
+      "engine": "chromium",
+      "file": "home-en.png",
+      "old": [
+        390,
+        3058
+      ],
+      "new": [
+        390,
+        3058
+      ],
+      "upper_difference": null,
+      "upper_max_channel_difference": 0,
+      "upper_pixels_diff_gt8": 0,
+      "sha256": "04e2d63849bc0b7583b57451824442eee956e2b23ad61c684445f336250ce838"
+    },
+    {
+      "engine": "chromium",
+      "file": "home-es.png",
+      "old": [
+        390,
+        3047
+      ],
+      "new": [
+        390,
+        3047
+      ],
+      "upper_difference": null,
+      "upper_max_channel_difference": 0,
+      "upper_pixels_diff_gt8": 0,
+      "sha256": "46c2e953ff47fac0a9a1b93cfe8ccc7624377ce4883d14c78a04e0437cdcfca5"
+    },
+    {
+      "engine": "webkit",
+      "file": "home-es.png",
+      "old": [
+        390,
+        3125
+      ],
+      "new": [
+        390,
+        3177
+      ],
+      "upper_difference": [
+        0,
+        4,
+        390,
+        2394
+      ],
+      "upper_max_channel_difference": 2,
+      "upper_pixels_diff_gt8": 0,
+      "sha256": "4a925c6a8ef45bc13da683f8a7bb1aa42d7fc424ffd3877d1922fbe77e094f39"
+    },
+    {
+      "engine": "chromium",
+      "file": "home-fr.png",
+      "old": [
+        390,
+        3019
+      ],
+      "new": [
+        390,
+        3071
+      ],
+      "upper_difference": [
+        0,
+        1,
+        390,
+        2329
+      ],
+      "upper_max_channel_difference": 2,
+      "upper_pixels_diff_gt8": 0,
+      "sha256": "3ab8e53c16ac1750cddf7f5cbcecc9c79d929f2ba1d5c4bc1b0b21fea5402418"
+    },
+    {
+      "engine": "webkit",
+      "file": "home-fr.png",
+      "old": [
+        390,
+        3114
+      ],
+      "new": [
+        390,
+        3166
+      ],
+      "upper_difference": [
+        0,
+        4,
+        390,
+        2386
+      ],
+      "upper_max_channel_difference": 2,
+      "upper_pixels_diff_gt8": 0,
+      "sha256": "9c32e82ff159dc640b2ba1c3f3e9c8776a0acf5b7b645b5e65f3a6ff0271f31c"
+    }
+  ]
+}

@@ -19,7 +19,7 @@ for(const name of await readdir('src/assets/artwork'))if(/^(hero|vibe|moment|cas
 for(const locale of languages){
  await copy(`src/assets/social-${locale}.png`,`assets/social-${locale}.png`);
  for(const page of Object.values(pages)){
-  const c={locale,slug:page.slug,page,t:catalog[locale],version};
+  const c={locale,slug:page.slug,page,t:catalog[locale],version,commit:identity.commit};
   const filename=page.slug?route(locale,page.slug)+'.html':route(locale)+'index.html';
   const out=path.join(output,filename);await mkdir(path.dirname(out),{recursive:true});
   await writeFile(out,SiteLayout(c,page.sections.map(name=>sections[name](c)).join(''))+'\n');
@@ -27,7 +27,7 @@ for(const locale of languages){
 }
 // Operational contracts remain distinct from the marketing composition.
 await cp('src/operational',output,{recursive:true});
-const c={locale:'nl',slug:'',page:{title:'notFound.title',description:'notFound.description'},t:catalog.nl,version};
+const c={locale:'nl',slug:'',page:{title:'notFound.title',description:'notFound.description'},t:catalog.nl,version,commit:identity.commit};
 await writeFile(output+'/404.html',SiteLayout(c,`<article class="service-page"><h1>${escape(c.t['notFound.title'])}</h1><p class="lead">${escape(c.t['notFound.description'])}</p>${Button(c.t['notFound.cta'],'/')}</article>`,true));
 const urls=languages.flatMap(l=>Object.values(pages).map(p=>'https://djconnect.dev'+route(l,p.slug)));
 await writeFile(output+'/sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map(url=>`<url><loc>${url}</loc></url>`).join('')}</urlset>\n`);

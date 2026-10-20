@@ -76,3 +76,13 @@ project from the sole-writer branch and records only identity and publishing
 flags. Direct-upload projects or explicitly disabled automatic Git production
 publication pass; unknown/malformed source policy fails closed. No Pages
 configuration is changed. The same policy guard runs before/after deployment.
+
+## Visible build revision
+
+The shared footer displays VERSION followed by the first eight characters of the
+actual buildIdentity commit in parentheses, on all localized pages and the404.
+The generator passes the same identity to the layout and build.json; no hash is
+hardcoded in copy or taken from workflow event metadata. Browser smoke compares
+every localized footer to the served build.json. Visual baseline assertions
+normalize only the changing stamp to (00000000), then restore the actual value
+before retaining real screenshots. Production publication remains manifest-bound.

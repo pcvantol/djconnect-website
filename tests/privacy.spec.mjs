@@ -15,6 +15,7 @@ test('all privacy translations share sections and are reachable from the footer 
   await expect(page.locator('html')).toHaveAttribute('lang',locale);
   await expect(page.getByRole('heading',{level:1})).toHaveText(privacy[locale].title);
   expect(await page.locator('.privacy-section').evaluateAll(sections=>sections.map(section=>section.id))).toEqual(privacySections);
+  await expect(page.locator('#rights')).toContainText('Peter van Tol');
   await expect(page.getByRole('link',{name:privacyContact})).toHaveAttribute('href','mailto:'+privacyContact);
   await expect(page.getByRole('link',{name:privacy[locale].complaint})).toHaveAttribute('href',supervisoryAuthorityUrl);
   await expect(page.locator(`.site-footer a[href="${url}"]`)).toBeVisible();

@@ -15,17 +15,10 @@ document.addEventListener('click',event=>{if(languages?.open&&!languages.contain
 document.querySelectorAll('.language-options a').forEach(a=>a.addEventListener('click',()=>{if(location.hash)a.hash=location.hash;}));
 document.querySelectorAll('.mood-preview[data-mood]').forEach(preview=>{
  const buttons=preview.querySelectorAll('[data-mood-choice]');
- const animate=()=>preview.setAttribute('data-mood-moving','');
- // Start the default mood when the visitor first reaches the artwork.
- const observer='IntersectionObserver' in window ? new IntersectionObserver(entries=>{
-  if(entries.some(entry=>entry.isIntersecting)){animate();observer.disconnect();}
- },{threshold:.35}) : null;
- const art=preview.querySelector('picture');
- if(art)observer?.observe(art);
+ const queues=preview.querySelectorAll('[data-horizon-mood]');
  buttons.forEach(button=>button.addEventListener('click',()=>{
   preview.dataset.mood=button.dataset.moodChoice;
+  queues.forEach(queue=>{queue.hidden=queue.dataset.horizonMood!==preview.dataset.mood;});
   buttons.forEach(choice=>choice.setAttribute('aria-pressed',String(choice===button)));
-  observer?.disconnect();
-  animate();
  }));
 });

@@ -4,8 +4,12 @@
  --color-background: #070a18; --color-background-raised: #12172d;
  --color-text: #f4f5ff; --color-text-muted: #b8bed4; --color-text-quiet: #9da7c5;
  --color-focus: #b8efff; --color-on-primary: #0a1029;
- --mood-chill: #71e4d2; --mood-groove: #c4a1ff; --mood-energy: #8dbbff; --mood-party: #ff9bb8;
- --mood-tint: .84; --mood-chill-beat: 4.8s; --mood-groove-beat: 2.3s; --mood-energy-beat: 1.5s; --mood-party-beat: 1.2s;
+ --mood-chill: #b4a2ff; --mood-groove: #71e4d2; --mood-energy: #d6f75b; --mood-party: #ff8ab6;
+ --horizon-chill: linear-gradient(90deg,#2e66c6,#7452ef,#ad54df);
+ --horizon-groove: linear-gradient(90deg,#1e6873,#55bbeb,#349da9);
+ --horizon-energy: linear-gradient(90deg,#91be34,#5ebde9,#4cad7a);
+ --horizon-party: linear-gradient(90deg,#dd386e,#9e45ed,#d94ba8);
+ --mood-tint: .82;
  --gradient-brand: linear-gradient(120deg, var(--color-primary), var(--color-secondary));
  --gradient-atmosphere: radial-gradient(ellipse at 70% 12%, #37265b55, transparent 45%),radial-gradient(ellipse at 10% 45%, #112d4f44, transparent 40%);
  --glass-background: #171d36bd; --glass-bg: var(--glass-background); --glass-opaque: #192039;

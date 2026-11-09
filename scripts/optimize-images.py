@@ -1,8 +1,17 @@
 """Deterministic format/size derivatives of preserved, unmodified source art."""
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
-import hashlib,json
+import hashlib,json,sys
 root=Path(__file__).resolve().parents[1];assets=root/'src/assets'
+def horizon_derivatives():
+ source=Image.open(assets/'artwork/horizon-original.jpg').convert('RGB')
+ for w in [480,800,1280]:
+  source.resize((w,round(source.height*w/source.width)),Image.Resampling.LANCZOS).save(assets/f'artwork/horizon-{w}.webp',quality=85,method=6)
+
+if sys.argv[1:]==['--horizon-only']:
+ horizon_derivatives()
+ raise SystemExit(0)
+horizon_derivatives()
 im=Image.open(assets/'brand/approved-master.png')
 assert hashlib.sha256((assets/'brand/approved-master.png').read_bytes()).hexdigest()=='f05fcdf4602d9c63add7799469c64060a8f13e5efa66ad6c7b762fb8273ec89f'
 # Canonical marks are imported byte-for-byte; only the 192px touch size is derived.

@@ -9,6 +9,11 @@ export const MomentSection=({t})=>MediaTextSection('moment',copy(t,'moment.label
 export const VibeCastSection=({t})=>MediaTextSection('vibecast',copy(t,'cast.label','cast.title','cast.description',Button(t['cta.cast'],'https://vibecast.tv',true)),VibeCastPreview(t));
 const paragraph=(title,text)=>`<section class="prose-section"><h2>${e(title)}</h2><p>${e(text)}</p></section>`;
 const service=(t,title,description,body)=>`<article class="service-page"><p class="eyebrow">DJCONNECT</p><h1>${e(t[title])}</h1><p class="lead">${e(t[description])}</p>${body}</article>`;
+const providerPrivacyLinks = [
+ ['Cloudflare', 'https://www.cloudflare.com/cloudflare-customer-dpa/'],
+ ['Apple', 'https://www.apple.com/legal/privacy/en-ww/'],
+ ['Microsoft Outlook', 'https://www.microsoft.com/en-us/privacy/privacystatement'],
+];
 export const sections={
  hero:HeroSection,vibe:VibeSection,moment:MomentSection,cast:VibeCastSection,
  onboarding:({t})=>service(t,'start.title','start.description',paragraph(t['start.step1'],t['start.requirements'])+Button(t['start.install'],'/go/hacs',true)+paragraph(t['start.step2'],t['start.wizard'])+paragraph(t['start.distribution'],t['start.availability'])+Button(t['support.email'],'mailto:support@djconnect.dev')),
@@ -18,7 +23,9 @@ export const sections={
   const body=privacySections.map(id=>{
    const [title,...paragraphs]=notice.sections[id];
    const links=id==='rights'?`<p><a href="mailto:${privacyContact}">${privacyContact}</a></p><p><a href="${supervisoryAuthorityUrl}">${e(notice.complaint)}</a></p>`:'';
-   return `<section class="prose-section privacy-section" id="${id}"><h2>${e(title)}</h2>${paragraphs.map(text=>`<p>${e(text)}</p>`).join('')}${links}</section>`;
+   const providerLinks = id==='international-transfers'
+    ? `<ul>${providerPrivacyLinks.map(([name,url])=>`<li><a href="${url}">${name}</a></li>`).join('')}</ul>` : '';
+   return `<section class="prose-section privacy-section" id="${id}"><h2>${e(title)}</h2>${paragraphs.map(text=>`<p>${e(text)}</p>`).join('')}${links}${providerLinks}</section>`;
   }).join('');
   return service(t,'privacy.title','privacy.description',body);
  }

@@ -1,6 +1,6 @@
 // Shared section order keeps the five versions of the statement in sync.
 export const privacySections = ['scope','website','home-assistant','choices','apple-notifications','vibecast','support','international-transfers','rights'];
-export const privacyContact = 'support@djconnect.dev';
+export const privacyContact = 'privacy@djconnect.dev';
 export const supervisoryAuthorityUrl = 'https://autoriteitpersoonsgegevens.nl/klacht';
 
 export const privacy = {
@@ -10,7 +10,7 @@ export const privacy = {
   complaint: 'Naar de Autoriteit Persoonsgegevens',
   sections: {
    scope: ['Over deze verklaring',
-    'Deze verklaring beschrijft de openbare website en de diensten rond DJConnect. Je Home Assistant-installatie is de plek waar je je profiel, muziekverbindingen en Ask DJ-geschiedenis beheert. De centrale dienst heeft een afzonderlijke rol bij de technische aflevering van optionele Apple-meldingen.'],
+    'Deze verklaring beschrijft de openbare website en de diensten rond DJConnect. Peter van Tol is de verwerkingsverantwoordelijke voor de openbare website, de centrale meldingsdienst en support. Je Home Assistant-installatie is de plek waar je je profiel, muziekverbindingen en Ask DJ-geschiedenis beheert. De centrale dienst heeft een afzonderlijke rol bij de technische aflevering van optionele Apple-meldingen.'],
    website: ['Website, downloads en installatie',
     'De openbare website gebruikt geen trackingcookies. Bij bepaalde download- en installatielinks kan DJConnect doorklikken tellen per dag, bestemming en bron om het gebruik van links te meten. De teller bewaart alleen totalen, zonder IP-adres, browserkenmerken of bezoekers-ID. Na een doorverwijzing ontvangt de externe bestemming, bijvoorbeeld GitHub, je verzoek volgens haar eigen privacybeleid.',
     'Cloudflare ontvangt netwerk- en verzoekgegevens, zoals je IP-adres en de opgevraagde pagina, om de site te leveren en te beveiligen. De site vraagt browsers die dit ondersteunen ook netwerkfouten aan Cloudflare te melden. Hosting-, CDN- en beveiligingslogs staan los van de klikteller.'],
@@ -45,7 +45,7 @@ export const privacy = {
   complaint: 'Visit the Dutch Data Protection Authority',
   sections: {
    scope: ['About this statement',
-    'This statement covers the public website and services associated with DJConnect. Your Home Assistant installation is where you manage your profile, music connections and Ask DJ history. The central service has a separate role in the technical delivery of optional Apple notifications.'],
+    'This statement covers the public website and services associated with DJConnect. Peter van Tol is the data controller for the public website, the central notification service and support. Your Home Assistant installation is where you manage your profile, music connections and Ask DJ history. The central service has a separate role in the technical delivery of optional Apple notifications.'],
    website: ['Website, downloads and installation',
     'The public website uses no tracking cookies. DJConnect can count clicks on certain download and installation links by day, destination and source to measure link usage. The counter stores totals without IP addresses, browser details or visitor IDs. After a redirect, the external destination, such as GitHub, receives your request under its own privacy policy.',
     'Cloudflare receives network and request data, such as your IP address and the page requested, to deliver and protect the site. The site also asks browsers that support it to report network errors to Cloudflare. Hosting, CDN and security logs are separate from the click counter.'],
@@ -80,7 +80,7 @@ export const privacy = {
   complaint: 'Zur niederländischen Datenschutzaufsicht',
   sections: {
    scope: ['Über diese Erklärung',
-    'Diese Erklärung gilt für die öffentliche Website und die Dienste rund um DJConnect. In deiner Home-Assistant-Installation verwaltest du dein Profil, Musikverbindungen und den Ask-DJ-Verlauf. Der zentrale Dienst ist separat für die technische Zustellung optionaler Apple-Mitteilungen zuständig.'],
+    'Diese Erklärung gilt für die öffentliche Website und die Dienste rund um DJConnect. Peter van Tol ist der Verantwortliche für die Datenverarbeitung der öffentlichen Website, beim zentralen Mitteilungsdienst und beim Support. In deiner Home-Assistant-Installation verwaltest du dein Profil, Musikverbindungen und den Ask-DJ-Verlauf. Der zentrale Dienst ist separat für die technische Zustellung optionaler Apple-Mitteilungen zuständig.'],
    website: ['Website, Downloads und Installation',
     'Die öffentliche Website verwendet keine Tracking-Cookies. Bei bestimmten Download- und Installationslinks kann DJConnect die Klicks nach Tag, Ziel und Quelle zählen, um die Nutzung der Links zu messen. Der Zähler speichert nur Summen, ohne IP-Adressen, Browsermerkmale oder Besucher-IDs. Nach einer Weiterleitung erhält das externe Ziel, etwa GitHub, deine Anfrage gemäß seiner eigenen Datenschutzerklärung.',
     'Cloudflare erhält Netzwerk- und Anfragedaten wie deine IP-Adresse und die aufgerufene Seite, um die Website auszuliefern und zu schützen. Die Website bittet unterstützte Browser außerdem, Netzwerkfehler an Cloudflare zu melden. Hosting-, CDN- und Sicherheitsprotokolle sind vom Klickzähler getrennt.'],
@@ -115,7 +115,7 @@ export const privacy = {
   complaint: 'Accéder à l’autorité néerlandaise de protection des données',
   sections: {
    scope: ['À propos de cette déclaration',
-    'Cette déclaration couvre le site public et les services associés à DJConnect. Tu gères ton profil, tes connexions musicales et ton historique Ask DJ dans ton installation Home Assistant. Le service central assure séparément l’acheminement technique des notifications Apple facultatives.'],
+    'Cette déclaration couvre le site public et les services associés à DJConnect. Peter van Tol est le responsable du traitement pour le site public, le service central de notification et l’assistance. Tu gères ton profil, tes connexions musicales et ton historique Ask DJ dans ton installation Home Assistant. Le service central assure séparément l’acheminement technique des notifications Apple facultatives.'],
    website: ['Site, téléchargements et installation',
     'Le site public n’utilise pas de cookies de suivi. DJConnect peut compter les clics sur certains liens de téléchargement et d’installation par jour, destination et source pour mesurer leur utilisation. Le compteur conserve uniquement des totaux, sans adresse IP, caractéristiques du navigateur ni identifiant de visiteur. Après une redirection, le service de destination, par exemple GitHub, reçoit ta requête selon sa propre politique de confidentialité.',
     'Cloudflare reçoit des données réseau et de requête, comme ton adresse IP et la page demandée, pour fournir et protéger le site. Le site demande aussi aux navigateurs compatibles de signaler les erreurs réseau à Cloudflare. Les journaux d’hébergement, du réseau de diffusion et de sécurité sont distincts du compteur de clics.'],
@@ -150,7 +150,7 @@ export const privacy = {
   complaint: 'Ir a la autoridad neerlandesa de protección de datos',
   sections: {
    scope: ['Sobre esta declaración',
-    'Esta declaración abarca el sitio público y los servicios relacionados con DJConnect. Gestionas tu perfil, tus conexiones de música y el historial de Ask DJ en tu instalación de Home Assistant. El servicio central se ocupa por separado de la entrega técnica de las notificaciones opcionales de Apple.'],
+    'Esta declaración abarca el sitio público y los servicios relacionados con DJConnect. Peter van Tol es el responsable del tratamiento del sitio público, el servicio central de notificaciones y el servicio de ayuda. Gestionas tu perfil, tus conexiones de música y el historial de Ask DJ en tu instalación de Home Assistant. El servicio central se ocupa por separado de la entrega técnica de las notificaciones opcionales de Apple.'],
    website: ['Sitio web, descargas e instalación',
     'El sitio público no utiliza cookies de seguimiento. DJConnect puede contar los clics en determinados enlaces de descarga e instalación por día, destino y origen para medir su uso. El contador guarda solo totales, sin direcciones IP, características del navegador ni identificadores de visitantes. Tras una redirección, el destino externo, como GitHub, recibe tu solicitud según su propia política de privacidad.',
     'Cloudflare recibe datos de red y de solicitud, como tu dirección IP y la página solicitada, para servir y proteger el sitio. El sitio también pide a los navegadores compatibles que informen a Cloudflare de errores de red. Los registros de alojamiento, distribución y seguridad están separados del contador de clics.'],

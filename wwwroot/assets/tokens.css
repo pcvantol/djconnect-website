@@ -5,7 +5,7 @@
  --color-text: #f4f5ff; --color-text-muted: #b8bed4; --color-text-quiet: #9da7c5;
  --color-focus: #b8efff; --color-on-primary: #0a1029;
  --mood-chill: #71e4d2; --mood-groove: #c4a1ff; --mood-energy: #8dbbff; --mood-party: #ff9bb8;
- --mood-tint: .84; --mood-chill-beat: 4.8s; --mood-groove-beat: 2.3s; --mood-energy-beat: 1.5s; --mood-party-beat: 1.2s;
+ --mood-tint: .84;
  --gradient-brand: linear-gradient(120deg, var(--color-primary), var(--color-secondary));
  --gradient-atmosphere: radial-gradient(ellipse at 70% 12%, #37265b55, transparent 45%),radial-gradient(ellipse at 10% 45%, #112d4f44, transparent 40%);
  --glass-background: #171d36bd; --glass-bg: var(--glass-background); --glass-opaque: #192039;

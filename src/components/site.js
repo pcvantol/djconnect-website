@@ -15,8 +15,10 @@ document.addEventListener('click',event=>{if(languages?.open&&!languages.contain
 document.querySelectorAll('.language-options a').forEach(a=>a.addEventListener('click',()=>{if(location.hash)a.hash=location.hash;}));
 document.querySelectorAll('.mood-preview[data-mood]').forEach(preview=>{
  const buttons=preview.querySelectorAll('[data-mood-choice]');
+ const queues=preview.querySelectorAll('[data-horizon-mood]');
  buttons.forEach(button=>button.addEventListener('click',()=>{
   preview.dataset.mood=button.dataset.moodChoice;
+  queues.forEach(queue=>{queue.hidden=queue.dataset.horizonMood!==preview.dataset.mood;});
   buttons.forEach(choice=>choice.setAttribute('aria-pressed',String(choice===button)));
  }));
 });

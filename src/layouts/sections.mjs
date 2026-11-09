@@ -12,7 +12,8 @@ const service=(t,title,description,body)=>`<article class="service-page"><p clas
 const providerPrivacyLinks = [
  ['Cloudflare', 'https://www.cloudflare.com/cloudflare-customer-dpa/'],
  ['Apple', 'https://www.apple.com/legal/privacy/en-ww/'],
- ['Microsoft Outlook', 'https://www.microsoft.com/en-us/privacy/privacystatement'],
+ ['Microsoft Hotmail (Outlook.com)', 'https://www.microsoft.com/en-us/privacy/privacystatement'],
+ ['GitHub', 'https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement#international-data-transfers'],
 ];
 export const sections={
  hero:HeroSection,vibe:VibeSection,moment:MomentSection,cast:VibeCastSection,

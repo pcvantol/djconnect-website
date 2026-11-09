@@ -148,3 +148,7 @@ to{opacity:1;transform:none}
 }
 
 .site-header{padding-top:max(var(--space-5),env(safe-area-inset-top));padding-left:max(var(--space-gutter),env(safe-area-inset-left));padding-right:max(var(--space-gutter),env(safe-area-inset-right))}
+.privacy-section p + p{margin-top:var(--space-3)}
+.privacy-section a{color:var(--color-text);text-decoration:underline;text-underline-offset:.2em;overflow-wrap:anywhere}
+
+.service-page:has(.privacy-section) h1{overflow-wrap:anywhere;hyphens:auto}

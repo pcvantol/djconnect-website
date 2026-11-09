@@ -1,3 +1,4 @@
+import {privacy,privacySections,privacyContact,supervisoryAuthorityUrl} from '../locales/privacy.mjs';
 import {escape as e,Button,Picture,HorizonPreview,DJCharacterPreview,DJMomentPreview,VibeCastPreview} from '../components/ui.mjs';
 import {route} from '../pages/registry.mjs';
 const copy=(t,label,title,description,action='')=>`<div class="section-copy"><p class="eyebrow">${e(t[label])}</p><h2>${e(t[title])}</h2><p class="lead">${e(t[description])}</p>${action}</div>`;
@@ -12,5 +13,13 @@ export const sections={
  hero:HeroSection,vibe:VibeSection,moment:MomentSection,cast:VibeCastSection,
  onboarding:({t})=>service(t,'start.title','start.description',paragraph(t['start.step1'],t['start.requirements'])+Button(t['start.install'],'/go/hacs',true)+paragraph(t['start.step2'],t['start.wizard'])+paragraph(t['start.distribution'],t['start.availability'])+Button(t['support.email'],'mailto:support@djconnect.dev')),
  support:({t})=>service(t,'support.title','support.description',Button(t['support.email'],'mailto:support@djconnect.dev')),
- privacy:({t})=>service(t,'privacy.title','privacy.website',paragraph(t['privacy.dataTitle'],t['privacy.data'])+paragraph(t['privacy.personalTitle'],t['privacy.personal'])+paragraph(t['privacy.notificationsTitle'],t['privacy.notifications'])+paragraph(t['privacy.contactTitle'],t['privacy.contact'])+Button(t['support.email'],'mailto:support@djconnect.dev'))
+ privacy:({locale,t})=>{
+  const notice=privacy[locale];
+  const body=privacySections.map(id=>{
+   const [title,...paragraphs]=notice.sections[id];
+   const links=id==='rights'?`<p><a href="mailto:${privacyContact}">${privacyContact}</a></p><p><a href="${supervisoryAuthorityUrl}">${e(notice.complaint)}</a></p>`:'';
+   return `<section class="prose-section privacy-section" id="${id}"><h2>${e(title)}</h2>${paragraphs.map(text=>`<p>${e(text)}</p>`).join('')}${links}</section>`;
+  }).join('');
+  return service(t,'privacy.title','privacy.description',body);
+ }
 };

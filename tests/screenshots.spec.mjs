@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test';
 async function readyArt(page){
  await page.emulateMedia({reducedMotion:'reduce'});
- for(const img of await page.locator('img').all()){await img.scrollIntoViewIfNeeded();await expect.poll(()=>img.evaluate(i=>i.complete&&i.naturalWidth>0)).toBeTruthy();}
+ for(const img of await page.locator('img:visible').all()){await img.scrollIntoViewIfNeeded();await expect.poll(()=>img.evaluate(i=>i.complete&&i.naturalWidth>0)).toBeTruthy();}
  await page.evaluate(()=>scrollTo(0,0));
 }
 // Normalize only the changing build stamp for stable visual baselines. Real

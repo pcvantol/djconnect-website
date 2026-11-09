@@ -14,6 +14,16 @@ The 4.0.0 website replaces the old marketing surface with one short session-led 
 
 Horizon is a local, fictional preview. Mood buttons switch between four static colour palettes and eight invented songs/artists in pairs of Now and Next. The controls sit below the fully rounded panoramic frame. All entries are generated into HTML, with only the selected list exposed and announced; no playback, API request or client storage is involved. The panorama is the unmodified Apple asset `Apps/Shared/Assets.xcassets/HorizonHero.imageset/horizon-hero.jpg` pinned at `93dccad59304f3b35bc427b79aca3758e56310ab` (SHA-256 `05eb2a00a044fc42373e85c6cc0496440aefc187784cd8ed8ae1e570d8dc2915`). Its original stays in source; `python3 scripts/optimize-images.py --horizon-only` reproduces the three public WebP sizes. Generated pages use a content-derived cache key for the shared styles and script so visitors do not retain an older immutable asset after publication. DJ Moment copy is a short explicitly illustrative musical observation, not an attributed artist fact. VibeCast artwork is a product-vision illustration, not a live connected screenshot or customer endorsement.
 
+The DJ character card sits directly below Horizon. It switches among four still VibeScape previews and localized explanations of each character’s style and tone. The artwork is decorative and the selected explanation is announced. The supplied Apple screenshots are the source. For each WebP, crop the full image width from 22% of its height with a 5:2 aspect ratio, then resize with Lanczos to 480, 800 or 1280 pixels wide and encode at WebP quality 85. This crop removes the macOS toolbar and DJ character popover.
+
+| Character | Source screenshot stem | Original SHA-256 |
+| --- | --- | --- |
+| Home | dc55fd6a-77c3-438c-be8e-d6c8e8df74b3 | `e49c69669ff720aa806f74d6f94099771f6259fcd1c3809c16003757dbafda8e` |
+| Radio | 60d52dc5-23f1-4b0f-acef-64a666280c5b | `d05011c4b14f4684281f999a96a84524cb86b0952d2100063c3872c9baacd6a8` |
+| Club | c304216e-9931-4234-ad13-c60f60ff2937 | `beba6b0533ee5fc31a3a9aa3b3efcaf05dba764252be5177ee2f75a1435302da` |
+| Festival | 226a6127-660c-4122-9361-fdbd30180a13 | `1fa12a6e8a423c4aab1d57cbf69c0aadbd38618eb913b4995eb25b748e656342` |
+
+
 ## Artwork and brand provenance
 
 The owner supplied Approved-Source-Handoff ZIP, SHA-256 `a0deec308d82c812875f80c509983fab595dd9745b241c2e5f46ff58fbb11197`. Its exact 1254×1254 PNG SHA-256 is `f05fcdf4602d9c63add7799469c64060a8f13e5efa66ad6c7b762fb8273ec89f`. `src/assets/brand/approved-master.png` preserves the original bytes. Production uses the accepted Core transparent glass, headset-only micro marks and outlined compact/primary dark wordmarks, without redrawing. The opaque owner master is retained only as recovery source. Core source PR1224/main7e14 and separate Finalization PR1227/mainbaac are accepted; exact export/import hashes and source/CI evidence are in `evidence/website-v2/core-producer-acceptance.json`. This is asset-source acceptance, not complete Core runtime/native/integral-rebrand acceptance.

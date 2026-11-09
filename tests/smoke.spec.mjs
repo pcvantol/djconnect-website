@@ -23,7 +23,7 @@ for(const width of [320,375,390,430,768,1280]){
   for(let i=0;i<8;i++){await page.keyboard.press('Tab');expect(await page.evaluate(()=>document.querySelector('dialog').contains(document.activeElement))).toBeTruthy();}
   await page.keyboard.press('Escape');await expect(page.locator('dialog')).not.toBeVisible();await expect(button).toBeFocused();
   await button.click();await page.mouse.click(2,800);await expect(page.locator('dialog')).not.toBeVisible();await expect(button).toBeFocused();
-  await page.getByRole('button',{name:'Kies de sfeer Party'}).click();await expect(page.locator('[data-mood]')).toHaveAttribute('data-mood','party');await expect(page.locator('[aria-pressed=true]')).toHaveCount(1);
+  await page.getByRole('button',{name:'Kies de sfeer Party'}).click();await expect(page.locator('[data-mood]')).toHaveAttribute('data-mood','party');await expect(page.locator('[data-mood] [aria-pressed=true]')).toHaveCount(1);
   await page.locator('.languages summary').click();await page.getByRole('link',{name:'English',exact:true}).click();await expect(page).toHaveURL(/\/en\/$/);await expect(page.locator('h1')).toHaveText('Your music. Your DJ.');
  });
 }

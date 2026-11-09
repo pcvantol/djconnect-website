@@ -1,5 +1,11 @@
 # Website roadmap index
 
+## Mood animation and English-first menu — 2026-11-09
+
+Source [PR #76](https://github.com/pcvantol/djconnect-website/pull/76) was protected-merged as `e6621895c27d5566e6dc43a552adddda0dd4958f`; its tree equals independently reviewed `4e9f82acf281d2e58d1376647a704e51c82fb809`. The wave responds to all four moods, honours reduced motion, and English appears first without changing locale routes. The owner explicitly requested the merge and production rollout.
+
+[Completion and publication contract](docs/mood-language/COMPLETION_REPORT.md) · [immutable prompt](docs/history/prompts/2026-11-09-mood-language-production.md). Production identity and acceptance are established by the exact release manifest, deployment and smoke receipts, and [live build.json](https://djconnect.dev/build.json). Earlier release snapshots below are historical.
+
 ## Footer build revision — 2026-10-20
 
 Owner requested publication of latest main plus an eight-character commit in parentheses after the footer version. Source [PR #69](https://github.com/pcvantol/djconnect-website/pull/69) merged as `59f933a541f01cb2061c2cc86b1a96d6c3aa09d8`; its whole tree matches independently reviewed `7a0dc20242b39db4e9476a0ef486b70f933e4b9a`. VERSION remains4.0.0. All20localized pages and404 use the same actual buildIdentity commit as build.json.

@@ -1,5 +1,6 @@
 import {mkdir,rm,copyFile,cp,readFile,writeFile,readdir,lstat} from 'node:fs/promises';
 import path from 'node:path';
+import {createHash} from 'node:crypto';
 import {buildIdentity} from './build-identity.mjs';
 const identity=buildIdentity();
 import {catalog,languages} from '../src/locales/catalog.mjs';
@@ -13,13 +14,19 @@ const output='wwwroot';
 // This tree is generated. Archive and working sources are never copied into it.
 await rm(output,{recursive:true,force:true});await mkdir(output+'/assets/brand',{recursive:true});await mkdir(output+'/assets/artwork',{recursive:true});
 const copy=(a,b)=>copyFile(a,output+'/'+b);
-await copy('src/design/tokens.css','assets/tokens.css');await copy('src/design/site.css','assets/site.css');await copy('src/components/site.js','assets/site.js');
+const assetHash=createHash('sha256');
+for(const [source,target] of [['src/design/tokens.css','tokens.css'],['src/design/site.css','site.css'],['src/components/site.js','site.js']]){
+ const bytes=await readFile(source);
+ assetHash.update(target).update('\0').update(bytes).update('\0');
+ await writeFile(output+'/assets/'+target,bytes);
+}
+const assetRevision=assetHash.digest('hex').slice(0,16);
 for(const name of await readdir('src/assets/brand'))if(/^(mark-\d+|wordmark-compact-dark)\.png$/.test(name))await copy('src/assets/brand/'+name,'assets/brand/'+name);
 for(const name of await readdir('src/assets/artwork'))if(/^(hero|vibe|moment|cast)-(480|800|1280)\.webp$/.test(name))await copy('src/assets/artwork/'+name,'assets/artwork/'+name);
 for(const locale of languages){
  await copy(`src/assets/social-${locale}.png`,`assets/social-${locale}.png`);
  for(const page of Object.values(pages)){
-  const c={locale,slug:page.slug,page,t:catalog[locale],version,commit:identity.commit};
+  const c={locale,slug:page.slug,page,t:catalog[locale],version,commit:identity.commit,assetRevision};
   const filename=page.slug?route(locale,page.slug)+'.html':route(locale)+'index.html';
   const out=path.join(output,filename);await mkdir(path.dirname(out),{recursive:true});
   await writeFile(out,SiteLayout(c,page.sections.map(name=>sections[name](c)).join(''))+'\n');
@@ -27,7 +34,7 @@ for(const locale of languages){
 }
 // Operational contracts remain distinct from the marketing composition.
 await cp('src/operational',output,{recursive:true});
-const c={locale:'nl',slug:'',page:{title:'notFound.title',description:'notFound.description'},t:catalog.nl,version,commit:identity.commit};
+const c={locale:'nl',slug:'',page:{title:'notFound.title',description:'notFound.description'},t:catalog.nl,version,commit:identity.commit,assetRevision};
 await writeFile(output+'/404.html',SiteLayout(c,`<article class="service-page"><h1>${escape(c.t['notFound.title'])}</h1><p class="lead">${escape(c.t['notFound.description'])}</p>${Button(c.t['notFound.cta'],'/')}</article>`,true));
 const urls=languages.flatMap(l=>Object.values(pages).map(p=>'https://djconnect.dev'+route(l,p.slug)));
 await writeFile(output+'/sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map(url=>`<url><loc>${url}</loc></url>`).join('')}</urlset>\n`);

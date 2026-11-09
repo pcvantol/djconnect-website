@@ -11,7 +11,7 @@ npx playwright install --with-deps chromium webkit
 npm run test:e2e
 ```
 
-Tests run against `dist/wwwroot`, never the original templates. The Playwright config starts a task-owned local static server unless SMOKE_BASE_URL or SCREENSHOT_BASE_URL supplies a real external target. The default includes Chromium and WebKit. Missing/unlaunchable browsers are failures, not skips. Tests enumerate 320/375/390/430/768/1280 widths, 20 locale routes, canonical/hreflang, header language links, mood interaction, dialog focus wrap/return/Escape/backdrop, touch targets, reduced motion, archive/source denial and WCAG AA with axe. Reduced-transparency CDP emulation is Chromium-only.
+Tests run against `dist/wwwroot`, never the original templates. The Playwright config starts a task-owned local static server unless SMOKE_BASE_URL or SCREENSHOT_BASE_URL supplies a real external target. The default includes Chromium and WebKit. Chromium uses the bundled full browser in headless mode so viewport observers and animation frames run reliably on macOS. Missing/unlaunchable browsers are failures, not skips. Tests enumerate 320/375/390/430/768/1280 widths, 20 locale routes, canonical/hreflang, header language links, mood interaction, dialog focus wrap/return/Escape/backdrop, touch targets, reduced motion, archive/source denial and WCAG AA with axe. Reduced-transparency CDP emulation is Chromium-only.
 
 For actual edge routing:
 

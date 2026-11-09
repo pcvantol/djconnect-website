@@ -13,4 +13,19 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape'&&languages?.
 document.addEventListener('click',event=>{if(languages?.open&&!languages.contains(event.target))languages.removeAttribute('open');});
 // Preserve current section where possible, with real static URLs and no storage.
 document.querySelectorAll('.language-options a').forEach(a=>a.addEventListener('click',()=>{if(location.hash)a.hash=location.hash;}));
-document.querySelectorAll('[data-mood-choice]').forEach(button=>button.addEventListener('click',()=>{const preview=button.closest('[data-mood]');preview.dataset.mood=button.dataset.moodChoice;preview.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));}));
+document.querySelectorAll('.mood-preview[data-mood]').forEach(preview=>{
+ const buttons=preview.querySelectorAll('[data-mood-choice]');
+ const animate=()=>preview.setAttribute('data-mood-moving','');
+ // Start the default mood when the visitor first reaches the artwork.
+ const observer='IntersectionObserver' in window ? new IntersectionObserver(entries=>{
+  if(entries.some(entry=>entry.isIntersecting)){animate();observer.disconnect();}
+ },{threshold:.35}) : null;
+ const art=preview.querySelector('picture');
+ if(art)observer?.observe(art);
+ buttons.forEach(button=>button.addEventListener('click',()=>{
+  preview.dataset.mood=button.dataset.moodChoice;
+  buttons.forEach(choice=>choice.setAttribute('aria-pressed',String(choice===button)));
+  observer?.disconnect();
+  animate();
+ }));
+});

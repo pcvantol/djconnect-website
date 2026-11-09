@@ -22,7 +22,7 @@ for(const [source,target] of [['src/design/tokens.css','tokens.css'],['src/desig
 }
 const assetRevision=assetHash.digest('hex').slice(0,16);
 for(const name of await readdir('src/assets/brand'))if(/^(mark-\d+|wordmark-compact-dark)\.png$/.test(name))await copy('src/assets/brand/'+name,'assets/brand/'+name);
-for(const name of await readdir('src/assets/artwork'))if(/^(hero|vibe|moment|cast|horizon)-(480|800|1280)\.webp$/.test(name))await copy('src/assets/artwork/'+name,'assets/artwork/'+name);
+for(const name of await readdir('src/assets/artwork'))if(/^(hero|vibe|moment|cast|horizon|character-(?:home|radio|club|festival))-(480|800|1280)\.webp$/.test(name))await copy('src/assets/artwork/'+name,'assets/artwork/'+name);
 for(const locale of languages){
  await copy(`src/assets/social-${locale}.png`,`assets/social-${locale}.png`);
  for(const page of Object.values(pages)){

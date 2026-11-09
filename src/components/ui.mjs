@@ -20,3 +20,24 @@ const horizonDemo = {
 export const HorizonPreview = t => `<div class="mood-preview horizon-preview glass" data-mood="chill" role="region" aria-labelledby="horizon-title"><div class="horizon-meta"><h3 id="horizon-title">Horizon <span>· ±15 min</span></h3><span class="horizon-badge">${escape(t['horizon.fiction'])}</span></div>${Picture('horizon',t['alt.vibe'],false,[2172,724])}<div class="mood-controls glass" role="group" aria-label="${escape(t['mood.label'])}">${Object.keys(horizonDemo).map((m,i)=>`<button type="button" data-mood-choice="${m.toLowerCase()}" aria-label="${escape(t['mood.'+m.toLowerCase()])}" aria-pressed="${i===0}"><span class="mood-dot mood-${m.toLowerCase()}" aria-hidden="true"></span>${m}</button>`).join('')}</div><div class="horizon-demo" aria-live="polite" aria-atomic="true">${Object.entries(horizonDemo).map(([m,tracks],i)=>`<ol class="horizon-queue" data-horizon-mood="${m.toLowerCase()}"${i?' hidden':''}>${tracks.map(([title,artist],j)=>`<li><span class="horizon-step">${escape(t[j?'horizon.next':'horizon.now'])}</span><strong>${escape(title)}</strong><span>${escape(artist)}</span></li>`).join('')}</ol>`).join('')}</div></div>`;
 export const DJMomentPreview = t => `<div class="moment-preview">${Picture('moment',t['alt.moment'])}${GlassSurface(`<span class="eyebrow">${escape(t['moment.ask'])}</span><p class="question">${escape(t['moment.question'])}</p><p class="answer">${escape(t['moment.answer'])}</p><span class="example">${escape(t['moment.example'])}</span>`,'moment-conversation')}</div>`;
 export const VibeCastPreview = t => `<div class="cast-preview">${Picture('cast',t['alt.cast'])}</div>`;
+
+const characterIcons = {
+ home:'<path d="m3 10 9-7 9 7M5 9v12h5v-6h4v6h5V9"/>',
+ radio:'<rect x="3" y="7" width="18" height="14" rx="2"/><path d="m4 7 12-4m1 8h1m-1 5h1"/><circle cx="9" cy="14" r="3"/>',
+ club:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2"/><path d="M7 12a5 5 0 0 1 5-5m5 5a5 5 0 0 1-5 5"/>',
+ festival:'<circle cx="16.5" cy="7.5" r="4"/><path d="m14 10-9 10-1-1 9-10m1-4 5 5"/>',
+};
+export const DJCharacterPreview = t => {
+ const characters=Object.keys(characterIcons);
+ const name=id=>escape(t[`character.${id}`]);
+ const choices=characters.map((id,i)=>`<button type="button" data-character-choice="${id}" aria-pressed="${i===0}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${characterIcons[id]}</svg><span>${name(id)}</span></button>`).join('');
+ const art=characters.map((id,i)=>`<div data-character-art="${id}"${i?' hidden':''}>${Picture(`character-${id}`,'',false,[1280,512])}</div>`).join('');
+ const descriptions=characters.map((id,i)=>`<p data-character-description="${id}"${i?' hidden':''}><strong>${name(id)}</strong> ${escape(t[`character.${id}.description`])}</p>`).join('');
+ return `<div class="character-preview glass" role="region" aria-labelledby="character-title">
+ <h3 id="character-title">${escape(t['character.title'])}</h3>
+ <p class="character-lead">${escape(t['character.lead'])}</p>
+ <div class="character-controls glass" role="group" aria-labelledby="character-title">${choices}</div>
+ <div class="character-art">${art}</div>
+ <div class="character-description" aria-live="polite" aria-atomic="true">${descriptions}</div>
+ </div>`;
+};

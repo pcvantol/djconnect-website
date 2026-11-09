@@ -22,3 +22,14 @@ document.querySelectorAll('.mood-preview[data-mood]').forEach(preview=>{
   buttons.forEach(choice=>choice.setAttribute('aria-pressed',String(choice===button)));
  }));
 });
+document.querySelectorAll('.character-preview').forEach(preview=>{
+ const choices=preview.querySelectorAll('[data-character-choice]');
+ const pictures=preview.querySelectorAll('[data-character-art]');
+ const descriptions=preview.querySelectorAll('[data-character-description]');
+ choices.forEach(button=>button.addEventListener('click',()=>{
+  const selected=button.dataset.characterChoice;
+  pictures.forEach(picture=>{picture.hidden=picture.dataset.characterArt!==selected;});
+  descriptions.forEach(description=>{description.hidden=description.dataset.characterDescription!==selected;});
+  choices.forEach(choice=>choice.setAttribute('aria-pressed',String(choice===button)));
+ }));
+});

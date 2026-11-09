@@ -42,3 +42,35 @@ test('Horizon shows a still panoramic preview and a fictional queue for each moo
   await testInfo.attach(`horizon-party-${width}`,{body:await preview.screenshot(),contentType:'image/png'});
  }
 });
+
+test('DJ character previews switch the artwork and explanation independently of Horizon',async({page},testInfo)=>{
+ await page.setViewportSize({width:320,height:900});
+ await page.emulateMedia({reducedMotion:'reduce'});
+ await page.goto('/');
+ const horizon=page.getByRole('region',{name:/Horizon ·/});
+ const card=page.getByRole('region',{name:'DJ karakter'});
+ expect((await card.boundingBox()).y).toBeGreaterThan((await horizon.boundingBox()).y+(await horizon.boundingBox()).height);
+ await expect(card.getByRole('button',{name:'Thuis-dj'})).toHaveAttribute('aria-pressed','true');
+
+ const examples=[
+  ['Radio-dj','radio','Helder en nieuwsgierig'],
+  ['Club-dj','club','Direct en ritmisch'],
+  ['Festival-dj','festival','Uitbundig en meeslepend'],
+  ['Thuis-dj','home','Warm en ontspannen'],
+ ];
+ for(const [name,id,description] of examples){
+  const button=card.getByRole('button',{name});
+  const art=card.locator('[data-character-art]:visible img');
+  expect((await button.boundingBox()).height).toBeGreaterThanOrEqual(44);
+  await button.press('Enter');
+  await expect(button).toBeFocused();
+  await expect(card.getByRole('button',{pressed:true})).toHaveText(name);
+  await expect(art).toHaveAttribute('src',new RegExp(`character-${id}-800\\.webp$`));
+  await expect(card.locator('[aria-live] p:visible')).toContainText(description);
+  await art.evaluate(img=>img.decode());
+  await expect(art).toHaveCSS('animation-name','none');
+ }
+ await expect(horizon.getByRole('button',{pressed:true})).toContainText('Chill');
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();
+ await testInfo.attach('dj-karakter-320',{body:await card.screenshot(),contentType:'image/png'});
+});

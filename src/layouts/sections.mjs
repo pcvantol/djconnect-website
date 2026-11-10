@@ -37,9 +37,15 @@ export const sections={
   </section>
   <section class="prose-section" id="raspberry-pi">
    <h2>Raspberry Pi</h2>
-   <p>${e(t['downloads.pi.description'])}</p>
-   ${Button(t['downloads.pi.action'].replace('{model}','Raspberry Pi 5'),'/go/device/pi5')}
-   ${Button(t['downloads.pi.action'].replace('{model}','Raspberry Pi Zero 2 W'),'/go/device/pi-zero-2w')}
+   <fieldset class="pi-model-picker">
+    <legend>${e(t['downloads.pi.description'])}</legend>
+    <div class="pi-model-options glass">
+     <label><input type="radio" name="pi-model" value="pi5" checked>Pi 5</label>
+     <label><input type="radio" name="pi-model" value="pi-zero-2w">Zero 2 W</label>
+    </div>
+    <div data-pi-download="pi5">${Button(t['downloads.pi.action'].replace('{model}','Raspberry Pi 5'),'/go/device/pi5')}</div>
+    <div data-pi-download="pi-zero-2w">${Button(t['downloads.pi.action'].replace('{model}','Raspberry Pi Zero 2 W'),'/go/device/pi-zero-2w')}</div>
+   </fieldset>
   </section>`),
  support:({t})=>service(t,'support.title','support.description',Button(t['support.email'],'mailto:support@djconnect.dev')),
  privacy:({locale,t})=>{

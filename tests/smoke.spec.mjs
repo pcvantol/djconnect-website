@@ -7,7 +7,7 @@ for(const locale of locales){
   const build=await (await request.get('/build.json')).json();
   expect(build.commit).toMatch(/^[0-9a-f]{40}$/);
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
-  for(const slug of ['','start','privacy','support']){
+  for(const slug of ['','start','downloads','privacy','support']){
    const url=prefix(locale)+'/'+slug;await page.goto(url);await expect(page.locator('html')).toHaveAttribute('lang',locale);await expect(page.locator('main h1')).toHaveCount(1);await expect(page.locator('link[rel=canonical]')).toHaveAttribute('href','https://djconnect.dev'+url);await expect(page.locator('link[hreflang]')).toHaveCount(6);await expect(page.locator('.site-footer a')).toHaveCount(2);await expect(page.locator('.site-footer')).toContainText(version+' ('+build.commit.slice(0,8)+')');await expect(page.locator('[data-build-commit]')).toHaveText('('+build.commit.slice(0,8)+')');
    await page.locator('.languages summary').click();await expect(page.locator('.language-options a')).toHaveCount(5);await expect(page.locator('.language-options a[aria-current]')).toHaveAttribute('lang',locale);await page.keyboard.press('Escape');await expect(page.locator('.languages')).not.toHaveAttribute('open','');
   }

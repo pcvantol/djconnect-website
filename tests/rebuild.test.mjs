@@ -7,7 +7,7 @@ test('five complete catalogs, static metadata and working internal links',async(
   const file='wwwroot'+(page.slug?route(locale,page.slug)+'.html':route(locale)+'index.html');const html=await read(file);assert.match(html,new RegExp(`<html lang="${locale}"`));assert.equal((html.match(/<h1[ >]/g)||[]).length,1);assert.equal((html.match(/rel="alternate" hreflang=/g)||[]).length,6);assert.ok(html.includes('https://djconnect.dev'+route(locale,page.slug)));
   for(const [,ref] of html.matchAll(/(?:href|src)="([^"]+)"/g)){if(!ref.startsWith('/')||ref.startsWith('/go/'))continue;const pathname=ref.split(/[?#]/)[0];let target='wwwroot'+pathname;if(pathname.endsWith('/'))target+='index.html';else if(!path.extname(pathname))target+='.html';await access(target);}
  }}
- const sitemap=await read('wwwroot/sitemap.xml');assert.equal((sitemap.match(/<loc>/g)||[]).length,20);
+ const sitemap=await read('wwwroot/sitemap.xml');assert.equal((sitemap.match(/<loc>/g)||[]).length,languages.length * Object.keys(pages).length);
 });
 test('central tokens and page composition propagate without duplicated templates',async()=>{
  const css=await read('src/design/tokens.css'),style=await read('src/design/site.css');for(const key of ['--color-primary','--font-display','--glass-background','--glass-blur','--space-section','--radius-card'])assert.ok(css.includes(key)&&(style+css).includes(`var(${key})`));
@@ -18,7 +18,7 @@ test('central tokens and page composition propagate without duplicated templates
 test('archive and originals never enter publication; operational sources remain byte identical',async()=>{
  const walk=async d=>{let out=[];for(const e of await readdir(d,{withFileTypes:true})){const p=d+'/'+e.name;if(e.isDirectory())out.push(...await walk(p));else out.push(p);}return out;};
  const out=await walk('dist/wwwroot');assert.ok(out.length>20);assert.ok(!out.some(p=>/archive|legacy|original|manifest.json|package.json|node_modules/.test(p)));
- for(const p of (await walk('functions')).concat(await walk('migrations'))){assert.deepEqual(await readFile(p),await readFile(archiveRoot+'/'+p));}
+ for(const p of (await walk(archiveRoot+'/functions')).concat(await walk(archiveRoot+'/migrations'))){assert.deepEqual(await readFile(p.slice(archiveRoot.length+1)),await readFile(p));}
  for(const p of await walk('src/operational/release-notes')){const rel=p.replace('src/operational/','');assert.deepEqual(await readFile('dist/wwwroot/'+rel),await readFile(archiveRoot+'/wwwroot/'+rel));}
 });
 test('brand master matches exact owner approved bytes',async()=>{assert.equal(createHash('sha256').update(await readFile('src/assets/brand/approved-master.png')).digest('hex'),'f05fcdf4602d9c63add7799469c64060a8f13e5efa66ad6c7b762fb8273ec89f');});

@@ -5,7 +5,8 @@ Baseline: 3133cb833c846395ac37dae804ba96848650bb7c. Fresh Apple source observati
 | Surface | Consumer/evidence | Disposition |
 | --- | --- | --- |
 | `/start` | Apple DJConnectRootView links in onboarding | New compact five-locale destination; actual HACS redirect and no fake Store link |
-| `/ios#downloads`, `/macos#downloads` | Apple app release UI links | Curated 301 to new `/start`; no obsolete download claim |
+| `/ios#downloads`, `/macos#downloads` | Apple app release UI links | Curated 301 to `/start` for iOS and `/downloads` for macOS |
+| `/api/downloads/macos` | Localized downloads page | Resolves the newest public macOS release with an uploaded binary from the dedicated GitHub release repository, including previews |
 | old install/platform/TestFlight/Pi/embedded routes | Existing external install guidance | Curated per-locale 301 to `/start` |
 | `/release-notes/**` | DJConnectAppModel versioned/latest default and localized URLs; existing additional platform feeds | Preserve every path and exact byte, including MD source siblings; exclude from marketing navigation/sitemap |
 | `/api/releases` | Existing release clients/widgets | Preserve function and allowlists unchanged |

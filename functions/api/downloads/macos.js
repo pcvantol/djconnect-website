@@ -17,17 +17,19 @@ export async function onRequestGet({ env }) {
       return jsonResponse({ error: "release_unavailable" }, 404);
     }
 
+    let latest;
     for (let page = 1; ; page++) {
       const response = await fetch(
         `https://api.github.com/repos/${repository}/releases?per_page=${pageSize}&page=${page}`,
         options
       );
-      if (!response.ok) break;
+      if (!response.ok) return jsonResponse({ error: "release_unavailable" }, 502);
 
       const releases = await response.json();
       for (const release of releases) {
         const version = releaseTag.exec(release.tag_name)?.[1];
-        if (release.draft || !version) continue;
+        const publishedAt = Date.parse(release.published_at);
+        if (release.draft || !version || !Number.isFinite(publishedAt) || publishedAt <= (latest?.publishedAt ?? -Infinity)) continue;
 
         const name = `DJConnect-macOS-${version}.zip`;
         const downloadUrl = `https://github.com/${repository}/releases/download/${release.tag_name}/${name}`;
@@ -36,14 +38,18 @@ export async function onRequestGet({ env }) {
         );
         if (!asset) continue;
 
-        const download = await fetch(downloadUrl, { method: "HEAD", signal });
-        if (!download.ok) return jsonResponse({ error: "release_unavailable" }, 502);
-
-        return jsonResponse({ version, prerelease: release.prerelease === true, downloadUrl });
+        latest = { publishedAt, version, prerelease: release.prerelease === true, downloadUrl };
       }
 
-      if (releases.length < pageSize) return jsonResponse({ error: "release_unavailable" }, 404);
+      if (releases.length < pageSize) break;
     }
+
+    if (!latest) return jsonResponse({ error: "release_unavailable" }, 404);
+    const { version, prerelease, downloadUrl } = latest;
+    const download = await fetch(downloadUrl, { method: "HEAD", signal });
+    if (!download.ok) return jsonResponse({ error: "release_unavailable" }, 502);
+
+    return jsonResponse({ version, prerelease, downloadUrl });
   } catch {
     // Keep upstream response bodies and details out of this public endpoint.
   }

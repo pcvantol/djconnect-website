@@ -4,11 +4,11 @@ import { onRequestGet } from "../functions/api/downloads/macos.js";
 
 const owner = "djconnect-music-dj/djconnect-app-releases";
 const repository = { id: 1265963920, full_name: owner, private: false };
-const release = (version, { platform = "macos", draft = false, prerelease = true, unsigned = false } = {}) => {
+const release = (version, { platform = "macos", draft = false, prerelease = true, unsigned = false, publishedAt = "2026-11-09T10:00:00Z" } = {}) => {
   const tag = `${platform}/v${version}`;
   const name = `DJConnect-macOS-${version}${unsigned ? "-unsigned" : ""}.zip`;
   return {
-    tag_name: tag, draft, prerelease,
+    tag_name: tag, draft, prerelease, published_at: publishedAt,
     assets: [{
       state: "uploaded", name,
       browser_download_url: `https://github.com/${owner}/releases/download/${tag}/${name}`
@@ -16,17 +16,17 @@ const release = (version, { platform = "macos", draft = false, prerelease = true
   };
 };
 
-test("the newest eligible macOS ZIP is resolved across mixed release pages", async t => {
+test("the latest publication date wins across unsorted release pages", async t => {
   const draft = release("5.0.0", { draft: true });
   const external = release("4.9.0");
   external.assets[0].browser_download_url = "https://example.org/download.zip";
   const missing = release("4.8.0");
   missing.assets[0].state = "new";
-  const newest = release("4.1.0");
+  const newest = release("4.1.0", { publishedAt: "2026-11-10T11:00:00Z" });
   const firstPage = [
     release("6.0.0", { platform: "ios" }), draft, external, missing,
-    release("4.7.0", { unsigned: true }),
-    ...Array.from({ length: 95 }, () => ({ tag_name: "internal-ha-build", assets: [] }))
+    release("4.7.0", { unsigned: true }), release("4.0.0"),
+    ...Array.from({ length: 94 }, () => ({ tag_name: "internal-ha-build", assets: [] }))
   ];
   const request = t.mock.method(globalThis, "fetch", async (url, options) => {
     if (url.endsWith("/repositories/1265963920")) return Response.json(repository);
@@ -35,7 +35,7 @@ test("the newest eligible macOS ZIP is resolved across mixed release pages", asy
       assert.equal(options.headers, undefined);
       return new Response();
     }
-    return Response.json(url.endsWith("page=1") ? firstPage : [newest, release("4.0.0")]);
+    return Response.json(url.endsWith("page=1") ? firstPage : [release("4.0.1"), newest, release("4.0.2")]);
   });
 
   const response = await onRequestGet({ env: { GITHUB_TOKEN: "test-token" } });

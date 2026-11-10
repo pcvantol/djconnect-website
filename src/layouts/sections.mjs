@@ -17,7 +17,7 @@ const providerPrivacyLinks = [
 ];
 export const sections={
  hero:HeroSection,vibe:VibeSection,moment:MomentSection,cast:VibeCastSection,
- onboarding:({locale,t})=>service(t,'start.title','start.description',paragraph(t['start.step1'],t['start.requirements'])+Button(t['start.install'],'/go/hacs',true)+paragraph(t['start.distribution'],t['start.availability'])+Button(t['downloads.title'],route(locale,'downloads'),true)+paragraph(t['start.step2'],t['start.wizard'])+Button(t['support.email'],'mailto:support@djconnect.dev')),
+ onboarding:({locale,t})=>service(t,'start.title','start.description',paragraph(t['start.step1'],t['start.requirements'])+Button(t['start.install'],'/go/hacs',true)+paragraph(t['start.distribution'],t['start.availability'])+Button(t['downloads.title'],route(locale,'downloads'),true)+paragraph(t['start.step2'],t['start.wizard'])),
  downloads:({t})=>service(t,'downloads.title','downloads.description',
   `<section class="prose-section" id="downloads" data-macos-release>
    <h2>macOS</h2>
@@ -30,6 +30,16 @@ export const sections={
     ${Button(t['downloads.action'],'#downloads')}
     ${Button(t['downloads.github'],'#downloads',true)}
    </div>
+  </section>
+  <section class="prose-section" id="esp32">
+   <h2>ESP32</h2>
+   <p>${e(t['downloads.esp32.description'])}</p>
+   ${Button(t['downloads.esp32.action'],'https://github.com/pcvantol/djconnect-firmware/releases/latest')}
+  </section>
+  <section class="prose-section" id="raspberry-pi">
+   <h2>Raspberry Pi</h2>
+   <p>${e(t['downloads.pi.description'])}</p>
+   ${Button(t['downloads.pi.action'],'https://github.com/pcvantol/djconnect-pi-releases/releases/latest')}
   </section>`),
  support:({t})=>service(t,'support.title','support.description',Button(t['support.email'],'mailto:support@djconnect.dev')),
  privacy:({locale,t})=>{

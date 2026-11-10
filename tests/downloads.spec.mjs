@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('localized downloads show the current binary only when it is available', async ({ page }) => {
-  const binary = 'https://github.com/djconnect-music-dj/djconnect-app-releases/releases/download/macos/v4.1.0/DJConnect-macOS-4.1.0.zip';
+  const binary = 'https://github.com/pcvantol/djconnect-app-releases/releases/download/macos/v4.1.0/DJConnect-macOS-4.1.0.zip';
   const endpoint = '**/api/downloads/macos';
   await page.route(endpoint, route => route.fulfill({ json: {
     version: '4.1.0', prerelease: true, downloadUrl: binary
@@ -13,7 +13,7 @@ test('localized downloads show the current binary only when it is available', as
   await expect(page.locator('[data-release-details]')).toContainText('Versie 4.1.0 · Previewrelease');
   await expect(page.getByRole('link', { name: 'Download voor macOS' })).toHaveAttribute('href', binary);
   await expect(page.getByRole('link', { name: 'Bekijk releases op GitHub' })).toHaveAttribute(
-    'href', 'https://github.com/djconnect-music-dj/djconnect-app-releases/releases/tag/macos/v4.1.0'
+    'href', 'https://github.com/pcvantol/djconnect-app-releases/releases/tag/macos/v4.1.0'
   );
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320);
 

@@ -48,9 +48,9 @@ test("the latest publication date wins across unsorted release pages", async t =
   assert.equal(request.mock.calls[2].arguments[0], `https://api.github.com/repos/${owner}/releases?per_page=100&page=2`);
 });
 
-test("the transfer must be verified before checking releases", async t => {
+test("an unexpected owner is rejected before checking releases", async t => {
   const request = t.mock.method(globalThis, "fetch", async () => Response.json({
-    ...repository, full_name: "pcvantol/djconnect-app-releases"
+    ...repository, full_name: "another-owner/djconnect-app-releases"
   }));
   assert.equal((await onRequestGet({ env: {} })).status, 404);
   assert.equal(request.mock.callCount(), 1);

@@ -33,3 +33,25 @@ document.querySelectorAll('.character-preview').forEach(preview=>{
   choices.forEach(choice=>choice.setAttribute('aria-pressed',String(choice===button)));
  }));
 });
+
+const macosRelease = document.querySelector('[data-macos-release]');
+if (macosRelease) {
+ fetch('/api/downloads/macos', { signal: AbortSignal.timeout(7000) })
+  .then(async response => {
+   if (!response.ok) throw new Error('Release unavailable');
+   const { version, prerelease, downloadUrl } = await response.json();
+   if (typeof version !== 'string' || typeof downloadUrl !== 'string' ||
+       !downloadUrl.startsWith('https://github.com/djconnect-music-dj/djconnect-app-releases/releases/download/macos/')) {
+    throw new Error('Invalid release');
+   }
+   macosRelease.querySelector('[data-release-version]').textContent = version;
+   macosRelease.querySelector('[data-release-preview]').hidden = !prerelease;
+   const actions = macosRelease.querySelector('[data-release-actions]');
+   const [download, releases] = actions.querySelectorAll('a');
+   download.href = downloadUrl;
+   releases.href = 'https://github.com/djconnect-music-dj/djconnect-app-releases/releases/tag/macos/v' + encodeURIComponent(version);
+   macosRelease.querySelector('[data-release-details]').hidden = false;
+   actions.hidden = false;
+  })
+  .catch(() => { macosRelease.querySelector('[data-release-unavailable]').hidden = false; });
+}

@@ -39,8 +39,11 @@ await writeFile(output+'/404.html',SiteLayout(c,`<article class="service-page"><
 const urls=languages.flatMap(l=>Object.values(pages).map(p=>'https://djconnect.dev'+route(l,p.slug)));
 await writeFile(output+'/sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map(url=>`<url><loc>${url}</loc></url>`).join('')}</urlset>\n`);
 await writeFile(output+'/robots.txt','User-agent: *\nAllow: /\nDisallow: /operator\nDisallow: /api/\nDisallow: /archive/\nSitemap: https://djconnect.dev/sitemap.xml\n');
-// Preserve app-owned download entry URLs, replacing retired guides with brief onboarding.
-const redirects=languages.flatMap(l=>['ios','macos','testflight','testflight-macos','platform','raspberry-pi','embedded'].flatMap(old=>[`${route(l,old)} ${route(l,'start')} 301`,`${route(l,old)}.html ${route(l,'start')} 301`]));
+// Preserve app-owned entry URLs for downloads and onboarding.
+const redirects=languages.flatMap(l=>['ios','macos','testflight','testflight-macos','platform','raspberry-pi','embedded'].flatMap(old=>{
+ const destination=route(l,old==='macos'?'downloads':'start');
+ return [`${route(l,old)} ${destination} 301`,`${route(l,old)}.html ${destination} 301`];
+}));
 await writeFile(output+'/_redirects',redirects.join('\n')+'\n');
 await writeFile(output+'/build.json',JSON.stringify({version,...identity,locales:languages,pages:Object.keys(pages)},null,2)+'\n');
 console.log(`Generated ${urls.length} static localized pages, version ${version}`);

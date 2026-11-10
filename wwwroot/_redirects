@@ -1,7 +1,7 @@
 /ios /start 301
 /ios.html /start 301
-/macos /start 301
-/macos.html /start 301
+/macos /downloads 301
+/macos.html /downloads 301
 /testflight /start 301
 /testflight.html /start 301
 /testflight-macos /start 301
@@ -14,8 +14,8 @@
 /embedded.html /start 301
 /en/ios /en/start 301
 /en/ios.html /en/start 301
-/en/macos /en/start 301
-/en/macos.html /en/start 301
+/en/macos /en/downloads 301
+/en/macos.html /en/downloads 301
 /en/testflight /en/start 301
 /en/testflight.html /en/start 301
 /en/testflight-macos /en/start 301
@@ -28,8 +28,8 @@
 /en/embedded.html /en/start 301
 /de/ios /de/start 301
 /de/ios.html /de/start 301
-/de/macos /de/start 301
-/de/macos.html /de/start 301
+/de/macos /de/downloads 301
+/de/macos.html /de/downloads 301
 /de/testflight /de/start 301
 /de/testflight.html /de/start 301
 /de/testflight-macos /de/start 301
@@ -42,8 +42,8 @@
 /de/embedded.html /de/start 301
 /fr/ios /fr/start 301
 /fr/ios.html /fr/start 301
-/fr/macos /fr/start 301
-/fr/macos.html /fr/start 301
+/fr/macos /fr/downloads 301
+/fr/macos.html /fr/downloads 301
 /fr/testflight /fr/start 301
 /fr/testflight.html /fr/start 301
 /fr/testflight-macos /fr/start 301
@@ -56,8 +56,8 @@
 /fr/embedded.html /fr/start 301
 /es/ios /es/start 301
 /es/ios.html /es/start 301
-/es/macos /es/start 301
-/es/macos.html /es/start 301
+/es/macos /es/downloads 301
+/es/macos.html /es/downloads 301
 /es/testflight /es/start 301
 /es/testflight.html /es/start 301
 /es/testflight-macos /es/start 301

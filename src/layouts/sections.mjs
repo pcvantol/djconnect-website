@@ -17,7 +17,20 @@ const providerPrivacyLinks = [
 ];
 export const sections={
  hero:HeroSection,vibe:VibeSection,moment:MomentSection,cast:VibeCastSection,
- onboarding:({t})=>service(t,'start.title','start.description',paragraph(t['start.step1'],t['start.requirements'])+Button(t['start.install'],'/go/hacs',true)+paragraph(t['start.step2'],t['start.wizard'])+paragraph(t['start.distribution'],t['start.availability'])+Button(t['support.email'],'mailto:support@djconnect.dev')),
+ onboarding:({locale,t})=>service(t,'start.title','start.description',paragraph(t['start.step1'],t['start.requirements'])+Button(t['start.install'],'/go/hacs',true)+paragraph(t['start.distribution'],t['start.availability'])+Button(t['downloads.title'],route(locale,'downloads'),true)+paragraph(t['start.step2'],t['start.wizard'])+Button(t['support.email'],'mailto:support@djconnect.dev')),
+ downloads:({t})=>service(t,'downloads.title','downloads.description',
+  `<section class="prose-section" id="downloads" data-macos-release>
+   <h2>macOS</h2>
+   <div aria-live="polite" aria-atomic="true">
+    <p data-release-details hidden><span>${e(t['downloads.version'])} <strong data-release-version></strong></span><span data-release-preview hidden> · ${e(t['downloads.preview'])}</span></p>
+    <p data-release-unavailable hidden>${e(t['downloads.unavailable'])}</p>
+   </div>
+   <noscript><p>${e(t['downloads.unavailable'])}</p></noscript>
+   <div data-release-actions hidden>
+    ${Button(t['downloads.action'],'#downloads')}
+    ${Button(t['downloads.github'],'#downloads',true)}
+   </div>
+  </section>`),
  support:({t})=>service(t,'support.title','support.description',Button(t['support.email'],'mailto:support@djconnect.dev')),
  privacy:({locale,t})=>{
   const notice=privacy[locale];

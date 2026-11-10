@@ -48,9 +48,7 @@ if (macosRelease) {
    macosRelease.querySelector('[data-release-version]').textContent = version;
    macosRelease.querySelector('[data-release-preview]').hidden = !prerelease;
    const actions = macosRelease.querySelector('[data-release-actions]');
-   const [download, releases] = actions.querySelectorAll('a');
-   download.href = downloadUrl;
-   releases.href = `${repository}/releases/tag/macos/v${encodeURIComponent(version)}`;
+   actions.querySelector('a').href = downloadUrl;
    macosRelease.querySelector('[data-release-details]').hidden = false;
    actions.hidden = false;
   })

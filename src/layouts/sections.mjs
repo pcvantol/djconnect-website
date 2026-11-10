@@ -28,18 +28,18 @@ export const sections={
    <noscript><p>${e(t['downloads.unavailable'])}</p></noscript>
    <div data-release-actions hidden>
     ${Button(t['downloads.action'],'#downloads')}
-    ${Button(t['downloads.github'],'#downloads',true)}
    </div>
   </section>
   <section class="prose-section" id="esp32">
    <h2>ESP32</h2>
    <p>${e(t['downloads.esp32.description'])}</p>
-   ${Button(t['downloads.esp32.action'],'https://github.com/pcvantol/djconnect-firmware/releases/latest')}
+   ${Button(t['downloads.esp32.action'],'/go/device/esp32')}
   </section>
   <section class="prose-section" id="raspberry-pi">
    <h2>Raspberry Pi</h2>
    <p>${e(t['downloads.pi.description'])}</p>
-   ${Button(t['downloads.pi.action'],'https://github.com/pcvantol/djconnect-pi-releases/releases/latest')}
+   ${Button(t['downloads.pi.action'].replace('{model}','Raspberry Pi 5'),'/go/device/pi5')}
+   ${Button(t['downloads.pi.action'].replace('{model}','Raspberry Pi Zero 2 W'),'/go/device/pi-zero-2w')}
   </section>`),
  support:({t})=>service(t,'support.title','support.description',Button(t['support.email'],'mailto:support@djconnect.dev')),
  privacy:({locale,t})=>{

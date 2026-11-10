@@ -1,6 +1,9 @@
 import { githubHeaders, jsonResponse } from "../../_shared/analytics.js";
 
-const repository = "djconnect-music-dj/djconnect-app-releases";
+const repositories = new Set([
+  "pcvantol/djconnect-app-releases",
+  "djconnect-music-dj/djconnect-app-releases"
+]);
 const repositoryId = 1265963920;
 const releaseTag = /^macos\/v(\d+\.\d+\.\d+(?:-[\da-z]+(?:[.-][\da-z]+)*)?)$/i;
 const pageSize = 100;
@@ -13,7 +16,8 @@ export async function onRequestGet({ env }) {
     const metadata = await fetch(`https://api.github.com/repositories/${repositoryId}`, options);
     if (!metadata.ok) return jsonResponse({ error: "release_unavailable" }, 502);
     const current = await metadata.json();
-    if (current.id !== repositoryId || current.full_name !== repository || current.private !== false) {
+    const repository = current.full_name;
+    if (current.id !== repositoryId || !repositories.has(repository) || current.private !== false) {
       return jsonResponse({ error: "release_unavailable" }, 404);
     }
 

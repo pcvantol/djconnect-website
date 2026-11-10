@@ -40,8 +40,9 @@ if (macosRelease) {
   .then(async response => {
    if (!response.ok) throw new Error('Release unavailable');
    const { version, prerelease, downloadUrl } = await response.json();
-   if (typeof version !== 'string' || typeof downloadUrl !== 'string' ||
-       !downloadUrl.startsWith('https://github.com/djconnect-music-dj/djconnect-app-releases/releases/download/macos/')) {
+   const repository = typeof downloadUrl === 'string' && /^(https:\/\/github\.com\/(?:pcvantol|djconnect-music-dj)\/djconnect-app-releases)\//.exec(downloadUrl)?.[1];
+   if (!repository || typeof version !== 'string' ||
+       downloadUrl !== `${repository}/releases/download/macos/v${version}/DJConnect-macOS-${version}.zip`) {
     throw new Error('Invalid release');
    }
    macosRelease.querySelector('[data-release-version]').textContent = version;
@@ -49,7 +50,7 @@ if (macosRelease) {
    const actions = macosRelease.querySelector('[data-release-actions]');
    const [download, releases] = actions.querySelectorAll('a');
    download.href = downloadUrl;
-   releases.href = 'https://github.com/djconnect-music-dj/djconnect-app-releases/releases/tag/macos/v' + encodeURIComponent(version);
+   releases.href = `${repository}/releases/tag/macos/v${encodeURIComponent(version)}`;
    macosRelease.querySelector('[data-release-details]').hidden = false;
    actions.hidden = false;
   })

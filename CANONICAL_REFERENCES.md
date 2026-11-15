@@ -2,7 +2,7 @@
 
 Status: repository-local canonical reference map
 
-Repository: `pcvantol/djconnect-website`
+Repository: `djconnect-music-dj/djconnect-website`
 
 This repository extends the DJConnect Platform Foundation. It does not redefine
 it.
@@ -74,7 +74,7 @@ Canonical foundation documents include:
 
 ## Local Technical Design Ownership
 
-- Canonical repository: `pcvantol/djconnect-website` for repository-specific technical
+- Canonical repository: `djconnect-music-dj/djconnect-website` for repository-specific technical
   design, implementation, build, release and test details.
 - Local responsibility: maintain implementation reality for website implementation, public documentation presentation, onboarding/support surfaces, metadata and localized public copy.
 - May this repository modify it: yes, within its ownership boundary.

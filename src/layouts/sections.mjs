@@ -34,12 +34,12 @@ export const sections={
   <section class="prose-section" id="esp32">
    <h2>ESP32</h2>
    <p>${e(t['downloads.esp32.description'])}</p>
-   ${Button(t['downloads.esp32.action'],'https://github.com/pcvantol/djconnect-firmware/releases/latest')}
+   ${Button(t['downloads.esp32.action'],'https://github.com/djconnect-music-dj/djconnect-firmware/releases/latest')}
   </section>
   <section class="prose-section" id="raspberry-pi">
    <h2>Raspberry Pi</h2>
    <p>${e(t['downloads.pi.description'])}</p>
-   ${Button(t['downloads.pi.action'],'https://github.com/pcvantol/djconnect-pi-releases/releases/latest')}
+   ${Button(t['downloads.pi.action'],'https://github.com/djconnect-music-dj/djconnect-pi-releases/releases/latest')}
   </section>`),
  support:({t})=>service(t,'support.title','support.description',Button(t['support.email'],'mailto:support@djconnect.dev')),
  privacy:({locale,t})=>{

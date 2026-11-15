@@ -15,10 +15,14 @@ test('central tokens and page composition propagate without duplicated templates
  // Real alternate page from the shared registry uses the exact shell and tokens.
  assert.ok((await read('wwwroot/en/start.html')).includes('/assets/tokens.css'));
 });
-test('archive and originals never enter publication; operational sources remain byte identical',async()=>{
+test('archive and originals never enter publication; unrelated operational sources remain byte identical',async()=>{
  const walk=async d=>{let out=[];for(const e of await readdir(d,{withFileTypes:true})){const p=d+'/'+e.name;if(e.isDirectory())out.push(...await walk(p));else out.push(p);}return out;};
  const out=await walk('dist/wwwroot');assert.ok(out.length>20);assert.ok(!out.some(p=>/archive|legacy|original|manifest.json|package.json|node_modules/.test(p)));
- for(const p of (await walk(archiveRoot+'/functions')).concat(await walk(archiveRoot+'/migrations'))){assert.deepEqual(await readFile(p.slice(archiveRoot.length+1)),await readFile(p));}
+ const migratedReleaseFunctions=new Set(['functions/_shared/analytics.js','functions/api/stats.js']);
+ for(const archivedPath of (await walk(archiveRoot+'/functions')).concat(await walk(archiveRoot+'/migrations'))){
+  const currentPath=archivedPath.slice(archiveRoot.length+1);
+  if(!migratedReleaseFunctions.has(currentPath))assert.deepEqual(await readFile(currentPath),await readFile(archivedPath));
+ }
  for(const p of await walk('src/operational/release-notes')){const rel=p.replace('src/operational/','');assert.deepEqual(await readFile('dist/wwwroot/'+rel),await readFile(archiveRoot+'/wwwroot/'+rel));}
 });
 test('brand master matches exact owner approved bytes',async()=>{assert.equal(createHash('sha256').update(await readFile('src/assets/brand/approved-master.png')).digest('hex'),'f05fcdf4602d9c63add7799469c64060a8f13e5efa66ad6c7b762fb8273ec89f');});

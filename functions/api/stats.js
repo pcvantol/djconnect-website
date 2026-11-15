@@ -1,4 +1,4 @@
-import { ALLOWED_RELEASE_REPOS, githubHeaders, jsonResponse, sanitizeToken } from "../_shared/analytics.js";
+import { ALLOWED_RELEASE_REPOS, githubHeaders, jsonResponse, releaseRepoOwner, sanitizeToken } from "../_shared/analytics.js";
 
 const requireToken = (request, env) => {
   if (!env.STATS_TOKEN) return false;
@@ -28,7 +28,7 @@ const getClickRows = async (request, env) => {
 const getGithubDownloads = async (env) => {
   const repos = [...ALLOWED_RELEASE_REPOS];
   const releases = await Promise.all(repos.map(async (repo) => {
-    const response = await fetch(`https://api.github.com/repos/pcvantol/${repo}/releases?per_page=100`, {
+    const response = await fetch(`https://api.github.com/repos/${releaseRepoOwner(repo)}/${repo}/releases?per_page=100`, {
       headers: githubHeaders(env)
     });
     if (!response.ok) {

@@ -29,5 +29,5 @@ Cross-repo contract changes are tracked only in
 ## Platform
 
 - Document the expected ESP32 firmware pairing flow with screenshots.
-- Add firmware flashing screenshots from `pcvantol/djconnect-firmware` when the public firmware flow is stable.
+- Add firmware flashing screenshots from `djconnect-music-dj/djconnect-firmware` when the public firmware flow is stable.
 - Expand Playwright smoke tests for rendered latest download cards and mobile navigation behavior in CI.

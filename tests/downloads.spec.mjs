@@ -12,9 +12,18 @@ test('localized downloads show the current binary only when it is available', as
   await expect(page).toHaveURL(/\/downloads$/);
   await expect(page.locator('[data-release-details]')).toContainText('Versie 4.1.0 · Previewrelease');
   await expect(page.getByRole('link', { name: 'Download voor macOS' })).toHaveAttribute('href', binary);
-  await expect(page.getByRole('link', { name: 'Bekijk releases op GitHub' })).toHaveAttribute(
-    'href', 'https://github.com/pcvantol/djconnect-app-releases/releases/tag/macos/v4.1.0'
-  );
+  await expect(page.locator('[data-release-actions] a')).toHaveCount(1);
+  await expect(page.getByRole('link', { name: 'Download ESP32-firmware' })).toHaveAttribute('href', '/go/device/esp32');
+  const pi = page.locator('#raspberry-pi');
+  const pi5 = pi.getByRole('radio', { name: 'Pi 5' });
+  await expect(pi5).toBeChecked();
+  await expect(pi.getByRole('link')).toHaveCount(1);
+  await expect(pi.getByRole('link')).toHaveAttribute('href', '/go/device/pi5');
+  await pi5.focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(pi.getByRole('radio', { name: 'Zero 2 W' })).toBeChecked();
+  await expect(pi.getByRole('link')).toHaveCount(1);
+  await expect(pi.getByRole('link')).toHaveAttribute('href', '/go/device/pi-zero-2w');
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320);
 
   await page.unroute(endpoint);
@@ -24,5 +33,4 @@ test('localized downloads show the current binary only when it is available', as
   await expect(page).toHaveURL(/\/en\/downloads$/);
   await expect(page.locator('[data-release-unavailable]')).toBeVisible();
   await expect(page.getByRole('link', { name: 'Download for macOS' })).toHaveCount(0);
-  await expect(page.getByRole('link', { name: 'View releases on GitHub' })).toHaveCount(0);
 });

@@ -60,9 +60,9 @@ routes or branding must be checked against the rest of the DJConnect project.
 
 Coordinate with:
 
-- `pcvantol/djconnect` for the Home Assistant integration;
+- `djconnect-music-dj/djconnect` for the Home Assistant integration;
 - relevant DJConnect client, firmware and app release repositories;
-- `SYNC_PROMPTS.md` and `PRODUCT_ROADMAP.md` in `pcvantol/djconnect` when a
+- `SYNC_PROMPTS.md` and `PRODUCT_ROADMAP.md` in `djconnect-music-dj/djconnect` when a
   change touches cross-repo contracts or roadmap scope.
 
 Do not add local copies of the canonical sync prompt or roadmap to this
@@ -115,7 +115,7 @@ Before opening a pull request:
 5. Mention any impact on other DJConnect repositories.
 6. For release or Ask DJ/voice documentation changes, review website copy
    against the `DJ Announcement Output Sync` section in
-   `pcvantol/djconnect/SYNC_PROMPTS.md`. Confirm product wording treats Ask DJ
+   `djconnect-music-dj/djconnect/SYNC_PROMPTS.md`. Confirm product wording treats Ask DJ
    as the intelligence/personality, HA speakers as optional physical voice
    output, and does not claim Spotify ducking/volume changes or unimplemented
    Music Assistant behavior.

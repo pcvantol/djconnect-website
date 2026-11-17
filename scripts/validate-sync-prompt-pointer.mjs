@@ -12,7 +12,7 @@ try {
   const lines = content.trim().split(/\r?\n/);
   const required = [
     /^# .*Pointer|^# .*Navigation/i,
-    /pcvantol\/djconnect/,
+    /djconnect-music-dj\/djconnect/,
     /SYNC_PROMPTS\.md/,
     /PRODUCT_ROADMAP\.md/,
     /Do not fork .*cross-repo contracts locally/i

@@ -10,7 +10,7 @@ test('compiled Pages worker preserves protected operator/API and download routes
  expect((await request.get(base+'/api/stats')).status()).toBe(404);
  expect((await request.get(base+'/go/unknown-target')).status()).toBe(404);
  const download=await request.get(base+'/go/download?repo=foreign&url=https://evil.example/file');expect(download.status()).toBe(400);
- const hacs=await request.get(base+'/go/hacs',{maxRedirects:0});expect(hacs.status()).toBe(302);expect(hacs.headers().location).toContain('my.home-assistant.io/redirect/hacs_repository/');
+ const hacs=await request.get(base+'/go/hacs',{maxRedirects:0});expect(hacs.status()).toBe(302);expect(hacs.headers().location).toBe('https://my.home-assistant.io/redirect/hacs_repository/?owner=djconnect-music-dj&repository=djconnect&category=integration');
  const feed=await request.get(base+'/release-notes/ios/latest.json');expect(feed.status()).toBe(200);expect(await feed.json()).toHaveProperty('version');
  expect((await request.get(base+'/archive/legacy-website-2026-10-19/wwwroot/index.html')).status()).toBe(404);
 });

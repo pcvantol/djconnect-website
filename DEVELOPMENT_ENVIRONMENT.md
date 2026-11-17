@@ -109,7 +109,7 @@ context before larger changes.
 - Keep `VERSION`, `package.json`, page footer versions and `CHANGELOG.md`
   aligned for releases.
 - Do not add local copies of `SYNC_PROMPTS.md` or `PRODUCT_ROADMAP.md`.
-  Canonical versions live in `pcvantol/djconnect`.
+  Canonical versions live in `djconnect-music-dj/djconnect`.
 - Respect the Spotify trademark and non-affiliation notice.
 - Leave unrelated local changes intact.
 

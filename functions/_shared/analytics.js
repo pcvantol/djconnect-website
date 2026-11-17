@@ -63,7 +63,7 @@ export const isAllowedGithubDownload = (destination, repo) => {
 
   const owner = releaseRepoOwner(repo);
   return url.protocol === "https:" && url.hostname === "github.com" &&
-    (url.pathname.startsWith(`/${owner}/${repo}/releases/`) || url.pathname.startsWith(`/pcvantol/${repo}/releases/`));
+    url.pathname.startsWith(`/${owner}/${repo}/releases/`);
 };
 
 export const fetchLatestRelease = async (env, repo) => {

@@ -1,7 +1,6 @@
 import { githubHeaders, jsonResponse } from "../../_shared/analytics.js";
 
 const repositories = new Set([
-  "pcvantol/djconnect-app-releases",
   "djconnect-music-dj/djconnect-app-releases"
 ]);
 const repositoryId = 1265963920;

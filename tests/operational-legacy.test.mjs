@@ -44,10 +44,10 @@ test("redirect endpoints expose only current public targets", async () => {
 });
 
 test("transferred release URLs keep the exact repository and host checks", () => {
-  for (const repo of ["djconnect-firmware", "djconnect-pi-releases"]) {
+  for (const repo of ["djconnect-app-releases", "djconnect-firmware", "djconnect-pi-releases"]) {
     assert.equal(releaseRepoOwner(repo), "djconnect-music-dj");
     assert.equal(isAllowedGithubDownload(`https://github.com/djconnect-music-dj/${repo}/releases/download/v4/test.zip`, repo), true);
-    assert.equal(isAllowedGithubDownload(`https://github.com/pcvantol/${repo}/releases/download/v4/test.zip`, repo), true);
+    assert.equal(isAllowedGithubDownload(`https://github.com/pcvantol/${repo}/releases/download/v4/test.zip`, repo), false);
     assert.equal(isAllowedGithubDownload(`https://github.com/other/${repo}/releases/download/v4/test.zip`, repo), false);
     assert.equal(isAllowedGithubDownload(`https://example.org/djconnect-music-dj/${repo}/releases/download/v4/test.zip`, repo), false);
   }

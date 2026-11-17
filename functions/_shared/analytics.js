@@ -1,5 +1,5 @@
 const RELEASE_REPO_OWNERS = new Map([
-  ["djconnect-app-releases", "pcvantol"],
+  ["djconnect-app-releases", "djconnect-music-dj"],
   ["djconnect-firmware", "djconnect-music-dj"],
   ["djconnect-pi-releases", "djconnect-music-dj"]
 ]);
@@ -9,7 +9,7 @@ export const releaseRepoOwner = (repo) => RELEASE_REPO_OWNERS.get(repo);
 
 export const REDIRECT_TARGETS = {
   hacs: "https://my.home-assistant.io/redirect/hacs_repository/?owner=pcvantol&repository=djconnect&category=integration",
-  "github-app-releases": "https://github.com/pcvantol/djconnect-app-releases/releases",
+  "github-app-releases": "https://github.com/djconnect-music-dj/djconnect-app-releases/releases",
   "github-firmware-releases": "https://github.com/djconnect-music-dj/djconnect-firmware/releases",
   "github-linux-releases": "https://github.com/djconnect-music-dj/djconnect-pi-releases/releases"
 };

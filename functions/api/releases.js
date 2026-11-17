@@ -2,7 +2,7 @@ import { githubHeaders, jsonResponse } from "../_shared/analytics.js";
 
 export async function onRequestGet({ env, request }) {
   const url = new URL(request.url);
-  const owner = url.searchParams.get("owner") || "pcvantol";
+  const owner = url.searchParams.get("owner") || "djconnect-music-dj";
   const repo = url.searchParams.get("repo") || "djconnect-website";
   const limit = Math.min(Number(url.searchParams.get("limit") || 3), 10);
 

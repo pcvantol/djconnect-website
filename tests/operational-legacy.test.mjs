@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {readFile} from "node:fs/promises";
-import {isAllowedGithubDownload, releaseRepoOwner} from "../functions/_shared/analytics.js";
+import {isAllowedGithubDownload, releaseRepoOwner, REDIRECT_TARGETS} from "../functions/_shared/analytics.js";
 const read=p=>readFile(new URL("../"+p,import.meta.url),"utf8");
 test("release proxy function is present", async () => {
   const [proxy, analytics] = await Promise.all([
@@ -43,7 +43,8 @@ test("transferred release URLs keep the exact repository and host checks", () =>
     assert.equal(isAllowedGithubDownload(`https://github.com/other/${repo}/releases/download/v4/test.zip`, repo), false);
     assert.equal(isAllowedGithubDownload(`https://example.org/djconnect-music-dj/${repo}/releases/download/v4/test.zip`, repo), false);
   }
-  assert.equal(releaseRepoOwner("djconnect-app-releases"), "pcvantol");
+  assert.equal(releaseRepoOwner("djconnect-app-releases"), "djconnect-music-dj");
+  assert.equal(REDIRECT_TARGETS["github-app-releases"], "https://github.com/djconnect-music-dj/djconnect-app-releases/releases");
 });
 
 test("operator page lists APNs registrations through a server-side proxy", async () => {

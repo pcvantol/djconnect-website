@@ -1,7 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {readFile} from "node:fs/promises";
-import {isAllowedGithubDownload, releaseRepoOwner} from "../functions/_shared/analytics.js";
+import {isAllowedGithubDownload, releaseRepoOwner, REDIRECT_TARGETS} from "../functions/_shared/analytics.js";
+import {onRequestGet as listReleases} from "../functions/api/releases.js";
 const read=p=>readFile(new URL("../"+p,import.meta.url),"utf8");
 test("release proxy function is present", async () => {
   const [proxy, analytics] = await Promise.all([
@@ -12,6 +13,13 @@ test("release proxy function is present", async () => {
   assert.match(proxy, /jsonResponse/);
   assert.match(analytics, /env\.GITHUB_TOKEN/);
   assert.match(proxy, /api\.github\.com\/repos/);
+});
+
+test("release API defaults to the organization website repository", async t => {
+  const fetchMock = t.mock.method(globalThis, "fetch", async () => Response.json([]));
+  const response = await listReleases({ env: {}, request: new Request("https://djconnect.dev/api/releases") });
+  assert.equal(response.status, 200);
+  assert.equal(fetchMock.mock.calls[0].arguments[0], "https://api.github.com/repos/djconnect-music-dj/djconnect-website/releases");
 });
 
 test("redirect endpoints expose only current public targets", async () => {
@@ -36,14 +44,15 @@ test("redirect endpoints expose only current public targets", async () => {
 });
 
 test("transferred release URLs keep the exact repository and host checks", () => {
-  for (const repo of ["djconnect-firmware", "djconnect-pi-releases"]) {
+  for (const repo of ["djconnect-app-releases", "djconnect-firmware", "djconnect-pi-releases"]) {
     assert.equal(releaseRepoOwner(repo), "djconnect-music-dj");
     assert.equal(isAllowedGithubDownload(`https://github.com/djconnect-music-dj/${repo}/releases/download/v4/test.zip`, repo), true);
-    assert.equal(isAllowedGithubDownload(`https://github.com/pcvantol/${repo}/releases/download/v4/test.zip`, repo), true);
+    assert.equal(isAllowedGithubDownload(`https://github.com/pcvantol/${repo}/releases/download/v4/test.zip`, repo), false);
     assert.equal(isAllowedGithubDownload(`https://github.com/other/${repo}/releases/download/v4/test.zip`, repo), false);
     assert.equal(isAllowedGithubDownload(`https://example.org/djconnect-music-dj/${repo}/releases/download/v4/test.zip`, repo), false);
   }
-  assert.equal(releaseRepoOwner("djconnect-app-releases"), "pcvantol");
+  assert.equal(releaseRepoOwner("djconnect-app-releases"), "djconnect-music-dj");
+  assert.equal(REDIRECT_TARGETS["github-app-releases"], "https://github.com/djconnect-music-dj/djconnect-app-releases/releases");
 });
 
 test("operator page lists APNs registrations through a server-side proxy", async () => {

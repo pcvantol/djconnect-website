@@ -18,7 +18,7 @@ test('central tokens and page composition propagate without duplicated templates
 test('archive and originals never enter publication; unrelated operational sources remain byte identical',async()=>{
  const walk=async d=>{let out=[];for(const e of await readdir(d,{withFileTypes:true})){const p=d+'/'+e.name;if(e.isDirectory())out.push(...await walk(p));else out.push(p);}return out;};
  const out=await walk('dist/wwwroot');assert.ok(out.length>20);assert.ok(!out.some(p=>/archive|legacy|original|manifest.json|package.json|node_modules/.test(p)));
- const migratedReleaseFunctions=new Set(['functions/_shared/analytics.js','functions/api/stats.js']);
+ const migratedReleaseFunctions=new Set(['functions/_shared/analytics.js','functions/api/stats.js','functions/api/releases.js']);
  for(const archivedPath of (await walk(archiveRoot+'/functions')).concat(await walk(archiveRoot+'/migrations'))){
   const currentPath=archivedPath.slice(archiveRoot.length+1);
   if(!migratedReleaseFunctions.has(currentPath))assert.deepEqual(await readFile(currentPath),await readFile(archivedPath));

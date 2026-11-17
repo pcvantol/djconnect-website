@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('localized downloads show the current binary only when it is available', async ({ page }) => {
-  const binary = 'https://github.com/pcvantol/djconnect-app-releases/releases/download/macos/v4.1.0/DJConnect-macOS-4.1.0.zip';
+  const binary = 'https://github.com/djconnect-music-dj/djconnect-app-releases/releases/download/macos/v4.1.0/DJConnect-macOS-4.1.0.zip';
   const endpoint = '**/api/downloads/macos';
   await page.route(endpoint, route => route.fulfill({ json: {
     version: '4.1.0', prerelease: true, downloadUrl: binary

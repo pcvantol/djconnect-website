@@ -4,6 +4,12 @@ import {readFile} from "node:fs/promises";
 import {isAllowedGithubDownload, releaseRepoOwner, REDIRECT_TARGETS} from "../functions/_shared/analytics.js";
 import {onRequestGet as listReleases} from "../functions/api/releases.js";
 const read=p=>readFile(new URL("../"+p,import.meta.url),"utf8");
+test("HACS redirect uses the organization repository", async () => {
+  const {onRequestGet} = await import("../functions/go/[target].js");
+  const response = await onRequestGet({params: {target: "hacs"}, env: {}, waitUntil: () => {}});
+  assert.equal(response.status, 302);
+  assert.equal(response.headers.get("location"), "https://my.home-assistant.io/redirect/hacs_repository/?owner=djconnect-music-dj&repository=djconnect&category=integration");
+});
 test("release proxy function is present", async () => {
   const [proxy, analytics] = await Promise.all([
     read("functions/api/releases.js"),

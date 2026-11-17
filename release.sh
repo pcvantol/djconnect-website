@@ -93,7 +93,7 @@ node scripts/validate-sync-prompt-pointer.mjs SYNC_PROMPTS.md
 for CANONICAL_COPY in "${FORBIDDEN_CANONICAL_COPIES[@]}"; do
   if [[ -e "$CANONICAL_COPY" ]]; then
     echo "Forbidden local canonical copy exists: $CANONICAL_COPY"
-    echo "Use pcvantol/djconnect/SYNC_PROMPTS.md and pcvantol/djconnect/PRODUCT_ROADMAP.md as the canonical cross-repo sources."
+    echo "Use djconnect-music-dj/djconnect/SYNC_PROMPTS.md and djconnect-music-dj/djconnect/PRODUCT_ROADMAP.md as the canonical cross-repo sources."
     exit 1
   fi
 done

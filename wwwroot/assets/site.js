@@ -40,8 +40,9 @@ if (macosRelease) {
   .then(async response => {
    if (!response.ok) throw new Error('Release unavailable');
    const { version, prerelease, downloadUrl } = await response.json();
-   const repository = typeof downloadUrl === 'string' && /^(https:\/\/github\.com\/(?:pcvantol|djconnect-music-dj)\/djconnect-app-releases)\//.exec(downloadUrl)?.[1];
+   const repository = typeof downloadUrl === 'string' && /^(https:\/\/github\.com\/djconnect-music-dj\/djconnect-app-releases)\//.exec(downloadUrl)?.[1];
    if (!repository || typeof version !== 'string' ||
+       !/^\d+\.\d+\.\d+(?:-[\da-z]+(?:[.-][\da-z]+)*)?(?![\s\S])/i.test(version) ||
        downloadUrl !== `${repository}/releases/download/macos/v${version}/DJConnect-macOS-${version}.zip`) {
     throw new Error('Invalid release');
    }

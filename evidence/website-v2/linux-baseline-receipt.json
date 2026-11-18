@@ -1,0 +1,138 @@
+{
+  "sourceRun": 39295444260,
+  "sourceCommit": "81ec58df21ab66b0028968a85f67dd32624e7866",
+  "ciArtifactId": 12209205095,
+  "prMergeCommit": "8c00f9471cb657d45efb48c876f33833ed7a694a",
+  "firstCapture": "37 tests passed, 20 missing-baseline failures, 1 Chromium-only CDP test not applicable to WebKit; no other failures",
+  "review": "Author opened actual mobile, desktop, menu and translated screenshots; no overflow/clipping of controls observed. OS font differences retained as native fallbacks. Independent review remains open.",
+  "files": [
+    {
+      "path": "tests/visual-baselines/linux/chromium/home-1280.png",
+      "sha256": "dcb1642d5abf73f47acf2f791573c028009fdb5005496846fb600fcb9f28f5f1"
+    },
+    {
+      "path": "tests/visual-baselines/linux/chromium/home-320.png",
+      "sha256": "88e0ee8fcd5387f5fb57fb6a044156b76aa8ee7846eb495e9fe49d7db1866b54"
+    },
+    {
+      "path": "tests/visual-baselines/linux/chromium/home-375.png",
+      "sha256": "2964f95b2e277c97f93cc6441a475badbc82cd8ddd04888fa47b015f26bf5e50"
+    },
+    {
+      "path": "tests/visual-baselines/linux/chromium/home-390.png",
+      "sha256": "9aa2e4d6eaa24407417cf3c21fefb19e8ebbe0549e7d8a3de1428f07e989e28a"
+    },
+    {
+      "path": "tests/visual-baselines/linux/chromium/home-430.png",
+      "sha256": "38812b02571a7cdd078d2aa1ff07c573a0d05bdad139c4054a44d9c215c3108c"
+    },
+    {
+      "path": "tests/visual-baselines/linux/chromium/home-768.png",
+      "sha256": "dbe05cee4548924c31e6edba8cd3494f147a4cac802b41341d7e5111b8dee269"
+    },
+    {
+      "path": "tests/visual-baselines/linux/chromium/home-de.png",
+      "sha256": "c8ff29d83aeb8d498df4d2c4a90c2a9108d25b8ac51508f5143a0f3eff3d9600"
+    },
+    {
+      "path": "tests/visual-baselines/linux/chromium/home-en.png",
+      "sha256": "277188642e62ebca9deaf3d0a92e7af72b4cd60908744f2b3c23352e9df6188d"
+    },
+    {
+      "path": "tests/visual-baselines/linux/chromium/home-es.png",
+      "sha256": "cd57c0faa1e661bcac16f8391961c56b32bd3920686a40998c1cd94304ca4488"
+    },
+    {
+      "path": "tests/visual-baselines/linux/chromium/home-fr.png",
+      "sha256": "4fd49d32f752607df7b6f92f4e46cb0fe96d1090629ec18a6fd01968a80374d8"
+    },
+    {
+      "path": "tests/visual-baselines/linux/chromium/menu-1280.png",
+      "sha256": "28a1d30992af00dfb1a57468416a1cdbf698610cc81f4bad8627dd2332b57731"
+    },
+    {
+      "path": "tests/visual-baselines/linux/chromium/menu-320.png",
+      "sha256": "3654709009b3673a011d12e95b780ddb36b434045d4bbc1e34795e044ab477ed"
+    },
+    {
+      "path": "tests/visual-baselines/linux/chromium/menu-375.png",
+      "sha256": "826eee44415acde8dca08b9e25df381b900472d823cdbb2a0f1314c4d06538aa"
+    },
+    {
+      "path": "tests/visual-baselines/linux/chromium/menu-390.png",
+      "sha256": "99bf1fe61836ba12bb0bca7c47d452e3b460f6276a3214850486edafc3f2a328"
+    },
+    {
+      "path": "tests/visual-baselines/linux/chromium/menu-430.png",
+      "sha256": "949071e5dd9cb65281a7638e4c27c82885cc790e49fd103e3567e10f8d8558c5"
+    },
+    {
+      "path": "tests/visual-baselines/linux/chromium/menu-768.png",
+      "sha256": "89c6b7e184f482853dcb74b4d9c604e350d1474650110ac10508356626768c79"
+    },
+    {
+      "path": "tests/visual-baselines/linux/webkit/home-1280.png",
+      "sha256": "a6851e5ce47c0025530523cd6ea9ea5fe9afe1abf5bb51e566fe219ccf774548"
+    },
+    {
+      "path": "tests/visual-baselines/linux/webkit/home-320.png",
+      "sha256": "48bab952dd34b7ae6e927baec0a2638041c32038988f64ada075de1a32cf6877"
+    },
+    {
+      "path": "tests/visual-baselines/linux/webkit/home-375.png",
+      "sha256": "eef00c4ce5d7f86df518bacd4a09049f478abbe02be64e1a5a3f86813b156587"
+    },
+    {
+      "path": "tests/visual-baselines/linux/webkit/home-390.png",
+      "sha256": "e02a19aa4c36f96eef04cd5d8e46dadfa606875452b7d606f882e390191c9aa3"
+    },
+    {
+      "path": "tests/visual-baselines/linux/webkit/home-430.png",
+      "sha256": "24b52183d2755107f64e2deaa57f2c5e7d411bacf20d9cf1558ed9ecb1a22c24"
+    },
+    {
+      "path": "tests/visual-baselines/linux/webkit/home-768.png",
+      "sha256": "9682c507d7cb59b1e9337b96a67f0abfb15fce7a642434a688eb97e307243a0e"
+    },
+    {
+      "path": "tests/visual-baselines/linux/webkit/home-de.png",
+      "sha256": "ff400ed7baa1d86a81e924a003209884f61a67bce5047410482e96fd1353b941"
+    },
+    {
+      "path": "tests/visual-baselines/linux/webkit/home-en.png",
+      "sha256": "46a72f656fabf70f47d910303603febf87000888054318a66ade2ca5cda4f80d"
+    },
+    {
+      "path": "tests/visual-baselines/linux/webkit/home-es.png",
+      "sha256": "da81bdea58f13b9678673b6d4ec37ff70084bde0f2f5c070161fdaaccedb0251"
+    },
+    {
+      "path": "tests/visual-baselines/linux/webkit/home-fr.png",
+      "sha256": "e139f86cda591465e5ce65c36d488e4400aa2551cd182a17b8e6d3c2e9ec44b1"
+    },
+    {
+      "path": "tests/visual-baselines/linux/webkit/menu-1280.png",
+      "sha256": "c7f8fffd2880d074332e5d35e536db178635aec88e72d56388148a7690a72970"
+    },
+    {
+      "path": "tests/visual-baselines/linux/webkit/menu-320.png",
+      "sha256": "cf8c1f12e14ab74c93a1fcb23d4da34816b569b3077ace0f28f93e054f0add46"
+    },
+    {
+      "path": "tests/visual-baselines/linux/webkit/menu-375.png",
+      "sha256": "1240465e32f2401b477dc0f34b6a98c1214411144ad93db31e2b4b2762910344"
+    },
+    {
+      "path": "tests/visual-baselines/linux/webkit/menu-390.png",
+      "sha256": "042e11227a398ebf818d689d4580faca05f97921ce476d50deb7e233410a33b4"
+    },
+    {
+      "path": "tests/visual-baselines/linux/webkit/menu-430.png",
+      "sha256": "36081eb11c26d07eb072bb827e0b8d3760fdffc2e19d9b98e159c6db73854527"
+    },
+    {
+      "path": "tests/visual-baselines/linux/webkit/menu-768.png",
+      "sha256": "c49d945a47b91c00456ba6682c820bcd04859884702dbb72fdcfa443b02bd32e"
+    }
+  ]
+}

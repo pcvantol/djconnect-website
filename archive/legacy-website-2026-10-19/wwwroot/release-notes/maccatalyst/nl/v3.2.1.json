@@ -1,0 +1,7 @@
+{
+  "version": "3.2.1",
+  "platform": "maccatalyst",
+  "language": "nl",
+  "name": "DJConnect Mac Catalyst 3.2.1",
+  "body": "# DJConnect Windows 3.2.1\n\n- De Windows client is gesynchroniseerd met het Home Assistant DJConnect\n  `3.2.x` backendcontract.\n- Status stuurt nu app- en protocolversie metadata mee.\n- Ask DJ stuurt moodwaarden mee, toont `links[]` samen met bronnen en verwerkt\n  veilige backend-error objecten.\n- Verouderde backendacties en niet-ondersteunde Music Assistant capabilities\n  tonen nu duidelijke refresh- of niet-beschikbaar meldingen.\n\n---\n\nPlatform: MacCatalyst\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nMac Catalyst-artifacts zijn niet ondertekend en niet genotariseerd."
+}

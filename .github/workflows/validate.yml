@@ -1,0 +1,172 @@
+name: Validate
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  software-assurance-governance:
+    name: Software Assurance governance
+    permissions:
+      contents: read
+    uses: djconnect-music-dj/djconnect-shared-workflows/.github/workflows/software-assurance-governance-aabd.yml@2a1c6fd2841b08630aee01402850f56840b50f70
+    with:
+      execution_profile: balanced
+      owner: djconnect-music-dj/djconnect-website
+
+  website:
+    name: Website quality
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check third-party packages and tools
+        run: npm run deps:check
+
+      - name: Clean build and regression checks
+        run: |
+          npm run build:release
+          npm test
+          npm run archive:check
+
+      - name: Generate post-merge coverage evidence
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          npm run test:coverage
+          printf '%s\n' "$GITHUB_SHA" > coverage-main-sha.txt
+
+      - name: Upload post-merge coverage evidence
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: website-cobertura-coverage
+          path: |
+            coverage/cobertura-coverage.xml
+            coverage-main-sha.txt
+          if-no-files-found: error
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium webkit
+
+      - name: Run complete built-artifact browser and visual acceptance
+        run: npm run test:e2e
+
+      - name: Verify real compiled Pages security and operational routes
+        if: ${{ !cancelled() }}
+        run: |
+          npx wrangler pages dev dist/wwwroot --port 4174 --compatibility-date 2026-10-19 > /tmp/website-workerd.log 2>&1 &
+          worker_pid=$!
+          trap 'kill "$worker_pid" 2>/dev/null || true' EXIT
+          for attempt in {1..30}; do
+            if curl --silent --fail http://127.0.0.1:4174/ > /dev/null; then break; fi
+            sleep 1
+          done
+          npm run test:operational
+
+      - name: Upload browser visual evidence and diffs
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: website-browser-evidence-${{ github.sha }}
+          path: |
+            playwright-report/
+            test-results/
+            tests/visual-baselines/linux/
+          if-no-files-found: warn
+
+  cleanup-workflow-runs:
+    # Preserve workflow runs as validation evidence.
+    if: ${{ false }}
+    needs:
+      - software-assurance-governance
+      - website
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      contents: read
+    env:
+      GH_TOKEN: ${{ github.token }}
+      KEEP_RUNS: "2"
+    steps:
+      - name: Delete old completed workflow runs
+        run: |
+          set -euo pipefail
+
+          repo="${GITHUB_REPOSITORY}"
+          current_run_id="${GITHUB_RUN_ID}"
+          current_workflow_id="$(gh api "/repos/${repo}/actions/runs/${current_run_id}" --jq '.workflow_id')"
+
+          protected_run_ids=()
+          pr_head_sha="$(gh api -H 'Accept: application/vnd.github+json' "/repos/${repo}/commits/${GITHUB_SHA}/pulls" --jq '[.[] | select(.merged_at and .base.ref == "main" and .merge_commit_sha == env.GITHUB_SHA)] | if length == 1 then .[0].head.sha else empty end' || true)"
+          if [ -n "${pr_head_sha}" ]; then
+            mapfile -t protected_run_ids < <(gh api "/repos/${repo}/actions/runs?head_sha=${pr_head_sha}&per_page=100" --paginate --jq '.workflow_runs[] | .id')
+          fi
+
+          gh api "/repos/${repo}/actions/workflows" --paginate --jq '.workflows[] | [.id, .name] | @tsv' |
+          while IFS=$'\t' read -r workflow_id workflow_name; do
+            [ -n "${workflow_id}" ] || continue
+
+            keep_limit="${KEEP_RUNS}"
+            active_run_count="$(
+              {
+                gh api "/repos/${repo}/actions/workflows/${workflow_id}/runs?status=queued&per_page=100" \
+                  --paginate \
+                  --jq '.workflow_runs[] | .id'
+                gh api "/repos/${repo}/actions/workflows/${workflow_id}/runs?status=in_progress&per_page=100" \
+                  --paginate \
+                  --jq '.workflow_runs[] | .id'
+              } | awk -v current_run_id="${current_run_id}" '$0 != current_run_id { count++ } END { print count + 0 }'
+            )"
+
+            if [ "${workflow_id}" = "${current_workflow_id}" ] || [ "${active_run_count}" -gt 0 ]; then
+              keep_limit=$((KEEP_RUNS - 1))
+            fi
+
+            deleted_count=0
+            mapfile -t run_ids < <(
+              gh api "/repos/${repo}/actions/workflows/${workflow_id}/runs?status=completed&per_page=100" \
+                --paginate \
+                --jq '.workflow_runs | sort_by(.created_at) | reverse | .[].id'
+            )
+
+            if ((${#run_ids[@]} <= keep_limit)); then
+              echo "Workflow '${workflow_name}' (${workflow_id}): no completed runs to delete."
+              continue
+            fi
+
+            for index in "${!run_ids[@]}"; do
+              run_id="${run_ids[$index]}"
+              if ((index < keep_limit)) || [ "${run_id}" = "${current_run_id}" ] || [[ " ${protected_run_ids[*]} " == *" ${run_id} "* ]]; then
+                continue
+              fi
+
+              if ! delete_error="$(gh api --method DELETE "/repos/${repo}/actions/runs/${run_id}" 2>&1)"; then
+                if grep -q 'HTTP 404' <<<"${delete_error}"; then
+                  echo "Workflow run ${run_id} was already deleted; continuing."
+                  continue
+                fi
+                printf '%s\n' "${delete_error}" >&2
+                exit 1
+              fi
+              deleted_count=$((deleted_count + 1))
+            done
+
+            echo "Workflow '${workflow_name}' (${workflow_id}): deleted ${deleted_count} completed runs older than the effective keep limit ${keep_limit}."
+          done

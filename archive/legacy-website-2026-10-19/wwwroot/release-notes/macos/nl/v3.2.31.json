@@ -1,0 +1,7 @@
+{
+  "version": "3.2.31",
+  "platform": "macos",
+  "language": "nl",
+  "name": "DJConnect macOS 3.2.31",
+  "body": "# DJConnect App 3.2.31\n\n## Gewijzigd\n\n- Music Discovery is bijgewerkt voor het actuele backend-feedcontract: Ontdek\n  rendert backend `sections[]` in volgorde, ondersteunt `new_for_you` en\n  `accepted_recommendations` zonder hardcoded section-aannames, en behandelt\n  `revision` en `cache.hit` als metadata.\n- Discovery-kaarten komen alleen nog uit backend `sections[].items[]`; recente\n  tracks, toptracks, Music DNA-data en eerdere UI-cache worden niet lokaal\n  opnieuw opgebouwd als aanbevelingen.\n\n## Opgelost\n\n- Music Discovery item-decoding accepteert nu nieuwe backend-waarden voor\n  `kind`, zodat een nieuw aanbevelingstype de feed niet breekt.\n\n---\n\nPlatform: macOS\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nVoor normale macOS-distributie heeft de genotariseerde Developer ID-build de voorkeur wanneer die is bijgevoegd."
+}

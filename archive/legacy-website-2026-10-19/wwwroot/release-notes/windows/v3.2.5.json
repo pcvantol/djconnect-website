@@ -1,0 +1,7 @@
+{
+  "version": "3.2.5",
+  "platform": "windows",
+  "language": "en",
+  "name": "DJConnect Windows 3.2.5",
+  "body": "# DJConnect Windows 3.2.5\n\n- Completes app-wide localization for English, Dutch, German, French and Spanish, including settings, alerts, onboarding, mini-games and empty states.\n- Connects Windows `djconnect://` protocol activation to the existing QR/deeplink pairing flow.\n- Adds stricter localization validation for missing keys, duplicate keys, placeholder mismatches and resource formatting.\n- Polishes ordinary Windows UI copy so technical diagnostics stay in About, feedback and logs.\n\n---\n\nPlatform: Windows\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nWindows artifacts are unsigned and are not a store/MSIX installer yet."
+}

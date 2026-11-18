@@ -1,0 +1,7 @@
+{
+  "version": "3.2.4",
+  "platform": "macos",
+  "language": "en",
+  "name": "DJConnect macOS 3.2.4",
+  "body": "# DJConnect App 3.2.4\n\n- Music DNA is now first-class on iPhone, Mac, and Apple Watch, with the backend\n  profile as the source of truth.\n- Ask DJ and Music DNA can show the same Music DNA opt-in prompt on Apple Watch.\n- Apple Watch Settings can turn Music DNA off and on again through the iPhone\n  proxy while preserving the watchOS identity.\n- Music DNA now distinguishes disabled, no profile yet, temporary load failure,\n  and demo mode states.\n- Apple pairing is now fully inbound-only: iPhone, Mac, and Apple Watch no\n  longer expose a local Home Assistant callback API or Bonjour/mDNS discovery.\n\n---\n\nPlatform: macOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nFor normal macOS distribution, prefer the notarized Developer ID build when attached."
+}

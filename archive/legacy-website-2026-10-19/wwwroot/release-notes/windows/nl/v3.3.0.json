@@ -1,0 +1,7 @@
+{
+  "version": "3.3.0",
+  "platform": "windows",
+  "language": "nl",
+  "name": "DJConnect Windows 3.3.0",
+  "body": "DJConnect Windows 3.3.0\n\n---\n\nPlatform: Windows\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nWindows-artifacts zijn niet ondertekend en nog geen Store/MSIX-installer."
+}

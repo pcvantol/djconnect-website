@@ -1,0 +1,7 @@
+{
+  "version": "3.2.20",
+  "platform": "macos",
+  "language": "nl",
+  "name": "DJConnect macOS 3.2.20",
+  "body": "# DJConnect App 3.2.20\n\n## Opgelost\n\n- Update-check publicatie hersteld zodat het About-scherm de nieuwste\n  release-notes manifest op djconnect.dev kan vinden.\n\n---\n\nPlatform: macOS\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nVoor normale macOS-distributie heeft de genotariseerde Developer ID-build de voorkeur wanneer die is bijgevoegd."
+}

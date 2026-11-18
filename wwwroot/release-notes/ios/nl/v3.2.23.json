@@ -1,0 +1,7 @@
+{
+  "version": "3.2.23",
+  "platform": "ios",
+  "language": "nl",
+  "name": "DJConnect iOS 3.2.23",
+  "body": "# DJConnect App 3.2.23\n\n## Gewijzigd\n\n- Music DNA-kaarten op iPhone zijn hoger en scrollen intern wanneer inhoud op\n  kleine of landscape schermen niet past.\n- Track Insight delen gebruikt strakkere previewruimte en meer onderste padding\n  voor de actieknoppen.\n- De releaseflow is strenger rond de exacte release-commit en versiegebonden\n  release-notes.\n\n## Opgelost\n\n- Het logs-kopieericoon op iOS blijft wit in plaats van paars getint.\n\n---\n\nPlatform: iOS\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nNiet-ondertekende iOS-binaries worden hier gepubliceerd voor diagnostics en interne validatie. Gebruik voor normale iOS-distributie TestFlight/App Store."
+}

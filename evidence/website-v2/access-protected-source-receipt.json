@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "repository": "pcvantol/djconnect-website",
+  "source_pr": 65,
+  "source_candidate_sha": "4ca40056c65e43199d8d7b17620181efa120e3aa",
+  "protected_source_main": "3d199cc65bfe707b9ff852dcd2b09a72f6e2cd27",
+  "reviewed_and_merged_tree": "75ef3c6ff6f571f7c55e3bad707c92fecea60f3c",
+  "source_review": "GO /root/independent_review exact-head read-only",
+  "source_validation": {
+    "pr_validate": 39322033172,
+    "push_validate": 39322027085,
+    "codeql_result": 118298663256,
+    "trusted_delivery": 39322033005,
+    "conclusion": "SUCCESS",
+    "owner_authorization": "SUCCESS / NOT_REQUIRED per exact LOW/NORMAL_RISK classification"
+  },
+  "source_main_at_recording": {
+    "validate": 39322443976,
+    "codeql": 39322443691,
+    "state": "PENDING: actual fullCI/formalQUALIFIED/artifact must be verified in Finalization PR before protected merge"
+  },
+  "original_production_smoke": {
+    "run_id": 39321166427,
+    "full_result": "FAILURE",
+    "browser_pass": 61,
+    "actual_screenshots": 32,
+    "cause": "Automatic following of valid Access302 to login200; no operator content exposed",
+    "preserved_not_waived": true
+  },
+  "required_next": "Separate exact protected Finalization and final-main artifact/deploy/full actual smoke; no future PASS inferred"
+}

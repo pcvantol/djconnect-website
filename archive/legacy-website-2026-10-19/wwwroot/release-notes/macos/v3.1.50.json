@@ -1,0 +1,7 @@
+{
+  "version": "3.1.50",
+  "platform": "macos",
+  "language": "en",
+  "name": "DJConnect macOS 3.1.50",
+  "body": "# DJConnect App 3.1.50\n\n### Changed\n\n- Ask DJ now opens at the newest message on iPhone, iPad, Mac, and Apple Watch.\n- The Ask DJ scroll-to-bottom button now matches the DJConnect gradient style.\n- Push registration diagnostics are more detailed while still redacting tokens and secrets.\n\n### Fixed\n\n- Apple Watch pairing now keeps the local Client address on a stable port and advertises mDNS only after the local API listener is ready.\n- Apple Watch pairing diagnostics now clearly show whether the Watch has a real WiFi/LAN IPv4 address or is using an iPhone/Bluetooth relay path.\n\n---\n\nPlatform: macOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nFor normal macOS distribution, prefer the notarized Developer ID build when attached."
+}

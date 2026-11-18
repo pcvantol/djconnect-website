@@ -34,3 +34,35 @@ test('localized downloads show the current binary only when it is available', as
   await expect(page.locator('[data-release-unavailable]')).toBeVisible();
   await expect(page.getByRole('link', { name: 'Download for macOS' })).toHaveCount(0);
 });
+
+for (const owner of ['pcvantol', 'other-owner']) {
+  test(`macOS download rejects ${owner} owner`, async ({ page }) => {
+    await page.route('**/api/downloads/macos', route => route.fulfill({ json: {
+      version: '4.1.0', prerelease: true,
+      downloadUrl: `https://github.com/${owner}/djconnect-app-releases/releases/download/macos/v4.1.0/DJConnect-macOS-4.1.0.zip`
+    }}));
+    await page.goto('/downloads');
+    await expect(page.locator('[data-release-unavailable]')).toBeVisible();
+    await expect(page.locator('[data-release-actions]')).toBeHidden();
+  });
+}
+
+for (const version of ['4.1.0+build', '4.1.0/extra', '4.1.0\n']) {
+  test(`macOS download rejects invalid version ${JSON.stringify(version)}`, async ({ page }) => {
+    await page.route('**/api/downloads/macos', route => route.fulfill({ json: {
+      version, prerelease: false,
+      downloadUrl: `https://github.com/djconnect-music-dj/djconnect-app-releases/releases/download/macos/v${version}/DJConnect-macOS-${version}.zip`
+    }}));
+    await page.goto('/downloads');
+    await expect(page.locator('[data-release-unavailable]')).toBeVisible();
+    await expect(page.locator('[data-release-actions]')).toBeHidden();
+  });
+}
+
+test('macOS download accepts a valid prerelease version', async ({ page }) => {
+  const version = '4.1.0-rc.1';
+  const binary = `https://github.com/djconnect-music-dj/djconnect-app-releases/releases/download/macos/v${version}/DJConnect-macOS-${version}.zip`;
+  await page.route('**/api/downloads/macos', route => route.fulfill({ json: { version, prerelease: true, downloadUrl: binary } }));
+  await page.goto('/downloads');
+  await expect(page.locator('[data-release-actions] a')).toHaveAttribute('href', binary);
+});

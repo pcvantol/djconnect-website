@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DJConnect Features</title>
+  <meta name="description" content="Overzicht van de belangrijkste DJConnect functies: muziek aanvragen, Spotify Direct of Music Assistant playback, Home Assistant, apps, ESP32 devices en mini-games." />
+  <link rel="canonical" href="https://djconnect.dev/features" />
+  <link rel="alternate" hreflang="en" href="https://djconnect.dev/en/features.html" />
+  <link rel="alternate" hreflang="nl" href="https://djconnect.dev/features.html" />
+  <link rel="alternate" hreflang="de" href="https://djconnect.dev/de/features.html" />
+  <link rel="alternate" hreflang="fr" href="https://djconnect.dev/fr/features.html" />
+  <link rel="alternate" hreflang="es" href="https://djconnect.dev/es/features.html" />
+  <link rel="alternate" hreflang="x-default" href="https://djconnect.dev/features.html" />
+  <link rel="icon" href="assets/djconnect/icon.svg" type="image/svg+xml" />
+  <style>
+    :root { --bg:#07091c; --panel:rgba(26,20,58,0.74); --panel-strong:rgba(43,34,88,0.82); --text:#f7f3ff; --muted:#aaa4bd; --line:rgba(167,118,255,0.28); --cyan:#38d7d2; --green:#d13cff; --purple:#7357ff; --max:1180px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; background:var(--bg); }
+    body { margin:0; color:var(--text); font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height:1.55; background:radial-gradient(circle at 16% 10%, rgba(56,215,210,0.2), transparent 28rem), radial-gradient(circle at 86% 6%, rgba(115,87,255,0.14), transparent 27rem), radial-gradient(circle at 58% 72%, rgba(115,87,255,0.18), transparent 31rem), linear-gradient(180deg,#07091c 0%,#111a47 52%,#160526 100%); }
+    a { color:inherit; text-decoration:none; }
+    .wrap { width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
+    .nav { position:sticky; top:0; z-index:20; backdrop-filter:blur(18px); background:rgba(7,9,28,0.78); border-bottom:1px solid var(--line); }
+    .nav-inner { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:22px; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:850; font-size:1.13rem; }
+    .brand img { width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.18); box-shadow:0 0 34px rgba(209,60,255,0.28); }
+    .nav-links { display:flex; align-items:center; gap:18px; color:var(--muted); font-size:0.94rem; }
+    .nav-links a:hover { color:var(--text); }
+    .nav-controls { display:flex; align-items:center; gap:12px; }
+    .lang-toggle { display:inline-grid; grid-template-columns: repeat(5, 1fr); min-width: 190px; padding:3px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,0.055); }
+    .lang-toggle button { min-height:34px; border:0; border-radius:999px; background:transparent; color:var(--muted); font:inherit; font-size:0.82rem; font-weight:850; cursor:pointer; }
+    .lang-toggle button[aria-pressed="true"] { background:rgba(209,60,255,0.22); color:var(--text); }
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:46px; padding:0 18px; border-radius:999px; border:1px solid var(--line); background:var(--panel); color:var(--text); font-weight:780; box-shadow:0 10px 30px rgba(0,0,0,0.15); }
+    .btn.primary { border:0; color:#fff; background:linear-gradient(135deg,var(--green),var(--purple)); }
+    .hero { padding:82px 0 52px; }
+    .hero-grid { display:grid; grid-template-columns:1fr 0.85fr; gap:48px; align-items:center; }
+    h1,h2,h3 { margin:0; letter-spacing:-0.045em; line-height:1.05; }
+    h1 { font-size:clamp(3.2rem,7vw,6.2rem); max-width:11ch; }
+    h2 { font-size:clamp(2rem,4.4vw,4rem); margin-bottom:18px; }
+    h3 { font-size:1.18rem; margin-bottom:10px; }
+    .lead { color:var(--muted); font-size:clamp(1.08rem,2.2vw,1.34rem); margin:24px 0 30px; max-width:760px; }
+    section { padding:70px 0; }
+    .section-head { display:grid; grid-template-columns:0.8fr 1.2fr; gap:28px; align-items:end; margin-bottom:24px; }
+    .section-head p { color:var(--muted); margin:0; font-size:1.12rem; }
+    .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .grid-2 { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+    .card { border:1px solid var(--line); border-radius:22px; background:var(--panel); padding:24px; box-shadow:0 12px 36px rgba(0,0,0,0.16); }
+    .card p { color:var(--muted); margin:0; }
+    .icon { width:52px; height:52px; display:grid; place-items:center; border-radius:16px; background:rgba(56,215,210,0.12); border:1px solid var(--line); font-size:1.45rem; margin-bottom:18px; }
+    .feature-map { min-height:360px; display:grid; gap:14px; align-content:center; }
+    .feature-map span { display:flex; align-items:center; gap:10px; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,0.055); padding:14px 16px; color:var(--muted); font-weight:760; }
+    .feature-map span::before { content:""; width:10px; height:10px; border-radius:999px; background:var(--green); box-shadow:0 0 20px var(--green); }
+    .analysis-band { border:1px solid var(--line); border-radius:22px; padding:28px; background:linear-gradient(135deg, rgba(56,215,210,0.12), rgba(209,60,255,0.1)), var(--panel); box-shadow:0 12px 36px rgba(0,0,0,0.16); }
+    .analysis-band h2 { max-width:780px; }
+    .analysis-band .lead { margin-top:0; }
+    .analysis-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:22px 0; }
+    .analysis-item { border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,0.055); padding:18px; }
+    .analysis-item strong { display:block; margin-bottom:8px; }
+    .analysis-item span { color:var(--muted); }
+    .bonus { background:linear-gradient(135deg, rgba(56,215,210,0.12), rgba(115,87,255,0.13)); }
+    .legal { color:var(--muted); font-size:0.86rem; padding:34px 0 44px; border-top:1px solid var(--line); }
+    .site-version { margin-top:14px; font-size:0.76rem; color:rgba(183,188,203,0.72); }
+    .privacy-notice { font-size:0.78rem; color:rgba(183,188,203,0.78); }
+    @media (max-width:900px) { .hero-grid,.section-head,.grid-3,.grid-2,.analysis-grid { grid-template-columns:1fr; } .nav-inner { flex-wrap:wrap; padding:12px 0; } .nav-links { order:3; width:100%; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; } .nav-links::-webkit-scrollbar { display:none; } }
+    @media (max-width:620px) { .wrap { width:min(100% - 24px, var(--max)); } .hero { padding-top:48px; } }
+
+  </style>
+  <link rel="stylesheet" href="assets/site-nav.css?v=3.3.1" />
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="index.html"><img src="assets/djconnect/icon.svg" alt="" aria-hidden="true" /><span>DJConnect</span></a>
+      <div class="nav-links" id="primaryNav" aria-label="Navigatie" data-i18n-attr="aria-label:navLabel">
+        <a href="voice-commands.html" data-i18n="navVoice">Spraak</a>
+        <a href="blog.html" data-i18n="navBlog">Blog</a>
+      </div>
+      <div class="nav-controls">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Menu" data-i18n-attr="aria-label:navMenu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg></button>
+        <div class="lang-toggle" aria-label="Taalkeuze" data-i18n-attr="aria-label:languageToggle">
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+          <button type="button" data-lang="nl" aria-pressed="true">NL</button>
+          <button type="button" data-lang="de" aria-pressed="false">DE</button>
+          <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+          <button type="button" data-lang="es" aria-pressed="false">ES</button>
+        </div>
+        <a class="btn primary" href="start.html" data-i18n="navStart">Aan de slag</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="mainContent">
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <h1 data-i18n="heroTitle">Features</h1>
+          <p class="lead" data-i18n="heroLead">DJConnect combineert muziek aanvragen, Spotify Direct of Music Assistant playback, Home Assistant automation en persoonlijke DJ-feedback in een workflow voor app en device.</p>
+          <a class="btn primary" href="start.html" data-i18n="heroCta">Start installatie</a>
+          <a class="btn" href="platform.html" data-i18n="heroPlatformCta">Bekijk platform overview</a>
+        </div>
+        <div class="card feature-map" aria-label="DJConnect feature overzicht" data-i18n-attr="aria-label:featureMapLabel">
+          <span data-i18n="mapVoice">Vraag muziek aan met stem of interface</span>
+          <span data-i18n="mapOutput">Kies waar je muziek speelt</span>
+          <span data-i18n="mapFeedback">Krijg persoonlijke DJ aankondigingen</span>
+          <span data-i18n="mapClients">Gebruik dezelfde flow op Mac, Windows, iOS, Linux en ESP32</span>
+        </div>
+      </div>
+    </header>
+
+    <section>
+      <div class="wrap analysis-band">
+        <h2 data-i18n="liveAnalysisTitle">Ask DJ Track Insight</h2>
+        <p class="lead" data-i18n="liveAnalysisLead">Vraag “Geef Track Insight voor dit nummer” en Ask DJ duidt de track server-side: genre, subgenre, mood, vibe, energie, intensiteit, productie, instrumentatie, luistercues en visual profile waar context dat ondersteunt.</p>
+        <div class="analysis-grid">
+          <div class="analysis-item"><strong data-i18n="liveAnalysisItem1Title">Read-only</strong><span data-i18n="liveAnalysisItem1Text">Analyse kijkt mee met je huidige track en verandert playback nooit.</span></div>
+          <div class="analysis-item"><strong data-i18n="liveAnalysisItem2Title">Eerlijk over data</strong><span data-i18n="liveAnalysisItem2Text">Geen verzonnen intro, couplet, refrein of drop wanneer exacte secties niet bekend zijn.</span></div>
+          <div class="analysis-item"><strong data-i18n="liveAnalysisItem3Title">Local-first</strong><span data-i18n="liveAnalysisItem3Text">Werkt via je eigen Home Assistant installatie, zonder centrale DJConnect backend voor Track Insight.</span></div>
+          <div class="analysis-item"><strong data-i18n="liveAnalysisItem4Title">Provider-ready</strong><span data-i18n="liveAnalysisItem4Text">Voor huidige playback, meegegeven trackmetadata, taal, realtime mood en artiestmetadata waar beschikbaar.</span></div>
+          <div class="analysis-item"><strong data-i18n="liveAnalysisItem5Title">Transparant</strong><span data-i18n="liveAnalysisItem5Text">Elke analyse kan confidence, source en limitations tonen.</span></div>
+          <div class="analysis-item"><strong data-i18n="liveAnalysisItem6Title">Client-ready</strong><span data-i18n="liveAnalysisItem6Text">Track metadata, summary/full text, genre, mood, production cues, similar tracks en visual profile zijn bedoeld als renderbare output voor apps en clients.</span></div>
+        </div>
+        <a class="btn primary" href="start.html" data-i18n="liveAnalysisCta">Probeer Ask DJ via installatie</a>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap analysis-band">
+        <h2 data-i18n="vibecastTitle">VibeCast</h2>
+        <p class="lead" data-i18n="vibecastLead">VibeCast is een premium-ready DJConnect feed voor Apple clients. Home Assistant blijft de bron van waarheid voor wat er speelt; de backend maakt veilige track-, artiest-, album- en vibe-items voor iOS, macOS en watchOS.</p>
+        <div class="analysis-grid">
+          <div class="analysis-item"><strong data-i18n="vibecastItem1Title">Apple parity</strong><span data-i18n="vibecastItem1Text">macOS en iOS gebruiken hetzelfde endpoint en contract; verschillen mogen alleen presentatie- of capability-driven zijn.</span></div>
+          <div class="analysis-item"><strong data-i18n="vibecastItem2Title">Backend-neutral</strong><span data-i18n="vibecastItem2Text">Spotify Direct, Music Assistant en toekomstige backends lopen via DJConnect backend abstraction, zonder Spotify-only aannames.</span></div>
+          <div class="analysis-item"><strong data-i18n="vibecastItem3Title">Structured text</strong><span data-i18n="vibecastItem3Text">Clients renderen veilige segmenten zoals text, strong, emphasis, magnify, accent, emoji en line_break; geen HTML- of Markdown-parser nodig.</span></div>
+          <div class="analysis-item"><strong data-i18n="vibecastItem4Title">Graceful capability fallback</strong><span data-i18n="vibecastItem4Text">Als een client bijvoorbeeld magnify niet ondersteunt, degradeert de presentatie zonder de betekenis van het item te veranderen.</span></div>
+          <div class="analysis-item"><strong data-i18n="vibecastItem5Title">Polling nu, push later</strong><span data-i18n="vibecastItem5Text">Clients volgen ttl_seconds en poll_after_seconds; WebSocket of push kan later worden toegevoegd zonder contractbreuk.</span></div>
+          <div class="analysis-item"><strong data-i18n="vibecastItem6Title">Veilige disabled states</strong><span data-i18n="vibecastItem6Text">Disabled responses blijven JSON met enabled:false, reason en items:[]; clients tonen nooit ruwe provider-, cache-, decode- of generation errors.</span></div>
+        </div>
+        <a class="btn primary" href="start.html#vibecast" data-i18n="vibecastCta">Bekijk VibeCast contract</a>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <h2 data-i18n="coreTitle">Hoofdfuncties</h2>
+          <p data-i18n="coreLead">De kern van DJConnect is bewust compact: muziek starten, context gebruiken, feedback geven en alle clients centraal koppelen via Home Assistant.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card"><div class="icon">🎙️</div><h3 data-i18n="musicTitle">Muziek aanvragen</h3><p data-i18n="musicText">Vraag een artiest aan met je stem of via de app. DJConnect vertaalt je verzoek naar een concrete muziekactie.</p></article>
+          <article class="card"><div class="icon">💬</div><h3 data-i18n="askDjTitle">Slimme follow-ups</h3><p data-i18n="askDjText">Ask DJ geeft niet alleen antwoord, maar ook acties. Ask DJ works without Music DNA; met opt-in kan Home Assistant compacte Music DNA signalen gebruiken voor persoonlijkere aanbevelingen.</p></article>
+          <article class="card"><div class="icon">◎</div><h3 data-i18n="vibecastCoreTitle">VibeCast feed</h3><p data-i18n="vibecastCoreText">Een first-class Apple client feature voor korte, veilige vibe-items over de huidige playbackcontext, met expliciete macOS/iOS parity.</p></article>
+          <article class="card"><div class="icon">🧬</div><h3 data-i18n="musicDnaTitle">Music DNA is opt-in</h3><p data-i18n="musicDnaText">Music DNA is opt-in en server-side in Home Assistant. Clients zijn renderers; snapshot_history, privacy_dashboard en discovery_feedback komen uit de backend en bevatten geen raw playback history.</p></article>
+          <article class="card"><div class="icon">🪄</div><h3 data-i18n="discoverCoreTitle">Ontdek</h3><p data-i18n="discoverCoreText">Ontdek is backend-owned recommendations, not recently played: Home Assistant ververst ongeveer uurlijks secties met reasons, quality scores, freshness/dedupe en Play Now/negative feedback.</p></article>
+          <article class="card"><div class="icon">📊</div><h3 data-i18n="trackAnalysisTitle">Ask DJ Track Insight</h3><p data-i18n="trackAnalysisText">Laat Ask DJ de huidige track server-side duiden: genre, subgenre, mood, vibe, texture, emotionele toon, energie, danceability, intensiteit, confidence, productie, instrumentatie, arrangement, luistercues, similar tracks en visual profile. Read-only: analyse verandert nooit je playback.</p></article>
+          <article class="card"><div class="icon">▶</div><h3 data-i18n="playbackTitle">Music backend playback</h3><p data-i18n="playbackText">Start, pauzeer en stuur playback naar je gekozen player via Spotify Direct of Music Assistant.</p></article>
+          <article class="card"><div class="icon">🔊</div><h3 data-i18n="speakerTitle">Speaker keuze</h3><p data-i18n="speakerText">Kies bewust waar muziek wordt afgespeeld en kies optioneel een Home Assistant speaker waar Ask DJ als DJ-stem in de kamer doorheen praat.</p></article>
+          <article class="card"><div class="icon">🏠</div><h3 data-i18n="haTitle">Home Assistant hub</h3><p data-i18n="haText">Spotify autorisatie, inclusief je eigen Spotify Developer app en Client ID, voice assist, device-koppeling en clientconfiguratie lopen centraal via Home Assistant.</p></article>
+          <article class="card"><div class="icon">✨</div><h3 data-i18n="announceTitle">DJ-aankondigingen via HA speaker</h3><p data-i18n="announceText">Kies in Home Assistant optioneel een geschikte media_player voor spoken DJ announcements. App-clients kunnen audio op apparaat, apparaat + HA speaker, alleen HA speaker of alleen tekst zetten; Raspberry Pi gebruikt tekst-only of HA speaker.</p></article>
+          <article class="card"><div class="icon">🎙</div><h3 data-i18n="voiceSatelliteTitle">Home Assistant Voice als route</h3><p data-i18n="voiceSatelliteText">DJConnect satellites zijn je apps, Pi, ESP32, Watch en Windows. Home Assistant Voice satellites kunnen de inputzijde zijn via Assist, en de outputzijde als gekozen TTS-speaker voor DJ-aankondigingen.</p></article>
+          <article class="card"><div class="icon">▶</div><h3 data-i18n="spotifyDirectAnnouncementsTitle">Geen Spotify ducking</h3><p data-i18n="spotifyDirectAnnouncementsText">Bij Spotify Direct blijft Spotify playback gewoon doorspelen. DJConnect pauzeert niet, hervat niet en mixt of duckt Spotify-volume niet; de DJ-stem speelt apart via de gekozen Home Assistant speaker.</p></article>
+          <article class="card"><div class="icon">🔐</div><h3 data-i18n="secureTitle">Veilige koppeling</h3><p data-i18n="secureText">Spotify credentials stay in Home Assistant. ESP32 bewaart geen Spotify credentials en krijgt geen Ask DJ chat history.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <h2 data-i18n="interfacesTitle">Interfaces</h2>
+          <p data-i18n="interfacesLead">DJConnect is gemaakt voor meerdere schermen en gebruikssituaties, met dezelfde logica onder water.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card"><div class="icon">💻</div><h3>macOS</h3><p data-i18n="macosText">Desktopbediening voor vaste controle over zoeken, output, playback, status en dezelfde VibeCast-feed als iOS.</p></article>
+          <article class="card"><div class="icon">🪟</div><h3>Windows</h3><p data-i18n="windowsText">Desktopbediening met Ask DJ, playback-acties en veilige tokenopslag in Windows Credential Manager.</p></article>
+          <article class="card"><div class="icon">📱</div><h3>iOS en Apple Watch</h3><p data-i18n="iosText">Mobiele bediening dichtbij: muziek aanvragen, Ask DJ voortzetten, VibeCast tonen, optionele meldingen ontvangen en je Home Assistant koppeling gebruiken.</p></article>
+          <article class="card"><div class="icon">🖥️</div><h3>Linux</h3><p data-i18n="raspberryText">Als vaste app op een klein scherm of dedicated muziekcontroller.</p></article>
+          <article class="card"><div class="icon">🕹️</div><h3>ESP32 device</h3><p data-i18n="espText">Embedded bediening met fysieke interactie, lokaal netwerkgebruik en pairing via Home Assistant.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap grid-2">
+        <article class="card bonus">
+          <div class="icon">🎮</div>
+          <h2 data-i18n="bonusTitle">Bonus: mini-games</h2>
+          <p data-i18n="bonusText">Voor de speelse momenten bevat DJConnect vier mini-games: Paddle Rally, Meteor Run, Sky Dash & Maze Chase.</p>
+        </article>
+        <article class="card">
+          <h2 data-i18n="usersTitle">Voor gebruikers</h2>
+          <p data-i18n="usersText">Begin bij de setup-flow, koppel DJConnect aan Home Assistant, download je app of firmware en gebruik daarna dezelfde muziekworkflow op je favoriete client.</p>
+          <p style="margin-top:18px"><a class="btn primary" href="start.html" data-i18n="usersCta">Aan de slag</a></p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap legal">
+    <p>Copyright Peter van Tol 2026. Released under the MIT License.</p>
+    <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
+    <p><a href="privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="support.html" data-i18n="legalSupport">Support</a></p>
+    <p class="site-version">DJConnect website v3.3.1</p>
+  </footer>
+
+
+  <script src="assets/site-nav.js?v=3.3.1"></script>
+</body>
+<script src="assets/i18n.js?v=3.3.1"></script>
+  <script src="assets/page-translations.js?v=3.3.1"></script>
+<script>
+    const translations = window.DJCONNECT_PAGE_TRANSLATIONS?.["features"] || {};
+  const applyLanguage = (language) => {
+    const dictionary = { ...(window.DJCONNECT_I18N?.shared?.[language] || {}), ...(translations[language] || translations[window.DJCONNECT_I18N?.defaultLanguage || "nl"]) };
+    document.documentElement.lang = language;
+    document.title = dictionary.title;
+    document.querySelector('meta[name="description"]').setAttribute("content", dictionary.metaDescription);
+    document.querySelectorAll("[data-i18n]").forEach((element) => {
+      element.textContent = dictionary[element.getAttribute("data-i18n")] || element.textContent;
+    });
+    document.querySelectorAll("[data-i18n-attr]").forEach((element) => {
+      element.getAttribute("data-i18n-attr").split(",").forEach((mapping) => {
+        const [attribute, key] = mapping.split(":").map((part) => part.trim());
+        if (dictionary[key]) element.setAttribute(attribute, dictionary[key]);
+      });
+    });
+    document.querySelectorAll("[data-lang]").forEach((button) => {
+      button.setAttribute("aria-pressed", String(button.dataset.lang === language));
+    });
+    localStorage.setItem("djconnect-language", language);
+  };
+  document.querySelectorAll("[data-lang]").forEach((button) => {
+    button.addEventListener("click", () => applyLanguage(button.dataset.lang));
+  });
+  applyLanguage(window.DJCONNECT_I18N?.initialLanguage || "nl");
+</script>
+</html>

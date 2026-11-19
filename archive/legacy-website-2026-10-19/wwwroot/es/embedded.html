@@ -1,0 +1,1253 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DJConnect voor ESP32</title>
+  <meta name="description" content="DJConnect voor ESP32: compacte afstandsbediening voor muziek en persoonlijke DJ aankondiging via Home Assistant." />
+  <link rel="canonical" href="https://djconnect.dev/embedded" />
+  <link rel="alternate" hreflang="en" href="https://djconnect.dev/en/embedded.html" />
+  <link rel="alternate" hreflang="nl" href="https://djconnect.dev/embedded.html" />
+  <link rel="alternate" hreflang="de" href="https://djconnect.dev/de/embedded.html" />
+  <link rel="alternate" hreflang="fr" href="https://djconnect.dev/fr/embedded.html" />
+  <link rel="alternate" hreflang="es" href="https://djconnect.dev/es/embedded.html" />
+  <link rel="alternate" hreflang="x-default" href="https://djconnect.dev/embedded.html" />
+  <link rel="icon" href="../assets/djconnect/icon.svg" type="image/svg+xml" />
+  <link rel="icon" href="../assets/djconnect/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="../assets/djconnect/favicon-16.png" sizes="16x16" type="image/png" />
+  <link rel="apple-touch-icon" href="../assets/djconnect/apple-touch-icon.png" />
+  <link rel="manifest" href="../assets/djconnect/site.webmanifest" />
+  <link rel="stylesheet" href="../assets/downloads.css?v=3.3.1" />
+  <style>
+    :root {
+      --bg: #07091c;
+      --panel: rgba(26, 20, 58, 0.74);
+      --panel-strong: rgba(43, 34, 88, 0.82);
+      --text: #f7f3ff;
+      --muted: #aaa4bd;
+      --line: rgba(167, 118, 255, 0.28);
+      --cyan: #38d7d2;
+      --green: #d13cff;
+      --accent-cyan: var(--cyan);
+      --orange: #ff9f1c;
+      --purple: #7357ff;
+      --pink: #a855f7;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+      --radius: 28px;
+      --purple:#7357ff; --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 16% 10%, rgba(56, 215, 210, 0.2), transparent 28rem),
+        radial-gradient(circle at 86% 6%, rgba(209, 60, 255, 0.22), transparent 27rem),
+        radial-gradient(circle at 58% 72%, rgba(115, 87, 255, 0.18), transparent 31rem),
+        linear-gradient(180deg, #07091c 0%, #111a47 52%, #160526 100%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(7, 9, 28, 0.78);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      font-size: 1.15rem;
+    }
+
+    .logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 0 34px rgba(209, 60, 255, 0.28);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .lang-toggle {
+      display: inline-grid;
+      grid-template-columns: repeat(5, 1fr); min-width: 190px;
+      padding: 3px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.055);
+    }
+
+    .lang-toggle button {
+      min-height: 34px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .lang-toggle button[aria-pressed="true"] {
+      background: rgba(209, 60, 255, 0.22);
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--text);
+      font-weight: 750;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      background: var(--panel-strong);
+      border-color: rgba(255, 255, 255, 0.28);
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--cyan), var(--green));
+      color: #ffffff;
+      border: 0;
+    }
+
+    .hero {
+      padding: 86px 0 54px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.02fr 0.98fr;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.06);
+      font-size: 0.9rem;
+      margin-bottom: 22px;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 99px;
+      background: var(--green);
+      box-shadow: 0 0 20px var(--green);
+    }
+
+    h1, h2, h3 { margin: 0; letter-spacing: -0.045em; line-height: 1.04; }
+
+    h1 {
+      font-size: clamp(3.15rem, 8vw, 6.6rem);
+      max-width: 11ch;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4.6vw, 4.2rem);
+      max-width: 15ch;
+      margin-bottom: 18px;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: clamp(1.08rem, 2.2vw, 1.35rem);
+      max-width: 680px;
+      margin: 24px 0 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-top: 18px;
+    }
+
+    .device-card {
+      position: relative;
+      min-height: 590px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(145deg, rgba(167,118,255,0.18), rgba(255,255,255,0.04)),
+        radial-gradient(circle at 50% 10%, rgba(56, 215, 210, 0.22), transparent 18rem);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      padding: 28px;
+    }
+
+    .platform-card {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 18px;
+    }
+
+    .platform-header {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .platform-kicker {
+      color: var(--accent-cyan);
+      font-size: 0.78rem;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .platform-header h2 {
+      font-size: clamp(1.65rem, 3vw, 2.65rem);
+      max-width: 13ch;
+      margin: 0;
+    }
+
+    .platform-header p {
+      color: var(--muted);
+      margin: 8px 0 0;
+      max-width: 330px;
+      font-size: 0.98rem;
+    }
+
+    .platform-tabs {
+      display: inline-grid;
+      grid-template-columns: repeat(3, minmax(68px, 1fr));
+      gap: 4px;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.07);
+    }
+
+    .platform-tabs button {
+      min-height: 34px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .platform-tabs button[aria-selected="true"] {
+      background: rgba(209, 60, 255, 0.22);
+      color: var(--text);
+    }
+
+    .platform-track {
+      display: flex;
+      gap: 22px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      contain: layout paint;
+      scrollbar-width: none;
+      margin: 0 -28px;
+      padding: 4px 28px 14px;
+    }
+
+    .platform-track::-webkit-scrollbar { display: none; }
+
+    .platform-panel {
+      position: relative;
+      flex: 0 0 100%;
+      min-height: 430px;
+      scroll-snap-align: center;
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: center;
+      justify-items: center;
+      overflow: visible;
+      padding: 0 0 4px;
+    }
+
+    .platform-panel::before {
+      content: "";
+      position: absolute;
+      inset: 48px 24px 20px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(56, 215, 210, 0.22), transparent 64%);
+      filter: blur(4px);
+    }
+
+    .platform-copy {
+      position: relative;
+      z-index: 4;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(0,0,0,0.36);
+      backdrop-filter: blur(16px);
+    }
+
+    .platform-copy strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 1.02rem;
+    }
+
+    .platform-copy span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .platform-copy .text-link {
+      display: inline-flex;
+      margin-top: 8px;
+      font-size: 0.9rem;
+    }
+
+    .platform-badge {
+      white-space: nowrap;
+      border-radius: 999px;
+      padding: 7px 10px;
+      background: rgba(30,215,96,0.15);
+      color: #8cf5b0;
+      font-size: 0.76rem;
+      font-weight: 850;
+    }
+
+    .platform-controls {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .platform-arrows {
+      display: flex;
+      gap: 8px;
+    }
+
+    .icon-button {
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+      font: inherit;
+      font-size: 1.35rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .icon-button:hover { background: var(--panel-strong); }
+
+    .platform-dots {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+    }
+
+    .platform-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.28);
+    }
+
+    .platform-dots span[aria-current="true"] {
+      width: 24px;
+      background: var(--accent-cyan);
+    }
+
+    .platform-card .platform-tabs,
+    .platform-card .platform-controls {
+      display: none;
+    }
+
+    .platform-card .platform-track {
+      display: block;
+      overflow: hidden;
+      contain: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .platform-card .platform-panel {
+      display: none;
+    }
+
+    .platform-card .platform-panel:nth-child(3) {
+      display: grid;
+      min-height: 430px;
+    }
+
+    .macbook {
+      position: relative;
+      z-index: 2;
+      width: min(94%, 430px);
+      padding-bottom: 28px;
+    }
+
+    .macbook-screen {
+      aspect-ratio: 1.58;
+      border-radius: 18px 18px 10px 10px;
+      border: 1px solid rgba(255,255,255,0.22);
+      background: linear-gradient(145deg, #1f2937, #05061a 70%);
+      box-shadow: 0 32px 70px rgba(0,0,0,0.46), inset 0 1px 0 rgba(255,255,255,0.18);
+      padding: 14px;
+    }
+
+    .macbook-ui, .ios-ui {
+      height: 100%;
+      border-radius: 10px;
+      background:
+        radial-gradient(circle at 28% 26%, rgba(56, 215, 210, 0.27), transparent 9rem),
+        linear-gradient(180deg, #111a47, #05061a);
+      border: 1px solid rgba(167,118,255,0.18);
+      padding: 16px;
+      display: grid;
+      align-content: space-between;
+    }
+
+    .macbook-base {
+      width: 106%;
+      height: 22px;
+      margin-left: -3%;
+      border-radius: 0 0 28px 28px;
+      background: linear-gradient(180deg, #cbd5e1, #64748b);
+      box-shadow: 0 22px 34px rgba(0,0,0,0.34);
+    }
+
+    .app-window-top {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .app-window-top span {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #a855f7;
+    }
+
+    .app-window-top span:nth-child(2) { background: #ffcf5c; }
+    .app-window-top span:nth-child(3) { background: #d13cff; }
+
+    .equalizer {
+      display: flex;
+      gap: 7px;
+      align-items: end;
+      height: 92px;
+      margin-top: 14px;
+    }
+
+    .equalizer span {
+      flex: 1;
+      border-radius: 999px 999px 8px 8px;
+      background: linear-gradient(180deg, var(--accent-cyan), var(--purple));
+      min-height: 22px;
+    }
+
+    .equalizer span:nth-child(1) { height: 44%; }
+    .equalizer span:nth-child(2) { height: 72%; }
+    .equalizer span:nth-child(3) { height: 55%; }
+    .equalizer span:nth-child(4) { height: 88%; }
+    .equalizer span:nth-child(5) { height: 62%; }
+    .equalizer span:nth-child(6) { height: 76%; }
+
+    .ios-devices {
+      position: relative;
+      z-index: 2;
+      width: min(96%, 420px);
+      min-height: 300px;
+    }
+
+    .ipad, .iphone {
+      position: absolute;
+      border: 1px solid rgba(255,255,255,0.22);
+      background: linear-gradient(145deg, #242452, #05061a 72%);
+      box-shadow: 0 32px 72px rgba(0,0,0,0.42), inset 0 1px 0 rgba(255,255,255,0.16);
+      padding: 14px;
+    }
+
+    .ipad {
+      left: 0;
+      top: 24px;
+      width: 74%;
+      aspect-ratio: 1.34;
+      border-radius: 28px;
+    }
+
+    .iphone {
+      right: 0;
+      top: 0;
+      width: 34%;
+      aspect-ratio: 0.49;
+      border-radius: 30px;
+    }
+
+    .ios-ui {
+      border-radius: 18px;
+      padding: 14px;
+    }
+
+    .iphone .ios-ui { border-radius: 21px; }
+
+    .now-playing {
+      display: grid;
+      gap: 8px;
+    }
+
+    .cover-art {
+      width: 62px;
+      height: 62px;
+      border-radius: 16px;
+      background:
+        linear-gradient(135deg, rgba(56,215,210,0.94), rgba(115,87,255,0.92)),
+        #111a47;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+    }
+
+    .mini-lines {
+      display: grid;
+      gap: 7px;
+    }
+
+    .mini-lines span {
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.24);
+    }
+
+    .mini-lines span:nth-child(2) { width: 68%; }
+
+    .lilygo-frame {
+      position: relative;
+      z-index: 2;
+      width: min(96%, 520px);
+      display: grid;
+      place-items: center;
+      min-height: 260px;
+    }
+
+    .lilygo-frame img {
+      width: min(100%, 520px);
+      filter: drop-shadow(0 36px 70px rgba(0, 0, 0, 0.42));
+    }
+
+    .device {
+      position: absolute;
+      left: 50%;
+      top: 52%;
+      width: min(78%, 360px);
+      aspect-ratio: 0.72;
+      transform: translate(-50%, -50%);
+      border-radius: 34px;
+      background: linear-gradient(155deg, #1f2937, #05061a 64%);
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: 0 36px 80px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.15);
+      padding: 24px;
+    }
+
+    .device-img {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: clamp(460px, 76%, 820px);
+      transform: translate(-50%, -50%);
+      filter: drop-shadow(0 36px 70px rgba(0, 0, 0, 0.42));
+      z-index: 2;
+    }
+
+    .screen {
+      height: 48%;
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 20% 15%, rgba(30,215,96,0.35), transparent 12rem),
+        linear-gradient(180deg, #111a47, #05061a);
+      border: 1px solid rgba(167,118,255,0.28);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .screen-title { color: var(--muted); font-size: 0.82rem; }
+    .screen-song { font-size: 1.35rem; font-weight: 850; letter-spacing: -0.03em; }
+    .screen-dj { color: var(--accent-cyan); font-size: 0.92rem; }
+
+    .controls {
+      height: 52%;
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .ring {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      border: 14px solid rgba(56, 215, 210, 0.82);
+      box-shadow: 0 0 42px rgba(123, 92, 255, 0.42), inset 0 0 30px rgba(56, 215, 210, 0.14);
+      display: grid;
+      place-items: center;
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+
+    .button-core {
+      width: 82px;
+      height: 82px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #f9fafb, #9ca3af);
+      color: #111a47;
+      display: grid;
+      place-items: center;
+      font-size: 1.8rem;
+      box-shadow: inset 0 2px 0 rgba(255,255,255,0.8), 0 18px 36px rgba(0,0,0,0.35);
+    }
+
+    @keyframes pulse {
+      0%, 100% { filter: hue-rotate(0deg); transform: scale(1); }
+      50% { filter: hue-rotate(50deg); transform: scale(1.035); }
+    }
+
+    .floating {
+      position: absolute;
+      z-index: 3;
+      width: clamp(168px, 27%, 300px);
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(16px);
+      border-radius: 18px;
+      padding: 14px 16px;
+      box-shadow: var(--shadow);
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .floating strong { color: var(--text); display: block; }
+    .f1 { left: 32px; top: 38px; }
+    .f2 { right: 32px; top: 38px; }
+    .f3 { left: 32px; bottom: 42px; }
+    .f4 { right: 32px; bottom: 42px; }
+
+    section { padding: 72px 0; }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 28px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0;
+      font-size: 1.04rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .section-followup { margin-top: 18px; }
+
+    .grid-2 > *,
+    .quick li > * {
+      min-width: 0;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--panel);
+      padding: 24px;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.16);
+    }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      font-size: 1.45rem;
+      margin-bottom: 18px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid var(--line);
+    }
+
+    .card p, .muted { color: var(--muted); margin: 0; }
+
+    .muted,
+    .text-link {
+      overflow-wrap: anywhere;
+    }
+
+    .text-link {
+      color: var(--accent-cyan);
+      font-weight: 800;
+      text-decoration: underline;
+      text-decoration-color: rgba(56, 215, 210, 0.45);
+      text-underline-offset: 4px;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .flow-step {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.11), rgba(255,255,255,0.04));
+      padding: 20px;
+      min-height: 160px;
+    }
+
+    .flow-step:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      right: -14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: var(--accent-cyan);
+      color: #06120a;
+      font-weight: 900;
+      z-index: 2;
+    }
+
+    .num {
+      color: var(--accent-cyan);
+      font-weight: 900;
+      margin-bottom: 36px;
+    }
+
+    .quick {
+      counter-reset: steps;
+      display: grid;
+      gap: 14px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .quick li {
+      list-style: none;
+      counter-increment: steps;
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(255,255,255,0.055);
+    }
+
+    .quick li::before {
+      content: counter(steps);
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: var(--accent-cyan);
+      color: #ffffff;
+      font-weight: 950;
+      font-size: 1.2rem;
+    }
+
+    .quick h3 { margin-top: 2px; }
+
+    .requirements {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .req {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 18px;
+      background: rgba(255,255,255,0.055);
+    }
+
+    .req .tag {
+      display: inline-flex;
+      margin-bottom: 10px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(30,215,96,0.15);
+      color: #d13cff;
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .req.optional .tag { background: rgba(56,189,248,0.16); color: #8ee3ff; }
+    .req.warning .tag { background: rgba(255,159,28,0.18); color: #ffc66d; }
+
+    .callout {
+      border-radius: var(--radius);
+      padding: 34px;
+      background:
+        linear-gradient(135deg, rgba(30,215,96,0.24), rgba(56,189,248,0.12)),
+        rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.18);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    .legal {
+      color: var(--muted);
+      font-size: 0.86rem;
+      padding: 34px 0 44px;
+      border-top: 1px solid var(--line);
+    }
+
+    .site-version {
+      margin-top: 14px;
+      font-size: 0.76rem;
+      color: rgba(183, 188, 203, 0.72);
+    }
+    .privacy-notice {
+      font-size: 0.78rem;
+      color: rgba(183, 188, 203, 0.78);
+    }
+
+    code {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 2px 7px;
+      color: #d9fbe5;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid, .grid-2, .section-head, .callout { grid-template-columns: 1fr; }
+      .grid-3, .requirements { grid-template-columns: repeat(2, 1fr); }
+      .flow { grid-template-columns: 1fr; }
+      .flow-step:not(:last-child)::after {
+        content: "↓";
+        right: 50%;
+        top: auto;
+        bottom: -14px;
+        transform: translateX(50%);
+      }
+      .device-card { min-height: 520px; }
+      .floating { width: clamp(150px, 29%, 240px); }
+      .device-img { top: 50%; width: clamp(410px, 82%, 700px); }
+      .platform-header { flex-direction: column; }
+      .platform-header h2 { max-width: 16ch; }
+      .platform-tabs { width: 100%; }
+      .platform-panel { min-height: 368px; }
+      .nav-inner { flex-wrap: wrap; padding: 12px 0; }
+      .nav-links {
+        order: 3;
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 4px;
+        scrollbar-width: none;
+      }
+      .nav-links::-webkit-scrollbar { display: none; }
+    }
+
+    @media (max-width: 620px) {
+      .wrap {
+        width: calc(100vw - 40px);
+        max-width: var(--max);
+      }
+      .hero { padding-top: 48px; }
+      .grid-3, .requirements { grid-template-columns: 1fr; }
+      .device-card { min-height: 460px; padding: 18px; }
+      .floating { display: none; }
+      .device { width: 88%; }
+      .platform-card { gap: 14px; }
+      .platform-track { margin: 0 -18px; padding: 0 18px 12px; }
+      .platform-panel { min-height: 356px; }
+      .platform-copy {
+        grid-template-columns: 1fr;
+        align-items: start;
+        padding: 14px;
+      }
+      .macbook { width: 96%; }
+      .ios-devices { min-height: 270px; }
+      .lilygo-frame { min-height: 274px; }
+      .lilygo-frame img { width: min(100%, 420px); }
+      .callout { padding: 24px; }
+      .nav-inner { gap: 10px; }
+      .nav-controls .btn { display: none; }
+    }
+
+  </style>
+  <link rel="stylesheet" href="../assets/site-nav.css?v=3.3.1" />
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Direct naar inhoud</a>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../index.html" aria-label="DJConnect home">
+        <img class="logo" src="../assets/djconnect/icon.svg" alt="" aria-hidden="true" />
+        <span>DJConnect</span>
+      </a>
+      <div class="nav-links" id="primaryNav" aria-label="Navigatie" data-i18n-attr="aria-label:navLabel">
+        <a href="../index.html" data-i18n="navHome">Home</a>
+        <a href="../index.html#apps" data-i18n="navPlatform">Platform</a>
+        <a href="#hardware" data-i18n="navHardware">Hardware</a>
+        <a href="#releases" data-i18n="navReleases">Download</a>
+      </div>
+      <div class="nav-controls">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Menu" data-i18n-attr="aria-label:navMenu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg></button>
+        <div class="lang-toggle" aria-label="Taalkeuze" data-i18n-attr="aria-label:languageToggle">
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+          <button type="button" data-lang="nl" aria-pressed="true">NL</button>
+          <button type="button" data-lang="de" aria-pressed="false">DE</button>
+          <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+          <button type="button" data-lang="es" aria-pressed="false">ES</button>
+        </div>
+        <a class="btn primary" href="#releases" data-i18n="navStartSetup">Download</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="mainContent">
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <h1 data-i18n="heroTitle">DJConnect voor ESP32</h1>
+          <p class="lead" data-i18n="heroLead">Pak het device uit, koppel het met Home Assistant en vraag met één druk op de knop om de muziek die je wilt horen. DJConnect start de muziek en geeft een korte DJ-reactie terug.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#releases" data-i18n="heroPrimary">Download</a>
+            <a class="btn" href="#hardware" data-i18n="heroSecondary">Bekijk hardware</a>
+          </div>
+          <p class="note" data-i18n="heroNote">Download de firmware, flash je ondersteunde ESP32-device en koppel daarna met Home Assistant.</p>
+        </div>
+
+        <div class="device-card platform-card" aria-label="DJConnect platformen" data-platform-carousel data-i18n-attr="aria-label:platformVisualLabel">
+          <div class="platform-header">
+            <div>
+              <div class="platform-kicker" data-i18n="platformKicker">Beschikbaar voor</div>
+              <h2 data-i18n="platformTitle">DJConnect op elk scherm</h2>
+              <p data-i18n="platformLead">Gebruik DJConnect als desktopbediening, mobiele afstandsbediening of compact ESP32-device.</p>
+            </div>
+            <div class="platform-tabs" role="tablist" aria-label="Platformkeuze" data-i18n-attr="aria-label:platformTabsLabel">
+              <button type="button" role="tab" aria-selected="true" data-platform-tab="0">macOS</button>
+              <button type="button" role="tab" aria-selected="false" data-platform-tab="1">iOS</button>
+              <button type="button" role="tab" aria-selected="false" data-platform-tab="2">ESP32</button>
+            </div>
+          </div>
+
+          <div class="platform-track" data-platform-track tabindex="0" aria-label="Platform panels" data-i18n-attr="aria-label:platformTrackLabel">
+            <article class="platform-panel" role="tabpanel" aria-label="macOS">
+              <div class="macbook" aria-hidden="true">
+                <div class="macbook-screen">
+                  <div class="macbook-ui">
+                    <div>
+                      <div class="app-window-top"><span></span><span></span><span></span></div>
+                      <strong>DJConnect</strong>
+                      <p class="muted" data-i18n="macVisualText">Speel, vraag aan en ontvang een persoonlijke DJ-aankondiging.</p>
+                    </div>
+                    <div class="equalizer"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                  </div>
+                </div>
+                <div class="macbook-base"></div>
+              </div>
+              <div class="platform-copy">
+                <div><strong data-i18n="macTitle">macOS app</strong><span data-i18n="macText">Voor vaste bediening op je Mac: zoeken, starten en beheren zonder Home Assistant te openen.</span></div>
+                <div class="platform-badge" data-i18n="macBadge">Desktop</div>
+              </div>
+            </article>
+
+            <article class="platform-panel" role="tabpanel" aria-label="iOS">
+              <div class="ios-devices" aria-hidden="true">
+                <div class="ipad">
+                  <div class="ios-ui">
+                    <div class="now-playing">
+                      <div class="cover-art"></div>
+                      <strong>Friday mix</strong>
+                      <div class="mini-lines"><span></span><span></span></div>
+                    </div>
+                    <p class="muted" data-i18n="iosVisualText">Tik, praat en stuur muziek naar je speakers.</p>
+                  </div>
+                </div>
+                <div class="iphone">
+                  <div class="ios-ui">
+                    <div class="cover-art"></div>
+                    <div class="mini-lines"><span></span><span></span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="platform-copy">
+                <div><strong data-i18n="iosTitle">iPhone en iPad</strong><span data-i18n="iosText">Een snelle companion voor bank, keuken of studio: remote control, voice prompts en feedback dichtbij.</span></div>
+                <div class="platform-badge" data-i18n="iosBadge">Mobiel</div>
+              </div>
+            </article>
+
+            <article class="platform-panel" role="tabpanel" aria-label="ESP32">
+              <div class="lilygo-frame">
+                <img
+                  src="../assets/lilygo-t-embed-djconnect.svg"
+                  alt="DJConnect ESP32 device op basis van de LilyGO T-Embed vormfactor"
+                  data-i18n-attr="alt:deviceImageAlt,src:deviceImageSrc"
+                />
+              </div>
+              <div class="platform-copy">
+                <div>
+                  <strong data-i18n="espTitle">Embedded ESP32-device</strong>
+                  <span data-i18n="espText">Een ondersteund ESP32-device voor push-to-talk, wake word, displayfeedback en OTA-updates.</span>
+                  <a class="text-link" href="https://lilygo.cc/en-us/products/t-embed-cc1101" target="_blank" rel="noopener" data-i18n="espSpecsLink">LilyGO productspecificaties</a>
+                </div>
+                <div class="platform-badge" data-i18n="espBadge">Hardware</div>
+              </div>
+            </article>
+          </div>
+
+          <div class="platform-controls">
+            <div class="platform-dots" aria-hidden="true"><span aria-current="true"></span><span></span><span></span></div>
+            <div class="platform-arrows">
+              <button class="icon-button" type="button" data-platform-prev aria-label="Vorige platform" data-i18n-attr="aria-label:platformPrevLabel">‹</button>
+              <button class="icon-button" type="button" data-platform-next aria-label="Volgende platform" data-i18n-attr="aria-label:platformNextLabel">›</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="hardware">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2 data-i18n="hardwareTitle">Ondersteunde hardware</h2>
+          </div>
+          <p data-i18n="hardwareLead">DJConnect richt zich op compacte ESP32-S3 devices met display, audio en lokale bediening.</p>
+        </div>
+        <div class="grid-2">
+          <article class="card">
+            <div class="icon">📟</div>
+            <h3>LilyGO T-Embed CC1101</h3>
+            <p data-i18n="hardwareLilygoText">Compacte ESP32-S3 formfactor met display en fysieke bediening. Geschikt voor een dedicated DJConnect device.</p>
+            <p><a class="text-link" href="https://lilygo.cc/en-us/products/t-embed-cc1101" target="_blank" rel="noopener" data-i18n="hardwareProductLink">Bekijk productpagina</a></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2 data-i18n="howTitle">Hoe het werkt</h2>
+          </div>
+          <p data-i18n="howLead">Je hoeft dit niet te onthouden, maar het idee is simpel: het device luistert lokaal, Home Assistant doet het slimme werk.</p>
+        </div>
+        <div class="flow">
+          <div class="flow-step"><div class="num">01</div><h3 data-i18n="flow1Title">Druk</h3><p class="muted" data-i18n="flow1Text">Gebruik de middelste knop.</p></div>
+          <div class="flow-step"><div class="num">02</div><h3 data-i18n="flow2Title">Spreek</h3><p class="muted" data-i18n="flow2Text">Vraag via push-to-talk of wake word "Okay Nabu" om de volgende artiest.</p></div>
+          <div class="flow-step"><div class="num">03</div><h3 data-i18n="flow3Title">Home Assistant</h3><p class="muted" data-i18n="flow3Text">Herkent je stem en stuurt muziek aan.</p></div>
+          <div class="flow-step"><div class="num">04</div><h3 data-i18n="flow4Title">Muziek</h3><p class="muted" data-i18n="flow4Text">Playback loopt via je gekozen muziekapparaat.</p></div>
+          <div class="flow-step"><div class="num">05</div><h3 data-i18n="flow5Title">Antwoord</h3><p class="muted" data-i18n="flow5Text">DJConnect toont en spreekt een korte DJ-reactie.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="releases">
+      <div class="wrap grid-2">
+        <div>
+          <h2 data-i18n="releaseTitle">Laatste versie</h2>
+        </div>
+        <div class="download-list" data-github-downloads data-github-owner="pcvantol" data-github-repo="djconnect-firmware" data-release-limit="1"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="wrap legal">
+    <p data-i18n="legalCopyright">Copyright Peter van Tol 2026. Released under the MIT License. DJConnect firmware and apps may be distributed separately.</p>
+    <p data-i18n="legalSpotify">Spotify is a trademark of Spotify AB. DJConnect is not affiliated with, endorsed by, or sponsored by Spotify AB. Home Assistant and HACS are referenced for integration compatibility.</p>
+    <p class="privacy-notice" data-i18n="legalPrivacy">Privacy: DJConnect bewaart accounttokens en koppelgegevens in de app of Home Assistant. Deze website ontvangt of bewaart geen accountgegevens.</p>
+    <p><a href="../privacy.html" data-i18n="legalPrivacyLink">Privacy Policy</a> · <a href="../support.html" data-i18n="legalSupport">Support</a></p>
+    <p class="site-version">DJConnect website v3.3.1</p>
+  </footer>
+
+  <script src="../assets/i18n.js?v=3.3.1"></script>
+  <script src="../assets/page-translations.js?v=3.3.1"></script>
+
+  <script>
+    const translations = window.DJCONNECT_PAGE_TRANSLATIONS?.["embedded"] || {};
+
+    const getInitialLanguage = () => window.DJCONNECT_I18N?.initialLanguage || "nl";
+
+    const applyLanguage = (language) => {
+      const copy = { ...(window.DJCONNECT_I18N?.shared?.[language] || {}), ...(translations[language] || translations[window.DJCONNECT_I18N?.defaultLanguage || "nl"]) };
+      document.documentElement.lang = language;
+      document.title = copy.title;
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) metaDescription.setAttribute("content", copy.metaDescription);
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.getAttribute("data-i18n");
+        if (copy[key]) element.textContent = copy[key];
+      });
+      document.querySelectorAll("[data-i18n-attr]").forEach((element) => {
+        element.getAttribute("data-i18n-attr").split(",").forEach((mapping) => {
+          const [attribute, key] = mapping.split(":").map((part) => part.trim());
+          if (attribute && key && copy[key]) element.setAttribute(attribute, copy[key]);
+        });
+      });
+      document.querySelectorAll("[data-lang]").forEach((button) => {
+        button.setAttribute("aria-pressed", button.getAttribute("data-lang") === language ? "true" : "false");
+      });
+      localStorage.setItem("djconnect-language", language);
+    };
+
+    document.querySelectorAll("[data-lang]").forEach((button) => {
+      button.addEventListener("click", () => applyLanguage(button.getAttribute("data-lang")));
+    });
+
+    document.querySelectorAll("[data-platform-carousel]").forEach((carousel) => {
+      const track = carousel.querySelector("[data-platform-track]");
+      const tabs = [...carousel.querySelectorAll("[data-platform-tab]")];
+      const panels = [...carousel.querySelectorAll(".platform-panel")];
+      const dots = [...carousel.querySelectorAll(".platform-dots span")];
+      const previous = carousel.querySelector("[data-platform-prev]");
+      const next = carousel.querySelector("[data-platform-next]");
+      let activeIndex = 0;
+
+      const setActive = (index, shouldScroll = true) => {
+        activeIndex = Math.max(0, Math.min(index, panels.length - 1));
+        tabs.forEach((tab, tabIndex) => tab.setAttribute("aria-selected", tabIndex === activeIndex ? "true" : "false"));
+        dots.forEach((dot, dotIndex) => dot.setAttribute("aria-current", dotIndex === activeIndex ? "true" : "false"));
+        if (shouldScroll && panels[activeIndex]) {
+          panels[activeIndex].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+        }
+      };
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => setActive(Number(tab.getAttribute("data-platform-tab"))));
+      });
+
+      previous.addEventListener("click", () => setActive((activeIndex + panels.length - 1) % panels.length));
+      next.addEventListener("click", () => setActive((activeIndex + 1) % panels.length));
+
+      track.addEventListener("scroll", () => {
+        const panelWidth = panels[0] ? panels[0].getBoundingClientRect().width : 1;
+        const index = Math.round(track.scrollLeft / panelWidth);
+        if (index !== activeIndex) setActive(index, false);
+      }, { passive: true });
+    });
+
+    applyLanguage(getInitialLanguage());
+
+  </script>
+  <script src="../assets/downloads.js?v=3.3.1"></script>
+
+  <script src="../assets/site-nav.js?v=3.3.1"></script>
+</body>
+</html>

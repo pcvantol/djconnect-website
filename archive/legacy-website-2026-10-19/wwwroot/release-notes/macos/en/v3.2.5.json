@@ -1,0 +1,7 @@
+{
+  "version": "3.2.5",
+  "platform": "macos",
+  "language": "en",
+  "name": "DJConnect macOS 3.2.5",
+  "body": "# DJConnect App 3.2.5\n\n- iPhone and Apple Watch pairing now each show only their own QR action, with\n  manual entry as the fallback.\n- Apple Watch pairing is clearer: iPhone and Watch now explicitly show that the\n  Apple Watch is paired after completion.\n- The Music DNA opt-in sheet now matches the calmer Share Feedback sheet style.\n- Track Insight shows a lock icon next to the privacy footer, and log line\n  numbers are muted light gray.\n\n---\n\nPlatform: macOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nFor normal macOS distribution, prefer the notarized Developer ID build when attached."
+}

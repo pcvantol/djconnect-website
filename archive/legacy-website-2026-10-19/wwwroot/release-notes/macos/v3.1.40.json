@@ -1,0 +1,7 @@
+{
+  "version": "3.1.40",
+  "platform": "macos",
+  "language": "en",
+  "name": "DJConnect macOS 3.1.40",
+  "body": "\n### Added\n\n- Refined the Ask DJ presentation with larger live chat bubbles, now-playing\n  artwork, and automated demo screenshot coverage.\n\n\n---\n\nPlatform: macOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nFor normal macOS distribution, prefer the notarized Developer ID build when attached."
+}

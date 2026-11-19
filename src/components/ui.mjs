@@ -1,0 +1,43 @@
+import {languageNames,languages} from '../locales/catalog.mjs';
+import {route} from '../pages/registry.mjs';
+const languageMenuOrder = ['en', ...languages.filter(locale => locale !== 'en')];
+export const escape = value => String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+export const GlassSurface = (content,classes='') => `<div class="glass ${classes}">${content}</div>`;
+export const Button = (label,href,secondary=false) => `<a class="button ${secondary?'button-secondary':''}" href="${escape(href)}">${escape(label)}<span aria-hidden="true">↗</span></a>`;
+export const BrandLockup = (locale) => `<a class="brand" href="${route(locale)}" aria-label="DJCONNECT"><img src="/assets/brand/wordmark-compact-dark.png" width="173" height="45" alt="" fetchpriority="high"></a>`;
+export const LanguageSwitcher = ({locale,slug,t}) => `<details class="languages glass"><summary aria-label="${escape(t['language.label'])}"><span aria-hidden="true">◎</span> ${locale.toUpperCase()} <span aria-hidden="true">⌄</span></summary><nav aria-label="${escape(t['language.label'])}" class="language-options glass">${languageMenuOrder.map(l=>`<a lang="${l}" hreflang="${l}" href="${route(l,slug)}"${l===locale?' aria-current="page"':''}>${languageNames[l]}<span aria-hidden="true">${l===locale?'✓':''}</span></a>`).join('')}</nav></details>`;
+export const MobileOverlayMenu = ({locale,t}) => `<dialog id="site-menu" class="menu-dialog glass" aria-label="${escape(t['menu.open'])}"><div class="menu-top"><span>DJCONNECT</span><button class="icon-button" data-menu-close aria-label="${escape(t['menu.close'])}">×</button></div><nav>${[['', 'nav.home'],['#moment','moment.label'],['#vibe','vibe.label'],['#vibecast','cast.label'],['start','cta.start']].map(([slug,key])=>`<a href="${route(locale,slug)}">${escape(t[key])}<span aria-hidden="true">↗</span></a>`).join('')}</nav></dialog>`;
+export const SiteHeader = c => `<header class="site-header">${BrandLockup(c.locale)}<div class="header-actions">${LanguageSwitcher(c)}<button class="icon-button glass" data-menu-open aria-haspopup="dialog" aria-controls="site-menu" aria-expanded="false" aria-label="${escape(c.t['menu.open'])}"><span class="menu-lines" aria-hidden="true"></span></button></div></header>${MobileOverlayMenu(c)}`;
+export const SiteFooter = ({locale,t,version,commit}) => `<footer class="site-footer"><span>${escape(t['footer.version'])} ${escape(version)}${commit?` <span data-build-commit>(${escape(commit.slice(0,8))})</span>`:''}</span><a href="${route(locale,'privacy')}">${escape(t['nav.privacy'])}</a><a href="${route(locale,'support')}">${escape(t['nav.support'])}</a></footer>`;
+export const Picture = (name,alt,hero=false,[width,height]=[1536,1024]) => `<picture><source type="image/webp" srcset="/assets/artwork/${name}-480.webp 480w, /assets/artwork/${name}-800.webp 800w, /assets/artwork/${name}-1280.webp 1280w" sizes="(min-width: 900px) 55vw, 100vw"><img src="/assets/artwork/${name}-800.webp" width="${width}" height="${height}" alt="${escape(alt)}" ${hero?'fetchpriority="high"':'loading="lazy"'} decoding="async"></picture>`;
+// Invented tracks and artists. These entries never represent a real playback queue.
+const horizonDemo = {
+ Chill:[['Soft Focus','Mira Fallow'],['Blue Hour Air','Luma Fenwick']],
+ Groove:[['Afterglow Avenue','The Amber Weft'],['Pocket of Light','Nilo Wax']],
+ Energy:[['Signal Bloom','Kinetic Juniper'],['High Voltage Sky','Kite Current']],
+ Party:[['Midnight Confetti','Neon Tern Club'],['One More Orbit','Prism Parcel']],
+};
+export const HorizonPreview = t => `<div class="mood-preview horizon-preview glass" data-mood="chill" role="region" aria-labelledby="horizon-title"><div class="horizon-meta"><h3 id="horizon-title">Horizon <span>· ±15 min</span></h3><span class="horizon-badge">${escape(t['horizon.fiction'])}</span></div>${Picture('horizon',t['alt.vibe'],false,[2172,724])}<div class="mood-controls glass" role="group" aria-label="${escape(t['mood.label'])}">${Object.keys(horizonDemo).map((m,i)=>`<button type="button" data-mood-choice="${m.toLowerCase()}" aria-label="${escape(t['mood.'+m.toLowerCase()])}" aria-pressed="${i===0}"><span class="mood-dot mood-${m.toLowerCase()}" aria-hidden="true"></span>${m}</button>`).join('')}</div><div class="horizon-demo" aria-live="polite" aria-atomic="true">${Object.entries(horizonDemo).map(([m,tracks],i)=>`<ol class="horizon-queue" data-horizon-mood="${m.toLowerCase()}"${i?' hidden':''}>${tracks.map(([title,artist],j)=>`<li><span class="horizon-step">${escape(t[j?'horizon.next':'horizon.now'])}</span><strong>${escape(title)}</strong><span>${escape(artist)}</span></li>`).join('')}</ol>`).join('')}</div></div>`;
+export const DJMomentPreview = t => `<div class="moment-preview">${Picture('moment',t['alt.moment'])}${GlassSurface(`<span class="eyebrow">${escape(t['moment.ask'])}</span><p class="question">${escape(t['moment.question'])}</p><p class="answer">${escape(t['moment.answer'])}</p><span class="example">${escape(t['moment.example'])}</span>`,'moment-conversation')}</div>`;
+export const VibeCastPreview = t => `<div class="cast-preview">${Picture('cast',t['alt.cast'])}</div>`;
+
+const characterIcons = {
+ home:'<path d="m3 10 9-7 9 7M5 9v12h5v-6h4v6h5V9"/>',
+ radio:'<rect x="3" y="7" width="18" height="14" rx="2"/><path d="m4 7 12-4m1 8h1m-1 5h1"/><circle cx="9" cy="14" r="3"/>',
+ club:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2"/><path d="M7 12a5 5 0 0 1 5-5m5 5a5 5 0 0 1-5 5"/>',
+ festival:'<circle cx="16.5" cy="7.5" r="4"/><path d="m14 10-9 10-1-1 9-10m1-4 5 5"/>',
+};
+export const DJCharacterPreview = t => {
+ const characters=Object.keys(characterIcons);
+ const name=id=>escape(t[`character.${id}`]);
+ const choices=characters.map((id,i)=>`<button type="button" data-character-choice="${id}" aria-pressed="${i===0}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${characterIcons[id]}</svg><span>${name(id)}</span></button>`).join('');
+ const art=characters.map((id,i)=>`<div data-character-art="${id}"${i?' hidden':''}>${Picture(`character-${id}`,'',false,[1280,512])}</div>`).join('');
+ const descriptions=characters.map((id,i)=>`<p data-character-description="${id}"${i?' hidden':''}><strong>${name(id)}</strong> ${escape(t[`character.${id}.description`])}</p>`).join('');
+ return `<div class="character-preview glass" role="region" aria-labelledby="character-title">
+ <h3 id="character-title">${escape(t['character.title'])}</h3>
+ <p class="character-lead">${escape(t['character.lead'])}</p>
+ <div class="character-controls glass" role="group" aria-labelledby="character-title">${choices}</div>
+ <div class="character-art">${art}</div>
+ <div class="character-description" aria-live="polite" aria-atomic="true">${descriptions}</div>
+ </div>`;
+};

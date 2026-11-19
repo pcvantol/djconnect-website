@@ -1,0 +1,7 @@
+{
+  "version": "3.2.22",
+  "platform": "macos",
+  "language": "nl",
+  "name": "DJConnect macOS 3.2.22",
+  "body": "# DJConnect App 3.2.22\n\n## Toegevoegd\n\n- Dark en tinted app-icon ondersteuning toegevoegd voor iOS.\n- Haptic feedback toegevoegd voor Mood-wissels, afspelen starten, wachtrij,\n  playlists, Ontdek Speel nu en Ask DJ acties.\n\n## Gewijzigd\n\n- Widgets en visuele accenten volgen de gekozen Mood nu consistenter.\n- De Mood-uitleg is aangescherpt in alle ondersteunde talen.\n- App-iconen gebruiken nu aparte iOS-, macOS- en watchOS-assetsets.\n- Track Insight houdt de Mood-gestuurde visuals, maar krijgt geen extra haptic\n  tik bij openen of analyseren.\n\n## Opgelost\n\n- De offline Wi-Fi link opent niet meer de DJConnect app-instellingen als\n  fallback.\n\n---\n\nPlatform: macOS\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nVoor normale macOS-distributie heeft de genotariseerde Developer ID-build de voorkeur wanneer die is bijgevoegd."
+}

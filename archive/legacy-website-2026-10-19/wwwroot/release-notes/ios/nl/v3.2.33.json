@@ -1,0 +1,7 @@
+{
+  "version": "3.2.33",
+  "platform": "ios",
+  "language": "nl",
+  "name": "DJConnect iOS 3.2.33",
+  "body": "# DJConnect App 3.2.33\n\n## Opgelost\n\n- De lokale Node contract-e2e fixture is bijgewerkt en test de oude Home\n  Assistant-route `/push/bootstrap` niet meer. Pushregistratie sluit nu aan op\n  de actuele Central trusted-issuer bootstrapflow voor Apple-clients.\n\n---\n\nPlatform: iOS\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nNiet-ondertekende iOS-binaries worden hier gepubliceerd voor diagnostics en interne validatie. Gebruik voor normale iOS-distributie TestFlight/App Store."
+}

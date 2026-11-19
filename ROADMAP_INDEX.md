@@ -21,7 +21,7 @@ Published source: `1253e1853f91ae1c938f009677618732ed62a5ca`.
 Delivered capability: `DJC-WEBSITE-PREMIUM-CLEAN-REBUILD-V2`, canonical [#62](https://github.com/pcvantol/djconnect-website/issues/62), lane [#59](https://github.com/pcvantol/djconnect-website/issues/59).
 Release state: **MERGED_RECONCILED**; last completed delivery workspace result: **WORKSPACE_READY**.
 
-Website increment #62 is delivered. This repository owns public presentation, localized onboarding/support and website release projections. The central portfolio remains [Core #1101](https://github.com/pcvantol/djconnect/issues/1101); this index does not duplicate or select its backlog.
+Website increment #62 is delivered. This repository owns public presentation, localized onboarding/support and website release projections. The central portfolio remains [Core #1101](https://github.com/djconnect-music-dj/djconnect/issues/1101); this index does not duplicate or select its backlog.
 
 The artifact uses platform train `4.0` / `INTERNAL_RELEASE`. Website 4.0.0 acceptance does not qualify a stable overall Platform 4.0, Apple/backend release or other consumer.
 

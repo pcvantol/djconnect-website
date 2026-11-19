@@ -1,6 +1,6 @@
 # DJConnect Brand V2
 
-Owner-approved glass-headphones identity, [Core #1223](https://github.com/pcvantol/djconnect/issues/1223).
+Owner-approved glass-headphones identity, [Core #1223](https://github.com/djconnect-music-dj/djconnect/issues/1223).
 Exact English tagline: **Your music. Your DJ.**
 
 ## Source and semantic variants
@@ -99,10 +99,10 @@ Consumers must pin the reviewed protected Core producer commit and archive/manif
 hashes, then explicitly record acceptance before rollout. Do not pin `main` URLs
 or the earlier incomplete icon-only ZIP as an accepted native/Website handoff.
 
-Apple [#138](https://github.com/pcvantol/djconnect-app/issues/138) owns actual native
+Apple [#138](https://github.com/djconnect-music-dj/djconnect-app/issues/138) owns actual native
 catalogs, platform masks/dark/tinted handling,16–40px native legibility, wrappers,
 accessibility and five-language tagline presentation. Website
-[#62](https://github.com/pcvantol/djconnect-website/issues/62) owns favicon/OG/site
+[#62](https://github.com/djconnect-music-dj/djconnect-website/issues/62) owns favicon/OG/site
 wordmark and published proof. Neither consumer repository is mutated by this recipe.
 The source contact sheet does not qualify installed HA, Apple native or Website UI.
 Protected Core review/CI, exact-main reconciliation, consumer acceptance and any

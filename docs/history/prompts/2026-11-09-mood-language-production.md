@@ -1,0 +1,3 @@
+# Mood animation, English-first menu and production rollout — 2026-11-09
+
+The owner asked that the artwork change colour and move with the selected mood, then that English be first in the language menu, then explicitly asked to merge and roll out to production. Use the existing Website writer and protected path. Preserve localized routes, the archive, operational and security contracts, version 4.0.0, and all other writers. The source increment is PR76; Finalization changes records only. The exact published SHA and acceptance must come from real artifact, deployment and live smoke evidence. No other product, repo or system is in scope.

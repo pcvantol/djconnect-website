@@ -1,0 +1,7 @@
+{
+  "version": "3.2.30",
+  "platform": "ios",
+  "language": "de",
+  "name": "DJConnect iOS 3.2.30",
+  "body": "# DJConnect App 3.2.30\n\n## Geändert\n\n- Info zeigt jetzt einen datenschutzsicheren Status für Push-Mitteilungen im\n  Bereich Verbindung auf iOS, macOS und watchOS: registriert, nicht aktiv, nicht\n  unterstützt oder Aktion erforderlich, inklusive Sandbox/Production wenn\n  bekannt.\n- Die automatische Wiedergabe von Ask DJ-Audio hat jetzt einen Schalter in den\n  Einstellungen und ist standardmäßig aus.\n\n## Behoben\n\n- Die Now Playing Live Activity Artwork-Fallback-Ansicht hat sauberere Abstände\n  und kein überlappendes Wiedergabesymbol mehr.\n- Pushstatus-Beschriftungen sind auf Englisch, Niederländisch, Deutsch,\n  Französisch und Spanisch lokalisiert.\n\n---\n\nPlatform: iOS\n\nNicht signierte CI-Artefakte sind fur Diagnose und interne Validierung gedacht.\nNicht signierte iOS-Binaries werden hier fur Diagnose und interne Validierung veroffentlicht. Fur normale iOS-Verteilung TestFlight/App Store verwenden."
+}

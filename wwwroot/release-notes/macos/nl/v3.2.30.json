@@ -1,0 +1,7 @@
+{
+  "version": "3.2.30",
+  "platform": "macos",
+  "language": "nl",
+  "name": "DJConnect macOS 3.2.30",
+  "body": "# DJConnect App 3.2.30\n\n## Gewijzigd\n\n- Over toont nu een privacy-veilige status voor Pushnotificaties in de sectie\n  Verbinding op iOS, macOS en watchOS: geregistreerd, niet actief, niet\n  ondersteund of actie nodig, inclusief sandbox/productie wanneer bekend.\n- Automatisch afspelen van Ask DJ-audio heeft nu een schakelaar in Instellingen\n  en staat standaard uit.\n\n## Opgelost\n\n- De Now Playing Live Activity artwork-fallback heeft nettere spacing en geen\n  overlappend afspeelicoon meer.\n- Pushstatus-labels zijn gelokaliseerd in Engels, Nederlands, Duits, Frans en\n  Spaans.\n\n---\n\nPlatform: macOS\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nVoor normale macOS-distributie heeft de genotariseerde Developer ID-build de voorkeur wanneer die is bijgevoegd."
+}

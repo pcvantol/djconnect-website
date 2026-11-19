@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "candidate_sha": "fbab9c92881e0ea230daa2b907c6e772dca0d63a",
+  "independent_review": {
+    "reviewer": "/root/independent_review",
+    "decision": "GO",
+    "mode": "read_only",
+    "finding": "Malformed source publishing policy failed open; corrected before push, explicit unknown/type fixtures pass",
+    "preserves_existing_visual_acceptance": true
+  },
+  "ci": {
+    "pr_validate": 39317053273,
+    "push_validate": 39317041847,
+    "codeql_result_check": 118281645110,
+    "conclusion": "SUCCESS",
+    "node_pass": 19,
+    "browser_pass": 61,
+    "worker_operational": "PASS"
+  },
+  "cloudflare_premerge": {
+    "workflow_run": 39317041319,
+    "artifact_id": 12219200832,
+    "conclusion": "SUCCESS",
+    "receipt": "cloudflare-premerge-readiness.json"
+  },
+  "remaining_protected_steps": [
+    "Exact final evidence commit review, CI and new Owner Authorization",
+    "Normal protected source squash merge and exact-main acceptance",
+    "Separate protected Website Finalization",
+    "Actual immutable-main artifact qualification, manifest-bound production deployment and live smoke"
+  ]
+}

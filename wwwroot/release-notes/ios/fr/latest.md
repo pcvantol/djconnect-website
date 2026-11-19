@@ -1,0 +1,8 @@
+DJConnect App 3.3.0
+
+---
+
+Platform: iOS
+
+Les artefacts CI non signes sont destines au diagnostic et a la validation interne.
+Les binaires iOS non signes sont publies ici pour le diagnostic et la validation interne. Pour une distribution iOS normale, utilisez TestFlight/App Store.

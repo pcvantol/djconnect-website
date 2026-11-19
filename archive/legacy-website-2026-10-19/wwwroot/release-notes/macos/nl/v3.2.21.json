@@ -1,0 +1,7 @@
+{
+  "version": "3.2.21",
+  "platform": "macos",
+  "language": "nl",
+  "name": "DJConnect macOS 3.2.21",
+  "body": "# DJConnect App 3.2.21\n\n## Toegevoegd\n\n- Music Discovery reminder-pushes toegevoegd met deep links en veilige refresh\n  bij ontvangen of openen.\n- De Mood-keuze toegevoegd aan Speelt nu op iOS en macOS.\n\n## Gewijzigd\n\n- De achtergrond van Speelt nu track-art kleurt nu mee met de gekozen Mood.\n- VibeCast genrebadges zijn groter, hebben een duidelijkere gradientstijl en\n  kleuren mee met de gekozen Mood.\n- De knoppen in de Track Insight deel-popover staan nu dichter onder de preview.\n\n## Opgelost\n\n- Demo VibeCast start nu automatisch Track Insight analyse als je naar het\n  volgende nummer gaat en ververst daarna de genrebadge.\n\n---\n\nPlatform: macOS\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nVoor normale macOS-distributie heeft de genotariseerde Developer ID-build de voorkeur wanneer die is bijgevoegd."
+}

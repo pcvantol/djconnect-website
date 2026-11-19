@@ -1,0 +1,7 @@
+{
+  "version": "3.3.0",
+  "platform": "ios",
+  "language": "es",
+  "name": "DJConnect iOS 3.3.0",
+  "body": "DJConnect App 3.3.0\n\n---\n\nPlatform: iOS\n\nLos artefactos CI sin firmar son para diagnostico y validacion interna.\nLos binarios iOS sin firmar se publican aqui para diagnostico y validacion interna. Para distribucion normal de iOS, usa TestFlight/App Store."
+}

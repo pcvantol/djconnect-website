@@ -1,0 +1,188 @@
+name: Deploy Cloudflare Pages
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        required: true
+        type: choice
+        options: [deployment]
+      candidate_sha:
+        required: true
+        type: string
+      execution_mode:
+        required: true
+        type: choice
+        options: [execute]
+      manifest_id:
+        required: true
+        type: string
+      artifact_id:
+        required: true
+        type: string
+      artifact_sha256:
+        required: true
+        type: string
+      target:
+        required: true
+        type: choice
+        options: [cloudflare_pages_production]
+      platform_version:
+        required: true
+        type: string
+      release_profile:
+        required: true
+        type: choice
+        options: [INTERNAL_RELEASE]
+
+permissions:
+  actions: read
+  contents: read
+
+concurrency:
+  group: website-production-deployment
+  cancel-in-progress: false
+
+jobs:
+  validate-release-dispatch:
+    runs-on: ubuntu-latest
+    outputs:
+      artifact_run_id: ${{ steps.artifact.outputs.run_id }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ inputs.candidate_sha }}
+          fetch-depth: 1
+      - name: Validate bounded deployment request
+        env:
+          ACTION: ${{ inputs.action }}
+          CANDIDATE_SHA: ${{ inputs.candidate_sha }}
+          EXECUTION_MODE: ${{ inputs.execution_mode }}
+          MANIFEST_ID: ${{ inputs.manifest_id }}
+          ARTIFACT_ID: ${{ inputs.artifact_id }}
+          ARTIFACT_SHA256: ${{ inputs.artifact_sha256 }}
+          TARGET: ${{ inputs.target }}
+          PLATFORM_VERSION: ${{ inputs.platform_version }}
+          RELEASE_PROFILE: ${{ inputs.release_profile }}
+        run: |
+          set -euo pipefail
+          test "$ACTION" = deployment
+          test "$EXECUTION_MODE" = execute
+          test "$TARGET" = cloudflare_pages_production
+          test "$RELEASE_PROFILE" = INTERNAL_RELEASE
+          printf '%s' "$CANDIDATE_SHA" | grep -Eq '^[0-9a-f]{40}$'
+          printf '%s' "$ARTIFACT_ID" | grep -Eq '^[0-9]+$'
+          printf '%s' "$ARTIFACT_SHA256" | grep -Eq '^[0-9a-f]{64}$'
+          printf '%s' "$PLATFORM_VERSION" | grep -Eq '^[0-9]+\.[0-9]+$'
+          printf '%s' "$MANIFEST_ID" | grep -Eq '^release-[A-Za-z0-9._-]+$'
+          test "$(git rev-parse HEAD)" = "$CANDIDATE_SHA"
+      - id: artifact
+        name: Verify immutable artifact provenance
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ARTIFACT_ID: ${{ inputs.artifact_id }}
+          CANDIDATE_SHA: ${{ inputs.candidate_sha }}
+        run: |
+          set -euo pipefail
+          metadata="$(gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts/${ARTIFACT_ID}")"
+          test "$(jq -r '.expired' <<<"$metadata")" = false
+          run_id="$(jq -r '.workflow_run.id' <<<"$metadata")"
+          test "$run_id" != null
+          run="$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${run_id}")"
+          test "$(jq -r '.conclusion' <<<"$run")" = success
+          test "$(jq -r '.head_branch' <<<"$run")" = main
+          test "$(jq -r '.head_sha' <<<"$run")" = "$CANDIDATE_SHA"
+          test "$(jq -r '.name' <<<"$run")" = 'Website release artifact'
+          printf 'run_id=%s\n' "$run_id" >> "$GITHUB_OUTPUT"
+      - name: Verify target deployment readiness
+        uses: pcvantol/djconnect/.github/actions/deployment-readiness-preflight@191b4561bdb659bd2e02905b5bce9643d4390a63
+        with:
+          target: ${{ inputs.target }}
+          manifest_id: ${{ inputs.manifest_id }}
+          candidate_sha: ${{ inputs.candidate_sha }}
+          artifact_id: ${{ inputs.artifact_id }}
+          artifact_sha256: ${{ inputs.artifact_sha256 }}
+          expected_runner_os: Linux
+          expected_runner_arch: X64
+          required_configuration: READINESS_CLOUDFLARE_API_TOKEN,READINESS_CLOUDFLARE_ACCOUNT_ID
+          smoke_contract: website-production-route-v1
+        env:
+          READINESS_CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          READINESS_CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+  software-assurance-governance:
+    needs: validate-release-dispatch
+    permissions:
+      contents: read
+    uses: pcvantol/djconnect/.github/workflows/software-assurance-governance.yml@dd02d6470f061e6e755e6fb47ae5331c34f89875
+    with:
+      execution_profile: release
+      owner: pcvantol/djconnect-website
+
+  deploy:
+    needs:
+      - validate-release-dispatch
+      - software-assurance-governance
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+    steps:
+      - name: Download the manifest-bound artifact
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          artifact-ids: ${{ inputs.artifact_id }}
+          github-token: ${{ github.token }}
+          run-id: ${{ needs.validate-release-dispatch.outputs.artifact_run_id }}
+          path: artifact
+      - name: Verify artifact checksum and unpack website
+        env:
+          ARTIFACT_SHA256: ${{ inputs.artifact_sha256 }}
+        run: |
+          set -euo pipefail
+          mapfile -t release_artifacts < <(find artifact -type f -name website-release.tar.gz -print)
+          test "${#release_artifacts[@]}" -eq 1
+          release_artifact="${release_artifacts[0]}"
+          test "$(sha256sum "$release_artifact" | awk '{print $1}')" = "$ARTIFACT_SHA256"
+          mkdir site
+          tar -xzf "$release_artifact" -C site
+      - name: Deploy manifest-bound website artifact
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler@4 pages deploy site --project-name djconnect --branch main
+      - name: Produce redacted deployment evidence
+        env:
+          CANDIDATE_SHA: ${{ inputs.candidate_sha }}
+          MANIFEST_ID: ${{ inputs.manifest_id }}
+          ARTIFACT_ID: ${{ inputs.artifact_id }}
+          ARTIFACT_SHA256: ${{ inputs.artifact_sha256 }}
+          TARGET: ${{ inputs.target }}
+          PLATFORM_VERSION: ${{ inputs.platform_version }}
+          RELEASE_PROFILE: ${{ inputs.release_profile }}
+        run: |
+          python - <<'PY'
+          from datetime import UTC, datetime
+          import json, os
+          payload = {
+              "schema_version": 1,
+              "kind": "website_production_deployment",
+              "repository": os.environ["GITHUB_REPOSITORY"],
+              "candidate_sha": os.environ["CANDIDATE_SHA"],
+              "manifest_id": os.environ["MANIFEST_ID"],
+              "artifact_id": os.environ["ARTIFACT_ID"],
+              "artifact_sha256": os.environ["ARTIFACT_SHA256"],
+              "target": os.environ["TARGET"],
+              "platform_version": os.environ["PLATFORM_VERSION"],
+              "release_profile": os.environ["RELEASE_PROFILE"],
+              "deployment_result": "DEPLOYED_PENDING_SMOKE",
+              "timestamp": datetime.now(UTC).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+          }
+          with open("platform-release-deployment-evidence.json", "w", encoding="utf-8") as file:
+              json.dump(payload, file, sort_keys=True)
+          PY
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: platform-release-deployment-evidence
+          path: platform-release-deployment-evidence.json
+          if-no-files-found: error

@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "main_sha": "491b83850d949fe61f3e2d85be7c50677da78300",
+  "source_pr": 63,
+  "old_reconciliation_run": 39318759729,
+  "actual_old_conclusion": "FAILURE / POST_MERGE_RELEASE_EVIDENCE_NOT_QUALIFIED",
+  "old_policy": "ebbb35f038a7a3c7d46c12660968bcd50eb67580",
+  "old_collector": "single getCommit returns300files; PR collector paginates1986",
+  "actual_fully_paginated_commit_files": 1986,
+  "actual_fully_paginated_pr_files": 1986,
+  "file_sets_equal": true,
+  "sorted_path_inventory_sha256": "e7b23911c2aef2e612236fdd28590e6cc4015e3da6946fccfc79e6bb33e9b703",
+  "new_canonical_policy": "baac22d771bf3141404001517f62a5e34f8c8644",
+  "new_policy_origin": "protected Core1197/c98cbf3e introduced collectCommitFiles; accepted currentCoremainbaac retains it",
+  "canonical_regression_tests": "4PASS including actual JScollector369files, wrongSHA/parent/duplicate/empty-next/3000cap failures",
+  "qualification_limit": "Complete file/tree provenance verified, but original old run remains FAIL. No retrospective qualification. Final main must actually produce canonical QUALIFIED receipt before deployment.",
+  "actual_fact_local_reproduction": {
+    "old_collector_findings": [
+      "main commit changed-file set is not solely derived from the pull request"
+    ],
+    "fully_paginated_collector_findings": [],
+    "limit": "Local canonical evaluator with actual GitHub API facts; not a successful governed workflow or published retrospective qualification"
+  }
+}

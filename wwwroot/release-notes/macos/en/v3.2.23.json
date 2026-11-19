@@ -1,0 +1,7 @@
+{
+  "version": "3.2.23",
+  "platform": "macos",
+  "language": "en",
+  "name": "DJConnect macOS 3.2.23",
+  "body": "# DJConnect App 3.2.23\n\n## Changed\n\n- Music DNA cards on iPhone are taller and scroll internally when content does\n  not fit on smaller or landscape screens.\n- Track Insight sharing uses tighter preview spacing and more bottom padding for\n  the action buttons.\n- The release flow is stricter about the exact release commit and version-scoped\n  release notes.\n\n## Fixed\n\n- Fixed the iOS copy-logs icon so it stays white instead of inheriting the\n  purple tint.\n\n---\n\nPlatform: macOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nFor normal macOS distribution, prefer the notarized Developer ID build when attached."
+}

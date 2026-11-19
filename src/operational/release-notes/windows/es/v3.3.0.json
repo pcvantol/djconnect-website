@@ -1,0 +1,7 @@
+{
+  "version": "3.3.0",
+  "platform": "windows",
+  "language": "es",
+  "name": "DJConnect Windows 3.3.0",
+  "body": "DJConnect Windows 3.3.0\n\n---\n\nPlatform: Windows\n\nLos artefactos de CI sin firmar son para diagnóstico y validación interna.\nLos artefactos de Windows no están firmados y todavía no son un instalador Store/MSIX."
+}

@@ -1,0 +1,7 @@
+{
+  "version": "3.2.25",
+  "platform": "macos",
+  "language": "de",
+  "name": "DJConnect macOS 3.2.25",
+  "body": "# DJConnect App 3.2.25\n\n## Hinzugefugt\n\n- Now Playing auf iOS hat neben Shuffle jetzt eine direkte Taste zur Warteschlange.\n\n## Geandert\n\n- Das Now Playing-Widget nutzt bei fehlendem Cover jetzt einen DJConnect\n  Music/Play-Platzhalter statt eines grauen Blocks.\n- Lock Screen Live Activity und Dynamic Island passen jetzt besser zum Now\n  Playing-Widget, mit Mood-Farben, Coveranzeige, kompaktem Dynamic\n  Island-Cover und derselben Fallback-Optik.\n\n---\n\nPlatform: macOS\n\nNicht signierte CI-Artefakte sind fur Diagnose und interne Validierung gedacht.\nFur die normale macOS-Verteilung ist der notarisierte Developer-ID-Build vorzuziehen, wenn er angehangt ist."
+}

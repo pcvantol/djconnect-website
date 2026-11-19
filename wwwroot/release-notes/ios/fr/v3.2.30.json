@@ -1,0 +1,7 @@
+{
+  "version": "3.2.30",
+  "platform": "ios",
+  "language": "fr",
+  "name": "DJConnect iOS 3.2.30",
+  "body": "# DJConnect App 3.2.30\n\n## Modifié\n\n- À propos affiche maintenant un état Notifications push respectueux de la vie\n  privée dans la section Connexion sur iOS, macOS et watchOS : enregistré,\n  inactif, non pris en charge ou action requise, avec Sandbox/Production quand\n  c’est connu.\n- La lecture automatique de l’audio Ask DJ dispose maintenant d’un interrupteur\n  dans Réglages et est désactivée par défaut.\n\n## Corrigé\n\n- Le repli artwork de Now Playing Live Activity a des espacements plus propres\n  et n’affiche plus d’icône de lecture superposée.\n- Les libellés d’état push sont localisés en anglais, néerlandais, allemand,\n  français et espagnol.\n\n---\n\nPlatform: iOS\n\nLes artefacts CI non signes sont destines au diagnostic et a la validation interne.\nLes binaires iOS non signes sont publies ici pour le diagnostic et la validation interne. Pour une distribution iOS normale, utilisez TestFlight/App Store."
+}

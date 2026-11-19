@@ -1,0 +1,7 @@
+{
+  "version": "3.2.26",
+  "platform": "ios",
+  "language": "nl",
+  "name": "DJConnect iOS 3.2.26",
+  "body": "# DJConnect App 3.2.26\n\n## Gewijzigd\n\n- Playback-refreshes en backend-herstelpogingen worden beter samengevoegd,\n  zodat commands minder herhaald netwerkwerk veroorzaken.\n- De lokale issue- en TODO-documentatie is bijgewerkt met afgeronde hardening.\n\n## Opgelost\n\n- Tijdelijke `backend_unavailable` storingen tonen nu herstelcopy, proberen\n  automatisch opnieuw en houden de koppeling intact.\n- Generieke playback-backend unavailable command-fouten gebruiken nu de\n  herstelcopy, terwijl specifieke playback-restricties hun eigen melding houden.\n- Voice/audio loading, inkomende payloadlimieten, runtime logredactie en\n  dubbele wachtrijrij-identiteit zijn aangescherpt.\n\n---\n\nPlatform: iOS\n\nNiet-ondertekende CI-artifacts zijn bedoeld voor diagnostics en interne validatie.\nNiet-ondertekende iOS-binaries worden hier gepubliceerd voor diagnostics en interne validatie. Gebruik voor normale iOS-distributie TestFlight/App Store."
+}

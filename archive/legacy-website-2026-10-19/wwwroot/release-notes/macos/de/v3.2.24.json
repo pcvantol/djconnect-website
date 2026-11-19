@@ -1,0 +1,7 @@
+{
+  "version": "3.2.24",
+  "platform": "macos",
+  "language": "de",
+  "name": "DJConnect macOS 3.2.24",
+  "body": "# DJConnect App 3.2.24\n\n## Hinzugefugt\n\n- Apple Watch hat jetzt Entdecken mit Empfehlungsliste, Detailbegrundung und\n  Jetzt abspielen uber den iPhone-Proxy.\n- What's-New-Release-Notes werden als JSON in Englisch, Niederlandisch, Deutsch,\n  Franzosisch und Spanisch veroffentlicht.\n\n## Geandert\n\n- Das Xcode-Projekt und die geteilten Schemes sind auf Xcode-27-\n  Migrationseinstellungen vorbereitet.\n- Apple Watch halt Mood, Warteschlange, Playlists und Entdecken vor Ask DJ und\n  Analyseansichten zusammen.\n- Track Insight verwendet denselben schwebenden Mood-Selector wie Ask DJ.\n- Games nutzen auf dem iPad im Landscape-Modus ein niedrigeres Spielfeld, damit\n  die Buttons unter dem Spiel sichtbar bleiben.\n\n## Behoben\n\n- Haptisches Feedback funktioniert im Demo-Modus jetzt auch auf einer echten\n  Apple Watch.\n\n---\n\nPlatform: macOS\n\nNicht signierte CI-Artefakte sind fur Diagnose und interne Validierung gedacht.\nFur die normale macOS-Verteilung ist der notarisierte Developer-ID-Build vorzuziehen, wenn er angehangt ist."
+}

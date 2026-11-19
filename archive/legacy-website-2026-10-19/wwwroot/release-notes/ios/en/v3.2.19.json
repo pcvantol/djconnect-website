@@ -1,0 +1,7 @@
+{
+  "version": "3.2.19",
+  "platform": "ios",
+  "language": "en",
+  "name": "DJConnect iOS 3.2.19",
+  "body": "# DJConnect App 3.2.19\n\n## Changed\n\n- Discover recommendation details now include a Close button below Play now.\n\n## Fixed\n\n- Fixed the public unsigned iOS release workflow on Xcode 16.4 for watchOS\n  notification permission checks.\n\n---\n\nPlatform: iOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nUnsigned iOS binaries are published here for diagnostics and internal validation. For normal iOS distribution, use TestFlight/App Store."
+}

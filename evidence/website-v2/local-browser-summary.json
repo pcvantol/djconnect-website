@@ -1,0 +1,20 @@
+{
+  "scope": "Local built-artifact browser acceptance; not physical/native/live acceptance",
+  "stats": {
+    "startTime": "2026-10-19T17:34:21.405Z",
+    "duration": 18210.536,
+    "expected": 57,
+    "skipped": 1,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "projects": [
+    "chromium",
+    "webkit"
+  ],
+  "artworkProvenance": "src/assets/artwork/provenance.json",
+  "node": "v26.12.0",
+  "os": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "gitHeadAtEvidenceCollection": "81ec58df21ab66b0028968a85f67dd32624e7866",
+  "note": "Browser result is for tested local working tree; exact-head CI remains separate evidence."
+}

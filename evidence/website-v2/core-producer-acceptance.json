@@ -1,0 +1,42 @@
+{
+  "producer_repository": "pcvantol/djconnect",
+  "source_pr": 1224,
+  "source_reviewed_sha": "883cb9f3ff9de8ec7f5ae4c5f04f852e0d8bd866",
+  "protected_source_main": "7e14e5970b3f68d33d243ae6bab2b281fad59bb2",
+  "source_tree": "7f497d70bbddc2b017b2298d06ce694df45f3b7e",
+  "source_owner_authorization": 39311290397,
+  "source_main_ci": 39311450420,
+  "brand_run": 39311450392,
+  "brand_artifact": 12215039964,
+  "archive_sha256": "025202e82a9a9e4c7c4859bb03fdebd1287d817abe5c6b3dce1380b690b4d1f6",
+  "manifest_sha256": "73cc408e10d88aa1fb8a1be2783b9c577aec398ce3dcd54c2f997ad1425984d2",
+  "finalization_pr": 1227,
+  "finalization_reviewed_sha": "ec6db7013c90f17c97c7c8f22a51cbd9963c2f77",
+  "finalization_main": "baac22d771bf3141404001517f62a5e34f8c8644",
+  "finalization_tree": "e1ea5be09a36f84bbf1498c65091adf3e86bdf4a",
+  "finalization_owner_authorization": 39313305759,
+  "finalization_main_ci": {
+    "run": 39313456009,
+    "status": "SUCCESS"
+  },
+  "asset_import_verification": {
+    "all_selected_assets_byte_identical": true,
+    "manifest_byte_identical": true,
+    "files": [
+      "glass-master.png",
+      "headset-master.png",
+      "mark-16.png",
+      "mark-32.png",
+      "mark-40.png",
+      "mark-64.png",
+      "mark-128.png",
+      "mark-256.png",
+      "mark-512.png",
+      "wordmark-compact-dark.png",
+      "wordmark-primary-dark.png"
+    ]
+  },
+  "qualification": "PROTECTED_ASSET_PRODUCER_ACCEPTED_AND_RECONCILED",
+  "runtime_boundary": "HA runtime Golden39312303769 FAIL tests0/unknowncause, HApackage+reconcile SKIPPED; separate blocked runtime release, not asset/native/installed PASS",
+  "native_apple_and_integral_branding": "OPEN; no other consumer or GitHub social-settings acceptance claimed"
+}

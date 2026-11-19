@@ -1,0 +1,7 @@
+{
+  "version": "3.2.25",
+  "platform": "macos",
+  "language": "es",
+  "name": "DJConnect macOS 3.2.25",
+  "body": "# DJConnect App 3.2.25\n\n## Anladido\n\n- Now Playing en iOS ahora tiene un boton directo a la cola junto a shuffle.\n\n## Cambiado\n\n- El widget Now Playing usa ahora un marcador DJConnect music/play cuando falta\n  la caratula, en lugar de un bloque gris.\n- La Live Activity de la pantalla bloqueada y Dynamic Island coinciden mejor\n  con el widget Now Playing, con colores Mood, caratula, caratula compacta en\n  Dynamic Island y los mismos visuales de fallback.\n\n---\n\nPlatform: macOS\n\nLos artefactos CI sin firmar son para diagnostico y validacion interna.\nPara la distribucion normal de macOS, prefiere la build Developer ID notarizada cuando este adjunta."
+}

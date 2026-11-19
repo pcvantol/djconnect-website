@@ -1,0 +1,7 @@
+{
+  "version": "3.1.38",
+  "platform": "macos",
+  "language": "en",
+  "name": "DJConnect macOS 3.1.38",
+  "body": "### Changed\n\n- Added Ask DJ support for backend-generated ambient/system messages, including\n  Spotify playback-context DJ facts with distinct chat styling across Apple\n  clients.\n- Changed the Ask DJ clear-history confirmation from a popover-style\n  confirmation dialog to a standard modal alert with explicit cancel and\n  destructive actions.\n- Changed Ask DJ Demo Mode to stay fully client-side: it shows the starter\n  prompts, avoids backend history sync, and answers locally until Home\n  Assistant is paired.\n- Removed raw inline Ask DJ error text above the prompt; failures are surfaced\n  through the existing snackbar/toast.\n- Added a microphone icon to Ask DJ voice-request chat bubbles.\n- Replaced Keychain-backed DJConnect device-token storage with app-private\n  storage on iOS, macOS, and watchOS to avoid platform Keychain prompts.\n- Added an `App opnieuw koppelen` Settings action that resets pairing and opens\n  the pairing sheet again.\n\n### Fixed\n\n- Ignored cancelled Ask DJ history refresh tasks so pull-to-refresh does not\n  show a spurious network-cancelled error.\n- Prevented raw backend/HTML error bodies from appearing in Ask DJ chat or\n  inline error UI; technical details remain in diagnostics logs only.\n\n\n---\n\nPlatform: macOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nFor normal macOS distribution, prefer the notarized Developer ID build when attached."
+}

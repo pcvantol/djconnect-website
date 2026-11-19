@@ -1,0 +1,7 @@
+{
+  "version": "3.1.43",
+  "platform": "ios",
+  "language": "en",
+  "name": "DJConnect iOS 3.1.43",
+  "body": "### Changed\n\n- Render Ask DJ assistant answers as rich chat content with preserved headings,\n  blank lines, paragraphs, bullets, links, sources, images, audio replay, and\n  structured playback/action rows across Apple clients.\n- Send the full known Ask DJ action object back to Home Assistant command\n  handling, including labels, reasons, artwork URLs, output state, and\n  confirmation response values.\n- Avoid reusing images, links, or action rows from older Ask DJ bubbles when a\n  refreshed server message omits them or sends empty arrays.\n- Added range-request support for On Air stream files served by the local\n  device API.\n- Improved watchOS runtime behavior for pairing, local API lifecycle, demo\n  mode, wakeword scheduling, diagnostics, and notification delegate handling.\n\n\n---\n\nPlatform: iOS\n\nUnsigned CI artifacts are intended for diagnostics and internal validation.\nUnsigned iOS binaries are published here for diagnostics and internal validation. For normal iOS distribution, use TestFlight/App Store."
+}
